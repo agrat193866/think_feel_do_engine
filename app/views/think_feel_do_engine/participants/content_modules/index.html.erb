@@ -1,0 +1,51 @@
+<% content_for :left do %>
+  <div class="list-group left">
+    <% content_modules.each do |content_module| %>
+      <% task_status = task_status(current_participant.membership, content_module) %>
+      <% if task_status && task_status.task.has_didactic_content && !task_status.provider_viz? %>
+        <% if task_status.completed_at.nil? %>
+          <%= task_status_link(task_status, "list-group-item "\
+                "list-group-item-unread") %>
+        <% else %>
+          <%= task_status_link(task_status) %>
+        <% end %>
+    <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :right do %>
+<div class="list-group right">
+  <% content_modules.each do |content_module| %>
+    <% task_status = task_status(current_participant.membership, content_module) %>
+    <% if task_status && !task_status.task.has_didactic_content && !task_status.provider_viz? %>
+      <% if task_status.completed_at.nil? %>
+        <%= task_status_link(task_status, "list-group-item "\
+              "list-group-item-unread", "pencil") %>
+      <% else %>
+        <%= task_status_link(task_status,"list-group-item list-group-item-read","pencil") %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<% end %>
+
+<% content_modules.each do |content_module| %>
+    <% task_status = task_status(current_participant.membership, content_module) %>
+    <% if task_status && task_status.provider_viz? %>
+      <br>
+      <%= task_status
+        .task
+        .bit_core_content_module
+        .content_providers
+        .first
+        .render_current(
+          self,
+          navigator_location_path(
+              module_id: task_status.bit_core_content_module_id
+          )
+        )
+        .html_safe 
+      %>
+    <% end %>
+  <% end %>

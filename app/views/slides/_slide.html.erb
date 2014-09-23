@@ -1,0 +1,14 @@
+<div class="tool-content well well-lg">
+  <% if slide.is_title_visible %>
+    <div class="slide">
+      <h1><%= slide.title %></h1>
+    </div>
+  <% end %>
+
+  <% case slide.class.to_s
+     when 'BitCore::VideoSlide' %>
+    <%= render 'slides/video', slide: slide %>
+  <% end %>
+
+  <%= slide.render_body %>
+</div>

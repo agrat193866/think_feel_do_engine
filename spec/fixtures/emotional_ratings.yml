@@ -1,0 +1,24 @@
+longing:
+  participant: participant1
+  emotion: longing
+  rating: 2
+
+angry:
+  participant: participant1
+  emotion: angry
+  rating: 4
+
+fatigued:
+  participant: participant1
+  emotion: fatigued
+  rating: 1
+
+anxious:
+  participant: participant1
+  emotion: anxious
+  rating: 8
+
+surprised:
+  participant: participant2
+  emotion: surprised
+  rating: 3

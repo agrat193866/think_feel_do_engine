@@ -1,0 +1,42 @@
+<h1>Slideshow <small><%= @slideshow.title %></small></h1>
+
+<div class="btn btn-toolbar" style="padding: 0px;">
+	<%= link_to "<i class='fa fa-plus'></i> Add Slide".html_safe, new_bit_maker_slideshow_slide_path(@slideshow), class: "btn btn-default" %>
+	<%= link_to "<i class='fa fa-plus'></i> Add Video Slide".html_safe, new_bit_maker_slideshow_slide_path(@slideshow, type: "BitCore::VideoSlide"), class: "btn btn-default" %>
+  <%= link_to "Edit", edit_bit_maker_slideshow_path(@slideshow), class: "btn btn-default" %>
+	<%= link_to "Delete", bit_maker_slideshow_path(@slideshow), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+
+<h3>Anchors</h3>
+
+<%= form_tag bit_maker_slideshow_slideshow_anchors_path(slideshow_id: @slideshow.id), remote: true do %>
+  <% SlideshowAnchor::TARGET_NAMES.each do |tn| %>
+    <% anchor = (@anchors[tn] || []).first %>
+    <%= hidden_field_tag "id_to_destroy", anchor.try(:id), :"data-target-name" => tn %>
+    <%= check_box_tag "slideshow_anchor[target_name]", tn, anchor.present? %> <%= tn %>
+  <% end %>
+
+  <%= submit_tag "Ok", class: "btn btn-default" %>
+<% end %>
+
+<h3>Slides</h3>
+
+<ol id="sortable-slides" data-update-url="<%= sort_bit_maker_slideshow_slides_url(@slideshow) %>">
+	<% @slideshow.slides.each do |slide| %>
+		<li class="slide" id="slide_<%= slide.id %>">
+			<span>
+				<span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span>
+			</span>
+
+			<span>
+				<%= link_to slide.title, bit_maker_slideshow_slide_path(@slideshow, slide) %>
+			</span>
+
+			<span>
+				<%= link_to "Edit", edit_bit_maker_slideshow_slide_path(@slideshow, slide), class: "btn btn-default" %>
+				<%= link_to "Remove", bit_maker_slideshow_slide_path(@slideshow, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+			</span>
+		</li>
+	<% end %>
+</ol>
+

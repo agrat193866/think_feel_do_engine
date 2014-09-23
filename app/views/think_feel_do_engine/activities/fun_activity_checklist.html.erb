@@ -1,0 +1,13 @@
+<style>
+  /* show the intensity selectors by default */
+  .form-group.intensity {
+    opacity: inherit;
+    height: auto;
+  }
+</style>
+
+<h2>We want you to plan one fun thing</h2>
+
+<p>But you don't have to start from scratch, you can plan something you've done before.</p>
+
+<%= render "think_feel_do_engine/activities/build_activity", create_path: create_path, past_activities: past_activities %>

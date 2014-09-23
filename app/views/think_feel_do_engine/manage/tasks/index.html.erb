@@ -1,0 +1,24 @@
+<h1>
+  Learning Content
+  <small><%= @group.title %></small>
+</h1>
+
+<div class="btn-toolbar hidden-print">
+  <%= link_to "Groups", manage_groups_path, class: "btn btn-default" %>
+  <%= link_to "PDF/Print", "#", class: "btn btn-primary", onclick: "window.print();" %>
+</div>
+
+<% @learning_tasks.each do |task| %>
+  <% task.bit_core_content_module.content_providers.each do |content_provider| %>
+
+    <h3>
+      Lesson:
+      <small><%= content_provider.source_content.title %></small>
+    </h3>
+
+    <% content_provider.source_content.slides.each do | slide | %>
+      <%= render 'think_feel_do_engine/bit_maker/slides/slide', slide: slide, slideshow: content_provider.source_content %>
+    <% end %>
+  <% end %>
+  <hr>
+<% end %>

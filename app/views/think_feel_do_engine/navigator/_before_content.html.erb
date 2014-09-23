@@ -1,0 +1,5 @@
+<% if current_provider_skippable?(@navigator) %>
+  <div class="btn-toolbar">
+    <%= link_to "Skip", navigator_next_provider_path, class: "btn btn-default next-button" %>
+  </div>
+<% end %>

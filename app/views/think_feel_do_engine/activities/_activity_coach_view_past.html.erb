@@ -1,0 +1,18 @@
+<tr class=<%= get_color_class(activity) %>>
+  <td><%= activity.title %></td>
+  <td><%= activity.is_monitored? ? "Monitored" : "Planned" %></td>
+  <td>
+    <% if activity.is_complete? %>
+      <span class="label label-success">Completed</span>
+    <% elsif activity.noncompliance_reason.present? %>
+      <span class="label label-warning">Not Completed</span>
+      <button type="button" class="btn btn-link" data-toggle="popoper" title="Why was this not completed?" data-content="<%= activity.noncompliance_reason %>" onmouseover="$(this).popover();">more info</button>
+    <% end %>
+  </td>
+  <td><%= activity.predicted_pleasure_intensity ? activity.predicted_pleasure_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
+  <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
+  <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
+  <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
+  <td><%= activity.start_time? ? "Scheduled for #{ activity.start_time.to_formatted_s(:short) }" : "Unscheduled" %></td>
+  <td><%= activity.created_at.to_formatted_s(:short) %></td>
+</tr>

@@ -10,4 +10,35 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require stepped_care
+//= require jquery
+//= require jquery_ujs
+//= require jquery.ui.sortable
+//= require jquery.ui.datepicker
+//= require turbolinks
+//= require underscore
+//= require bootstrap/alert
+//= require bootstrap/button
+//= require bootstrap/collapse
+//= require bootstrap/dropdown
+//= require bootstrap/tab
+//= require bootstrap/transition
+//= require bootstrap/modal
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap3
+//= require rickshaw_with_d3
+//= require snap
+//= require moment.min
+//
+// Participant requirements
+//= require event_capture
+//= require froogaloop.min
+//
+// User requirements
+//= require bootstrap/tooltip
+//= require bootstrap/popover
+//= require bootstrap-markdown
+//= require markdown
+//= require to-markdown
+//
 //= require_tree .

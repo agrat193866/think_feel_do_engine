@@ -1,0 +1,20 @@
+participant_to_coach1:
+  sender: participant1 (Participant)
+  recipient: user1 (User)
+  subject: I like this app
+  body: This app is really helpful!
+  sent_at: <%= Time.new %>
+
+coach_to_participant1:
+  sender: user1 (User)
+  recipient: participant1 (Participant)
+  subject: Try out the LEARN tool
+  body: I think you will find it helpful
+  sent_at: <%= Time.new %>
+
+participant_to_coach2:
+  sender: participant2 (Participant)
+  recipient: user2 (User)
+  subject: I like this thing yo!
+  body: This app is really helpful!
+  sent_at: <%= Time.new %>

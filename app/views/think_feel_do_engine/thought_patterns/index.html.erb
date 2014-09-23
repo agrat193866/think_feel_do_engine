@@ -1,0 +1,8 @@
+<% thought_patterns.each_with_index do |thought_pattern, i| %>
+  <div class="thought-pattern well well-lg" style="<%= i == 0 ? "" : "display: none;" %>">
+    <h3><%= thought_pattern.title %></h3>
+    <p><%= thought_pattern.description %></p>
+  </div>
+<% end %>
+
+<%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", id: "next-thought-pattern") %>

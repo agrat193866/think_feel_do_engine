@@ -1,0 +1,388 @@
+home_slideshow:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: home_intro (BitCore::Slideshow)
+  content_module: home_landing
+  position: 1
+
+module_index_provider:
+  type: ContentProviders::ModuleIndexProvider
+  content_module: do_landing
+  position: 1
+
+slideshow_provider:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_awareness_intro (BitCore::Slideshow)
+  content_module: do_awareness
+  position: 1
+
+awake_period_form_provider:
+  type: ContentProviders::AwakePeriodForm
+  content_module: do_awareness
+  position: 2
+
+past_activity_form_provider:
+  type: ContentProviders::PastActivityForm
+  content_module: do_awareness
+  position: 3
+
+activity_index:
+  type: ContentProviders::ActivityIndexProvider
+  content_module: do_awareness
+  position: 4
+
+pleasurable_activity_index:
+  type: ContentProviders::PleasurableActivityIndexProvider
+  content_module: do_awareness
+  position: 5
+
+accomplished_activity_index:
+  type: ContentProviders::AccomplishedActivityIndexProvider
+  content_module: do_awareness
+  position: 6
+
+do_planning_intro_slideshow:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_planning_intro (BitCore::Slideshow)
+  content_module: do_planning
+  position: 1
+
+do_planning_fun_activity_checklist:
+  type: ContentProviders::FunActivityChecklist
+  content_module: do_planning
+  position: 2
+
+do_planning_important_activity_checklist:
+  type: ContentProviders::ImportantActivityChecklist
+  content_module: do_planning
+  position: 3
+
+do_planning_transition:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_planning_transition (BitCore::Slideshow)
+  content_module: do_planning
+  position: 4
+
+unplanned_activity_form_provider:
+  type: ContentProviders::UnplannedActivityForm
+  content_module: do_planning
+  position: 5
+
+do_doing_intro_slideshow:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_doing_intro (BitCore::Slideshow)
+  content_module: do_doing
+  position: 1
+
+do_doing_past_activity_review:
+  type: ContentProviders::PastActivityReviewForm
+  content_module: do_doing
+  position: 2
+
+create_activity:
+  type: ContentProviders::CreateActivity
+  content_module: create_activity
+  position: 1
+
+do_past_due_activities:
+  type: ContentProviders::PastDueActivitiesViz
+  content_module: do_past_due_activities
+  position: 1
+
+do_your_activities_viz:
+  type: ContentProviders::YourActivitiesProvider
+  content_module: do_your_activities_viz
+  position: 1
+
+do_congrats_provider:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_congrats (BitCore::Slideshow)
+  content_module: do_doing
+  position: 3
+
+think_landing:
+  type: ContentProviders::ModuleIndexProvider
+  content_module: think_landing
+  position: 1
+
+think_identify_index:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_identifying_intro (BitCore::Slideshow)
+  content_module: think_identifying
+  position: 1
+
+think_identify_new_thought_form:
+  type: ContentProviders::NewThoughtFormProvider
+  content_module: think_identifying
+  position: 2
+
+think_identify_new_thoughts_form:
+  type: ContentProviders::NewThoughtsFormProvider
+  content_module: think_identifying
+  position: 3
+
+think_identify_new_harmful_thought_form:
+  type: ContentProviders::NewHarmfulThoughtFormProvider
+  content_module: think_identifying
+  position: 4
+
+think_conclusion:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_identifying_conclusion (BitCore::Slideshow)
+  content_module: think_identifying
+  position: 5
+
+think_patterns_index:
+  content_module: think_patterns
+  position: 1
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_patterns_intro (BitCore::Slideshow)
+
+think_patterns_definitions:
+  content_module: think_patterns
+  position: 2
+  type: ContentProviders::ThoughtPatternsIndexProvider
+
+think_patterns_helpful_index:
+  content_module: think_patterns
+  position: 3
+  type: ContentProviders::HelpfulThoughtsIndexProvider
+
+think_harmful_thoughts_form:
+  content_module: think_patterns
+  position: 4
+  type: ContentProviders::HarmfulThoughtsEditFormProvider
+
+think_patterns_conclusion:
+  content_module: think_patterns
+  position: 5
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_patterns_conclusion (BitCore::Slideshow)
+
+think_reshape_index:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_reshape_intro (BitCore::Slideshow)
+  content_module: think_reshape
+  position: 1
+
+think_reshape_unhelpful_thoughts_list:
+  type: ContentProviders::UnhelpfulThoughtsListProvider
+  content_module: think_reshape
+  position: 2
+
+think_reshape_evaluate_thoughts_img:
+  type: ContentProviders::EvaluateThoughtsProvider
+  content_module: think_reshape
+  position: 3
+
+think_reshape_unhelpful_thoughts_reflect:
+  type: ContentProviders::UnhelpfulThoughtsReflectionProvider
+  content_module: think_reshape
+  position: 4
+
+thought_add_complete:
+  type: ContentProviders::NewCompleteThoughtFormProvider
+  content_module: think_module5
+  position: 1
+
+thought_post_add_complete:
+  type: ContentProviders::AugmentedThoughtsTableProvider
+  content_module: think_module5
+  position: 2
+
+thoughts_viz:
+  type: ContentProviders::ThoughtsDistortionVizProvider
+  content_module: think_module_distortion_viz
+  position: 1
+
+thoughts_table:
+  type: ContentProviders::ThoughtsTableProvider
+  content_module: think_module_thoughts_table
+  position: 1
+
+create_thought_form_thoughts_table:
+  type: ContentProviders::NewCompleteThoughtFormProvider
+  content_module: think_module_thoughts_table
+  position: 2
+
+thoughts_table_augmented:
+  type: ContentProviders::AugmentedThoughtsTableProvider
+  content_module: think_module_thoughts_table
+  position: 3
+
+feel_landing:
+  type: ContentProviders::ModuleIndexProvider
+  content_module: feeling_tracker_landing
+  position: 1
+
+mood_past_24_hrs:
+  type: ContentProviders::NewCurrentFeelProvider
+  content_module: feeling_tracker_module2
+  position: 1
+
+mood_and_emotions_index_day1:
+  type: ContentProviders::IndexPastFeelProvider
+  content_module: feeling_tracker_module2
+  position: 2
+
+mood_past_24_hrs_reoccuring:
+  type: ContentProviders::NewCurrentFeelProvider
+  content_module: feeling_tracker_module3
+  position: 1
+
+emotion_past_24_hrs_reoccuring:
+  type: ContentProviders::NewCurrentEmotionProvider
+  content_module: feeling_tracker_module3
+  position: 2
+
+mood_and_emotions_index_post_day1:
+  type: ContentProviders::IndexPastFeelProvider
+  content_module: feeling_tracker_module3
+  position: 3
+
+feel_emotions_list:
+  type: ContentProviders::IndexPastFeelProvider
+  content_module: feeling_tracker_emotions_list
+  position: 1
+
+library_lessons:
+  type: ContentProviders::LearnLessonsIndexProvider
+  content_module: library_landing
+  position: 1
+
+messages_landing:
+  type: ContentProviders::MessagesIndexProvider
+  content_module: messages_landing
+  position: 1
+
+message_view:
+  type: ContentProviders::ShowMessageProvider
+  content_module: messages_landing
+  position: 2
+
+messages_compose:
+  type: ContentProviders::NewMessageFormProvider
+  content_module: messages_landing
+  position: 3
+
+content_provider_slideshow_1:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: home_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_1
+  position: 1
+
+content_provider_slideshow_2:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_awareness_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_2
+  position: 1
+
+content_provider_slideshow_3:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_planning_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_3
+  position: 1
+
+content_provider_slideshow_4:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_planning_transition (BitCore::Slideshow)
+  content_module: slideshow_content_module_4
+  position: 1
+
+content_provider_slideshow_5:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_doing_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_5
+  position: 1
+
+content_provider_slideshow_6:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: do_congrats (BitCore::Slideshow)
+  content_module: slideshow_content_module_6
+  position: 1
+
+content_provider_slideshow_7:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_identifying_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_7
+  position: 1
+
+content_provider_slideshow_8:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_identifying_conclusion (BitCore::Slideshow)
+  content_module: slideshow_content_module_8
+  position: 1
+
+content_provider_slideshow_9:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_patterns_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_9
+  position: 1
+
+content_provider_slideshow_10:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_patterns_conclusion (BitCore::Slideshow)
+  content_module: slideshow_content_module_10
+  position: 1
+
+content_provider_slideshow_11:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: think_reshape_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_11
+  position: 1
+
+content_provider_slideshow_12:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: feel_mood_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_12
+  position: 1
+
+content_provider_slideshow_13:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: feel_emotions_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_13
+  position: 1
+
+content_provider_slideshow_14:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: feel_changes_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_14
+  position: 1
+
+content_provider_slideshow_15:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: feel_identify_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_15
+  position: 1
+
+content_provider_slideshow_16:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: learn_thoughts_intro (BitCore::Slideshow)
+  content_module: slideshow_content_module_16
+  position: 1

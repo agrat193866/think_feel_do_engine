@@ -1,0 +1,42 @@
+<%= form_for([:coach, @phq_assessment], html: { class: "form-horizontal" }) do |f| %>
+  <%= hidden_field_tag :participant_id, @participant.id %>
+
+  <% if @phq_assessment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@phq_assessment.errors.count, "error") %> prohibited this coach_phq_assessment from being saved:</h2>
+
+      <ul>
+      <% @phq_assessment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :release_date, class: "col-sm-2 control-label" %><br>
+    <div class="col-sm-6">
+      <%= f.date_select :release_date, class: "form-control" %>
+    </div>
+  </div>
+
+  <% %w(q1 q2 q3 q4 q5 q6 q7 q8 q9).each do |q| %>
+    <div class="form-group">
+      <%= f.label q, class: "col-sm-2 control-label" %>
+      <div class="col-sm-1">
+        <% if @phq_assessment.send(q).nil? || @phq_assessment.id.nil? %>
+          <%= f.number_field q, class: "form-control" %>
+        <% else %>
+          <p class="form-control-static"><%= @phq_assessment.send(q) %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary btn-large" %>
+      <%= link_to 'Cancel', coach_phq_assessments_path(participant_id: @participant.id), class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

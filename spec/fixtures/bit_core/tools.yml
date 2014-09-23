@@ -1,0 +1,23 @@
+home:
+  position: 0
+  title: home
+
+thought_tracker:
+  position: 1
+  title: THINK
+
+feeling_tracker:
+  position: 2
+  title: FEEL
+
+activity_tracker:
+  position: 3
+  title: DO
+
+library:
+  position: 4
+  title: LEARN
+
+messages:
+  position: 5
+  title: MESSAGES

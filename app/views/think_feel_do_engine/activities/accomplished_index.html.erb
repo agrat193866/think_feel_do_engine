@@ -1,0 +1,75 @@
+<p class="lead">Things that make you feel like you've accomplished something.</p>
+
+<table class="table table-hover table-condensed" id="accomplished_activities">
+	<thead>
+    <tr>
+      <th>Time Period</th>
+      <th>Activity</th>
+      <th>Pleasure of Activity</th>
+      <th>Sense of Accomplishment</th>
+    </tr>
+  </thead>
+  <%= render partial: 'think_feel_do_engine/activities/activity', collection: activities %>
+</table>
+
+<p>Why does this matter?</p>
+
+<p>When people do things that are important to them, it makes them feel better about themselves.</p>
+
+<p>Do things that are important to you.</p>
+
+<script type="text/javascript">
+$(document).on('page:change page:load', function() 
+{
+
+var prevWeek = null;
+
+_.each($("#accomplished_activities tr"),
+	function(rows,index)
+	{
+		var row = $(rows).children();
+		if(index == 0) return;
+		var activity = getStartEndTime($(row[0]).text());
+		activity = populateWithRow(activity,row);
+		if(prevWeek === null){ prevWeek = activity;}
+		else if(isContinuousDuplicate(prevWeek,activity))
+		{
+			$(rows).remove();
+			prevWeek.end = activity.end;
+			$(prevWeek.ref[0]).text(prevWeek.start + " - " + prevWeek.end);
+		}
+		else
+		{
+			prevWeek = activity;
+		}
+	});
+
+});
+
+isContinuousDuplicate = function(prevWeek,currentWeek)
+{
+	return prevWeek.end == currentWeek.start
+			 && prevWeek.name == currentWeek.name
+			 && prevWeek.pleasure == currentWeek.pleasure
+			 && prevWeek.accomplishment == currentWeek.accomplishment;
+}
+
+getStartEndTime = function(str)
+{
+	var split = str.indexOf("-");
+	if(split < 0) return ["",""];
+	var s = str.substr(0,split-1);
+	var e = str.substr(split+2);
+	return {"start":s,"end":e,"name":"","pleasure":"","accomplishment":"", "ref": null};
+}
+
+populateWithRow = function(obj,row)
+{
+	obj.name = $(row[1]).text();
+	obj.pleasure = $(row[2]).text();
+	obj.accomplishment = $(row[3]).text();
+	obj.ref = row;
+	return obj;
+}
+
+</script>

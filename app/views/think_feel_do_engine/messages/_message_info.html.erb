@@ -1,0 +1,9 @@
+<% responder = current_participant || current_user %>
+<% sent_at = message.try(:sent_at) ? "#{ message.sent_at.to_formatted_s(:short) } (#{ time_ago_in_words(message.created_at)} ago)" : "#{ message.created_at.to_formatted_s(:short) } (#{ time_ago_in_words(message.created_at)} ago)" %>
+
+<h3><%= message.subject %></h3>
+<strong>From <%= message.from(responder) %></strong>
+<span class="pull-right"><%= sent_at %></span>
+<br>
+<span class="text-muted">To <%= message.to(responder) %></span>
+<p><%= message.render_body %></p>

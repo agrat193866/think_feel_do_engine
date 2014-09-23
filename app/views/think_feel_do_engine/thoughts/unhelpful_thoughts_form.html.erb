@@ -1,0 +1,93 @@
+<% if thoughts.count >= 1 %>
+  <% thoughts.each_with_index do |thought, index| %>
+
+    <!-- "slide" 1 -->
+    <div class="multi-form" style="<%= index == 0 ? '' : 'display: none;' %>">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title adjusted-panel-title">
+            You said that you thought...
+          </h3>
+        </div>
+        <div class="panel-body adjusted-list-group-item"><%= thought.content %></div>
+      </div>
+      <% if thought.pattern_title %>
+        <p>
+          ...and that this relates to this harmful thought pattern:
+          <strong><%= thought.pattern_title %></strong>
+        </p>
+        <div class="alert alert-info">
+          <%= thought.pattern_description %>
+        </div>
+      <% else %>
+        <p>
+          ...and did not choose a related thought pattern.
+        </p>
+      <% end %>
+      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "button", class: "next-page btn btn-primary pull-right") %>
+    </div>
+
+    <!-- "slide" 2 -->
+    <%= form_for thought, url: update_path, html: { class: "multi-form", style: "display: none;", id: index}, remote: true do |f| %>
+      <h2>Thought <%= index + 1 %> of <%= thoughts.count %></h2>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            Come up with a challenging thought for your thought...
+          </div>
+        </div>
+         <div class="panel-body adjusted-list-group-item"><%= thought.content %></div>
+      </div>
+      <% if thought.pattern_recommendations %>
+        <p>
+          For the harmful thought <strong><%= thought.pattern_title %></strong> the following might be useful:
+        </p>
+        <p>
+          <%= thought.pattern_recommendations.try(:html_safe) %>
+        </p>
+      <% end %>
+      <%= f.label :challenging_thought, "Now you try it. Write a challenging thought below:", for: "challenge#{index}" %>
+      <%= f.text_area :challenging_thought, id: "challenge#{index}", class: "form-control", required: true, rows: 3 %>
+      <%= f.hidden_field :id %>
+      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "challenging btn btn-primary pull-right") %>
+    <% end %>
+
+    <!-- "slide" 3 -->
+    <div class="multi-form" style="display: none;">
+      <p>Because what you THINK, FEEL, Do are related, a challenging thought can change how you act.</p>
+      <%= image_tag("changing_actions.gif", width: "100%") %>
+      <p>After you come up with a challenging thought, you can also come up with an "As If" thought which means what you would do based on the challenging thought you came up with.</p>
+      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "button", class: "next-page btn btn-primary pull-right") %>
+    </div>
+
+    <!-- "slide 4" -->
+    <%= form_for thought, url: update_path, html: { class: "multi-form", style: "display: none;" }, remote: true do |f| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title adjusted-panel-title">
+            You thought...
+          </h3>
+        </div>
+         <div class="panel-body adjusted-list-group-item"><%= thought.content %></div>
+      </div>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title adjusted-panel-title">
+            A challenging thought was...
+          </h3>
+        </div>
+         <div class="panel-body adjusted-list-group-item">
+          <p id="challenging-thought<%= index %>"></p>
+        </div>
+      </div>
+      <%= f.label :act_as_if, "What could you do to ACT AS IF you believe this?" %>
+      <%= f.text_area :act_as_if, class: "form-control", required: true, rows: 3 %><br>
+      <%= f.hidden_field :id %>
+        <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <p>Please return to section 1 of "Think" to input more thoughts for reflection</p>
+<% end %>

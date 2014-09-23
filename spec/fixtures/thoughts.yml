@@ -1,0 +1,23 @@
+participant1_harmful:
+  participant: participant1
+  content: I am useless
+  effect: harmful
+  pattern: labeling
+
+participant1_harmful2:
+  participant: participant1
+  act_as_if: Birds have no idea what they are doing
+  challenging_thought: It was nature
+  content: I am a magnet for birds
+  effect: harmful
+  pattern: labeling
+
+participant1_harmful3:
+  participant: participant1
+  content: ARG!
+  effect: harmful
+
+participant1_harmful4:
+  participant: participant1
+  content: I am insignificant
+  effect: harmful

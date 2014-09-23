@@ -1,0 +1,46 @@
+<h1>Slideshows</h1>
+
+<div class="btn-toolbar">
+	<%= link_to "<i class='fa fa-plus'></i> Create Slideshow".html_safe, new_bit_maker_slideshow_path, class: "btn btn-default" %>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>No. of Slides</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @slideshows.each do |slideshow| %>
+			<tr id="slideshow-<%= slideshow.id %>">
+				<td>
+					<%= link_to slideshow.pretty_title, bit_maker_slideshow_path(slideshow) %>
+				</td>
+				<td><%= slideshow.slides.count %></td>
+				<td><%= slideshow.created_at.to_s :date_time_with_meridian %></td>
+				<td><%= slideshow.updated_at.to_s :date_time_with_meridian %></td>
+				<td>
+					<%# These buttons could be removed to be more consistent with other bit_maker index pages %>
+					<%= link_to "Edit", edit_bit_maker_slideshow_path(slideshow), class: "btn btn-default" %>
+					<%= link_to "Delete", bit_maker_slideshow_path(slideshow), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<script>
+  $(function() {
+    return $('table').dataTable({
+      sPaginationType: 'bootstrap',
+      iDisplayLength: 25,
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

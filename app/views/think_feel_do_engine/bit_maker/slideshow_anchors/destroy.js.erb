@@ -1,0 +1,2 @@
+$("#alerts").html("<%= escape_javascript(render partial: 'shared/alerts', locals: { alert: alert, notice: notice }) %>");
+$("[data-target-name='<%= @slideshow_anchor.target_name %>']").val(null);

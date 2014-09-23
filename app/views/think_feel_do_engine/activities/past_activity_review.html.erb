@@ -1,0 +1,79 @@
+<% if activities.count == 0 %>
+  <p class="lead">It doesn't look like there are any activities for you to review at this time</p>
+  <%= link_to "Continue", navigator_next_content_path, class: "btn btn-default" %>
+<% else %>
+  <% activities.each_with_index do |activity, index| %>
+    <%= form_for(
+          :activity,
+          url: update_path,
+          remote: true,
+          method: "put",
+          html: {
+            class: "past-activity-review",
+            style: index > 0 ? "display: none;" : "",
+            id: "activity-#{ activity.id }"
+          }
+        ) do |f| %>
+      <%= f.hidden_field :id, { value: activity.id } %>
+
+      <h2>You said you were going to</h2>
+
+      <p><strong><%= activity.title %></strong> on <strong><%= activity.start_time.to_s :date_time_with_meridian %></strong>.</p>
+
+      <strong>Did you?</strong>
+
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-success">
+          <%= f.radio_button :is_complete, true, { id: "activity_is_complete_yes_#{ activity.id }", :"data-activity-id" => activity.id, class: "radio_yes" } %> Yes
+        </label>
+        <label class="btn btn-danger">
+          <%= f.radio_button :is_complete, false, { id: "activity_is_complete_no_#{ activity.id }", :"data-activity-id" => activity.id, class: "radio_no" } %> No
+        </label>
+      </div>
+      <span id="activity-complete-<%= activity.id %>" style="display: none;">
+        <p>On a scale of 1-10 you said that you thought it would be a <%= activity.predicted_pleasure_intensity %>.</p>
+
+        <div class="form-group pleasure-container">
+          <%= render(
+            "think_feel_do_engine/shared/rating_selector",
+            form: f,
+            name: :actual_pleasure_intensity,
+            label: "How much pleasure did you get from doing this?",
+            object: activity,
+            min_text: "None",
+            mid_text: "Some",
+            max_text: "A Lot&nbsp;&nbsp;".html_safe,
+            suggested: true
+          ) %>
+        </div>
+
+        <p>On a scale of 1-10 you said that you thought it would be a <%= activity.predicted_accomplishment_intensity %>.</p>
+
+        <div class="form-group accomplishment-container">
+          <%= render(
+            "think_feel_do_engine/shared/rating_selector",
+            form: f,
+            name: :actual_accomplishment_intensity,
+            label: "How much accomplishment did you get from doing this?",
+            object: activity,
+            min_text: "None",
+            mid_text: "Some",
+            max_text: "A Lot&nbsp;&nbsp;".html_safe,
+            suggested: true
+          ) %>
+        </div>
+      </span>
+
+      <span id="activity-incomplete-<%= activity.id %>" style="display: none;">
+        <div class="form-group">
+          <label for="activity_noncompliance_reason_<%= activity.id %>">Why didn't you?</label>
+          <textarea class="form-control suggested" rows="3" id="activity_noncompliance_reason_<%= activity.id %>" name="activity[noncompliance_reason]"></textarea>
+        </div>
+      </span>
+
+      <div id="activity-submit-<%= activity.id %>" style="display: none;">
+          <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if activity.start_time && activity.end_time %>
+	<% no_value_msg = "<span class=\"label label-warning\">Not Rated</span>".html_safe %>
+  <tr class="<%= activity.was_recently_created? ? 'success' : '' %>">
+	  <td><%= activity.title %></td>
+	  <td><%= activity.start_time.to_s(:date_time_with_meridian) %></td>
+	  <td><%= activity.predicted_pleasure_intensity ? activity.predicted_pleasure_intensity : no_value_msg %></td>
+	  <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : no_value_msg %></td>
+	</tr>
+<% end %>

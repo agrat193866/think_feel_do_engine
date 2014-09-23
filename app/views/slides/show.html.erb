@@ -1,0 +1,11 @@
+<% if @slideshow %>
+  <h1>Slideshow <small><%= @slideshow.title %></small></h1>
+<% end %>
+
+<%# referenced by both bit_maker and bit_core %>
+<% slide = slide || @slide %>
+<%= render "slides/slide", slide: slide %>
+
+<% if @slideshow %>
+  <%= link_to "Done", bit_maker_slideshow_path(@slideshow), class: "btn btn-primary pull-right" %>
+<% end %>

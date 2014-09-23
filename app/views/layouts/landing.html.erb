@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'think_feel_do_engine/shared/head' %>
+  </head>
+  <body>
+<div id="wrap" class="snap-content">
+  <div id="footer-wrap">
+    <div id="main">
+    <%= render "think_feel_do_engine/shared/navbar" %>
+    <div class="container" id="alerts">
+      <%= render 'think_feel_do_engine/shared/alerts' %>
+    </div>
+  
+    <div class="hidden-sm hidden-xs">
+      <div class="container">
+        <% title = BitCore::Tool.find_by_title(@navigator.context).try(:title) %>
+        <% current_module = @navigator.current_module %>
+        <h1 class="text-uppercase">
+          <%= title %>
+          <small class="text-capitalize">
+            <%= current_module.try(:content_providers).try(:first).try(:slideshow).try(:title) || current_module.title %>
+          </small>
+        </h1>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <%= yield :left %>
+        </div>
+        <div class="col-md-6">
+          <%= yield :right %>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
+  </div>
+  </div>
+      <%= render 'think_feel_do_engine/shared/footer' %> 
+  </div>
+        <div class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">
+                <ul id="snap-navbar" class="nav navbar-nav navbar-snap">
+                  <li class="<%= 'active' if @navigator.context == 'home' %>"><%= link_to "Home", "/" %></li>
+
+                  <% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
+                    <li>
+                      <%= link_to "Replay Introduction", participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
+                    </li>
+                  <% end %>
+
+                  <% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
+                      <li class="snap-nav-item <%= tool.title %> visible-xs <%= active_tool(@navigator.context, tool) %>">
+                        <%= link_to assign_tool(tool), navigator_context_path(context_name: tool.title) %>
+                      </li>
+                  <% end %>
+                  <% if current_participant %>
+          <li><%= link_to fa_icon("sign-out", text: "Sign Out"), destroy_participant_session_path, method: :delete %></li>
+        <% end %>
+                </ul>
+            </div>
+        </div>
+
+    <script type="text/javascript">
+    var snapper = new Snap({
+      element: document.getElementById("wrap"), 
+      disable: 'right'
+    });
+    snapper.disable();
+    $("#hamburger_button").on("click", function(){
+      snapper.enable();
+      if($("body").hasClass("snapjs-left")) snapper.close();
+      else snapper.open('left');
+    });
+
+    snapper.on("close", function(){
+      snapper.disable();
+    });
+
+      var enable_mobile_page = function(){
+        sc.recordSignOut;
+        $(window).on('resize', function(){snapper.close();});
+      }
+      $(document).ready(enable_mobile_page);
+      $(document).on('page:load', enable_mobile_page);
+    </script>
+
+  </body>
+</html>

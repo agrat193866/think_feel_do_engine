@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label for="thought_pattern_id">What thought pattern is this an example of?</label>
+  <span class="help-block">(don't worry if it matches more than one, just pick the closest fit)</span>
+  <%= f.select(:pattern_id, options_for_select(ThoughtPattern.all.map { |p| [p.title, p.id, { :"title" => p.description, :"data-description" => p.description}] }), { prompt: "Select one..." }, class: "form-control suggested") %>
+</div>
+
+<div class="alert alert-info" id="thought-pattern-description" style="display: none;"></div>

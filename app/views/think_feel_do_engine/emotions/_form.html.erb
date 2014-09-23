@@ -1,0 +1,23 @@
+<%= form_for emotional_rating, url: create_path, method: "post", html: { role: "form", id: nil } do |f| %>
+  <%= f.hidden_field(:participant_id) %>
+  <div class="emotion-name-group form-group">
+    <%= f.label(:emotion_id, "Emotion") %>
+    <%= f.select(:emotion_id, current_participant.populate_emotions.order(:name).map{ |e| [e.name, e.id] }, { include_blank: "Select Emotion or Write Emotion Below" }, class: "form-control") %>
+  </div>
+  <div class="emotion-name-group form-group written-option">
+    <%= f.label :name, "Emotion" %>
+    <input class="form-control" id="emotional_rating_name" name="emotional_rating[name]" type="text">
+  </div>
+  <div class="form-group">
+    <%= render(
+      "think_feel_do_engine/shared/rating_selector",
+      form: f,
+      name: "rating",
+      label: "",
+      object: emotional_rating,
+      min_text: "None",
+      mid_text: "Some",
+      max_text: "A lot&nbsp;&nbsp;".html_safe
+    )%>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<tr class="<%= 'danger' if phq_assessment.suicidal? %>">
+  <td>Released <%= phq_assessment.release_date %></td>
+  <td>Created <%= phq_assessment.created_at.to_date %></td>
+  <td><%= phq_assessment.score %></td>
+  <td><%= "*" unless phq_assessment.completed? %></td>
+  <td><%= phq_assessment.q1 %></td>
+  <td><%= phq_assessment.q2 %></td>
+  <td><%= phq_assessment.q3 %></td>
+  <td><%= phq_assessment.q4 %></td>
+  <td><%= phq_assessment.q5 %></td>
+  <td><%= phq_assessment.q6 %></td>
+  <td><%= phq_assessment.q7 %></td>
+  <td><%= phq_assessment.q8 %></td>
+  <td><%= phq_warning(phq_assessment.q9) %></td>
+</tr>

@@ -1,0 +1,22 @@
+(function() {
+  var formEl, handleSubmitSuccess, isTheLastForm;
+
+  handleSubmitSuccess = function() {
+    if ($(this).next(formEl).length === 0) {
+      return window.location.replace(window.location.origin + "/navigator/next_content");
+    } else {
+      return $(this).hide().next(formEl).show();
+    }
+  };
+
+  // Not working, so replaced it
+  isTheLastForm = function() {
+    return $(this).next(formEl).length === 0;
+  };
+
+  formEl = "form.multi-page";
+
+  return $(document).on("page:change", function() {
+    return $(document).on("ajax:success", formEl, handleSubmitSuccess);
+  });
+})();

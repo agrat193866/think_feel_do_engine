@@ -1,0 +1,66 @@
+<h1><%= @group.title %></h1>
+
+<h3>Assign New Task</h3>
+
+<%= form_for Task.new, as: :task, url: manage_tasks_path, html: { role: "form" } do |f| %>
+  <%= f.hidden_field :group_id, value: @group.id %>
+
+  <div class='form-group'>
+    <%= f.label :bit_core_content_module_id, "Select Module" %>
+    <%= f.select :bit_core_content_module_id, @content_modules.collect {|m| [ (m.try(:content_providers).try(:first).try(:slideshow).try(:title) || m.title), m.id ] }, {}, class: "form-control" %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :release_day, "Release Day" %>
+    <%= f.number_field :release_day, class: "form-control" %>
+  </div>
+
+  <div class='checkbox'>
+    <label for="task_is_recurring">
+      <%= f.check_box :is_recurring, {} %> Is this a recurring task?
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :termination_day, "Recurring termination day (if applicable)" %>
+    <%= f.number_field :termination_day, class: "form-control" %>
+    <p class="help-block">Optional - This is only applicable if the task is recurring and there is a day in the study it should end.</p>
+  </div>
+
+  <div class='checkbox'>
+    <label for="task_has_didactic_content">
+      <%= f.check_box :has_didactic_content, {} %> Does this contain didactic content?
+    </label>
+  </div>
+
+  <%= f.submit "Assign", class: "btn btn-primary" %>
+<% end %>
+
+<h3>Currently assigned tasks</h3>
+
+<table class="table table-hover" id="tasks">
+  <thead>
+    <th>Title</th>
+    <th>Release day</th>
+    <th>Is recurring?</th>
+    <th>Termination day</th>
+    <th>Has didactic content?</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @group.tasks.each do |task|%>
+      <tr id="task-<%= task.id %>">
+        <td>
+          <%= task.try(:title) %>
+        </td>
+        <td><%= task.release_day %></td>
+        <td><%= task.is_recurring %></td>
+        <td><%= task.termination_day ? "<span class=\"label label-info\">#{task.termination_day}</span>".html_safe : "N/A" %></td>
+        <td><%= task.has_didactic_content %></td>
+        <td>
+          <%= link_to "Unassign", manage_task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

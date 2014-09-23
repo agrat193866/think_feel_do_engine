@@ -1,0 +1,39 @@
+<p class="lead">
+  Let's start by figuring out which thought patterns the harmful thoughts you identified might match.
+</p>
+
+<% if thoughts.count > 0 %>
+  <% thoughts.each_with_index do |thought, i| %>
+    <%=
+      form_for(
+        thought,
+        url: update_path,
+        remote: true,
+        html: {
+          class: "multi-page",
+          style: i == 0 ? '' : 'display: none;',
+          role: "form"
+        }
+      ) do |f|
+    %>
+      <%= f.hidden_field :id %>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title adjusted-panel-title">One thought you had:</h3>
+        </div>
+        <div class="panel-body adjusted-list-group-item">
+          <%= thought.content %>
+        </div>
+      </div>
+
+      <%= render 'think_feel_do_engine/thoughts/thought_patterns', f: f %>
+
+      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>You haven't listed any negative thoughts - if this inaccurate, please revisit THINK #1</p>
+
+  <%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+<% end %>

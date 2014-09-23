@@ -1,0 +1,25 @@
+<h2>Add a New Thought</h2>
+
+<%= form_for thought, url: create_path, method: "post", html: { role: "form" } do |f| %>
+  <%= render 'think_feel_do_engine/thoughts/harmful_thought', f: f %>
+
+  <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
+
+  <%= render 'think_feel_do_engine/thoughts/thought_patterns', f: f %>
+
+  <div class="form-group">
+    <%= f.label :challenging_thought, "Challenging Thought" %>
+    <%= f.text_field :challenging_thought, placeholder: "example: The present doesn't always predict the future", class: "form-control suggested" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :act_as_if, "As If Action" %>
+    <%= f.text_field :act_as_if, placeholder: "example: Try my hardest anyways and see if I can improve", class: "form-control suggested" %>
+  </div>
+
+  <div class="btn-group pull-right">
+    <%= link_to 'Cancel', "/navigator/contexts/THINK", class: 'btn btn-default' %>
+    <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary") %>
+  </div>
+
+<% end %>

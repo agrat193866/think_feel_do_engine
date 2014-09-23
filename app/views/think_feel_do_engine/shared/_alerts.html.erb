@@ -1,0 +1,17 @@
+<% if alert %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    <%= fa_icon("flag", class: "text-danger", text: alert) %>
+  </div>
+<% elsif notice %>
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    <%= fa_icon("flag", class: "text-success", text: notice) %>
+  </div>
+<% end %>

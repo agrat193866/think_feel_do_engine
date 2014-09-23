@@ -1,0 +1,12 @@
+<table class="table table-hover table-condensed" id="previous_activities">
+  <thead>
+    <th>Activity</th>
+    <th>Planned For</th>
+    <th>Predicted Pleasure Value</th>
+    <th>Predicted Accomplishment Value</th>
+  </thead>
+  <tbody>
+    <%= render partial: "think_feel_do_engine/activities/previously_planned", collection: activities_list, as: :activity
+    %>
+  </tbody>
+</table>

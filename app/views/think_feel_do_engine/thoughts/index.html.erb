@@ -1,0 +1,24 @@
+<h2><%= title %></h2>
+
+<%= (introduction ||= "").html_safe %>
+
+<% if thoughts.count > 0 %>
+  <div class="panel panel-default adjusted-panel-default">
+    <div class="panel-heading"><h3 class="panel-title adjusted-panel-title">In case you've forgotten...</h3></div>
+    <ul class="list-group">
+      <% thoughts.each do |thought| %>
+        <li class="list-group-item adjusted-list-group-item"><%= thought.content %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p><%= (postscript ||= "").html_safe %></p>
+
+<% show_nav_link ||= nil %>
+<% if show_nav_link %>
+  <div class='btn-toolbar'>
+    <%= content_tag(:a, (fa_icon("angle-double-left") + " Previous").html_safe, href: navigator_previous_content_path, type: "submit", class: "btn btn-default pull-left") if @navigator.previous_content? %>
+    <%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+(function() {
+  var pageEl = '.multi-form';
+    
+  function ready() {
+    $(pageEl).on("click", '.next-page', handleContinue); 
+  };
+  
+  $(document).on('page:change', ready);
+    
+  $(document).on('page:change', function() {
+    $(document).on('ajax:success', pageEl, handleSubmitSuccess);
+    
+  });
+
+  function handleContinue() {
+    $(this)
+      .parent()
+      .hide()
+      .next(pageEl).show();
+  }
+
+  function handleSubmitSuccess() {
+    $(this)
+      .hide()
+      .next(pageEl).show();
+
+    if ($(this).attr("id")) {
+      var id = $(this).attr("id")
+      var challengingThought = $('#challenge'+id).val();
+      $('#challenging-thought'+id).text(challengingThought);
+    }
+      
+    if (isTheLastForm.bind(this)()) {
+      window.location.replace(window.location.origin + '/navigator/next_content');
+    }
+  }
+
+  function isTheLastForm() {
+    return $(this).next(pageEl).length === 0;
+  }
+})();

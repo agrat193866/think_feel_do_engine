@@ -1,0 +1,48 @@
+<% if @content_provider.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@content_provider.errors.count, "error") %> prohibited this content_provider from being saved:</h2>
+
+    <ul>
+    <% @content_provider.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :bit_core_content_module_id %>
+  <%= f.select :bit_core_content_module_id, BitCore::ContentModule.all.collect { |p| [ "#{ p.tool.title }: #{ p.title }", p.id ] }, { prompt: "Choose Module" }, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :type %>
+  <%= f.select :type, ContentProviderDecorator.content_provider_classes.sort_by! { |p| p.new.pretty_label }.collect { |p| [p.new.pretty_label, p] }, { prompt: "Choose Type" }, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :source_content_type %>
+  <%= f.select :source_content_type, ["BitCore::Slideshow"], { include_blank: true }, class: "form-control" %>
+  <p class="help-block">Optional unless you are creating a slideshow</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :source_content_id, "Slideshow" %>
+  <%= f.select :source_content_id, BitCore::Slideshow.all.collect { |p| [ p.title, p.id ] }, { include_blank: true }, class: "form-control" %>
+  <p class="help-block">Optional unless you are creating a slideshow</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :position %>
+  <%= f.number_field :position, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :show_next_nav %>
+  <%= f.check_box :show_next_nav %>
+</div>
+
+<div class="form-group">
+  <%= f.label :is_skippable_after_first_viewing %>
+  <%= f.check_box :is_skippable_after_first_viewing %>
+</div>

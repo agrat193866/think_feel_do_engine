@@ -1,0 +1,9 @@
+<h1>Slideshow <small><%= @slideshow.title %></small></h1>
+
+<h2>Edit Slide <small><%= @slide.title %></small></h2>
+
+<%= form_for(@slide, as: :slide, url: bit_maker_slideshow_slide_path(@slide.slideshow, @slide)) do |f| %>
+	<%= render "think_feel_do_engine/bit_maker/slides/fields", f: f, slide: @slide %>
+	<%= f.submit "Update", class: "btn btn-default" %>
+	<%= link_to "Cancel", bit_maker_slideshow_path(@slide.slideshow), class: "btn btn-default" %>
+<% end %>

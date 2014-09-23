@@ -1,0 +1,22 @@
+<h2>Harmful Thoughts</h2>
+
+<% hide_new_path = hide_new_path or false %>
+<% unless hide_new_path %>
+  <div class="btn-toolbar">
+    <%= link_to "<i class='fa fa-plus'></i> Add a New Thought".html_safe, navigator_next_content_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<table class="table table-hover data-table" id="thoughts">
+  <thead>
+    <th>Thought</th>
+    <th>Effect</th>
+    <th>Pattern</th>
+    <th>Challenging Thought</th>
+    <th>As If Thought</th>
+    <th>Date</th>
+  </thead>
+  <tbody>
+    <%= render partial: "think_feel_do_engine/thoughts/thought", collection: thoughts %>
+  </tbody>
+</table>

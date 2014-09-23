@@ -1,0 +1,29 @@
+<h1>Lesson <small><%= @lesson.pretty_title %></small></h1>
+
+<div class="btn btn-toolbar" style="padding: 0px;">
+	<%= link_to "Lessons", lessons_path, class: "btn btn-default" %>
+  <%= link_to "Edit", edit_lesson_path(@lesson), class: "btn btn-default" %>
+	<%= link_to "<i class='fa fa-plus'></i> Add Slide".html_safe, new_lesson_lesson_slide_path(@lesson), class: "btn btn-default" %>
+  <%= link_to "<i class='fa fa-plus'></i> Add Video Slide".html_safe, new_lesson_lesson_slide_path(@lesson, slide: { type: "BitCore::VideoSlide" }), class: "btn btn-default" %>
+</div>
+
+<h3>Slides</h3>
+<ol id="sortable-slides" data-update-url="<%= sort_lesson_lesson_slides_url(@lesson) %>">
+	<% @lesson.slides.each do |slide| %>
+		<li class="slide" id="slide_<%= slide.id %>">
+			<span>
+				<span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span>
+			</span>
+
+			<span>
+				<%= link_to slide.title, lesson_lesson_slide_path(@lesson, slide) %>
+			</span>
+
+			<span>
+				<%= link_to "Edit", edit_lesson_lesson_slide_path(@lesson, slide), class: "btn btn-default" %>
+				<%= link_to "Remove", lesson_lesson_slide_path(@lesson, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+			</span>
+		</li>
+	<% end %>
+</ol>
+

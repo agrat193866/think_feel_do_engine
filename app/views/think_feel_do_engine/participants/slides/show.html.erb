@@ -1,0 +1,8 @@
+<%= render "slides/slide", slide: @slide %>
+
+<% next_slide = @slideshow.slides.find_by_position(@slide.position + 1) %>
+<% if next_slide %>
+  <%= link_to "Continue", participants_slideshow_slide_path(slideshow_id: @slideshow.id, id: next_slide.id), class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Done", root_path, class: "btn btn-primary pull-right" %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form.label name, label, for: "#{ name }_#{ activity.id }" %><br>
+<div class="range row">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">None</div>
+  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">Some</div>
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">A Lot&nbsp;&nbsp;</div>
+</div>
+
+<div class="form-group">
+  <div class="btn-group<%= (suggested ||= false) ? ' suggested-radio' : '' %>" data-toggle="buttons" style="width: 100%;">
+    <% (0..10).each do |value| %>
+      <label data-intensity="<%= value %>" class="intensity_btn btn btn-default col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <%= form.radio_button name, value %> <%= value %>
+      </label>
+    <% end %>
+  </div>
+</div>

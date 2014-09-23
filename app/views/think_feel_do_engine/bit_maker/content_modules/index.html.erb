@@ -1,0 +1,39 @@
+<p>Content Modules</p>
+
+<div class="btn-toolbar">
+  <%= link_to "<i class='fa fa-plus'></i> Create Module".html_safe, new_bit_maker_content_module_path, class: "btn btn-default" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Tool</th>
+      <th>Position</th>
+      <th>No. of Providers</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @content_modules.includes(:tool).each do |content_module| %>
+      <tr>
+        <td><%= link_to content_module.title, bit_maker_content_module_path(content_module) %></td>
+        <td><%= link_to content_module.tool.title, bit_maker_tool_path(content_module.tool) %></td>
+        <td><%= content_module.position %></td>
+        <td><%= content_module.content_providers.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(function() {
+    return $('table').dataTable({
+      sPaginationType: 'bootstrap',
+      iDisplayLength: 25,
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

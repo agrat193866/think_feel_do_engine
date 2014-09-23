@@ -1,0 +1,27 @@
+going_to_school:
+  participant: participant1
+  title: Going to school
+
+jogging:
+  participant: participant1
+  title: Jogging
+
+parkour:
+  participant: participant1
+  title: Parkour
+
+loving:
+  participant: participant1
+  title: Loving
+
+hanging_with_friends:
+  participant: participant1
+  title: Hanging with friends
+
+going_for_a_walk:
+  participant: participant1
+  title: Going for a walk
+
+arguing_with_my_boss:
+  participant: participant1
+  title: Arguing with my boss

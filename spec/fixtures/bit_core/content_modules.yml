@@ -1,0 +1,209 @@
+home_landing:
+  title: Landing 
+  tool: home
+  position: 1
+
+do_landing:
+  title: Do landing
+  tool: activity_tracker
+  position: 1
+
+do_awareness:
+  title: '#1 Awareness'
+  tool: activity_tracker
+  position: 2
+
+do_planning:
+  title: '#2 Planning'
+  tool: activity_tracker
+  position: 3
+
+do_doing:
+  title: '#3 Doing'
+  tool: activity_tracker
+  position: 4
+
+create_activity:
+  title: 'Add a New Activity'
+  tool: activity_tracker
+  position: 5
+
+do_your_activities_viz: 
+  title: 'Your Activities'
+  tool: activity_tracker
+  position: 6
+
+do_past_due_activities: 
+  title: 'Activities'
+  tool: activity_tracker
+  position: 7
+
+think_landing:
+  title: Think landing
+  tool: thought_tracker
+  position: 1
+
+think_identifying:
+  title: '#1 Identifying'
+  tool: thought_tracker
+  position: 2
+
+think_patterns:
+  title: '#2 Patterns'
+  tool: thought_tracker
+  position: 3
+
+think_reshape:
+  title: '#3 Reshape'
+  tool: thought_tracker
+  position: 4  
+
+think_module5:
+  title: Add a New Thought
+  tool: thought_tracker
+  position: 5  
+
+think_module_thoughts_table:
+  title: Thoughts
+  tool: thought_tracker
+  position: 6
+
+think_module_distortion_viz:
+  title: Thought Distortions
+  tool: thought_tracker
+  position: 7
+
+feeling_tracker_landing:
+  title: Feeling tracker landing
+  tool: feeling_tracker
+  position: 1
+
+feeling_tracker_module2:
+  title: 'Tracking Your Mood'
+  tool: feeling_tracker
+  position: 2
+
+feeling_tracker_module3:
+  title: 'Tracking Your Mood & Emotions'
+  tool: feeling_tracker
+  position: 3
+
+feeling_tracker_module4:
+  title: '#3 Making Changes'
+  tool: feeling_tracker
+  position: 4
+
+feeling_tracker_emotions_list:
+  title: "Your Recent Moods & Emotions"
+  tool: feeling_tracker
+  position: 5
+
+messages_landing:
+  title: Messages landing
+  tool: messages
+  position: 1
+
+library_landing:
+  title: Lessons
+  tool: library
+  position: 1
+
+# I am not comfortable with that these modules seem
+# to be 'stand-alone' modules, but that they each
+# have to have different positions: I'm confused. -W
+
+slideshow_content_module_1:
+  title: Home Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 2
+
+slideshow_content_module_2:
+  title: Do - Awareness Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 3
+
+slideshow_content_module_3:
+  title: Do - Planning Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 4
+
+slideshow_content_module_4:
+  title: Do - Planning Slideshow 3 of 4
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 5
+
+slideshow_content_module_5:
+  title: Do - Doing Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 6
+
+slideshow_content_module_6:
+  title: Do - Congrats
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 7
+
+slideshow_content_module_7:
+  title: Think - Identifying Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 8
+
+slideshow_content_module_8:
+  title: Think - Identifying Conclusion
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 9
+
+slideshow_content_module_9:
+  title: Think - Patterns Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 10
+
+slideshow_content_module_10:
+  title: Think - Patterns Conclusion
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 11
+
+slideshow_content_module_11:
+  title: Think - Reshape Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 12
+
+slideshow_content_module_12:
+  title: Feel - Mood Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 13
+
+slideshow_content_module_13:
+  title: Feel - Emotions Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 14
+
+slideshow_content_module_14:
+  title: Feel - Changes Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 15
+
+slideshow_content_module_15:
+  title: Feel - Identify Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 16
+
+slideshow_content_module_16:
+  title: Learn - Thoughts Introduction
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 17

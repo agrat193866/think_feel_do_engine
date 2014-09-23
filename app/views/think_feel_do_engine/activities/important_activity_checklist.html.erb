@@ -1,0 +1,13 @@
+<style>
+  /* show the intensity selectors by default */
+  .form-group.intensity {
+    opacity: inherit;
+    height: auto;
+  }
+</style>
+
+<h2>Now, plan something that gives you a sense of accomplishment.</h2>
+
+<p>Try to think of an activity that would give you a sense of accomplishment of 5 or more. If you can't think of something new, here are things you've done before.</p>
+
+<%= render "think_feel_do_engine/activities/build_activity", create_path: create_path, past_activities: past_activities %>

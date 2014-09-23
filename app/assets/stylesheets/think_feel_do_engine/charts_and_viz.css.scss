@@ -1,0 +1,378 @@
+/*.linechart {
+  position: relative;
+  height:250px;
+  padding-left: 100px;
+  margin-top:80px;
+}
+
+.linechart div#Title {
+  left: 160px;
+  height: 40px;
+  line-height: 40px;
+  top: -80px;
+}
+
+
+
+.linechart > div {
+  position: absolute;
+}
+
+.linechart #legend {
+  width:auto;
+  height: auto;
+  position: absolute;
+  top: -60px;
+  left:0;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+}
+
+.linechart #legend:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+}
+
+.linechart .x_label.left, .linechart .x_label.right {
+  display: none;
+}
+
+.linechart #legend * {
+  position: relative;
+}
+
+.linechart div:first-child, .linechart div:last-child {
+  width:40px;
+  top:0;
+  bottom:0;
+}
+
+.linechart div:last-child {
+  right:0;
+}
+
+.linechart > div#graphArea {
+  left:140px;
+  right:40px;
+}
+
+.linechart div#graphArea .x_tick{
+    bottom: auto;
+    top: auto;
+}
+
+.linechart span#LaxisLabel,.linechart span#RaxisLabel {
+  font-weight: bold;
+}
+
+.linechart span#LaxisLabel {
+  position: absolute; 
+  left:140px;
+  font-size: 1.5em;
+  top:0px;
+  bottom:0px;
+  margin:auto;
+  transform:rotate(270deg);
+  -webkit-transform:rotate(270deg);
+}
+
+.linechart span#RaxisLabel {
+  position: absolute;
+  right:40px;
+  font-size: 1.5em;
+  top:0px;
+  bottom:0px;
+  margin:auto;
+  transform:rotate(90deg);
+  -webkit-transform:rotate(90deg);
+}
+*/
+/***[Thought Visualization]***/
+div#ThoughtVizContainer { width:100%; min-height:100px; height:100%; max-height:500px; overflow: hidden;}
+
+
+.tool-content div#ThoughtVizContainer { background-color:red; max-height:1000px;}
+
+.viz-clickable { cursor: pointer;}
+
+div#ThoughtVizTooltip
+{
+  z-index: 1;
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+}
+
+div.thoughtviz_tooltip
+{
+  opacity:1;
+  padding:15px;
+  max-height: 440px;
+  font-size: 1.2em;
+  height:auto;
+  width:auto;
+  max-width: 80%;
+  min-width: 50%;
+  left:-90%;
+  position: absolute;
+  border:3px solid gray;
+  background-color:white;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+div.thoughtviz_tooltip.tool_tooltip::after,
+div#phq_suggestion_explanation_div.show_suggestion::after
+{
+  content:"Click To Close";
+  color:gray;
+  position:absolute;
+  top:5px;
+  right:5px;
+}
+
+.thoughtviz_text {
+  font-family: helvetica;
+  font-size: 16px;
+  fill: black;
+  text-align: left;
+}
+
+div.thoughtviz_tooltip ul, div.thoughtviz_tooltip li
+{
+  list-style-type: none;
+  padding:0px 7px;
+}
+
+div.thoughtviz_tooltip p { padding:0 15px; }
+
+div.thoughtviz_tooltip.active_tooltip, div.thoughtviz_tooltip:hover
+{
+  opacity:1;
+  width:auto;
+  height:auto;
+  overflow-y:auto;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+/************[Coach Dashboard PHQ Tables]************/
+
+div#patient_dashboard_wrapper
+{
+  position: relative;
+}
+
+div#phq_suggestion_explanation_div
+{
+  padding:15px;
+  position: absolute;
+  left:0;
+  top:0;
+  overflow-y:auto;
+  max-width: 50%;
+  max-height: 800px;
+  background-color: white;
+  border:2px solid gray;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  opacity: 0;
+  pointer-events:none;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+div#phq_suggestion_explanation_div table, 
+div#phq_suggestion_explanation_div table span.inline_format,
+div#phq_suggestion_explanation_div span.inline_format, 
+{
+  font-size:1.1em;
+}
+
+div#phq_suggestion_explanation_div span#phq_weekInStudy_bold
+{
+  font-size: 1em;
+}
+
+div#phq_suggestion_explanation_div table tr td
+{
+  vertical-align: middle;
+}
+
+.old_assessment
+{
+  position: relative;
+  opacity:0.5;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+.old_assessment:hover
+{
+  opacity:1;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+.no-explanation
+{
+  display:none;
+}
+
+table#phq_suggestion_test_results td span.label-success, 
+table#phq_suggestion_test_results td span.label-danger.label-adj_danger
+{
+  padding: 0.2em 0.8em 0.3em;
+}
+
+table#phq_suggestion_test_results td span.label-warning
+{
+  padding: 0.2em 1em 0.3em;
+}
+
+table#phq_suggestion_test_results td span.label-success.label-adj_success
+{
+  padding: 0.2em 0.6em 0.3em;
+}
+
+div#phq_suggestion_explanation_div span.phq_suffix_notice
+{
+  font-size: 1.1em;
+  line-height: 2em;
+  color:gray;
+  display: none;
+}
+
+div#phq_suggestion_explanation_div span.phq_suffix_notice.show_suffix_info
+{
+  display: inline;
+}
+
+div#phq_suggestion_explanation_div span.phq_suffix
+{
+  color:gray;
+  opacity:0.8;
+  font-size:1em;
+}
+
+div#phq_suggestion_explanation_div hr
+{
+  margin:3px;
+}
+
+div#phq_suggestion_explanation_div span
+{
+  font-size: 1.5em;
+}
+
+div#phq_suggestion_explanation_div span#phq_explanation_scores
+{
+  font-size: 1.2em;
+}
+
+div#phq_suggestion_explanation_div.show_suggestion
+{
+  opacity: 1;
+  pointer-events:auto;
+  cursor: pointer;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+.label-phq
+{
+  cursor: pointer;
+}
+
+.invis_phq_summary
+{
+  display: none;
+}
+
+/**/
+
+#chart, #graphArea {
+  max-width:80%;
+  left:40px;
+}
+
+#y-axis, #axisL {
+  position: absolute;
+  width: 40px;
+  height:250px;
+  margin-right:15px;
+}
+
+#y-axis::before, #axisL::before{
+  position: absolute;
+  top:0;
+  bottom:0;
+  margin:auto;
+  right: -100px;
+  font-size: 1.5em;
+  display: inline-block;
+  transform:rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+
+#axisL::before{
+  content:"Intensity/Score";
+  right: -140px;
+}
+
+#y-axis::before {
+  content:"Mood";
+}
+
+@media (max-width: 768px) {
+  .rickshaw_graph .x_tick .title {
+    font-size:9px;
+  }
+}
+
+#legend
+{
+  position: relative;
+  width: 100%;
+  opacity:0.5;
+  font-size:1.1em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition:opacity 0.2s;
+  -webkit-transition:opacity 0.2s;
+  -moz-transition:opacity 0.2s;
+}
+
+#legend span
+{
+  width: 92%;
+  display:inline-block;
+  line-height: 2.0em;
+}
+
+#legend:hover
+{
+  opacity:1;
+}
+
+#legend_hidden
+{
+  display: none;
+}

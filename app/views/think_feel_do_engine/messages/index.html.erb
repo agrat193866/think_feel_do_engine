@@ -1,0 +1,36 @@
+<% if coach.nil? %>
+  <p class="lead">You will be able use this tool once you have been assigned a coach</p>
+<% elsif current_participant.active_membership.present? %>
+  <div class="btn-toolbar">
+    <%= link_to (fa_icon("pencil") + " Compose").html_safe, compose_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<ul class="nav nav-tabs" id="messages-tab">
+  <li><a href="#inbox" data-toggle="tab">Inbox (<%= received_messages.unread.count %>)</a></li>
+  <% if sent_messages.count > 0 %>
+    <li><a href="#sent" data-toggle="tab">Sent</a></li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+   <div id="scroll_btn" class="landing"></div>
+  <div class="tab-pane" id="inbox">
+    <div class="list-group">
+      <% received_messages.each do |received_message| %>
+        <%= link_to ("<span class=\"col-md-4\">Coach</span> ".html_safe + received_message.subject) + "<span class='pull-right'>#{received_message.created_at.to_formatted_s(:short)}</span>".html_safe, show_path.call(message_id: received_message.message_id), class: (received_message.is_read ? "text-muted list-group-item clearfix" : "list-group-item list-group-item-read clearfix") %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if sent_messages.count > 0 %>
+    <div class="tab-pane" id="sent">
+      <div class="list-group">
+        <% user = current_user || current_participant %>
+        <% sent_messages.each do |msg| %>
+          <%= link_to "<span class=\"col-md-4\">To: #{msg.to(user)}</span> ".html_safe  + msg.subject + "<span class='pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe, show_path.call(message_id: msg.id), class: "text-muted list-group-item" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

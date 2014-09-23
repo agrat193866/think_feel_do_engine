@@ -1,0 +1,9 @@
+<h1>New Content Module</h1>
+
+<%= form_for(@content_module, as: :content_module, url: bit_maker_content_modules_path(@content_module)) do |f| %>
+  <%= render 'form', f: f %>
+  <div class="btn-toolbar">
+    <%= f.submit "Create", class: "btn btn-default" %>
+    <%= link_to 'Cancel', bit_maker_content_modules_path, class: "btn btn-default" %>
+  </div>
+<% end %>

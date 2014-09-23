@@ -1,0 +1,8 @@
+<h1>All Slideshows and Their Slides</h1>
+<% @slideshows.each do | slideshow | %>
+  <h1>Slideshow <small><%= slideshow.title %></small></h1>
+  <% slideshow.slides.each do | slide |%>
+    <%= render 'think_feel_do_engine/bit_maker/slides/slide', slide: slide, slideshow: slideshow %>
+    <hr>
+  <% end %>
+<% end %>

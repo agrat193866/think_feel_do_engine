@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Think Feel Do</title>
+    <link href="//fonts.googleapis.com/css?family=Archivo+Narrow:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <%= favicon_link_tag %>
+    <%= stylesheet_link_tag "engine", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "engine" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body ng-app="socialNetworking">
+    <div id="wrap" class="snap-content footless">
+      <div id="footer-wrap">
+        <div id="main">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <% if content_for?(:mobile_nav_items) %>
+                  <button type="button" class="navbar-toggle pull-left" id="hamburger_button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                <% end %>
+
+                <a class="navbar-brand" href="#">ThinkFeelDo</a>
+
+                <ul class="nav navbar-nav pull-right visible-xs-block" style="margin-right: 10px;">
+                  <%= yield :mobile_nav_right_item %>
+                </ul>
+              </div>
+
+              <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <%= yield :desktop_nav_items %>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div class="container" id="alerts">
+            <%= render 'think_feel_do_engine/shared/alerts' %>
+          </div>
+
+          <div class="container">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+      <%= render 'think_feel_do_engine/shared/footer' %>
+    </div>
+
+    <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left">
+        <ul id="snap-navbar" class="nav navbar-nav navbar-snap">
+          <%= yield :mobile_nav_items %>
+        </ul>
+      </div>
+    </div>
+
+    <%= yield :bottom %>
+
+    <script type="text/javascript">
+      var snapper = new Snap({
+        element: document.getElementById("wrap"),
+        disable: "right"
+      });
+      snapper.disable();
+      $("#hamburger_button").on("click", function() {
+        snapper.enable();
+        if ($("body").hasClass("snapjs-left")) {
+          snapper.close();
+        } else {
+          snapper.open('left');
+        }
+      });
+
+      snapper.on("close", function() {
+        snapper.disable();
+      });
+
+      var enable_mobile_page = function() {
+        $(window).on('resize', function() { snapper.close(); });
+      }
+      $(document).ready(enable_mobile_page);
+      $(document).on('page:load', enable_mobile_page);
+    </script>
+  </body>
+</html>

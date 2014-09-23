@@ -1,0 +1,32 @@
+<%= form_tag coach_messages_path, :method => 'get', role: "search" do %>
+  <div class="form-group">
+    <%= select_tag "search", options_from_collection_for_select(@participants, "id", "study_id", params[:search]), { prompt: "Participant", class: "form-control", style: "display: inline-block;width: 25%;" } %>
+    <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<ul class="nav nav-tabs" id="messages-tab">
+  <li><a href="#inbox" data-toggle="tab">Inbox (<%= received_messages.unread.count %>)</a></li>
+  <% if sent_messages.count > 0 %>
+    <li><a href="#sent" data-toggle="tab">Sent</a></li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+
+  <div class="tab-pane" id="inbox">
+    <div class="list-group">
+      <%= render partial: "think_feel_do_engine/coach/received_messages/received_message", collection: received_messages %>
+    </div>
+  </div>
+
+  <% if sent_messages.count > 0 %>
+    <div class="tab-pane" id="sent">
+      <div class="list-group">
+        <% sent_messages.each do |msg| %>
+          <%= link_to "<span class=\"col-md-2\">To: #{ msg.recipient_study_id }</span>".html_safe + msg.subject + "<span class='pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe, coach_sent_message_path(msg), class: "text-muted list-group-item" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

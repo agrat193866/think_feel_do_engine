@@ -1,0 +1,31 @@
+<h2>Now list another thought...</h2>
+
+<%
+  placeholders = [
+    'an example thought: "She thinks that she\'s better than me"',
+    'another example: "I\'m a terrible friend"',
+    'yet another example: "They\'re never going to listen to me"'
+  ]
+%>
+<% thoughts.each_with_index do |thought, i| %>
+  <%=
+    form_for(
+      thought,
+      url: create_path,
+      remote: true,
+      html: {
+        class: "multi-page",
+        style: i == 0 ? '' : 'display: none;',
+        role: "form"
+      }
+    ) do |f|
+  %>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: placeholders[i], class: "form-control", rows: 3, required: true %>
+    </div>
+
+    <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
+
+      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+  <% end %>
+<% end %>

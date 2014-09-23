@@ -1,0 +1,64 @@
+<h2>This week</h2>
+
+<div id="forms-container">
+  <div id="subcontainer-0">
+    <%= render "think_feel_do_engine/activities/activity_form_fields", create_path: create_path %>
+  </div>
+</div>
+
+<div class="btn-toolbar">
+  <button class="btn btn-default" id="add-forms" type="button"><i class="fa fa-plus"></i> Add Activities</button>
+</div>
+
+<div class="btn-toolbar">
+  <%= submit_tag 'Continue', class: 'btn btn-default', id: "submit-forms" %>
+</div>
+
+<script>
+  sc.recordActivities = function(formContainers, path, partial) {
+    $("#add-forms").on("click", function() {
+      var count;
+      count = $(formContainers).length;
+      $("#forms-container").append("<div id='subcontainer-" + count + "'>" + partial + "</div>");
+      return false;
+    });
+    $("#submit-forms").on("click", function(event) {
+      event.preventDefault();
+
+      sc.displayErrors();
+
+      if ($(".form-group.has-error").length == 0) {
+
+        _.each($(formContainers), function(form, index, list) {
+          var $form;
+          $form = $(form);
+
+          return $.ajax({
+            async: false,
+            data: $form.serialize(),
+            dataType: "script",
+            type: "POST",
+            url: $form.attr("action"),
+            success: function() {
+              if ((index + 1) === list.length) {
+                window.location.href = path;
+              }
+            }
+          });
+        });
+
+      };
+
+      return false;
+    });
+  };
+
+  var afterSubmitPath, partial;
+
+  afterSubmitPath = "<%= navigator_next_content_url %>";
+
+  partial = "<%= j render(partial: 'think_feel_do_engine/activities/activity_form_fields', locals: { create_path: create_path }) %>";
+
+  $(document).on("page:change", sc.recordActivities("#forms-container form.activity_form", afterSubmitPath, partial));
+
+</script>

@@ -1,0 +1,3 @@
+$('#alerts').html("<%= escape_javascript(render partial: 'think_feel_do_engine/shared/alerts', locals: { alert: alert, notice: notice }) %>");
+$('#patient-<%= @membership.participant_id %>').replaceWith("<%= escape_javascript(render partial: 'think_feel_do_engine/coach/patient_dashboards/patient', object: @membership.participant )%>");
+$(document).trigger('patient:rendered');

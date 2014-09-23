@@ -1,0 +1,75 @@
+<h3>Review Your Day</h3>
+<!-- <p class="lead">Let's review how you spent your day...</p> -->
+
+<div id="past_activities_container">	
+<% timestamps.each_with_index do |timestamp, index| %>
+  <% start_time = Time.at(timestamp); end_time = start_time + 1.hour %>
+  <%= form_for(
+        activity,
+        url: create_path,
+        method: "post",
+        remote:  true,
+        html: {
+          role: "form",
+          class: "activity_form",
+          id: nil
+        }
+      ) do |f| %>
+      <%= f.hidden_field :start_time, value: start_time %>
+      <%= f.hidden_field :end_time, value: end_time %>
+      <%= f.hidden_field :is_complete, value: true %>
+      <%= f.hidden_field :is_monitored, value: true %>
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <%= f.label :activity_type_title, "What did you do from #{ start_time.to_s(:time_with_meridian) } to #{ end_time.to_s(:time_with_meridian) }?", for: "activity_type_#{ index }", class: "match_label" %>
+          <br/>
+          <% if index > 0 %>
+            <div class="input-group">
+              <%= f.text_field :activity_type_title, class: "form-control", id: "activity_type_#{ index }" %>
+              <span class="input-group-btn">
+                <button <%= "id=\"copy_#{ index }\"".html_safe %> class="copy_btn btn btn-default" type="button">
+                  Copy from above
+                </button>
+              </span>
+            </div>
+          <% else %>
+            <%= f.text_field :activity_type_title, class: "form-control", id: "activity_type_#{ index }" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div <%= "id=\"pleasure_#{ index }\"".html_safe %> class="form-group rateIntensity">
+        <%= render(
+              "think_feel_do_engine/activities/intensity_selector",
+              form: f,
+              name: :actual_pleasure_intensity,
+              label: "<span class=\"match_label_small\">How much pleasure did you get from doing this?</span>".html_safe,
+              activity: Activity.new,
+              min_text: "None",
+              mid_text: "Some",
+              max_text: "A Lot&nbsp;&nbsp;".html_safe
+        ) %>
+      </div>
+
+      <div <%= "id=\"accomplishment_#{ index }\"".html_safe %> class="form-group rateIntensity">
+        <%= render(
+              "think_feel_do_engine/activities/intensity_selector",
+              form: f,
+              name: :actual_accomplishment_intensity,
+              label: "<span class=\"match_label_small\">How much did doing this give you a sense of accomplishment?</span>".html_safe,
+              activity: Activity.new,
+              min_text: "None",
+              mid_text: "Some",
+              max_text: "A Lot&nbsp;&nbsp;".html_safe
+        ) %>
+      </div>
+      <hr/>
+	<% end %>
+<% end %>
+
+    <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", id: "submit_activities") %>
+</div>
+
+<script type="text/javascript">
+  $(document).on("page:load", sc.activityTracker("<%= navigator_next_content_path %>") );
+</script>

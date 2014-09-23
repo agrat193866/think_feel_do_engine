@@ -1,0 +1,30 @@
+<h2>Rate your Emotions</h2>
+
+<div class="alert alert-info">
+  You just rated your mood as a <%= current_participant.moods.last.rating %> (<%= current_participant.moods.last.rating_value %>)
+</div>
+
+<strong>While tracking your mood, you might also want to track other emotions.  We've included a few suggestions based on some emotions other people have tracked in the past, but feel free to track anything that you think would be helpful to you.</strong>
+
+<div id="forms-container">
+  <%= render "think_feel_do_engine/emotions/form", create_path: create_path, emotional_rating: emotional_rating %>
+</div>
+
+<div class="btn-toolbar">
+  <button class="btn btn-default" id="add-forms" type="button"><i class="fa fa-plus"></i> Add Emotion</button>
+</div>
+
+<div class="btn-toolbar">
+  <%= submit_tag 'Continue', class: 'btn btn-primary', id: "submit-forms" %>
+  <%= link_to 'Skip', navigator_next_content_path, class: 'btn btn-warning' %>
+</div>
+
+<script>
+  var afterSubmitPath, partial;
+
+  afterSubmitPath = "<%= navigator_next_content_url %>";
+
+  partial = "<%= j render(partial: 'think_feel_do_engine/emotions/form', locals: { create_path: create_path, emotional_rating: emotional_rating }) %>";
+
+  $(document).on("page:change", sc.rateEmotions("#forms-container form.new_emotional_rating", afterSubmitPath, partial));
+</script>

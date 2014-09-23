@@ -1,0 +1,21 @@
+<%= form_tag(
+      create_path,
+      method: "post",
+      role: "form",
+      class: "activity_form"
+    ) do %>
+
+  <div class="form-group">
+    <label>
+      OK, what's something fun that you can do this week?
+      <%= text_field_tag "unplanned_activities[0][activity_type_title]", "", class: "form-control" %>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      And, something else you can do that gives you a sense of accomplishment?
+      <%= text_field_tag "unplanned_activities[1][activity_type_title]", "", class: "form-control" %>
+    </label>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>Content Providers</h1>
+
+<div class="btn-toolbar">
+  <%= link_to "<i class='fa fa-plus'></i> Create Provider".html_safe, new_bit_maker_content_provider_path, class: "btn btn-default" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Module</th>
+      <th>Position</th>
+      <th>Tool</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @content_providers.includes(content_module: :tool).each do |content_provider| %>
+      <tr>
+        <td><%= link_to content_provider.pretty_label, bit_maker_content_provider_path(content_provider) %></td>
+        <td><%= link_to content_provider.content_module.title, bit_maker_content_module_path(content_provider.content_module) %></td>
+        <td><%= content_provider.position %></td>
+        <td><%= content_provider.content_module.tool.title %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(function() {
+    return $('table').dataTable({
+      sPaginationType: 'bootstrap',
+      iDisplayLength: 25,
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

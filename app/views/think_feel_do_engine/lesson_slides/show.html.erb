@@ -1,0 +1,19 @@
+<h1>Lesson <small><%= @lesson.pretty_title %></small></h1>
+
+<% slide = slide || @slide %>
+<div class="tool-content">
+  <% if slide.is_title_visible %>
+    <div class="slide">
+      <h1><%= slide.title %></h1>
+    </div>
+  <% end %>
+
+  <% case slide.class.to_s
+     when 'BitCore::VideoSlide' %>
+    <%= render 'slides/video', slide: slide %>
+  <% end %>
+
+  <%= slide.render_body %>
+</div>
+
+<%= link_to "Done", lesson_path(@lesson), class: "btn btn-primary pull-right" %>

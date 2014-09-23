@@ -1,0 +1,32 @@
+<div class="panel-group accordian-dual">
+  <div class="landing_panel panel panel-default accor-panel" data-toggle="collapse" <%= "data-target=\"\##{table_name}\"".html_safe %> >
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a>
+          <%= table_name.gsub('_', ' ') %>
+        </a>
+      </h3>
+    </div>
+    <div <%= "id=\"#{table_name}\"".html_safe %> class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>
+          <%= subtitle %>
+          <%= link_to "Edit", edit_link, class: "btn btn-primary pull-right" if edit_link %>
+        </p>
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover table-condensed">
+            <thead>
+              <th>Activity</th>
+              <th>Planned For</th>
+              <th>Predicted Pleasure Value</th>
+              <th>Predicted Accomplishment Value</th>
+            </thead>
+            <tbody>
+              <%= render partial: 'think_feel_do_engine/activities/past_due_rows', collection: activity_list, as: :activity %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

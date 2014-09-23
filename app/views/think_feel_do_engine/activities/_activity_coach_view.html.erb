@@ -1,0 +1,6 @@
+<tr>
+  <td><%= activity.title %></td>
+  <td><%= activity.is_complete? ? "<span class=\"label label-success\">Completed</span>".html_safe : "<span class=\"label label-warning\">Inactive</span>".html_safe %></td>
+  <td><%= activity.start_time? ? "Scheduled for #{ activity.start_time.to_formatted_s(:short) }" : "Unscheduled" %></td>
+  <td><%= activity.created_at.to_formatted_s(:short) %></td>
+</tr>

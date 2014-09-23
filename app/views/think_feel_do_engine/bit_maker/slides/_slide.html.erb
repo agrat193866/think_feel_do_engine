@@ -1,0 +1,21 @@
+<div class="tool-content well well-lg">
+  <div class="slide">
+    <h1>
+      <%= slide.position %>.
+      <%= slide.title %>
+    </h1>
+  </div>
+
+  <div class="btn-toolbar hidden-print">
+    <%= link_to "View", bit_maker_slideshow_slide_path(slideshow, slide), class: "btn btn-default" %>
+    <%= link_to "Edit", edit_bit_maker_slideshow_slide_path(slideshow, slide), class: "btn btn-default" %>
+    <%= link_to "Remove", bit_maker_slideshow_slide_path(slideshow, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+
+  <%= slide.render_body %>
+
+  <% case slide.class.to_s %>
+  <% when 'BitCore::VideoSlide' %>
+    <%= render 'slides/video', slide: slide %>
+  <% end %>
+</div>

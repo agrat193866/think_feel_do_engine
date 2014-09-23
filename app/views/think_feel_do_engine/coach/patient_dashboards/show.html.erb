@@ -1,0 +1,371 @@
+<% if @patient %>
+
+  <h3>Participant: <%= @patient.study_id %></h3>
+
+  <p>
+    <strong><i class="fa fa-calendar"></i> Started on:</strong>
+    <%= @patient.membership.start_date.to_s :brief_date %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <% if @patient.active_membership %>
+      <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
+    <% else %>
+      <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Last Logged In:</strong>
+    <%= @patient.current_sign_in_at ? @patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+  </p>
+
+  <hr>
+
+  <div id="vizcontainer" class="linechart">
+  </div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#phqCollapse">
+          PHQ9
+        </a>
+        <%= link_to "Manage", coach_phq_assessments_path(participant_id: @patient.id), style: "color: #428bca;" %>
+      </h3>
+    </div>
+    <div id="phqCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover data-table" id="phq_assessments">
+            <thead>
+              <tr>
+                <th>Release Date</th>
+                <th>Created Date</th>
+                <th>Assessment Score</th>
+                <th>Incomplete?</th>
+                <th>Q1</th>
+                <th>Q2</th>
+                <th>Q3</th>
+                <th>Q4</th>
+                <th>Q5</th>
+                <th>Q6</th>
+                <th>Q7</th>
+                <th>Q8</th>
+                <th>Q9</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/phq_assessments/phq_assessment", collection: @patient.phq_assessments.order(:release_date) %>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-info">* Indicates an incomplete phq assessment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#moodCollapse">
+          Mood
+        </a>
+      </h3>
+    </div>
+    <div id="moodCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+                <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="moods">
+    <thead>
+      <tr>
+        <th>Rating 0 (Bad) to 10 (Good)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/moods/mood", collection: @patient.moods %>
+    </tbody>
+  </table></div>
+  </div>
+  </div>
+  </div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#feelingsCollapse">
+          Feelings
+        </a>
+      </h3>
+    </div>
+
+    <div id="feelingsCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+                <div class="table-responsive div-table-viz">
+      <table class="table table-hover data-table" id="emotions">
+        <thead>
+          <tr>
+            <th>Feeling</th>
+            <th>Rating</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render partial: "think_feel_do_engine/emotions/emotion_coach_view", collection: @patient.emotional_ratings, as: :emotional_rating %>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#loginsCollapse">
+          Logins
+        </a>
+      </h3>
+    </div>
+    <div id="loginsCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="logins">
+    <thead>
+      <tr>
+        <th>Date/Time of Login</th>
+        <th>Date/Time of End of Session</th>
+        <th>Duration of session</th>
+        <th>Signed Out?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/login_events/login_event", collection: @patient.participant_login_events %>
+    </tbody>
+  </table></div>
+  <p id="login-count">Total: <%= @patient.participant_login_events.count %></p>
+
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#lessonsCollapse">
+          Lessons
+        </a>
+      </h3>
+    </div>
+    <div id="lessonsCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="learning_data">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Assigned Date</th>
+        <th>Started At</th>
+        <th>Completed At</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { task_statuses: @learning_tasks } %>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 id="activities_future_h3" class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#activity_futureCollapse">
+          Activities - Future
+        </a>
+      </h3>
+    </div>
+    <div id="activity_futureCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="activities_future">
+    <thead>
+      <tr>
+        <th>Activity</th>
+        <th>Predicted Pleasure Rating</th>
+        <th>Predicted Accomplishment Rating</th>
+        <th>Scheduled Date</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/activities/activity_coach_view_future", collection: @patient.activities.unscheduled_or_in_the_future, as: :activity %>
+    </tbody>
+  </table>
+  <table id="activities_legend" class="table">
+    <tr>
+      <td class="success">High Pleasure/Accomplishment</td>
+      <td class="info">Low Pleasure, High Accomplishment</td>
+      <td class="warning">High Pleasure, Low Accomplishment</td>
+      <td class="danger">Low Pleasure/Accomplishment</td>
+    </tr>
+  </table></div>
+</div>
+</div>
+</div>
+
+<div class="panel panel-default cdb_panel">
+  <div class="panel-heading">
+    <h3 id="activities_past_h3" class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#activity_pastCollapse">
+        Activities - Past
+      </a>
+    </h3>
+  </div>
+  <div id="activity_pastCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+              <div class="table-responsive div-table-viz">
+      <table class="table table-hover data-table" id="activities_past">
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>Planned/Monitored</th>
+            <th>Status</th>
+            <th>Predicted Pleasure Rating</th>
+            <th>Predicted Accomplishment Rating</th>
+            <th>Actual Pleasure Rating</th>
+            <th>Actual Accomplishment Rating</th>
+            <th>Scheduled Date</th>
+            <th>Created Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "think_feel_do_engine/activities/activity_coach_view_past", collection: @patient.activities.in_the_past, as: :activity %>
+        </tbody>
+      </table>
+      <table id="activities_legend" class="table">
+        <tr>
+          <td class="success">High Pleasure/Accomplishment</td>
+          <td class="info">Low Pleasure, High Accomplishment</td>
+          <td class="warning">High Pleasure, Low Accomplishment</td>
+          <td class="danger">Low Pleasure/Accomplishment</td>
+        </tr>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default cdb_panel">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#thoughtsCollapse">
+        Thoughts
+      </a>
+    </h3>
+  </div>
+  <div id="thoughtsCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+              <div class="table-responsive div-table-viz">
+      <table class="table table-hover data-table" id="thoughts">
+        <thead>
+          <th>Thought</th>
+          <th>Effect</th>
+          <th>Pattern</th>
+          <th>Challenging Thought</th>
+          <th>As If Thought</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+          <%= render partial: "think_feel_do_engine/thoughts/thought", collection: @patient.thoughts %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default cdb_panel">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#messagesCollapse">
+        Messages
+      </a>
+    </h3>
+  </div>
+  <div id="messagesCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="messages">
+    <thead>
+      <tr>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/messages/message", collection: @patient.sent_messages %>
+    </tbody>
+  </table></div>
+
+</div>
+</div>
+</div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#tasksCollapse">
+          Tasks
+        </a>
+      </h3>
+    </div>
+    <div id="tasksCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+  <table class="table table-hover data-table" id="task_statuses">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Assigned Date</th>
+        <th>Completed At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.membership.try(:task_statuses) %>
+    </tbody>
+  </table>
+</div>
+  </div>
+  </div>
+  </div>
+<% end %>
+
+<script>
+  var phqData, emotionData, moodRatings;
+
+  $(function() {
+    return $('.data-table').dataTable({
+      sPaginationType: 'bootstrap',
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+
+  phqData = JSON.parse("<%= @patient.phq_assessments.map{ |phq9| [phq9.release_date.to_time.to_i, phq9.score]} %>");
+
+  emotionData = JSON.parse('<%= raw emotional_ratings(@patient).to_json %>');
+
+  moodData = JSON.parse('<%= raw mood_ratings(@patient).to_json %>');
+
+  $(document).on("page:load", sc.assessmentData(moodData, emotionData, phqData));
+
+  $(window).off(".phqfeelViz");
+  $(window).on("resize.phqfeelViz", function(){sc.assessmentData(moodData, emotionData, phqData);});
+</script>

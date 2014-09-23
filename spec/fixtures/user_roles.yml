@@ -1,0 +1,15 @@
+user_role1:
+  user: user1
+  role_class_name: "Roles::Clinician"
+
+user_role2:
+  user: user2
+  role_class_name: "Roles::Clinician"
+
+user_role_user_without_participants:
+  user: user_without_participants
+  role_class_name: "Roles::Clinician"
+
+user_role_with_user_with_memberless_participant:
+  user: user_with_memberless_participant
+  role_class_name: "Roles::Clinician"

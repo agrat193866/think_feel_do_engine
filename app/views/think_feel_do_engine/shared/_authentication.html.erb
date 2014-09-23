@@ -1,0 +1,5 @@
+<div id="auth_nav">
+	<% if current_participant %>
+	  <%= link_to fa_icon("sign-out", text: "Sign Out"), destroy_participant_session_path, method: :delete %>
+	<% end %>
+</div>

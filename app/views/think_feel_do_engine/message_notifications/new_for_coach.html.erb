@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <%= render "think_feel_do_engine/shared/email_head" %>
+</head>
+<body>
+	<table class="body">
+		<tr>
+			<td class="center" align="center" valign="top">
+        <center>
+
+
+          <table class="container">
+            <tr>
+              <td>
+
+                <!-- content start -->
+                <table>
+                  <tr>
+                    <td class="wrapper last">
+
+                      <table class="twelve columns">
+                        <tr>
+                          <td>
+
+                            <h1>You have a new message</h1>
+
+                          </td>
+                          <td class="expander"></td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+                </table>
+
+
+                <table>
+                  <tr>
+                    <td class="wrapper last">
+
+                      <table class="three columns">
+                        <tr>
+                          <td>
+
+                            <table class="button">
+                              <tr>
+                                <td>
+                                  <%= link_to 'View messages', coach_messages_url %>
+                                </td>
+                              </tr>
+                            </table>
+
+                          </td>
+                          <td class="expander"></td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+                </table>
+
+
+                <table>
+                  <tr>
+                    <td class="wrapper last">
+
+                      <table class="twelve columns">
+                        <tr>
+                          <td align="center">
+                            <center>
+                              <%= render 'think_feel_do_engine/shared/footer' %>
+                            </center>
+                          </td>
+                          <td class="expander"></td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- container end below -->
+              </td>
+            </tr>
+          </table>
+
+        </center>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

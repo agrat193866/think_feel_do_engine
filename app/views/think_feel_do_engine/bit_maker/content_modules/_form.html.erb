@@ -1,0 +1,24 @@
+  <% if @content_module.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_module.errors.count, "error") %> prohibited this content_module from being saved:</h2>
+
+      <ul>
+      <% @content_module.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tool %>
+    <%= f.select(:bit_core_tool_id, BitCore::Tool.all.collect {|p| [ p.title, p.id ] }, {}, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label :position %>
+    <%= f.number_field :position, class: "form-control" %>
+  </div>

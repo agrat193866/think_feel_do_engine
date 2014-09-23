@@ -1,0 +1,47 @@
+<% content_for :left do %>
+  <p class="lead">
+    You have read <%= pluralize(all_available_tasks.completed.count, "lesson") %> out of <%= all_available_tasks.count %>.
+  </p>
+  <div class="list-group">
+    <% if oldest_unread_five.count > 0 %>
+      <% oldest_unread_five.each do |ts| %>
+        <% path = create_task_path(ts) %>
+        <a href="<%= path %>" class="list-group-item task-status" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+          <strong>
+            <% title = safe_get_task_title(ts) %>
+            <h4 id="lesson_title" class="list-group-item-heading">
+              <%= title ? title : ts.title %>
+            </h4>
+            <%= "<em class=\"pull-right\">unread</em>".html_safe %>
+            <%= todays_lesson(ts, "<p style=\"margin-top: 5px;margin-bottom:0px;\">today's lesson</p>") %>
+          </strong>
+        </a>
+      <% end %>
+    <% else %>
+    <div class="list-group">
+      <a href="#" class="list-group-item">You've read all the lessons so far.</a>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+<% content_for :right do %>
+  <p class="lead">
+    Archived Lessons
+  </p>
+  <% if all_read_tasks.count > 0 %>
+    <div class="list-group">
+      <% all_read_tasks.each do |ts| %>
+        <% path = create_task_path(ts) %>
+        <a href="<%= path %>" class="list-group-item task-status" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+          <% title = safe_get_task_title(ts) %>
+          <%= title ? title : ts.title %>
+          <p style="margin-top: 5px;margin-bottom:0px;">From <%= ts.created_at.strftime("%m/%d/%Y") %></p>
+        </a>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="list-group">
+      <a href="#" class="list-group-item">No read lessons yet!</a>
+    </div>
+  <% end %>
+<% end %>

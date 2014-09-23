@@ -1,0 +1,236 @@
+home_intro1:
+  slideshow: home_intro
+  position: 1
+  title: "It's simple."
+  body: If you're feeling sad or down and want to get better, this is for you.
+    ![](/assets/think_feel_do_engine/head_with_gears.jpg)
+
+home_intro2:
+  slideshow: home_intro
+  position: 2
+  title: Slide 2
+  is_title_visible: false
+  body: "Log in once a day and tell us you're doing.
+
+
+    Read a few things.
+
+    Do a few things."
+
+home_intro3:
+  slideshow: home_intro
+  position: 3
+  title: Slide 3
+  is_title_visible: false
+  body: Come back every day for a few weeks.
+
+
+    Give it a chance.
+
+
+    See if you'll feel better.
+
+home_intro4:
+  slideshow: home_intro
+  position: 4
+  type: BitCore::VideoSlide
+  title: Slide 4
+  is_title_visible: false
+  body: ''
+  options: { url: "http://mohrlab.northwestern.edu/video/introtfd.mp4" }
+
+home_splash1:
+  slideshow: home_splash
+  position: 1
+  title: Welcome to ThiFeDo
+  body: Yay
+
+do_awareness_intro1:
+  title: This is just the beginning...
+  body: For the next few days, let's start by making you aware of some of the things you do every day.
+
+
+    Be honest. No cheating. No judgments, no worries--just a little bit of work. Just, let us know a bit about what you've been up to...
+
+
+    We just want you to know that we know this is a bit tedious.
+
+    But bear with us. If you can keep this up for a few days it will be really helpful later.
+  position: 1
+  slideshow: do_awareness_intro
+
+do_planning_intro1:
+  title: The last few times you were here...
+  body: You told us about a few activities that were either fun or important to you.
+
+
+    Now it's time to use what you've done to help you.
+  position: 1
+  slideshow: do_planning_intro
+
+do_planning_transition:
+  title: OK... the most important thing is to do more that is pleasureable and gives you a sense of accomplishment
+  body: Now let's go plan...
+  position: 1
+  slideshow: do_planning_transition
+
+do_doing_intro1:
+  title: Welcome back!
+  body: # Wilkommen!
+
+    # Hola!
+
+    This is where the big results start to happen.
+
+    Let's see what you did...
+  position: 1
+  slideshow: do_doing_intro
+
+do_doing_intro2:
+  title: "Let's do this..."
+  body: Since you last logged in you said you were going to
+    do a few activities that are pleasureable and give you
+    a set of accomplishment.
+  position: 2
+  slideshow: do_doing_intro
+
+do_doing_intro3:
+  title: Good Work!
+  body: You built your awareness, planned beneficial activities, and followed up.
+
+    It's ﬁne if you didn't do all the things you planned - as long as you keep intentionally trying to do things that you've said are good for you.
+  position: 1
+  slideshow: do_congrats
+
+think_identifying_intro1:
+  title: You are what you think...
+  body: "## Your thoughts shape and guide
+
+
+    how you **feel**
+
+
+    and what you **do**.
+
+
+    ## Thoughts are the exact sentences that go through your head.
+
+
+    \"I can do better if I try\"
+
+
+    \"Nobody likes me\"
+
+
+    \"People really think I matter\"
+
+
+    \"They did that to hurt me\"
+
+
+    \"I'm going to screw up this presentation...\"
+
+
+    \"This always happens to me\"
+
+
+    \"I did a good job today\"
+
+
+    There are helpful and harmful ways to think."
+  position: 1
+  slideshow: think_identifying_intro
+
+think_identifying_intro2:
+  slideshow: think_identifying_intro
+  position: 2
+  title: Helpful thoughts are...
+  body: "**constructive**:
+
+    they build you up and make you stronger
+
+
+    **necessary**:
+
+    they help you do what you have to do to live your life
+
+
+    **positive**:
+
+    they make you feel better about things in general"
+
+think_identifying_intro3:
+  slideshow: think_identifying_intro
+  position: 3
+  title: "Harmful thoughts are:"
+  body: "**destructive**:
+
+    they tear you down
+
+
+    **unnecessary**:
+
+    they're not needed for anything and waste your time
+
+
+    **negative**:
+
+    they make you feel worse and hurt you"
+
+think_identifying_intro4:
+  slideshow: think_identifying_intro
+  position: 4
+  title: Some quick examples...
+  body: "a harmful thought
+
+    \"I'm never going to be good enough.\"
+
+
+    a helpful thought
+
+    \"If I work a little harder, I can do better\""
+
+think_identifying_conclusion:
+  slideshow: think_identifying_conclusion
+  position: 1
+  title: Good work.
+  body: "Identify a few more thoughts you've had recently.
+
+
+    It's good to practice this for a few days...
+
+
+    Come back tomorrow to log a few more!"
+
+think_patterns_intro1:
+  slideshow: think_patterns_intro
+  position: 1
+  title: Like we said, you are what you think...
+  body: There are lots of different kinds of helpful thoughts.
+
+
+    Harmful thoughts, however, usually fall into a set of ten standard patterns.
+
+think_patterns_conclusion:
+  slideshow: think_patterns_conclusion
+  position: 1
+  title: Good work!
+  body: We know this can be challenging...
+
+think_reshape_intro:
+  slideshow: think_reshape_intro
+  position: 1
+  title: "Challenging Harmful Thoughts"
+  body: "You've logged thoughts that are helpful and thoughts that are harmful.
+
+
+    You've looked at some patterns of harmful thoughts...
+
+
+    Now it's time to do something about it!"
+
+feel_identifying_intro1:
+  slideshow: feel_identify_intro
+  position: 1
+  title: Some quick examples...
+  body: "What is mood?"

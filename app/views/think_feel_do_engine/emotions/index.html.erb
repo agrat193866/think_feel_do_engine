@@ -1,0 +1,14 @@
+<h2>Your Recent Emotions</h2>
+
+<div id="chart-container"></div>
+<script>
+  var emotionData, moodRatings;
+
+  emotionData = JSON.parse('<%= raw emotional_ratings.to_json %>');
+
+  moodRatings = JSON.parse('<%= raw mood_ratings.to_json %>');
+
+  $(document).on("page:change", sc.emotionViz(emotionData, moodRatings));
+  $(window).off(".feelViz");
+  $(window).on("resize.feelViz", function(){sc.emotionViz(emotionData, moodRatings);});
+</script>

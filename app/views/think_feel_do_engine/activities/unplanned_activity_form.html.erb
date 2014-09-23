@@ -1,0 +1,21 @@
+<h2>Your Planned Activities</h2>
+
+<p>Green rows are activities you're adding now</p>
+
+<table class="table table-hover table-condensed" id="previous_activities">
+  <thead>
+    <th>Activity</th>
+    <th>Planned For</th>
+    <th>Predicted Pleasure Value</th>
+    <th>Predicted Accomplishment Value</th>
+  </thead>
+  <tbody>
+    <%= render partial: "think_feel_do_engine/activities/previously_planned", collection: already_sched_activities, as: :activity %>
+  </tbody>
+</table>
+
+<%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_path) %>
+
+<script type="text/javascript">
+  var AT = new sc.activityTracker("<%= navigator_next_content_path %>");
+</script>

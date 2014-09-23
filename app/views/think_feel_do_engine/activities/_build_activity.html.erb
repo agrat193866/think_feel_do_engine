@@ -1,0 +1,91 @@
+<%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form"} do |f| %>
+  <input type="hidden" name="activity[is_scheduled]" value="1">
+
+  <% if past_activities.count > 0 %>
+    <label>Choose one</label>
+    <% past_activities.each do |activity| %>
+        <div class="input-group static">
+          <span class="input-group-addon">
+            <%= radio_button_tag "activity[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }" %>
+          </span>
+          <input type="text" class="form-control-static" style="border-bottom-left-radius: 0;" value="<%= activity.title %>" readonly></input>
+        </div>
+    <% end %>
+  <% end %>
+  <hr/>
+  <div class="form-group">
+    <label class="control-label" for="activity_activity_type_new_title">
+      Or add another
+      </label>
+      <div class="input-group static">
+        <span class="input-group-addon">
+          <%= radio_button_tag "activity[activity_type_title]", "", false, id: "new_activity_radio" %>
+        </span>
+        <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static"></input>
+      </div>
+  </div>
+
+  <hr/>
+
+  <% index = 0 %>
+  <%= f.hidden_field :start_time, value: "", class: "start_time_#{ index }" %>
+  <div class="row activity_tracker-row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button id="date_<%= index %>" class="btn btn-default btn-date_picker" type="button"><i class="fa fa-calendar"></i></button>
+        </span>
+        <input id="future_date_picker_<%= index %>" type="text" class="form-control date_picker" >
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input id="future_time_picker_<%= index %>" type="text" class="time_picker form-control">
+        <span class="input-group-btn">
+          <button id="time_<%= index %>" class="btn btn-default btn-time_picker" type="button"><i class="fa fa-clock-o"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="pleasure_<%= index %>" class="form-group rateIntensity" >
+    <%= render(
+      "think_feel_do_engine/activities/intensity_selector",
+      form: f,
+      name: :predicted_pleasure_intensity,
+      label: "<span class=\"match_label_small\">How much pleasure did you expect to get from doing this?</span>".html_safe,
+      activity: current_participant.activities.build,
+      min_text: "None",
+      mid_text: "Some",
+      max_text: "A Lot&nbsp;&nbsp;".html_safe,
+      suggested: true
+    ) %>
+  </div>
+
+  <div id="accomplishment_<%= index %>" class="form-group rateIntensity">
+    <%= render(
+      "think_feel_do_engine/activities/intensity_selector",
+      form: f,
+      name: :predicted_accomplishment_intensity,
+      label: "<span class=\"match_label_small\">How much accomplishment do you expect to get from doing this?</span>".html_safe,
+      activity: current_participant.activities.build,
+      min_text: "None",
+      mid_text: "Some",
+      max_text: "A Lot&nbsp;&nbsp;".html_safe,
+      suggested: true
+    ) %>
+  </div>
+  <div class="btn-group pull-right">
+    <%= link_to 'Skip', navigator_next_content_path, class: 'btn btn-default btn-warning' %>
+    <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary", id: "submit_activities") %>
+  </div>
+<%end%>
+
+<script type="text/javascript">
+  $(".form-control-static").focus(function() {
+    console.log($(this).siblings("span").children("input"));
+    $($(this).siblings("span").children("input")).prop("checked", true);
+  });
+  var AT = new sc.activityTracker("<%= navigator_next_content_path %>");
+</script>

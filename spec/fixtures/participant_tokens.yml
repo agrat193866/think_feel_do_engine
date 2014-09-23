@@ -1,0 +1,5 @@
+token1:
+  participant: participant1
+  release_date: <%= Date.today %>
+  token_type: phq9
+  token: token token

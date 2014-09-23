@@ -1,0 +1,25 @@
+<% if upcoming_count > 0 %>
+  <%= render "think_feel_do_engine/activities/past_due_table",
+      table_name: "Upcoming_Activities", 
+      subtitle: "Activities in your near future",
+      edit_link: false,
+      activity_list: upcoming_activities,
+      count: upcoming_count,
+      edit_title: "Add More"
+  %>
+<% end %>
+
+<% if past_due_count > 0 %>
+  <%= render "think_feel_do_engine/activities/past_due_table",
+      table_name: "Recent_Past_Activities",
+      subtitle: "Have you done any of these?",
+      edit_link: navigator_location_path(
+        module_id: ContentProviders::PastActivityReviewForm.first.bit_core_content_module_id,
+        provider_id: ContentProviders::PastActivityReviewForm.first.id,
+        content_position: 1
+      ),
+      activity_list: past_due_activities,
+      count: past_due_count,
+      edit_title: "Update Completion Status"
+  %>
+<% end %>

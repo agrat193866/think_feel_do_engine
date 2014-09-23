@@ -1,0 +1,24 @@
+admin1:
+  email: admin1@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  is_admin: true
+
+user1:
+  email: user1@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+
+user2:
+  email: user2@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+
+user_without_participants:
+  email: user3@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+
+user_without_role:
+  email: user4@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+
+user_with_memberless_participant:
+  email: user5@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>

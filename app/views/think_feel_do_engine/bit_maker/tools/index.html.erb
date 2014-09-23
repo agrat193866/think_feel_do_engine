@@ -1,0 +1,37 @@
+<h1>Tools</h1>
+
+<div class="btn-toolbar">
+  <%= link_to "<i class='fa fa-plus'></i> Create Tool".html_safe, new_bit_maker_tool_path, class: "btn btn-default" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Position</th>
+      <th>Modules</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tools.order(:position).each do |tool| %>
+      <tr>
+        <td><%= link_to tool.title, bit_maker_tool_path(tool) %></td>
+        <td><%= tool.position %></td>
+        <td><%= tool.last_position %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(function() {
+    return $('table').dataTable({
+      sPaginationType: 'bootstrap',
+      iDisplayLength: 25,
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

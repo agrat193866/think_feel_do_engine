@@ -1,0 +1,59 @@
+<% if(tested_weeks && test_summary)
+edge_four = test_summary[:current_week] == 4
+edge_nine = test_summary[:current_week] == 9
+edge_fourteen = test_summary[:current_week] == 14
+
+phq_row_week_class = "warning"
+phq_row_week_class = "success" if tested_weeks.score.to_f < 5
+if tested_weeks.missing_with_no_fallback ||	tested_weeks.score.to_f >= test_summary[:upper_limit]
+	phq_row_week_class = "danger" 
+	if tested_weeks.week_of_assessment == test_summary[:current_week] - 1 &&
+		(edge_four || edge_nine || edge_fourteen)
+		phq_row_week_class = "warning" if tested_weeks.score.to_f < 17 && (edge_four || edge_nine)
+		phq_row_week_class = "warning" if tested_weeks.score.to_f < 13 && edge_fourteen
+	end
+end
+
+phq_row_week_class += " old_assessment" if tested_weeks.week_of_assessment < test_summary[:range_start]
+%>
+
+<% 
+	copied = tested_weeks.missing_but_copied
+	lost = tested_weeks.missing_with_no_fallback
+	missing_some_answers = tested_weeks.missing_answers_count > 0 && 
+						   tested_weeks.missing_answers_count <= 3
+	unreliable = tested_weeks.missing_answers_count > 3
+
+	suffix = ""
+	suffix_class = "suffix_row"
+	if copied
+		suffix = fa_icon("copy")
+		suffix_class += " copied_row"
+	end
+	if lost
+		suffix = fa_icon("ban")
+		suffix_class += " lost_row"
+	end
+	if missing_some_answers
+		suffix = fa_icon("question")
+		suffix_class += " missing_answers_row"
+	end
+	if unreliable
+		suffix = fa_icon("question-circle")
+		suffix_class += " unreliable_row"
+	end
+	suffix = fa_icon("copy") + " " + fa_icon("question") if copied && missing_some_answers
+	suffix = fa_icon("copy") + " " + fa_icon("question-circle") if copied && unreliable
+%>
+
+<tr class="<%= phq_row_week_class %> <%= suffix_class %>">
+	<td><span class="inline_format bold"><%= tested_weeks.week_of_assessment.to_i.to_s %></span> <%= "(" + (tested_weeks.date - tested_weeks.date.wday).strftime("%m/%d/%Y")  + " - " + tested_weeks.date.end_of_week(:sunday).strftime("%m/%d/%Y")  + ")" %></td>
+	<td><%= tested_weeks.date.strftime("%m/%d/%Y") %></td>
+	<td>
+		<span class="bold">
+		<%= tested_weeks.score.to_s %>
+		<span class="phq_suffix"> <%= suffix %> </span>
+		</span>
+	</td>
+</tr>
+<% end %>

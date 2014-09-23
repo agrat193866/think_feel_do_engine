@@ -1,0 +1,18 @@
+<% if !current_participant.nil? && coach.nil? %>
+  <p class="lead">You will be able use this tool once you have been assigned a coach</p>
+<% elsif !current_participant.nil? && current_participant.active_membership.present? %>
+  <div class="btn-toolbar">
+    <%= link_to "Compose", compose_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<%= render "think_feel_do_engine/messages/message_info", message: message %>
+
+<% user_id = current_user.try(:id) || current_participant.try(:id) %>
+<% unless message.sender.id == user_id %>
+  <div id="reply-container">
+    <div class="form-control" style="border: #CCC solid 1px;border-radius: 4px;height: 74px;padding: 6px 12px;">
+      Click here to <%= link_to "Reply", reply_path, class: "reply", style: "color: #777;text-decoration: underline;" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>New tool</h1>
+
+<%= form_for(@tool, as: :tool, url: bit_maker_tools_path(@tool)) do |f| %>
+
+  <%= render 'form', f: f %>
+
+  <div class="btn-toolbar">
+    <%= f.submit "Save", class: "btn btn-default" %>
+    <%= link_to 'Back', bit_maker_tools_path, class: "btn btn-default" %>
+  </div>
+<% end %>

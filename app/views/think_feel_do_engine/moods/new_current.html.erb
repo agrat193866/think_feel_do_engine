@@ -1,0 +1,17 @@
+<h2>Rate your Mood</h2>
+
+<%= form_for mood, url: create_path, method: "post", html: { role: "form" } do |f| %>
+  <%= render(
+    "think_feel_do_engine/shared/rating_selector",
+    form: f,
+    name: "rating",
+    label: "What is your mood right now?",
+    object: mood,
+    min_text: "Bad",
+    mid_text: "Neither",
+    max_text: "Good&nbsp;&nbsp;".html_safe
+  )%>
+
+  <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+
+<% end %>

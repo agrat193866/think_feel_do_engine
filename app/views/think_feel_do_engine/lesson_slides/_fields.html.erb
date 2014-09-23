@@ -1,0 +1,48 @@
+<%= f.hidden_field :type %>
+
+<div class="form-group">
+	<%= f.label :title %>
+  <%= f.text_field :title, class: "form-control", contenteditable: true %>
+</div>
+
+<% if @slide.type == "BitCore::VideoSlide" %>
+  <div class="form-group">
+    <%= label_tag "slide[options][vimeo_id]", "Vimeo ID" %>
+    <%= text_field_tag "slide[options][vimeo_id]", (@slide.options || {})[:vimeo_id], class: "form-control" %>
+  </div>
+<% end %>
+
+<div class="checkbox">
+  <label for="slide_is_title_visible">
+    <%= f.check_box :is_title_visible %> Display Title For Slide
+  </label>
+</div>
+
+<div class="form-group">
+	<%= f.label :body, for: "source" %>
+  <div class="editable" contenteditable="true" style="border: 1px solid #cccccc;min-height:200px;padding: 6px 12px;">
+    <%= slide.render_body %>
+  </div>
+  <% if Rails.env.test? %>
+    <%= f.text_area :body, id: "source", class: "form-control", :rows => "10" %>
+  <% else %>
+    <%= f.text_area :body, id: "source", class: "form-control", style: "display:none;", :rows => "10" %>
+  <% end %>
+</div>
+
+<script>
+  function editableBody() {
+    $(".editable").markdown({
+      autofocus: false,
+      savable: false,
+      height: 400,
+      iconlibrary: "fa",
+      onChange: function(e) {
+        $("#source").val(e.getContent());
+      }
+    });
+  }
+
+  $(document).ready(editableBody);
+  $(document).on('page:load', editableBody);
+</script>

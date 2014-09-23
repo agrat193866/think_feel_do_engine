@@ -1,0 +1,38 @@
+<h1>Content Provider <small><%= @content_provider.pretty_label %></small></h1>
+
+<%= link_to 'Edit', edit_bit_maker_content_provider_path(@content_provider), class: "btn btn-default" %>
+<%= link_to 'Destroy', bit_maker_content_provider_path(@content_provider), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+<p>
+  <strong>Tool:</strong>
+  <%= link_to @content_provider.content_module.tool.title, bit_maker_tool_path(@content_provider.content_module.tool) %>
+</p>
+
+<p>
+  <strong>Module:</strong>
+  <%= link_to @content_provider.content_module.title, bit_maker_content_module_path(@content_provider.content_module) %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= "#{ @content_provider.position } / #{ @content_provider.content_module.last_position }" %>
+</p>
+
+<p>
+  <strong>Is skippable after first viewing:</strong>
+  <%= @content_provider.is_skippable_after_first_viewing %>
+</p>
+
+<% if @slideshow %>
+  <p>
+    <strong>Slideshow:</strong> <%= link_to @slideshow.try(:title), bit_maker_slideshow_path(@slideshow) %>
+  </p>
+  <p>
+    <strong>Slides:</strong> 
+    <div class="list-group">
+      <% @slideshow.slides.each do |slide| %>
+        <%= link_to slide.title, bit_maker_slideshow_slide_path(@slideshow, slide), class: "list-group-item" %>
+      <% end %>
+    </div>
+  </p>
+<% end %>

@@ -1,0 +1,40 @@
+<h1 class="logo"><span class="think">Think</span><span class="feel">Feel</span><span class="do">Do</span></h1>
+
+<h2><%= resource_name == :user ? "Coaches and Admins<br>".html_safe : "" %>Sign in</h2>
+
+<% if Rails.env == "development" %>
+  <div class="form-group">
+    <label>Quick sign in as:</label>
+    <% if resource_name == :user %>
+      <%= select_tag "user_id", options_from_collection_for_select(User.order(:email), "id", "email"), prompt: "Select user...", onchange: "location.href = '#{ think_feel_do_engine.quick_sign_in_url }?user_id=' + this.value;" %>
+    <% elsif resource_name == :participant %>
+      <%= select_tag "participant_id", options_from_collection_for_select(Participant.order(:email), "id", "email"), prompt: "Select participant...", onchange: "location.href = '#{ think_feel_do_engine.quick_sign_in_url }?participant_id=' + this.value;" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { autocomplete: "off" }) do |f| %>
+  <div class="form-group">
+  	<%= f.label :email %>
+	  <%= f.email_field :email, :autofocus => true,  class: "form-control"  %>
+	</div>
+
+  <div class="form-group">
+  	<%= f.label :password %>
+  	<%= f.password_field :password,  class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+
+    <div class="checkbox">
+      <label for="participant_remember_me">
+        <%= f.check_box :remember_me %>
+        Remember me
+      </label>
+    </div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in", class: "btn btn-default" %></div>
+<% end %>
+<br/>
+<%= render "devise/shared/links" %>

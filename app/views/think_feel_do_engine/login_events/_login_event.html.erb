@@ -1,0 +1,21 @@
+<tr>
+  <td><%= login_event.created_at.to_formatted_s(:short) %></td>
+
+  <td><%= login_event.updated_at.to_formatted_s(:short) %></td>
+
+  <td>
+    <% if login_event.created_at != login_event.updated_at %>
+      <%= distance_of_time_in_words(login_event.created_at, login_event.updated_at) %>
+    <% end %>
+  </td>
+
+  <td>
+    <% if login_event.inactive_log_out %>
+      <i class='fa fa-info-circle fa-lg' style='color: #5bc0de;'></i>
+      Logged out due to inactivity
+    <% elsif login_event.signed_out_at %>
+      Signed Out at <%= login_event.signed_out_at.to_formatted_s(:short) %>
+    <% end %>
+  </td>
+
+</tr>

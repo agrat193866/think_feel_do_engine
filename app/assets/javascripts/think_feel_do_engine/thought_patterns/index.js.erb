@@ -1,0 +1,17 @@
+<% url = ThinkFeelDoEngine::Engine.routes.url_helpers %>
+
+(function() {
+  $(document).on("click", "#next-thought-pattern", showNextPage);
+
+  function showNextPage(event) {
+    var $currentEl = $(".thought-pattern:visible");
+    var $nextEl = $currentEl.next(".thought-pattern");
+
+    if ($nextEl.length === 1) {
+      $currentEl.hide();
+      $nextEl.show();
+    } else {
+      location.replace("<%= url.navigator_next_content_path %>");
+    }
+  }
+})();

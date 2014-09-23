@@ -1,0 +1,23 @@
+<div id="ThoughtVizContainer">
+  <div id="ThoughtVizTooltip"></div>
+</div>
+
+<script type="text/javascript">
+    var TT = null, thoughtsWithPatterns;
+
+    thoughtsWithPatterns = 
+      <%= raw(thoughts.to_json(:methods => "pattern", :only => [:content, :challenging_thought, :act_as_if])) %>
+      $(document).on('page:change', function(){
+
+<% if defined? link_to_view%>
+
+    TT = new sc.thoughtTracker(true,<%= ("\"home:" + link_to_view + "\"").html_safe %>);
+
+<% else %>
+
+	if(TT == null) TT = new sc.thoughtTracker(true,"solo");
+
+<% end %>
+});
+
+</script>
