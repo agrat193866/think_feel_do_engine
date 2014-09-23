@@ -35,7 +35,7 @@ module ThinkFeelDoEngine
       end
 
       def show
-        render "slides/show"
+        render "think_feel_do_engine/slides/show"
       end
 
       def edit
