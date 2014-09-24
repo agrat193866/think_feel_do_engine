@@ -8,7 +8,7 @@
     <div id="wrap" class="snap-content">
       <div id="footer-wrap">
         <div id="main">
-          <%= render "think_feel_do_engine/shared/navbar" %>
+          <%= render "think_feel_do_engine/shared/participant/navbar" %>
 
           <div class="container" id="alerts">
             <%= render 'think_feel_do_engine/shared/alerts' %>
@@ -30,6 +30,16 @@
           </div>
 
           <div class="container" id="tool-layout">
+            <div class="row">
+              <div class="col-md-6">
+                <%= yield :left %>
+              </div>
+
+              <div class="col-md-6">
+                <%= yield :right %>
+              </div>
+            </div>
+
             <%= yield %>
           </div>
         </div>

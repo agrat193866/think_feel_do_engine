@@ -5,34 +5,41 @@
   </head>
 
   <body>
-<div id="wrap" class="snap-content">
-  <div id="footer-wrap">
-    <div id="main">
-    <%= render "think_feel_do_engine/shared/navbar" %>
-    <div class="container" id="alerts">
-      <%= render 'think_feel_do_engine/shared/alerts' %>
-    </div>
-  
-    <div id="user-dash" class="container">
-      <h1 class="logo">
-        <span class="think">Think</span>
-        <span class="feel">Feel</span>
-        <span class="do">Do</span>
-      </h1>
-      <%= render "think_feel_do_engine/shared/manage_toolbar" %>
-      <%= yield %>
-      <div class="row">
-        <div class="col-md-6">
-          <%= yield :left %>
-        </div>
-        <div class="col-md-6">
-          <%= yield :right %>
+    <div id="wrap" class="snap-content">
+      <div id="footer-wrap">
+        <div id="main">
+          <%= render "think_feel_do_engine/shared/user/navbar" %>
+
+          <div class="container" id="alerts">
+            <%= render 'think_feel_do_engine/shared/alerts' %>
+          </div>
+    
+          <div id="user-dash" class="container">
+            <h1 class="logo">
+              <span class="think">Think</span>
+              <span class="feel">Feel</span>
+              <span class="do">Do</span>
+            </h1>
+            <%= render "think_feel_do_engine/shared/manage_toolbar" %>
+
+            <%= yield %>
+
+            <div class="row">
+              <div class="col-md-6">
+                <%= yield :left %>
+              </div>
+
+              <div class="col-md-6">
+                <%= yield :right %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-      <%= render 'think_feel_do_engine/shared/footer' %> 
-  </div>
+
+    </div>
+        <%= render 'think_feel_do_engine/shared/footer' %> 
+    </div>
   </body>
 </html>

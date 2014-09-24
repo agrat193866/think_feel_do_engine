@@ -7,7 +7,7 @@ module ThinkFeelDoEngine
 
     before_action :authenticate_participant!, :instantiate_navigator
 
-    layout :switch_layout
+    layout "tool"
 
     def show_context
       @navigator.initialize_context(params[:context_name] || "home")
@@ -97,14 +97,6 @@ module ThinkFeelDoEngine
       @navigator
         .current_content_provider
         .exists?(@navigator.content_position + 1)
-    end
-
-    def switch_layout
-      if @navigator.context == "home" || @navigator.current_module.position == 1
-        "landing"
-      else
-        "tool"
-      end
     end
   end
 end
