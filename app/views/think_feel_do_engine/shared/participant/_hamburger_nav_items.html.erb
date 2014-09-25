@@ -1,15 +1,15 @@
 <% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
   <li>
-    <%= link_to "Replay Introduction", participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
+    <%= link_to "Replay Introduction", think_feel_do_engine.participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
   </li>
 <% end %>
 
 <% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
   <li class="snap-nav-item <%= tool.title %> visible-xs <%= active_tool(@navigator.context, tool) %>">
-    <%= link_to assign_tool(tool), navigator_context_path(context_name: tool.title), class: "tesuto" %>
+    <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: "tesuto" %>
   </li>
 <% end %>
 
 <% if current_participant %>
-  <li><%= link_to fa_icon("sign-out", text: "Sign Out"), destroy_participant_session_path, method: :delete %></li>
+  <li><%= link_to fa_icon("sign-out", text: "Sign Out"), think_feel_do_engine.destroy_participant_session_path, method: :delete %></li>
 <% end %>
