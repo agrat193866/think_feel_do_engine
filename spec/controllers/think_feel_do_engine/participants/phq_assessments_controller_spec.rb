@@ -2,8 +2,6 @@ require "spec_helper"
 
 module ThinkFeelDoEngine
   module Participants
-    urls = ThinkFeelDoEngine::Engine.routes.url_helpers
-
     describe PhqAssessmentsController, type: :controller do
       shared_context "missing token" do
         before { allow(ParticipantToken).to receive(:find_by_token) { nil } }
@@ -23,7 +21,7 @@ module ThinkFeelDoEngine
       end
 
       shared_examples "token authorizer" do
-        it("should redirect to root") { expect(response).to redirect_to(urls.root_url) }
+        it("should redirect to root") { expect(response).to redirect_to("/") }
       end
 
       describe "GET new" do

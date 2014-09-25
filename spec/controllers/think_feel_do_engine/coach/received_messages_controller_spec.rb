@@ -2,8 +2,6 @@ require "spec_helper"
 
 module ThinkFeelDoEngine
   module Coach
-    urls = ThinkFeelDoEngine::Engine.routes.url_helpers
-
     describe ReceivedMessagesController, type: :controller do
       let(:user) { double("user", admin?: true) }
       let(:source_message) { double("source message", sender_id: 3) }
@@ -40,7 +38,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the root" do
-              expect(response).to redirect_to urls.root_url
+              expect(response).to redirect_to "/"
             end
           end
         end

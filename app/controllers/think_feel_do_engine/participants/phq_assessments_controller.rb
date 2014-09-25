@@ -32,7 +32,7 @@ module ThinkFeelDoEngine
         if @token
           @participant = Participant.find(@token.participant_id)
         else
-          redirect_to root_url, alert: "Sorry, that link was invalid"
+          redirect_to main_app.root_url, alert: "Sorry, that link was invalid"
         end
       end
 

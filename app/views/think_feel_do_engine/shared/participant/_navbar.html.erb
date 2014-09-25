@@ -16,41 +16,8 @@
     <% if @navigator %>
       <div class="collapse navbar-collapse" id="sc-hamburger-menu">
         <ul id="header-navbar" class="nav navbar-nav">
-          <li class="<%= 'active' if @navigator.context == 'home' %>"><%= link_to "Home", "/" %></li>
-
-          <% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
-            <li>
-              <%= link_to "Replay Introduction", participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
-            </li>
-          <% end %>
-
-          <% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
-            <% if no_submenu?(tool) %>
-              <li class="<%= tool.title %> hidden-xs <%= active_tool(@navigator.context, tool) %>">
-                <%= link_to assign_tool(tool), navigator_context_path(context_name: tool.title), class: make_room_for_badge(tool) %>
-              </li>
-            <% else %>
-              <li class="<%= tool.title %> dropdown <%= active_tool(@navigator.context, tool) %> hidden-xs">
-                <a class="<%= make_room_for_badge(tool) %> dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= assign_tool(tool) %>
-                </a>
-
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <%= link_to "#{tool.title} Landing", navigator_context_path(context_name: tool.title) %>
-                  </li>
-
-                  <% if content_module_tasks(tool.title, "").count > 0 %>
-                    <li class="divider"></li>
-
-                    <% content_module_tasks(tool.title, "").each do |link| %>
-                      <li <%= link == "DIVIDE" ? "class='divider'".html_safe : "" %> > <%= link == "DIVIDE" ? "" : link %></li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </li>
-            <% end %>
-          <% end %>
+          <li><%= link_to "Home", main_app.root_path %></li>
+          <%= render "think_feel_do_engine/shared/participant/nav_items" %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

@@ -35,7 +35,7 @@ module ThinkFeelDoEngine
       end
 
       def record_not_found
-        redirect_to root_url, alert: "Unable to find message"
+        redirect_to main_app.root_url, alert: "Unable to find message"
       end
     end
   end

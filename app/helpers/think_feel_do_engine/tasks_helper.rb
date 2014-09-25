@@ -74,7 +74,7 @@ module ThinkFeelDoEngine
                          klass = "list-group-item list-group-item-read",
                          icon = "book")
       link_to fa_icon(icon).html_safe + " " + task_status_title(task_status),
-              navigator_location_path(
+              think_feel_do_engine.navigator_location_path(
                 module_id: task_status.bit_core_content_module_id
               ), class: "task-status #{klass}",
                  data: { task_status_id: "#{task_status.id}" },
@@ -102,7 +102,7 @@ module ThinkFeelDoEngine
     end
 
     def create_task_path(task_status)
-      navigator_location_path(
+      think_feel_do_engine.navigator_location_path(
           module_id: task_status
                      .bit_core_content_module_id,
           provider_id: task_status

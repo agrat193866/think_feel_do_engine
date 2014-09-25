@@ -15,7 +15,7 @@ module ThinkFeelDoEngine
 
     def after_sign_out_path_for(resource)
       session[:previous_url] || (
-        resource == :participant ? root_path : new_user_session_path
+        resource == :participant ? main_app.root_path : new_user_session_path
       )
     end
 

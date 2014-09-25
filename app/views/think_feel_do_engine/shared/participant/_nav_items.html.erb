@@ -1,0 +1,33 @@
+<% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
+  <li>
+    <%= link_to "Replay Introduction", think_feel_do_engine.participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
+  </li>
+<% end %>
+
+<% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
+  <% if no_submenu?(tool) %>
+    <li class="<%= tool.title %> hidden-xs">
+      <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: make_room_for_badge(tool) %>
+    </li>
+  <% else %>
+    <li class="<%= tool.title %> dropdown hidden-xs">
+      <a class="<%= make_room_for_badge(tool) %> dropdown-toggle" data-toggle="dropdown" href="#">
+        <%= assign_tool(tool) %>
+      </a>
+
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <%= link_to "#{tool.title} Landing", think_feel_do_engine.navigator_context_path(context_name: tool.title) %>
+        </li>
+
+        <% if content_module_tasks(tool.title, "").count > 0 %>
+          <li class="divider"></li>
+
+          <% content_module_tasks(tool.title, "").each do |link| %>
+            <li <%= link == "DIVIDE" ? "class='divider'".html_safe : "" %> > <%= link == "DIVIDE" ? "" : link %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+<% end %>
