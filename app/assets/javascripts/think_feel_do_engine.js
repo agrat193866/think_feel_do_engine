@@ -1,12 +1,12 @@
+// Shared requirements for Users and Participants
+//
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.sortable
 //= require jquery.ui.datepicker
 //= require turbolinks
 //= require underscore
 //= require bootstrap/alert
 //= require bootstrap/button
-//= require bootstrap/collapse
 //= require bootstrap/dropdown
 //= require bootstrap/tab
 //= require bootstrap/transition
@@ -19,8 +19,6 @@
 //
 //= require think_feel_do_engine/stepped_care
 //= require_tree ./think_feel_do_engine/activities
-//= require_tree ./think_feel_do_engine/coach
-//= require_tree ./think_feel_do_engine/devise
 //= require_tree ./think_feel_do_engine/feel
 //= require_tree ./think_feel_do_engine/forms
 //= require_tree ./think_feel_do_engine/shared
@@ -31,20 +29,5 @@
 //= require think_feel_do_engine/bootstrap-timepicker
 //= require think_feel_do_engine/messages
 //= require think_feel_do_engine/mobilenav
-//= require think_feel_do_engine/offcanvas
-//= require think_feel_do_engine/phq_table_scripts
 //= require think_feel_do_engine/scrollindicator
-//= require think_feel_do_engine/slideshows
 //= require think_feel_do_engine/task_status
-//
-// Participant requirements
-//= require event_capture
-//= require_tree ./think_feel_do_engine/event_capture
-//= require froogaloop.min
-//
-// User requirements
-//= require bootstrap/tooltip
-//= require bootstrap/popover
-//= require bootstrap-markdown
-//= require markdown
-//= require to-markdown

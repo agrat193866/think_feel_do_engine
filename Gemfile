@@ -11,7 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 # To use debugger
-gem "debugger"
+# gem "debugger"
 
 gem "bit_player", "~> 0.4"
 gem "devise", "~> 3.2"
