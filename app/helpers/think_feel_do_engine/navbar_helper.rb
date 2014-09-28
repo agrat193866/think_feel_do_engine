@@ -28,6 +28,7 @@ module ThinkFeelDoEngine
         .where(bit_core_content_module_id: content_modules.map(&:id))
         .group_by(&:id)
       current_participant.membership.available_task_statuses
+                                    .includes(task: :bit_core_content_module)
                                     .order(start_day: :asc).each do |s|
         next unless tasks[s.task_id]
         task_statuses[tasks[s.task_id][0].bit_core_content_module_id] = s
