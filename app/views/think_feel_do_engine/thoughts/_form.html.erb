@@ -1,9 +1,9 @@
 <%= form_for thought, url: create_path, method: "post", html: { role: "form" } do |f| %>
-
   <%= render 'think_feel_do_engine/thoughts/harmful_thought', f: f %>
 
   <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
 
-  <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+  <span class="new-thought-form-after-form-groups"></span>
 
+  <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
 <% end %>

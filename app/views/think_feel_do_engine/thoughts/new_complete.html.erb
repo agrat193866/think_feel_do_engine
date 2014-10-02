@@ -14,12 +14,13 @@
 
   <div class="form-group">
     <%= f.label :act_as_if, "As If Action" %>
-    <%= f.text_field :act_as_if, placeholder: "example: Try my hardest anyways and see if I can improve", class: "form-control suggested" %>
+    <%= f.text_field :act_as_if, placeholder: "example: Try my hardest anyway and see if I can improve", class: "form-control suggested" %>
   </div>
+
+  <span class="new-thought-form-after-form-groups"></span>
 
   <div class="btn-group pull-right">
     <%= link_to 'Cancel', "/navigator/contexts/THINK", class: 'btn btn-default' %>
     <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary") %>
   </div>
-
 <% end %>
