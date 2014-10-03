@@ -26,7 +26,7 @@
 
     <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
 
-    <span class="new-thought-form-after-form-groups"></span>
+    <span class="new-shareable-form-after-form-groups" data-item-type="thought"></span>
 
     <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
   <% end %>
