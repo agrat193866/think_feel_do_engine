@@ -10,13 +10,13 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 require "database_cleaner"
-#require "simplecov"
-#SimpleCov.start do
-#  add_group "Controllers", "app/controllers"
-#  add_group "Mailers", "app/mailers"
-#  add_group "Models", "app/models"
-#  add_filter "spec/"
-#end
+# require "simplecov"
+# SimpleCov.start do
+#   add_group "Controllers", "app/controllers"
+#   add_group "Mailers", "app/mailers"
+#   add_group "Models", "app/models"
+#   add_filter "spec/"
+# end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

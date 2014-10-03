@@ -86,7 +86,7 @@ describe PhqStepping do
     end
 
     it "handles when its too early to run the algorithm" do
-      phq_early = PhqStepping.new(Hash[ Date.today, 17], 1)
+      phq_early = PhqStepping.new(Hash[Date.today, 17], 1)
       expect(phq_early.suggestion).to eq "No; Too Early"
       expect(phq_early.step).to eq nil
       expect(phq_early.stay).to eq nil
@@ -94,7 +94,7 @@ describe PhqStepping do
     end
 
     it "handles edge case: on week 4, no previous assessments" do
-      phq_week_4_no_past = PhqStepping.new(Hash[ Date.today, 17], 4)
+      phq_week_4_no_past = PhqStepping.new(Hash[Date.today, 17], 4)
       expect(phq_week_4_no_past.suggestion).to eq "YES*"
       expect(phq_week_4_no_past.step).to eq nil
       expect(phq_week_4_no_past.stay).to eq nil
@@ -102,7 +102,7 @@ describe PhqStepping do
     end
 
     it "handles edge case: on week 4, high assessments" do
-      phq_week_4_past = PhqStepping.new(Hash[ Date.today - 1.week, 17], 4)
+      phq_week_4_past = PhqStepping.new(Hash[Date.today - 1.week, 17], 4)
       expect(phq_week_4_past.suggestion).to eq "YES"
       expect(phq_week_4_past.step).to eq true
       expect(phq_week_4_past.stay).to eq nil
@@ -110,7 +110,7 @@ describe PhqStepping do
     end
 
     it "handles edge case: on week 4, low assessments" do
-      phq_week_4_past = PhqStepping.new(Hash[ Date.today - 1.week, 3], 4)
+      phq_week_4_past = PhqStepping.new(Hash[Date.today - 1.week, 3], 4)
       expect(phq_week_4_past.suggestion).to eq "No - Low Scores"
       expect(phq_week_4_past.step).to eq false
       expect(phq_week_4_past.stay).to eq nil
@@ -118,42 +118,42 @@ describe PhqStepping do
     end
 
     it "handles edge case: on week 4, mid-range assessments" do
-      phq_week_4_past_mid = PhqStepping.new(Hash[ Date.today - 1.week, 9], 4)
+      phq_week_4_past_mid = PhqStepping.new(Hash[Date.today - 1.week, 9], 4)
       expect(phq_week_4_past_mid.step).to eq false
       expect(phq_week_4_past_mid.stay).to eq nil
       expect(phq_week_4_past_mid.release).to eq false
     end
 
     it "handles edge case: on week 9, no previous assessments" do
-      phq_week_9_no_past = PhqStepping.new(Hash[ Date.today, 17], 9)
+      phq_week_9_no_past = PhqStepping.new(Hash[Date.today, 17], 9)
       expect(phq_week_9_no_past.step).to eq nil
       expect(phq_week_9_no_past.stay).to eq nil
       expect(phq_week_9_no_past.release).to eq nil
     end
 
     it "handles edge case: on week 9, high assessments" do
-      phq_week_9_past = PhqStepping.new(Hash[ Date.today - 1.week, 17, Date.today - 8.weeks, 9], 9)
+      phq_week_9_past = PhqStepping.new(Hash[Date.today - 1.week, 17, Date.today - 8.weeks, 9], 9)
       expect(phq_week_9_past.step).to eq true
       expect(phq_week_9_past.stay).to eq nil
       expect(phq_week_9_past.release).to eq nil
     end
 
     it "handles edge case: on week 9, one high, one low assessment" do
-      phq_week_9_past = PhqStepping.new(Hash[ Date.today - 1.week, 15, Date.today - 8.weeks, 9], 9)
+      phq_week_9_past = PhqStepping.new(Hash[Date.today - 1.week, 15, Date.today - 8.weeks, 9], 9)
       expect(phq_week_9_past.step).to eq false
       expect(phq_week_9_past.stay).to eq nil
       expect(phq_week_9_past.release).to eq false
     end
 
     it "handles edge case: on week 9, low assessments" do
-      phq_week_9_past = PhqStepping.new(Hash[ Date.today - 1.week, 3, Date.today - 8.weeks, 9], 9)
+      phq_week_9_past = PhqStepping.new(Hash[Date.today - 1.week, 3, Date.today - 8.weeks, 9], 9)
       expect(phq_week_9_past.step).to eq false
       expect(phq_week_9_past.stay).to eq nil
       expect(phq_week_9_past.release).to eq true
     end
 
     it "handles edge case: on week 9, mid-range assessments" do
-      phq_week_9_past_mid = PhqStepping.new(Hash[ Date.today - 1.week, 9, Date.today - 8.weeks, 9], 9)
+      phq_week_9_past_mid = PhqStepping.new(Hash[Date.today - 1.week, 9, Date.today - 8.weeks, 9], 9)
       expect(phq_week_9_past_mid.step).to eq false
       expect(phq_week_9_past_mid.stay).to eq nil
       expect(phq_week_9_past_mid.release).to eq false
@@ -162,21 +162,21 @@ describe PhqStepping do
     ###
 
     it "handles edge case: on week 14, no previous assessments" do
-      phq_week_14_no_past = PhqStepping.new(Hash[ Date.today, 17], 14)
+      phq_week_14_no_past = PhqStepping.new(Hash[Date.today, 17], 14)
       expect(phq_week_14_no_past.step).to eq nil
       expect(phq_week_14_no_past.stay).to eq nil
       expect(phq_week_14_no_past.release).to eq nil
     end
 
     it "handles edge case: on week 14, high assessments" do
-      phq_week_14_past = PhqStepping.new(Hash[ Date.today - 1.week, 17, Date.today - 13.weeks, 14], 14)
+      phq_week_14_past = PhqStepping.new(Hash[Date.today - 1.week, 17, Date.today - 13.weeks, 14], 14)
       expect(phq_week_14_past.step).to eq true
       expect(phq_week_14_past.stay).to eq nil
       expect(phq_week_14_past.release).to eq nil
     end
 
     it "handles edge case: on week 14, one high, one low assessment" do
-      phq_week_14_past = PhqStepping.new(Hash[ Date.today - 1.week, 12, Date.today - 13.weeks, 9], 14)
+      phq_week_14_past = PhqStepping.new(Hash[Date.today - 1.week, 12, Date.today - 13.weeks, 9], 14)
       expect(phq_week_14_past.suggestion).to eq "No*"
       expect(phq_week_14_past.step).to eq false
       expect(phq_week_14_past.stay).to eq false
@@ -184,14 +184,14 @@ describe PhqStepping do
     end
 
     it "handles edge case: on week 14, low assessments" do
-      phq_week_14_past = PhqStepping.new(Hash[ Date.today - 1.week, 3, Date.today - 13.weeks, 9], 14)
+      phq_week_14_past = PhqStepping.new(Hash[Date.today - 1.week, 3, Date.today - 13.weeks, 9], 14)
       expect(phq_week_14_past.step).to eq false
       expect(phq_week_14_past.stay).to eq false
       expect(phq_week_14_past.release).to eq true
     end
 
     it "handles edge case: on week 14, mid-range assessments" do
-      phq_week_14_past_mid = PhqStepping.new(Hash[ Date.today - 1.week, 9, Date.today - 13.weeks, 9], 14)
+      phq_week_14_past_mid = PhqStepping.new(Hash[Date.today - 1.week, 9, Date.today - 13.weeks, 9], 14)
       expect(phq_week_14_past_mid.step).to eq false
       expect(phq_week_14_past_mid.stay).to eq true
       expect(phq_week_14_past_mid.release).to eq false
