@@ -1,5 +1,5 @@
 module ContentProviders
-  # Provides a view of Activities that occured during a Participant"s most
+  # Provides a view of Activities that occured during a Participant's most
   # recent AwakePeriod.
   class ActivityIndexProvider < BitCore::ContentProvider
     def data_class_name

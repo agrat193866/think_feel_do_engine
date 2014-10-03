@@ -19,6 +19,7 @@
       <%= f.hidden_field :end_time, value: end_time %>
       <%= f.hidden_field :is_complete, value: true %>
       <%= f.hidden_field :is_monitored, value: true %>
+
       <div class="row">
         <div class="form-group col-lg-12">
           <%= f.label :activity_type_title, "What did you do from #{ start_time.to_s(:time_with_meridian) } to #{ end_time.to_s(:time_with_meridian) }?", for: "activity_type_#{ index }", class: "match_label" %>
@@ -63,8 +64,11 @@
               max_text: "A Lot&nbsp;&nbsp;".html_safe
         ) %>
       </div>
+
+      <span class="new-shareable-form-after-form-groups" data-item-type="activity"></span>
+
       <hr/>
-	<% end %>
+	<% end # form_for %>
 <% end %>
 
     <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", id: "submit_activities") %>

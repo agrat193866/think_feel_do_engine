@@ -30,6 +30,7 @@
           <%= f.radio_button :is_complete, false, { id: "activity_is_complete_no_#{ activity.id }", :"data-activity-id" => activity.id, class: "radio_no" } %> No
         </label>
       </div>
+
       <span id="activity-complete-<%= activity.id %>" style="display: none;">
         <p>On a scale of 1-10 you said that you thought it would be a <%= activity.predicted_pleasure_intensity %>.</p>
 
@@ -70,6 +71,8 @@
           <textarea class="form-control suggested" rows="3" id="activity_noncompliance_reason_<%= activity.id %>" name="activity[noncompliance_reason]"></textarea>
         </div>
       </span>
+
+      <span class="new-shareable-form-after-form-groups" data-item-type="activity"></span>
 
       <div id="activity-submit-<%= activity.id %>" style="display: none;">
           <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
