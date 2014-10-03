@@ -3,26 +3,31 @@
 
   <% if past_activities.count > 0 %>
     <label>Choose one</label>
+
     <% past_activities.each do |activity| %>
         <div class="input-group static">
           <span class="input-group-addon">
             <%= radio_button_tag "activity[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }" %>
           </span>
+
           <input type="text" class="form-control-static" style="border-bottom-left-radius: 0;" value="<%= activity.title %>" readonly></input>
         </div>
     <% end %>
   <% end %>
+
   <hr/>
+
   <div class="form-group">
     <label class="control-label" for="activity_activity_type_new_title">
       Or add another
-      </label>
-      <div class="input-group static">
-        <span class="input-group-addon">
-          <%= radio_button_tag "activity[activity_type_title]", "", false, id: "new_activity_radio" %>
-        </span>
-        <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static"></input>
-      </div>
+    </label>
+    <div class="input-group static">
+      <span class="input-group-addon">
+        <%= radio_button_tag "activity[activity_type_title]", "", false, id: "new_activity_radio" %>
+      </span>
+
+      <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static"></input>
+    </div>
   </div>
 
   <hr/>
@@ -35,6 +40,7 @@
         <span class="input-group-btn">
           <button id="date_<%= index %>" class="btn btn-default btn-date_picker" type="button"><i class="fa fa-calendar"></i></button>
         </span>
+
         <input id="future_date_picker_<%= index %>" type="text" class="form-control date_picker" >
       </div>
     </div>
@@ -42,6 +48,7 @@
     <div class="col-lg-6">
       <div class="input-group">
         <input id="future_time_picker_<%= index %>" type="text" class="time_picker form-control">
+
         <span class="input-group-btn">
           <button id="time_<%= index %>" class="btn btn-default btn-time_picker" type="button"><i class="fa fa-clock-o"></i></button>
         </span>
@@ -76,11 +83,14 @@
       suggested: true
     ) %>
   </div>
+
+  <span class="new-shareable-form-after-form-groups" data-item-type="activity"></span>
+
   <div class="btn-group pull-right">
     <%= link_to 'Skip', navigator_next_content_path, class: 'btn btn-default btn-warning' %>
     <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary", id: "submit_activities") %>
   </div>
-<%end%>
+<% end # form_for %>
 
 <script type="text/javascript">
   $(".form-control-static").focus(function() {
