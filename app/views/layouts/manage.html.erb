@@ -2,6 +2,7 @@
 <html>
   <head>
     <%= render 'think_feel_do_engine/shared/head' %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "think_feel_do_engine/users", "data-turbolinks-track" => true %>
   </head>
 
@@ -40,7 +41,7 @@
     </div>
 
     </div>
-        <%= render 'think_feel_do_engine/shared/footer' %> 
+      <%= render 'think_feel_do_engine/shared/footer' %> 
     </div>
   </body>
 </html>
