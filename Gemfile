@@ -15,8 +15,8 @@ gemspec
 
 gem "bit_player", "~> 0.4"
 gem "devise", "~> 3.2"
-gem "event_capture", git: "git@github.com:cbitstech/event_capture.git"
-gem 'jquery-datatables-rails', tag: "v1.12.0", git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem "event_capture", git: "https://github.com/cbitstech/event_capture.git"
+gem "jquery-datatables-rails", tag: "v1.12.0", git: "https://github.com/rweng/jquery-datatables-rails.git"
 
 group :test do
   gem "timecop", "~> 0.7"
