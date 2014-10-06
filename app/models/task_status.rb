@@ -10,6 +10,7 @@ class TaskStatus < ActiveRecord::Base
            :release_day,
            :title,
            to: :task
+  delegate :participant_id, to: :membership, prefix: false
 
   scope :for_content_module, lambda { |content_module|
     joins(:task)
