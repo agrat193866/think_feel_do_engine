@@ -6,6 +6,7 @@ require "bootstrap-sass"
 require "underscore-rails"
 require "rickshaw_rails"
 require "turbolinks"
+require "bit_core"
 
 module ThinkFeelDoEngine
 end
