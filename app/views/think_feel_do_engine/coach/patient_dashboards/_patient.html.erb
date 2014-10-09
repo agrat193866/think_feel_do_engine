@@ -39,7 +39,7 @@
   </td>
 
   <td>
-    <%= patient.last_sign_in_at ? patient.last_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+    <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
   </td>
 
   <td>
