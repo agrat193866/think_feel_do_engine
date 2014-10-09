@@ -7,6 +7,7 @@ require "underscore-rails"
 require "rickshaw_rails"
 require "turbolinks"
 require "bit_core"
+require "bit_player"
 
 module ThinkFeelDoEngine
 end
