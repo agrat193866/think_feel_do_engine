@@ -97,7 +97,8 @@ module ThinkFeelDoEngine
 
       # If the TaskStatus was *just* marked complete, this is the first time
       # viewing the ContentProvider, so we should consider it incomplete.
-      ContentProviderDecorator.fetch(provider).is_skippable_after_first_viewing &&
+      ContentProviderDecorator.fetch(provider)
+        .is_skippable_after_first_viewing &&
         task_status(membership, mod).completed_at < Time.now - 10.seconds
     end
 

@@ -4,7 +4,8 @@ module ContentProviders
   class ImportantActivityChecklist < BitCore::ContentProvider
     def render_current(options)
       options.view_context.render(
-        template: "think_feel_do_engine/activities/important_activity_checklist",
+        template: "think_feel_do_engine/activities/" \
+                  "important_activity_checklist",
         locals: {
           past_activities: activities(options.participant),
           create_path: options.view_context.participant_data_path

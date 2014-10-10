@@ -4,14 +4,14 @@ module AuthenticationHelpers
   end
 
   def sign_in_participant(participant)
-    sign_out_participant participant
+    sign_out_participant
     visit urls.new_participant_session_path
     fill_in "Email", with: participant.email
     fill_in "Password", with: "secrets!"
     click_on "Sign in"
   end
 
-  def sign_out_participant(participant)
+  def sign_out_participant
     visit urls.destroy_participant_session_path
   end
 

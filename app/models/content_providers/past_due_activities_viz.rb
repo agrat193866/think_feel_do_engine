@@ -10,7 +10,8 @@ module ContentProviders
       past_due = past_due_activities(view_context)
       upcoming = upcoming_activities(view_context)
       view_context.render(
-        partial: "think_feel_do_engine/activities/past_due_activities_index_viz",
+        partial: "think_feel_do_engine/activities/" \
+                 "past_due_activities_index_viz",
         locals: {
           past_due_count: past_due.count,
           upcoming_count: upcoming.count,

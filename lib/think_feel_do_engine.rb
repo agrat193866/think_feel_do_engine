@@ -9,5 +9,6 @@ require "turbolinks"
 require "bit_core"
 require "bit_player"
 
+# Top level namespace.
 module ThinkFeelDoEngine
 end

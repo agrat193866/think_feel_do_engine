@@ -47,7 +47,7 @@ module ContentProviders
       period = most_recent_awake_period(participant)
       start_time, end_time = period.start_time, period.end_time
       times = []
-      (start_time.to_i .. (end_time.to_i - 1.hour)).step(1.hour) do |timestamp|
+      (start_time.to_i..(end_time.to_i - 1.hour)).step(1.hour) do |timestamp|
         times << timestamp
       end
 

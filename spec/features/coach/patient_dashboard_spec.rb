@@ -152,7 +152,7 @@ feature "patient dashboard" do
       end
 
       sign_in_participant participant1
-      sign_out_participant participant1
+      sign_out_participant
       sign_in_user users(:user1)
       visit "/coach/patient_dashboards/#{ participant1.id }"
 

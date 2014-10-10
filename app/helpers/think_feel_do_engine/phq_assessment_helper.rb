@@ -4,7 +4,8 @@ module ThinkFeelDoEngine
   module PhqAssessmentHelper
     def phq_warning(score)
       if score == 3
-        "<div class='label label-danger'>PHQ-9 WARNING: #{score}</div>".html_safe
+        "<div class='label label-danger'>PHQ-9 WARNING: #{ score }</div>"
+          .html_safe
       else
         score
       end

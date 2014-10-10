@@ -23,7 +23,8 @@ module ThinkFeelDoEngine
     end
 
     def update
-      @data = current_participant.fetch_data_record(association, attributes[:id])
+      @data = current_participant
+                .fetch_data_record(association, attributes[:id])
 
       if @data.update(attributes.reject { |a| a == "id" })
         flash[:notice] = provider.data_class_name.titleize + " saved"
@@ -61,7 +62,9 @@ module ThinkFeelDoEngine
       flash.now[:alert] = @data.errors.full_messages.join(", ")
 
       respond_to do |format|
-        format.html { render template: "think_feel_do_engine/navigator/show_content" }
+        format.html do
+          render template: "think_feel_do_engine/navigator/show_content"
+        end
         format.js { render status: 400 }
         format.json  { render json: { status: "error" } }
       end

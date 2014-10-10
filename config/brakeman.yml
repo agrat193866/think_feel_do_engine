@@ -1,0 +1,5 @@
+---
+:skip_files:
+- app/views/think_feel_do_engine/participants/slides/show.html.erb
+- app/views/think_feel_do_engine/shared/participant/_hamburger_nav_items.html.erb
+- app/views/think_feel_do_engine/shared/participant/_nav_items.html.erb

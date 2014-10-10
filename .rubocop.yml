@@ -5,6 +5,8 @@ AllCops:
     - db/**/*
     - spec/dummy/**/*
     - Rakefile
+    - lib/tasks/**/*
+  RunRailsCops: true
 
 ClassLength:
   Enabled: false

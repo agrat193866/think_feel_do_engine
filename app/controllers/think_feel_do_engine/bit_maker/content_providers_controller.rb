@@ -34,13 +34,15 @@ module ThinkFeelDoEngine
 
       def create
         authorize! :create, BitCore::ContentProvider
-        @content_provider = ContentProviderDecorator.new(content_provider_params)
+        @content_provider = ContentProviderDecorator
+                              .new(content_provider_params)
 
         if @content_provider.save
           redirect_to bit_maker_content_provider_path(@content_provider),
                       notice: "ContentProvider was successfully created."
         else
-          flash.now[:alert] = "Unable to save ContentProvider #{ model_errors }"
+          flash.now[:alert] = "Unable to save ContentProvider " +
+                              model_errors
           render :new
         end
       end
@@ -53,7 +55,8 @@ module ThinkFeelDoEngine
           redirect_to bit_maker_content_provider_path(@content_provider),
                       notice: "ContentProvider was successfully updated."
         else
-          flash.now[:alert] = "Unable to save ContentProvider #{ model_errors }"
+          flash.now[:alert] = "Unable to save ContentProvider " +
+                              model_errors
           render :edit
         end
       end
@@ -67,7 +70,8 @@ module ThinkFeelDoEngine
                       notice: "Content provider was successfully destroyed."
         else
           redirect_to bit_maker_content_providers_url,
-                      alert: "Unable to delete ContentProvider #{ model_errors }"
+                      alert: "Unable to delete ContentProvider " +
+                             model_errors
         end
       end
 
