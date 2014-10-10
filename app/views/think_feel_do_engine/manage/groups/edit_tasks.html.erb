@@ -7,7 +7,7 @@
 
   <div class='form-group'>
     <%= f.label :bit_core_content_module_id, "Select Module" %>
-    <%= f.select :bit_core_content_module_id, @content_modules.collect {|m| [ (m.try(:content_providers).try(:first).try(:slideshow).try(:title) || m.title), m.id ] }, {}, class: "form-control" %>
+    <%= f.select :bit_core_content_module_id, @content_modules.collect {|m| ["#{ m.tool.title }: " + (m.try(:content_providers).try(:first).try(:slideshow).try(:title) || m.title), m.id] }, {}, class: "form-control" %>
   </div>
 
   <div class='form-group'>
@@ -51,7 +51,7 @@
     <% @group.tasks.each do |task|%>
       <tr id="task-<%= task.id %>">
         <td>
-          <%= task.try(:title) %>
+          <%= "#{ task.bit_core_content_module.tool.title }: " + task.try(:title) %>
         </td>
         <td><%= task.release_day %></td>
         <td><%= task.is_recurring %></td>
