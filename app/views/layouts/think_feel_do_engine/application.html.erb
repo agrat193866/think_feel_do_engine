@@ -1,14 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ThinkFeelDoEngine</title>
-  <%= stylesheet_link_tag    "think_feel_do_engine", media: "all" %>
-  <%= javascript_include_tag "think_feel_do_engine" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <%= render 'think_feel_do_engine/shared/head' %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  </head>
 
-<%= yield %>
+  <body>
+    <div id="wrap" class="snap-content">
+      <div id="footer-wrap">
+        <div id="main">
+          <%= render "think_feel_do_engine/shared/participant/navbar" %>
 
-</body>
+          <div class="container" id="alerts">
+            <%= render 'think_feel_do_engine/shared/alerts' %>
+          </div>
+
+          <div class="container" id="tool-layout">
+            <div class="row">
+              <div class="col-md-6">
+                <%= yield :left %>
+              </div>
+
+              <div class="col-md-6">
+                <%= yield :right %>
+              </div>
+            </div>
+
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+      <%= render 'think_feel_do_engine/shared/footer' %>
+    </div>
+
+    <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var snapper = new Snap({
+        element: document.getElementById("wrap"),
+        disable: 'right'
+      });
+      snapper.disable();
+      $("#hamburger_button").on("click", function(){
+        snapper.enable();
+        if($("body").hasClass("snapjs-left")) snapper.close();
+        else snapper.open('left');
+      });
+
+      snapper.on("close", function(){
+        snapper.disable();
+      });
+
+      var enable_mobile_page = function(){
+        sc.recordSignOut;
+        $(window).on('resize', function(){snapper.close();});
+      }
+      $(document).ready(enable_mobile_page);
+      $(document).on('page:load', enable_mobile_page);
+    </script>
+  </body>
 </html>
