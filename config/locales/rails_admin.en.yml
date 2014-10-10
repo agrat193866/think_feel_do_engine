@@ -1,0 +1,5 @@
+en:
+  admin:
+    actions:
+      manage:
+        menu: Manage groups
