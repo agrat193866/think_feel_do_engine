@@ -18,7 +18,8 @@
 
     payload = {
       currentUrl: window.location.href,
-      headers: grabHeaders()
+      headers: grabHeaders(),
+      ua: window.navigator.userAgent
     };
     eventClient.log({ kind: "render", payload: payload });
   }
