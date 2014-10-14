@@ -302,7 +302,7 @@ RailsAdmin.config do |config|
       field :kind
       field :current_url do
         pretty_value do
-          value && value.gsub(SteppedCareReboot::Application.routes.url_helpers.root_url, "")
+          value && value.gsub(Rails.application.routes.url_helpers.root_url, "")
         end
       end
     end
@@ -324,7 +324,7 @@ RailsAdmin.config do |config|
       field :kind
       field :current_url do
         pretty_value do
-          value && value.gsub(SteppedCareReboot::Application.routes.url_helpers.root_url, "")
+          value && value.gsub(Rails.application.routes.url_helpers.root_url, "")
         end
       end
       field :button_html
