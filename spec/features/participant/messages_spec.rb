@@ -29,6 +29,7 @@ feature "messages" do
 
     click_on "Reply"
 
+    expect(page).to have_content("I think you will find it helpful")
     expect(page).to have_content("To Coach")
 
     fill_in("Message", with: "some body")

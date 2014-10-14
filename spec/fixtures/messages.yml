@@ -9,7 +9,7 @@ coach_to_participant1:
   sender: user1 (User)
   recipient: participant1 (Participant)
   subject: Try out the LEARN tool
-  body: I think you will find it helpful
+  body: "I think you will find it helpful. here's a link: [#1 Foo](/bar)\n\nyes I do."
   sent_at: <%= Time.new %>
 
 participant_to_coach2:

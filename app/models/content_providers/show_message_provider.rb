@@ -52,7 +52,7 @@ module ContentProviders
 
     def new_mail_params(options)
       message = load_message(options)
-      "&body=#{message.body}"\
+
       "&compose_path=#{compose_path(options)}"\
       "&message_id=#{message.id}"\
       "&subject=Reply: #{message.subject}"\
