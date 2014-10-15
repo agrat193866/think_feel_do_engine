@@ -8,6 +8,7 @@ require "rickshaw_rails"
 require "turbolinks"
 require "bit_core"
 require "bit_player"
+require "redcarpet"
 
 # Top level namespace.
 module ThinkFeelDoEngine

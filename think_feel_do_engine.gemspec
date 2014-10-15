@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "sass-rails", "~> 4.0"
   s.add_dependency "underscore-rails", "~> 1.6"
   s.add_dependency "rickshaw_rails", "~> 1.4"
+  s.add_dependency "redcarpet", "~> 2.3"
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.0"
