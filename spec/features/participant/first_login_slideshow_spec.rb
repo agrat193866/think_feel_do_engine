@@ -21,7 +21,7 @@ feature "first login slideshow" do
 
     it "should display the home page" do
       expect(page).not_to have_text "Welcome to ThiFeDo"
-      expect(page).to have_link "Replay Introduction"
+      expect(page).to have_link "Replay Intro"
     end
   end
 end

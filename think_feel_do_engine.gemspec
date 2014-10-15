@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "turbolinks", "~> 2.2"
   s.add_dependency "bit_core", "~> 1.2"
   s.add_dependency "bit_player", "~> 0.4"
-  s.add_dependency "rails_admin", "~> 0.6"
+  s.add_dependency "rails_admin", "= 0.6.3"
   s.add_dependency "devise", "~> 3.2"
   s.add_dependency "cancan", "~> 1.6"
   s.add_dependency "strong_password", "~> 0"
