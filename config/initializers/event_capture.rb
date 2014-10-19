@@ -7,7 +7,7 @@ class EventCapture::EventsController
   def event_params
     {
       kind: params[:kind],
-      payload: params[:payload],
+      payload: params[:payload].merge(remote_ip: request.remote_ip),
       emitted_at: params[:emittedAt],
       participant_id: current_participant.id
     }
