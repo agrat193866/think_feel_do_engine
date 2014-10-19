@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/cbitstech/event_capture.git
-  revision: ff54c0eaf1dfad44e6fe178f61f225a8cf385dfa
+  revision: 1f9a1999f36cf08b7381aae8d9b7715c42a7de01
   specs:
     event_capture (0.0.1)
       jbuilder
-      rails (~> 4.1)
+      rails (>= 4.1.5)
 
 GIT
   remote: https://github.com/rweng/jquery-datatables-rails.git
