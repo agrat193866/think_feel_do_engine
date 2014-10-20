@@ -32,7 +32,7 @@ sc.thoughtTracker = function(enableViz, page){
 
 		if (page.substr(0,4) == "home"){
 			$("g#ThoughtVizSvg text, g#ThoughtVizSvg circle").off("click")
-				.on("click", function(){Turbolinks.visit(page.substr(5))});
+				.on("click", function(){ location.pathname = page.substr(5); });
 		}
 	}
 
