@@ -1,0 +1,22 @@
+@media screen and (max-width: 768px) {
+  table.responsive thead { 
+  	display: none; 
+  }
+  table.responsive tbody td { 
+    display: block; 
+    padding: 1rem; 
+  }
+  table.responsive tbody tr td:first-child { 
+    background: grey; 
+    color: white; 
+    padding: 2rem;
+  }
+
+  table.responsive tbody td:before { 
+    content: attr(data-th); 
+    font-weight: bold;
+    display: inline-block;
+    width: 6rem; 
+    margin-right: 30%; 
+  }
+}

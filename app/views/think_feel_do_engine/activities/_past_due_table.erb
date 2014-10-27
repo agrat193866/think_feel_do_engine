@@ -13,8 +13,8 @@
           <%= subtitle %>
           <%= link_to "Edit", edit_link, class: "btn btn-primary pull-right" if edit_link %>
         </p>
-        <div class="table-responsive div-table-viz">
-          <table class="table table-hover table-condensed">
+        <!-- <div class="table-responsive div-table-viz"> -->
+          <table class="table table-hover responsive">
             <thead>
               <th>Activity</th>
               <th>Planned For</th>
@@ -25,7 +25,7 @@
               <%= render partial: 'think_feel_do_engine/activities/past_due_rows', collection: activity_list, as: :activity %>
             </tbody>
           </table>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
