@@ -1,5 +1,18 @@
 Time::DATE_FORMATS.merge!(
-  date_time_with_meridian: ->(time) { time.strftime("%B #{ time.day.ordinalize } @ %l%P") },
+  date_time_with_meridian: ->(t) { 
+    if t.year != Date.today.year
+      t.strftime("%b. %d '%y - %l:%M %P")
+    else
+      t.strftime("%b. %d - %l:%M %P")
+    end
+  },
+  brief_date: ->(t) { 
+    if t.year != Date.today.year
+      t.strftime("%b. %d '%y")
+    else
+      t.strftime("%b. %d")
+    end
+  },
   time_with_meridian: '%l%P',
   brief_date_time: ->(t) {
     if t.year != Date.today.year

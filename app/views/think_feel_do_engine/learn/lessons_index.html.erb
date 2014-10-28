@@ -35,7 +35,7 @@
         <a href="<%= path %>" class="list-group-item task-status" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
           <% title = safe_get_task_title(ts) %>
           <%= title ? title : ts.title %>
-          <p style="margin-top: 5px;margin-bottom:0px;">From <%= ts.created_at.strftime("%m/%d/%Y") %></p>
+          <p style="margin-top: 5px;margin-bottom:0px;">From <%= ts.created_at.to_s(:brief_date) %></p>
         </a>
       <% end %>
     </div>
