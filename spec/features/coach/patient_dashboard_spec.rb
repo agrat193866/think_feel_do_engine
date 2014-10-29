@@ -12,6 +12,7 @@ feature "patient dashboard" do
 
   let(:time_now) { Time.now }
   let(:short_timestamp) { time_now.to_formatted_s(:short) }
+  let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
   let(:participant1) { participants(:participant1) }
 
   context "Coach views table with many patients" do
@@ -164,11 +165,11 @@ feature "patient dashboard" do
     it "summarizes moods" do
       expect(page).to have_the_table(
         id: "moods",
-        cells: ["9", (Time.now - 28.days).to_formatted_s(:short)]
+        cells: ["9", (Time.now - 28.days).to_formatted_s(:date_time_with_meridian)]
       )
       expect(page).to have_the_table(
         id: "moods",
-        cells: ["5", (Time.now - 21.days).to_formatted_s(:short)]
+        cells: ["5", (Time.now - 21.days).to_formatted_s(:date_time_with_meridian)]
       )
     end
 
@@ -249,7 +250,7 @@ feature "patient dashboard" do
           "Labeling and Mislabeling",
           "Birds have no idea what they are doing",
           "It was nature",
-          participant1.thoughts.last.created_at.to_formatted_s(:short)
+          participant1.thoughts.last.created_at.to_formatted_s(:date_time_with_meridian)
         ]
       )
     end
@@ -257,7 +258,7 @@ feature "patient dashboard" do
     it "summarizes feelings" do
       expect(page).to have_the_table(
         id: "emotions",
-        cells: ["longing", short_timestamp]
+        cells: ["longing", longer_timestamp]
       )
     end
 
