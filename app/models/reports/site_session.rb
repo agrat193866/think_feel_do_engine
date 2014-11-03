@@ -4,9 +4,9 @@ module Reports
     THRESHOLD = 5.minutes
 
     def self.all
-      Participant.select(:id).map(&:id).map do |pid|
+      Participant.select(:id, :study_id).map do |participant|
         earliest_click_time = latest_click_time = nil
-        click_times(pid).map do |click_time|
+        click_times(participant.id).map do |click_time|
           earliest_click_time ||= click_time
 
           if latest_click_time.nil? ||
@@ -16,8 +16,8 @@ module Reports
             nil
           else
             session = {
-              participant_id: pid,
-              sign_in_at: preceding_sign_in(pid, earliest_click_time),
+              participant_id: participant.study_id,
+              sign_in_at: preceding_sign_in(participant.id, earliest_click_time),
               first_action_at: earliest_click_time,
               last_action_at: latest_click_time
             }

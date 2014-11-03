@@ -6,9 +6,9 @@ module Reports
     def self.all
       modules = modules_map
 
-      Participant.select(:id).map(&:id).map do |pid|
+      Participant.select(:id, :study_id).map do |participant|
         slide_select_events = EventCapture::Event
-          .where(participant_id: pid, kind: %w( click ))
+          .where(participant_id: participant.id, kind: %w( click ))
           .select(:participant_id, :emitted_at, :payload)
           .to_a.map do |e|
             key = modules.keys.find { |l| !e.current_url.match(/#{ l }(\/.*)?$/).nil? }
@@ -20,7 +20,7 @@ module Reports
           mod = module_event[0]
 
           {
-            participant_id: pid,
+            participant_id: participant.study_id,
             tool_id: mod.bit_core_tool_id,
             module_id: mod.id,
             page_headers: e.headers,

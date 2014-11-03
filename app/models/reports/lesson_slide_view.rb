@@ -40,15 +40,15 @@ module Reports
     def self.all_slide_interactions
       lessons = lessons_map
 
-      Participant.select(:id).map(&:id).map do |pid|
-        slide_view_events(lessons, pid).map do |lesson_event|
+      Participant.select(:id, :study_id).map do |participant|
+        slide_view_events(lessons, participant.id).map do |lesson_event|
           e = lesson_event[1]
           lesson_id = lesson_event[0]
           slides = ContentModules::LessonModule.find(lesson_id).slides
           slide = find_slide_by_url(slides, e.current_url)
 
           {
-            participant_id: pid,
+            participant_id: participant.study_id,
             lesson_id: lesson_id,
             slide_id: slide.try(:id),
             slide_title: slide.try(:title),

@@ -6,9 +6,9 @@ module Reports
     def self.all
       lessons = lesson_entries_map
 
-      Participant.select(:id).map(&:id).map do |pid|
+      Participant.select(:id, :study_id).map do |participant|
         lesson_select_events = EventCapture::Event
-          .where(participant_id: pid, kind: "click")
+          .where(participant_id: participant.id, kind: "click")
           .select(:participant_id, :emitted_at, :payload)
           .to_a.select { |e| lessons.keys.include?(e.current_url.gsub(URL_ROOT_RE, "")) }
 
@@ -17,7 +17,7 @@ module Reports
           last_page_opened = last_page_opened(e, lesson_id)
 
           {
-            participant_id: pid,
+            participant_id: participant.study_id,
             lesson_id: lesson_id,
             page_headers: e.headers,
             lesson_selected_at: e.emitted_at,

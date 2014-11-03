@@ -44,9 +44,9 @@ module Reports
     def self.all_module_interactions
       modules = module_entries_map
 
-      Participant.select(:id).map(&:id).map do |pid|
+      Participant.select(:id, :study_id).map do |participant|
         module_select_events = EventCapture::Event
-          .where(participant_id: pid, kind: "click")
+          .where(participant_id: participant.id, kind: "click")
           .select(:participant_id, :emitted_at, :payload)
           .to_a.select { |e| modules.keys.include?(e.current_url.gsub(URL_ROOT_RE, "")) }
 
@@ -55,7 +55,7 @@ module Reports
           last_page_opened = last_page_opened(e, module_id)
 
           {
-            participant_id: pid,
+            participant_id: participant.study_id,
             module_id: module_id,
             page_headers: e.headers,
             module_selected_at: e.emitted_at,

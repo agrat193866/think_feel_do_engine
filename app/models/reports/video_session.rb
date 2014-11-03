@@ -2,7 +2,7 @@ module Reports
   # Scenario: a Participant plays a video.
   class VideoSession
     def self.all
-      Participant.select(:id).map(&:id).map do |pid|
+      Participant.select(:id, :study_id).map do |participant|
         video_play_events.map do |e|
           m = e.current_url.match(/.*\/providers\/(\d+)\/(\d+)$/)
           provider_id = m ? m[1] : -1
@@ -16,7 +16,7 @@ module Reports
           next_e = next_event(e)
 
           {
-            participant_id: pid,
+            participant_id: participant.study_id,
             video_title: video.try(:title),
             video_started_at: e.emitted_at,
             video_stopped_at: next_e.try(:emitted_at),
