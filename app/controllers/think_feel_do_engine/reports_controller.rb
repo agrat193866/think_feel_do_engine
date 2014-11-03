@@ -18,13 +18,13 @@ module ThinkFeelDoEngine
 
     def show
       report = {
-        lesson_slide_view: Reports::LessonSlideView,
-        lesson_viewing: Reports::LessonViewing,
-        module_page_view: Reports::ModulePageView,
-        module_session: Reports::ModuleSession,
-        site_session: Reports::SiteSession,
-        video_session: Reports::VideoSession
-      }[params[:id].to_sym]
+        "lesson_slide_view" => Reports::LessonSlideView,
+        "lesson_viewing" => Reports::LessonViewing,
+        "module_page_view" => Reports::ModulePageView,
+        "module_session" => Reports::ModuleSession,
+        "site_session" => Reports::SiteSession,
+        "video_session" => Reports::VideoSession
+      }[params[:id]]
 
       send_data report.to_csv, type: "text/csv"
     end

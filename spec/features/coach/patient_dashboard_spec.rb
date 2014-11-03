@@ -235,7 +235,7 @@ feature "patient dashboard" do
           "Not Rated",
           "Not Rated",
           "Not Rated",
-          "Scheduled for #{(time_now - 1.day).day < 10 ? "0" + (time_now - 1.day).day.to_s : (time_now - 1.day).day } #{(time_now - 1.day).strftime("%b")} 00:00",
+          "Scheduled for #{ (time_now - 1.hour).to_formatted_s(:short) }",
           short_timestamp
         ]
       )
