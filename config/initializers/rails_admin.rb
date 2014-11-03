@@ -191,6 +191,9 @@ RailsAdmin.config do |config|
         end
       end
       field :email
+      field :phone_number do
+        help 'Format: 16305551234'
+      end
       field :password
       field :password_confirmation
       field :contact_status do
