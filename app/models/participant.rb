@@ -194,6 +194,10 @@ class Participant < ActiveRecord::Base
     UnplannedActivities.new(self)
   end
 
+  def contact_status_enum
+    ['sms', 'email']
+  end
+
   private
 
   def recent_awake_period

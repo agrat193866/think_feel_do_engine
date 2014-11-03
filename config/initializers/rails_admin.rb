@@ -174,6 +174,11 @@ RailsAdmin.config do |config|
       field :coach_assignment
       field :coach
       field :sign_in_count
+      field :contact_status do
+        label do
+          "Contact Method Preference"
+        end
+      end
     end
 
     edit do
@@ -188,6 +193,11 @@ RailsAdmin.config do |config|
       field :email
       field :password
       field :password_confirmation
+      field :contact_status do
+        label do
+          "Contact Method Preference"
+        end
+      end
     end
   end
 
