@@ -11,3 +11,4 @@
 //= require think_feel_do_engine/activities_new
 //= require think_feel_do_engine/assessment_data
 //= require think_feel_do_engine/task_status
+//= require think_feel_do_engine/responsive-table

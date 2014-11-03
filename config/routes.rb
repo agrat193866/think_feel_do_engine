@@ -63,6 +63,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
   get "password_entropy_bits", to: "password_entropy_bits#show", as: "password_entropy_bits"
 
+  resources :reports, only: [:index, :show]
+
   if Rails.env == "development"
     get "quick_sign_in", to: "quick_sign_ins#new", as: "quick_sign_in"
   end

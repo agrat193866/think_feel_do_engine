@@ -18,7 +18,7 @@
   <div class="tab-pane" id="inbox">
     <div class="list-group">
       <% received_messages.each do |received_message| %>
-        <%= link_to ("<span class=\"col-md-4\">Coach</span> ".html_safe + received_message.subject) + "<span class='pull-right'>#{received_message.created_at.to_formatted_s(:short)}</span>".html_safe, show_path.call(message_id: received_message.message_id), class: (received_message.is_read ? "text-muted list-group-item clearfix" : "list-group-item list-group-item-read clearfix") %>
+        <%= link_to ("<span class=\"col-md-4\">Coach</span> ".html_safe + received_message.subject) + "<span class='pull-right'>#{received_message.created_at.to_s(:date_time_with_meridian)}</span>".html_safe, show_path.call(message_id: received_message.message_id), class: (received_message.is_read ? "text-muted list-group-item clearfix" : "list-group-item list-group-item-read clearfix") %>
       <% end %>
     </div>
   </div>
@@ -28,7 +28,7 @@
       <div class="list-group">
         <% user = current_user || current_participant %>
         <% sent_messages.each do |msg| %>
-          <%= link_to "<span class=\"col-md-4\">To: #{msg.to(user)}</span> ".html_safe  + msg.subject + "<span class='pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe, show_path.call(message_id: msg.id), class: "text-muted list-group-item" %>
+          <%= link_to "<span class=\"col-md-4\">To: #{msg.to(user)}</span> ".html_safe  + msg.subject + "<span class='pull-right'>#{msg.created_at.to_s(:date_time_with_meridian)}</span>".html_safe, show_path.call(message_id: msg.id), class: "text-muted list-group-item" %>
         <% end %>
       </div>
     </div>
