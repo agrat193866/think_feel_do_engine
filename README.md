@@ -1,5 +1,7 @@
 # Think Feel Do Engine
 
+[![Build Status](https://travis-ci.org/cbitstech/think_feel_do_engine.svg)](https://travis-ci.org/cbitstech/think_feel_do_engine) [![security](https://hakiri.io/github/cbitstech/think_feel_do_engine/master.svg)](https://hakiri.io/github/cbitstech/think_feel_do_engine/master)
+
 Provides the tools and administrative interface for Think Feel Do.
 
 ## Installation
