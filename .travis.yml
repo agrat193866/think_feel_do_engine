@@ -2,4 +2,6 @@ language: ruby
 rvm:
   - 2.1.4
 before_script:
+  - echo 'Central Time (US & Canada)' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
   - bundle exec rake app:db:create app:db:migrate
