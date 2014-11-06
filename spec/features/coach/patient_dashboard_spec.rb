@@ -10,7 +10,7 @@ feature "patient dashboard" do
     :activities, :emotional_ratings
   )
 
-  let(:time_now) { Time.now }
+  let(:time_now) { Time.current }
   let(:short_timestamp) { time_now.to_formatted_s(:short) }
   let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
   let(:participant1) { participants(:participant1) }
@@ -55,7 +55,7 @@ feature "patient dashboard" do
     it "summarizes messages" do
       expect(page).to have_the_table(
         id: "messages",
-        cells: ["I like this app", Date.today]
+        cells: ["I like this app", Date.current]
       )
     end
 
@@ -66,7 +66,7 @@ feature "patient dashboard" do
 
       expect(page).to have_the_table(
         id: "logins",
-        cells: [short_timestamp, short_timestamp, "less than a minute"]
+        cells: [short_timestamp]
       )
       expect(page).to have_xpath "//p[@id = 'login-count' and contains(., 'Total: 1')]"
     end
@@ -113,63 +113,14 @@ feature "patient dashboard" do
       )
     end
 
-    it "displays duration of session" do
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-      within_table "logins" do
-        expect(page).to_not have_text "3 minutes"
-      end
-      sign_in_participant participant1
-      Timecop.travel(Time.now + 3.minutes)
-      sign_in_user users(:user1)
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-      within_table "logins" do
-        expect(page).to have_text "3 minutes"
-        expect(page).to have_text "Signed Out"
-      end
-    end
-
-    it "displays if a participant was logged out because of session inactivity" do
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-      within_table "logins" do
-        expect(page).to_not have_text "Logged out due to inactivity"
-      end
-      sign_in_participant participant1
-      Timecop.travel(Time.now + 31.minutes)
-      with_scope "#sc-hamburger-menu" do
-        click_on "Home"
-      end
-      sign_in_user users(:user1)
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-      within_table "logins" do
-        expect(page).to have_text "Logged out due to inactivity"
-      end
-    end
-
-    it "displays if a participant signed out", :js do
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-
-      within_table "logins" do
-        expect(page).to_not have_text "Signed Out at #{short_timestamp}"
-      end
-
-      sign_in_participant participant1
-      sign_out_participant
-      sign_in_user users(:user1)
-      visit "/coach/patient_dashboards/#{ participant1.id }"
-
-      within_table "logins" do
-        expect(page).to have_text "Signed Out at #{short_timestamp}"
-      end
-    end
-
     it "summarizes moods" do
       expect(page).to have_the_table(
         id: "moods",
-        cells: ["9", (Time.now - 28.days).to_formatted_s(:date_time_with_meridian)]
+        cells: ["9", (Time.current - 28.days).to_formatted_s(:date_time_with_meridian)]
       )
       expect(page).to have_the_table(
         id: "moods",
-        cells: ["5", (Time.now - 21.days).to_formatted_s(:date_time_with_meridian)]
+        cells: ["5", (Time.current - 21.days).to_formatted_s(:date_time_with_meridian)]
       )
     end
 
@@ -178,7 +129,7 @@ feature "patient dashboard" do
         id: "phq_assessments",
         cells: [15, 2, 1, 2, 2, 0, 2, 2, 1, "PHQ-9 WARNING: 3"]
           .push("Released #{ Date.yesterday }")
-          .push("Created #{ Date.today }")
+          .push("Created #{ Date.current }")
       )
     end
 
@@ -204,7 +155,7 @@ feature "patient dashboard" do
           "Not Rated",
           "6",
           "Not Rated",
-          "Scheduled for #{ (Time.now - 1.hour).to_formatted_s(:short) }",
+          "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
           short_timestamp
         ]
       )

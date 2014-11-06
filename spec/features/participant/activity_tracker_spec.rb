@@ -11,8 +11,8 @@ feature "activity tracker" do
   context "Participant1 is logged in" do
     let(:participant1) { participants(:participant1) }
     let(:participant2) { participants(:participant2) }
-    let(:time_hour_from_now) { Time.now + 1.hour }
-    let(:now) { Time.now }
+    let(:time_hour_from_now) { Time.current + 1.hour }
+    let(:now) { Time.current }
 
     before do
       sign_in_participant participant1

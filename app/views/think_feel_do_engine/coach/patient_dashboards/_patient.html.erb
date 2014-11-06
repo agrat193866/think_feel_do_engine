@@ -48,7 +48,7 @@
         <%= f.hidden_field :end_date %>
         <input type="text" class="datepicker" value="<%= patient.membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
       <% end %>
-      <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, remote: true, params: { 'membership[end_date]' => Date.today }, class: "btn btn-danger" %>
+      <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, remote: true, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
     <%- else -%>
       <div class="label label-danger">Patient is not a member of a group!</div>
     <%- end -%>

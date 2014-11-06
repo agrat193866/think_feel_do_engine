@@ -23,15 +23,15 @@ class Activity < ActiveRecord::Base
   }
 
   scope :in_the_past, lambda {
-    where("activities.end_time < ?", Time.now)
+    where("activities.end_time < ?", Time.current)
   }
 
   scope :unscheduled_or_in_the_future, lambda {
-    where("activities.start_time IS NULL OR activities.end_time > ?", Time.now)
+    where("activities.start_time IS NULL OR activities.end_time > ?", Time.current)
   }
 
   scope :in_the_future, lambda {
-    where("activities.end_time > ?", Time.now)
+    where("activities.end_time > ?", Time.current)
   }
 
   scope :incomplete, lambda {
@@ -68,7 +68,7 @@ class Activity < ActiveRecord::Base
   end
 
   def was_recently_created?
-    (Time.now - created_at) < 1.minute
+    (Time.current - created_at) < 1.minute
   end
 
   def actual_pleasure_value

@@ -10,8 +10,8 @@ describe Activity do
       Activity.create(
         participant: participants(:participant1),
         activity_type_title: title,
-        start_time: Time.now,
-        end_time: Time.now + 1.hour
+        start_time: Time.current,
+        end_time: Time.current + 1.hour
       )
       expect(participants(:participant1).activity_types.exists?(title: title)).to be true
     end
@@ -19,8 +19,8 @@ describe Activity do
     it "doesn't create an activity type when it does not have an activity type title" do
       Activity.create(
         participant: participants(:participant1),
-        start_time: Time.now,
-        end_time: Time.now + 1.hour
+        start_time: Time.current,
+        end_time: Time.current + 1.hour
       )
       expect(participants(:participant1).activity_types.exists?(title: title)).to be false
     end

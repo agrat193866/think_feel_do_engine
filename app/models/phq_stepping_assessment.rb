@@ -89,7 +89,7 @@ class PhqSteppingAssessment
   end
 
   def find_week_of_assessment(week_in_study)
-    date_in_week_one = Date.today - (week_in_study - 1).weeks
+    date_in_week_one = Date.current - (week_in_study - 1).weeks
     first_sunday = date_in_week_one - date_in_week_one.wday
     first_saturday = date_in_week_one.end_of_week(:sunday)
     return - 1 if @date < first_sunday

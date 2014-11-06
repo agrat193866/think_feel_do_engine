@@ -49,7 +49,7 @@ module ContentProviders
     end
 
     def days_into_intervention(membership)
-      time_diff = Time.now - membership.start_date
+      time_diff = Time.current - membership.start_date
       days = time_diff / (3600 * 24)
       days.ceil
     end

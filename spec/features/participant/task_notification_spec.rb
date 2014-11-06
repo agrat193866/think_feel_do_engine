@@ -107,7 +107,7 @@ feature "task notification" do
 
   context "Participant logs in on the first day of the trial with assigned tasks" do
     it "makes new tasks bold with a white background each day for reoccuring tasks", :js do
-      Timecop.travel(Time.now - (1.day))
+      Timecop.travel(Time.current - (1.day))
       sign_in_participant participants(:participant2)
       visit "/navigator/contexts/FEEL"
       new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood").count

@@ -24,7 +24,7 @@ module ThinkFeelDoEngine
       end
 
       it "should send weekly emails to participants in study until their membership ends" do
-        start_date = Date.today
+        start_date = Date.current
         Timecop.travel(start_date.advance(days: 366))
         expect(Membership.active.count).to eq 2
         subject.reenable
@@ -36,30 +36,30 @@ module ThinkFeelDoEngine
           subject.invoke
         end
         expect(PhqAssessmentMailer.deliveries.count).to eq 1
-        Timecop.travel(Date.today.advance(days: 1)) # 7 days later
+        Timecop.travel(Date.current.advance(days: 1)) # 7 days later
         subject.reenable
         subject.invoke
         expect(PhqAssessmentMailer.deliveries.count).to eq 1
         (1..6).each do
-          Timecop.travel(Time.now + (1.day))
+          Timecop.travel(Time.current + (1.day))
           expect(Membership.active.count).to eq 1
           subject.reenable
           subject.invoke
         end
         expect(PhqAssessmentMailer.deliveries.count).to eq 2
-        Timecop.travel(Time.now + (1.day)) # 14 days later
+        Timecop.travel(Time.current + (1.day)) # 14 days later
         expect(Membership.active.count).to eq 0
         subject.reenable
         subject.invoke
         expect(PhqAssessmentMailer.deliveries.count).to eq 2
         (1..6).each do
-          Timecop.travel(Time.now + (1.day))
+          Timecop.travel(Time.current + (1.day))
           expect(Membership.active.count).to eq 0
           subject.reenable
           subject.invoke
           expect(PhqAssessmentMailer.deliveries.count).to eq 2 # No new emails
         end
-        Timecop.travel(Time.now + (1.day)) # 21 days later
+        Timecop.travel(Time.current + (1.day)) # 21 days later
         expect(Membership.active.count).to eq 0
         subject.reenable
         subject.invoke

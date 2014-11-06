@@ -31,8 +31,8 @@ class Membership < ActiveRecord::Base
   after_create :create_task_statuses
 
   scope :active, lambda {
-    where("start_date <= ? OR start_date = ?", Date.today, nil)
-    .where("end_date >= ? OR end_date = ?", Date.today, nil)
+    where("start_date <= ? OR start_date = ?", Date.current, nil)
+    .where("end_date >= ? OR end_date = ?", Date.current, nil)
   }
 
   def available_task_statuses
@@ -59,7 +59,7 @@ class Membership < ActiveRecord::Base
   end
 
   def day_in_study
-    (Date.today - start_date).to_i + 1
+    (Date.current - start_date).to_i + 1
   end
 
   def length_of_study

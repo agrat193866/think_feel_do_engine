@@ -77,7 +77,7 @@ module ThinkFeelDoEngine
 
     def mark_engagement_completed
       if navigator_content_module && last_engagment
-        last_engagment.update_attributes(completed_at: DateTime.now)
+        last_engagment.update_attributes(completed_at: DateTime.current)
       end
     end
 

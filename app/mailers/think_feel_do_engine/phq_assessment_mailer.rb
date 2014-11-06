@@ -8,7 +8,7 @@ module ThinkFeelDoEngine
       @participant_token = ParticipantToken.create(
         participant_id: participant.id,
         token_type: "phq9",
-        release_date: Date.today
+        release_date: Date.current
       )
 
       mail(to: @participant.email,

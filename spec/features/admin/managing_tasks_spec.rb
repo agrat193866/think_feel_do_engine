@@ -78,7 +78,7 @@ feature "managing tasks" do
 
       expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 0 # 1st day - nothing has been assigned
 
-      Timecop.travel(Time.now + (1.day)) # 2nd day
+      Timecop.travel(Time.current + (1.day)) # 2nd day
       sign_in_participant(participant3)
 
       expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
@@ -87,7 +87,7 @@ feature "managing tasks" do
 
       expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
-      Timecop.travel(Time.now + (1.days)) # 3rd day
+      Timecop.travel(Time.current + (1.days)) # 3rd day
       sign_in_participant(participant3)
 
       expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
@@ -96,7 +96,7 @@ feature "managing tasks" do
 
       expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
-      Timecop.travel(Time.now + (1.days)) # 4th day
+      Timecop.travel(Time.current + (1.days)) # 4th day
       sign_in_participant(participant3)
 
       expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
@@ -105,7 +105,7 @@ feature "managing tasks" do
 
       expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
-      Timecop.travel(Time.now + (1.days)) # 5th day
+      Timecop.travel(Time.current + (1.days)) # 5th day
       sign_in_participant(participant3)
 
       expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 0

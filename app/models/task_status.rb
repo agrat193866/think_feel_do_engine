@@ -43,7 +43,7 @@ class TaskStatus < ActiveRecord::Base
     if completed_at
       save!
     else
-      update_attributes(completed_at: DateTime.now)
+      update_attributes(completed_at: DateTime.current)
     end
   end
 end
