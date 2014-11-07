@@ -8,7 +8,9 @@ module ContentProviders
         locals: {
           awake_period: participant.awake_periods.build,
           create_path: options.view_context.participant_data_path,
-          participant: participant
+          participant: participant,
+          wake_up_range: (0..23),
+          go_to_sleep_range: (1..24)
         }
       )
     end
