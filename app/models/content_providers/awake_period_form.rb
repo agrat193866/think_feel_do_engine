@@ -11,7 +11,6 @@ module ContentProviders
             participant: participant
           }
         )
-      # elsif no time remaining
       else
         last_awake_time = participant.awake_periods.order("start_time").last
         options.view_context.render(

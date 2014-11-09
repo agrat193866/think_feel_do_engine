@@ -1,26 +1,34 @@
 <% create_path ||= awake_periods_path %>
 <p class="lead">OK, let's talk about yesterday.</p>
 
-<%= form_for awake_period, url: create_path, :html => {:role => "form"} do |f| %>
-  <div class="form-group">
-    <% start_hours = wake_up_range.map do |t| %>
-      <% [t.strftime("%a %l %p"), t.to_s] %>
-    <% end %>
+<% if wake_up_range.count == 0 %>
+  <p>Looks like you've monitored your awake time up until the present. There's nothing more to do right now!</p>
 
-    <% end_hours = go_to_sleep_range.map do |t| %>
-      <% [t.strftime("%a %l %p"), t.to_s] %>
-    <% end %>
-
-    <div class="form-group">
-      <%= f.label :start_time, "About what time did you wake up? It's okay if this isn't exact." %>
-      <%= f.select :start_time, start_hours, { prompt: 'Select Time' }, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :end_time, "About what time did you go to sleep? This doesn't need to be exact either." %>
-      <%= f.select :end_time, end_hours, { prompt: 'Select Time' }, class: "form-control" %>
-    </div>
-
-    <%= content_tag(:button, ("Create " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary form-button pull-right") %>
+  <div class="btn-toolbar">
+    <%= content_tag(:a, ("Complete " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>
   </div>
+<% else %>
+  <%= form_for awake_period, url: create_path, :html => {:role => "form"} do |f| %>
+    <div class="form-group">
+      <% start_hours = wake_up_range.map do |t| %>
+        <% [t.strftime("%a %l %p"), t.to_s] %>
+      <% end %>
+
+      <% end_hours = go_to_sleep_range.map do |t| %>
+        <% [t.strftime("%a %l %p"), t.to_s] %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :start_time, "About what time did you wake up? It's okay if this isn't exact." %>
+        <%= f.select :start_time, start_hours, { prompt: 'Select Time' }, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :end_time, "About what time did you go to sleep? This doesn't need to be exact either." %>
+        <%= f.select :end_time, end_hours, { prompt: 'Select Time' }, class: "form-control" %>
+      </div>
+
+      <%= content_tag(:button, ("Create " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary form-button pull-right") %>
+    </div>
+  <% end %>
 <% end %>

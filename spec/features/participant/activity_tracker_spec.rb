@@ -28,8 +28,8 @@ feature "activity tracker" do
 
       expect(page).to have_text("OK, let's talk about yesterday.")
 
-      select "12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-      select "4 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+      select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
+      select "#{ Date.yesterday.strftime("%a") } 4 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
       click_on "Create"
 
       expect(page).to have_text("Review Your Day")
@@ -99,8 +99,8 @@ feature "activity tracker" do
       click_on "Continue"
 
       expect(page).to have_text "Last Recorded Awake Period"
-      expect(page).to have_text seven_am.to_formatted_s(:short)
-      expect(page).to have_text eight_pm.to_formatted_s(:short)
+      expect(page).to have_text seven_am.to_formatted_s(:date_time_with_meridian)
+      expect(page).to have_text eight_pm.to_formatted_s(:date_time_with_meridian)
 
       click_on "Complete"
 
