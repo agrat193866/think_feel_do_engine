@@ -166,8 +166,8 @@ feature "patient dashboard" do
       visit "/navigator/contexts/DO"
       click_on "#1 Awareness"
       click_on "Continue"
-      select "12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-      select "1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+      select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
+      select "#{ Date.yesterday.strftime("%a") } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
       click_on "Create"
       expect(page).to have_text("How much pleasure")
       fill_in "What did you do from 12am to 1am?", with: "run"
