@@ -3,35 +3,34 @@
 	<ul id="nav_main" class="nav nav-pills"></ul>
 	<section id="chart"></section>
 	<div class="div-table-viz">
-	<table id="summary" class="table">
-	  <thead>
-	  	<caption>Most Recent Activities</caption>
-	    <tr>
-	      <th>Date/Time</th>
-	      <th>Activity</th>
-	      <th>Pleasure</th>
-	      <th>Accomplishment</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% row = 0 %>
-	    <% activities.order(:start_time).each do |activity| %>
-	    	<% if row < 7 %>
-	      <tr>
-	        <td><%= activity.start_time ? activity.start_time.to_s(:brief_date_time) : "<span class=\"label label-warning\">Not Available</span>".html_safe%></td>
-	        <td><%= activity.title %></td>
-	        <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe %></td>
-	        <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe%></td>
-	      </tr>
-	      <% row += 1 %>
-	      <% else %>
-	        <% break %>
-	      <% end %>
-	    <% end %>
-	  </tbody>
-	</table>
+    <table id="summary" class="table">
+      <caption>Most Recent Activities</caption>
+
+      <thead>
+        <tr>
+          <th>Datetime</th>
+          <th>Date/Time</th>
+          <th>Activity</th>
+          <th>Pleasure</th>
+          <th>Accomplishment</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% activities.order(:start_time).each do |activity| %>
+          <tr>
+            <td><%= activity.start_time ? activity.start_time.to_i : 0 %></td>
+            <td><%= activity.start_time ? activity.start_time.to_s(:brief_date_time) : "<span class=\"label label-warning\">Not Available</span>".html_safe%></td>
+            <td><%= activity.title %></td>
+            <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe %></td>
+            <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 	</div>
 </div>
+
 <script type="text/javascript">
 
 	var nav_buttons = ["Pleasure and Accomplishment",
@@ -805,4 +804,23 @@
   		load_breakdown(nav_buttons[1], data); 
   	});
 
+  $(function() {
+    $('table#summary').dataTable({
+      sPaginationType: 'bootstrap',
+      iDisplayLength: 25,
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false,
+        },
+        {
+          aTargets: [1],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
 </script>
