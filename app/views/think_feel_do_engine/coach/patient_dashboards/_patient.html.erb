@@ -1,4 +1,4 @@
-<tr id="patient-<%= patient.id %>" class="<%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
+<tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.membership && patient.membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
   <td>
     <%= link_to patient.study_id, coach_patient_dashboard_path(patient) %>
   </td>
