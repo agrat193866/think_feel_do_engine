@@ -158,11 +158,13 @@
 	
 
 	function hideSummary(){
+		$("#summary_wrapper").hide();
 		$("#summary").hide();
 		$("#summary").parent().addClass("div-table-viz-hidden");
 	}
 
 	function showSummary(){
+		$("#summary_wrapper").show();
 		$("#summary").show();
 		$("#summary").parent().removeClass("div-table-viz-hidden");
 	}
@@ -176,7 +178,7 @@
 				load_pleasure(d, data);
 				break;
 			case nav_buttons[1]:
-		hideSummary();
+        hideSummary();
 				load_breakdown(d, data);
 				break;
 			case nav_buttons[2]:
