@@ -52,6 +52,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :phq_assessments
   end
 
+  resources :site_messages, only: [:index, :show, :new, :create]
+
   resources :memberships, only: :update
 
   namespace :participants do

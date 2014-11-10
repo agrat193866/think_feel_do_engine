@@ -1,0 +1,32 @@
+<%= form_for(@site_message, html: { role: "form" }) do |f| %>
+  <% if @site_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site_message.errors.count, "error") %> prohibited this site_message from being saved:</h2>
+
+      <ul>
+      <% @site_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :participant_id %><br>
+    <%= f.select :participant_id, Participant.all.collect { |p| [ p.study_id, p.id ] }, include_blank: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Send", class: "btn btn-primary"  %>
+  </div>
+<% end %>

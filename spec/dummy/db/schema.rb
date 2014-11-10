@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027181539) do
+ActiveRecord::Schema.define(version: 20141110190545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -304,6 +304,16 @@ ActiveRecord::Schema.define(version: 20141027181539) do
 
   add_index "phq_assessments", ["participant_id", "release_date"], name: "index_phq_assessments_on_participant_id_and_release_date", unique: true, using: :btree
   add_index "phq_assessments", ["participant_id"], name: "index_phq_assessments_on_participant_id", using: :btree
+
+  create_table "site_messages", force: true do |t|
+    t.integer  "participant_id", null: false
+    t.string   "subject",        null: false
+    t.text     "body",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "site_messages", ["participant_id"], name: "index_site_messages_on_participant_id", using: :btree
 
   create_table "slideshow_anchors", force: true do |t|
     t.integer  "bit_core_slideshow_id", null: false

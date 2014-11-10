@@ -1,0 +1,16 @@
+<p>
+  <strong>Participant:</strong>
+  <%= @site_message.participant.study_id %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @site_message.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @site_message.body %>
+</p>
+
+<%= link_to 'Back', site_messages_path %>
