@@ -1,6 +1,6 @@
 <% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
   <li>
-    <%= link_to "Replay Intro", think_feel_do_engine.participants_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
+    <%= link_to "Replay Intro", think_feel_do_engine.participants_public_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
   </li>
 <% end %>
 

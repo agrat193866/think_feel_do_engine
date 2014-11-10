@@ -58,7 +58,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :phq_assessments, only: [:new, :create]
     resources :received_messages, only: :index
     resources :task_status, only: [:update]
-    get "slideshows/:slideshow_id/slides/:id", to: "slides#show", as: "slideshow_slide"
+    get "public_slideshows/:slideshow_id/slides/:id", to: "public_slides#show", as: "public_slideshow_slide"
   end
 
   get "password_entropy_bits", to: "password_entropy_bits#show", as: "password_entropy_bits"
