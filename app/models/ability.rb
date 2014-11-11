@@ -22,16 +22,10 @@ class Ability
   def authorize_coach
     authorize_coach_messaging
     can :update, Membership do |membership|
-      CoachAssignment.exists?(
-        coach_id: @user.id,
-        participant_id: membership.participant_id
-      )
+      coach_has_participant? @user, membership.participant_id
     end
     can :manage, PhqAssessment do |assessment|
-      CoachAssignment.exists?(
-        coach_id: @user.id,
-        participant_id: assessment.participant_id
-      )
+      coach_has_participant? @user, assessment.participant_id
     end
   end
 
@@ -43,5 +37,15 @@ class Ability
     can(:read, DeliveredMessage) do |message|
       message.try(:recipient) == @user
     end
+    can :create, SiteMessage do |message|
+      coach_has_participant? @user, message.participant_id
+    end
+  end
+
+  def coach_has_participant?(coach, participant_id)
+    CoachAssignment.exists?(
+      coach_id: coach.id,
+      participant_id: participant_id
+    )
   end
 end

@@ -12,8 +12,15 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :participant_id %><br>
-    <%= f.select :participant_id, Participant.all.collect { |p| [ p.study_id, p.id ] }, include_blank: true %>
+    <%= label_tag "from", nil, class: "control-label" %>
+    <p class="form-control-static">stepped_care-no-reply@northwestern.edu</p>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label :participant_id %><br>
+      <%= f.select :participant_id, @participants.collect { |p| [ p.study_id, p.id ] }, { include_blank: true }, { class: "form-control" } %>
+    </div>
   </div>
 
   <div class="form-group">
@@ -28,5 +35,6 @@
 
   <div class="form-group">
     <%= f.submit "Send", class: "btn btn-primary"  %>
+    <%= link_to "Cancel", site_messages_path, class: "btn btn-default" %>
   </div>
 <% end %>
