@@ -50,6 +50,9 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :sent_messages, only: :show
     resources :patient_dashboards
     resources :phq_assessments
+    get "participant_activities_visualization/:participant_id",
+        to: "participant_activities_visualizations#show",
+        as: "participant_activities_visualization" 
   end
 
   resources :site_messages, only: [:index, :show, :new, :create]
