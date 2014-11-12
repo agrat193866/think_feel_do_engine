@@ -7,6 +7,7 @@
   </div>
 <% end %>
 
+<%= form_tag participants_thoughts_path, remote: true do %>
 <table class="table table-hover data-table responsive" id="thoughts">
   <thead>
     <th>Thought</th>
@@ -20,3 +21,4 @@
     <%= render partial: "think_feel_do_engine/thoughts/thought", collection: thoughts %>
   </tbody>
 </table>
+<% end %>

@@ -116,7 +116,7 @@ feature "thought tracker" do
     click_on "Continue"
     click_on "Thoughts"
 
-    expect(page).to have_the_table(id: "thoughts", cells: ["I am insignificant", "harmful", "Overgeneralization", "", ""])
+    expect(page).to have_xpath("//input[@value='I am insignificant']")
   end
 
   it "implements #3 Reshape", :js do
@@ -166,10 +166,9 @@ feature "thought tracker" do
 
     visit "/navigator/contexts/THINK"
     page.find("a", text: "Thoughts").trigger("click")
-    expect(page).to have_text "I am useless"
-    expect(page).to have_text "Challenge this!"
-    expect(page).to have_text "I would act on being superman!"
-    expect(page).to have_the_table(id: "thoughts", cells: ["I am useless", "harmful", "Labeling and Mislabeling", "Challenge this!", "I would act on being superman!"])
+    expect(page).to have_xpath("//input[@value='I am useless']")
+    expect(page).to have_xpath("//input[@value='Challenge this!']")
+    expect(page).to have_xpath("//input[@value='I would act on being superman!']")
   end
 
   it "implements 'Add a New Thought'" do
@@ -189,7 +188,7 @@ feature "thought tracker" do
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
 
-    expect(page).to have_the_table(id: "thoughts", cells: ["I like tomatoes", "Overgeneralization", "harmful", "Oh my", "Not sure"])
+    expect(page).to have_xpath("//input[@value='I like tomatoes']")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
     expect(page).to have_selector(:link_or_button, "Continue")
   end
@@ -215,7 +214,7 @@ feature "thought tracker" do
 
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
-    expect(page).to have_the_table(id: "thoughts", cells: ["I like tomatoes", "Overgeneralization", "harmful", "Oh my", "Not sure"])
+    expect(page).to have_xpath("//input[@value='I like tomatoes']")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
     expect(page).to have_selector(:link_or_button, "Continue")
   end
