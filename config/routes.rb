@@ -65,6 +65,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :task_status, only: [:update]
     get "public_slideshows/:slideshow_id/slides/:id", to: "public_slides#show", as: "public_slideshow_slide"
     resources :thoughts, only: :create
+    resources :activities, only: :create
   end
 
   get "password_entropy_bits", to: "password_entropy_bits#show", as: "password_entropy_bits"

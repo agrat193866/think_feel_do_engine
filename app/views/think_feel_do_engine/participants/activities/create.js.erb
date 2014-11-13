@@ -1,0 +1,5 @@
+$("#activity-<%= @activity.id %>")
+  .replaceWith("<%= escape_javascript(render partial: 'think_feel_do_engine/activities/mutable_activity', object: @activity) %>");
+$("#activity-<%= @activity.id %>")
+  .addClass("success");
+setTimeout(function() { $("#activity-<%= @activity.id %>").removeClass("success"); }, 150);

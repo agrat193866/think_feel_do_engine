@@ -1,16 +1,21 @@
 <p class="lead">Take a look - does this all seem right? Recently, you...</p>
 
-<table class="table table-hover table-condensed" id="recent_activities" >
-  <thead>
-    <tr>
-      <th>Time Period</th>
-      <th>Activity</th>
-      <th>Pleasure of Activity</th>
-      <th>Sense of Accomplishment</th>
-    </tr>
-  </thead>
-  <%= render partial: 'think_feel_do_engine/activities/activity', collection: activities %>
-</table>
+<%= form_tag participants_activities_path, remote: true do %>
+  <table class="table table-hover table-condensed" id="recent_activities" >
+    <thead>
+      <tr>
+        <th>Time Period</th>
+        <th>Activity</th>
+        <th>Pleasure of Activity</th>
+        <th>Sense of Accomplishment</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render partial: 'think_feel_do_engine/activities/mutable_activity', collection: activities %>
+    </tbody>
+  </table>
+<% end %>
 
 <script type="text/javascript">
 $(document).on('page:change page:load', function() 

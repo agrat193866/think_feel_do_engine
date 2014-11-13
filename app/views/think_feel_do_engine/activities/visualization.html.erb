@@ -1,33 +1,31 @@
 <div id="do-viz-wrapper" class="container">
 	<h3>Activities Overview</h3>
+
 	<ul id="nav_main" class="nav nav-pills"></ul>
+
 	<section id="chart"></section>
+
 	<div class="div-table-viz">
-    <table id="summary" class="table">
-      <caption>Most Recent Activities</caption>
+    <%= form_tag participants_activities_path, remote: true do %>
+      <table id="summary" class="table">
+        <caption>Most Recent Activities</caption>
 
-      <thead>
-        <tr>
-          <th>Datetime</th>
-          <th>Date/Time</th>
-          <th>Activity</th>
-          <th>Pleasure</th>
-          <th>Accomplishment</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% activities.order(:start_time).each do |activity| %>
+        <thead>
           <tr>
-            <td><%= activity.start_time ? activity.start_time.to_i : 0 %></td>
-            <td><%= activity.start_time ? activity.start_time.to_s(:brief_date_time) : "<span class=\"label label-warning\">Not Available</span>".html_safe%></td>
-            <td><%= activity.title %></td>
-            <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe %></td>
-            <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : "<span class=\"label label-warning\">Not Answered</span>".html_safe%></td>
+            <th>Datetime</th>
+            <th>Date/Time</th>
+            <th>Activity</th>
+            <th>Pleasure</th>
+            <th>Accomplishment</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <%= render partial: "think_feel_do_engine/activities/mutable_activity", collection: activities.order(:start_time) %>
+        </tbody>
+      </table>
+    <% end %>
 	</div>
 </div>
 

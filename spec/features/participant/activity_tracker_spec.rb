@@ -53,7 +53,7 @@ feature "activity tracker" do
       find('button#submit_activities[type="submit"]').click
 
       expect(page).to have_text("ate cheeseburgers")
-      expect(page).to have_text("ate bad cheeseburgers", count: 2)
+      expect(page).to have_text("ate bad cheeseburgers", count: 3)
 
       find(".btn", text: "Continue").trigger("click")
 
