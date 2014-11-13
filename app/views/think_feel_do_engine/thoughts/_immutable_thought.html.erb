@@ -1,8 +1,0 @@
-<tr>
-  <td><%= immutable_thought.content %></td>
-  <td><%= immutable_thought.effect %></td>
-  <td><%= (immutable_thought.pattern_title && immutable_thought.pattern_title.length > 0) ? immutable_thought.pattern_title : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
-  <td><%= (immutable_thought.challenging_thought && immutable_thought.challenging_thought.length > 0) ? immutable_thought.challenging_thought : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
-  <td><%= (immutable_thought.act_as_if && immutable_thought.act_as_if.length > 0) ? immutable_thought.act_as_if : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
-  <td><%= immutable_thought.created_at.to_s(:date_time_with_meridian) %></td>
-</tr>

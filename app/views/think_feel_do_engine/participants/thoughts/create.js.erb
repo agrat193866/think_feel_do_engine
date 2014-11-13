@@ -1,5 +1,5 @@
 $("#thought-<%= @thought.id %>")
-  .replaceWith("<%= escape_javascript(render partial: 'think_feel_do_engine/thoughts/thought', locals: { thought: @thought }) %>");
+  .replaceWith("<%= escape_javascript(render partial: 'think_feel_do_engine/thoughts/mutable_thought', object: @thought) %>");
 $("#thought-<%= @thought.id %>")
   .addClass("success");
 setTimeout(function() { $("#thought-<%= @thought.id %>").removeClass("success"); }, 150);

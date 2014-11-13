@@ -1,0 +1,9 @@
+<tr id="thought-<%= mutable_thought.id %>">
+  <td><%= text_field_tag "thoughts[#{ mutable_thought.id }][content]", mutable_thought.content %></td>
+  <td><%= select_tag "thoughts[#{ mutable_thought.id }][effect]", options_for_select(%w(helpful harmful neither), mutable_thought.effect) %></td>
+  <td><%= select_tag "thoughts[#{ mutable_thought.id }][pattern_id]", options_from_collection_for_select(ThoughtPattern.all, "id", "title", mutable_thought.pattern_id) %></td>
+  <td><%= text_field_tag "thoughts[#{ mutable_thought.id }][challenging_thought]", mutable_thought.challenging_thought %></td>
+  <td><%= text_field_tag "thoughts[#{ mutable_thought.id }][act_as_if]", mutable_thought.act_as_if %></td>
+  <td><%= mutable_thought.created_at.to_s(:date_time_with_meridian) %></td>
+  <td><%= submit_tag "Save", name: "thoughts[commit_id][#{ mutable_thought.id }]", class: "btn btn-default" %></td>
+</tr>
