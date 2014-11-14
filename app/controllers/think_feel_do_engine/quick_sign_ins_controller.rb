@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
                    User.where(id: params[:user_id]).first
                  elsif params[:participant_id]
                    ParticipantLoginEvent
-                     .create(participant_id: params[:participant_id])
+                   .create(participant_id: params[:participant_id])
 
                    Participant.where(id: params[:participant_id]).first
                  end

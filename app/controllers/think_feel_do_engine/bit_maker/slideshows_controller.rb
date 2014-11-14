@@ -14,8 +14,9 @@ module ThinkFeelDoEngine
       end
 
       def show
-        @anchors = SlideshowAnchor.where(bit_core_slideshow_id: @slideshow.id)
-          .group_by(&:target_name)
+        @anchors = SlideshowAnchor
+                   .where(bit_core_slideshow_id: @slideshow.id)
+                   .group_by(&:target_name)
       end
 
       def new
@@ -25,11 +26,12 @@ module ThinkFeelDoEngine
 
       def create
         if @slideshow.save
-          @content_provider = BitCore::Tool.find_or_create_by(title: "LEARN")
-            .add_module(@slideshow.title)
-            .add_content_provider(
-              "BitCore::ContentProviders::SlideshowProvider"
-            )
+          @content_provider = BitCore::Tool
+                              .find_or_create_by(title: "LEARN")
+                              .add_module(@slideshow.title)
+                              .add_content_provider(
+                                "BitCore::ContentProviders::SlideshowProvider"
+                              )
           @content_provider.update(source_content: @slideshow)
           redirect_to bit_maker_slideshows_url,
                       notice: "Successfully created slideshow"

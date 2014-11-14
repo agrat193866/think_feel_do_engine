@@ -50,8 +50,10 @@ module ThinkFeelDoEngine
       end
 
       def received_messages
-        messages = current_user.received_messages.joins(:message)
-          .order("messages.sent_at DESC")
+        messages = current_user
+                   .received_messages
+                   .joins(:message)
+                   .order("messages.sent_at DESC")
         return messages unless params[:search]
 
         messages.sent_from(params[:search])

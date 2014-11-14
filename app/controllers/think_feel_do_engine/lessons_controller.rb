@@ -9,8 +9,8 @@ module ThinkFeelDoEngine
     def index
       authorize! :index, ContentModules::LessonModule
       @lessons = ContentModules::LessonModule
-                   .includes(:content_providers)
-                   .order(:position)
+                 .includes(:content_providers)
+                 .order(:position)
     end
 
     def show
@@ -32,7 +32,7 @@ module ThinkFeelDoEngine
         redirect_to lesson_url(@lesson), notice: "Successfully created lesson"
       else
         flash.now[:alert] = "Unable to create lesson: " +
-                            model_errors(@lesson)
+          model_errors(@lesson)
         render :new
       end
     end
@@ -50,7 +50,7 @@ module ThinkFeelDoEngine
         redirect_to lesson_url(@lesson), notice: "Successfully updated lesson"
       else
         flash.now[:alert] = "Unable to update lesson: " +
-                            model_errors(@lesson)
+          model_errors(@lesson)
         render :edit
       end
     end

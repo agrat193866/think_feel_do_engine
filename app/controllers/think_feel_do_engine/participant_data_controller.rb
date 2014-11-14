@@ -24,7 +24,7 @@ module ThinkFeelDoEngine
 
     def update
       @data = current_participant
-                .fetch_data_record(association, attributes[:id])
+              .fetch_data_record(association, attributes[:id])
 
       if @data.update(attributes.reject { |a| a == "id" })
         flash[:notice] = provider.data_class_name.titleize + " saved"
@@ -54,8 +54,8 @@ module ThinkFeelDoEngine
 
     def attributes
       @attributes ||= params
-        .fetch(singular_association, {})
-        .permit(provider.data_attributes)
+                      .fetch(singular_association, {})
+                      .permit(provider.data_attributes)
     end
 
     def respond_with_error

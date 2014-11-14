@@ -8,6 +8,9 @@ AllCops:
     - lib/tasks/**/*
   RunRailsCops: true
 
+AbcSize:
+  Enabled: false
+
 ClassLength:
   Enabled: false
 

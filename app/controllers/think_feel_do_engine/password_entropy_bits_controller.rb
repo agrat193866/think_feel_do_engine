@@ -3,7 +3,7 @@ module ThinkFeelDoEngine
   class PasswordEntropyBitsController < ApplicationController
     def show
       bits = StrongPassword::StrengthChecker.new(params[:password])
-        .calculate_entropy(use_dictionary: true)
+             .calculate_entropy(use_dictionary: true)
 
       render json: { bits: bits }
     end

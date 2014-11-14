@@ -49,8 +49,8 @@ module ThinkFeelDoEngine
 
       def anchor_params
         params.require(:slideshow_anchor)
-              .permit(:target_name)
-              .merge(bit_core_slideshow_id: @slideshow.id)
+          .permit(:target_name)
+          .merge(bit_core_slideshow_id: @slideshow.id)
       end
     end
   end

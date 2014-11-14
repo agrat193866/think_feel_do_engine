@@ -28,7 +28,8 @@ module ThinkFeelDoEngine
       # POST /coach/phq_assessments
       def create
         @phq_assessment = @participant
-          .phq_assessments.build(coach_phq_assessment_params)
+                          .phq_assessments
+                          .build(coach_phq_assessment_params)
         authorize! :create, @phq_assessment
 
         if @phq_assessment.save
@@ -79,8 +80,10 @@ module ThinkFeelDoEngine
       def coach_phq_assessment_params
         editor_params = {}
 
-        assessment_params = params.require(:phq_assessment)
-          .permit(:release_date, :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9)
+        assessment_params = params
+                            .require(:phq_assessment)
+                            .permit(:release_date, :q1, :q2, :q3, :q4, :q5, :q6,
+                                    :q7, :q8, :q9)
         [:q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9].each do |q|
           next unless assessment_params[q]
           editor_params[:"#{ q }_editor_id"] = current_user.id
