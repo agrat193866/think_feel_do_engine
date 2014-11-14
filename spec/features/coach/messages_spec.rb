@@ -26,12 +26,6 @@ feature "coach messages" do
     end
   end
 
-  it "redirects a coach to /coach/messages when traveled to unathorized path" do
-    visit "/admin"
-    expect(page.current_path).to eq "/coach/messages"
-    expect(page).to have_content "You are not authorized to access this page."
-  end
-
   it "allows a coach to compose and submit a new message" do
     click_on("Compose")
     expect(page).not_to have_text("participant1@example.com")

@@ -1,8 +1,5 @@
 <div class="<%= (can? :access, :rails_admin) ? 'btn-toolbar ' : 'btn-group ' %> hidden-print">
   <% if can? :access, :rails_admin %>
-
-    <%= link_to "Admin", rails_admin_path, class: "btn btn-default" %>
-
     <%= link_to "Tools", bit_maker_tools_path, class: "btn btn-default#{ current_page?(bit_maker_tools_path) ? ' active' : '' }" %>
 
     <%= link_to "Modules", bit_maker_content_modules_path, class: "btn btn-default#{ current_page?(bit_maker_content_modules_path) ? ' active' : '' }" %>

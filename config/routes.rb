@@ -5,7 +5,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
   devise_for :users,
              module: :devise,
              controllers: { sessions: "think_feel_do_engine/users/sessions" }
-  mount RailsAdmin::Engine => "/admin", :as => "rails_admin"
 
   get "navigator/previous_content", to: "navigator#show_previous_content", as: "navigator_previous_content"
   get "navigator/next_content", to: "navigator#show_next_content", as: "navigator_next_content"
