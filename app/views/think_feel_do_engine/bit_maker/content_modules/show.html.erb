@@ -1,13 +1,13 @@
 <h1>Content Module <small><%= @content_module.title %></small></h1>
 
-<%= link_to 'Edit', edit_bit_maker_content_module_path(@content_module), class: "btn btn-default" %>
-<%= link_to 'Destroy', bit_maker_content_module_path(@content_module), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-
-<p id="notice"><%= notice %></p>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to 'Edit', edit_arm_bit_maker_content_module_path(@arm, @content_module), class: "btn btn-default" %>
+  <%= link_to 'Destroy', arm_bit_maker_content_module_path(@arm, @content_module), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
 
 <p>
   <strong>Tool:</strong>
-  <%= link_to @content_module.tool.title, bit_maker_tool_path(@content_module.tool) %>
+  <%= link_to @content_module.tool.title, arm_bit_maker_tool_path(@arm, @content_module.tool) %>
 </p>
 
 <p>
@@ -19,7 +19,7 @@
   <strong>Content Providers:</strong>
   <div class="list-group">
     <% @content_module.content_providers.order(:position).each do |p| %>
-      <%= link_to "#{ p.position } #{ p.pretty_label }", bit_maker_content_provider_path(p), class: "list-group-item" %>
+      <%= link_to "#{ p.position } #{ p.pretty_label }", arm_bit_maker_content_provider_path(@arm, p), class: "list-group-item" %>
     <% end %>
   </div>
 </p>

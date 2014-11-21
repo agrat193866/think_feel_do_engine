@@ -3,7 +3,7 @@ module ThinkFeelDoEngine
     # Enables Admins to create, update, and delete tools
     # These tools are on the landing page for participants
     class ToolsController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_arm
       before_action :set_tool, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
       layout "manage"
@@ -33,7 +33,7 @@ module ThinkFeelDoEngine
         @tool = BitCore::Tool.new(tool_params)
 
         if @tool.save
-          redirect_to bit_maker_tool_path(@tool),
+          redirect_to arm_bit_maker_tool_path(@arm, @tool),
                       notice: "Tool was successfully created."
         else
           render :new
@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
       # PATCH/PUT /tools/1
       def update
         if @tool.update(tool_params)
-          redirect_to bit_maker_tool_path(@tool),
+          redirect_to arm_bit_maker_tool_path(@arm, @tool),
                       notice: "Tool was successfully updated."
         else
           render :edit
@@ -72,14 +72,16 @@ module ThinkFeelDoEngine
 
       private
 
-      # Use callbacks to share common setup or constraints between actions.
       def set_tool
         @tool = BitCore::Tool.find(params[:id])
       end
 
-      # Only allow a trusted parameter "white list" through.
       def tool_params
         params.require(:tool).permit(:title, :position)
+      end
+
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
       end
     end
   end

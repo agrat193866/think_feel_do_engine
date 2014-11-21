@@ -1,7 +1,7 @@
 module ThinkFeelDoEngine
   # Enables Lesson CRUD functionality.
   class LessonsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, :set_arm
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     layout "manage"
@@ -29,7 +29,7 @@ module ThinkFeelDoEngine
       @lesson = lesson_tool.add_module(build_lesson)
 
       if @lesson.save
-        redirect_to lesson_url(@lesson), notice: "Successfully created lesson"
+        redirect_to arm_lesson_url(@arm, @lesson), notice: "Successfully created lesson"
       else
         flash.now[:alert] = "Unable to create lesson: " +
           model_errors(@lesson)
@@ -47,7 +47,7 @@ module ThinkFeelDoEngine
       @lesson = find_lesson
 
       if @lesson.update(lesson_params)
-        redirect_to lesson_url(@lesson), notice: "Successfully updated lesson"
+        redirect_to arm_lesson_url(@arm, @lesson), notice: "Successfully updated lesson"
       else
         flash.now[:alert] = "Unable to update lesson: " +
           model_errors(@lesson)
@@ -64,10 +64,10 @@ module ThinkFeelDoEngine
         @lesson.destroy
       end
 
-      redirect_to lessons_url, notice: "Lesson deleted."
+      redirect_to arm_lessons_url(@arm), notice: "Lesson deleted."
 
     rescue
-      redirect_to lessons_url,
+      redirect_to arm_lessons_url(@arm),
                   alert: "Unable to delete lesson: #{ model_errors(@lesson) }"
     end
 
@@ -101,7 +101,11 @@ module ThinkFeelDoEngine
     end
 
     def record_not_found
-      redirect_to lessons_url, alert: "Unable to find lesson, please try again."
+      redirect_to arm_lessons_url(@arm), alert: "Unable to find lesson, please try again."
+    end
+
+    def set_arm
+      @arm = Arm.find(params[:arm_id])
     end
   end
 end

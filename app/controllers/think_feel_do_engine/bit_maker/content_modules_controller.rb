@@ -3,7 +3,7 @@ module ThinkFeelDoEngine
     # Enables users to create, update, and delete modules
     # These modules contain providers that display content to the participants
     class ContentModulesController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_arm
       before_action :set_content_module, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
       layout "manage"
@@ -33,7 +33,7 @@ module ThinkFeelDoEngine
         @content_module = BitCore::ContentModule.new(content_module_params)
 
         if @content_module.save
-          redirect_to bit_maker_content_module_path(@content_module),
+          redirect_to arm_bit_maker_content_module_path(@arm, @content_module),
                       notice: "Content module was successfully created."
         else
           render :new
@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
       # PATCH/PUT /content_modules/1
       def update
         if @content_module.update(content_module_params)
-          redirect_to bit_maker_content_module_path(@content_module),
+          redirect_to arm_bit_maker_content_module_path(@arm, @content_module),
                       notice: "Content module was successfully updated."
         else
           render :edit
@@ -53,11 +53,11 @@ module ThinkFeelDoEngine
       # DELETE /content_modules/1
       def destroy
         if content_module_destroyed
-          redirect_to bit_maker_content_modules_path,
+          redirect_to arm_bit_maker_content_modules_path(@arm),
                       notice: "Content module along with any\
                       associated tasks were successfully destroyed."
         else
-          redirect_to bit_maker_content_modules_path,
+          redirect_to arm_bit_maker_content_modules_path(@arm),
                       alert: "There were errors"
         end
       end
@@ -82,14 +82,16 @@ module ThinkFeelDoEngine
         false
       end
 
-      # Only allow a trusted parameter "white list" through.
       def content_module_params
         params.require(:content_module).permit(
           :title, :bit_core_tool_id, :position
         )
       end
 
-      # Use callbacks to share common setup or constraints between actions.
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
+      end
+
       def set_content_module
         @content_module = BitCore::ContentModule.find(params[:id])
       end

@@ -1,7 +1,8 @@
-<p>Content Modules</p>
+<h1>Content Modules</h1>
 
-<div class="btn-toolbar">
-  <%= link_to "<i class='fa fa-plus'></i> Create Module".html_safe, new_bit_maker_content_module_path, class: "btn btn-default" %>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
+  <%= link_to "New", new_arm_bit_maker_content_module_path(@arm), class: "btn btn-default" %>
 </div>
 
 <table class="table">
@@ -17,8 +18,8 @@
   <tbody>
     <% @content_modules.includes(:tool).each do |content_module| %>
       <tr>
-        <td><%= link_to content_module.title, bit_maker_content_module_path(content_module) %></td>
-        <td><%= link_to content_module.tool.title, bit_maker_tool_path(content_module.tool) %></td>
+        <td><%= link_to content_module.title, arm_bit_maker_content_module_path(@arm, content_module) %></td>
+        <td><%= link_to content_module.tool.title, arm_bit_maker_tool_path(@arm, content_module.tool) %></td>
         <td><%= content_module.position %></td>
         <td><%= content_module.content_providers.count %></td>
       </tr>

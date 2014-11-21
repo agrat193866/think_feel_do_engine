@@ -4,7 +4,7 @@
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
-    <%= fa_icon("flag", class: "text-danger", text: alert) %>
+    <%= alert %>
   </div>
 <% elsif notice %>
   <div class="alert alert-success alert-dismissible" role="alert">
@@ -12,6 +12,6 @@
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
-    <%= fa_icon("flag", class: "text-success", text: notice) %>
+    <%= notice %>
   </div>
 <% end %>

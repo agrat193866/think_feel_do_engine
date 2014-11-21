@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "managing groups" do
   fixtures(
-    :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
+    :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules",
     :"bit_core/content_providers", :groups, :memberships,
     :tasks, :task_status
@@ -20,6 +20,7 @@ feature "managing groups" do
     with_scope "#group-#{groups(:group1).id}" do
       click_on "Learning Content"
     end
+
     expect(page).to have_text "Learning Content"
     expect(page).to have_text "Group 1"
     expect(page).to have_text "Do - Awareness Introduction"

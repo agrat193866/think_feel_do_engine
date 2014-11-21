@@ -1,3 +1,15 @@
+admin1_role1:
+  user: admin1
+  role_class_name: "Roles::Clinician"
+
+admin1_role2:
+  user: admin1
+  role_class_name: "Roles::Researcher"
+
+admin1_role3:
+  user: admin1
+  role_class_name: "Roles::ContentAuthor"
+
 user_role1:
   user: user1
   role_class_name: "Roles::Clinician"

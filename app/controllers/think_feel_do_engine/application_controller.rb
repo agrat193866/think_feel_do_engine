@@ -7,7 +7,7 @@ module ThinkFeelDoEngine
 
     def after_sign_in_path_for(resource)
       if resource.class == User
-        "/manage/groups"
+        arms_path
       else
         ParticipantAuthenticationPolicy.new(self, resource).post_sign_in_path
       end

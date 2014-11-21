@@ -11,27 +11,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
   get "navigator/next_provider", to: "navigator#show_next_provider", as: "navigator_next_provider"
   get "navigator/contexts/:context_name", to: "navigator#show_context", as: "navigator_context"
   get "navigator/modules/:module_id(/providers/:provider_id/:content_position)", to: "navigator#show_location", as: "navigator_location"
+
   resource :participant_data, only: [:create, :update]
-
-  namespace :bit_maker do
-    resources :tools
-    resources :content_modules
-    resources :content_providers
-    resources :slideshows do
-      resources :slides do
-        collection { post :sort }
-      end
-      resources :slideshow_anchors, only: [:create, :destroy]
-    end
-    resources :slides, only: [:index]
-  end
-
-  resources :lessons do
-    collection { post :sort }
-    resources :lesson_slides do
-      collection { post :sort }
-    end
-  end
 
   resource :privacy_policy, only: [:show]
 
@@ -41,6 +22,30 @@ ThinkFeelDoEngine::Engine.routes.draw do
       resources :tasks, only: [:index]
     end
     resources :tasks, only: [:create, :update, :destroy]
+  end
+
+  resources :coach_dashboard, only: :index
+
+  resources :arms, only: [:index, :show] do
+    resources :content_dashboard, only: :index
+    namespace :bit_maker do
+      resources :tools
+      resources :content_modules
+      resources :content_providers
+      resources :slideshows do
+        resources :slides do
+          collection { post :sort }
+        end
+        resources :slideshow_anchors, only: [:create, :destroy]
+      end
+    end
+
+    resources :lessons do
+      collection { post :sort }
+      resources :lesson_slides do
+        collection { post :sort }
+      end
+    end
   end
 
   namespace :coach do

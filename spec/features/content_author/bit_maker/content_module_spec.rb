@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "Content Modules" do
   fixtures(
-    :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
+    :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules",
     :"bit_core/content_providers", :groups, :memberships,
     :tasks, :task_status
@@ -13,7 +13,7 @@ feature "Content Modules" do
 
   before do
     sign_in_user users :admin1
-    visit "/bit_maker/content_modules"
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
   end
 
   it "have a corresponding show page that displays the title" do
@@ -38,7 +38,7 @@ feature "Content Modules" do
     expect(task_status).to be_nil
     expect(page).to have_content "Content module along with any associated tasks were successfully destroyed."
 
-    visit "/bit_maker/content_modules"
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
     expect(page).to_not have_content "#1 Awareness"
   end

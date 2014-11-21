@@ -24,7 +24,7 @@
           ...and did not choose a related thought pattern.
         </p>
       <% end %>
-      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "button", class: "next-page btn btn-primary pull-right") %>
+      <%= content_tag(:button, "Continue", type: "button", class: "next-page btn btn-primary pull-right") %>
     </div>
 
     <!-- "slide" 2 -->
@@ -49,7 +49,7 @@
       <%= f.label :challenging_thought, "Now you try it. Write a challenging thought below:", for: "challenge#{index}" %>
       <%= f.text_area :challenging_thought, id: "challenge#{index}", class: "form-control", required: true, rows: 3 %>
       <%= f.hidden_field :id %>
-      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "challenging btn btn-primary pull-right") %>
+      <%= content_tag(:button, "Continue", type: "submit", class: "challenging btn btn-primary pull-right") %>
     <% end %>
 
     <!-- "slide" 3 -->
@@ -57,7 +57,7 @@
       <p>Because what you THINK, FEEL, Do are related, a challenging thought can change how you act.</p>
       <%= image_tag("changing_actions.gif", width: "100%") %>
       <p>After you come up with a challenging thought, you can also come up with an "As If" thought which means what you would do based on the challenging thought you came up with.</p>
-      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "button", class: "next-page btn btn-primary pull-right") %>
+      <%= content_tag(:button, "Continue", type: "button", class: "next-page btn btn-primary pull-right") %>
     </div>
 
     <!-- "slide 4" -->
@@ -84,7 +84,7 @@
       <%= f.label :act_as_if, "What could you do to ACT AS IF you believe this?" %>
       <%= f.text_area :act_as_if, class: "form-control", required: true, rows: 3 %><br>
       <%= f.hidden_field :id %>
-        <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+        <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>
     <% end %>
   <% end %>
 

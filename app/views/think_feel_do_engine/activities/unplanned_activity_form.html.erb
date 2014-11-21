@@ -14,7 +14,7 @@
   </tbody>
 </table>
 
-<%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_path) %>
+<%= content_tag(:a, "Continue", type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_path) %>
 
 <script type="text/javascript">
   var AT = new sc.activityTracker("<%= navigator_next_content_path %>");

@@ -1,0 +1,24 @@
+<h1>Content Dashboard</h1>
+
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Arm", arm_path(@arm), class: "btn btn-default" %>
+</div>
+
+<div class="list-group">
+  <a href="<%= arm_bit_maker_content_modules_path(@arm) %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Modules</h4>
+    <p class="list-group-item-text">Units of content associated with a tool. Modules may possibly contain mixed provider types such as slideshows and lessons.</p>
+  </a>
+  <a href="<%= arm_bit_maker_content_providers_path(@arm) %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Providers</h4>
+    <p class="list-group-item-text">Used to display content to a user in unique formats.</p>
+  </a>
+  <a href="<%= arm_bit_maker_slideshows_path(@arm) %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Slideshows</h4>
+    <p class="list-group-item-text">Collections of ordered slides and video slides</p>
+  </a>
+  <a href="<%= arm_lessons_path(@arm) %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Lessons</h4>
+    <p class="list-group-item-text">...</p>
+  </a>
+</div>

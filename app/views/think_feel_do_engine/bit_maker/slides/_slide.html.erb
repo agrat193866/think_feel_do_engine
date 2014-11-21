@@ -7,9 +7,9 @@
   </div>
 
   <div class="btn-toolbar hidden-print">
-    <%= link_to "View", bit_maker_slideshow_slide_path(slideshow, slide), class: "btn btn-default" %>
-    <%= link_to "Edit", edit_bit_maker_slideshow_slide_path(slideshow, slide), class: "btn btn-default" %>
-    <%= link_to "Remove", bit_maker_slideshow_slide_path(slideshow, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%= link_to "View", arm_bit_maker_slideshow_slide_path(@arm, slideshow, slide), class: "btn btn-default" %>
+    <%= link_to "Edit", edit_arm_bit_maker_slideshow_slide_path(@arm, slideshow, slide), class: "btn btn-default" %>
+    <%= link_to "Remove", arm_bit_maker_slideshow_slide_path(@arm, slideshow, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   </div>
 
   <%= slide.render_body %>

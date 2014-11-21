@@ -1,0 +1,18 @@
+<h1>Home</h1>
+
+<!-- Researcher -->
+<div class="btn-toolbar" role="toolbar">
+  <% if current_user.researcher? %>
+    <%= link_to "Researcher Dashboard", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#"), class: "btn btn-default" %>
+  <% end %>
+  <% if current_user.coach? %>
+    <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
+  <% end %>
+</div>
+
+<!-- Researchers & Clinicians & Content Authors -->
+<div class="list-group">
+  <% for arm in @arms %>
+    <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
+  <% end %>
+</div>

@@ -7,5 +7,5 @@
 <%= render "think_feel_do_engine/slides/slide", slide: slide %>
 
 <% if @slideshow %>
-  <%= link_to "Done", bit_maker_slideshow_path(@slideshow), class: "btn btn-primary pull-right" %>
+  <%= link_to "Done", arm_bit_maker_slideshow_path(@arm,@slideshow), class: "btn btn-primary pull-right" %>
 <% end %>

@@ -1,8 +1,7 @@
 module ThinkFeelDoEngine
   # Enables slide CRUD functionality.
   class LessonSlidesController < ApplicationController
-    before_action :authenticate_user!
-    before_action :instantiate_lesson
+    before_action :authenticate_user!, :instantiate_lesson, :set_arm
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -18,7 +17,7 @@ module ThinkFeelDoEngine
       @slide = @lesson.build_slide(slide_params)
 
       if @slide.save
-        redirect_to lesson_path(@lesson),
+        redirect_to arm_lesson_path(@arm, @lesson),
                     notice: "Successfully created slide for lesson"
       else
         flash.now[:alert] = @slide.errors.full_messages.join(", ")
@@ -41,7 +40,7 @@ module ThinkFeelDoEngine
       @slide = find_slide
 
       if @slide.update(slide_params)
-        redirect_to lesson_path(@lesson),
+        redirect_to arm_lesson_path(@arm, @lesson),
                     notice: "Successfully updated slide for lesson"
       else
         flash.now[:alert] = @slide.errors.full_messages.join(", ")
@@ -54,9 +53,9 @@ module ThinkFeelDoEngine
       @slide = find_slide
 
       if @lesson.destroy_slide(@slide)
-        redirect_to lesson_path(@lesson), notice: "Slide deleted"
+        redirect_to arm_lesson_path(@arm, @lesson), notice: "Slide deleted"
       else
-        redirect_to lesson_path(@lesson), alert: "There were errors."
+        redirect_to arm_lesson_path(@arm, @lesson), alert: "There were errors."
       end
     end
 
@@ -81,6 +80,10 @@ module ThinkFeelDoEngine
       @lesson = ContentModules::LessonModule.find(params[:lesson_id])
     end
 
+    def set_arm
+      @arm = Arm.find(params[:arm_id])
+    end
+
     def slide_params
       if params[:slide]
         params
@@ -93,7 +96,7 @@ module ThinkFeelDoEngine
     end
 
     def record_not_found
-      redirect_to lesson_path(@lesson), alert: "Unable to find lesson content"
+      redirect_to arm_lesson_path(@arm, @lesson), alert: "Unable to find lesson content"
     end
   end
 end

@@ -1,7 +1,7 @@
 <h1>Edit Slide <small><%= @slide.title %></small></h1>
 
-<%= form_for(@slide, as: :slide, url: lesson_lesson_slide_path(@lesson, @slide)) do |f| %>
+<%= form_for(@slide, as: :slide, url: arm_lesson_lesson_slide_path(@arm, @lesson, @slide)) do |f| %>
 	<%= render "fields", f: f, slide: @slide %>
 	<%= f.submit "Update", class: "btn btn-default" %>
-	<%= link_to "Cancel", lesson_lesson_slide_path(@lesson, @slide), class: "btn btn-default" %>
+	<%= link_to "Cancel", arm_lesson_lesson_slide_path(@arm, @lesson, @slide), class: "btn btn-default" %>
 <% end %>

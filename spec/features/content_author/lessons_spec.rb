@@ -11,7 +11,7 @@ class LessonsPage
   end
 
   def select_new_lesson
-    @context.click_on "New Lesson"
+    @context.click_on "New"
 
     NewLessonPage.new(@context)
   end
@@ -40,7 +40,7 @@ end
 
 feature "Lessons" do
   fixtures(
-    :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
+    :arms, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules", :groups,
     :"bit_core/content_providers", :tasks
   )
@@ -49,7 +49,7 @@ feature "Lessons" do
 
   before do
     sign_in_user users(:admin1)
-    lessons_page.visit
+    visit "/arms/#{arms(:arm1).id}/lessons"
   end
 
   scenario "creating" do

@@ -1,9 +1,9 @@
 <h1>Tool <small><%= @tool.title %></small></h1>
 
-<%= link_to 'Edit', edit_bit_maker_tool_path(@tool), class: "btn btn-default" %>
-<%= link_to 'Destroy', bit_maker_tool_path(@tool), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-
-<p id="notice"><%= notice %></p>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to 'Edit', edit_arm_bit_maker_tool_path(@arm, @tool), class: "btn btn-default" %>
+  <%= link_to 'Destroy', arm_bit_maker_tool_path(@arm, @tool), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
 
 <p>
   <strong>Position:</strong>
@@ -14,7 +14,7 @@
   <strong>Content Modules:</strong>
   <div class="list-group">
     <% @tool.content_modules.order(:position).each do |m| %>
-      <%= link_to "#{ m.position } #{ m.title } <span class=\"badge\">#{ m.content_providers.count }</span>".html_safe, bit_maker_content_module_path(m), class: "list-group-item" %>
+      <%= link_to "#{ m.position } #{ m.title } <span class=\"badge\">#{ m.content_providers.count }</span>".html_safe, arm_bit_maker_content_module_path(@arm, m), class: "list-group-item" %>
     <% end %>
   </div>
 </p>

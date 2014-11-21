@@ -3,7 +3,7 @@ module ThinkFeelDoEngine
     # Enables admin to create, update, destroy, and reorder (sort) slides
     # Slides belong to slideshows
     class SlidesController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_arm
       before_action :find_slideshow, except: :index
       before_action :find_slide, only: [:show, :edit, :update, :destroy]
 
@@ -27,7 +27,7 @@ module ThinkFeelDoEngine
         @slide.position = @slideshow.slides.count + 1
         if @slide.save
           flash[:success] = "Successfully created slide for slideshow"
-          redirect_to bit_maker_slideshow_path(@slideshow)
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slideshow)
         else
           flash[:alert] = @slide.errors.full_messages.join(", ")
           render :new
@@ -44,7 +44,7 @@ module ThinkFeelDoEngine
       def update
         if @slide.update(slide_params)
           flash[:success] = "Successfully updated slide for slideshow"
-          redirect_to bit_maker_slideshow_path(@slide.slideshow)
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
         else
           flash[:alert] = @slide.errors.full_messages.join(", ")
           render :edit
@@ -54,10 +54,10 @@ module ThinkFeelDoEngine
       def destroy
         if @slide.destroy
           flash[:success] = "Slide deleted."
-          redirect_to bit_maker_slideshow_path(@slide.slideshow)
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
         else
           flash[:error] = "There were errors."
-          redirect_to bit_maker_slideshow_path(@slide.slideshow)
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
         end
       end
 
@@ -81,6 +81,10 @@ module ThinkFeelDoEngine
 
       def find_slideshow
         @slideshow = BitCore::Slideshow.find(params[:slideshow_id])
+      end
+
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
       end
 
       def slide_params

@@ -1,8 +1,8 @@
-<h2>Edit Lesson <small><%= @lesson.pretty_title %></small></h2>
+<h1>Edit Lesson <small><%= @lesson.pretty_title %></small></h1>
 
-<%= form_for(@lesson, as: :lesson, url: lesson_path(@lesson)) do |f| %>
+<%= form_for(@lesson, as: :lesson, url: arm_lesson_path(@arm, @lesson)) do |f| %>
   <%= render partial: "form", locals: { form: f } %>
 
 	<%= f.submit "Update", class: "btn btn-default" %>
-	<%= link_to "Cancel", lessons_path, class: "btn btn-default" %>
+	<%= link_to "Cancel", arm_lessons_path(@arm), class: "btn btn-default" %>
 <% end %>

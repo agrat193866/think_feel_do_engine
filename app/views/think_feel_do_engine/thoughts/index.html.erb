@@ -19,6 +19,6 @@
 <% if show_nav_link %>
   <div class='btn-toolbar'>
     <%= content_tag(:a, (fa_icon("angle-double-left") + " Previous").html_safe, href: navigator_previous_content_path, type: "submit", class: "btn btn-default pull-left") if @navigator.previous_content? %>
-    <%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+    <%= content_tag(:a, "Continue", href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
   </div>
 <% end %>

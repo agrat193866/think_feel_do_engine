@@ -2,7 +2,7 @@ module ThinkFeelDoEngine
   module BitMaker
     # Enables creation and deletion of SlideshowAnchors.
     class SlideshowAnchorsController < ApplicationController
-      before_action :authenticate_user!, :find_slideshow
+      before_action :authenticate_user!, :set_arm, :find_slideshow
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -51,6 +51,10 @@ module ThinkFeelDoEngine
         params.require(:slideshow_anchor)
           .permit(:target_name)
           .merge(bit_core_slideshow_id: @slideshow.id)
+      end
+
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
       end
     end
   end

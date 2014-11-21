@@ -9,7 +9,7 @@
       <div id="footer-wrap">
         <div id="main">
           <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
+            <div class="container">
               <div class="navbar-header">
                 <% if content_for?(:mobile_nav_items) %>
                   <button type="button" class="navbar-toggle pull-left" id="hamburger_button">
@@ -20,7 +20,7 @@
                   </button>
                 <% end %>
 
-                <a class="navbar-brand" href="#">ThinkFeelDo</a>
+                <%= link_to "ThinkFeelDo", think_feel_do_engine.arms_path, class: "navbar-brand" %>
 
                 <ul class="nav navbar-nav pull-right visible-xs-block" style="margin-right: 10px;">
                   <%= yield :mobile_nav_right_item %>

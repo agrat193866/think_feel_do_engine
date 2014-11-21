@@ -1,7 +1,7 @@
 <h1>Edit Slideshow <small><%= @slideshow.title %></small></h1>
 
-<%= form_for(@slideshow, as: :slideshow, url: bit_maker_slideshow_path(@slideshow)) do |f| %>
+<%= form_for(@slideshow, as: :slideshow, url: arm_bit_maker_slideshow_path(@arm,@slideshow)) do |f| %>
 	<%= render "think_feel_do_engine/bit_maker/slideshows/fields", f: f %>
 	<%= f.submit "Update", class: "btn btn-default" %>
-	<%= link_to "Cancel", bit_maker_slideshow_path(@slideshow), class: "btn btn-default" %>
+	<%= link_to "Cancel", arm_bit_maker_slideshow_path(@arm,@slideshow), class: "btn btn-default" %>
 <% end %>

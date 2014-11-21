@@ -23,7 +23,6 @@
               <h1 class="text-uppercase">
                 <%= title %>
                 <small class="text-capitalize">
-                  <i class="fa fa-angle-double-right"></i>
                   <%= current_module.try(:content_providers).try(:first).try(:slideshow).try(:pretty_title) || current_module.title %>
                 </small>
               </h1>

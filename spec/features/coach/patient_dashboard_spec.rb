@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "patient dashboard" do
   fixtures(
-    :users, :user_roles, :participants, :"bit_core/slideshows",
+    :arms, :users, :user_roles, :participants, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
     :"bit_core/content_providers", :coach_assignments, :messages, :groups,
     :memberships, :tasks, :task_status, :moods, :phq_assessments, :emotions,
@@ -18,7 +18,7 @@ feature "patient dashboard" do
   context "Coach views table with many patients" do
     before do
       sign_in_user users(:user1)
-      visit "/coach/messages"
+      visit "/coach_dashboard"
     end
 
     it "should display all messages" do
@@ -236,14 +236,20 @@ feature "patient dashboard" do
         expect(page).to have_text("1")
       end
       visit "/coach/messages"
+
       expect(page).to have_text("Inbox (1)")
+
       click_on "I like this app"
+
+      visit "/coach_dashboard"
       click_on "Patients"
-      visit "/coach/patient_dashboards"
+
       with_scope "#patient-#{ participant1.id } .unread" do
         expect(page).to have_text("0")
       end
+
       visit "/coach/messages"
+
       expect(page).to have_text("Inbox (0)")
     end
 

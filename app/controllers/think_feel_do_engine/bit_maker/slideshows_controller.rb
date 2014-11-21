@@ -2,7 +2,7 @@ module ThinkFeelDoEngine
   module BitMaker
     # Enables Admins to create, update, delete, and view the slideshow content
     class SlideshowsController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_arm
       before_action :build_slideshow, only: [:create]
       before_action :find_slideshow, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource except: [:index, :new]
@@ -33,7 +33,7 @@ module ThinkFeelDoEngine
                                 "BitCore::ContentProviders::SlideshowProvider"
                               )
           @content_provider.update(source_content: @slideshow)
-          redirect_to bit_maker_slideshows_url,
+          redirect_to arm_bit_maker_slideshows_url(@arm),
                       notice: "Successfully created slideshow"
         else
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
@@ -46,7 +46,7 @@ module ThinkFeelDoEngine
 
       def update
         if @slideshow.update(slideshow_params)
-          redirect_to bit_maker_slideshows_url,
+          redirect_to arm_bit_maker_slideshows_url(@arm),
                       notice: "Successfully updated slideshow"
         else
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
@@ -56,9 +56,9 @@ module ThinkFeelDoEngine
 
       def destroy
         if @slideshow.destroy
-          redirect_to bit_maker_slideshows_url, notice: "Slideshow deleted."
+          redirect_to arm_bit_maker_slideshows_url(@arm), notice: "Slideshow deleted."
         else
-          redirect_to bit_maker_slideshows_url,
+          redirect_to arm_bit_maker_slideshows_url(@arm),
                       alert: @slideshow.errors.full_messages.join(", ")
         end
       end
@@ -73,6 +73,10 @@ module ThinkFeelDoEngine
       # Needed b/c default CanCan looks for "Slideshow & @slideshow"
       def find_slideshow
         @slideshow = BitCore::Slideshow.find(params[:id])
+      end
+
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
       end
 
       def slideshow_params

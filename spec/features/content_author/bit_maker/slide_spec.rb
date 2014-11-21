@@ -3,22 +3,22 @@ require "spec_helper"
 feature "Slide" do
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
-  fixtures :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides"
+  fixtures :arms, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides"
 
   before do
     sign_in_user users :admin1
-    visit urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+    visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
   end
 
   describe "creating" do
     it "display title and body upon creation" do
-      expect(current_path).to eq urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+      expect(current_path).to eq urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
       expect(page).to_not have_text("A great slide!!")
       click_on "Add Slide"
       fill_in "Title", with: "A great slide!!"
       fill_in "Body", with: "The greatest content ever! 100% = 14/14 + 00.00"
       click_on "Create"
-      expect(current_path).to eq urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+      expect(current_path).to eq urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
       expect(page).to have_text("A great slide!!")
       click_on "A great slide!!"
       expect(page).to have_text("The greatest content ever! 100% = 14/14 + 00.00")
@@ -46,7 +46,7 @@ feature "Slide" do
       expect(slide.title).to eq "This is no longer home, it is..."
       expect(slide.body).not_to eq "I'm serious!"
       expect(slide.body).to eq "BIG BODY!"
-      expect(current_path).to eq urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+      expect(current_path).to eq urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
     end
 
     it "not be updated if the slide doesn't have a title or body" do
@@ -68,7 +68,7 @@ feature "Slide" do
       slide = BitCore::Slide.find_by_title("It's simple.")
       click_on "It's simple."
       expect(page).to have_text "It's simple."
-      visit urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+      visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
       with_scope "#slide_#{slide.id}" do
         click_on "Edit"
       end
@@ -76,7 +76,7 @@ feature "Slide" do
       click_on "Update"
       click_on "It's simple."
       expect(page).to_not have_text "It's simple."
-      visit urls.bit_maker_slideshow_path(bit_core_slideshows(:home_intro))
+      visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
       with_scope "#slide_#{slide.id}" do
         click_on "Edit"
       end

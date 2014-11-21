@@ -1,9 +1,9 @@
 <h1>Editing <%= @content_module.title %></h1>
 
-<%= form_for(@content_module, as: :content_module, url: bit_maker_content_module_path(@content_module)) do |f| %>
+<%= form_for(@content_module, as: :content_module, url: arm_bit_maker_content_module_path(@arm, @content_module)) do |f| %>
   <%= render 'form', f: f %>
   <div class="btn-toolbar">
     <%= f.submit "Update", class: "btn btn-default" %>
-    <%= link_to 'Cancel', bit_maker_content_module_path(@content_module), class: "btn btn-default" %>
+    <%= link_to 'Cancel', arm_bit_maker_content_module_path(@arm, @content_module), class: "btn btn-default" %>
   </div>
 <% end %>

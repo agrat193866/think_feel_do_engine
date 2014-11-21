@@ -1,0 +1,22 @@
+<h1>Arm <small><%= @arm.title %></small></h1>
+
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Home", arms_path, class: "btn btn-default" %>  
+  <% if current_user.content_author? %>
+    <%= link_to "Manage Content", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
+  <% end %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Moderate</h4>
+  </div>
+  <div class="panel-body">
+    Click the group below for which you wish to moderate.
+  </div>
+  <div class="list-group">
+    <% for group in @arm.groups %>
+      <%= link_to group.title, "#", :class => "list-group-item" %>
+    <% end %>
+  </div>
+</div>

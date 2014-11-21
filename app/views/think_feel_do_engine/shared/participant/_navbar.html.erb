@@ -1,6 +1,5 @@
 <nav id="SCNavbar" class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <% if @navigator %>
         <button id="hamburger_button" type="button" class="navbar-toggle pull-left">
@@ -11,14 +10,13 @@
         </button>
       <% end %>
 
-      <a class="navbar-brand" href="#">ThinkFeelDo</a>
+      <a class="navbar-brand" href="<%= arms_path %>">ThinkFeelDo</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <% if @navigator %>
       <div class="collapse navbar-collapse" id="sc-hamburger-menu">
         <ul id="header-navbar" class="nav navbar-nav">
-          <li><%= link_to "Home", main_app.root_path %></li>
+          <li><%= link_to "Home", arms_path %></li>
           <%= render "think_feel_do_engine/shared/participant/nav_items" %>
         </ul>
 

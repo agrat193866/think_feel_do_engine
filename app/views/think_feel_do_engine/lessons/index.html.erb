@@ -1,7 +1,8 @@
 <h1>Lessons</h1>
 
-<div class="btn btn-toolbar" style="padding: 0px;">
-	<%= link_to "New Lesson", new_lesson_path, class: "btn btn-default" %>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
+	<%= link_to "New", new_arm_lesson_path(@arm), class: "btn btn-default" %>
 </div>
 
 <table class="table table-hover">
@@ -15,18 +16,18 @@
 			<th></th>
 		</tr>
 	</thead>
-  <tbody id="sortable-slides" data-update-url="<%= sort_lessons_url(@lesson) %>">
+  <tbody id="sortable-slides" data-update-url="<%= sort_arm_lessons_url(@arm, @lesson) %>">
 		<% @lessons.includes(content_providers: :source_content).each do |lesson| %>
 			<tr id="lesson-<%= lesson.id %>">
 				<td><span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span><td>
-					<%= link_to lesson.pretty_title, lesson_path(lesson) %>
+					<%= link_to lesson.pretty_title, arm_lesson_path(@arm, lesson) %>
 				</td>
 				<td><%= lesson.slides.count %></td>
 				<td><%= lesson.created_at.to_s :date_time_with_meridian %></td>
 				<td><%= lesson.updated_at.to_s :date_time_with_meridian %></td>
 				<td>
-					<%= link_to "Edit", edit_lesson_path(lesson), class: "btn btn-default" %>
-					<%= link_to "Delete", lesson_path(lesson), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+					<%= link_to "Edit", edit_arm_lesson_path(@arm, lesson), class: "btn btn-default" %>
+					<%= link_to "Delete", arm_lesson_path(@arm, lesson), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 				</td>
 			</tr>
 		<% end %>

@@ -1,3 +1,12 @@
+<h1>Message</h1>
+
+<% if can? :create, SiteMessage %>
+  <div class="btn-toolbar" role="toolbar">
+    <%= link_to "Messages", coach_messages_path, class: "btn btn-default" %>
+    <%= link_to "Compose", new_coach_message_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
 <% if !current_participant.nil? && coach.nil? %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif !current_participant.nil? && current_participant.active_membership.present? %>
@@ -15,4 +24,5 @@
       Click here to <%= link_to "Reply", reply_path, class: "reply", style: "color: #777;text-decoration: underline;" %>
     </div>
   </div>
+  <%= link_to "Cancel", :back, class: "btn btn-default" %>
 <% end %>

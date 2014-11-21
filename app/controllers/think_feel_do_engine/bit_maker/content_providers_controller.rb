@@ -4,7 +4,7 @@ module ThinkFeelDoEngine
     # Content providers display the unique views that participants
     # As they traverse each tool each day
     class ContentProvidersController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_arm
 
       layout "manage"
 
@@ -92,6 +92,10 @@ module ThinkFeelDoEngine
 
       def model_errors
         @content_provider.errors.full_messages.join(", ")
+      end
+
+      def set_arm
+        @arm = Arm.find(params[:arm_id])
       end
     end
   end

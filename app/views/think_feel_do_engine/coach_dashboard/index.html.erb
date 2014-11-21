@@ -1,0 +1,20 @@
+<h1>Coach Dashboard</h1>
+
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Home", arms_path, class: "btn btn-default" %>
+</div>
+
+<div class="list-group">
+  <a href="<%= coach_patient_dashboards_path %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Patients</h4>
+    <p class="list-group-item-text">Your participants along with their data throughout the study such as login count.</p>
+  </a>
+  <a href="<%= coach_messages_path %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Messages</h4>
+    <p class="list-group-item-text">Compose new messages to send to participants and view messages that have been sent or received by you.</p>
+  </a>
+  <a href="<%= site_messages_path %>" class="list-group-item">
+    <h4 class="list-group-item-heading">Site Messages</h4>
+    <p class="list-group-item-text">Send a message to all participants in a particular arm.</p>
+  </a>
+</div>

@@ -1,7 +1,8 @@
 <h1>Tools</h1>
 
-<div class="btn-toolbar">
-  <%= link_to "<i class='fa fa-plus'></i> Create Tool".html_safe, new_bit_maker_tool_path, class: "btn btn-default" %>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
+  <%= link_to "New", new_bit_maker_tool_path, class: "btn btn-default" %>
 </div>
 
 <table class="table">
@@ -16,7 +17,7 @@
   <tbody>
     <% @tools.order(:position).each do |tool| %>
       <tr>
-        <td><%= link_to tool.title, bit_maker_tool_path(tool) %></td>
+        <td><%= link_to tool.title, arm_bit_maker_tool_path(@arm, tool) %></td>
         <td><%= tool.position %></td>
         <td><%= tool.last_position %></td>
       </tr>

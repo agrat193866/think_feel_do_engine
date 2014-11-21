@@ -1,16 +1,18 @@
 <h1>Content Provider <small><%= @content_provider.pretty_label %></small></h1>
 
-<%= link_to 'Edit', edit_bit_maker_content_provider_path(@content_provider), class: "btn btn-default" %>
-<%= link_to 'Destroy', bit_maker_content_provider_path(@content_provider), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to 'Edit', edit_arm_bit_maker_content_provider_path(@arm, @content_provider), class: "btn btn-default" %>
+  <%= link_to 'Destroy', arm_bit_maker_content_provider_path(@arm, @content_provider), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
 
 <p>
   <strong>Tool:</strong>
-  <%= link_to @content_provider.content_module.tool.title, bit_maker_tool_path(@content_provider.content_module.tool) %>
+  <%= link_to @content_provider.content_module.tool.title, arm_bit_maker_tool_path(@arm, @content_provider.content_module.tool) %>
 </p>
 
 <p>
   <strong>Module:</strong>
-  <%= link_to @content_provider.content_module.title, bit_maker_content_module_path(@content_provider.content_module) %>
+  <%= link_to @content_provider.content_module.title, arm_bit_maker_content_module_path(@arm, @content_provider.content_module) %>
 </p>
 
 <p>
@@ -25,13 +27,13 @@
 
 <% if @slideshow %>
   <p>
-    <strong>Slideshow:</strong> <%= link_to @slideshow.try(:title), bit_maker_slideshow_path(@slideshow) %>
+    <strong>Slideshow:</strong> <%= link_to @slideshow.try(:title), arm_bit_maker_slideshow_path(@arm, @slideshow) %>
   </p>
   <p>
     <strong>Slides:</strong> 
     <div class="list-group">
       <% @slideshow.slides.each do |slide| %>
-        <%= link_to slide.title, bit_maker_slideshow_slide_path(@slideshow, slide), class: "list-group-item" %>
+        <%= link_to slide.title, arm_bit_maker_slideshow_slide_path(@arm, @slideshow, slide), class: "list-group-item" %>
       <% end %>
     </div>
   </p>

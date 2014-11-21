@@ -4,5 +4,5 @@
 <% if next_slide %>
   <%= link_to "Continue", think_feel_do_engine.participants_public_slideshow_slide_path(slideshow_id: @slideshow.id, id: next_slide.id), class: "btn btn-primary" %>
 <% else %>
-  <%= link_to "Done", main_app.root_path, class: "btn btn-primary pull-right" %>
+  <%= link_to "Done", arms_path, class: "btn btn-primary pull-right" %>
 <% end %>

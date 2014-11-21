@@ -4,7 +4,7 @@ feature "Slideshow" do
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
   fixtures(
-    :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
+    :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules",
     :"bit_core/content_providers", :groups, :memberships,
     :tasks, :task_status
@@ -12,13 +12,13 @@ feature "Slideshow" do
 
   before do
     sign_in_user users :admin1
-    visit "/bit_maker/slideshows"
+    visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
   end
 
   it "have a corresponding show page that displays the title" do
     click_on "Home Introduction"
     slideshow = BitCore::Slideshow.find_by_title("Home Introduction")
-    expect(current_path).to eq urls.bit_maker_slideshow_path(slideshow)
+    expect(current_path).to eq urls.arm_bit_maker_slideshow_path(arms(:arm1), slideshow)
     expect(page).to have_text("Home Introduction")
   end
 
@@ -33,7 +33,7 @@ feature "Slideshow" do
         expect(page).to have_text "Do - Awareness Introduction"
         expect(page).to_not have_text "Updated Title"
       end
-      visit "/bit_maker/slideshows"
+      visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
       with_scope "#slideshow-#{slideshow.id}" do
         click_on "Edit"
       end
@@ -42,7 +42,7 @@ feature "Slideshow" do
       slideshow.reload
       expect(slideshow.title).not_to eq "Do - Awareness Introduction"
       expect(slideshow.title).to eq "Updated Title"
-      expect(current_path).to eq "/bit_maker/slideshows"
+      expect(current_path).to eq "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
       expect(page).to_not have_text "Do - Awareness Introduction"
       expect(page).to have_text "Updated Title"
       visit "/manage/groups/#{groups(:group1).id}/edit_tasks"
@@ -84,29 +84,4 @@ feature "Slideshow" do
     expect(BitCore::Slideshow.find_by_title("Home Introduction")).to eq nil
     expect(page).to_not have_text("Home Introduction")
   end
-
-  it "should display a slide with vimeo" do
-    visit "/bit_maker/slides"
-
-    expect(page).to_not have_content "Slideshow with Vimeo"
-    expect(page).to_not have_content "Slide with Vimeo"
-    expect(page).to_not have_content "Video from TFA"
-
-    click_on "Slideshows"
-    click_on "Create Slideshow"
-    fill_in "Title", with: "Slideshow with Vimeo"
-    click_on "Create"
-    click_on "Slideshow with Vimeo"
-    click_on "Add Video Slide"
-    fill_in "Title", with: "Slide with Vimeo"
-    fill_in "Vimeo ID", with: "20382271"
-    fill_in "Body", with: "Video from TFA"
-    click_on "Create"
-    visit "/bit_maker/slides"
-
-    expect(page).to have_content "Slideshow with Vimeo"
-    expect(page).to have_content "Slide with Vimeo"
-    expect(page).to have_content "Video from TFA"
-  end
-
 end

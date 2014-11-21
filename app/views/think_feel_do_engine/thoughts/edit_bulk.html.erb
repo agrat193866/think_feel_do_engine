@@ -29,11 +29,11 @@
 
       <%= render 'think_feel_do_engine/thoughts/thought_patterns', f: f %>
 
-      <%= content_tag(:button, ("Continue " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right") %>
+      <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>
     <% end %>
   <% end %>
 <% else %>
   <p>You haven't listed any negative thoughts - if this inaccurate, please revisit THINK #1</p>
 
-  <%= content_tag(:a, ("Continue " + fa_icon("angle-double-right")).html_safe, href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+  <%= content_tag(:a, "Continue", href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
 <% end %>

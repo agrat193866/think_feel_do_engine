@@ -14,10 +14,10 @@ end
 
 namespace :seed do
   desc "seed the database with fixtures from spec/fixtures"
-  task with_fixtures: :environment do
+  task with_think_feel_do_engine_fixtures: :environment do
     path = File.join(File.dirname(__FILE__), "..", "..", "spec", "fixtures")
     ActiveRecord::FixtureSet.create_fixtures path, [
-      :participants, :"bit_core/slideshows", :"bit_core/slides",
+      :arms, :participants, :"bit_core/slideshows", :"bit_core/slides",
       :"bit_core/tools", :"bit_core/content_modules",
       :"bit_core/content_providers", :users, :user_roles, :activity_types,
       :activities, :coach_assignments, :groups, :memberships, :messages,

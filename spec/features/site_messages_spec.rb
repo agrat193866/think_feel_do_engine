@@ -10,6 +10,7 @@ feature "Site messages" do
     fill_in "Subject", with: "one weird trick"
     fill_in "Body", with: "blah blah blah"
     click_on "Send"
+
     expect(ActionMailer::Base.deliveries.last.to)
       .to include(participants(:participant1).email)
   end

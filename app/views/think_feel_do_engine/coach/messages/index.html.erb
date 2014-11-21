@@ -1,3 +1,12 @@
+<h1>Messages</h1>
+
+<% if can? :create, SiteMessage %>
+  <div class="btn-toolbar" role="toolbar">
+    <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
+    <%= link_to "Compose", new_coach_message_path, class: "btn btn-default" %>
+  </div>
+<% end %>
+
 <%= form_tag coach_messages_path, :method => 'get', role: "search" do %>
   <div class="form-group">
     <%= select_tag "search", options_from_collection_for_select(@participants, "id", "study_id", params[:search]), { prompt: "Participant", class: "form-control", style: "display: inline-block;width: 25%;" } %>
