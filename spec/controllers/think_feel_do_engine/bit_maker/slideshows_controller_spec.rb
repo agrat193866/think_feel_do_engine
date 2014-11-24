@@ -6,7 +6,10 @@ module ThinkFeelDoEngine
 
     describe SlideshowsController, type: :controller do
       let(:user) { double("user", admin?: true) }
+      let(:arm) { double("arm") }
       let(:slideshow) { double("slideshow") }
+
+      before { allow(Arm).to receive(:find) { arm } }
 
       describe "GET index" do
         context "for unauthenticated requests" do
@@ -80,7 +83,7 @@ module ThinkFeelDoEngine
 
             it "should redirect to the slideshows page" do
               put :update, id: 1, use_route: :think_feel_do_engine
-              expect(response).to redirect_to urls.bit_maker_slideshows_url
+              expect(response).to redirect_to urls.arm_bit_maker_slideshows_url(arm)
             end
           end
         end
@@ -104,7 +107,7 @@ module ThinkFeelDoEngine
 
             it "should redirect to the slideshows page" do
               delete :destroy, id: 1, use_route: :think_feel_do_engine
-              expect(response).to redirect_to urls.bit_maker_slideshows_url
+              expect(response).to redirect_to urls.arm_bit_maker_slideshows_url(arm)
             end
           end
 
@@ -113,7 +116,7 @@ module ThinkFeelDoEngine
 
             it "should redirect to the slideshows page" do
               delete :destroy, id: 1, use_route: :think_feel_do_engine
-              expect(response).to redirect_to urls.bit_maker_slideshows_url
+              expect(response).to redirect_to urls.arm_bit_maker_slideshows_url(arm)
             end
           end
         end

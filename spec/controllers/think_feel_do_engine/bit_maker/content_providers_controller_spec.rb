@@ -6,7 +6,10 @@ module ThinkFeelDoEngine
 
     describe ContentProvidersController, type: :controller do
       let(:user) { double("user", admin?: true) }
+      let(:arm) { double("arm") }
       let(:provider) { double("provider", source_content_id: nil) }
+
+      before { allow(Arm).to receive(:find) { arm } }
 
       describe "GET index" do
         context "for unauthenticated requests" do
@@ -93,7 +96,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the show page" do
-              expect(response).to redirect_to urls.bit_maker_content_provider_url(provider)
+              expect(response).to redirect_to urls.arm_bit_maker_content_provider_url(arm, provider)
             end
           end
         end
@@ -118,7 +121,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the show page" do
-              expect(response).to redirect_to urls.bit_maker_content_provider_url(provider)
+              expect(response).to redirect_to urls.arm_bit_maker_content_provider_url(arm, provider)
             end
           end
         end
@@ -143,7 +146,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the index page" do
-              expect(response).to redirect_to urls.bit_maker_content_providers_url
+              expect(response).to redirect_to urls.arm_bit_maker_content_providers_url(arm)
             end
           end
         end

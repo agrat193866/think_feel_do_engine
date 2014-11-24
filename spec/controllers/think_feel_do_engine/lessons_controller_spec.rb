@@ -4,6 +4,7 @@ module ThinkFeelDoEngine
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
   describe LessonsController, type: :controller do
+    let(:arm) { double("arm") }
     let(:user) { double("user", admin?: true) }
 
     describe "GET index" do
@@ -14,6 +15,7 @@ module ThinkFeelDoEngine
 
       context "for authenticated requests" do
         before do
+          allow(Arm).to receive(:find) { arm }
           allow(ContentModules::LessonModule).to receive_message_chain(:includes, :order) { [] }
           sign_in_user user
           get :index, use_route: :think_feel_do_engine
@@ -36,19 +38,21 @@ module ThinkFeelDoEngine
 
         context "when the lesson is not found" do
           before do
+            allow(Arm).to receive(:find) { arm }
             allow(ContentModules::LessonModule).to receive(:find)
               .and_raise(ActiveRecord::RecordNotFound)
             get :show, id: 1, use_route: :think_feel_do_engine
           end
 
           it "should redirect to the index page" do
-            expect(response).to redirect_to urls.lessons_url
+            expect(response).to redirect_to urls.arm_lessons_url(arm)
           end
         end
 
         context "when the lesson is found" do
           before do
             allow(ContentModules::LessonModule).to receive(:find) { double("lesson") }
+            allow(Arm).to receive(:find) { arm }
             get :show, id: 1, use_route: :think_feel_do_engine
           end
 
@@ -69,6 +73,7 @@ module ThinkFeelDoEngine
         let(:tool) { double("tool", add_module: lesson) }
 
         before do
+          allow(Arm).to receive(:find) { arm }
           allow(BitCore::Tool).to receive(:find_or_create_by) { tool }
           sign_in_user user
         end
@@ -88,7 +93,7 @@ module ThinkFeelDoEngine
 
           it "should redirect to the lesson page" do
             post :create, use_route: :think_feel_do_engine
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -102,6 +107,7 @@ module ThinkFeelDoEngine
 
       context "for authenticated requests" do
         before do
+          allow(Arm).to receive(:find) { arm }
           allow(ContentModules::LessonModule).to receive(:find) { lesson }
           sign_in_user user
         end
@@ -121,7 +127,7 @@ module ThinkFeelDoEngine
 
           it "should redirect to the lesson page" do
             put :update, id: 1, use_route: :think_feel_do_engine
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -135,6 +141,7 @@ module ThinkFeelDoEngine
 
       context "for authenticated requests" do
         before do
+          allow(Arm).to receive(:find) { arm }
           allow(ContentModules::LessonModule).to receive(:find) { lesson }
           sign_in_user user
         end
@@ -145,7 +152,7 @@ module ThinkFeelDoEngine
 
           it "should redirect to the lessons page" do
             delete :destroy, id: 1, use_route: :think_feel_do_engine
-            expect(response).to redirect_to urls.lessons_url
+            expect(response).to redirect_to urls.arm_lessons_url(arm)
           end
         end
 
@@ -154,7 +161,7 @@ module ThinkFeelDoEngine
 
           it "should redirect to the lessons page" do
             delete :destroy, id: 1, use_route: :think_feel_do_engine
-            expect(response).to redirect_to urls.lessons_url
+            expect(response).to redirect_to urls.arm_lessons_url(arm)
           end
         end
       end

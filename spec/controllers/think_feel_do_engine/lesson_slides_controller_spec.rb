@@ -5,12 +5,14 @@ module ThinkFeelDoEngine
 
   describe LessonSlidesController, type: :controller do
     let(:user) { double("user", admin?: true) }
+    let(:arm) { double("arm") }
     let(:lesson) { double("lesson") }
     let(:slide) { double("slide") }
     let(:model_errors) { double("errors", full_messages: []) }
 
     before do
       allow(ContentModules::LessonModule).to receive(:find) { lesson }
+      allow(Arm).to receive(:find) { arm }
     end
 
     describe "GET new" do
@@ -48,7 +50,7 @@ module ThinkFeelDoEngine
           end
 
           it "should redirect to the lesson page" do
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -82,7 +84,7 @@ module ThinkFeelDoEngine
           end
 
           it "should redirect to the lesson page" do
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -116,7 +118,7 @@ module ThinkFeelDoEngine
           end
 
           it "should redirect to the lesson page" do
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -142,7 +144,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the lesson page" do
-              expect(response).to redirect_to urls.lesson_url(lesson)
+              expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
             end
           end
 
@@ -168,7 +170,7 @@ module ThinkFeelDoEngine
           end
 
           it "should redirect to the lesson page" do
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
@@ -194,7 +196,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the lesson page" do
-              expect(response).to redirect_to urls.lesson_url(lesson)
+              expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
             end
           end
 
@@ -206,7 +208,7 @@ module ThinkFeelDoEngine
             end
 
             it "should redirect to the lesson page" do
-              expect(response).to redirect_to urls.lesson_url(lesson)
+              expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
             end
           end
         end
@@ -220,7 +222,7 @@ module ThinkFeelDoEngine
           end
 
           it "should redirect to the lesson page" do
-            expect(response).to redirect_to urls.lesson_url(lesson)
+            expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
       end
