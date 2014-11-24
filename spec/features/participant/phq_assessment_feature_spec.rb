@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "PHQ assessment" do
+feature "PHQ assessment", type: :feature do
   describe "when a participant accesses a valid link" do
     fixtures :participants
 

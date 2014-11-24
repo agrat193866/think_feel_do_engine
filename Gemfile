@@ -25,3 +25,8 @@ gem "jquery-datatables-rails",
 group :test do
   gem "timecop", "~> 0.7"
 end
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end

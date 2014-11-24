@@ -29,3 +29,9 @@ Set up the database
 run the specs
 
     rake spec
+
+## ToDo
+1) test for destroying lesson
+2) Additional tests for now updating research content - i.e., managing tasks!
+2) scope content to tool after I move in bit_core models
+3) check for role on edit_task page (use CanCanCan), but you can't authorship content

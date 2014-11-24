@@ -1,8 +1,9 @@
 require "spec_helper"
 
-feature "home tool" do
+feature "home tool", type: :feature do
   fixtures(
-    :participants, :users, :groups, :memberships, :"bit_core/slideshows",
+    :arms, :participants, :users,
+    :groups, :memberships, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools",
     :"bit_core/content_modules", :"bit_core/content_providers"
   )

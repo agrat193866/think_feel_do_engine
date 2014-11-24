@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "coach phq assessment management" do
+feature "coach phq assessment management", type: :feature do
   fixtures(
     :users, :user_roles, :participants, :coach_assignments, :phq_assessments
   )

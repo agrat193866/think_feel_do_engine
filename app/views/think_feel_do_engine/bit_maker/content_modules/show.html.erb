@@ -1,6 +1,7 @@
 <h1>Content Module <small><%= @content_module.title %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
+  <%= link_to 'Modules', arm_bit_maker_content_modules_path(@arm), class: "btn btn-default" %>
   <%= link_to 'Edit', edit_arm_bit_maker_content_module_path(@arm, @content_module), class: "btn btn-default" %>
   <%= link_to 'Destroy', arm_bit_maker_content_module_path(@arm, @content_module), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>

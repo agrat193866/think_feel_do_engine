@@ -1,10 +1,12 @@
 require "spec_helper"
 
-feature "coach messages" do
+feature "coach messages", type: :feature do
   fixtures(
-    :users, :user_roles, :participants, :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :"bit_core/content_modules", :"bit_core/content_providers",
-    :coach_assignments, :messages, :groups, :memberships, :tasks, :task_status, :moods,
+    :arms, :users, :user_roles, :participants,
+    :"bit_core/slideshows", :"bit_core/slides",
+    :"bit_core/tools", :"bit_core/content_modules",
+    :"bit_core/content_providers", :coach_assignments,
+    :messages, :groups, :memberships, :tasks, :task_status, :moods,
     :phq_assessments, :emotions, :delivered_messages)
 
   before(:each) do

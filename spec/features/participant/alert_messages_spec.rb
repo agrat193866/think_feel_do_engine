@@ -1,7 +1,7 @@
 require "spec_helper"
 
-feature "alert messages" do
-  fixtures :participants, :users, :groups, :memberships
+feature "alert messages", type: :feature do
+  fixtures :arms, :participants, :users, :groups, :memberships
 
   before do
     sign_in_participant participants(:participant_wo_membership1)

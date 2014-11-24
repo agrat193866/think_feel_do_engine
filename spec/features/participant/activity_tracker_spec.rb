@@ -1,9 +1,9 @@
 require "spec_helper"
 
-feature "activity tracker" do
+feature "activity tracker", type: :feature do
   fixtures(
     :participants, :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :users,
+    :"bit_core/tools", :users, :arms,
     :"bit_core/content_modules", :"bit_core/content_providers",
     :activity_types, :activities, :groups, :memberships, :tasks, :task_status
   )

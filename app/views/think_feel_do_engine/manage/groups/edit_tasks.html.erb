@@ -1,8 +1,11 @@
-<h1><%= @group.title %></h1>
+<h1>Manage Task <small><%= @group.title %></small></h1>
 
-<h3>Assign New Task</h3>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
+</div>
 
-<%= form_for Task.new, as: :task, url: manage_tasks_path, html: { role: "form" } do |f| %>
+<!-- Move this out from index page? -->
+<%= form_for @task, as: :task, url: manage_tasks_path, html: { role: "form" } do |f| %>
   <%= f.hidden_field :group_id, value: @group.id %>
 
   <div class='form-group'>
@@ -33,34 +36,48 @@
     </label>
   </div>
 
-  <%= f.submit "Assign", class: "btn btn-primary" %>
+  <div class="actions">
+    <%= f.submit "Assign", class: "btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default" %>
+  </div>
 <% end %>
 
-<h3>Currently assigned tasks</h3>
-
-<table class="table table-hover" id="tasks">
-  <thead>
-    <th>Title</th>
-    <th>Release day</th>
-    <th>Is recurring?</th>
-    <th>Termination day</th>
-    <th>Has didactic content?</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @group.tasks.each do |task|%>
-      <tr id="task-<%= task.id %>">
-        <td>
-          <%= "#{ task.bit_core_content_module.tool.title }: " + task.try(:title) %>
-        </td>
-        <td><%= task.release_day %></td>
-        <td><%= task.is_recurring %></td>
-        <td><%= task.termination_day ? "<span class=\"label label-info\">#{task.termination_day}</span>".html_safe : "N/A" %></td>
-        <td><%= task.has_didactic_content %></td>
-        <td>
-          <%= link_to "Unassign", manage_task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Currently Assigned Tasks</h3>
+  </div>
+  <div class="panel-body">
+    <p>This are all the currently assigned tasks for this group</p>
+  </div>
+  <table class="table table-hover" id="tasks">
+    <thead>
+      <th>Title</th>
+      <th>Release day</th>
+      <th>Is recurring?</th>
+      <th>Termination day</th>
+      <th>Has didactic content?</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @group.tasks.each do |task|%>
+        <tr id="task-<%= task.id %>">
+          <td>
+            <!-- use CanCanCan instead -->
+            <% if current_user.content_author? %>
+              <%= link_to "#{task.bit_core_content_module.tool.title}: #{task.try(:title)}", arm_bit_maker_content_module_path(task.group.arm, task.bit_core_content_module) %>
+            <% else %>
+              <%= "#{task.bit_core_content_module.tool.title}: #{task.try(:title)}" %>
+            <% end %>
+          </td>
+          <td><%= task.release_day %></td>
+          <td><%= task.is_recurring %></td>
+          <td><%= task.termination_day ? "<span class=\"label label-info\">#{task.termination_day}</span>".html_safe : "N/A" %></td>
+          <td><%= task.has_didactic_content %></td>
+          <td>
+            <%= link_to "Unassign", manage_task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

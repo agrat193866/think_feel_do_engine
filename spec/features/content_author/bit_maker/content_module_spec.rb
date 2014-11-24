@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Content Modules" do
+feature "Content Modules", type: :feature do
   fixtures(
     :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules",

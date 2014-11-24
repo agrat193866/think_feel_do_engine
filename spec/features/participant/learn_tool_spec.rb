@@ -1,8 +1,8 @@
 require "spec_helper"
 
-feature "learn tool" do
+feature "learn tool", type: :feature do
   fixtures(
-    :participants, :"bit_core/slideshows", :"bit_core/slides", :users,
+    :arms, :participants, :"bit_core/slideshows", :"bit_core/slides", :users,
     :"bit_core/tools", :"bit_core/content_modules", :"bit_core/content_providers",
     :groups, :memberships, :tasks, :task_status
   )

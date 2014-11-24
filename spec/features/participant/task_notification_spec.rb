@@ -1,8 +1,9 @@
 require "spec_helper"
 
-feature "task notification" do
+feature "task notification", type: :feature do
   fixtures(
-    :users, :user_roles, :participants, :"bit_core/slideshows", :"bit_core/slides", :"bit_core/tools",
+    :arms, :users, :user_roles, :participants,
+    :"bit_core/slideshows", :"bit_core/slides", :"bit_core/tools",
     :"bit_core/content_modules", :"bit_core/content_providers",
     :groups, :memberships, :tasks, :task_status
   )

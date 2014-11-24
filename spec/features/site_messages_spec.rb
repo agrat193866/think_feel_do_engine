@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Site messages" do
+feature "Site messages", type: :feature do
   fixtures :all
 
   it "permits sending messages to participants" do

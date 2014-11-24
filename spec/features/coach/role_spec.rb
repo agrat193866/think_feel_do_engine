@@ -1,7 +1,7 @@
 require "spec_helper"
 
-feature "users notified about their role status" do
-  fixtures(:users)
+feature "users notified about their role status" , type: :feature do
+  fixtures :users
 
   context "Non-admin user without a role" do
 

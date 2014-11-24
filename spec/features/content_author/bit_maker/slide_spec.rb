@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Slide" do
+feature "Slide", type: :feature do
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
   fixtures :arms, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides"

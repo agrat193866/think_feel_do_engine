@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Privacy Policy", :js do
+feature "Privacy Policy", :js, type: :feature do
   it "not obscured in the footer" do
     visit "/participants/sign_in"
     click_on "Privacy Policy"

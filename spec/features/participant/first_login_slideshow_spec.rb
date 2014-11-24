@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "first login slideshow" do
+feature "first login slideshow", type: :feature do
   fixtures :all
 
   context "on first login" do

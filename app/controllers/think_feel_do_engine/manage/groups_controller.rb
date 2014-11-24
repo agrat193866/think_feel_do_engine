@@ -10,6 +10,7 @@ module ThinkFeelDoEngine
       end
 
       def edit_tasks
+        @task = current_user.tasks.build
         @content_modules ||= BitCore::ContentModule.all
       end
     end

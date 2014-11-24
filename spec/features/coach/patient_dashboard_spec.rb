@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "patient dashboard" do
+feature "patient dashboard", type: :feature do
   fixtures(
     :arms, :users, :user_roles, :participants, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",

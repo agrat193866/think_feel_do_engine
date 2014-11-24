@@ -38,7 +38,7 @@ class NewLessonPage
   end
 end
 
-feature "Lessons" do
+feature "Lessons", type: :feature do
   fixtures(
     :arms, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules", :groups,
