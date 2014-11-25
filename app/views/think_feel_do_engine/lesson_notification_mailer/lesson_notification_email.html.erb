@@ -1,16 +1,8 @@
 <%= content_for :title do %>
-    New Lesson Available: <%= @lesson.title %>
+    New ThinkFeelDo Lesson Available: <%= @lesson.title %>
 <% end %>
 
-A new lesson is available, click the button below to access: <%= @lesson.title %>
-
-<table class="button">
-  <tr>
-    <td>
-      <%= link_to "new lesson", navigator_location_url(module_id: @lesson.id.to_s) %>
-    </td>
-  </tr>
-</table>
+Your next ThinkFeelDo lesson is available. <%= link_to "Click here", navigator_location_url(module_id: @lesson.id.to_s) %> to access <%= @lesson.title %>."
 
 <br>
 
