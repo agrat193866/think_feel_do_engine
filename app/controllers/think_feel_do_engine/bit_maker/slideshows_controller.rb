@@ -56,7 +56,8 @@ module ThinkFeelDoEngine
 
       def destroy
         if @slideshow.destroy
-          redirect_to arm_bit_maker_slideshows_url(@arm), notice: "Slideshow deleted."
+          redirect_to arm_bit_maker_slideshows_url(@arm),
+                      notice: "Slideshow deleted."
         else
           redirect_to arm_bit_maker_slideshows_url(@arm),
                       alert: @slideshow.errors.full_messages.join(", ")

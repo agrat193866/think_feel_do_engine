@@ -38,8 +38,9 @@ module ThinkFeelDoEngine
                             .new(content_provider_params)
 
         if @content_provider.save
-          redirect_to arm_bit_maker_content_provider_path(@arm, @content_provider),
-                      notice: "ContentProvider was successfully created."
+          redirect_to arm_bit_maker_content_provider_path(
+            @arm, @content_provider
+          ), notice: "ContentProvider was successfully created."
         else
           flash.now[:alert] = "Unable to save ContentProvider " +
             model_errors
@@ -52,8 +53,9 @@ module ThinkFeelDoEngine
         @content_provider = find_content_provider
 
         if @content_provider.update(content_provider_params)
-          redirect_to arm_bit_maker_content_provider_path(@arm, @content_provider),
-                      notice: "ContentProvider was successfully updated."
+          redirect_to arm_bit_maker_content_provider_path(
+            @arm, @content_provider
+          ), notice: "ContentProvider was successfully updated."
         else
           flash.now[:alert] = "Unable to save ContentProvider " +
             model_errors

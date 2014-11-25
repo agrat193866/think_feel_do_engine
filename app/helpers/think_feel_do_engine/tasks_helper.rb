@@ -18,7 +18,7 @@ module ThinkFeelDoEngine
 
     def no_submenu?(tool)
       tool.title.downcase == "messages" ||
-      tool.title.downcase == "learn"
+        tool.title.downcase == "learn"
     end
 
     def make_room_for_badge(tool)
@@ -117,11 +117,11 @@ module ThinkFeelDoEngine
 
     def safe_get_task_title(task_status)
       title = task_status
-        .try(:bit_core_content_module)
-        .try(:content_providers)
-        .try(:first)
-        .try(:slideshow)
-        .try(:title)
+              .try(:bit_core_content_module)
+              .try(:content_providers)
+              .try(:first)
+              .try(:slideshow)
+              .try(:title)
 
       return "" if title.nil?
 

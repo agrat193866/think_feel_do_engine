@@ -13,9 +13,7 @@ module ThinkFeelDoEngine
       end
 
       def create
-        @task = current_user
-          .tasks
-          .build(task_params)
+        @task = current_user.tasks.build(task_params)
         authorize! :create, @task
         if @task.save
           redirect_to manage_tasks_group_path(@group),

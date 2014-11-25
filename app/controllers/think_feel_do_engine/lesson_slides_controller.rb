@@ -96,7 +96,8 @@ module ThinkFeelDoEngine
     end
 
     def record_not_found
-      redirect_to arm_lesson_path(@arm, @lesson), alert: "Unable to find lesson content"
+      redirect_to arm_lesson_path(@arm, @lesson),
+                  alert: "Unable to find lesson content"
     end
   end
 end

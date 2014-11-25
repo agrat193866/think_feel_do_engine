@@ -8,10 +8,11 @@ describe PhqStepping do
   let(:high_range_3_assessments) { Hash[Date.today, 12, Date.today - 14.days, 11, Date.today - 49.days, 9] }
   let(:priority_check) do
     Hash[
-    Date.today, 3,
-    Date.today - 1.week, 3,
-    Date.today - 3.weeks, 17,
-    Date.today - 19.weeks, 9]
+      Date.today, 3,
+      Date.today - 1.week, 3,
+      Date.today - 3.weeks, 17,
+      Date.today - 19.weeks, 9
+    ]
   end
 
   let(:specific_week_three) do

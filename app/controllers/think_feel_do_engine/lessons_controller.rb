@@ -29,7 +29,8 @@ module ThinkFeelDoEngine
       @lesson = lesson_tool.add_module(build_lesson)
 
       if @lesson.save
-        redirect_to arm_lesson_url(@arm, @lesson), notice: "Successfully created lesson"
+        redirect_to arm_lesson_url(@arm, @lesson),
+                    notice: "Successfully created lesson"
       else
         flash.now[:alert] = "Unable to create lesson: " +
           model_errors(@lesson)
@@ -47,7 +48,8 @@ module ThinkFeelDoEngine
       @lesson = find_lesson
 
       if @lesson.update(lesson_params)
-        redirect_to arm_lesson_url(@arm, @lesson), notice: "Successfully updated lesson"
+        redirect_to arm_lesson_url(@arm, @lesson),
+                    notice: "Successfully updated lesson"
       else
         flash.now[:alert] = "Unable to update lesson: " +
           model_errors(@lesson)
@@ -101,7 +103,8 @@ module ThinkFeelDoEngine
     end
 
     def record_not_found
-      redirect_to arm_lessons_url(@arm), alert: "Unable to find lesson, please try again."
+      redirect_to arm_lessons_url(@arm),
+                  alert: "Unable to find lesson, please try again."
     end
 
     def set_arm
