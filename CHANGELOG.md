@@ -1,3 +1,8 @@
+### 1.0.1 - 2014-11-25
+
+* enhancements
+  * Added a constraint that doesn't let null exist in arms tabel for title and is_social
+
 ### 1.0.0 - 2014-11-25
 
 * enhancements
