@@ -74,6 +74,13 @@ class Membership < ActiveRecord::Base
     end_date && end_date.strftime(AMERICAN_DATE_FMT)
   end
 
+  def learning_tasks
+    tasks
+      .joins(:bit_core_content_module)
+      .where("bit_core_content_modules.type = ?",
+             "ContentModules::LessonModule")
+  end
+
   private
 
   def normalize_dates

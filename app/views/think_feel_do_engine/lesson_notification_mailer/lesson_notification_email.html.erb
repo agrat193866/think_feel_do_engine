@@ -1,0 +1,24 @@
+<%= content_for :title do %>
+    New Lesson Available: <%= @lesson.title %>
+<% end %>
+
+A new lesson is available, click the button below to access: <%= @lesson.title %>
+
+<table class="button">
+  <tr>
+    <td>
+      <%= link_to "new lesson", navigator_location_url(module_id: @lesson.id.to_s) %>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<p>
+  <strong>Please be aware that this is an automated e-mail message and if you reply to
+    it no one will receive your response.</strong>
+</p>
+<p>
+  If you need to contact your moderator, please use the messaging system within the
+  ThinkFeelDo website.
+</p>
