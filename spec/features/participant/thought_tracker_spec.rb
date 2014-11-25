@@ -116,7 +116,7 @@ feature "thought tracker", type: :feature do
     click_on "Continue"
     click_on "Thoughts"
 
-    expect(page).to have_xpath("//input[@value='I am insignificant']")
+    expect(page).to have_text("I am insignificant")
   end
 
   it "implements #3 Reshape", :js do
@@ -166,9 +166,10 @@ feature "thought tracker", type: :feature do
 
     visit "/navigator/contexts/THINK"
     page.find("a", text: "Thoughts").trigger("click")
-    expect(page).to have_xpath("//input[@value='I am useless']")
-    expect(page).to have_xpath("//input[@value='Challenge this!']")
-    expect(page).to have_xpath("//input[@value='I would act on being superman!']")
+
+    expect(page).to have_text("I am useless")
+    expect(page).to have_text("Challenge this!")
+    expect(page).to have_text("I would act on being superman!")
   end
 
   it "implements 'Add a New Thought'" do
@@ -188,13 +189,12 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
 
-    expect(page).to have_xpath("//input[@value='I like tomatoes']")
+    expect(page).to have_content("I like tomatoes")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
     expect(page).to have_selector(:link_or_button, "Continue")
   end
 
   it "implements a new thought from the page where all harmful thoughts are displayed" do
-
     with_scope ".THINK ul" do
       click_on "Thoughts"
     end
@@ -214,7 +214,7 @@ feature "thought tracker", type: :feature do
 
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
-    expect(page).to have_xpath("//input[@value='I like tomatoes']")
+    expect(page).to have_text("I like tomatoes")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
     expect(page).to have_selector(:link_or_button, "Continue")
   end
