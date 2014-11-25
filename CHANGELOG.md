@@ -1,3 +1,8 @@
+### 1.0.2 - 2014-11-25
+
+* enhancements
+  * Added migration for orphaned groups that don't have an arm_id and added constraint on groups to require arm_id.
+
 ### 1.0.1 - 2014-11-25
 
 * enhancements
