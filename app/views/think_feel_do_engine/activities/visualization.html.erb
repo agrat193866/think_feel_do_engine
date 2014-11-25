@@ -6,6 +6,8 @@
 	<section id="chart"></section>
 
 	<div class="div-table-viz">
+    <button class="btn btn-default" onclick="makeActivitiesEditable(); return false;">Edit Activities</button><br><br>
+
     <%= form_tag participants_activities_path, remote: true do %>
       <table id="summary" class="table">
         <caption>Most Recent Activities</caption>
@@ -30,6 +32,11 @@
 </div>
 
 <script type="text/javascript">
+  function makeActivitiesEditable() {
+    $("table#summary .immutable-activity-content").hide();
+    $("table#summary select").show();
+    $("table#summary input[type='submit']").show();
+  }
 
 	var nav_buttons = ["Pleasure and Accomplishment",
 						"Daily Breakdown",
