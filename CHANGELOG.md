@@ -1,3 +1,8 @@
+### 1.1.1 - 2014-11-26
+
+* updates
+  * Removed code associated with PHQ email reminders (moved to think_feel_do)
+
 ### 1.1.0 - 2014-11-25
 
 * enhancements
