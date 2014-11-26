@@ -1,3 +1,10 @@
+### 1.2.0 - 2014-11-25
+
+* enhancements
+  * Removed Tools and Provider links with updated tests
+  * Improved navigation between engines
+  * removed manage/groups path & it is no longer the redirect
+
 ### 1.1.0 - 2014-11-25
 
 * enhancements
