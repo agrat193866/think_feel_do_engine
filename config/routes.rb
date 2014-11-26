@@ -18,7 +18,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
   namespace :manage do
     get "groups/:id/edit_tasks", to: "groups#edit_tasks", as: "tasks_group"
-    resources :groups, only: [:index] do
+    resources :groups, only: [] do
       resources :tasks, only: [:index]
     end
     resources :tasks, only: [:create, :update, :destroy]

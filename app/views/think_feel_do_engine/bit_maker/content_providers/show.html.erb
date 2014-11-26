@@ -1,7 +1,7 @@
 <h1>Content Provider <small><%= @content_provider.pretty_label %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
-  <%= link_to 'Providers', arm_bit_maker_content_providers_path(@arm), class: "btn btn-default" %>
+  <%= link_to 'Module', arm_bit_maker_content_module_path(@arm, @content_provider.content_module), class: "btn btn-default" %>
   <%= link_to 'Edit', edit_arm_bit_maker_content_provider_path(@arm, @content_provider), class: "btn btn-default" %>
   <%= link_to 'Destroy', arm_bit_maker_content_provider_path(@arm, @content_provider), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
