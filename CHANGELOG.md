@@ -1,3 +1,8 @@
+### 1.3.0 - 2014-11-25
+
+* enhancements
+  * User login redirects to arms_path; i.e., home page for users
+
 ### 1.2.0 - 2014-11-25
 
 * enhancements
