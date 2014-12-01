@@ -10,13 +10,24 @@ feature "Content Provider", type: :feature do
 
   before do
     sign_in_user users :admin1
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:awake_period_form_provider).id}"
   end
 
   it "shoud have display a link to modules - not providers" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:awake_period_form_provider).id}"
+
     expect(page).to have_text "Content Provider"
     expect(page).to have_text "#1 Awareness"
     expect(page).to_not have_link "Providers"
     expect(page).to have_link "Module", href: "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
+  end
+
+  it "shoud have display a link to add provider" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
+
+    expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
+
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
+
+    expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
   end
 end
