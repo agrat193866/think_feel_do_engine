@@ -1,3 +1,8 @@
+### 1.4.0 - 2014-12-1
+
+* enhancements
+  * Add more links to help content authors CRUD content providers. The rationale, is that content provider CRUDing was nested within content modules and access was someone limited during this enhancement.
+
 ### 1.3.0 - 2014-11-25
 
 * enhancements
