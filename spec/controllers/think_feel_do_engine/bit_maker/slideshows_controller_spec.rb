@@ -6,10 +6,14 @@ module ThinkFeelDoEngine
 
     describe SlideshowsController, type: :controller do
       let(:user) { double("user", admin?: true) }
-      let(:arm) { double("arm") }
       let(:slideshow) { double("slideshow") }
+      let(:arm) { double("arm") }
 
-      before { allow(Arm).to receive(:find) { arm } }
+      before do
+        allow(arm).to receive(:bit_core_slideshows) { BitCore::Slideshow::ActiveRecord_Associations_CollectionProxy }
+        allow(arm.bit_core_slideshows).to receive(:build) { slideshow }
+        allow(Arm).to receive(:find) { arm }
+      end
 
       describe "GET index" do
         context "for unauthenticated requests" do
@@ -65,6 +69,7 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           before do
             allow(BitCore::Slideshow).to receive(:find) { slideshow }
+            allow(arm.bit_core_slideshows).to receive(:find) { slideshow }
             sign_in_user user
           end
 
@@ -98,6 +103,7 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           before do
             allow(BitCore::Slideshow).to receive(:find) { slideshow }
+            allow(arm.bit_core_slideshows).to receive(:find) { slideshow }
             sign_in_user user
           end
 

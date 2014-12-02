@@ -14,25 +14,25 @@ class TaskStatus < ActiveRecord::Base
 
   scope :for_content_module, lambda { |content_module|
     joins(:task)
-    .where(tasks: { bit_core_content_module_id: content_module.id })
+      .where(tasks: { bit_core_content_module_id: content_module.id })
   }
 
   scope :for_content_module_ids, lambda { |ids|
     joins(:task)
-    .where(tasks: { bit_core_content_module_id: ids })
+      .where(tasks: { bit_core_content_module_id: ids })
   }
 
   scope :available_for_learning, lambda { |membership|
     joins(:task, task: :bit_core_content_module)
-    .by_position
-    .where("start_day <= ?", membership.day_in_study)
+      .by_position
+      .where("start_day <= ?", membership.day_in_study)
   }
 
   scope :completed, -> { where(arel_table["completed_at"].not_eq(nil)) }
 
   scope :by_position, lambda {
     joins(:task, task: :bit_core_content_module)
-    .order("bit_core_content_modules.position ASC")
+      .order("bit_core_content_modules.position ASC")
   }
 
   def provider_viz?

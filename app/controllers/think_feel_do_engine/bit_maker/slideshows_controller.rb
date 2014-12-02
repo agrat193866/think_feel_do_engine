@@ -74,7 +74,9 @@ module ThinkFeelDoEngine
 
       # Needed b/c default CanCan looks for "Slideshow & @slideshow"
       def find_slideshow
-        @slideshow = @arm.bit_core_slideshows.find(params[:id])
+        @slideshow = @arm
+                      .bit_core_slideshows
+                      .find(params[:id])
       end
 
       def set_arm

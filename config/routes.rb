@@ -17,7 +17,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
   resource :privacy_policy, only: [:show]
 
   namespace :manage do
-    # get "groups/:id/edit_tasks", to: "groups#edit_tasks", as: "tasks_group"
     resources :groups, only: [] do
       resources :tasks, only: [:index]
     end
@@ -30,10 +29,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :content_dashboard, only: :index
     namespace :manage do
       get "groups/:id/edit_tasks", to: "groups#edit_tasks", as: "tasks_group"
-      # resources :groups, only: [] do
-      #   resources :tasks, only: [:index]
-      # end
-      # resources :tasks, only: [:create, :update, :destroy]
     end
     namespace :bit_maker do
       resources :tools

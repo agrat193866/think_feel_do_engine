@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
 
     describe ContentProvidersController, type: :controller do
       let(:user) { double("user", admin?: true) }
-      let(:arm) { double("arm") }
+      let(:arm) { double("arm", bit_core_tools: [], bit_core_slideshows: []) }
       let(:provider) { double("provider", source_content_id: nil) }
 
       before { allow(Arm).to receive(:find) { arm } }
