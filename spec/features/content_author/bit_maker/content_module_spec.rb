@@ -68,7 +68,7 @@ feature "Content Modules", type: :feature do
     expect(page).to have_content "LEARN"
     expect(page).to_not have_content "BRAIN"
 
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing_for_different_arm).id}/edit"
+    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing_arm2).id}/edit"
 
     expect(page).to_not have_content "LEARN"
     expect(page).to have_content "BRAIN"

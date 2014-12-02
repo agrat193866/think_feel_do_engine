@@ -10,7 +10,7 @@ feature "managing groups", type: :feature do
 
   it "displays group names" do
     sign_in_user users :admin1
-    visit "/manage/groups/#{groups(:group1).id}/edit_tasks"
+    visit "/arms/#{groups(:group1).arm_id}/manage/groups/#{groups(:group1).id}/edit_tasks"
 
     expect(page).to have_text("Manage Task Group 1")
   end

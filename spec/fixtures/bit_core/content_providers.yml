@@ -9,7 +9,7 @@ home_slideshow_for_different_arm:
   type: BitCore::ContentProviders::SlideshowProvider
   show_next_nav: true
   source_content: home_intro (BitCore::Slideshow)
-  content_module: home_landing_for_different_arm
+  content_module: home_landing_arm2
   position: 1
 
 module_index_provider:

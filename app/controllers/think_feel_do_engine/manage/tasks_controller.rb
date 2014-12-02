@@ -16,25 +16,25 @@ module ThinkFeelDoEngine
         @task = current_user.tasks.build(task_params)
         authorize! :create, @task
         if @task.save
-          redirect_to manage_tasks_group_path(@group),
+          redirect_to arm_manage_tasks_group_path(@group.arm, @group),
                       notice: "Task assigned."
         else
           errors = @task.errors.full_messages.join(", ")
           flash[:alert] = "Unable to assign task: #{ errors }"
-          redirect_to manage_tasks_group_path(@group)
+          redirect_to arm_manage_tasks_group_path(@group.arm, @group)
         end
       end
 
       def destroy
         authorize! :destroy, @task
-        deleted_group = @task.group
+        group = @task.group
         if @task.destroy
           flash.now[:success] = "Task unassigned from group."
-          redirect_to manage_tasks_group_path(deleted_group)
+          redirect_to arm_manage_tasks_group_path(group.arm, group)
         else
           errors = @task.errors.full_messages.join(", ")
           flash[:error] = "Unable to delete task from group: #{ errors }"
-          redirect_to manage_tasks_group_path(@task.group)
+          redirect_to arm_manage_tasks_group_path(group.arm, group)
         end
       end
 

@@ -22,6 +22,7 @@ feature "managing tasks", type: :feature do
   let(:do_awareness) { bit_core_content_modules(:do_awareness) }
   let(:do_planning) { bit_core_content_modules(:do_planning) }
   let(:do_doing) { bit_core_content_modules(:do_doing) }
+  let(:do_doing_arm2) { bit_core_content_modules(:do_doing_arm2) }
   let(:feel) { bit_core_content_modules(:feeling_tracker_module3) }
 
   before do
@@ -31,36 +32,36 @@ feature "managing tasks", type: :feature do
   context "On new" do
 
     it "Assigning of modules with release days" do
-      visit urls.manage_tasks_group_path(group2)
+      visit urls.arm_manage_tasks_group_path(group2.arm, group2)
 
-      task = Task.where(bit_core_content_module_id: do_doing.id, release_day: 1, group_id: group2.id).first
+      task = Task.where(bit_core_content_module_id: do_doing_arm2.id, release_day: 1, group_id: group2.id).first
 
       expect(task).to be_nil
 
-      select("#3 Doing", from: "Select Module")
+      select("#3 Doing ARM2", from: "Select Module")
       fill_in "Release Day", with: 1
       click_on "Assign"
-      task = Task.where(bit_core_content_module_id: do_doing.id, release_day: 1, group_id: group2.id).first
+      task = Task.where(bit_core_content_module_id: do_doing_arm2.id, release_day: 1, group_id: group2.id).first
 
       expect(task).to_not be_nil
-      expect(page).to have_the_table(id: "tasks", cells: ["#3 Doing", "1", "false", "N/A"])
+      expect(page).to have_the_table(id: "tasks", cells: ["#3 Doing ARM2", "1", "false", "N/A"])
     end
 
     it "doesn't allow for the assigning a task with a release day after any participant has left a group" do
-      visit urls.manage_tasks_group_path(group2)
-      task = Task.where(bit_core_content_module_id: do_doing.id, release_day: 1, group_id: group2.id).first
+      visit urls.arm_manage_tasks_group_path(group2.arm, group2)
+      task = Task.where(bit_core_content_module_id: do_doing_arm2.id, release_day: 1, group_id: group2.id).first
       expect(task).to be_nil
-      select("#3 Doing", from: "Select Module")
+      select("#3 Doing ARM2", from: "Select Module")
       fill_in "Release Day", with: 50
       click_on "Assign"
-      task = Task.where(bit_core_content_module_id: do_doing.id, release_day: 1, group_id: group2.id).first
+      task = Task.where(bit_core_content_module_id: do_doing_arm2.id, release_day: 1, group_id: group2.id).first
       expect(task).to be_nil
       expect(page).to have_content "Unable to assign task"
       expect(page).to have_content "Release day comes after some members are finished"
     end
 
     it "Assigns modules as reocurring every day until the end date" do
-      visit urls.manage_tasks_group_path(group3)
+      visit urls.arm_manage_tasks_group_path(group3.arm, group3)
       task = Task.where(bit_core_content_module_id: feel.id, release_day: 2, group_id: group3.id).first
 
       expect(task).to be_nil
@@ -115,7 +116,7 @@ feature "managing tasks", type: :feature do
       expect(page).not_to have_content("Tracking Your Mood")
 
       sign_in_user admin1
-      visit urls.manage_tasks_group_path(group3)
+      visit urls.arm_manage_tasks_group_path(group3.arm, group3)
 
       expect(page).to have_the_table(
         id: "tasks",
@@ -131,7 +132,7 @@ feature "managing tasks", type: :feature do
   end
 
   it "Unassigns a task" do
-    visit urls.manage_tasks_group_path(group1)
+    visit urls.arm_manage_tasks_group_path(group1.arm, group1)
     task = Task.where(bit_core_content_module_id: do_awareness.id, release_day: 1, group_id: group1.id).first
     expect(task).to_not be_nil
     with_scope "#task-#{task.id}" do

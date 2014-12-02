@@ -3,7 +3,7 @@ home_landing:
   tool: home
   position: 1
 
-home_landing_for_different_arm:
+home_landing_arm2:
   title: Landing 
   tool: home2
   position: 1
@@ -26,6 +26,11 @@ do_planning:
 do_doing:
   title: '#3 Doing'
   tool: activity_tracker
+  position: 4
+
+do_doing_arm2:
+  title: '#3 Doing ARM2'
+  tool: activity_tracker2
   position: 4
 
 create_activity:

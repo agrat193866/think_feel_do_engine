@@ -27,7 +27,7 @@ feature "Slideshow", type: :feature do
       slideshow = BitCore::Slideshow.find_by_title("Do - Awareness Introduction")
       expect(page).to have_text "Do - Awareness Introduction"
       expect(page).to_not have_text "Updated Title"
-      visit "/manage/groups/#{groups(:group1).id}/edit_tasks"
+      visit "/arms/#{groups(:group1).arm_id}/manage/groups/#{groups(:group1).id}/edit_tasks"
       select "Do - Awareness Introduction", from: "Select Module"
       with_scope ".table" do
         expect(page).to have_text "Do - Awareness Introduction"
@@ -45,7 +45,7 @@ feature "Slideshow", type: :feature do
       expect(current_path).to eq "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
       expect(page).to_not have_text "Do - Awareness Introduction"
       expect(page).to have_text "Updated Title"
-      visit "/manage/groups/#{groups(:group1).id}/edit_tasks"
+      visit "/arms/#{groups(:group1).arm_id}/manage/groups/#{groups(:group1).id}/edit_tasks"
       select "Updated Title", from: "Select Module"
       expect(page).to have_text "Updated Title"
       sign_in_participant participants :participant1
