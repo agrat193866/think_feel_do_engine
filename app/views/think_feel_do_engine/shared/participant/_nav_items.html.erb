@@ -5,6 +5,9 @@
 <% end %>
 
 <% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
+  <% if "LEARN" == tool.title %>
+    <%= yield :desktop_nav_items %>
+  <% end %>
   <% if no_submenu?(tool) %>
     <li class="<%= tool.title %> hidden-xs">
       <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: make_room_for_badge(tool) %>
