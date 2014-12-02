@@ -36,7 +36,7 @@ module ThinkFeelDoEngine
       private
 
       def find_slideshow
-        @slideshow = BitCore::Slideshow.find(params[:slideshow_id])
+        @slideshow = @arm.bit_core_slideshows.find(params[:slideshow_id])
       end
 
       def record_not_found

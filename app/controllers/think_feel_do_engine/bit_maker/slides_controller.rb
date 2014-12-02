@@ -4,7 +4,7 @@ module ThinkFeelDoEngine
     # Slides belong to slideshows
     class SlidesController < ApplicationController
       before_action :authenticate_user!, :set_arm
-      before_action :find_slideshow, except: :index
+      before_action :find_slideshow
       before_action :find_slide, only: [:show, :edit, :update, :destroy]
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
@@ -12,8 +12,7 @@ module ThinkFeelDoEngine
       layout "manage"
 
       def index
-        @slideshows = BitCore::Slideshow.all
-        authorize! :index, @slideshows
+        authorize! :index, @slideshow
       end
 
       def new
@@ -80,7 +79,7 @@ module ThinkFeelDoEngine
       end
 
       def find_slideshow
-        @slideshow = BitCore::Slideshow.find(params[:slideshow_id])
+        @slideshow = @arm.bit_core_slideshows.find(params[:slideshow_id])
       end
 
       def set_arm

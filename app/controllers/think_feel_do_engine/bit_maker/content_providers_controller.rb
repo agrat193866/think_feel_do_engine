@@ -106,7 +106,7 @@ module ThinkFeelDoEngine
       end
 
       def set_slideshows
-        @slideshows = BitCore::Slideshow.all
+        @slideshows = @arm.bit_core_slideshows
       end
     end
   end

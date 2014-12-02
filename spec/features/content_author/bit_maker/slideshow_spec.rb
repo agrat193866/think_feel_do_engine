@@ -84,4 +84,16 @@ feature "Slideshow", type: :feature do
     expect(BitCore::Slideshow.find_by_title("Home Introduction")).to eq nil
     expect(page).to_not have_text("Home Introduction")
   end
+
+  it "should scope slideshows to arm when on index" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
+
+    expect(page).to have_content "Home Intro"
+    expect(page).to_not have_content "HOME Intro ARM@"
+
+    visit "/arms/#{arms(:arm2).id}/bit_maker/slideshows"
+
+    expect(page).to_not have_content "Home Intro"
+    expect(page).to have_content "HOME Intro ARM@"
+  end
 end

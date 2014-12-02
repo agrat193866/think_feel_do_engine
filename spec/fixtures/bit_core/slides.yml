@@ -45,6 +45,12 @@ home_splash1:
   title: Welcome to ThiFeDo
   body: Yay
 
+home_splash_arm2:
+  slideshow: home_splash_arm2
+  position: 1
+  title: Welcome to ThiFeDo ARM2
+  body: Yay ARM2
+
 do_awareness_intro1:
   title: This is just the beginning...
   body: For the next few days, let's start by making you aware of some of the things you do every day.

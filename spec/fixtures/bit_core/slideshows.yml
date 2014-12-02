@@ -1,50 +1,71 @@
 home_splash:
   title: Home Intro
+  arm: arm1
+
+home_splash_arm2:
+  title: HOME Intro ARM@
+  arm: arm2
 
 home_intro:
   title: Home Introduction
+  arm: arm1
 
 do_awareness_intro:
   title: Do - Awareness Introduction
+  arm: arm1
 
 do_planning_intro:
   title: Do - Planning Introduction
+  arm: arm1
 
 do_planning_transition:
   title: Do - Planning Slideshow 3 of 4
+  arm: arm1
 
 do_doing_intro:
   title: Do - Doing Introduction
+  arm: arm1
 
 do_congrats:
   title: Do - Congratulations
+  arm: arm1
 
 think_identifying_intro:
   title: Think - Identifying Introduction
+  arm: arm1
 
 think_identifying_conclusion:
   title: Think - Identifying Conclusion
+  arm: arm1
 
 think_patterns_intro:
   title: Think - Patterns Introduction
+  arm: arm1
 
 think_patterns_conclusion:
   title: Think - Patterns Conclusion
+  arm: arm1
 
 think_reshape_intro:
   title: Think - Reshape Introduction
+  arm: arm1
 
 feel_mood_intro:
   title: Feel - Mood Introduction
+  arm: arm1
 
 feel_emotions_intro:
   title: Feel - Emotions Introduction
+  arm: arm1
 
 feel_changes_intro:
   title: Feel - Changes Introduction
+  arm: arm1
 
 feel_identify_intro:
   title: Feel - Identify Introduction
+  arm: arm1
 
 learn_thoughts_intro:
   title: Learn - Thoughts Introduction
+  arm: arm1

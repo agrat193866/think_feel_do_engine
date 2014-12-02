@@ -46,12 +46,12 @@ feature "Content Provider", type: :feature do
   it "should scope modules by arm when on edit" do
     visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow).id}/edit"
 
-    expect(page).to have_content "home: Landing"
+    expect(page).to have_content "Home Intro"
     expect(page).to_not have_content "HOME: Landing"
 
     visit "/arms/#{arms(:arm2).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow_for_different_arm).id}/edit"
 
-    expect(page).to_not have_content "home: Landing"
+    expect(page).to_not have_content "Home Intro"
     expect(page).to have_content "HOME: Landing"
   end
 end
