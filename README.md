@@ -20,6 +20,22 @@ mount the routes within `config/routes.rb`
       mount ThinkFeelDoEngine::Engine => ""
     end
 
+added correct arm association to the Tool class. You may have to create a file to inject the correct information.
+```ruby
+require File.expand_path("../../app/models/bit_core/tool",
+                         BitCore::Engine.called_from)
+
+# Extend BitCore::Tool model.
+module BitCore
+  class Tool
+    belongs_to :arm,
+               class_name: "Arm"
+
+    validates :arm_id, presence: true
+  end
+end
+```
+
 ## Run specs
 
 Set up the database
@@ -30,8 +46,3 @@ run the specs
 
     rake spec
 
-## ToDo
-1) test for destroying lesson
-2) Additional tests for now updating research content - i.e., managing tasks!
-3) scope content to tool after I move in bit_core models
-4) check for role on edit_task page (use CanCanCan), but you can't authorship content

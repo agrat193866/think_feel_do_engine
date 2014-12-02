@@ -10,8 +10,9 @@ module ThinkFeelDoEngine
 
       # GET /content_modules
       def index
-        @content_modules = BitCore::ContentModule.all
-        authorize! :index, @content_modules
+        # Tools are load via arm - thus the change in the view
+        @tools = @arm.bit_core_tools
+        authorize! :index, @tools
       end
 
       # GET /content_modules/1

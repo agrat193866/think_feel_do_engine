@@ -17,13 +17,15 @@
   </thead>
 
   <tbody>
-    <% @content_modules.includes(:tool).each do |content_module| %>
-      <tr>
-        <td><%= link_to content_module.title, arm_bit_maker_content_module_path(@arm, content_module) %></td>
-        <td><%= link_to content_module.tool.title, arm_bit_maker_tool_path(@arm, content_module.tool) %></td>
-        <td><%= content_module.position %></td>
-        <td><%= content_module.content_providers.count %></td>
-      </tr>
+    <% for tool in @tools %>
+      <% for content_module in tool.content_modules %>
+        <tr>
+          <td><%= link_to content_module.title, arm_bit_maker_content_module_path(@arm, content_module) %></td>
+          <td><%= link_to tool.title, arm_bit_maker_tool_path(@arm, tool) %></td>
+          <td><%= content_module.position %></td>
+          <td><%= content_module.content_providers.count %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

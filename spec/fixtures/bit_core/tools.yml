@@ -1,23 +1,29 @@
 home:
   position: 0
   title: home
+  arm: arm1
 
 thought_tracker:
   position: 1
   title: THINK
+  arm: arm1
 
 feeling_tracker:
   position: 2
   title: FEEL
+  arm: arm1
 
 activity_tracker:
   position: 3
   title: DO
+  arm: arm1
 
 library:
   position: 4
   title: LEARN
+  arm: arm1
 
 messages:
   position: 5
   title: MESSAGES
+  arm: arm1

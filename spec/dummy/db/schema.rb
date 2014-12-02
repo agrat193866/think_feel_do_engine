@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125202627) do
+ActiveRecord::Schema.define(version: 20141201165610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20141125202627) do
     t.integer  "position",   default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "arm_id",                 null: false
   end
 
   add_index "bit_core_tools", ["position"], name: "bit_core_tool_position", unique: true, using: :btree

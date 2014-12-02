@@ -11,6 +11,7 @@
 //= require bootstrap/tab
 //= require bootstrap/transition
 //= require bootstrap/modal
+//= require bootstrap/collapse
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
 //= require rickshaw_with_d3

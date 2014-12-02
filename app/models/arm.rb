@@ -3,6 +3,7 @@
 # could have between 1 and 10 or so participants
 class Arm < ActiveRecord::Base
   has_many :groups
+  has_many :bit_core_tools, class_name: "BitCore::Tool"
 
   validates :title, presence: true
 
