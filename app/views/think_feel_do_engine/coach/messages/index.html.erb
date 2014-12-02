@@ -33,7 +33,7 @@
     <div class="tab-pane" id="sent">
       <div class="list-group">
         <% sent_messages.each do |msg| %>
-          <%= link_to "<span class=\"col-md-2\">To: #{ msg.recipient_study_id }</span>".html_safe + msg.subject + "<span class='pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe, coach_sent_message_path(msg), class: "text-muted list-group-item" %>
+          <%= link_to "<span class=\"p_message\">To: #{ msg.recipient_study_id }</span>".html_safe + "<span class='p_message pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + msg.subject + "</span>".html_safe, coach_sent_message_path(msg), class: "text-muted list-group-item" %>
         <% end %>
       </div>
     </div>

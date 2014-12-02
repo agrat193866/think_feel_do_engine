@@ -130,6 +130,18 @@ ul#nav_main li.active a
   color: white;
 }
 
+/********************[Mobile Friendly Modifications]**************************/
+
+.p_message{
+  display:inline-block;
+  font-size: 13px;
+}
+
+.p_message_subject{
+  display:block;
+}
+
+
 /*******************************[Media]***************************************/
 
 video{

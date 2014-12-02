@@ -68,7 +68,7 @@ feature "coach messages", type: :feature do
     click_on("Send")
     sign_in_participant participants(:participant1)
     visit "/navigator/contexts/MESSAGES"
-    click_on "Coach Message with link"
+    click_on "Message with link"
     expect(page).to have_content "Try this link out:"
   end
 
