@@ -13,10 +13,11 @@ feature "Content Modules", type: :feature do
 
   before do
     sign_in_user users :admin1
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
   end
 
   it "have a corresponding show page that displays the title" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
+
     expect(page).to have_content "#1 Awareness"
 
     original_task = Task.where(group_id: group1.id, bit_core_content_module_id: do_awareness.id, release_day: 1).first
@@ -41,5 +42,35 @@ feature "Content Modules", type: :feature do
     visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
     expect(page).to_not have_content "#1 Awareness"
+  end
+
+  it "should scope modules by arm" do
+    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules"
+
+    expect(page).to_not have_content "#1 Awareness"
+  end
+
+  it "should scope modules by arm when on new" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/new"
+
+    expect(page).to have_content "LEARN"
+    expect(page).to_not have_content "BRAIN"
+
+    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/new"
+
+    expect(page).to_not have_content "LEARN"
+    expect(page).to have_content "BRAIN"
+  end
+
+  it "should scope modules by arm when on edit" do
+    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing).id}/edit"
+
+    expect(page).to have_content "LEARN"
+    expect(page).to_not have_content "BRAIN"
+
+    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing_for_different_arm).id}/edit"
+
+    expect(page).to_not have_content "LEARN"
+    expect(page).to have_content "BRAIN"
   end
 end

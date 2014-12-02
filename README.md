@@ -20,7 +20,16 @@ mount the routes within `config/routes.rb`
       mount ThinkFeelDoEngine::Engine => ""
     end
 
-added correct arm association to the Tool class. You may have to create a file to inject the correct information.
+
+Install the think_feel_do_engine's migrations into the host application and migrate:
+```console
+rake think_feel_do_engine:install:migrations
+rake db:migrate
+```
+
+# move to a concern?
+Add correct arm association to the Tool in ```config/initializers/tools.rb```
+
 ```ruby
 require File.expand_path("../../app/models/bit_core/tool",
                          BitCore::Engine.called_from)

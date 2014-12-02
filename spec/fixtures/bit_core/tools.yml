@@ -27,3 +27,33 @@ messages:
   position: 5
   title: MESSAGES
   arm: arm1
+
+home2:
+  position: 0
+  title: HOME
+  arm: arm2
+
+thought_tracker2:
+  position: 1
+  title: THOUGHT
+  arm: arm2
+
+feeling_tracker2:
+  position: 2
+  title: EMOTION
+  arm: arm2
+
+activity_tracker2:
+  position: 3
+  title: COMPLETE
+  arm: arm2
+
+library2:
+  position: 4
+  title: BRAIN
+  arm: arm2
+
+messages2:
+  position: 5
+  title: GMAIL
+  arm: arm2

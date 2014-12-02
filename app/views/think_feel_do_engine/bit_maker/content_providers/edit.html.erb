@@ -1,6 +1,6 @@
 <h1>Editing Content Provider</h1>
 
-<%= form_for(@content_provider, as: :content_provider, url: bit_maker_content_provider_path(@content_provider)) do |f| %>
+<%= form_for(@content_provider, as: :content_provider, url: arm_bit_maker_content_provider_path(@arm, @content_provider)) do |f| %>
 
   <%= render 'form', f: f %>
 

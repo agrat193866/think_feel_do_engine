@@ -11,8 +11,16 @@
 </div>
 
 <!-- Researchers & Clinicians & Content Authors -->
-<div class="list-group">
-  <% for arm in @arms %>
-    <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Arms</h3>
+  </div>
+  <div class="panel-body">
+    <p>Listed below are the arms you can access, moderate, and manage content.</p>
+  </div>
+  <div class="list-group">
+    <% for arm in @arms %>
+      <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
+    <% end %>
+  </div>
 </div>

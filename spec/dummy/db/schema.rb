@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201165610) do
+ActiveRecord::Schema.define(version: 20141202133320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,8 +115,6 @@ ActiveRecord::Schema.define(version: 20141201165610) do
     t.datetime "updated_at"
     t.integer  "arm_id",                 null: false
   end
-
-  add_index "bit_core_tools", ["position"], name: "bit_core_tool_position", unique: true, using: :btree
 
   create_table "bit_player_participant_statuses", force: true do |t|
     t.string   "context"

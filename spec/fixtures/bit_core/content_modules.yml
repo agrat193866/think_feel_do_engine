@@ -3,6 +3,11 @@ home_landing:
   tool: home
   position: 1
 
+home_landing_for_different_arm:
+  title: Landing 
+  tool: home2
+  position: 1
+
 do_landing:
   title: Do landing
   tool: activity_tracker

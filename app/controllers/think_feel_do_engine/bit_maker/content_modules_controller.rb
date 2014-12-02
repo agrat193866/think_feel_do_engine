@@ -3,15 +3,13 @@ module ThinkFeelDoEngine
     # Enables users to create, update, and delete modules
     # These modules contain providers that display content to the participants
     class ContentModulesController < ApplicationController
-      before_action :authenticate_user!, :set_arm
+      before_action :authenticate_user!, :set_arm, :set_tools
       before_action :set_content_module, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
       layout "manage"
 
       # GET /content_modules
       def index
-        # Tools are load via arm - thus the change in the view
-        @tools = @arm.bit_core_tools
         authorize! :index, @tools
       end
 
@@ -95,6 +93,10 @@ module ThinkFeelDoEngine
 
       def set_content_module
         @content_module = BitCore::ContentModule.find(params[:id])
+      end
+
+      def set_tools
+        @tools = @arm.bit_core_tools
       end
 
       def tasks_destroyed

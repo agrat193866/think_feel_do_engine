@@ -6,5 +6,10 @@ module BitCore
   class Tool
     belongs_to :arm
     validates :arm_id, presence: true
+
+    validates :position,
+              uniqueness: true,
+              numericality: { greater_than_or_equal_to: 0 },
+              uniqueness: { scope: :arm_id }
   end
 end

@@ -4,7 +4,8 @@ module ThinkFeelDoEngine
     # Content providers display the unique views that participants
     # As they traverse each tool each day
     class ContentProvidersController < ApplicationController
-      before_action :authenticate_user!, :set_arm
+      before_action :authenticate_user!, :set_arm,
+                    :set_content_modules, :set_slideshows
 
       layout "manage"
 
@@ -98,6 +99,14 @@ module ThinkFeelDoEngine
 
       def set_arm
         @arm = Arm.find(params[:arm_id])
+      end
+
+      def set_content_modules
+        @content_modules = BitCore::ContentModule.where(bit_core_tool_id: @arm.bit_core_tools.map(&:id))
+      end
+
+      def set_slideshows
+        @slideshows = BitCore::Slideshow.all
       end
     end
   end

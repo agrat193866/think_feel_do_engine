@@ -5,6 +5,13 @@ home_slideshow:
   content_module: home_landing
   position: 1
 
+home_slideshow_for_different_arm:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: home_intro (BitCore::Slideshow)
+  content_module: home_landing_for_different_arm
+  position: 1
+
 module_index_provider:
   type: ContentProviders::ModuleIndexProvider
   content_module: do_landing
