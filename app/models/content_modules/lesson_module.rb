@@ -34,7 +34,7 @@ module ContentModules
     end
 
     def slides
-      lesson_provider.source_content.slides || []
+      lesson_provider.try(:source_content).try(:slides) || []
     end
 
     def build_slide(attrs = {})
