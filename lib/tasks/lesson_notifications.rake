@@ -12,7 +12,8 @@ namespace :lesson_notifications do
             if "email" == membership.participant.contact_preference
               puts "sending daily lesson notifications for #{Time.now.wday} on #{Time.now} for lesson module '#{task.bit_core_content_module.title}' to participant #{membership.participant.study_id}"
               ThinkFeelDoEngine::LessonNotificationMailer.lesson_notification_email(membership.participant, task.bit_core_content_module).deliver
-            elsif "sms" == membership.participant.contact_preference
+            elsif "sms" == membership.participant.contact_preference ||
+                  "phone" == membership.participant.contact_preference
               # TODO: Pull this logic out into a seperate Gem
               recipient = membership.participant
 
