@@ -1,4 +1,9 @@
-### 1.5.1 - 2014-12-3
+### 1.5.2 - 2014-12-3
+
+* enhancements
+  * removed unnecessary readme documentation
+
+  ### 1.5.1 - 2014-12-3
 
 * bugfixes
   * added twilio-ruby as a gemspec dependency
