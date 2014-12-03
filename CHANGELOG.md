@@ -1,3 +1,9 @@
+### 1.5.0 - 2014-12-2
+
+* enhancements
+  * Nested managed content for arms
+  * added arm_id and constraints to BitCore::Slideshow & BitCore::Tool
+
 ### 1.4.0 - 2014-12-1
 
 * enhancements
