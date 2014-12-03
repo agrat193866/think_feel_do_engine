@@ -52,6 +52,15 @@ feature "Lessons", type: :feature do
     visit "/arms/#{arms(:arm1).id}/lessons"
   end
 
+  scenario "should only see lessons related to an arm" do
+    expect(page).to have_text "Home Introduction"
+    expect(page).to_not have_text "HELLO aligator"
+
+    visit "/arms/#{arms(:arm2).id}/lessons"
+    expect(page).to have_text "HELLO aligator"    
+    expect(page).to_not have_text "Home Introduction"
+  end
+
   scenario "creating" do
     new_lesson_page = lessons_page.select_new_lesson
     new_lesson_page.fill_in_title "Lesson Alpha"
