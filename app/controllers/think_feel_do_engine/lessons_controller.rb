@@ -1,16 +1,13 @@
 module ThinkFeelDoEngine
   # Enables Lesson CRUD functionality.
   class LessonsController < ApplicationController
-    before_action :authenticate_user!, :set_arm
+    before_action :authenticate_user!, :set_arm, :set_lessons
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     layout "manage"
 
     def index
       authorize! :index, ContentModules::LessonModule
-      @lessons = ContentModules::LessonModule
-                 .includes(:content_providers)
-                 .order(:position)
     end
 
     def show
@@ -25,7 +22,7 @@ module ThinkFeelDoEngine
 
     def create
       authorize! :create, ContentModules::LessonModule
-      lesson_tool = BitCore::Tool.find_or_create_by(title: "LEARN")
+      lesson_tool = @arm.bit_core_tools.find_or_create_by(title: "LEARN")
       @lesson = lesson_tool.add_module(build_lesson)
 
       if @lesson.save
@@ -75,7 +72,7 @@ module ThinkFeelDoEngine
 
     def sort
       authorize! :update, ContentModules::LessonModule
-      if ContentModules::LessonModule.sort(params[:lesson])
+      if @lessons.sort(params[:lesson])
         flash.now[:success] = "Reorder was successful."
         render nothing: true
       else
@@ -91,7 +88,7 @@ module ThinkFeelDoEngine
     end
 
     def find_lesson
-      ContentModules::LessonModule.find(params[:id])
+      @lessons.find(params[:id])
     end
 
     def lesson_params
@@ -109,6 +106,16 @@ module ThinkFeelDoEngine
 
     def set_arm
       @arm = Arm.find(params[:arm_id])
+    end
+
+    def set_lessons
+      @lessons = ContentModules::LessonModule
+        .where(
+          bit_core_tool_id: @arm.bit_core_tools.map(&:id),
+          type: "ContentModules::LessonModule"
+        )
+        .includes(:content_providers)
+        .order(:position)
     end
   end
 end
