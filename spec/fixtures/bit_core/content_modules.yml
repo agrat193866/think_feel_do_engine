@@ -118,15 +118,24 @@ library_landing:
   tool: library
   position: 1
 
-# I am not comfortable with that these modules seem
-# to be 'stand-alone' modules, but that they each
-# have to have different positions: I'm confused. -W
-
 slideshow_content_module_1:
   title: Home Introduction
   tool: library
   type: "ContentModules::LessonModule"
   position: 2
+
+# arm 2...
+library_landing_arm_2:
+  title: Crocodile
+  tool: library2
+  position: 1
+
+slideshow_content_module_1_arm_2:
+  title: HELLO aligator
+  tool: library2
+  type: "ContentModules::LessonModule"
+  position: 2
+# end of arm 2
 
 slideshow_content_module_2:
   title: Do - Awareness Introduction
