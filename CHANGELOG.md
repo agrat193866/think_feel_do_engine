@@ -1,9 +1,9 @@
-### 1.5.1 - 2014-12-2
+### 1.5.1 - 2014-12-3
 
 * bugfixes
   * added twilio-ruby as a gemspec dependency
 
-### 1.5.0 - 2014-12-2
+### 1.5.0 - 2014-12-3
 
 * enhancements
   * Nested managed content for arms
