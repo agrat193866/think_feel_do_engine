@@ -30,7 +30,7 @@ feature "Feel", type: :feature do
         click_on "Tracking Your Mood"
       end
       expect(page).to have_text("Rate your Mood")
-      choose "5"
+      select("5 (Neither)", from: "mood[rating]")
       click_on "Continue"
 
       expect(page).to have_text("Mood saved")
@@ -62,26 +62,33 @@ feature "Feel", type: :feature do
     end
 
     it "allows participants to create and rate multiple emotions at once", :js do
-
       page.find(".container .right.list-group a.list-group-item.task-status:nth-child(1)").trigger("click")
-      page.find("input#mood_rating_5").trigger("click")
+      expect(page).to have_text "What is your mood right now?"
+      select("5 (Neither)", from: "mood[rating]")
       click_on "Continue"
       select("surprised", from: "Emotion")
-      page.execute_script('$("input#emotional_rating_rating_5").click()')
+      select("5 (Some)", from: "emotional_rating[rating]")
 
       page.find("#add-forms").trigger("click")
 
       with_scope "#subcontainer-1" do
         fill_in("Emotion", with: "Jubilant")
       end
-      page.execute_script('$("#subcontainer-1 input#emotional_rating_rating_3").click()')
+
+      with_scope "#subcontainer-1" do
+        select("3", from: "emotional_rating[rating]")
+      end
 
       page.find("#add-forms").trigger("click")
 
       with_scope "#subcontainer-2" do
         fill_in("Emotion", with: "Ecstatic")
       end
-      page.execute_script('$("#subcontainer-2 input#emotional_rating_rating_7").click()')
+
+      with_scope "#subcontainer-2" do
+        select("7", from: "emotional_rating[rating]")
+      end
+
       page.find("input.btn.btn-primary[value='Continue']").trigger("click")
 
       expect(page).to have_text("Emotional Rating saved")

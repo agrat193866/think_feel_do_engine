@@ -1,17 +1,16 @@
 <%= form.label name, label, for: "#{ name }_#{ object.id }" %><br>
 
-<div class="range row">
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left"><%= min_text %></div>
-  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center"><%= mid_text %></div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><%= max_text %></div>
-</div>
-
 <div class="form-group">
-  <div class="btn-group<%= (suggested ||= false) ? ' suggested-radio' : '' %>" data-toggle="buttons" style="width: 100%;">
+  <select id="<%= prefix %>[<%= name %>]" name="<%= prefix %>[<%= name %>]">
     <% (0..10).each do |value| %>
-      <label class="btn btn-default col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <%= form.radio_button name, value %><%= value %>
-      </label>
+      <option value="<%= value %>">
+        <% if value == 0 || value == 5 || value == 10 %>
+          <% suffix = (value == 0)? min_text : ((value == 5)? mid_text : max_text) %>
+          <%= value.to_s + " (" + suffix + ")" %>
+        <% else %>
+          <%= value %>
+        <% end %>
+      </option>
     <% end %>
-  </div>
+  </select>
 </div>

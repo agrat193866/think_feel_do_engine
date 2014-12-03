@@ -6,10 +6,11 @@
     form: f,
     name: "rating",
     label: "What is your mood right now?",
+    prefix: "mood",
     object: mood,
     min_text: "Bad",
     mid_text: "Neither",
-    max_text: "Good&nbsp;&nbsp;".html_safe
+    max_text: "Good"
   )%>
 
   <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>

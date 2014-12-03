@@ -86,21 +86,17 @@ sc.activityTracker = function(path){
 
     //Grab the values from the previous entry
     aName = $("#activity_type_"+ copyFromId).val();
-    pIntensity = $("#pleasure_"+ copyFromId + " .intensity_btn.active").attr("data-intensity");
-    aIntensity = $("#accomplishment_"+ copyFromId + " .intensity_btn.active").attr("data-intensity");
-
-    //Selectors for the next entry
-    newPleasureSelection = $("#pleasure_"+copyToId + " .intensity_btn[data-intensity="+ pIntensity+"]");
-    newAccomplishmentSelection = $("#accomplishment_"+copyToId + " .intensity_btn[data-intensity="+ aIntensity+"]");
+    pIntensity = $("#pleasure_"+ copyFromId + " select")[0].options[$("#pleasure_"+ copyFromId + " select")[0].selectedIndex].value;
+    aIntensity = $("#accomplishment_"+ copyFromId + " select")[0].options[$("#accomplishment_"+ copyFromId + " select")[0].selectedIndex].value;
 
     //Paste the activity title
     $("#activity_type_"+copyToId).val(aName);
 
     //Copy the pleasure rating
-    self.copyIntensity(copyToId, "pleasure", newPleasureSelection,pIntensity);
+    self.copyIntensity(copyToId, "pleasure", pIntensity);
 
     //Copy the accomplishment rating
-    self.copyIntensity(copyToId, "accomplishment", newAccomplishmentSelection,aIntensity);
+    self.copyIntensity(copyToId, "accomplishment",aIntensity);
 
     return false;
   };
@@ -257,25 +253,9 @@ sc.activityTracker = function(path){
   };
 
   /* Utility - [DO#1 Awareness - Data Preparation] */
-  this.copyIntensity = function(toId, typeString, newIntensitySelection, newIntensity) {
-    var ap = typeString.substr(0, 1);
-    //Clear all "clicked" styling on the activity we're copying to
-    $("#"+typeString+"_"+toId + " .intensity_btn").removeClass("active");
-
-    if(newIntensitySelection.length > 0)
-    {
-      //Set the new selection to the "clicked" styling
-      newIntensitySelection.addClass("active");
-      //Now actually toggle the hidden radio button on the backend to submit the correct data
-      newIntensitySelection.children("input").prop("checked", true);
-      //Update the indicators under the text
-      $("#"+ap+"_indicator_" + toId).removeClass("label-danger").addClass("label-info").addClass("label-rating").text(newIntensity);
-    }
-    else
-    {
-      $("#"+typeString+"_"+toId + " .intensity_btn").children("input").prop("checked", false);
-      $("#"+ap+"_indicator_" + toId).removeClass("label-info").removeClass("label-rating").addClass("label-danger").text("Not Rated");
-    }
+  this.copyIntensity = function(toId, typeString, newIntensity) {
+    newSelection = $("#"+typeString+"_"+ toId + " select")[0];
+    newSelection.selectedIndex = newIntensity;
   };
 
   /* Utility - [DO#2 Planning - Data Preparation] */

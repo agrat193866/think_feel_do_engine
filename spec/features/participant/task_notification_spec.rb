@@ -115,10 +115,7 @@ feature "task notification", type: :feature do
       expect(new_task_count).to eq 1
 
       click_on "Tracking Your Mood"
-
-      expect(page).to have_selector("label.btn:nth-child(6)")
-
-      page.find("label.btn:nth-child(6)").trigger("click")
+      choose_rating "new_mood", 5
 
       click_on "Continue"
       click_on "Continue"

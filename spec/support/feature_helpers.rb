@@ -11,7 +11,7 @@ end
 
 # Select a rating.
 def choose_rating(element_id, value)
-  find("##{ element_id } .intensity_btn:nth-child(#{ value + 1 })").click
+  find("##{ element_id } select").find(:xpath, "option[#{(value + 1)}]").select_option
 end
 
 RSpec::Matchers.define :appear_before do |later_content|

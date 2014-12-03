@@ -124,8 +124,8 @@ feature "activity tracker", type: :feature do
       choose_rating "accomplishment_0", 10
 
       click_on "Continue"
-      page.find("#pleasure_0 .intensity_btn:nth-child(11)").trigger("click")
-      page.find("#accomplishment_0 .intensity_btn:nth-child(11)").trigger("click")
+      choose_rating "pleasure_0", 10
+      choose_rating "accomplishment_0", 10
 
       expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
       fill_in "activity_activity_type_new_title", with: "Parkour"
@@ -189,8 +189,8 @@ feature "activity tracker", type: :feature do
       click_on "Add a New Activity"
       expect(page).to have_text("Choose one")
       find("input[value='Loving'][type='radio']").click
-      find("#pleasure_0 .intensity_btn:nth-child(11)").trigger("click")
-      find("#accomplishment_0 .intensity_btn:nth-child(11)").trigger("click")
+      choose_rating "pleasure_0", 10
+      choose_rating "accomplishment_0", 10
       click_on "Continue"
       expect(page).to have_text("Activity saved")
       with_scope "#Upcoming_Activities table.table" do
