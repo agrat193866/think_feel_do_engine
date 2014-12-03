@@ -1,3 +1,4 @@
+# This migration comes from think_feel_do_engine (originally 20141202173458)
 class ChangeColumnBitCoreSlideshowsToNullFalse < ActiveRecord::Migration
   def up
     BitCore::Slideshow.all.each do |slideshow|
