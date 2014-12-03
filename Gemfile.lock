@@ -18,7 +18,7 @@ GIT
 PATH
   remote: .
   specs:
-    think_feel_do_engine (1.5.0)
+    think_feel_do_engine (1.5.1)
       bit_core (~> 1.2)
       bit_player (~> 0.4)
       bootstrap-sass (~> 3.1)
@@ -32,6 +32,7 @@ PATH
       sass-rails (~> 4.0)
       strong_password (~> 0)
       turbolinks (~> 2.2)
+      twilio-ruby (~> 3.12)
       underscore-rails (~> 1.6)
 
 GEM

@@ -21,6 +21,7 @@ gem "event_capture",
 gem "jquery-datatables-rails",
     tag: "v1.12.0",
     git: "https://github.com/rweng/jquery-datatables-rails.git"
+
 gem "twilio-ruby", "~> 3.12"
 
 group :test do
