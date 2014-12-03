@@ -1,3 +1,8 @@
+### 1.5.3 - 2014-12-3
+
+* enhancements
+  * removed unnecessary migrations in spec/dummy
+
 ### 1.5.2 - 2014-12-3
 
 * enhancements
