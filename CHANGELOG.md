@@ -1,4 +1,4 @@
-### 1.5.4 - 2014-12-4
+### 1.5.5 - 2014-12-4
 
 * enhancements
   * lessons are now scoped within arms
