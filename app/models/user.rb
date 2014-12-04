@@ -26,12 +26,16 @@ class User < ActiveRecord::Base
            dependent: :nullify
   has_many :user_roles, dependent: :destroy
 
-  validates :password, password_strength: { use_dictionary: true }
+  validates :password, password_strength: { use_dictionary: true }, :if => :password_is__not_blank?
 
   accepts_nested_attributes_for :coach_assignments
 
   def build_sent_message(attributes = {})
     sent_messages.build(attributes)
+  end
+
+  def password_is__not_blank?
+    !password.blank?
   end
 
   def admin?

@@ -1,24 +1,24 @@
 admin1:
   email: admin1@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
   is_admin: true
 
 user1:
   email: user1@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
 
 user2:
   email: user2@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
 
 user_without_participants:
   email: user3@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
 
 user_without_role:
   email: user4@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
 
 user_with_memberless_participant:
   email: user5@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'secrets!') %>
+  encrypted_password: <%= User.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>

@@ -58,6 +58,10 @@ module ThinkFeelDoEngine
 
           before do
             allow(controller).to receive(:set_lesson).and_return(lesson)
+<<<<<<< HEAD
+=======
+            allow(ContentModules::LessonModule).to receive(:find) { lesson }
+>>>>>>> master
             allow(Arm).to receive(:find) { arm }
           end
 

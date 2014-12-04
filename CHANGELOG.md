@@ -1,3 +1,8 @@
+### 1.5.4 - 2014-12-4
+
+* bugfixes
+  * updated user and participant strong password validations and fixtures to use stronger passwords.
+
 ### 1.5.3 - 2014-12-3
 
 * enhancements
