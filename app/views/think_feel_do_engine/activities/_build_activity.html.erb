@@ -61,7 +61,7 @@
       "think_feel_do_engine/activities/intensity_selector",
       form: f,
       name: :predicted_pleasure_intensity,
-      label: "<span class=\"match_label_small\">How much pleasure did you expect to get from doing this?</span>".html_safe,
+      label: "How much pleasure did you expect to get from doing this?",
       activity: current_participant.activities.build,
       min_text: "None",
       mid_text: "Some",
@@ -75,7 +75,7 @@
       "think_feel_do_engine/activities/intensity_selector",
       form: f,
       name: :predicted_accomplishment_intensity,
-      label: "<span class=\"match_label_small\">How much accomplishment do you expect to get from doing this?</span>".html_safe,
+      label: "How much accomplishment do you expect to get from doing this?",
       activity: current_participant.activities.build,
       min_text: "None",
       mid_text: "Some",
@@ -94,7 +94,6 @@
 
 <script type="text/javascript">
   $(".form-control-static").focus(function() {
-    console.log($(this).siblings("span").children("input"));
     $($(this).siblings("span").children("input")).prop("checked", true);
   });
   var AT = new sc.activityTracker("<%= navigator_next_content_path %>");

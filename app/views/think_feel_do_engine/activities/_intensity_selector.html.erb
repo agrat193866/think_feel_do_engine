@@ -1,22 +1,21 @@
-<%= form.label name, label, for: "#{ name }_#{ activity.id }" %><br>
+<%#= form.label name, label, for: "#{ name }_#{ activity.id }" %>
+<%= form.label name, label, for: "activity_#{ name }" %>
 
 <% 
-min_text = "None" 
-mid_text = "Some"
-max_text = "A Lot"
+min_text ||= "None" 
+mid_text ||= "Some"
+max_text ||= "A Lot"
 %>
 
-<div class="form-group">
-  <select name="activity[<%= name %>]" id="activity[<%= name %>]" data-selector="<%= (defined? index)? index : 0 %>">
-    <% (0..10).each do |value| %>
-      <option value="<%= value %>" data-intensity="<%= value %>">
-        <% if value == 0 || value == 5 || value == 10 %>
-          <% suffix = (value == 0)? min_text : ((value == 5)? mid_text : max_text) %>
-          <%= value.to_s + " (" + suffix + ")" %>
-        <% else %>
-          <%= value %>
-        <% end %>
-      </option>
-    <% end %>
-  </select>
-</div>
+<select name="activity[<%= name %>]" id="activity_<%= name %>" class="form-control" data-selector="<%= (defined? index)? index : 0 %>">
+  <% (0..10).each do |value| %>
+    <option value="<%= value %>" data-intensity="<%= value %>">
+      <% if value == 0 || value == 5 || value == 10 %>
+        <% suffix = (value == 0)? min_text : ((value == 5)? mid_text : max_text) %>
+        <%= value.to_s + " (" + suffix + ")" %>
+      <% else %>
+        <%= value %>
+      <% end %>
+    </option>
+  <% end %>
+</select>

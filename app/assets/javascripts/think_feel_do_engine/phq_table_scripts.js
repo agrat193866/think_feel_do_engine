@@ -1,5 +1,4 @@
 showWarningInfo = function(rows, span, flag){
-  console.log(flag,rows.hasClass(flag));
   if(rows.hasClass(flag))
     span.addClass("show_suffix_info");
   else
