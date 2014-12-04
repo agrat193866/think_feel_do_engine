@@ -2,6 +2,7 @@ module ThinkFeelDoEngine
   # Enables Lesson CRUD functionality.
   class LessonsController < ApplicationController
     before_action :authenticate_user!, :set_arm, :set_lessons
+    before_action :set_lesson, only: [:show, :edit, :update, :destroy]
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     layout "manage"
@@ -12,7 +13,6 @@ module ThinkFeelDoEngine
 
     def show
       authorize! :show, ContentModules::LessonModule
-      @lesson = find_lesson
     end
 
     def new
@@ -37,12 +37,10 @@ module ThinkFeelDoEngine
 
     def edit
       authorize! :edit, ContentModules::LessonModule
-      @lesson = find_lesson
     end
 
     def update
-      authorize! :update, ContentModules::LessonModule
-      @lesson = find_lesson
+      # authorize! :update, ContentModules::LessonModule
 
       if @lesson.update(lesson_params)
         redirect_to arm_lesson_url(@arm, @lesson),
@@ -56,7 +54,6 @@ module ThinkFeelDoEngine
 
     def destroy
       authorize! :destroy, ContentModules::LessonModule
-      @lesson = find_lesson
 
       ContentModules::LessonModule.transaction do
         Task.where(bit_core_content_module_id: @lesson.id).destroy_all
@@ -87,10 +84,6 @@ module ThinkFeelDoEngine
       ContentModules::LessonModule.new(lesson_params)
     end
 
-    def find_lesson
-      @lessons.find(params[:id])
-    end
-
     def lesson_params
       params.require(:lesson).permit(:title, :position) if params[:lesson]
     end
@@ -108,10 +101,14 @@ module ThinkFeelDoEngine
       @arm = Arm.find(params[:arm_id])
     end
 
+    def set_lesson
+      @lesson = @lessons.find(params[:id])
+    end
+
     def set_lessons
       @lessons = ContentModules::LessonModule
         .where(
-          bit_core_tool_id: @arm.bit_core_tools.map(&:id),
+          bit_core_tool_id: @arm.bit_core_tools.all.map(&:id),
           type: "ContentModules::LessonModule"
         )
         .includes(:content_providers)

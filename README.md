@@ -14,12 +14,13 @@ then install
 
     bundle install
 
-mount the routes within `config/routes.rb`
+mount the routes within ```config/routes.rb```
 
-    Rails.application.routes.draw do
-      mount ThinkFeelDoEngine::Engine => ""
-    end
-
+```ruby
+  Rails.application.routes.draw do
+    mount ThinkFeelDoEngine::Engine => ""
+  end
+```
 
 Install the think_feel_do_engine's migrations into the host application and migrate:
 ```console
