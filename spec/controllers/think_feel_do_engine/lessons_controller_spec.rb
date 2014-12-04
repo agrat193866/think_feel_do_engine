@@ -58,7 +58,6 @@ module ThinkFeelDoEngine
 
           before do
             allow(controller).to receive(:set_lesson).and_return(lesson)
-            allow(ContentModules::LessonModule).to receive(:find) { lesson }
             allow(Arm).to receive(:find) { arm }
           end
 
@@ -126,7 +125,8 @@ module ThinkFeelDoEngine
           let(:lesson) { double("lesson", update: false, errors: errors) }
 
           it "should render the edit page" do
-            allow(controller).to receive(:set_lesson).and_return(lesson)
+            allow(controller).to receive(:set_lessons).and_return(ContentModules::LessonModule)
+            allow(@lesson).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
             expect(response).to render_template :edit
           end
@@ -136,8 +136,9 @@ module ThinkFeelDoEngine
           let(:lesson) { double("lesson", update: true) }
 
           it "should redirect to the lesson page" do
-            allow(controller).to receive(:set_lesson).and_return(lesson)
-            put :update, id: 2, use_route: :think_feel_do_engine
+            allow(controller).to receive(:set_lessons).and_return(ContentModules::LessonModule)
+            allow(@lesson).to receive(:find).and_return(lesson)
+            put :update, id: 1, use_route: :think_feel_do_engine
             expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end
