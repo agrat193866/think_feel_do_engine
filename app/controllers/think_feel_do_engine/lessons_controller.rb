@@ -40,7 +40,7 @@ module ThinkFeelDoEngine
     end
 
     def update
-      # authorize! :update, ContentModules::LessonModule
+      authorize! :update, ContentModules::LessonModule
 
       if @lesson.update(lesson_params)
         redirect_to arm_lesson_url(@arm, @lesson),
