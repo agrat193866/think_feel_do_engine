@@ -43,12 +43,16 @@ class Participant < ActiveRecord::Base
 
   delegate :end_date, to: :active_membership, prefix: true, allow_nil: true
 
-  validates :password, password_strength: { use_dictionary: true }
+  validates :password, password_strength: { use_dictionary: true }, :if => :password_is__not_blank?
 
   accepts_nested_attributes_for :coach_assignment
 
   def self.active
     joins(:memberships).merge(Membership.active)
+  end
+
+  def password_is__not_blank?
+    !password.blank?
   end
 
   def populate_emotions
