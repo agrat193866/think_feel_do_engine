@@ -1,3 +1,12 @@
+### 1.5.6 - 2014-12-4
+
+* enhancements
+  * Removed console.log calls from js files that were also showing up in specs
+  * Removed excess css and improved the select option dropdowns to match bootstrap styling with the correct for and id attributes
+
+* bugfixes
+  * think_feel_do_so tests will now pass with the updates to the select option dropdowns
+
 ### 1.5.5 - 2014-12-4
 
 * enhancements
