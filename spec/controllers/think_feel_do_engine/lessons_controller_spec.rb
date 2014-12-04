@@ -123,10 +123,11 @@ module ThinkFeelDoEngine
         context "when the lesson does not save" do
           let(:errors) { double("errors", full_messages: []) }
           let(:lesson) { double("lesson", update: false, errors: errors) }
+          let(:bit_core_content_module) { double("bit_core_content_module") }
 
           it "should render the edit page" do
-            allow(controller).to receive(:set_lessons).and_return(ContentModules::LessonModule)
-            allow(@lesson).to receive(:find).and_return(lesson)
+            allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
+            allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
             expect(response).to render_template :edit
           end
@@ -134,10 +135,11 @@ module ThinkFeelDoEngine
 
         context "when the lesson saves" do
           let(:lesson) { double("lesson", update: true) }
+          let(:bit_core_content_module) { double("bit_core_content_module") }
 
           it "should redirect to the lesson page" do
-            allow(controller).to receive(:set_lessons).and_return(ContentModules::LessonModule)
-            allow(@lesson).to receive(:find).and_return(lesson)
+            allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
+            allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
             expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
