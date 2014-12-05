@@ -1,6 +1,5 @@
 # Uses CanCan to assign granular authorizations.
-
-# To do: move into its own engine... -W
+# ToDo: create this as a Ruby Gem -W
 class Ability
   include CanCan::Ability
 
