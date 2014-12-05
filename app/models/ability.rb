@@ -1,4 +1,6 @@
 # Uses CanCan to assign granular authorizations.
+
+# To do: move into its own engine... -W
 class Ability
   include CanCan::Ability
 
@@ -58,8 +60,9 @@ class Ability
     can :manage, CoachAssignment
     can :manage, Group
     can :manage, Membership
+    can :manage, ThinkFeelDoDashboard::Moderator
     can :manage, Participant
-    can :manage, Reports
+    can :manage, Reports::LessonSlideView
     can :manage, User
   end
 
@@ -68,6 +71,6 @@ class Ability
   # end
 
   # think_feel_do_dashboard
-  # def authorize_content_author
-  # end
+  def authorize_content_author
+  end
 end
