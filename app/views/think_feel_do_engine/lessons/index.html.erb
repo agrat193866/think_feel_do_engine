@@ -19,6 +19,9 @@
   <tbody id="sortable-slides" data-update-url="<%= sort_arm_lessons_url(@arm, @lesson) %>">
 		<% @lessons.includes(content_providers: :source_content).each do |lesson| %>
 			<tr id="lesson-<%= lesson.id %>">
+				<td>
+					<%= lesson.position %>
+				</td>
 				<td><span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span><td>
 					<%= link_to lesson.pretty_title, arm_lesson_path(@arm, lesson) %>
 				</td>

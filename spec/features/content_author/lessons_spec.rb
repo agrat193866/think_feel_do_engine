@@ -69,6 +69,20 @@ feature "Lessons", type: :feature do
     expect(page).to have_text "Successfully created lesson"
   end
 
+  scenario "create a lesson for an arm when no lessons yet exist" do
+    arm_lessons = BitCore::ContentModule.where(bit_core_tool_id: arms(:arm3).bit_core_tools.map(&:id))
+
+    expect(arm_lessons.count).to eq 0
+
+    visit "/arms/#{arms(:arm3).id}/lessons"
+    click_on "New"
+    fill_in "Title", with: "Lesson Alpha"
+    fill_in "Position", with: 1
+    click_on "Create"
+
+    expect(page).to have_text "Successfully created lesson"
+  end
+
   scenario "adding a slide" do
     click_on "Home Introduction"
     click_on "Add Slide"

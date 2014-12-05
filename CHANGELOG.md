@@ -1,3 +1,9 @@
+### 1.5.9 - 2014-12-5
+
+* bug fixes
+  * Updated bit_core to allow for a lesson to be created when no lessons exist yet for an arm
+  * Consequently, config for slideshows and tools can be removed
+
 ### 1.5.8 - 2014-12-5
 
 * enhancements
