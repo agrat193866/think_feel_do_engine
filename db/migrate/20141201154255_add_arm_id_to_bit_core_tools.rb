@@ -17,6 +17,7 @@ class AddArmIdToBitCoreTools < ActiveRecord::Migration
   def down
     remove_column :bit_core_tools, :arm_id, :integer
 
-    Arm.find_by_title("Arm for Orphaned Modules").destroy
+    a = Arm.find_by_title("Arm for Orphaned Modules")
+    a.destroy if a
   end
 end

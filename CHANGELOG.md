@@ -1,3 +1,8 @@
+### 1.5.8 - 2014-12-5
+
+* enhancements
+  * Updated migration file to ensure backwards compatibility
+
 ### 1.5.7 - 2014-12-5
 
 * enhancements
