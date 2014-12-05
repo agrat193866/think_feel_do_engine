@@ -10,6 +10,10 @@ class Ability
       authorize_admin
     elsif @user.coach?
       authorize_coach
+    elsif @user.content_author?
+      authorize_content_author
+    elsif @user.researcher?
+      authorize_researcher
     end
   end
 
@@ -48,4 +52,22 @@ class Ability
       participant_id: participant_id
     )
   end
+
+  # think_feel_do_dashboard
+  def authorize_researcher
+    can :manage, CoachAssignment
+    can :manage, Group
+    can :manage, Membership
+    can :manage, Participant
+    can :manage, Reports
+    can :manage, User
+  end
+
+  # think_feel_do_dashboard
+  # def authorize_coach
+  # end
+
+  # think_feel_do_dashboard
+  # def authorize_content_author
+  # end
 end
