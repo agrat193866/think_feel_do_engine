@@ -1,3 +1,9 @@
+### 1.5.7 - 2014-12-5
+
+* enhancements
+  * Removed reports controller
+  * Updated ability file for authorization used in think_feel_do_dashboard engine
+
 ### 1.5.6 - 2014-12-4
 
 * enhancements
