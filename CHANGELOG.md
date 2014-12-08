@@ -1,3 +1,9 @@
+### 1.5.10 - 2014-12-8
+
+* bug fixes
+  * Added has many relation on participants for events with a destroy dependency
+  * Can now destroy participants
+
 ### 1.5.9 - 2014-12-5
 
 * bug fixes
