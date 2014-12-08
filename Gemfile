@@ -13,7 +13,10 @@ gemspec
 # To use debugger
 # gem "debugger"
 
-gem "bit_player", "~> 0.4"
+gem "bit_player",
+    tag: "0.4.6",
+    git: "https://github.com/cbitstech/bit_player.git"
+
 gem "devise", "~> 3.2"
 gem "event_capture",
     git: "https://github.com/cbitstech/event_capture.git",
@@ -23,7 +26,7 @@ gem "jquery-datatables-rails",
     git: "https://github.com/rweng/jquery-datatables-rails.git"
 
 gem "bit_core",
-    tag: "1.3.0",
+    tag: "1.3.2",
     git: "https://github.com/cbitstech/bit_core.git"
 
 gem "twilio-ruby", "~> 3.12"
