@@ -9,11 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/cbitstech/bit_player.git
-  revision: 7b786cddce6e48f914b0d8e81644255dbf92a7a2
-  tag: 0.4.6
+  revision: 405d5bd8a27eaae8a9a568f3575319a898adff1a
+  tag: 0.4.7
   specs:
-    bit_player (0.4.6)
-      bit_core
+    bit_player (0.4.7)
       rails (~> 4.1)
 
 GIT
@@ -37,8 +36,6 @@ PATH
   remote: .
   specs:
     think_feel_do_engine (1.5.11)
-      bit_core
-      bit_player
       bootstrap-sass (~> 3.1)
       cancan (~> 1.6)
       devise (~> 3.2)

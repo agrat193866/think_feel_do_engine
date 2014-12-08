@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1"
   s.add_dependency "turbolinks", "~> 2.2"
-  s.add_dependency "bit_core"
-  s.add_dependency "bit_player"
   s.add_dependency "devise", "~> 3.2"
   s.add_dependency "cancan", "~> 1.6"
   s.add_dependency "strong_password", "~> 0"
