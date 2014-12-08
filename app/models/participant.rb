@@ -35,11 +35,14 @@ class Participant < ActiveRecord::Base
   has_one :coach_assignment, dependent: :destroy
   has_one :coach, class_name: "User", through: :coach_assignment
   has_many :participant_login_events, dependent: :destroy
-  has_many :click_events,
-           -> { where(kind: "click") },
+  has_many :events,
            class_name: "EventCapture::Event",
            foreign_key: :participant_id,
            dependent: :destroy
+  has_many :click_events,
+           -> { where(kind: "click") },
+           class_name: "EventCapture::Event",
+           foreign_key: :participant_id
 
   delegate :end_date, to: :active_membership, prefix: true, allow_nil: true
 
