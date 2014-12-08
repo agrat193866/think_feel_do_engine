@@ -1,3 +1,8 @@
+### 1.5.11 - 2014-12-8
+
+* bug fixes
+  * updated bit_core
+
 ### 1.5.10 - 2014-12-8
 
 * bug fixes
