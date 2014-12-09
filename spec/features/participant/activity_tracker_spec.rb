@@ -11,17 +11,16 @@ feature "activity tracker", type: :feature do
   context "Participant1 is logged in" do
     let(:participant1) { participants(:participant1) }
     let(:participant2) { participants(:participant2) }
-    let(:time_hour_from_now) { Time.current + 1.hour }
     let(:now) { Time.current }
 
     before do
+      Time.freeze
       sign_in_participant participant1
       visit "/navigator/contexts/DO"
     end
 
     it "implements #1 Awareness", :js do
       page.find(".container .left.list-group .list-group-item", text: "#1 Awareness").trigger("click")
-      # click_on "#1 Awareness"
 
       expect(page).to have_text(bit_core_slides(:do_awareness_intro1).body)
       find(".btn", text: "Continue").trigger("click")
@@ -187,15 +186,18 @@ feature "activity tracker", type: :feature do
 
     it "creates new accomplishable and/or pleasurable activities via radio", :js do
       click_on "Add a New Activity"
+
       expect(page).to have_text("Choose one")
+
       find("input[value='Loving'][type='radio']").click
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
       click_on "Continue"
+
       expect(page).to have_text("Activity saved")
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Loving"
-        expect(page).to have_text time_hour_from_now.to_s(:date_time_with_meridian)
+        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end
@@ -212,7 +214,7 @@ feature "activity tracker", type: :feature do
 
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Eating!"
-        expect(page).to have_text time_hour_from_now.to_s(:date_time_with_meridian)
+        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end

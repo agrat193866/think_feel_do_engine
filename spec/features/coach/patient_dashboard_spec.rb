@@ -18,6 +18,7 @@ feature "patient dashboard", type: :feature do
 
     context "Coach views table with many patients" do
       before do
+        Time.freeze
         sign_in_user users :clinician1
         visit "/coach_dashboard"
       end
@@ -43,6 +44,7 @@ feature "patient dashboard", type: :feature do
 
     context "Coach visits active patient" do
       before do
+        Time.freeze
         sign_in_user users(:clinician1)
         visit "/coach/patient_dashboards/#{ participant1.id }"
       end
@@ -228,6 +230,7 @@ feature "patient dashboard", type: :feature do
 
     context "Coach visits inactive patient" do
       before do
+        Time.freeze
         sign_in_user users :clinician1
       end
 
