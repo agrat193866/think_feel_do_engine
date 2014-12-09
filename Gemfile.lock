@@ -35,7 +35,7 @@ GIT
 PATH
   remote: .
   specs:
-    think_feel_do_engine (1.5.11)
+    think_feel_do_engine (1.5.12)
       bootstrap-sass (~> 3.1)
       cancan (~> 1.6)
       devise (~> 3.2)
