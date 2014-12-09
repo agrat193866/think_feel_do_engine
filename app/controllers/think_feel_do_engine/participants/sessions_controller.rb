@@ -2,6 +2,8 @@ module ThinkFeelDoEngine
   module Participants
     # Extends the Devise controller to record logins.
     class SessionsController < Devise::SessionsController
+      skip_authorization_check
+
       def create
         participant = Participant.find_by_email params[:participant][:email]
         if participant && participant.memberships.count == 0

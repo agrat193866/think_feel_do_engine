@@ -7,6 +7,7 @@ module ThinkFeelDoEngine
     layout "manage"
 
     def index
+      authorize! :create, Message
     end
   end
 end

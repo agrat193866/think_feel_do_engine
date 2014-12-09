@@ -24,6 +24,7 @@ class Ability
   end
 
   def authorize_coach
+    can :index, Arm
     authorize_coach_messaging
     can :update, Membership do |membership|
       coach_has_participant? @user, membership.participant_id

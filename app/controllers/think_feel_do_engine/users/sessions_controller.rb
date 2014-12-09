@@ -3,6 +3,8 @@ module ThinkFeelDoEngine
     # Extends the Devise controller to notify users
     # if they don't have a role
     class SessionsController < Devise::SessionsController
+      skip_authorization_check
+
       def create
         user = User.find_by_email params[:user][:email]
         if user && !user.admin? && user.user_roles.count == 0

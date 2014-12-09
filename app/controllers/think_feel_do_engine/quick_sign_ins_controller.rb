@@ -1,6 +1,8 @@
 module ThinkFeelDoEngine
   # Used ONLY in development to speed up manual logins.
   class QuickSignInsController < ApplicationController
+    skip_authorization_check
+
     def new
       resource = if params[:user_id]
                    User.where(id: params[:user_id]).first

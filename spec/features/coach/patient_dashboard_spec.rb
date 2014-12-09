@@ -25,6 +25,7 @@ feature "patient dashboard", type: :feature do
 
       it "should display all messages" do
         click_on "Patients"
+
         expect(page).not_to have_text("participant1#example.com")
         expect(page).to have_the_table(
           id: "patients",
