@@ -1,23 +1,23 @@
 task1:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: do_awareness
   release_day: 1
 
 task_doing:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: do_doing
   release_day: 1
 
 task2:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: do_planning
   release_day: 1
 
 do_past_due_activities:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: do_past_due_activities
   release_day: 1
@@ -25,7 +25,7 @@ do_past_due_activities:
   has_didactic_content: false
 
 do_your_activities_viz:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: do_your_activities_viz
   release_day: 1
@@ -33,38 +33,38 @@ do_your_activities_viz:
   has_didactic_content: false
 
 task5_day1:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_identifying
   release_day: 1
 
 task5_day2:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_identifying
   release_day: 2
 
 task6:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_patterns
   release_day: 1
 
 task7:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_reshape
   release_day: 1
 
 task8:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_module5
   release_day: 1
   has_didactic_content: false
 
 think_module_thoughts_table:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_module_thoughts_table
   release_day: 1
@@ -72,14 +72,14 @@ think_module_thoughts_table:
   has_didactic_content: false
 
 think_module_distortion_viz:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: think_module_distortion_viz
   release_day: 1
   is_recurring: true
 
 task10:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: feeling_tracker_module2
   release_day: 1
@@ -87,7 +87,7 @@ task10:
   has_didactic_content: false
 
 task11:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: feeling_tracker_module3
   release_day: 2
@@ -95,21 +95,21 @@ task11:
   has_didactic_content: false
 
 task12:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: feeling_tracker_module4
   release_day: 1
   has_didactic_content: false
 
 task13_1:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: feeling_tracker_emotions_list
   release_day: 1
   has_didactic_content: false
 
 task13_2:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: feeling_tracker_emotions_list
   release_day: 2
@@ -130,32 +130,32 @@ task14_2:
   has_didactic_content: false
 
 task16:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: slideshow_content_module_2
   release_day: 1
 
 task17:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: slideshow_content_module_3
   release_day: 2
 
 task18:
-  creator: user1
+  creator: clinician1
   group: group_without_members1
   bit_core_content_module: slideshow_content_module_3
   release_day: 1
 
 task19:
-  creator: user1
+  creator: clinician1
   group: group_without_members2
   bit_core_content_module: slideshow_content_module_3
   release_day: 1
   is_recurring: true
 
 task_create_activity:
-  creator: user1
+  creator: clinician1
   group: group1
   bit_core_content_module: create_activity
   release_day: 1

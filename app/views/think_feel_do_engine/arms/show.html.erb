@@ -2,7 +2,7 @@
 
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Home", arms_path, class: "btn btn-default" %>  
-  <% if current_user.content_author? %>
+  <% if can? :manage, BitCore::ContentModule %>
     <%= link_to "Manage Content", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
   <% end %>
 </div>

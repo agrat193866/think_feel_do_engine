@@ -4,7 +4,7 @@ feature "Site messages", type: :feature do
   fixtures :all
 
   it "permits sending messages to participants" do
-    sign_in_user users(:user1)
+    sign_in_user users(:clinician1)
     visit "/site_messages/new"
     select participants(:participant1).study_id, from: "Participant"
     fill_in "Subject", with: "one weird trick"

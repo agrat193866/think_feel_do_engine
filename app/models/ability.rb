@@ -1,5 +1,4 @@
 # Uses CanCan to assign granular authorizations.
-# ToDo: create this as a Ruby Gem -W
 class Ability
   include CanCan::Ability
 
@@ -65,11 +64,14 @@ class Ability
     can :manage, User
   end
 
-  # think_feel_do_dashboard
-  # def authorize_coach
-  # end
-
-  # think_feel_do_dashboard
+  # think_feel_do_engine
   def authorize_content_author
+    can :read, Arm
+    can :manage, BitCore::ContentModule
+    can :manage, BitCore::ContentProvider
+    can :manage, BitCore::Slideshow
+    can :manage, BitCore::Slide
+    can :manage, Group
+    can :manage, Task
   end
 end

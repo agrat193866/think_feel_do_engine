@@ -6,6 +6,7 @@ module ThinkFeelDoEngine
 
     def index
       @arm = Arm.find(params[:arm_id])
+      authorize! :read, @arm
     end
   end
 end

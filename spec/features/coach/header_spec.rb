@@ -3,9 +3,14 @@ require "spec_helper"
 feature "header", type: :feature do
   fixtures :users, :user_roles
 
-  it "should display a log out link" do
-    sign_in_user users(:user1)
+  describe "Logged in as a clinician" do
 
-    expect(page).to have_selector("a[href=\"/users/sign_out\"]")
+    before do
+      sign_in_user users :clinician1
+    end
+
+    it "should display a log out link" do
+      expect(page).to have_selector("a[href=\"/users/sign_out\"]")
+    end
   end
 end

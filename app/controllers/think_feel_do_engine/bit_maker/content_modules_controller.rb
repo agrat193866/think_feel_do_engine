@@ -10,7 +10,7 @@ module ThinkFeelDoEngine
 
       # GET /content_modules
       def index
-        authorize! :index, @tools
+        authorize! :index, BitCore::ContentModule
       end
 
       # GET /content_modules/1
@@ -89,6 +89,11 @@ module ThinkFeelDoEngine
 
       def set_arm
         @arm = Arm.find(params[:arm_id])
+      end
+
+      def set_content_modules
+        @content_modules = BitCore::ContentModule
+                            .where(bit_core_tool_id: @arm.bit_core_tools.map(&:id))
       end
 
       def set_content_module

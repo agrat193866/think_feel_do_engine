@@ -9,8 +9,8 @@ module ThinkFeelDoEngine
       layout "manage"
 
       def index
+        authorize! :index, BitCore::Slideshow
         @slideshows = @arm.bit_core_slideshows
-        authorize! :index, @slideshows
       end
 
       def show

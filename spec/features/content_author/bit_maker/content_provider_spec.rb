@@ -8,50 +8,53 @@ feature "Content Provider", type: :feature do
     :tasks, :task_status
   )
 
-  before do
-    sign_in_user users :admin1
-  end
+  context "Logged in as a content author" do
 
-  it "shoud have display a link to modules - not providers" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:awake_period_form_provider).id}"
+    before do
+      sign_in_user users :content_author1
+    end
 
-    expect(page).to have_text "Content Provider"
-    expect(page).to have_text "#1 Awareness"
-    expect(page).to_not have_link "Providers"
-    expect(page).to have_link "Module", href: "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
-  end
+    it "shoud have display a link to modules - not providers" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:awake_period_form_provider).id}"
 
-  it "shoud have display a link to add provider" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
+      expect(page).to have_text "Content Provider"
+      expect(page).to have_text "#1 Awareness"
+      expect(page).to_not have_link "Providers"
+      expect(page).to have_link "Module", href: "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
+    end
 
-    expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
+    it "shoud have display a link to add provider" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
+      expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
 
-    expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
-  end
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
 
-  it "should scope modules by arm when on new" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
+      expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
+    end
 
-    expect(page).to have_content "home: Landing"
-    expect(page).to_not have_content "HOME: Landing"
+    it "should scope modules by arm when on new" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
 
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_providers/new"
+      expect(page).to have_content "home: Landing"
+      expect(page).to_not have_content "HOME: Landing"
 
-    expect(page).to_not have_content "home: Landing"
-    expect(page).to have_content "HOME: Landing"
-  end
+      visit "/arms/#{arms(:arm2).id}/bit_maker/content_providers/new"
 
-  it "should scope modules by arm when on edit" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow).id}/edit"
+      expect(page).to_not have_content "home: Landing"
+      expect(page).to have_content "HOME: Landing"
+    end
 
-    expect(page).to have_content "Home Intro"
-    expect(page).to_not have_content "HOME: Landing"
+    it "should scope modules by arm when on edit" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow).id}/edit"
 
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow_for_different_arm).id}/edit"
+      expect(page).to have_content "Home Intro"
+      expect(page).to_not have_content "HOME: Landing"
 
-    expect(page).to_not have_content "Home Intro"
-    expect(page).to have_content "HOME: Landing"
+      visit "/arms/#{arms(:arm2).id}/bit_maker/content_providers/#{bit_core_content_providers(:home_slideshow_for_different_arm).id}/edit"
+
+      expect(page).to_not have_content "Home Intro"
+      expect(page).to have_content "HOME: Landing"
+    end
   end
 end

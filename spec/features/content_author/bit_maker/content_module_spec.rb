@@ -8,69 +8,71 @@ feature "Content Modules", type: :feature do
     :tasks, :task_status
   )
 
-  let(:group1) { groups(:group1) }
-  let(:do_awareness) { bit_core_content_modules(:do_awareness) }
+  context "Logged in as a content author" do
+    let(:group1) { groups(:group1) }
+    let(:do_awareness) { bit_core_content_modules(:do_awareness) }
 
-  before do
-    sign_in_user users :admin1
-  end
+    before do
+      sign_in_user users :content_author1
+    end
 
-  it "have a corresponding show page that displays the title" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
+    it "have a corresponding show page that displays the title" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
-    expect(page).to have_content "#1 Awareness"
+      expect(page).to have_content "#1 Awareness"
 
-    original_task = Task.where(group_id: group1.id, bit_core_content_module_id: do_awareness.id, release_day: 1).first
+      original_task = Task.where(group_id: group1.id, bit_core_content_module_id: do_awareness.id, release_day: 1).first
 
-    expect(original_task).to_not be_nil
+      expect(original_task).to_not be_nil
 
-    task_status = TaskStatus.where(task_id: original_task.id).first
+      task_status = TaskStatus.where(task_id: original_task.id).first
 
-    expect(task_status).to_not be_nil
+      expect(task_status).to_not be_nil
 
-    click_on "#1 Awareness"
-    click_on "Destroy"
-    deleted_task = Task.where(group_id: group1.id, bit_core_content_module_id: do_awareness.id, release_day: 1).first
+      click_on "#1 Awareness"
+      click_on "Destroy"
+      deleted_task = Task.where(group_id: group1.id, bit_core_content_module_id: do_awareness.id, release_day: 1).first
 
-    expect(deleted_task).to be_nil
+      expect(deleted_task).to be_nil
 
-    task_status = TaskStatus.where(task_id: original_task.id).first
+      task_status = TaskStatus.where(task_id: original_task.id).first
 
-    expect(task_status).to be_nil
-    expect(page).to have_content "Content module along with any associated tasks were successfully destroyed."
+      expect(task_status).to be_nil
+      expect(page).to have_content "Content module along with any associated tasks were successfully destroyed."
 
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
-    expect(page).to_not have_content "#1 Awareness"
-  end
+      expect(page).to_not have_content "#1 Awareness"
+    end
 
-  it "should scope modules by arm" do
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules"
+    it "should scope modules by arm" do
+      visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules"
 
-    expect(page).to_not have_content "#1 Awareness"
-  end
+      expect(page).to_not have_content "#1 Awareness"
+    end
 
-  it "should scope modules by arm when on new" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/new"
+    it "should scope modules by arm when on new" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/new"
 
-    expect(page).to have_content "LEARN"
-    expect(page).to_not have_content "BRAIN"
+      expect(page).to have_content "LEARN"
+      expect(page).to_not have_content "BRAIN"
 
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/new"
+      visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/new"
 
-    expect(page).to_not have_content "LEARN"
-    expect(page).to have_content "BRAIN"
-  end
+      expect(page).to_not have_content "LEARN"
+      expect(page).to have_content "BRAIN"
+    end
 
-  it "should scope modules by arm when on edit" do
-    visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing).id}/edit"
+    it "should scope modules by arm when on edit" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing).id}/edit"
 
-    expect(page).to have_content "LEARN"
-    expect(page).to_not have_content "BRAIN"
+      expect(page).to have_content "LEARN"
+      expect(page).to_not have_content "BRAIN"
 
-    visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing_arm2).id}/edit"
+      visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing_arm2).id}/edit"
 
-    expect(page).to_not have_content "LEARN"
-    expect(page).to have_content "BRAIN"
+      expect(page).to_not have_content "LEARN"
+      expect(page).to have_content "BRAIN"
+    end
   end
 end

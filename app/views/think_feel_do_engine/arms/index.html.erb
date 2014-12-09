@@ -1,26 +1,29 @@
 <h1>Home</h1>
 
-<!-- Researcher -->
 <div class="btn-toolbar" role="toolbar">
-  <% if current_user.researcher? %>
+  <!-- Researcher -->
+  <% if can? :manage, Participant %>
     <%= link_to "Researcher Dashboard", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#"), class: "btn btn-default" %>
   <% end %>
-  <% if current_user.coach? %>
+  <!-- Clinicians -->
+  <% if can? :create, Message %>
     <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
   <% end %>
 </div>
 
-<!-- Researchers & Clinicians & Content Authors -->
+<!-- Content Authors -->
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Arms</h3>
   </div>
   <div class="panel-body">
-    <p>Listed below are the arms you can access, moderate, and manage content.</p>
+    <p>Listed below are the arms for which you can access, moderate, and manage content.</p>
   </div>
   <div class="list-group">
     <% for arm in @arms %>
-      <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
+      <% if can? :read, arm %>
+        <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
+      <% end %>
     <% end %>
   </div>
 </div>

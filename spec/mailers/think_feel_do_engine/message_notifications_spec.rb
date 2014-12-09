@@ -5,11 +5,11 @@ module ThinkFeelDoEngine
     fixtures :users, :user_roles
 
     context "coach creates mail" do
-      let(:mail) { MessageNotifications.new_for_coach(users(:user1)) }
+      let(:mail) { MessageNotifications.new_for_coach(users(:clinician1)) }
 
       it "renders the headers" do
         expect(mail.subject).to eq("New message")
-        expect(mail.to).to eq([users(:user1).email])
+        expect(mail.to).to eq([users(:clinician1).email])
         expect(mail.from).to eq(["stepped_care-no-reply@northwestern.edu"])
       end
 

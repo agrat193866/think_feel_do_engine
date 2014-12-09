@@ -45,68 +45,92 @@ feature "Lessons", type: :feature do
     :"bit_core/content_providers", :tasks
   )
 
-  let(:lessons_page) { LessonsPage.new(self) }
+  context "Logged in as a content author" do
+    let(:lessons_page) { LessonsPage.new(self) }
 
-  before do
-    sign_in_user users(:admin1)
-    visit "/arms/#{arms(:arm1).id}/lessons"
-  end
+    before do
+      sign_in_user users(:content_author1)
+    end
 
-  scenario "should only see lessons related to an arm" do
-    expect(page).to have_text "Home Introduction"
-    expect(page).to_not have_text "HELLO aligator"
+    scenario "should see arm links" do
+      visit "/arms"
 
-    visit "/arms/#{arms(:arm2).id}/lessons"
-    expect(page).to have_text "HELLO aligator"    
-    expect(page).to_not have_text "Home Introduction"
-  end
+      expect(page).to_not have_link "Researcher Dashboard"
+      expect(page).to_not have_link "Coach Dashboard"
+      expect(page).to have_link "Arm 1"
+      expect(page).to have_link "Arm 2"
+    end
 
-  scenario "creating" do
-    new_lesson_page = lessons_page.select_new_lesson
-    new_lesson_page.fill_in_title "Lesson Alpha"
-    new_lesson_page.create_lesson
+    scenario "should see arm links" do
+      visit "/arms"
+      click_on "Arm 1"
 
-    expect(page).to have_text "Successfully created lesson"
-  end
+      expect(page).to have_link "Manage Content"
+    end
 
-  scenario "create a lesson for an arm when no lessons yet exist" do
-    arm_lessons = BitCore::ContentModule.where(bit_core_tool_id: arms(:arm3).bit_core_tools.map(&:id))
+    scenario "should only see lessons related to an arm" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
 
-    expect(arm_lessons.count).to eq 0
+      expect(page).to have_text "Home Introduction"
+      expect(page).to_not have_text "HELLO aligator"
 
-    visit "/arms/#{arms(:arm3).id}/lessons"
-    click_on "New"
-    fill_in "Title", with: "Lesson Alpha"
-    fill_in "Position", with: 1
-    click_on "Create"
+      visit "/arms/#{arms(:arm2).id}/lessons"
 
-    expect(page).to have_text "Successfully created lesson"
-  end
+      expect(page).to have_text "HELLO aligator"    
+      expect(page).to_not have_text "Home Introduction"
+    end
 
-  scenario "adding a slide" do
-    click_on "Home Introduction"
-    click_on "Add Slide"
-    fill_in "Title", with: "Slide Alpha"
-    fill_in "Body", with: "Body A"
-    click_on "Create"
+    scenario "creating" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
+      new_lesson_page = lessons_page.select_new_lesson
+      new_lesson_page.fill_in_title "Lesson Alpha"
+      new_lesson_page.create_lesson
 
-    expect(page).to have_text("Successfully created slide for lesson")
-  end
+      expect(page).to have_text "Successfully created lesson"
+    end
 
-  scenario "adding a video slide" do
-    click_on "Home Introduction"
-    click_on "Add Video Slide"
-    fill_in "Title", with: "Slide Beta"
-    fill_in "Vimeo ID", with: "1234567"
-    fill_in "Body", with: "Body B"
-    click_on "Create"
+    scenario "create a lesson for an arm when no lessons yet exist" do
+      arm_lessons = BitCore::ContentModule.where(bit_core_tool_id: arms(:arm3).bit_core_tools.map(&:id))
 
-    expect(page).to have_text("Successfully created slide for lesson")
-  end
+      expect(arm_lessons.count).to eq 0
 
-  scenario "deleting an assigned lesson" do
-    lessons_page.delete_lesson "Do - Awareness Introduction"
+      visit "/arms/#{arms(:arm3).id}/lessons"
+      click_on "New"
+      fill_in "Title", with: "Lesson Alpha"
+      fill_in "Position", with: 1
+      click_on "Create"
 
-    expect(page).to have_text "Lesson deleted."
+      expect(page).to have_text "Successfully created lesson"
+    end
+
+    scenario "adding a slide" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
+      click_on "Home Introduction"
+      click_on "Add Slide"
+      fill_in "Title", with: "Slide Alpha"
+      fill_in "Body", with: "Body A"
+      click_on "Create"
+
+      expect(page).to have_text("Successfully created slide for lesson")
+    end
+
+    scenario "adding a video slide" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
+      click_on "Home Introduction"
+      click_on "Add Video Slide"
+      fill_in "Title", with: "Slide Beta"
+      fill_in "Vimeo ID", with: "1234567"
+      fill_in "Body", with: "Body B"
+      click_on "Create"
+
+      expect(page).to have_text("Successfully created slide for lesson")
+    end
+
+    scenario "deleting an assigned lesson" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
+      lessons_page.delete_lesson "Do - Awareness Introduction"
+
+      expect(page).to have_text "Lesson deleted."
+    end
   end
 end

@@ -3,7 +3,7 @@ require "spec_helper"
 describe TaskStatus do
   fixtures :all
 
-  let(:user) { users(:user1) }
+  let(:user) { users(:clinician1) }
   let(:group1) { groups(:group1) }
   let(:group2) { groups(:group2) }
   let(:participant) { participants(:active_participant) }
