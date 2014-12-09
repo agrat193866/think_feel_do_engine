@@ -1,4 +1,4 @@
-### 1.5.11 - 2014-12-09
+### 1.5.12 - 2014-12-09
 
 * enhancements
   * added authorization to many controllers and updated ability file
