@@ -56,6 +56,7 @@ class Ability
 
   # think_feel_do_dashboard
   def authorize_researcher
+    can :index, Arm
     can :manage, CoachAssignment
     can :manage, Group
     can :manage, Membership

@@ -1,3 +1,8 @@
+### 1.5.13 - 2014-12-09
+
+* bug fixes
+  * fix authorization unauthorized bug for researchers on /arms
+
 ### 1.5.12 - 2014-12-09
 
 * enhancements
