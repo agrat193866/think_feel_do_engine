@@ -1,3 +1,9 @@
+### 1.5.14 - 2014-12-10
+
+* bug fixes
+  * updated authorization to include ONLY groups and arms that a coach is assigned to through memberships is visible
+  * updated some incorrectly written validations
+
 ### 1.5.13 - 2014-12-09
 
 * bug fixes
