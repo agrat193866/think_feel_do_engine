@@ -46,6 +46,11 @@ membership6:
   start_date: <%= Date.today.advance(days: 365) %>
   end_date: <%= Date.today.advance(days: 365 + 14) %>
 
+membership_for_group_in_arm4:
+  participant: participant_for_arm4
+  group: group_for_arm4
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today.advance(days: 4) %>
 ###
 
 # membership_phq1:

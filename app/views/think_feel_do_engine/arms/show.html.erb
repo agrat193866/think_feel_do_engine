@@ -16,7 +16,9 @@
   </div>
   <div class="list-group">
     <% for group in @arm.groups %>
-      <%= link_to group.title, "#", :class => "list-group-item" %>
+      <% if can? :show, group %>
+        <%= link_to group.title, "#", :class => "list-group-item" %>
+      <% end %>
     <% end %>
   </div>
 </div>

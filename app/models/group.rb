@@ -11,9 +11,11 @@ class Group < ActiveRecord::Base
            dependent: :destroy,
            inverse_of: :active_group
   has_many :tasks, dependent: :destroy
+  has_many :participants, through: :memberships
   has_many :active_participants, through: :active_memberships
 
-  validates :arm_id, :title, presence: true, length: { maximum: 50 }
+  validates :arm_id, presence: true
+  validates :title, presence: true, length: { maximum: 50 }
 
   delegate :count, to: :memberships, prefix: true
 

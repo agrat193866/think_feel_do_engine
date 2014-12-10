@@ -21,8 +21,8 @@
   </div>
   <div class="list-group">
     <% for arm in @arms %>
-      <% if can? :read, arm %>
-        <%= link_to "#{arm.title} <span class=\"badge\">#{arm.groups.count}</span>".html_safe, arm_path(arm), :class => "list-group-item" %>
+      <% if can? :show, arm %>
+        <%= link_to arm.title, arm_path(arm), :class => "list-group-item" %>
       <% end %>
     <% end %>
   </div>

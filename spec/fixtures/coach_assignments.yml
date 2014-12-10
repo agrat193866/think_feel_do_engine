@@ -13,6 +13,14 @@ assignment3:
 assignment4:
   participant: participant_wo_membership1
   coach: user_with_memberless_participant
+
+assignment_for_arm4:
+  participant: participant_for_arm4
+  coach: user2
+
+assignment_in_group_3:
+  participant: participant3
+  coach: clinician1
 ###
 
 # assignment_phq1:

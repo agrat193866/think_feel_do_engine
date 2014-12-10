@@ -25,6 +25,19 @@ class Ability
 
   def authorize_coach
     can :index, Arm
+    can :show, Arm do |arm|
+      # ToDo: make a nicer scope/sql call
+      access = false
+      arm.groups.each do |group|
+        unless access
+          access = !(group.participant_ids & @user.participant_ids).empty?
+        end
+      end
+      access
+    end
+    can :show, Group do |group|
+      !(@user.participant_ids & group.participant_ids).empty?
+    end
     authorize_coach_messaging
     can :update, Membership do |membership|
       coach_has_participant? @user, membership.participant_id
@@ -54,6 +67,17 @@ class Ability
     )
   end
 
+  # think_feel_do_engine
+  def authorize_content_author
+    can :read, Arm
+    can :manage, BitCore::ContentModule
+    can :manage, BitCore::ContentProvider
+    can :manage, BitCore::Slideshow
+    can :manage, BitCore::Slide
+    can :manage, Group
+    can :manage, Task
+  end
+
   # think_feel_do_dashboard
   def authorize_researcher
     can :index, Arm
@@ -64,16 +88,5 @@ class Ability
     can :manage, Participant
     can :manage, Reports::LessonSlideView
     can :manage, User
-  end
-
-  # think_feel_do_engine
-  def authorize_content_author
-    can :read, Arm
-    can :manage, BitCore::ContentModule
-    can :manage, BitCore::ContentProvider
-    can :manage, BitCore::Slideshow
-    can :manage, BitCore::Slide
-    can :manage, Group
-    can :manage, Task
   end
 end

@@ -14,7 +14,6 @@ feature "activity tracker", type: :feature do
     let(:now) { Time.current }
 
     before do
-      Time.freeze
       sign_in_participant participant1
       visit "/navigator/contexts/DO"
     end

@@ -18,7 +18,6 @@ feature "patient dashboard", type: :feature do
 
     context "Coach views table with many patients" do
       before do
-        Time.freeze
         sign_in_user users :clinician1
         visit "/coach_dashboard"
       end
@@ -45,7 +44,6 @@ feature "patient dashboard", type: :feature do
 
     context "Coach visits active patient" do
       before do
-        Time.freeze
         sign_in_user users(:clinician1)
         visit "/coach/patient_dashboards/#{ participant1.id }"
       end
@@ -76,45 +74,54 @@ feature "patient dashboard", type: :feature do
       end
 
       it "summarizes learning when not completed learning", :js do
-        visit "/coach/patient_dashboards/#{ participant1.id }"
+        Timecop.travel(time_now) do
+          visit "/coach/patient_dashboards/#{ participant1.id }"
 
-        within_table "learning_data" do
-          expect(page).to_not have_text "Not Completed"
-          expect(page).to have_text "No data available in table"
+          within_table "learning_data" do
+            expect(page).to_not have_text "Not Completed"
+            expect(page).to have_text "No data available in table"
+          end
+
+          sign_in_participant participant1
+          page.find(".LEARN.hidden-xs a").trigger("click")
+
+          expect(page).to have_text("Lessons")
+
+          page.find(".list-group-item", text: "Do - Awareness Introduction").trigger("click")
+          sign_in_user users(:clinician1)
+          visit "/coach/patient_dashboards/#{ participant1.id }"
+
+          expect(page).to have_the_table(
+            id: "learning_data",
+            cells: ["Do - Awareness Introduction", short_timestamp, short_timestamp, "Not Completed", "Not Completed"]
+          )
         end
-
-        sign_in_participant participant1
-        page.find(".LEARN.hidden-xs a").trigger("click")
-        expect(page).to have_text("Lessons")
-        page.find(".list-group-item", text: "Do - Awareness Introduction").trigger("click")
-        sign_in_user users(:clinician1)
-        visit "/coach/patient_dashboards/#{ participant1.id }"
-        expect(page).to have_the_table(
-          id: "learning_data",
-          cells: ["Do - Awareness Introduction", short_timestamp, short_timestamp, "Not Completed", "Not Completed"]
-        )
+        Timecop.return
       end
 
       it "summarizes learning when completed learning", :js do
-        visit "/coach/patient_dashboards/#{ participant1.id }"
+        Timecop.travel(time_now) do
+          visit "/coach/patient_dashboards/#{ participant1.id }"
 
-        within_table "learning_data" do
-          expect(page).to_not have_text "Not Completed"
-          expect(page).to have_text "No data available in table"
+          within_table "learning_data" do
+            expect(page).to_not have_text "Not Completed"
+            expect(page).to have_text "No data available in table"
+          end
+
+          sign_in_participant participant1
+          page.find(".LEARN.hidden-xs a").trigger("click")
+          expect(page).to have_text "You have read"
+          page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
+          click_on "Continue"
+
+          sign_in_user users(:clinician1)
+          visit "/coach/patient_dashboards/#{ participant1.id }"
+          expect(page).to have_the_table(
+            id: "learning_data",
+            cells: ["Do - Awareness Introduction", short_timestamp, short_timestamp, short_timestamp, "less than a minute"]
+          )
         end
-
-        sign_in_participant participant1
-        page.find(".LEARN.hidden-xs a").trigger("click")
-        expect(page).to have_text "You have read"
-        page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
-        click_on "Continue"
-
-        sign_in_user users(:clinician1)
-        visit "/coach/patient_dashboards/#{ participant1.id }"
-        expect(page).to have_the_table(
-          id: "learning_data",
-          cells: ["Do - Awareness Introduction", short_timestamp, short_timestamp, short_timestamp, "less than a minute"]
-        )
+        Timecop.return
       end
 
       it "summarizes moods" do
@@ -166,34 +173,40 @@ feature "patient dashboard", type: :feature do
       end
 
       it "destinguishes between monitored and planned activities", :js do
-        sign_in_participant participants(:participant1)
-        visit "/navigator/contexts/DO"
-        click_on "#1 Awareness"
-        click_on "Continue"
-        select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-        select "#{ Date.yesterday.strftime("%a") } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
-        click_on "Create"
-        expect(page).to have_text("How much pleasure")
-        fill_in "What did you do from 12am to 1am?", with: "run"
-        click_on "Continue"
-        # expect(page).to have_text("Take a look - does this all seem right?")
-        sign_in_user users(:clinician1)
-        visit "/coach/patient_dashboards"
-        click_on "TFD-1111"
-        expect(page).to have_the_table(
-          id: "activities_past",
-          cells: [
-            "run",
-            "Monitored",
-            "Completed",
-            "Not Rated",
-            "Not Rated",
-            "Not Rated",
-            "Not Rated",
-            "Scheduled for #{ (time_now - 1.hour).to_formatted_s(:short) }",
-            short_timestamp
-          ]
-        )
+        Timecop.travel(time_now) do
+          sign_in_participant participants(:participant1)
+          visit "/navigator/contexts/DO"
+          click_on "#1 Awareness"
+          click_on "Continue"
+          select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
+          select "#{ Date.yesterday.strftime("%a") } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+          click_on "Create"
+
+          expect(page).to have_text("How much pleasure")
+
+          fill_in "What did you do from 12am to 1am?", with: "run"
+          click_on "Continue"
+          # expect(page).to have_text("Take a look - does this all seem right?")
+          sign_in_user users(:clinician1)
+          visit "/coach/patient_dashboards"
+          click_on "TFD-1111"
+
+          expect(page).to have_the_table(
+            id: "activities_past",
+            cells: [
+              "run",
+              "Monitored",
+              "Completed",
+              "Not Rated",
+              "Not Rated",
+              "Not Rated",
+              "Not Rated",
+              "Scheduled for #{ (time_now - 1.hour).to_formatted_s(:short) }",
+              short_timestamp
+            ]
+          )
+        end
+        Timecop.return
       end
 
       it "summarizes thoughts" do
@@ -231,7 +244,6 @@ feature "patient dashboard", type: :feature do
 
     context "Coach visits inactive patient" do
       before do
-        Time.freeze
         sign_in_user users :clinician1
       end
 

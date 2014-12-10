@@ -48,6 +48,11 @@ active_participant:
   email: active_participant@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
 
+participant_for_arm4:
+  study_id: participant_for_arm4
+  email: participant_for_arm4@example.com
+  encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+
 ###
 
 # participant_phq1:
