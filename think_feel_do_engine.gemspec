@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1"
   s.add_dependency "turbolinks", "~> 2.2"
   s.add_dependency "devise", "~> 3.2"
-  s.add_dependency "cancan", "~> 1.6"
+  s.add_dependency "cancancan", "~> 1.9"
   s.add_dependency "strong_password", "~> 0"
   s.add_dependency "font-awesome-rails", "= 4.2.0.0"
   s.add_dependency "jquery-ui-rails", "= 4.2.1"

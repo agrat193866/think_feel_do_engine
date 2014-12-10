@@ -1,3 +1,8 @@
+### 1.5.15 - 2014-12-10
+
+* bug fixes
+  * updated cancan dependency to cancancan
+
 ### 1.5.14 - 2014-12-10
 
 * bug fixes
