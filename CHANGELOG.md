@@ -1,3 +1,8 @@
+### 1.5.21 - 2014-12-11
+
+* bug fixes
+  * changed dependency from destroy to nullify on tasks for users
+
 ### 1.5.20 - 2014-12-11
 
 * fixed broken video slide in lesson bug
