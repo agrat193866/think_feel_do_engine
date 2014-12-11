@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202173458) do
+ActiveRecord::Schema.define(version: 20141211140747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -263,12 +263,12 @@ ActiveRecord::Schema.define(version: 20141202173458) do
   add_index "participant_tokens", ["participant_id"], name: "index_participant_tokens_on_participant_id", using: :btree
 
   create_table "participants", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(version: 20141202173458) do
     t.string   "study_id"
     t.string   "phone_number"
     t.string   "contact_status"
+    t.boolean  "is_admin",               default: false
   end
 
   add_index "participants", ["email"], name: "index_participants_on_email", unique: true, using: :btree
