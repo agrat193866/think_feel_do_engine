@@ -18,6 +18,8 @@ feature "activity tracker", type: :feature do
       visit "/navigator/contexts/DO"
     end
 
+    after { Timecop.return }
+
     it "implements #1 Awareness", :js do
       page.find(".container .left.list-group .list-group-item", text: "#1 Awareness").trigger("click")
 
@@ -208,6 +210,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "creates new accomplishable and/or pleasurable activities input text field", :js do
+      Timecop.travel(Time.local(2014, 9, 1, 12, 0, 0))
       click_on "Add a New Activity"
       fill_in "Or add another", with: "Eating!"
       choose_rating "pleasure_0", 10
@@ -218,7 +221,8 @@ feature "activity tracker", type: :feature do
 
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Eating!"
-        expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
+        expect(page).to have_text(Time.local(2014, 9, 1, 13, 0, 0)
+                                      .to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end
