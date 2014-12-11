@@ -3,7 +3,7 @@ require "strong_password"
 # A person enrolled in the intervention.
 class Participant < ActiveRecord::Base
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable,
+         :recoverable, :trackable, :validatable, :timeoutable,
          timeout_in: 20.minutes
 
   has_many :memberships, dependent: :destroy
@@ -46,7 +46,9 @@ class Participant < ActiveRecord::Base
 
   delegate :end_date, to: :active_membership, prefix: true, allow_nil: true
 
-  validates :password, password_strength: { use_dictionary: true }, :if => :password_is__not_blank?
+  validates :password,
+            password_strength: { use_dictionary: true },
+            if: :password_is__not_blank?
 
   accepts_nested_attributes_for :coach_assignment
 
@@ -104,12 +106,13 @@ class Participant < ActiveRecord::Base
 
   def count_all_incomplete(tool)
     return count_unread_messages if tool.title.downcase == "messages"
-    content_module_ids = tool
-      .content_modules.includes(:content_providers)
-      .map do |content_module|
-        content_module.id unless content_module
-          .try(:content_providers).try(:first).try(:viz?)
-      end
+    content_module_ids = tool.content_modules.includes(:content_providers)
+                         .map do |content_module|
+                           content_module.id unless content_module
+                                                    .try(:content_providers)
+                                                    .try(:first)
+                                                    .try(:viz?)
+                         end
 
     return false unless content_module_ids
     membership.incomplete_tasks
@@ -119,14 +122,13 @@ class Participant < ActiveRecord::Base
 
   def count_today_incomplete(tool)
     return count_unread_messages if tool.title.downcase == "messages"
-    content_module_ids = tool
-      .content_modules.includes(:content_providers)
-      .map do |content_module|
-        content_module.id unless content_module
-          .try(:content_providers)
-          .try(:first)
-          .try(:viz?)
-      end
+    content_module_ids = tool.content_modules.includes(:content_providers)
+                         .map do |content_module|
+                           content_module.id unless content_module
+                                                    .try(:content_providers)
+                                                    .try(:first)
+                                                    .try(:viz?)
+                         end
 
     return false unless content_module_ids
     membership.incomplete_tasks_today
@@ -154,11 +156,10 @@ class Participant < ActiveRecord::Base
   end
 
   def stepping_suggestion
-    assessment_data = Hash[
-                phq_assessments.map do |x|
-                  [x.release_date, x] if x.number_answered > 0
-                end
-              ]
+    data = phq_assessments.map do |x|
+      [x.release_date, x] if x.number_answered > 0
+    end
+    assessment_data = Hash[data]
     PhqStepping.new(
                 assessment_data,
                 membership.week_in_study
@@ -202,7 +203,7 @@ class Participant < ActiveRecord::Base
   end
 
   def contact_status_enum
-    ['sms', 'email']
+    %w(sms email)
   end
 
   private
