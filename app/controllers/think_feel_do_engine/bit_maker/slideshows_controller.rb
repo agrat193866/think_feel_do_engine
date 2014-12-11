@@ -10,13 +10,14 @@ module ThinkFeelDoEngine
 
       def index
         authorize! :index, BitCore::Slideshow
-        @slideshows = @arm.bit_core_slideshows
+        @slideshows = @arm
+                        .bit_core_slideshows
       end
 
       def show
         @anchors = SlideshowAnchor
-                   .where(bit_core_slideshow_id: @slideshow.id)
-                   .group_by(&:target_name)
+                    .where(bit_core_slideshow_id: @slideshow.id)
+                    .group_by(&:target_name)
       end
 
       def new

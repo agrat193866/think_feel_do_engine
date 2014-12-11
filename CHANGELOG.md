@@ -1,3 +1,8 @@
+### 1.5.22 - 2014-12-11
+
+* bug fixes
+  * removed lesson creation from content_modules route
+
 ### 1.5.21 - 2014-12-11
 
 * bug fixes

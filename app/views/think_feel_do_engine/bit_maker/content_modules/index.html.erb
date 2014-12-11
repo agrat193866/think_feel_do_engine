@@ -1,4 +1,4 @@
-<h1>Content Modules</h1>
+<h1>Listing Content Modules <small><%= @arm.title %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
@@ -9,9 +9,9 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Position</th>
       <th>Title</th>
       <th>Tool</th>
-      <th>Position</th>
       <th>No. of Providers</th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
     <% for tool in @tools %>
       <% for content_module in tool.content_modules %>
         <tr>
-          <td><%= link_to content_module.title, arm_bit_maker_content_module_path(@arm, content_module) %></td>
-          <td><%= link_to tool.title, arm_bit_maker_tool_path(@arm, tool) %></td>
           <td><%= content_module.position %></td>
+          <td><%= link_to content_module.title, arm_bit_maker_content_module_path(@arm, content_module) %></td>
+          <td><%= tool.title %></td>
           <td><%= content_module.content_providers.count %></td>
         </tr>
       <% end %>

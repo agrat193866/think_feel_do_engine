@@ -108,7 +108,8 @@ module ThinkFeelDoEngine
     def set_lessons
       @lessons = ContentModules::LessonModule
         .where(
-          bit_core_tool_id: @arm.bit_core_tools.all.map(&:id),
+          # bit_core_tool_id: @arm.bit_core_tools.find_by_title("LEARN").id,
+          bit_core_tool_id: @arm.bit_core_tools.where(title: "LEARN").all.map(&:id),
           type: "ContentModules::LessonModule"
         )
         .includes(:content_providers)

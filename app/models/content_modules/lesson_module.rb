@@ -3,10 +3,13 @@ module ContentModules
   class LessonModule < BitCore::ContentModule
     after_save :update_slideshow
 
-    def self.sort(lesson_ids)
-      start_position = BitCore::Tool.find_by_title("LEARN")
+    def self.sort(arm_id, lesson_ids)
+      start_position = Arm.find(arm_id).bit_core_tools.find_by_title("LEARN")
         .content_modules.where(type: [nil, "BitCore::ContentModule"])
-        .order(position: :asc).maximum(:position) + 1
+        .order(position: :asc).maximum(:position)
+      start_position = start_position || 1
+      start_position + 1
+
       transaction do
         connection.execute "SET CONSTRAINTS " \
                              "bit_core_content_module_position DEFERRED"

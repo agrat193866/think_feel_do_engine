@@ -16,7 +16,7 @@
   </div>
   <div class="form-group">
     <%= f.label :tool %>
-    <%= f.select(:bit_core_tool_id, @tools.collect {|p| [ p.title, p.id ] }, {}, class: "form-control") %>
+    <%= f.select(:bit_core_tool_id, @tools.where("title != ?", "LEARN").collect {|p| [ p.title, p.id ] }, {}, class: "form-control") %>
   </div>
   <div class="form-group">
     <%= f.label :position %>

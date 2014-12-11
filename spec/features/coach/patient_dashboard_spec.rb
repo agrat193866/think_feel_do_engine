@@ -83,6 +83,7 @@ feature "patient dashboard", type: :feature do
           end
 
           sign_in_participant participant1
+
           page.find(".LEARN.hidden-xs a").trigger("click")
 
           expect(page).to have_text("Lessons")

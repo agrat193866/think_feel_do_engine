@@ -77,7 +77,7 @@ module ThinkFeelDoEngine
       end
 
       context "for authenticated requests" do
-        let(:tool) { double("tool", add_module: lesson) }
+        let(:tool) { double("tool", add_module: lesson, content_modules: ContentModules::LessonModule) }
 
         before do
           allow(Arm).to receive(:find) { arm }
@@ -90,8 +90,10 @@ module ThinkFeelDoEngine
           let(:lesson) { double("lesson", save: false, errors: errors) }
 
           it "should render the new page" do
+            allow(controller).to receive(:set_lesson_tool).and_return(lesson)
             allow(controller).to receive(:set_lesson).and_return(lesson)
             post :create, use_route: :think_feel_do_engine
+
             expect(response).to render_template :new
           end
         end
@@ -129,6 +131,7 @@ module ThinkFeelDoEngine
             allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
             allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
+
             expect(response).to render_template :edit
           end
         end
@@ -141,6 +144,7 @@ module ThinkFeelDoEngine
             allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
             allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
+
             expect(response).to redirect_to urls.arm_lesson_url(arm, lesson)
           end
         end

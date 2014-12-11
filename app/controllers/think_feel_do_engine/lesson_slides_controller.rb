@@ -1,7 +1,8 @@
 module ThinkFeelDoEngine
   # Enables slide CRUD functionality.
   class LessonSlidesController < ApplicationController
-    before_action :authenticate_user!, :instantiate_lesson, :set_arm
+    before_action :authenticate_user!, :set_lesson, :set_arm
+    before_action :set_slide, only: [:show, :edit, :update, :destroy]
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -27,17 +28,14 @@ module ThinkFeelDoEngine
 
     def show
       authorize! :show, BitCore::Slide
-      @slide = find_slide
     end
 
     def edit
       authorize! :edit, BitCore::Slide
-      @slide = find_slide
     end
 
     def update
       authorize! :update, BitCore::Slide
-      @slide = find_slide
 
       if @slide.update(slide_params)
         redirect_to arm_lesson_path(@arm, @lesson),
@@ -50,7 +48,6 @@ module ThinkFeelDoEngine
 
     def destroy
       authorize! :destroy, BitCore::Slide
-      @slide = find_slide
 
       if @lesson.destroy_slide(@slide)
         redirect_to arm_lesson_path(@arm, @lesson), notice: "Slide deleted"
@@ -72,11 +69,11 @@ module ThinkFeelDoEngine
 
     private
 
-    def find_slide
-      BitCore::Slide.find(params[:id])
+    def set_slide
+      @slide = BitCore::Slide.find(params[:id])
     end
 
-    def instantiate_lesson
+    def set_lesson
       @lesson = ContentModules::LessonModule.find(params[:lesson_id])
     end
 
@@ -85,7 +82,7 @@ module ThinkFeelDoEngine
     end
 
     def slide_params
-      if params[:slide]
+      if params[:slide] # why is this here? -Wehrley
         params
           .require(:slide)
           .permit(:body, :position, :title, :is_title_visible, :type,
