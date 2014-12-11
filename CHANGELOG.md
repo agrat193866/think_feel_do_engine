@@ -1,3 +1,8 @@
+### 1.5.20 - 2014-12-11
+
+* fixed broken video slide in lesson bug
+* removed unused rails admin template
+
 ### 1.5.19 - 2014-12-11
 
 * bug fixes
