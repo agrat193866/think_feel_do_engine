@@ -46,8 +46,9 @@ describe TaskStatus do
 
     context "when recurring" do
       it "adds task statuses for each membership an each day" do
-        total_days_in_study = task1.group.memberships.all.to_a
-          .sum { |m| m.length_of_study - release_day + 1 }
+        total_days_in_study = task1
+                              .group.memberships.all.to_a
+                              .sum { |m| m.length_of_study - release_day + 1 }
 
         expect do
           Task.create!(

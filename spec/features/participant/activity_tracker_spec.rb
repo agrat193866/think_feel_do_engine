@@ -26,8 +26,13 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text("OK, let's talk about yesterday.")
 
-      select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-      select "#{ Date.yesterday.strftime("%a") } 4 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+      yesterday_str = Date.yesterday.strftime("%a")
+      select "#{ yesterday_str } 12 AM",
+             from: "About what time did you wake up? It's okay if this isn't " \
+                   "exact."
+      select "#{ yesterday_str } 4 AM",
+             from: "About what time did you go to sleep? This doesn't need " \
+                   "to be exact either."
       click_on "Create"
 
       expect(page).to have_text("Review Your Day")
@@ -196,7 +201,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("Activity saved")
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Loving"
-        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
+        expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end
@@ -213,7 +218,7 @@ feature "activity tracker", type: :feature do
 
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Eating!"
-        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
+        expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end
