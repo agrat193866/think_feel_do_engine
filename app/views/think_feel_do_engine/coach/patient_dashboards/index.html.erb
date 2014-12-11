@@ -32,7 +32,7 @@
   </script>
 
   <% @patients.each do |patient| %>
-    <%- if patient.membership -%>
+    <% if patient.membership %>
       <% suggestion = patient.stepping_suggestion %>
       <div
         id="phq_summary_patient-<%= patient.id %>"
@@ -53,7 +53,7 @@
             </tbody>
         </table>
       </div>
-    <%- end -%>
+    <% end %>
   <% end %>
 
     <div id="phq_suggestion_explanation_div">

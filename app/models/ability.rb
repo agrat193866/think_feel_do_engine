@@ -35,6 +35,9 @@ class Ability
       end
       access
     end
+    can :read, Participant do |participant|
+      @user.participant_ids.include?(participant.id)
+    end
     can :show, Group do |group|
       !(@user.participant_ids & group.participant_ids).empty?
     end
@@ -55,6 +58,7 @@ class Ability
     can(:read, DeliveredMessage) do |message|
       message.try(:recipient) == @user
     end
+    can :new, SiteMessage
     can :create, SiteMessage do |message|
       coach_has_participant? @user, message.participant_id
     end

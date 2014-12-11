@@ -11,7 +11,7 @@ module ThinkFeelDoEngine
 
         context "for authenticated requests" do
           before do
-            sign_in_user double("user", participants: [])
+            sign_in_user double("user", participants: [], admin?: false, coach?: true)
             get :index, use_route: :think_feel_do_engine
           end
 

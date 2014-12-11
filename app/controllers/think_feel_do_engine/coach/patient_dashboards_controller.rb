@@ -3,33 +3,46 @@ module ThinkFeelDoEngine
     # Manages the Participant dashboard for Coaches.
     class PatientDashboardsController < ApplicationController
       before_action :authenticate_user!
+      before_action :set_patient, only: :show
 
       layout "manage"
 
-      rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
       def index
-        @patients = participants
+        authorize! :index, Participant
+        @patients = current_user.participants
       end
 
       def show
-        @patient = participants.find(params[:id])
-        learning_modules = ContentModules::LessonModule.all
-        @learning_tasks = @patient.learning_tasks(learning_modules)
+        authorize! :show, @patient
+        if active_group
+          @learning_tasks = @patient.learning_tasks(learning_modules)
+        else
+          @learning_tasks = []
+        end
       end
 
       private
 
-      def coach
-        current_user
+      def set_patient
+        @patient = Participant.find(params[:id])
       end
 
-      def participants
-        coach.participants
+      def learning_modules
+        ContentModules::LessonModule
+          .where(
+            bit_core_tool_id: tool_ids
+          )
       end
 
-      def record_not_found
-        redirect_to coach_patient_dashboards_url, alert: "Patient not found"
+      def tool_ids
+        active_group
+          .arm
+          .bit_core_tools
+          .map(&:id)
+      end
+
+      def active_group
+        @patient.active_group
       end
     end
   end

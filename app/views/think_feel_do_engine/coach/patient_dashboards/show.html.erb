@@ -1,27 +1,37 @@
 <% if @patient %>
 
-  <h3>Participant: <%= @patient.study_id %></h3>
+  <h1>Participant <small><%= @patient.study_id %></small></h1>
 
-  <p>
-    <strong><i class="fa fa-calendar"></i> Started on:</strong>
-    <%= @patient.membership.start_date.to_s :brief_date %>
-  </p>
+  <div class="btn-toolbar" role="toolbar">
+    <%= link_to "Patients", coach_patient_dashboards_path, class: "btn btn-default" %>
+  </div>
 
-  <p>
-    <strong>Status:</strong>
-    <% if @patient.active_membership %>
-      <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
-    <% else %>
-      <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
-    <% end %>
-  </p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">General Patient Info</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <strong><i class="fa fa-calendar"></i> Started on:</strong>
+        <%= @patient.membership.start_date.to_s :brief_date %>
+      </p>
 
-  <p>
-    <strong>Last Logged In:</strong>
-    <%= @patient.current_sign_in_at ? @patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
-  </p>
+      <p>
+        <strong>Status:</strong>
+        <% if @patient.active_membership %>
+          <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
+        <% else %>
+          <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
+        <% end %>
+      </p>
 
-  <hr>
+      <p>
+        <strong>Last Logged In:</strong>
+        <%= @patient.current_sign_in_at ? @patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+      </p>
+    </div>
+  </div>
+
 
   <div id="vizcontainer" class="linechart">
   </div>
