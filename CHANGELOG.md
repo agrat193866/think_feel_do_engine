@@ -1,3 +1,9 @@
+### 1.5.16 - 2014-12-11
+
+* bug fixes
+  * updated participant sign in authorization
+  * participant cannot log in if they don't have an active membership
+
 ### 1.5.15 - 2014-12-10
 
 * bug fixes

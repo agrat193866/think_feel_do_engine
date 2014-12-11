@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
 
       def create
         participant = Participant.find_by_email params[:participant][:email]
-        if participant && participant.memberships.count == 0
+        if participant && !participant.active_membership
           msg = "We're sorry, but you can't sign in yet because you are not " \
                 "assigned to a group."
           redirect_to new_participant_session_path, alert: msg

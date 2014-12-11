@@ -4,7 +4,7 @@ feature "alert messages", type: :feature do
   fixtures :arms, :participants, :users, :groups, :memberships
 
   before do
-    sign_in_participant participants(:participant_wo_membership1)
+    sign_in_participant participants(:inactive_participant)
   end
 
   it "are visible when a user isn't assigned to a group" do
