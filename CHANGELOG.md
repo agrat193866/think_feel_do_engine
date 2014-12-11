@@ -1,3 +1,8 @@
+### 1.5.19 - 2014-12-11
+
+* bug fixes
+  * updated url helper methods due to breakage in tfd app
+
 ### 1.5.18 - 2014-12-11
 
 * enhancements
