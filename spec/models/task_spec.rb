@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TaskStatus do
+describe Task do
   fixtures(
     :users, :user_roles, :participants, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
@@ -26,6 +26,13 @@ describe TaskStatus do
     ).tap(&:save)
 
     expect(task2.errors.get(:base).count).to eq 1
+  end
+
+  it "persists if its creator is destroyed" do
+    creator = task1.creator
+    creator.destroy
+    task = Task.find(task1.id)
+    expect(task.creator_id).to eq(nil)
   end
 
   describe "TaskStatus creation" do

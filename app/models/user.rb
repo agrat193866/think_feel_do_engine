@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
            class_name: "Message",
            as: :sender,
            dependent: :destroy
-  has_many :tasks, foreign_key: :creator_id, dependent: :destroy
+  has_many :tasks, foreign_key: :creator_id, dependent: :nullify
   has_many :messages, as: :sender, dependent: :destroy
   has_many :received_messages,
            -> { includes :message },
