@@ -240,3 +240,12 @@ feel_identifying_intro1:
   position: 1
   title: Some quick examples...
   body: "What is mood?"
+
+feel_emotions_intro1:
+  slideshow: feel_emotions_intro
+  position: 1
+  type: BitCore::VideoSlide
+  title: Slide 4
+  is_title_visible: false
+  body: ''
+  options: { url: "http://mohrlab.northwestern.edu/video/introtfd.mp4" }

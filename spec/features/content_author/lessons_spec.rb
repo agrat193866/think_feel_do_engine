@@ -76,8 +76,15 @@ feature "Lessons", type: :feature do
 
       visit "/arms/#{arms(:arm2).id}/lessons"
 
-      expect(page).to have_text "HELLO aligator"    
+      expect(page).to have_text "HELLO aligator"
       expect(page).to_not have_text "Home Introduction"
+    end
+
+    scenario "viewing video slides" do
+      lesson = bit_core_content_modules(:slideshow_content_module_13)
+      slide = bit_core_slides(:feel_emotions_intro1)
+      visit "/arms/#{ arms(:arm1).id }/lessons/#{ lesson.id }/" \
+            "lesson_slides/#{ slide.id }"
     end
 
     scenario "creating" do
