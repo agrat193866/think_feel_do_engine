@@ -1,3 +1,9 @@
+### 1.5.18 - 2014-12-11
+
+* enhancements
+  * remove Remember me for Participants
+  * enable add to homescreen icon for iOS
+
 ### 1.5.16 - 2014-12-11
 
 * bug fixes
