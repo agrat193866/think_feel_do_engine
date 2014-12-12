@@ -4,7 +4,10 @@ ThinkFeelDoEngine::Engine.routes.draw do
              controllers: { sessions: "think_feel_do_engine/participants/sessions" }
   devise_for :users,
              module: :devise,
-             controllers: { sessions: "think_feel_do_engine/users/sessions" }
+             controllers: {
+                            sessions: "think_feel_do_engine/users/sessions",
+                            registrations: "think_feel_do_engine/users/registrations"
+                          }
 
   get "navigator/previous_content", to: "navigator#show_previous_content", as: "navigator_previous_content"
   get "navigator/next_content", to: "navigator#show_next_content", as: "navigator_next_content"
@@ -58,7 +61,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :phq_assessments
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",
-        as: "participant_activities_visualization" 
+        as: "participant_activities_visualization"
   end
 
   resources :site_messages, only: [:index, :show, :new, :create]
