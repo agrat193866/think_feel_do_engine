@@ -1,3 +1,8 @@
+### 1.5.23 - 2014-12-11
+
+* enhancements
+  * added additional authorization to User-based controllers
+
 ### 1.5.22 - 2014-12-11
 
 * bug fixes
