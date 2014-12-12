@@ -1,3 +1,8 @@
+### 1.5.24 - 2014-12-12
+
+* bug fix
+  *  modified after update path for user password registration
+
 ### 1.5.23 - 2014-12-11
 
 * enhancements
