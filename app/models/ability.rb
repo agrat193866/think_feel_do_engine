@@ -38,7 +38,7 @@ class Ability
     can :read, Participant do |participant|
       @user.participant_ids.include?(participant.id)
     end
-    can :show, Group do |group|
+    can [:show, :moderate], Group do |group|
       !(@user.participant_ids & group.participant_ids).empty?
     end
     authorize_coach_messaging

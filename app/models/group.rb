@@ -19,6 +19,10 @@ class Group < ActiveRecord::Base
 
   delegate :count, to: :memberships, prefix: true
 
+  def moderator
+    participants.find_by_is_admin(true)
+  end
+
   def learning_tasks
     tasks
       .joins(:bit_core_content_module)

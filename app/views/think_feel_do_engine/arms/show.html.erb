@@ -15,9 +15,9 @@
     Click the group below for which you wish to moderate.
   </div>
   <div class="list-group">
-    <% for group in @arm.groups %>
-      <% if can? :show, group %>
-        <%= link_to group.title, "#", :class => "list-group-item" %>
+    <% @arm.groups.each do |group| %>
+      <% if can? :moderate, group %>
+        <%= link_to "#{group.title}: <strong>#{group.moderator.try(:display_name)}</strong>".html_safe, coach_group_moderates_path(group), method: :post, :class => "list-group-item", target: "_blank" %>
       <% end %>
     <% end %>
   </div>
