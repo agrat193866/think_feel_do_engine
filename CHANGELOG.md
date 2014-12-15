@@ -1,3 +1,8 @@
+### 1.5.25 - 2014-12-15
+
+* enhancements
+  *  added wizard of oz flag to an arm
+
 ### 1.5.24 - 2014-12-12
 
 * bug fix
