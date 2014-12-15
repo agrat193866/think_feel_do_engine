@@ -46,4 +46,13 @@ class TaskStatus < ActiveRecord::Base
       update_attributes(completed_at: DateTime.current)
     end
   end
+
+  def is_lesson?
+    task.bit_core_content_module.type == "ContentModules::LessonModule"
+  end
+
+  def notify_today?
+    today = Time.now
+    start_day == ((today.to_date - membership.start_date.to_date).to_i + 1)
+  end
 end

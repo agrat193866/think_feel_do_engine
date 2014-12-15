@@ -206,6 +206,14 @@ class Participant < ActiveRecord::Base
     %w(sms email)
   end
 
+  def notify_by_email?
+    "email" == contact_preference
+  end
+
+  def notify_by_sms?
+    "sms" == contact_preference || "phone" == contact_preference
+  end
+
   private
 
   def recent_awake_period

@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(version: 20141214203919) do
     t.string   "study_id"
     t.string   "phone_number"
     t.string   "contact_status"
+    t.string   "contact_preference",     default: ""
     t.boolean  "is_admin",               default: false
   end
 
