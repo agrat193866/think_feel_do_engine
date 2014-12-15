@@ -281,6 +281,7 @@ ActiveRecord::Schema.define(version: 20141214203919) do
     t.string   "contact_status"
     t.string   "contact_preference",     default: ""
     t.boolean  "is_admin",               default: false
+    t.string   "display_name"
   end
 
   add_index "participants", ["email"], name: "index_participants_on_email", unique: true, using: :btree

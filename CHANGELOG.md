@@ -1,3 +1,9 @@
+### 1.6.1 - 2014-12-15
+
+* enhancements
+  * users are able to moderate groups
+  * 'moderators' are created when a social group is created
+
 ### 1.6.0 - 2014-12-15
 
 * enhancements

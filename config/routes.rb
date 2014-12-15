@@ -57,10 +57,13 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
   namespace :coach do
     resources :messages, only: [:index, :new, :create]
-    resources :received_messages, only: :show
-    resources :sent_messages, only: :show
+    resources :groups, only: [] do
+      resource :moderates, only: :create
+    end
     resources :patient_dashboards
     resources :phq_assessments
+    resources :received_messages, only: :show
+    resources :sent_messages, only: :show
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",
         as: "participant_activities_visualization"
