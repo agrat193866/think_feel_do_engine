@@ -8,7 +8,7 @@ module ThinkFeelDoEngine
 
       # POST /coach/groups/:group_id/moderates    
       def create
-        # authorize! :moderate, @group
+        authorize! :moderate, @group
         sign_in_and_redirect @group.moderator
       end
 
