@@ -1,0 +1,7 @@
+<h1>All Lesson Content</h1>
+
+<div class="btn-toolbar" role="toolbar">
+	<%= link_to "Lessons", arm_lessons_path(@arm), class: "btn btn-default" %>
+</div>
+
+<%= render partial: "think_feel_do_engine/slides/slide", collection: @slides %>

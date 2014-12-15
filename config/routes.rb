@@ -45,6 +45,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
       end
     end
 
+    get "lessons/all_content", as: "lessons_all_content"
+
     resources :lessons do
       collection { post :sort }
       resources :lesson_slides do
