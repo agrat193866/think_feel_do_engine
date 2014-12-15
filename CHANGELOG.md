@@ -1,3 +1,7 @@
+### 1.6.2
+  * fixed Participant deletion
+  * enabled Participant Thoughts Viz for Coach
+
 ### 1.6.1 - 2014-12-15
 
 * enhancements
