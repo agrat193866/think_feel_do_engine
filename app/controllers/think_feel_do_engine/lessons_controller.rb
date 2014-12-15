@@ -11,6 +11,15 @@ module ThinkFeelDoEngine
       authorize! :index, ContentModules::LessonModule
     end
 
+    def all_content
+      authorize! :index, ContentModules::LessonModule
+      providers = @lessons.map(&:content_providers).flatten
+      slideshows = BitCore::Slideshow
+                   .where(id: providers.map(&:source_content_id))
+      @slides = BitCore::Slide
+                .where(bit_core_slideshow_id: slideshows.map(&:id))
+    end
+
     def show
       authorize! :show, ContentModules::LessonModule
     end
@@ -106,14 +115,11 @@ module ThinkFeelDoEngine
     end
 
     def set_lessons
+      learn_tool_ids = @arm.bit_core_tools.where(title: "LEARN").map(&:id)
       @lessons = ContentModules::LessonModule
-        .where(
-          # bit_core_tool_id: @arm.bit_core_tools.find_by_title("LEARN").id,
-          bit_core_tool_id: @arm.bit_core_tools.where(title: "LEARN").all.map(&:id),
-          type: "ContentModules::LessonModule"
-        )
-        .includes(:content_providers)
-        .order(:position)
+                 .where(bit_core_tool_id: learn_tool_ids)
+                 .includes(:content_providers)
+                 .order(:position)
     end
   end
 end

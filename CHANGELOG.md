@@ -1,3 +1,8 @@
+### 1.6.0 - 2014-12-15
+
+* enhancements
+  * enabled printing of all lesson content
+
 ### 1.5.25 - 2014-12-15
 
 * enhancements
