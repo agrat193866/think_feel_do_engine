@@ -59,7 +59,7 @@ feature "patient dashboard", type: :feature do
         click_on "Patients"
 
         expect(page).not_to have_text("participant_for_arm4")
-        expect(page).to have_text("TFD-1111")        
+        expect(page).to have_text("TFD-1111")
       end
 
       it "should only be able to view patient data they are assigned to" do
@@ -178,6 +178,14 @@ feature "patient dashboard", type: :feature do
         )
       end
 
+      it "links to the activities visualization" do
+        expect(page).to have_content "Activities visualization"
+      end
+
+      it "links to the thoughts visualization" do
+        expect(page).to have_content "Thoughts visualization"
+      end
+
       it "summarizes future activities" do
         expect(page).to have_the_table(
           id: "activities_future",
@@ -212,8 +220,9 @@ feature "patient dashboard", type: :feature do
           visit "/navigator/contexts/DO"
           click_on "#1 Awareness"
           click_on "Continue"
-          select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-          select "#{ Date.yesterday.strftime("%a") } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+          yesterday_str = Date.yesterday.strftime("%a")
+          select "#{ yesterday_str } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
+          select "#{ yesterday_str } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
           click_on "Create"
 
           expect(page).to have_text("How much pleasure")
