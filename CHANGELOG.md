@@ -1,5 +1,7 @@
+### 1.6.5
+  * user password change redirect fix, again
+
 ### 1.6.4
-  * tfd engine update
   * user password change redirect fix
 
 ### 1.6.3
