@@ -1,3 +1,7 @@
+### 1.6.4
+  * tfd engine update
+  * user password change redirect fix
+
 ### 1.6.3
   * change "Landing" to "Home"
   * fix Participant deletion, again
