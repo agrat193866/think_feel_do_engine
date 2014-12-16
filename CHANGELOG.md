@@ -1,3 +1,6 @@
+### 1.6.6
+  * user password change redirect fix, redux
+
 ### 1.6.5
   * user password change redirect fix, again
 

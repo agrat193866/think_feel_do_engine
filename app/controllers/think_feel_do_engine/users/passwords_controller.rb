@@ -5,7 +5,7 @@ module ThinkFeelDoEngine
       protected
 
       def after_resetting_password_path_for(_resource)
-        arms_path
+        "/arms"
       end
     end
   end
