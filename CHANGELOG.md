@@ -1,3 +1,7 @@
+### 1.7.0
+  * Added confirmation logic for public social networking activities and thoughts.
+  * Fixed logic for new lesson notifications.
+
 ### 1.6.9
   * template path render fix
 
