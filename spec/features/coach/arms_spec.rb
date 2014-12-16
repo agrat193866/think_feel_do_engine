@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Lessons", type: :feature do
+feature "Arms", type: :feature do
   fixtures(
     :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
     :"bit_core/tools", :"bit_core/content_modules",
@@ -31,8 +31,10 @@ feature "Lessons", type: :feature do
       expect(page).to have_link "Arm 4"
     end
 
-    scenario "should only see the groups of an arm that a coach is assigne to via coach_assignments" do
+    scenario "should only see the groups of an arm that a coach is assigned to via coach_assignments" do
       visit "/arms/#{arms(:arm1).id}"
+
+      save_and_open_page
 
       expect(page).to have_link "Group 3"
 

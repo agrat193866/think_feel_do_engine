@@ -57,9 +57,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
   namespace :coach do
     resources :messages, only: [:index, :new, :create]
-    resources :groups, only: [] do
-      resource :moderates, only: :create
-    end
     resources :patient_dashboards
     resources :phq_assessments
     resources :received_messages, only: :show

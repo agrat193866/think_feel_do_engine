@@ -50,8 +50,6 @@ class Participant < ActiveRecord::Base
             password_strength: { use_dictionary: true },
             if: :password_is__not_blank?
 
-  validate :at_least_one_moderator_exists
-
   accepts_nested_attributes_for :coach_assignment
 
   def self.active
@@ -231,11 +229,5 @@ class Participant < ActiveRecord::Base
 
       { start_time: start_time, end_time: end_time }
     )
-  end
-
-  def at_least_one_moderator_exists
-    if (is_admin == false) && active_group && active_group.active_participants.where(is_admin: true).count == 1
-      self.errors.add(:base, "at least one moderator needs to exist.")
-    end
   end
 end

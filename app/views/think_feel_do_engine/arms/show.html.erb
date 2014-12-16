@@ -6,19 +6,3 @@
     <%= link_to "Manage Content", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
   <% end %>
 </div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">Moderate</h4>
-  </div>
-  <div class="panel-body">
-    Click the group below for which you wish to moderate.
-  </div>
-  <div class="list-group">
-    <% @arm.groups.each do |group| %>
-      <% if can? :moderate, group %>
-        <%= link_to "#{group.title}: <strong>#{group.moderator.try(:display_name)}</strong>".html_safe, coach_group_moderates_path(group), method: :post, :class => "list-group-item", target: "_blank" %>
-      <% end %>
-    <% end %>
-  </div>
-</div>

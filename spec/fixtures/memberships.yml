@@ -51,18 +51,6 @@ membership_for_group_in_arm4:
   group: group_for_arm4
   start_date: <%= Date.today %>
   end_date: <%= Date.today.advance(days: 4) %>
-
-membership_of_moderator_for_group1:
-  participant: moderator_for_group1
-  group: group1
-  start_date: <%= Date.today %>
-  end_date: <%= Date.today.advance(days: 10) %>
-
-membership_of_moderator_for_group2:
-  participant: moderator_for_group2
-  group: group2
-  start_date: <%= Date.today %>
-  end_date: <%= Date.today.advance(days: 10) %>
 ###
 
 # membership_phq1:

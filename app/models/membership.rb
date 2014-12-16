@@ -21,7 +21,7 @@ class Membership < ActiveRecord::Base
   validates :group, presence: true
   validates :participant, presence: true
   validates :group_id, uniqueness: { scope: :participant_id }
-  validate :single_active_membership, :excludes_moderators
+  validate :single_active_membership
 
   attr_writer :start_date_american, :end_date_american
 
@@ -82,12 +82,6 @@ class Membership < ActiveRecord::Base
   end
 
   private
-
-  def excludes_moderators
-    if active_group.try(:arm) && !active_group.arm.is_social && participant.is_admin
-      errors.add(:base, "moderators can't be part of this group.")
-    end
-  end
 
   def normalize_dates
     self.start_date = parse_american_date(@start_date_american, start_date)
