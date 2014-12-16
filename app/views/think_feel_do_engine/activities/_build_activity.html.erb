@@ -1,4 +1,4 @@
-<%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form", onsubmit: "validatePublic(event)"} do |f| %>
+<%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form", onsubmit: "validatePublic(event,'activity_shared_item_true')"} do |f| %>
   <input type="hidden" name="activity[is_scheduled]" value="1">
 
   <% if past_activities.count > 0 %>
@@ -97,18 +97,4 @@
     $($(this).siblings("span").children("input")).prop("checked", true);
   });
   var AT = new sc.activityTracker("<%= navigator_next_content_path %>");
-  var validatedSubmit = false;
-  var validatePublic = function(event) {
-    if(!validatedSubmit) {
-      if ($('#activity_shared_item_1').is(':checked')) {
-        if (confirm('Are you sure that you would like to make this activity public?')) {
-          validatedSubmit = true;
-          return true;
-        } else {
-          event.preventDefault();
-          return false;
-        }
-      }
-    }
-  }
 </script>

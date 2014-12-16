@@ -1,6 +1,6 @@
 <h2>Add a New Thought</h2>
 
-<%= form_for thought, url: create_path, method: "post", html: { role: "form", onsubmit: "validatePublic(event)" } do |f| %>
+<%= form_for thought, url: create_path, method: "post", html: { role: "form", onsubmit: "validatePublic(event,'thought_shared_item_true')" } do |f| %>
   <%= render 'think_feel_do_engine/thoughts/harmful_thought', f: f %>
 
   <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
@@ -24,20 +24,3 @@
     <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary") %>
   </div>
 <% end %>
-
-<script>
-    var validatedSubmit = false;
-    var validatePublic = function(event) {
-        if(!validatedSubmit) {
-            if ($('#thought_shared_item_1').is(':checked')) {
-                if (confirm('Are you sure that you would like to make this activity public?')) {
-                    validatedSubmit = true;
-                    return true;
-                } else {
-                    event.preventDefault();
-                    return false;
-                }
-            }
-        }
-    }
-</script>

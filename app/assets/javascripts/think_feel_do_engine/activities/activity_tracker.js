@@ -1,8 +1,6 @@
 sc.activityTrackerEventHandlers = function(activityTracker) {
 
-  // Click
-  $("#submit_activities").
-    on("click", activityTracker.handleSubmitClick);
+  $("#submit_activities").on("click", activityTracker.handleSubmitClick);
 
   $(".intensity_btn").on("click", activityTracker.handleIntensityClick);
 
@@ -120,39 +118,41 @@ sc.activityTracker = function(path){
   };
 
   this.handleSubmitClick = function(e) {
-    var $forms = $("form.activity_form");
+    if(validatePublicNoEvent('activity_shared_item_true')) {
+        var $forms = $("form.activity_form");
 
-    sc.displayErrors();
+        sc.displayErrors();
 
-    if ($forms.length === 1) {
-      $(".start_time_0").val(self.concatStringFromPickers(0));
-      $forms.submit();
+        if ($forms.length === 1) {
+            $(".start_time_0").val(self.concatStringFromPickers(0));
+            $forms.submit();
 
-      return false;
-    } else {
-      return _.each($forms, function(form, index, list) {
-        var $form = $(form);
+            return false;
+        } else {
+            return _.each($forms, function (form, index, list) {
+                var $form = $(form);
 
-        if ($(".form-group.has-error").length === 0) {
-          $(".start_time_" + index).val(self.concatStringFromPickers(index));
+                if ($(".form-group.has-error").length === 0) {
+                    $(".start_time_" + index).val(self.concatStringFromPickers(index));
 
-          $.ajax({
-            async: false,
-            timeout: 600,
-            type: "POST",
-            url: $form.attr("action"),
-            data: $form.serialize(),
-            success: function() {
-              if (index === list.length - 1) {
-                return window.location = self.path;
-              }
-            },
-            dataType: "script"
-          });
+                    $.ajax({
+                        async: false,
+                        timeout: 600,
+                        type: "POST",
+                        url: $form.attr("action"),
+                        data: $form.serialize(),
+                        success: function () {
+                            if (index === list.length - 1) {
+                                return window.location = self.path;
+                            }
+                        },
+                        dataType: "script"
+                    });
+                }
+
+                return false;
+            });
         }
-
-        return false;
-      });
     }
   };
 
