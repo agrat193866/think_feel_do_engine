@@ -10,7 +10,6 @@ feature "coach messages", type: :feature do
     :phq_assessments, :emotions, :delivered_messages)
 
   describe "Logged in as a clinician" do
-
     before do
       sign_in_user users :clinician1
       visit "/coach/messages"
@@ -39,6 +38,19 @@ feature "coach messages", type: :feature do
       click_on("Send")
 
       expect(page).to have_content("Message saved")
+      expect(ActionMailer::Base.deliveries.last.subject).to eq "New message"
+    end
+
+    it "delivers an SMS when the Participant has that preference" do
+      participants(:participant1).update(contact_preference: "sms")
+      click_on("Compose")
+      select("TFD-33303", from: "To")
+      fill_in("Subject", with: "some new message")
+      fill_in("Message", with: "some body")
+      click_on("Send")
+
+      expect(page).to have_content("Message saved")
+      expect(MessageSmsNotification.messages.last[:to]).to eq "+12345678901"
     end
 
     it "allows a coach to reply to a message" do

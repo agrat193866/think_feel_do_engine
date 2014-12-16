@@ -6,7 +6,7 @@ class DeliveredMessage < ActiveRecord::Base
   validates :message, :recipient, presence: true
   validates :is_read, inclusion: { in: [true, false] }
 
-  after_create :deliver_emails
+  after_create :deliver_notifications
 
   scope :unread, -> { where(is_read: false) }
 
@@ -39,9 +39,11 @@ class DeliveredMessage < ActiveRecord::Base
 
   private
 
-  def deliver_emails
+  def deliver_notifications
     if recipient.instance_of? User
       ThinkFeelDoEngine::MessageNotifications.new_for_coach(recipient).deliver
+    elsif recipient.notify_by_sms?
+      MessageSmsNotification.deliver_to(recipient)
     else
       ThinkFeelDoEngine::MessageNotifications
         .new_for_participant(recipient)
