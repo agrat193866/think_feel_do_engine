@@ -1,3 +1,6 @@
+### 1.6.7
+  * markdown helper modal added
+
 ### 1.6.6
   * user password change redirect fix, redux
 
