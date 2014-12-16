@@ -6,7 +6,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
              module: :devise,
              controllers: {
                             sessions: "think_feel_do_engine/users/sessions",
-                            registrations: "think_feel_do_engine/users/registrations"
+                            passwords: "think_feel_do_engine/users/passwords"
                           }
 
   get "navigator/previous_content", to: "navigator#show_previous_content", as: "navigator_previous_content"
@@ -67,6 +67,9 @@ ThinkFeelDoEngine::Engine.routes.draw do
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",
         as: "participant_activities_visualization"
+    get "participant_thoughts_visualization/:participant_id",
+        to: "participant_thoughts_visualizations#show",
+        as: "participant_thoughts_visualization"
   end
 
   resources :site_messages, only: [:index, :show, :new, :create]

@@ -1,3 +1,30 @@
+### 1.6.9
+  * template path render fix
+
+### 1.6.8
+  * markdown helper modal added
+
+### 1.6.7
+  * markdown helper modal added
+
+### 1.6.6
+  * user password change redirect fix, redux
+
+### 1.6.5
+  * user password change redirect fix, again
+
+### 1.6.4
+  * user password change redirect fix
+
+### 1.6.3
+  * change "Landing" to "Home"
+  * fix Participant deletion, again
+  * remove Remember me from User login
+
+### 1.6.2
+  * fixed Participant deletion
+  * enabled Participant Thoughts Viz for Coach
+
 ### 1.6.1 - 2014-12-15
 
 * enhancements
