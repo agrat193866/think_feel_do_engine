@@ -1,3 +1,6 @@
+### 1.6.9
+  * template path render fix
+
 ### 1.6.8
   * markdown helper modal added
 
