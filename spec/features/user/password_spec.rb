@@ -27,6 +27,6 @@ feature "reset user password", type: :feature do
     click_button("Change my password")
 
     expect(page).to have_text "Your password has been changed successfully. You are now signed in."
-    expect(current_path).to eq('/arms')
+    expect(current_path).to eq("/arms")
   end
 end

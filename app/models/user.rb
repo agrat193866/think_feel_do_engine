@@ -4,7 +4,7 @@ require "strong_password"
 # A person with some authoritative role (a non-Participant).
 class User < ActiveRecord::Base
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable,
+         :recoverable, :trackable, :validatable, :timeoutable,
          timeout_in: 20.minutes
 
   has_many :coach_assignments, foreign_key: :coach_id, dependent: :destroy
