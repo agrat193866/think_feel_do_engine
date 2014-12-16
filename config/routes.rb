@@ -6,7 +6,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
              module: :devise,
              controllers: {
                             sessions: "think_feel_do_engine/users/sessions",
-                            registrations: "think_feel_do_engine/users/registrations"
+                            passwords: "think_feel_do_engine/users/passwords"
                           }
 
   get "navigator/previous_content", to: "navigator#show_previous_content", as: "navigator_previous_content"
