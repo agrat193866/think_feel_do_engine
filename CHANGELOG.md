@@ -1,3 +1,6 @@
+### 1.7.2
+  * data table sorting for participants updated
+
 ### 1.7.1
   * fix namespace issue related to Message delivery
 

@@ -48,7 +48,7 @@
     <div id="phqCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-          <table class="table table-hover data-table" id="phq_assessments">
+          <table class="table table-hover generic-data-table data-table" id="phq_assessments">
             <thead>
               <tr>
                 <th>Release Date</th>
@@ -87,7 +87,7 @@
     <div id="moodCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="moods">
+  <table class="table table-hover generic-data-table data-table" id="moods">
     <thead>
       <tr>
         <th>Rating 0 (Bad) to 10 (Good)</th>
@@ -114,7 +114,7 @@
     <div id="feelingsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="emotions">
+      <table class="table table-hover generic-data-table data-table" id="emotions">
         <thead>
           <tr>
             <th>Feeling</th>
@@ -142,7 +142,7 @@
     <div id="loginsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="logins">
+  <table class="table table-hover generic-data-table data-table" id="logins">
     <thead>
       <tr>
         <th>Date/Time of Login</th>
@@ -173,10 +173,11 @@
   <table class="table table-hover data-table" id="learning_data">
     <thead>
       <tr>
+        <th>Datetime</th>
         <th>Task</th>
-        <th>Assigned Date</th>
         <th>Started At</th>
         <th>Completed At</th>
+        <th>Assigned Date</th>
         <th>Duration</th>
       </tr>
     </thead>
@@ -202,7 +203,7 @@
   <div id="activity_futureCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
       <div class="table-responsive div-table-viz">
-        <table class="table table-hover data-table" id="activities_future">
+        <table class="table table-hover generic-data-table data-table" id="activities_future">
           <thead>
             <tr>
               <th>Activity</th>
@@ -241,7 +242,7 @@
   <div id="activity_pastCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
               <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="activities_past">
+      <table class="table table-hover generic-data-table data-table" id="activities_past">
         <thead>
           <tr>
             <th>Activity</th>
@@ -284,7 +285,7 @@
   <div id="thoughtsCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
               <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="thoughts">
+      <table class="table table-hover generic-data-table data-table" id="thoughts">
         <thead>
           <th>Thought</th>
           <th>Effect</th>
@@ -313,7 +314,7 @@
   <div id="messagesCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="messages">
+  <table class="table table-hover generic-data-table data-table" id="messages">
     <thead>
       <tr>
         <th>Message</th>
@@ -343,6 +344,7 @@
   <table class="table table-hover data-table" id="task_statuses">
     <thead>
       <tr>
+        <th>Datetime</th>
         <th>Task</th>
         <th>Assigned Date</th>
         <th>Completed At</th>
@@ -362,7 +364,25 @@
   var phqData, emotionData, moodRatings;
 
   $(function() {
-    return $('.data-table').dataTable({
+    return $('#task_statuses, #learning_data').dataTable({
+      sPaginationType: 'bootstrap',
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [3],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+  $(function() {
+    return $('.generic-data-table').dataTable({
       sPaginationType: 'bootstrap',
       oLanguage: {
         sSearch: 'Filter: '

@@ -1,6 +1,9 @@
 <% task_statuses.each do |task_status| %>
   <% task_status.engagements.each do |engagement| %>
     <tr>
+      <td style="display: none;">
+        <%= engagement.completed_at ? engagement.completed_at.to_i : 0 %>
+      </td>
       <td><%= task_status.task.title %></td>
       <td><%= task_status.created_at.to_formatted_s(:short) %></td>
       <td><%= engagement.created_at.to_formatted_s(:short) unless engagement.created_at.nil? %></td>
