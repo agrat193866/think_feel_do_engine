@@ -12,7 +12,7 @@ class DeliveredMessage < ActiveRecord::Base
 
   scope :sent_from, lambda { |sender_id|
     joins(:message)
-    .where("messages.sender_id = ?", sender_id)
+      .where("messages.sender_id = ?", sender_id)
   }
 
   delegate :body, :render_body, :sender, :subject, to: :message
@@ -41,9 +41,11 @@ class DeliveredMessage < ActiveRecord::Base
 
   def deliver_emails
     if recipient.instance_of? User
-      MessageNotifications.new_for_coach(recipient).deliver
+      ThinkFeelDoEngine::MessageNotifications.new_for_coach(recipient).deliver
     else
-      MessageNotifications.new_for_participant(recipient).deliver
+      ThinkFeelDoEngine::MessageNotifications
+        .new_for_participant(recipient)
+        .deliver
     end
   rescue
     # swallow exception
