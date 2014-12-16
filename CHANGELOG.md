@@ -1,3 +1,8 @@
+### 1.6.3
+  * change "Landing" to "Home"
+  * fix Participant deletion, again
+  * remove Remember me from User login
+
 ### 1.6.2
   * fixed Participant deletion
   * enabled Participant Thoughts Viz for Coach
