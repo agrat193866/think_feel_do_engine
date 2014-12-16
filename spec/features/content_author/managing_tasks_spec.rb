@@ -31,7 +31,6 @@ feature "managing tasks", type: :feature do
     end
 
     context "On new" do
-
       it "Assigning of modules with release days" do
         task = Task.where(bit_core_content_module_id: do_doing_arm2.id, release_day: 1, group_id: group2.id).first
 
@@ -84,7 +83,7 @@ feature "managing tasks", type: :feature do
 
         expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
 
-        click_on "FEEL Landing"
+        click_on "FEEL Home"
 
         expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
@@ -93,7 +92,7 @@ feature "managing tasks", type: :feature do
 
         expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
 
-        click_on "FEEL Landing"
+        click_on "FEEL Home"
 
         expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
@@ -102,7 +101,7 @@ feature "managing tasks", type: :feature do
 
         expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 1
 
-        click_on "FEEL Landing"
+        click_on "FEEL Home"
 
         expect(page.all(".list-group-item.list-group-item-unread", text: "Tracking Your Mood & Emotions").count).to eq 1
 
@@ -111,7 +110,7 @@ feature "managing tasks", type: :feature do
 
         expect(page.find(".FEEL.hidden-xs").all(".badge.badge-do").count).to eq 0
 
-        click_on "FEEL Landing"
+        click_on "FEEL Home"
 
         expect(page).not_to have_content("Tracking Your Mood")
 
