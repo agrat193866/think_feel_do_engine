@@ -1,3 +1,6 @@
+### 1.7.1
+  * fix namespace issue related to Message delivery
+
 ### 1.7.0
   * Added confirmation logic for public social networking activities and thoughts.
   * Fixed logic for new lesson notifications.
