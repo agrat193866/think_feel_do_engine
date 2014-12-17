@@ -1,3 +1,6 @@
+### 1.7.3
+  * conditionally send SMS/email notifications to Participants about Messages
+
 ### 1.7.2
   * data table sorting for participants updated
 
