@@ -1,3 +1,7 @@
+### 1.8.2
+  * fix hamburger menu tool scoping bug
+  * fix nav menu and tool index scoping bugs
+
 ### 1.8.1
   * display 'read' and 'released' dates for archived lessons
 
