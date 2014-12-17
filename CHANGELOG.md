@@ -1,3 +1,6 @@
+### 1.7.4
+  * Resolved a bug with regards to confirmation logic of public activites and thoughts
+
 ### 1.7.3
   * conditionally send SMS/email notifications to Participants about Messages
 
@@ -8,8 +11,8 @@
   * fix namespace issue related to Message delivery
 
 ### 1.7.0
-  * Added confirmation logic for public social networking activities and thoughts.
-  * Fixed logic for new lesson notifications.
+  * Added confirmation logic for public social networking activities and thoughts
+  * Fixed logic for new lesson notifications
 
 ### 1.6.9
   * template path render fix
