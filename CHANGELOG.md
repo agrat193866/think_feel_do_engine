@@ -1,3 +1,9 @@
+### 1.8.0 - 2014-12-17
+  * enhancements
+    * Remove moderatoring funcationality from this engine
+    * Updated ability file
+    * Note: some routes and paths are left until other engines are updated.
+
 ### 1.7.5
   * Added strong password js to user password update
 
