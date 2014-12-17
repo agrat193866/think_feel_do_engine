@@ -99,7 +99,7 @@ module ThinkFeelDoEngine
       # viewing the ContentProvider, so we should consider it incomplete.
       ContentProviderDecorator.fetch(provider)
         .is_skippable_after_first_viewing &&
-        task_status(membership, mod).completed_at < Time.current - 10.seconds
+        task_status(membership, mod).completed_at < Time.current - 5.minutes
     end
 
     def create_task_path(task_status)
