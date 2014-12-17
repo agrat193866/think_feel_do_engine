@@ -8,7 +8,7 @@ module ThinkFeelDoEngine
       layout "manage"
 
       def index
-        authorize! :index, Participant
+        authorize! :show, Participant
         @patients = current_user.participants
       end
 

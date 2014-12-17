@@ -38,7 +38,6 @@ class Ability
     can [:show, :moderate], Group do |group|
       !(@user.participant_ids & group.participant_ids).empty?
     end
-    can :index, Participant
     can :show, Participant do |participant|
       @user.participant_ids.include?(participant.id)
     end
@@ -52,7 +51,7 @@ class Ability
   end
 
   def authorize_coach_messaging
-    can [:create, :index], Message
+    can [:create, :show], Message
     can :show, Message do |message|
       (message.try(:sender) == @user) || (message.try(:recipient) == @user)
     end
@@ -60,7 +59,7 @@ class Ability
       message.try(:recipient) == @user
     end
     can :new, SiteMessage
-    can [:create, :index], SiteMessage do |message|
+    can [:create, :show], SiteMessage do |message|
       coach_has_participant? @user, message.participant_id
     end
   end

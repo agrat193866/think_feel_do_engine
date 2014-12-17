@@ -7,7 +7,7 @@ module ThinkFeelDoEngine
     layout "manage"
 
     def index
-      authorize! :index, SiteMessage
+      authorize! :show, SiteMessage
       participant_ids = current_user.participant_ids
       @site_messages = SiteMessage
                         .where(participant_id: participant_ids)
@@ -17,7 +17,6 @@ module ThinkFeelDoEngine
     end
 
     def new
-      # authorize! :index, Participant
       @participants = current_user.participants
     end
 
