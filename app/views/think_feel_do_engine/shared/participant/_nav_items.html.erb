@@ -24,10 +24,10 @@
             <%= link_to "#{tool.title} Home", think_feel_do_engine.navigator_context_path(context_name: tool.title) %>
           </li>
 
-          <% if content_module_tasks(tool.title, "").count > 0 %>
+          <% if content_module_tasks(tool, "").count > 0 %>
             <li class="divider"></li>
 
-            <% content_module_tasks(tool.title, "").each do |link| %>
+            <% content_module_tasks(tool, "").each do |link| %>
               <li <%= link == "DIVIDE" ? "class='divider'".html_safe : "" %> > <%= link == "DIVIDE" ? "" : link %></li>
             <% end %>
           <% end %>

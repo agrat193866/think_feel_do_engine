@@ -2,7 +2,7 @@ module ThinkFeelDoEngine
   # Used to display nested links in the navbar
   module NavbarHelper
     def content_module_tasks(tool, link_class, icon = "pencil")
-      content_modules = BitCore::Tool.find_by_title(tool)
+      content_modules = tool
                         .content_modules
                         .order(position: :asc)
 

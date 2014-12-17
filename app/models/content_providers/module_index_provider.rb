@@ -12,7 +12,8 @@ module ContentProviders
     end
 
     def content_modules(options)
-      BitCore::Tool.find_by_title(options.app_context)
+      arm_id = options.participant.active_group.arm_id
+      BitCore::Tool.find_by_arm_id_and_title(arm_id, options.app_context)
         .content_modules
         .where.not(id: bit_core_content_module_id)
         .order(position: :asc)
