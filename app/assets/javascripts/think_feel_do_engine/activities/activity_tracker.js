@@ -118,7 +118,7 @@ sc.activityTracker = function(path){
   };
 
   this.handleSubmitClick = function(e) {
-    if(validatePublicNoEvent('activity_shared_item_true')) {
+    if(validatePublicNoEvent(e, 'activity_shared_item_true')) {
         var $forms = $("form.activity_form");
 
         sc.displayErrors();
