@@ -23,14 +23,14 @@ module ContentProviders
     end
 
     def archived_tasks
-      @all_available_tasks.where("completed_at IS NOT NULL")
+      @all_available_tasks.where.not(completed_at: nil)
     end
 
     def oldest_unread_five_tasks
       @all_available_tasks
-      .where("completed_at IS NULL")
-      .order(created_at: :asc)
-      .limit(5)
+        .where(completed_at: nil)
+        .order(created_at: :asc)
+        .limit(5)
     end
 
     def assign_variables(options)

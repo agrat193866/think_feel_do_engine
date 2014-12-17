@@ -55,4 +55,8 @@ class TaskStatus < ActiveRecord::Base
     today = Time.now
     start_day == ((today.to_date - membership.start_date.to_date).to_i + 1)
   end
+
+  def available_for_learning_on
+    membership.start_date + release_day - 1
+  end
 end
