@@ -1,3 +1,6 @@
+### 1.7.5
+  * Added strong password js to user password update
+
 ### 1.7.4
   * Resolved a bug with regards to confirmation logic of public activites and thoughts
 
