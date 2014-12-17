@@ -1,3 +1,6 @@
+### 1.8.1
+  * display 'read' and 'released' dates for archived lessons
+
 ### 1.8.0 - 2014-12-17
   * enhancements
     * Remove moderatoring funcationality from this engine
