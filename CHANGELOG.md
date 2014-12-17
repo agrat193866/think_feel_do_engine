@@ -2,7 +2,7 @@
   * enhancements
     * Remove moderatoring funcationality from this engine
     * Updated ability file
-    * Note: some routes and paths are left until other engines are updated.
+    * Note: some routes and paths are still present until other engines are updated.
 
 ### 1.7.5
   * Added strong password js to user password update
