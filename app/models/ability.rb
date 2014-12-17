@@ -38,6 +38,7 @@ class Ability
     can [:show, :moderate], Group do |group|
       !(@user.participant_ids & group.participant_ids).empty?
     end
+    can :index, Participant
     can :show, Participant do |participant|
       @user.participant_ids.include?(participant.id)
     end
@@ -74,6 +75,8 @@ class Ability
   # think_feel_do_engine
   def authorize_content_author
     can :read, Arm
+    can :update, Group
+    can :manage, Task
     can :manage, BitCore::ContentModule
     can :manage, BitCore::ContentProvider
     can :manage, BitCore::Slideshow
@@ -86,10 +89,8 @@ class Ability
     can :manage, CoachAssignment
     can :manage, Group
     can :manage, Membership
-    # can :manage, ThinkFeelDoDashboard::Moderator
     can :manage, Participant
     can :manage, Reports::LessonSlideView
-    can :manage, Task
     can :manage, User
   end
 end

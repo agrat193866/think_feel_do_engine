@@ -28,7 +28,6 @@ feature "Lessons", type: :feature do
       click_on "Arm 1"
 
       expect(page).to have_link "Manage Content"
-      expect(page).to have_content "Moderate"
 
       click_on "Manage Content"
 

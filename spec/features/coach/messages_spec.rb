@@ -67,7 +67,6 @@ feature "coach messages", type: :feature do
       with_scope "#inbox" do
         expect(page).to have_content(users(:clinician1).messages.last.created_at.to_formatted_s(:short))
       end
-
       click_on "Reply: I like this app"
 
       expect(page).to have_content("From You")

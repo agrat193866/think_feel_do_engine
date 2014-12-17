@@ -7,7 +7,7 @@ module ThinkFeelDoEngine
 
       def show
         @sent_message = current_user.sent_messages.find(params[:id])
-        authorize! :read, @sent_message
+        authorize! :show, @sent_message
         render(
           template: "think_feel_do_engine/messages/show",
           locals: {

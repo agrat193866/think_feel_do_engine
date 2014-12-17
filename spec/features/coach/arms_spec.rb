@@ -30,19 +30,5 @@ feature "Arms", type: :feature do
       expect(page).to_not have_link "Arm 2"
       expect(page).to have_link "Arm 4"
     end
-
-    scenario "should only see the groups of an arm that a coach is assigned to via coach_assignments" do
-      visit "/arms/#{arms(:arm1).id}"
-
-      save_and_open_page
-
-      expect(page).to have_link "Group 3"
-
-      sign_in_user users :user2
-      visit "/arms/#{arms(:arm1).id}"
-
-      expect(page).to have_link "Group 1"
-      expect(page).to_not have_link "Group 3"
-    end
   end
 end
