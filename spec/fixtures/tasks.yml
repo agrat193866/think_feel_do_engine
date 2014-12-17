@@ -4,6 +4,12 @@ task1:
   bit_core_content_module: do_awareness
   release_day: 1
 
+group2_think_landing:
+  creator: clinician1
+  group: group2
+  bit_core_content_module: think_landing2
+  release_day: 1
+
 task_doing:
   creator: clinician1
   group: group1
