@@ -4,5 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#")
+    # arms_path
   end
 end
