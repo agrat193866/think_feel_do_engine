@@ -1,3 +1,6 @@
+### 1.8.5
+  * fix bug that prevented adding slides to lessons
+
 ### 1.8.4
   * refactor to complete migration of Report classes to dashboard engine
 
