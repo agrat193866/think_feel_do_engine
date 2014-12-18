@@ -42,7 +42,7 @@ class DeliveredMessage < ActiveRecord::Base
   def deliver_notifications
     if recipient.instance_of? User
       ThinkFeelDoEngine::MessageNotifications
-        .new_for_coach(recipient, group)
+        .new_for_coach(recipient, sender.active_group)
         .deliver
     elsif recipient.notify_by_sms?
       MessageSmsNotification.deliver_to(recipient)

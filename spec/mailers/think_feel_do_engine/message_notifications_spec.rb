@@ -5,7 +5,7 @@ module ThinkFeelDoEngine
     fixtures :users, :user_roles, :groups
 
     context "coach creates mail" do
-      let(:mail) { MessageNotifications.new_for_coach(users(:clinician1)) }
+      let(:mail) { MessageNotifications.new_for_coach(users(:clinician1), groups(:group1)) }
 
       it "renders the headers" do
         expect(mail.subject).to eq("New message")
