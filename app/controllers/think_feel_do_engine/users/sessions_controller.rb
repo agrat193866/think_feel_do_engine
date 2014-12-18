@@ -17,7 +17,7 @@ module ThinkFeelDoEngine
           set_flash_message(:notice, :signed_in) if is_flashing_format?
           sign_in(resource_name, resource)
           yield resource if block_given?
-          respond_with resource, location:  (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#")
+          respond_with resource, location: (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : privacy_policy_path)
         end
       end
     end
