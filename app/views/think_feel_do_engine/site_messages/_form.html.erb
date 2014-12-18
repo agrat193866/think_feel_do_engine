@@ -1,4 +1,4 @@
-<%= form_for(@site_message, html: { role: "form" }) do |f| %>
+<%= form_for(@site_message, url: coach_group_site_messages_path(@group), html: { role: "form" }) do |f| %>
   <% if @site_message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site_message.errors.count, "error") %> prohibited this site_message from being saved:</h2>
@@ -17,22 +17,22 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :participant_id %><br>
+    <%= f.label :participant_id %>
     <%= f.select :participant_id, @participants.collect { |p| [ p.study_id, p.id ] }, { include_blank: true }, { class: "form-control" } %>
   </div>
 
   <div class="form-group">
-    <%= f.label :subject %><br>
+    <%= f.label :subject %>
     <%= f.text_field :subject, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :body %><br>
+    <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.submit "Send", class: "btn btn-primary"  %>
-    <%= link_to "Cancel", site_messages_path, class: "btn btn-default" %>
+    <%= link_to "Cancel", coach_group_site_messages_path(@group), class: "btn btn-default" %>
   </div>
 <% end %>

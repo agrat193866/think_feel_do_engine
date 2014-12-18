@@ -44,7 +44,7 @@ feature "coach messages", type: :feature do
     end
 
     it "delivers an SMS when the Participant has that preference" do
-      participants(:participant3).update(contact_preference: "sms")
+      expect(participants(:participant3).contact_preference).to eq "sms"
 
       visit "/coach/groups/#{groups(:group3).id}/messages"
       click_on("Compose")

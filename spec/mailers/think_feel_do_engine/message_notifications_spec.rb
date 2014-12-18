@@ -2,7 +2,7 @@ require "spec_helper"
 
 module ThinkFeelDoEngine
   describe MessageNotifications do
-    fixtures :users, :user_roles
+    fixtures :users, :user_roles, :groups
 
     context "coach creates mail" do
       let(:mail) { MessageNotifications.new_for_coach(users(:clinician1)) }

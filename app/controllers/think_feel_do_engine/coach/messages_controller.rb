@@ -18,7 +18,7 @@ module ThinkFeelDoEngine
 
       def new
         @new_message = current_user.build_sent_message
-        authorize! :new, @new_message
+        authorize! :new, Message
         render(
           locals: {
             message: message_for_reply,
@@ -29,7 +29,7 @@ module ThinkFeelDoEngine
 
       def create
         @message = current_user.build_sent_message(message_params)
-        authorize! :create, @message
+        authorize! :create, Message
         if @message.save
           redirect_to coach_group_messages_url(@group), notice: "Message saved"
         else

@@ -24,7 +24,7 @@ module ThinkFeelDoEngine
       if @site_message.save
         SiteMessageMailer.general(@site_message).deliver
 
-        redirect_to @site_message,
+        redirect_to coach_group_site_message_path(@group, @site_message),
                     notice: "Site message was successfully created."
       else
         render :new

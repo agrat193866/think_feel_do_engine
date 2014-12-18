@@ -48,22 +48,6 @@ feature "Lessons", type: :feature do
       sign_in_user users(:content_author1)
     end
 
-    scenario "should see arm links" do
-      visit "/arms"
-
-      expect(page).to_not have_link "Researcher Dashboard"
-      expect(page).to_not have_link "Coach Dashboard"
-      expect(page).to have_link "Arm 1"
-      expect(page).to have_link "Arm 2"
-    end
-
-    scenario "should see arm links" do
-      visit "/arms"
-      click_on "Arm 1"
-
-      expect(page).to have_link "Manage Content"
-    end
-
     scenario "should only see lessons related to an arm" do
       visit "/arms/#{arms(:arm1).id}/lessons"
 

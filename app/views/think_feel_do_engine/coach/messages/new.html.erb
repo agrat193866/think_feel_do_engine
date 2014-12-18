@@ -5,7 +5,6 @@
   <hr style="margin-top: 5px; margin-bottom: 5px; border-color: #D0D0D0;">
 <% end %>
 
-<%#= form_for [:coach, new_message], html: { role: "form" } do |f| %>
 <%= form_for @new_message, url: coach_group_messages_path(@group), html: { role: "form" } do |f| %>
   <div class="form-group">
     <label for="message_recipient_id">To</label>
