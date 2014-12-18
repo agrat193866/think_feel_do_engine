@@ -1,3 +1,6 @@
+### 1.8.4
+  * refactor to complete migration of Report classes to dashboard engine
+
 ### 1.8.3
   * incorporate mobile style updates/fixes
 
