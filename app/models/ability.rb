@@ -89,7 +89,12 @@ class Ability
     can :manage, Group
     can :manage, Membership
     can :manage, Participant
-    can :manage, Reports::LessonSlideView
+    can :manage, ThinkFeelDoDashboard::Reports::LessonSlideView
+    can :manage, ThinkFeelDoDashboard::Reports::LessonViewing
+    can :manage, ThinkFeelDoDashboard::Reports::ModulePageView
+    can :manage, ThinkFeelDoDashboard::Reports::ModuleSession
+    can :manage, ThinkFeelDoDashboard::Reports::SiteSession
+    can :manage, ThinkFeelDoDashboard::Reports::VideoSession
     can :manage, User
   end
 end
