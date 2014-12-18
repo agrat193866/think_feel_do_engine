@@ -61,7 +61,7 @@ module ThinkFeelDoEngine
               }, use_route: :think_feel_do_engine
             end
 
-            it { expect(response).to redirect_to urls.coach_messages_url }
+            it { expect(response).to redirect_to urls.coach_group_messages_url(group) }
           end
 
           context "when the message does not save" do

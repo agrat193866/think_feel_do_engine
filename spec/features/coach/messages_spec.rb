@@ -10,9 +10,11 @@ feature "coach messages", type: :feature do
     :phq_assessments, :emotions, :delivered_messages)
 
   describe "Logged in as a clinician" do
+    let(:group1) { groups(:group1)}
+
     before do
       sign_in_user users :clinician1
-      visit "/coach/messages"
+      visit "/coach/groups/#{group1.id}/messages"
     end
 
     it "doesn't display links not authorize to the user" do
@@ -42,7 +44,9 @@ feature "coach messages", type: :feature do
     end
 
     it "delivers an SMS when the Participant has that preference" do
-      participants(:participant1).update(contact_preference: "sms")
+      participants(:participant3).update(contact_preference: "sms")
+
+      visit "/coach/groups/#{groups(:group3).id}/messages"
       click_on("Compose")
       select("TFD-33303", from: "To")
       fill_in("Subject", with: "some new message")
@@ -50,7 +54,7 @@ feature "coach messages", type: :feature do
       click_on("Send")
 
       expect(page).to have_content("Message saved")
-      expect(MessageSmsNotification.messages.last[:to]).to eq "+12345678901"
+      expect(MessageSmsNotification.messages.last[:to]).to eq "+1-608-215-2391"
     end
 
     it "allows a coach to reply to a message" do

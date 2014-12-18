@@ -1,30 +1,33 @@
 module ThinkFeelDoEngine
-  # Enables Membership CRUD functionality.
+  # Allows a clinician to END a participant's study
   class MembershipsController < ApplicationController
     before_action :authenticate_user!
+    load_and_authorize_resource
+
     layout "manage"
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def update
-      @membership = Membership.find(params[:id])
-      authorize! :update, @membership
-
       if @membership.update(membership_params)
-        flash.now[:notice] = "Membership successfully updated"
+        flash[:notice] = "Membership successfully updated"
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
       else
-        flash.now[:alert] = "There were errors"
+        flash[:alert] = @membership.errors.full_messages.to_sentence
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
       end
     end
 
     private
 
-    def record_not_found
-      flash.now[:alert] = "Unable to find membership"
+    def membership_params
+      params
+        .require(:membership)
+        .permit(:end_date)
     end
 
-    def membership_params
-      params.require(:membership).permit(:end_date)
+    def record_not_found
+      flash.now[:alert] = "Unable to find membership"
     end
   end
 end

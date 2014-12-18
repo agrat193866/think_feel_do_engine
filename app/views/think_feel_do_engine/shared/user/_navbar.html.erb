@@ -9,8 +9,8 @@
           <span class="icon-bar"></span>
         </button>
       <% end %>
-      <a class="navbar-brand hidden-lg hidden-md" href="<%= current_user ? arms_path : '/' %>"><%= params[:context_name] ? "<p>#{params[:context_name]}</p>".html_safe : "ThinkFeelDo" %></a>
-      <a class="navbar-brand hidden-sm hidden-xs" href="<%= current_user ? arms_path : '/' %>"> ThinkFeelDo </a>
+      <a class="navbar-brand hidden-lg hidden-md" href="<%= current_user ? (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#") : '/' %>"><%= params[:context_name] ? "<p>#{params[:context_name]}</p>".html_safe : "ThinkFeelDo" %></a>
+      <a class="navbar-brand hidden-sm hidden-xs" href="<%= current_user ? (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#") : '/' %>"> ThinkFeelDo </a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

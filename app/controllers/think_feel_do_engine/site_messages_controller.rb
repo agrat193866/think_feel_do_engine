@@ -1,14 +1,14 @@
 module ThinkFeelDoEngine
   # Manage messages from the site to Participants.
   class SiteMessagesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, :set_group
     load_and_authorize_resource except: [:index]
 
     layout "manage"
 
     def index
       authorize! :show, SiteMessage
-      participant_ids = current_user.participant_ids
+      participant_ids = @group.participant_ids
       @site_messages = SiteMessage
                         .where(participant_id: participant_ids)
     end
@@ -17,7 +17,7 @@ module ThinkFeelDoEngine
     end
 
     def new
-      @participants = current_user.participants
+      @participants = @group.participants
     end
 
     def create
@@ -39,6 +39,10 @@ module ThinkFeelDoEngine
         .permit(
           :participant_id, :subject, :body
         )
+    end
+
+    def set_group
+      @group = Group.find(params[:group_id])
     end
   end
 end

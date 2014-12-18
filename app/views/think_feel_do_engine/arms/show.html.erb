@@ -1,8 +1,0 @@
-<h1>Arm <small><%= @arm.title %></small></h1>
-
-<div class="btn-toolbar" role="toolbar">
-  <%= link_to "Home", arms_path, class: "btn btn-default" %>  
-  <% if can? :manage, BitCore::ContentModule %>
-    <%= link_to "Manage Content", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
-  <% end %>
-</div>

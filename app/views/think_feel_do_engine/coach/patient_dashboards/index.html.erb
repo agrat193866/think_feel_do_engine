@@ -1,7 +1,7 @@
-<h1>Patient Dashboards</h1>
+<h1>Patient Dashboard</h1>
 
 <div class="btn-toolbar" role="toolbar">
-  <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
+  <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
 </div>
 
 <div id="patient_dashboard_wrapper">  

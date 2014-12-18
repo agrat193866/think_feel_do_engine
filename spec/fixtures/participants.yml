@@ -1,68 +1,83 @@
 participant1:
   study_id: TFD-1111
   email: participant1@example.com
+  display_name: "Aqua"
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
   contact_preference: email
 
 participant2:
   study_id: TFD-2
   email: participant2@example.com
+  display_name: "Water"
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
   contact_preference: phone
+  phone_number: "1-608-211-2391"
 
 participant3:
   study_id: TFD-33303
   email: participant3@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
-  contact_preference: sms
-  phone_number: 12345678901
+  contact_preference: email
+  phone_number: "1-608-215-2391"
 
 participant_wo_active_membership:
   study_id: TFD-without_active_membership
   email: participant_wo_active_membership@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 participant_wo_membership1:
   study_id: TFD-without_membership1
   email: participant_wo_membership1@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 participant_wo_membership2:
   study_id: TFD-without_membership2
   email: participant_wo_membership2@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 participant4:
   study_id: TFD-44444
   email: participant4@example.com
+  display_name: "Sofía"
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 participant5:
   study_id: TFD-TFD-future1
   email: participant5@example.com
+  display_name: "Isabella"
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 participant6:
   study_id: TFD-TFD-future2
   email: participant6@example.com
+  display_name: "Valentina"
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 inactive_participant:
   study_id: TFD-inactive
   email: inactive_participant@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 active_participant:
   study_id: TFD-active
   display_name: Ebony
   email: active_participant@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
-participant_for_arm4:
-  study_id: participant_for_arm4
+participant_for_arm1_group1:
+  study_id: participant_for_arm1_group1
   display_name: Jazmine
-  email: participant_for_arm4@example.com
+  email: participant_for_arm1_group1@example.com
   encrypted_password: <%= Participant.new.send(:password_digest, "9ed56e32af0a77d8b60d85b3a6361054aa9306996a28eed36e95e87bef3642b3576239d978febfb2d21595a98dc4a48c7460b595d279d6f23a9d03d989bb1503") %>
+  contact_preference: email
 
 ###
 

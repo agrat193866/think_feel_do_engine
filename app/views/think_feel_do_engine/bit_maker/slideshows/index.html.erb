@@ -1,7 +1,7 @@
 <h1>Listing Slideshows <small><%= @arm.title %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
-  <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
+  <%= link_to "Arm", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.arm_path(@arm) : "#"), class: "btn btn-default" %>
 	<%= link_to "New", new_arm_bit_maker_slideshow_path(@arm), class: "btn btn-default" %>
 </div>
 
