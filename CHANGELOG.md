@@ -1,3 +1,6 @@
+### 1.8.3
+  * incorporate mobile style updates/fixes
+
 ### 1.8.2
   * fix hamburger menu tool scoping bug
   * fix nav menu and tool index scoping bugs
