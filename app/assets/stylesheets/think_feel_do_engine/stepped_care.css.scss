@@ -71,9 +71,29 @@ p.lead                                 { margin-bottom: 10px; }
   padding-right:45px;
 }
 
-h4#lesson_title, h4#lesson_title p
+#new_lessons_list p:last-child
 {
-  display:inline;
+  margin:0 0 14px 0;
+}
+
+#new_lessons_list p.lesson_details
+{
+  display:block;
+  margin:0px;
+  font-weight:bold;
+  font-style:italic;
+  color:#5a5198;  
+}
+
+#new_lessons_list p:last-child::after
+{
+  margin:14px 0 5px 5px;
+  font-weight:bold;
+  position:absolute;
+  right:15px;
+  color:#5a5198;
+  content:"unread";
+  font-style: italic;
 }
 
 table caption

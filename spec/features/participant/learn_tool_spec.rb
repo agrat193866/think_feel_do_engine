@@ -50,21 +50,21 @@ feature "learn tool", type: :feature do
 
     it "displays unread notification, the correct count of lessons, and lessons from the past", :js do
       with_scope "#task-status-#{task_status(:task_status7).id}" do
-        expect(page).to have_text("unread")
+        expect(page).to have_selector("#new_lessons_list a p")
         expect(page).not_to have_text("today's lesson")
       end
       with_scope "#task-status-#{task_status(:task_status8).id}" do
-        expect(page).to have_text("unread")
+        expect(page).to have_selector("#new_lessons_list a p")
         expect(page).to have_text("today's lesson")
       end
       # click_on "Do - Awareness Introduction"
-      page.find("h4", text: "Do - Awareness Introduction").trigger("click")
+      page.find("p", text: "Do - Awareness Introduction").trigger("click")
       visit "/navigator/contexts/LEARN"
       with_scope "#task-status-#{task_status(:task_status7).id}" do
-        expect(page).not_to have_text("unread")
+        expect(page).not_to have_selector("#new_lessons_list a p")
       end
       with_scope "#task-status-#{task_status(:task_status8).id}" do
-        expect(page).to have_text("unread")
+        expect(page).to have_selector("#new_lessons_list a p")
       end
     end
   end
