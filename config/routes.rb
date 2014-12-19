@@ -82,6 +82,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :activities, only: :create
   end
 
+  get "keepalive", to: "keep_alive#index"
+
   get "password_entropy_bits", to: "password_entropy_bits#show", as: "password_entropy_bits"
 
   if Rails.env == "development"
