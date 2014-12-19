@@ -1,5 +1,5 @@
 <tr id="activity-<%= mutable_activity.id %>">
-  <td style="display: none;"><%= mutable_activity.start_time ? mutable_activity.start_time.to_i : 0 %></td>
+  <td class="ignore_cell" style="display: none;"><%= mutable_activity.start_time ? mutable_activity.start_time.to_i : 0 %></td>
   <td><%= mutable_activity.start_time ? mutable_activity.start_time.to_s(:brief_date_time) : "<span class=\"label label-warning\">Not Available</span>".html_safe%></td>
   <td><%= mutable_activity.title %></td>
   <td>
@@ -10,5 +10,5 @@
     <span class="immutable-activity-content"><%= mutable_activity.actual_accomplishment_intensity %></span>
     <%= select_tag "activities[#{ mutable_activity.id }][actual_accomplishment_intensity]", options_for_select(0..10, mutable_activity.actual_accomplishment_intensity), prompt: "Select...", style: "display: none;" %>
   </td>
-  <td><%= submit_tag "Save", name: "activities[commit_id][#{ mutable_activity.id }]", class: "btn btn-default", style: "display: none;" %></td>
+  <td class="ignore_cell"><%= submit_tag "Save", name: "activities[commit_id][#{ mutable_activity.id }]", class: "btn btn-default", style: "display: none;" %></td>
 </tr>

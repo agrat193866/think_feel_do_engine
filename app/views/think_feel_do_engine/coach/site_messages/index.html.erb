@@ -1,8 +1,8 @@
-<h1>Listing Site Messages</h1>
+<h1>Listing Site Messages <small><%= @group.title %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
-  <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
-  <%= link_to "New", new_site_message_path, class: "btn btn-default" %>
+  <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
+  <%= link_to "New", new_coach_group_site_message_path(@group), class: "btn btn-default" %>
 </div>
 
 <table class="table">
@@ -21,7 +21,7 @@
         <td><%= site_message.participant.study_id %></td>
         <td><%= site_message.subject %></td>
         <td><%= site_message.body %></td>
-        <td><%= link_to 'Show', site_message %></td>
+        <td><%= link_to 'Show', coach_group_site_message_path(@group, site_message) %></td>
       </tr>
     <% end %>
   </tbody>

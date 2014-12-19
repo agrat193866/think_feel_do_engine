@@ -1,3 +1,24 @@
+### 1.9.1 - 2014-12-19
+  * bug fixes
+    * correctly namespaced site_message controller and views within 'coach' and added specs
+
+### 1.9.0
+  * enhancements
+    * all clincian functionality is now nested within groups
+
+### 1.8.5
+  * fix bug that prevented adding slides to lessons
+
+### 1.8.4
+  * refactor to complete migration of Report classes to dashboard engine
+
+### 1.8.3
+  * incorporate mobile style updates/fixes
+
+### 1.8.2
+  * fix hamburger menu tool scoping bug
+  * fix nav menu and tool index scoping bugs
+
 ### 1.8.1
   * display 'read' and 'released' dates for archived lessons
 

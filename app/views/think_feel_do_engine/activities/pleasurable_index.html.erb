@@ -1,15 +1,15 @@
-<h2>Things you found fun.</h2>
+<p class="lead">Things you found fun.</p>
 
-<table class="table table-hover table-condensed" id="fun_activities">
-<thead>
+<table class="table responsive table-hover table-condensed" id="fun_activities">
+<tbody>
     <tr>
       <th>Time Period</th>
       <th>Activity</th>
       <th>Pleasure of Activity</th>
       <th>Sense of Accomplishment</th>
     </tr>
-  </thead>
   <%= render partial: "think_feel_do_engine/activities/activity", collection: activities %>
+</tbody>
 </table>
 
 <p>Why does this matter?</p>
@@ -71,5 +71,14 @@ populateWithRow = function(obj,row)
 	obj.ref = row;
 	return obj;
 }
+
+$(function(){
+		  $('table.responsive').ngResponsiveTables({
+		  	smallPaddingCharNo: 13,
+	    	mediumPaddingCharNo: 18,
+	    	largePaddingCharNo: 30,
+	    	shiftedIndex:0
+		  });
+		});
 
 </script>

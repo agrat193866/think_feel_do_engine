@@ -1,41 +1,59 @@
-$(document).on('page:load ready', function() {
-
-	var addOrRemoveHide = function() {
-	  if ($(window).width() < 768) {
-		$('table.responsive tr td').not(':first-child').addClass('hide');
-	  }
-	  else {
-		$('table.responsive tr td').removeClass('hide');
-	  }
+;(function ( $ ) {
+	$.fn.ngResponsiveTables = function(options) {
+		var defaults = {
+		smallPaddingCharNo: 5,
+		mediumPaddingCharNo: 10,
+		largePaddingCharNo: 15,
+		shiftedIndex: 0
+		},
+		$selElement = this,
+		ngResponsiveTables = {
+			opt: '',
+			dataContent: '',
+			globalWidth: 0,
+		init: function(){
+			this.opt = $.extend( defaults, options );
+			ngResponsiveTables.targetTable();
+		},
+		targetTable: function(){
+			var that = this;
+			$selElement.find('tr').each(function(){
+				$(this).find('td').each(function(i, v){
+					if(!$(this).hasClass('ignore_cell')){
+						that.checkForTableHead($(this), i);
+						if(i == that.opt.shiftedIndex) {$(this).addClass("responsive-header");}
+						$(this).addClass('tdno' + i);
+					}
+				});
+			});
+		},
+		checkForTableHead: function(element, index){
+			if(index >= this.opt.shiftedIndex){
+				actualIndex = index - this.opt.shiftedIndex;
+				if( $selElement.find('th').length > actualIndex){
+					this.dataContent = $selElement.find('th')[actualIndex].textContent;
+				}else{
+					this.dataContent = "";
+				}
+				element.attr('data-content', this.dataContent);
+			}else{
+				element.attr('data-content', "");
+			}
+			if( this.opt.smallPaddingCharNo > $.trim(this.dataContent).length ){
+				element.addClass('small-padding');
+			}else if( this.opt.mediumPaddingCharNo > $.trim(this.dataContent).length ){
+				element.addClass('medium-padding');
+			}else{
+				element.addClass('large-padding');
+			}
+			
+		}
 	};
-	addOrRemoveHide();
 
-
-	var headerText = [];
-	var headers = document.querySelectorAll("table.responsive th");
-	var tableRows = $('table.responsive tbody tr');
-
-	$.each(headers, function(idx) {
-	  headerText.push(headers[idx].textContent);
-	})
-	$.each(tableRows, function(idx, el) {
-	  var tableCells = $(el).children('td');
-		$.each(tableCells, function(idx) {
-		  tableCells[idx].setAttribute('data-th', headerText[idx]);
-		})
-	})
-
-	$('table.responsive tr td:first-child').on('click', function() {
-	  if ( $(window).width() < 768 ) {
-		var siblings = $(this).siblings();
-		if ($(siblings).hasClass('hide')) {
-		  $(siblings).removeClass('hide');
-		}
-		else {
-		  $(siblings).addClass('hide');
-		}
-	  }
+	$(function(){
+		ngResponsiveTables.init();
 	});
+		return this;
+	};
 
-	$(window).on('resize', addOrRemoveHide);
-});
+}( jQuery ));

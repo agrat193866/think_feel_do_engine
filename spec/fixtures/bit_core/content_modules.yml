@@ -53,6 +53,11 @@ think_landing:
   tool: thought_tracker
   position: 1
 
+think_landing2:
+  title: Think landing
+  tool: thought_tracker2
+  position: 1
+
 think_identifying:
   title: '#1 Identifying'
   tool: thought_tracker

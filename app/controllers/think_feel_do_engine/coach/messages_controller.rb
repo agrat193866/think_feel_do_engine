@@ -2,12 +2,12 @@ module ThinkFeelDoEngine
   module Coach
     # Manages coach message handling.
     class MessagesController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_group
       layout "manage"
 
       def index
         authorize! :show, Message
-        @participants = current_user.participants
+        @participants = @group.participants
         render(
           locals: {
             received_messages: received_messages,
@@ -18,11 +18,11 @@ module ThinkFeelDoEngine
 
       def new
         authorize! :new, Message
+        @new_message = current_user.build_sent_message
         render(
           locals: {
             message: message_for_reply,
-            new_message: current_user.build_sent_message,
-            participants: current_user.participants
+            participants: @group.participants
           }
         )
       end
@@ -31,7 +31,7 @@ module ThinkFeelDoEngine
         authorize! :create, Message
         @message = current_user.build_sent_message(message_params)
         if @message.save
-          redirect_to coach_messages_url, notice: "Message saved"
+          redirect_to coach_group_messages_url(@group), notice: "Message saved"
         else
           errors = @message.errors.full_messages.join(", ")
           flash.now[:alert] = "Unable to save message: #{ errors }"
@@ -47,6 +47,17 @@ module ThinkFeelDoEngine
 
       def message_for_reply
         received_messages.find(params[:message_id]) if params[:message_id]
+      end
+
+      def message_params
+        params
+          .require(:message)
+          .permit(
+            :body,
+            :recipient_id,
+            :recipient_type,
+            :subject
+          )
       end
 
       def received_messages
@@ -66,10 +77,8 @@ module ThinkFeelDoEngine
         messages.where(recipient_id: params[:search])
       end
 
-      def message_params
-        params
-          .require(:message)
-          .permit(:recipient_id, :recipient_type, :subject, :body)
+      def set_group
+        @group = Group.find(params[:group_id])
       end
     end
   end

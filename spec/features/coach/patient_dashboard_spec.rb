@@ -15,16 +15,17 @@ feature "patient dashboard", type: :feature do
     let(:short_timestamp) { time_now.to_formatted_s(:short) }
     let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
     let(:participant1) { participants(:participant1) }
+    let(:participant_for_arm1_group1) { participants(:participant_for_arm1_group1) }
+    let(:group1) { groups(:group1) }
+    let(:group2) { groups(:group2) }
 
     context "Coach views table with many patients" do
       before do
         sign_in_user users :clinician1
-        visit "/coach_dashboard"
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
       end
 
       it "should display all messages" do
-        click_on "Patients"
-
         expect(page).not_to have_text("participant1#example.com")
         expect(page).to have_the_table(
           id: "patients",
@@ -45,32 +46,31 @@ feature "patient dashboard", type: :feature do
     context "Authorization" do
       before do
         sign_in_user users :user2
-        visit "/coach_dashboard"
       end
 
-      it "should only display patients they are assigned" do
-        click_on "Patients"
+      it "should only display patients they are assigned and are of a group" do
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-        expect(page).to have_text("participant_for_arm4")
+        expect(page).to have_text("participant_for_arm1_group1")
         expect(page).not_to have_text("TFD-1111")
 
         sign_in_user users :clinician1
-        visit "/coach_dashboard"
-        click_on "Patients"
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-        expect(page).not_to have_text("participant_for_arm4")
+        expect(page).not_to have_text("participant_for_arm1_group1")
         expect(page).to have_text("TFD-1111")
       end
 
       it "should only be able to view patient data they are assigned to" do
-        visit "/coach/patient_dashboards/#{participants(:participant_for_arm4).id}"
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_for_arm1_group1.id}"
 
-        expect(page).to have_text("Participant participant_for_arm4")
+        expect(page).to have_text("Participant participant_for_arm1_group1")
         expect(page).not_to have_text("You are not authorized to access this page")
 
         sign_in_user users :clinician1
-        visit "/coach/patient_dashboards/#{participants(:participant_for_arm4).id}"
-        expect(page).to_not have_text("Participant participant_for_arm4")
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_for_arm1_group1.id}"
+
+        expect(page).to_not have_text("Participant participant_for_arm1_group1")
         expect(page).to have_text("You are not authorized to access this page")
       end
     end
@@ -78,7 +78,7 @@ feature "patient dashboard", type: :feature do
     context "Coach visits active patient" do
       before do
         sign_in_user users(:clinician1)
-        visit "/coach/patient_dashboards/#{ participant1.id }"
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
       end
 
       it "displays active status" do
@@ -97,7 +97,7 @@ feature "patient dashboard", type: :feature do
       it "summarizes logins" do
         sign_in_participant participant1
         sign_in_user users :clinician1
-        visit "/coach/patient_dashboards/#{ participant1.id }"
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
         expect(page).to have_the_table(
           id: "logins",
@@ -108,7 +108,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes learning when not completed learning", :js do
         Timecop.travel(time_now) do
-          visit "/coach/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{ participant1.id }"
 
           within_table "learning_data" do
             expect(page).to_not have_text "Not Completed"
@@ -123,7 +123,7 @@ feature "patient dashboard", type: :feature do
 
           page.find(".list-group-item", text: "Do - Awareness Introduction").trigger("click")
           sign_in_user users(:clinician1)
-          visit "/coach/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{ participant1.id }"
 
           expect(page).to have_the_table(
             id: "learning_data",
@@ -135,7 +135,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes learning when completed learning", :js do
         Timecop.travel(time_now) do
-          visit "/coach/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
           within_table "learning_data" do
             expect(page).to_not have_text "Not Completed"
@@ -149,7 +149,7 @@ feature "patient dashboard", type: :feature do
           click_on "Continue"
 
           sign_in_user users :clinician1
-          visit "/coach/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
           expect(page).to have_the_table(
             id: "learning_data",
             cells: ["Do - Awareness Introduction", short_timestamp, short_timestamp, short_timestamp, "less than a minute"]
@@ -231,7 +231,7 @@ feature "patient dashboard", type: :feature do
           click_on "Continue"
           # expect(page).to have_text("Take a look - does this all seem right?")
           sign_in_user users(:clinician1)
-          visit "/coach/patient_dashboards"
+          visit "/coach/groups/#{group1.id}/patient_dashboards"
           click_on "TFD-1111"
 
           expect(page).to have_the_table(
@@ -286,62 +286,58 @@ feature "patient dashboard", type: :feature do
     end
 
     context "Coach visits inactive patient" do
+      let(:inactive_participant) { participants(:inactive_participant) }
+
       before do
         sign_in_user users :clinician1
       end
 
       it "displays number of unread messages" do
-        visit "/coach/patient_dashboards"
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
         with_scope "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("1")
         end
-        visit "/coach/messages"
+        visit "/coach/groups/#{group1.id}/messages"
 
         expect(page).to have_text("Inbox (1)")
 
         click_on "I like this app"
 
-        visit "/coach_dashboard"
-        click_on "Patients"
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
 
         with_scope "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("0")
         end
 
-        visit "/coach/messages"
+        visit "/coach/groups/#{group1.id}/messages"
 
         expect(page).to have_text("Inbox (0)")
       end
 
-      it "displays participant's status on index page" do
-        visit "/coach/patient_dashboards"
+      it "displays participant's 'Active' status on index page" do
+        visit "/coach/groups/#{group2.id}/patient_dashboards"
+
         expect(page).to have_text("Inactive")
       end
 
-      it "displays participant's status" do
-        visit "/coach/patient_dashboards/#{ participants(:inactive_participant).id }"
+      it "displays participant's 'Inactive' status on their 'show' page" do
+        visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id }"
+
         expect(page).to have_text("Participant TFD-inactive")
         expect(page).to have_text("Inactive")
         expect(page).to have_text("Study has been Completed")
       end
     end
 
-    it "should allow a coach to set the membership end date", :js do
-      # ERROR IN MAIN AS WELL, FIX ONLY AFTER MERGE
-      sign_in_user users :clinician1
-      visit "/coach/patient_dashboards"
-      within "#patient-#{ participant1.id }" do
-        page.find("input.btn.btn-default[value='End Now']").trigger("click")
-      end
+    it "should allow a coach to set the membership end date" do
+      sign_in_user users :clinician1   
+      visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+      expect(page).to_not have_text("Membership successfully updated")
+
+      click_on "End Now"
 
       expect(page).to have_text("Membership successfully updated")
-    end
-
-    it "should display alert that the user isn't a member of a group yet" do
-      sign_in_user users(:user_with_memberless_participant)
-      visit "/coach/patient_dashboards"
-
-      expect(page).to have_text("Patient is not a member of a group!")
     end
   end
 end

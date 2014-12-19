@@ -40,4 +40,4 @@
 <br>
 
 <%= link_to "#{ fa_icon('plus') } New Phq assessment".html_safe, new_coach_phq_assessment_path(participant_id: @participant.id), class: "btn btn-default" %>
-<%= link_to "#{ fa_icon('chevron-up') } Patient dashboard".html_safe, coach_patient_dashboard_path(@participant.id), class: "btn btn-default" %>
+<%= link_to "#{ fa_icon('chevron-up') } Patient dashboard".html_safe, coach_group_patient_dashboard_path(@participant.active_group, @participant), class: "btn btn-default" %>

@@ -1,26 +1,26 @@
-<tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.membership && patient.membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
-  <td>
-    <%= link_to patient.study_id, coach_patient_dashboard_path(patient) %>
-  </td>
+<% if can? :show, patient %>
+  <tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.membership && patient.membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
+    <td>
+      <%= link_to patient.study_id, coach_group_patient_dashboard_path(@group, patient) %>
+    </td>
 
-  <td class="unread">
-    <%= current_user.received_messages.sent_from(patient.id).unread.count %>
-  </td>
+    <td class="unread">
+      <%= current_user.received_messages.sent_from(patient.id).unread.count %>
+    </td>
 
-  <td>
-    <%= patient.active_membership ? (patient.active_membership.day_in_study / 7.0).ceil : '<span class="label label-warning">Inactive</span>'.html_safe %>
-  </td>
-  
-  <td>
-    <% if (last_phq = patient.phq_assessments.last) %>
-      <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
-    <% else %>
-      <span class="label label-warning">No Completed Assessments</span>
-    <% end %>
-  </td>
+    <td>
+      <%= patient.active_membership ? (patient.active_membership.day_in_study / 7.0).ceil : '<span class="label label-warning">Inactive</span>'.html_safe %>
+    </td>
+    
+    <td>
+      <% if (last_phq = patient.phq_assessments.last) %>
+        <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
+      <% else %>
+        <span class="label label-warning">No Completed Assessments</span>
+      <% end %>
+    </td>
 
-  <td>
-    <%- if patient.membership -%>
+    <td>
       <% if patient.phq_assessments.count > 0 %>
         <% suggestion = patient.stepping_suggestion %>
         <span title="Click for more details" class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
@@ -29,28 +29,22 @@
         <span title="Click for more details" class="label label-phq-none label-warning">No Completed Assessments</span>
         <button type="button" class="btn btn-link label-phq">more details</button>
       <% end %>
-    <%- else -%>
-      <div class="label label-danger">Patient is not a member of a group!</div>
-    <%- end -%>
-  </td>
+    </td>
 
-  <td>
-    <%= patient.sign_in_count %>
-  </td>
+    <td>
+      <%= patient.sign_in_count %>
+    </td>
 
-  <td>
-    <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
-  </td>
+    <td>
+      <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+    </td>
 
-  <td>
-    <%- if patient.membership -%>
+    <td>
       <%= form_for patient.membership, remote: true, html: { style: "display: inline-block;" } do |f| %>
         <%= f.hidden_field :end_date %>
         <input type="text" class="datepicker" value="<%= patient.membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
       <% end %>
-      <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, remote: true, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
-    <%- else -%>
-      <div class="label label-danger">Patient is not a member of a group!</div>
-    <%- end -%>
-  </td>
-</tr>
+      <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
+    </td>
+  </tr>
+<% end %>
