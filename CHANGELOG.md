@@ -1,3 +1,7 @@
+### 1.9.0
+  * enhancements
+    * all clincian functionality is now nested within groups
+
 ### 1.8.5
   * fix bug that prevented adding slides to lessons
 
