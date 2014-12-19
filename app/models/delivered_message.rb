@@ -40,9 +40,7 @@ class DeliveredMessage < ActiveRecord::Base
   private
 
   def deliver_notifications
-    # puts "recipient = #{recipient.attributes}"
     if recipient.instance_of? User
-      # puts "sender.active_group = #{sender.active_group.id}"
       ThinkFeelDoEngine::MessageNotifications
         .new_for_coach(recipient, sender.active_group)
         .deliver
