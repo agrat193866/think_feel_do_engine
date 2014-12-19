@@ -43,30 +43,30 @@ class Ability
     end
     authorize_coach_messaging
     can :update, Membership do |membership|
-      coach_has_participant? @user, membership.participant_id
+      coach_has_participant? @user.id, membership.participant_id
     end
     can :manage, PhqAssessment do |assessment|
-      coach_has_participant? @user, assessment.participant_id
+      coach_has_participant? @user.id, assessment.participant_id
     end
   end
 
   def authorize_coach_messaging
-    can [:create, :show], Message
+    can [:create, :index], Message
     can :show, Message do |message|
       (message.try(:sender) == @user) || (message.try(:recipient) == @user)
     end
     can(:show, DeliveredMessage) do |message|
       message.try(:recipient) == @user
     end
-    can :new, SiteMessage
+    can [:new, :index], SiteMessage
     can [:create, :show], SiteMessage do |message|
-      coach_has_participant? @user, message.participant_id
+      coach_has_participant? @user.id, message.participant_id
     end
   end
 
-  def coach_has_participant?(coach, participant_id)
+  def coach_has_participant?(coach_id, participant_id)
     CoachAssignment.exists?(
-      coach_id: coach.id,
+      coach_id: coach_id,
       participant_id: participant_id
     )
   end
@@ -84,9 +84,9 @@ class Ability
 
   # think_feel_do_dashboard
   def authorize_researcher
-    can :index, Arm
+    can [:show, :index], Arm
     can :manage, CoachAssignment
-    can :manage, Group
+    can [:index, :new, :create, :edit, :show, :update, :destroy], Group
     can :manage, Membership
     can :manage, Participant
     can :manage, ThinkFeelDoDashboard::Reports::LessonSlideView
