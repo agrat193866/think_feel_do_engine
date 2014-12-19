@@ -1,3 +1,5 @@
+table#summary{width:99% !important;}
+
 @media (max-width: 768px) {
   /* CSS Responsive table */
   table.responsive,
@@ -10,11 +12,16 @@
   table.responsive tr { border: 1px solid #ccc; margin-bottom: 10px; }
   table.responsive td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50% !important; }
   table.responsive td:before {  position: absolute; top: 6px; left: 6px; width: 40%; padding-right: 10px; text-align: left; word-wrap: break-word; }
-  table.responsive tr:first-child { position: absolute; top: -9999px; left: -9999px; }
-  table.responsive td:before { content: attr(data-content); height: 50px; }
+  table.responsive thead tr:first-child { position: absolute; top: -9999px; left: -9999px; }
+  table.responsive td:before { content: attr(data-content); height: 50px; word-wrap:normal; }
   table.responsive td.small-padding { padding-top: 5px; padding-bottom: 5px; }
   table.responsive td.medium-padding { padding-top: 15px; padding-bottom: 15px; }
   table.responsive td.large-padding { padding-top: 25px; padding-bottom: 25px; }
   table.responsive td.responsive-header {background-color: #D7D7D7; font-weight: bold;}
   table.responsive td.ignore_cell{height:0;display:none;}
+  #summary_wrapper label input{width:100%;}
+}
+
+@media (min-width: 768px){
+  table.responsive tr.second-header{display:none;}
 }

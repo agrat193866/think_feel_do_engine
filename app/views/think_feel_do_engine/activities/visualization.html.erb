@@ -9,11 +9,10 @@
     <button class="btn btn-default" onclick="makeActivitiesEditable(); return false;">Edit Activities</button><br><br>
 
     <%= form_tag participants_activities_path, remote: true do %>
-      <table id="summary" class="table">
+      <table id="summary" class="table table-hover table-condensed responsive youract1">
         <caption>Most Recent Activities</caption>
-
         <thead>
-          <tr>
+        	<tr>
             <th>Datetime</th>
             <th>Date/Time</th>
             <th>Activity</th>
@@ -21,8 +20,7 @@
             <th>Accomplishment</th>
             <th></th>
           </tr>
-        </thead>
-
+      </thead>
         <tbody>
           <%= render partial: "think_feel_do_engine/activities/mutable_activity", collection: activities.order(:start_time) %>
         </tbody>
@@ -734,7 +732,7 @@
 
 		var hScroll = container.append("div").attr("class", "div-table-viz");
 		
-		var table = hScroll.append("table").attr("class", "table table-hover").attr("id","discrepency_table");
+		var table = hScroll.append("table").attr("class", "table table-hover table-condensed responsive youract2").attr("id","discrepency_table");
 		table.append("caption").text("Most Recent Activities");
 
 		var rows = ["<tr><th></th><th></th>",
@@ -788,6 +786,14 @@
 		      arr.reverse();
 		        $(this).append(arr);
 		    });
+		      	 $('table.youract2').ngResponsiveTables({
+	  	smallPaddingCharNo: 13,
+		mediumPaddingCharNo: 18,
+		largePaddingCharNo: 30,
+		shiftedIndex:0,
+		headerAdjust:true,
+		headers:["Date/Time","Activity","Pleasure Discrepancy","Pleasure Predicted","Actual Pleasure","Accomplishment Discrepancy","Accomplishment Predicted", "Actual Accomplishment"]
+	  });
 		});
 		$("#discrepency_table tr:nth-child(n + 8)").remove();
 
@@ -812,7 +818,13 @@
   	});
 
   $(function() {
-    $('table#summary').dataTable({
+    $('table.youract1').ngResponsiveTables({
+	  	smallPaddingCharNo: 13,
+		mediumPaddingCharNo: 18,
+		largePaddingCharNo: 30,
+		shiftedIndex:0
+	  });
+        $('table#summary').dataTable({
       sPaginationType: 'bootstrap',
       iDisplayLength: 25,
       aoColumnDefs: [
