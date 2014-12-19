@@ -1,3 +1,6 @@
+### 1.10.2
+  * fix bug that involves feed items breaking home screen for engagements
+
 ### 1.10.1
   * auto-logout is more accurate with timing
 
