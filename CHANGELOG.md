@@ -1,3 +1,7 @@
+### 1.9.1 - 2014-12-19
+  * bug fixes
+    * correctly namespaced site_message controller and views within 'coach' and added specs
+
 ### 1.9.0
   * enhancements
     * all clincian functionality is now nested within groups
