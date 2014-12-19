@@ -1,3 +1,6 @@
+### 1.10.1
+  * auto-logout is more accurate with timing
+
 ### 1.10.0
 
   * change Thoughts tool to only allow harmful
