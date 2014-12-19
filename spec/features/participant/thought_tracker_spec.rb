@@ -37,16 +37,14 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text("Now, your turn...")
 
     fill_in("thought_content", with: "my great thought")
-    choose("thought_effect_helpful")
     click_on("Continue")
 
-    expect(page).to have_text("Now list another thought...")
+    expect(page).to have_text("Now list another harmful thought...")
 
     fill_in("thought_content", with: "another thought")
-    choose("thought_effect_neither")
     click_on("Continue")
 
-    expect(page).to have_text("Now one more, try to identify")
+    expect(page).to have_text("Just one more harmful thought")
 
     fill_in("thought_content", with: "another thought")
     click_on("Continue")
@@ -180,7 +178,6 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text "Add a New Thought"
 
     fill_in("thought_content", with: "I like tomatoes")
-    choose("harmful")
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in("Challenging Thought", with: "Oh my")
     fill_in("As If Action", with: "Not sure")
@@ -206,7 +203,6 @@ feature "thought tracker", type: :feature do
     end
 
     fill_in("thought_content", with: "I like tomatoes")
-    choose("harmful")
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in("Challenging Thought", with: "Oh my")
     fill_in("As If Action", with: "Not sure")
@@ -220,52 +216,45 @@ feature "thought tracker", type: :feature do
   end
 
   it "shows a vizualization of thought distortions and their associated harmful thoughts", :js do
-    page.find(".list-group-item-unread", text: "Add a New Thought").trigger("click")
+    page.find(".list-group-item-unread", text: "Add a New Thought").click
 
-    expect(page).to have_text("This thought is")
-    page.execute_script("$('#thought_content').val('OvergenA')")
-    page.execute_script("$('#thought_effect_harmful').prop('checked',true)")
+    fill_in "thought_content", with: "something something"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
-    page.execute_script("$('#thought_challenging_thought').val('Oh my')")
-    page.execute_script("$('#thought_act_as_if').val('Not sure')")
+    fill_in "Challenging Thought", with: "Oh my"
+    fill_in "As If Action", with: "Not sure"
 
-    page.find("button.btn", text: "Continue").trigger("click")
-    page.find("a.btn", text: "Continue").trigger("click")
+    click_on "Continue"
+    click_on "Continue"
 
     expect(page).to have_text("Think Landing")
 
-    page.find(".list-group-item-read", text: "Add a New Thought").trigger("click")
+    page.find(".list-group-item-read", text: "Add a New Thought").click
 
-    expect(page).to have_text("This thought is")
-    page.execute_script("$('#thought_content').val('OvergenB')")
-    page.execute_script("$('#thought_effect_harmful').prop('checked',true)")
+    fill_in "thought_content", with: "something something 2"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
-    page.execute_script("$('#thought_challenging_thought').val('Oh my')")
-    page.execute_script("$('#thought_act_as_if').val('Not sure')")
+    fill_in "Challenging Thought", with: "Oh my"
+    fill_in "As If Action", with: "Not sure"
 
-    page.find("button.btn", text: "Continue").trigger("click")
-    page.find("a.btn", text: "Continue").trigger("click")
+    click_on "Continue"
+    click_on "Continue"
 
     expect(page).to have_text("Think Landing")
 
-    page.find(".list-group-item-read", text: "Add a New Thought").trigger("click")
+    page.find(".list-group-item-read", text: "Add a New Thought").click
 
-    expect(page).to have_text("This thought is")
-    page.execute_script("$('#thought_content').val('OvergenC')")
-    page.execute_script("$('#thought_effect_harmful').prop('checked',true)")
+    fill_in "thought_content", with: "something something 3"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
-    page.execute_script("$('#thought_challenging_thought').val('Oh my')")
-    page.execute_script("$('#thought_act_as_if').val('Not sure')")
+    fill_in "Challenging Thought", with: "Oh my"
+    fill_in "As If Action", with: "Not sure"
 
-    page.find("button.btn", text: "Continue").trigger("click")
-    page.find("a.btn", text: "Continue").trigger("click")
+    click_on "Continue"
+    click_on "Continue"
 
     expect(page).to have_text("Think Landing")
 
     expect(page).to have_text "Overgeneralization"
-    find(".thoughtviz_text").trigger("click")
+    find(".thoughtviz_text").click
 
     expect(page).to have_text "Thought Distortions"
   end
-
 end
