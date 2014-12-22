@@ -1,3 +1,7 @@
+### 1.10.3
+  * minor Module index refactor
+  * removal of duplicate Harmful Thought form
+
 ### 1.10.2
   * fix bug that involves feed items breaking home screen for engagements
 
