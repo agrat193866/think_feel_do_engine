@@ -1,3 +1,6 @@
+### 1.10.5
+  * migrated Lesson notificaiton code out
+
 ### 1.10.4
   * changed default value for participant contact preference to email
 
