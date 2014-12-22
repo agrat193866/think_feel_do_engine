@@ -5,7 +5,7 @@ module ContentProviders
       options.view_context.render(
         template: "think_feel_do_engine/thoughts/new_bulk",
         locals: {
-          thoughts: (1..2).map { options.participant.thoughts.build },
+          thoughts: [options.participant.thoughts.build],
           create_path: options.view_context.participant_data_path
         }
       )
