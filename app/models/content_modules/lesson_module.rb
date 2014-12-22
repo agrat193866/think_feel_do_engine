@@ -31,6 +31,12 @@ module ContentModules
       ).render(title).html_safe
     end
 
+    def plain_title
+      return "" if title.nil?
+
+      title.gsub(/\*\*/, "")
+    end
+
     def lesson_provider
       @lesson_provider ||= (content_providers.first ||
         add_content_provider("BitCore::ContentProviders::SlideshowProvider")
