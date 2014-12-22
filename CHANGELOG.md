@@ -1,3 +1,6 @@
+### 1.10.4
+  * changed default value for participant contact preference to email
+
 ### 1.10.3
   * minor Module index refactor
   * removal of duplicate Harmful Thought form
