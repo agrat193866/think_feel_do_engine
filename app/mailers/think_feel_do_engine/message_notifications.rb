@@ -1,8 +1,6 @@
 module ThinkFeelDoEngine
   # Mailer for notifying of new application messages.
   class MessageNotifications < ActionMailer::Base
-    default from: "stepped_care-no-reply@northwestern.edu"
-
     def new_for_coach(coach, group)
       @group = group
       mail to:      coach.email,

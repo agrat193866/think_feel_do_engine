@@ -1,3 +1,6 @@
+### 1.10.7
+  * mailers now using the from email address and host specified in the environment config files
+
 ### 1.10.6
   * added method to LessonModule
 
