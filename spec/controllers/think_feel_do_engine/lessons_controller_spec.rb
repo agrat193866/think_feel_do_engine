@@ -4,7 +4,7 @@ module ThinkFeelDoEngine
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
   describe LessonsController, type: :controller do
-    let(:arm) { double("arm", bit_core_tools: BitCore::Tool) }
+    let(:arm) { double("arm", bit_core_tools: BitCore::Tool, id: 123) }
     let(:user) { double("user", admin?: true) }
 
     describe "GET index" do
@@ -181,6 +181,30 @@ module ThinkFeelDoEngine
             allow(controller).to receive(:set_lesson).and_return(lesson)
             delete :destroy, id: 1, use_route: :think_feel_do_engine
             expect(response).to redirect_to urls.arm_lessons_url(arm)
+          end
+        end
+      end
+    end
+
+    describe "POST sort" do
+      context "for unauthenticated requests" do
+        before { post :sort, use_route: :think_feel_do_engine }
+        it_behaves_like "a rejected user action"
+      end
+
+      context "for authenticated requests" do
+        before do
+          allow(Arm).to receive(:find) { arm }
+          sign_in_user user
+        end
+
+        context "when the lesson sorts" do
+          let(:lesson) { class_double("ContentModules::LessonModule").as_stubbed_const }
+
+          it "doesn't throw an exception" do
+            allow(lesson).to receive(:sort) { true }
+            post :sort, use_route: :think_feel_do_engine
+            expect(response).to be_success
           end
         end
       end
