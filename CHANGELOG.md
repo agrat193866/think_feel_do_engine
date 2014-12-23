@@ -1,3 +1,6 @@
+### 1.10.6
+  * added method to LessonModule
+
 ### 1.10.5
   * migrated Lesson notificaiton code out
 
