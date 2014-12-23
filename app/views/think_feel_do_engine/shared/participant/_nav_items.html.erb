@@ -1,9 +1,3 @@
-<% if (intro = SlideshowAnchor.fetch(:home_intro)) %>
-  <li>
-    <%= link_to "Replay Intro", think_feel_do_engine.participants_public_slideshow_slide_path(slideshow_id: intro.id, id: intro.slides.first.id) %>
-  </li>
-<% end %>
-
 <% unless current_participant.active_group.nil? %>
   <% for tool in current_participant.active_group.arm.bit_core_tools.where('title != ?', "home") %>
     <% if tool.title == "LEARN" %>
