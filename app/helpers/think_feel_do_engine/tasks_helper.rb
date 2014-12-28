@@ -22,36 +22,25 @@ module ThinkFeelDoEngine
     end
 
     def make_room_for_badge(tool)
-      today_unfinished = @current_participant.incomplete?(tool)
-      any_unfinished = @current_participant.any_incomplete?(tool)
-
-      if today_unfinished || any_unfinished
-        if no_submenu?(tool)
-          "incomplete_numbered_badge_link"
-        elsif today_unfinished
-          "incomplete_badge_link"
-        else ""
-        end
+      if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
+        "incomplete_numbered_badge_link"
+      elsif @current_participant.incomplete?(tool)
+        "incomplete_badge_link"
       else ""
       end
     end
 
     def indicate_incomplete(tool)
-      today_unfinished = @current_participant.incomplete?(tool)
-      any_unfinished = @current_participant.any_incomplete?(tool)
-
-      if today_unfinished || any_unfinished
-        if no_submenu?(tool)
-          "<span class=\"badge badge-do badge-superscript\">"\
-          "#{@current_participant.count_all_incomplete(tool)}"\
-          "</span>"
-        elsif today_unfinished
-          "<span class=\"badge badge-do badge-superscript\">"\
-          "New!"\
-          "</span>"
-        else ""
-        end
-      else ""
+      if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
+        "<span class=\"badge badge-do badge-superscript\">"\
+        "#{@current_participant.count_all_incomplete(tool)}"\
+        "</span>"
+      elsif @current_participant.incomplete?(tool)
+        "<span class=\"badge badge-do badge-superscript\">"\
+        "New!"\
+        "</span>"
+      else
+        ""
       end
     end
 
