@@ -3,9 +3,13 @@ module ThinkFeelDoEngine
   # and to hide unassigned links
   module TasksHelper
     def assign_tool(tool)
-      if tool.title != "home"
-        "#{tool.title} #{indicate_incomplete(tool)}".html_safe
-      end
+      @assign_tool ||= {}
+
+      @assign_tool[tool.id] ||= (
+        if tool.title != "home"
+          "#{tool.title} #{indicate_incomplete(tool)}".html_safe
+        end
+      )
     end
 
     def active_tool(context, tool)
@@ -22,12 +26,16 @@ module ThinkFeelDoEngine
     end
 
     def make_room_for_badge(tool)
-      if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
-        "incomplete_numbered_badge_link"
-      elsif @current_participant.incomplete?(tool)
-        "incomplete_badge_link"
-      else ""
-      end
+      @make_room_for_badge ||= {}
+
+      @make_room_for_badge[tool.id] ||= (
+        if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
+          "incomplete_numbered_badge_link"
+        elsif @current_participant.incomplete?(tool)
+          "incomplete_badge_link"
+        else ""
+        end
+      )
     end
 
     def indicate_incomplete(tool)
