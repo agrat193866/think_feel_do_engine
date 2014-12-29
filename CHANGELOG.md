@@ -1,3 +1,9 @@
+### 1.10.8
+  * moved Replay intro link
+  * fixed Lesson sorting
+  * memoization for nav performance
+  * Lesson release week display
+
 ### 1.10.7
   * mailers now using the from email address and host specified in the environment config files
 
