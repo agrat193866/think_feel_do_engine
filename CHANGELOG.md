@@ -1,3 +1,7 @@
+### 1.10.9 - 2014-12-29
+  * enhancements
+    * merged in enhanced visualization branch that improves table display
+
 ### 1.10.8
   * moved Replay intro link
   * fixed Lesson sorting

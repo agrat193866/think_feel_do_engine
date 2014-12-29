@@ -14,7 +14,7 @@
           <%= link_to "Edit", edit_link, class: "btn btn-primary pull-right" if edit_link %>
         </p>
         <!-- <div class="table-responsive div-table-viz"> -->
-          <table class="table table-hover responsive">
+          <table style="margin-top:20px" class="table table-hover responsive <%=table_name%>">
             <thead>
               <th>Activity</th>
               <th>Planned For</th>
@@ -30,3 +30,11 @@
     </div>
   </div>
 </div>
+<script>
+$("table.<%=table_name%>").ngResponsiveTables({
+      smallPaddingCharNo: 13,
+    mediumPaddingCharNo: 18,
+    largePaddingCharNo: 30,
+    shiftedIndex:0
+    });
+</script>

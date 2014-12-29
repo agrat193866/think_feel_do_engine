@@ -4,7 +4,9 @@
 		smallPaddingCharNo: 5,
 		mediumPaddingCharNo: 10,
 		largePaddingCharNo: 15,
-		shiftedIndex: 0
+		shiftedIndex: 0,
+		headerAdjust:false,
+		headers:[""]
 		},
 		$selElement = this,
 		ngResponsiveTables = {
@@ -31,7 +33,12 @@
 			if(index >= this.opt.shiftedIndex){
 				actualIndex = index - this.opt.shiftedIndex;
 				if( $selElement.find('th').length > actualIndex){
-					this.dataContent = $selElement.find('th')[actualIndex].textContent;
+					if(this.opt.headerAdjust){
+						this.dataContent = this.opt.headers[actualIndex];
+					}
+					else{
+						this.dataContent = $selElement.find('th')[actualIndex].textContent;
+					}
 				}else{
 					this.dataContent = "";
 				}
