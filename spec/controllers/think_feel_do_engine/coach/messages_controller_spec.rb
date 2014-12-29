@@ -5,6 +5,8 @@ module ThinkFeelDoEngine
     urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
     describe MessagesController, type: :controller do
+      let(:group) { double("group", participants: []) }
+
       describe "GET index" do
         context "for unauthenticated requests" do
           before { get :index, use_route: :think_feel_do_engine }
@@ -17,6 +19,8 @@ module ThinkFeelDoEngine
           before { sign_in_user user }
 
           it "should render the coach messages index" do
+            allow(Group).to receive(:find).and_return(group)
+
             get :index, use_route: :think_feel_do_engine
             expect(response).to render_template :index
           end
@@ -35,6 +39,8 @@ module ThinkFeelDoEngine
           before { sign_in_user user }
 
           it "should render the new coach message form" do
+            allow(Group).to receive(:find).and_return(group)
+
             get :new, use_route: :think_feel_do_engine
             expect(response).to render_template :new
           end
@@ -48,20 +54,20 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
+          let(:message) { double("message", save: true) }
           let(:user) { double("user", build_sent_message: message, admin?: false, coach?: true) }
 
           before { sign_in_user user }
 
           context "when the message saves" do
-            let(:message) { double("message", save: true) }
-
             before do
+              allow(Group).to receive(:find).and_return(group)
               post :create, message: {
                 recipient_id: 1, recipient_type: "foo", subject: "bar", body: "asdf"
               }, use_route: :think_feel_do_engine
             end
 
-            it { expect(response).to redirect_to urls.coach_messages_url }
+            it { expect(response).to redirect_to urls.coach_group_messages_url(group) }
           end
 
           context "when the message does not save" do
@@ -69,6 +75,7 @@ module ThinkFeelDoEngine
             let(:message) { double("message", save: false, errors: errors) }
 
             before do
+              allow(Group).to receive(:find).and_return(group)
               post :create, message: {
                 recipient_id: 1, recipient_type: "foo", subject: "bar", body: "asdf"
               }, use_route: :think_feel_do_engine

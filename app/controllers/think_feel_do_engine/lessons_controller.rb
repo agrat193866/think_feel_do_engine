@@ -1,7 +1,8 @@
 module ThinkFeelDoEngine
   # Enables Lesson CRUD functionality.
   class LessonsController < ApplicationController
-    before_action :authenticate_user!, :set_arm, :set_lessons
+    before_action :authenticate_user!, :set_arm
+    before_action :set_lessons, except: :sort
     before_action :set_lesson, only: [:show, :edit, :update, :destroy]
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -78,7 +79,8 @@ module ThinkFeelDoEngine
 
     def sort
       authorize! :update, ContentModules::LessonModule
-      if @lessons.sort(params[:lesson])
+
+      if ContentModules::LessonModule.sort(@arm.id, params[:lesson])
         flash.now[:success] = "Reorder was successful."
         render nothing: true
       else

@@ -5,10 +5,11 @@ module ContentModules
 
     def self.sort(arm_id, lesson_ids)
       start_position = Arm.find(arm_id).bit_core_tools.find_by_title("LEARN")
-        .content_modules.where(type: [nil, "BitCore::ContentModule"])
-        .order(position: :asc).maximum(:position)
-      start_position = start_position || 1
-      start_position + 1
+                       .content_modules
+                       .where(type: [nil, "BitCore::ContentModule"])
+                       .order(position: :asc).maximum(:position)
+      start_position ||= 1
+      start_position += 1
 
       transaction do
         connection.execute "SET CONSTRAINTS " \
@@ -28,6 +29,12 @@ module ContentModules
           safe_links_only: true
         )
       ).render(title).html_safe
+    end
+
+    def plain_title
+      return "" if title.nil?
+
+      title.gsub(/\*\*/, "")
     end
 
     def lesson_provider
@@ -74,7 +81,7 @@ module ContentModules
     def update_slideshow
       lesson_provider.save
 
-      lesson_provider.add_or_update_slideshow(title)
+      lesson_provider.add_or_update_slideshow(title, tool.arm_id)
     end
   end
 end

@@ -2,14 +2,14 @@ module ThinkFeelDoEngine
   module Coach
     # Manages the Participant dashboard for Coaches.
     class PatientDashboardsController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_group
       before_action :set_patient, only: :show
 
       layout "manage"
 
       def index
         authorize! :show, Participant
-        @patients = current_user.participants
+        @patients = @group.participants
       end
 
       def show
@@ -23,8 +23,8 @@ module ThinkFeelDoEngine
 
       private
 
-      def set_patient
-        @patient = Participant.find(params[:id])
+      def active_group
+        @patient.active_group
       end
 
       def learning_modules
@@ -34,15 +34,20 @@ module ThinkFeelDoEngine
           )
       end
 
+
+      def set_group
+        @group = Group.find(params[:group_id])
+      end
+
+      def set_patient
+        @patient = @group.participants.find(params[:id])
+      end
+
       def tool_ids
         active_group
           .arm
           .bit_core_tools
           .map(&:id)
-      end
-
-      def active_group
-        @patient.active_group
       end
     end
   end

@@ -2,7 +2,7 @@ module ThinkFeelDoEngine
   module Coach
     # Enables viewing of an individual message sent by coaches.
     class SentMessagesController < ApplicationController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, :set_group
       layout "manage"
 
       def show
@@ -12,9 +12,15 @@ module ThinkFeelDoEngine
           template: "think_feel_do_engine/messages/show",
           locals: {
             message: @sent_message,
-            compose_path: new_coach_message_path
+            compose_path: new_coach_group_message_path(@group)
           }
         )
+      end
+
+      private
+
+      def set_group
+        @group = Group.find(params[:group_id])
       end
     end
   end

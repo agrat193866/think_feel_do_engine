@@ -1,13 +1,13 @@
-<h1>Messages</h1>
+<h1>Messages <small><%= @group.title %></small></h1>
 
 <% if can? :create, SiteMessage %>
   <div class="btn-toolbar" role="toolbar">
-    <%= link_to "Coach Dashboard", coach_dashboard_index_path, class: "btn btn-default" %>
-    <%= link_to "Compose", new_coach_message_path, class: "btn btn-default" %>
+    <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
+    <%= link_to "Compose", new_coach_group_message_path(@group), class: "btn btn-default" %>
   </div>
 <% end %>
 
-<%= form_tag coach_messages_path, :method => 'get', role: "search" do %>
+<%= form_tag coach_group_messages_path(@group), :method => 'get', role: "search" do %>
   <div class="form-group">
     <%= select_tag "search", options_from_collection_for_select(@participants, "id", "study_id", params[:search]), { prompt: "Participant", class: "form-control", style: "display: inline-block;width: 25%;" } %>
     <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
@@ -33,7 +33,7 @@
     <div class="tab-pane" id="sent">
       <div class="list-group">
         <% sent_messages.each do |msg| %>
-          <%= link_to "<span class=\"p_message\">To: #{ msg.recipient_study_id }</span>".html_safe + "<span class='p_message pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + msg.subject + "</span>".html_safe, coach_sent_message_path(msg), class: "text-muted list-group-item" %>
+          <%= link_to "<span class=\"p_message\">To: #{ msg.recipient_study_id }</span>".html_safe + "<span class='p_message pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + msg.subject + "</span>".html_safe, coach_group_sent_message_path(@group, msg), class: "text-muted list-group-item" %>
         <% end %>
       </div>
     </div>

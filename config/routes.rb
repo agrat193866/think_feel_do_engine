@@ -26,10 +26,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :tasks, only: [:create, :update, :destroy]
   end
 
-  resources :coach_dashboard, only: :index
-
-  resources :arms, only: [:index, :show] do
-    resources :content_dashboard, only: :index
+  resources :arms, only: [] do
     namespace :manage do
       get "groups/:id/edit_tasks", to: "groups#edit_tasks", as: "tasks_group"
     end
@@ -56,11 +53,14 @@ ThinkFeelDoEngine::Engine.routes.draw do
   end
 
   namespace :coach do
-    resources :messages, only: [:index, :new, :create]
-    resources :patient_dashboards
     resources :phq_assessments
-    resources :received_messages, only: :show
-    resources :sent_messages, only: :show
+    resources :groups, only: [:show] do
+      resources :messages, only: [:index, :new, :create]
+      resources :patient_dashboards
+      resources :received_messages, only: :show
+      resources :sent_messages, only: :show
+      resources :site_messages, only: [:index, :show, :new, :create]
+    end
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",
         as: "participant_activities_visualization"
@@ -68,8 +68,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
         to: "participant_thoughts_visualizations#show",
         as: "participant_thoughts_visualization"
   end
-
-  resources :site_messages, only: [:index, :show, :new, :create]
 
   resources :memberships, only: :update
 
@@ -81,6 +79,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :thoughts, only: :create
     resources :activities, only: :create
   end
+
+  get "keepalive", to: "keep_alive#index"
 
   get "password_entropy_bits", to: "password_entropy_bits#show", as: "password_entropy_bits"
 

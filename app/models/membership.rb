@@ -54,12 +54,12 @@ class Membership < ActiveRecord::Base
       .where("completed_at IS NULL AND start_day = ?", day_in_study)
   end
 
-  def week_in_study
-    (day_in_study / 7.0).ceil == 0 ? 1 : (day_in_study / 7.0).ceil
+  def week_in_study(date = nil)
+    (day_in_study(date) / 7.0).ceil == 0 ? 1 : (day_in_study(date) / 7.0).ceil
   end
 
-  def day_in_study
-    (Date.current - start_date).to_i + 1
+  def day_in_study(date = nil)
+    ((date || Date.current) - start_date).to_i + 1
   end
 
   def length_of_study

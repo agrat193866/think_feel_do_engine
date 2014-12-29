@@ -14,8 +14,8 @@ assignment4:
   participant: participant_wo_membership1
   coach: user_with_memberless_participant
 
-assignment_for_arm4:
-  participant: participant_for_arm4
+assignment_for_group1_arm1:
+  participant: participant_for_arm1_group1
   coach: user2
 
 assignment_in_group_3:
@@ -25,6 +25,7 @@ assignment_in_group_3:
 assignment_in_group1:
   participant: participant4
   coach: user2
+
 ###
 
 # assignment_phq1:

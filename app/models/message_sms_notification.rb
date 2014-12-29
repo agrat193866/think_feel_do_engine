@@ -4,12 +4,12 @@ class MessageSmsNotification
     @messages ||= []
   end
 
-  def self.deliver_to(recipient)
+  def self.deliver_to(recipient, body = nil)
     from = "#{ Rails.application.config.try(:twilio_account_telephone_number) }"
     message = {
       from: from,
       to: "+#{ recipient.phone_number }",
-      body: "You have a new ThinkFeelDo message."
+      body: body || "You have a new ThinkFeelDo message."
     }
     deliver message
   end

@@ -39,33 +39,13 @@ class NewLessonPage
 end
 
 feature "Lessons", type: :feature do
-  fixtures(
-    :arms, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :"bit_core/content_modules", :groups,
-    :"bit_core/content_providers", :tasks
-  )
+  fixtures :all
 
   context "Logged in as a content author" do
     let(:lessons_page) { LessonsPage.new(self) }
 
     before do
       sign_in_user users(:content_author1)
-    end
-
-    scenario "should see arm links" do
-      visit "/arms"
-
-      expect(page).to_not have_link "Researcher Dashboard"
-      expect(page).to_not have_link "Coach Dashboard"
-      expect(page).to have_link "Arm 1"
-      expect(page).to have_link "Arm 2"
-    end
-
-    scenario "should see arm links" do
-      visit "/arms"
-      click_on "Arm 1"
-
-      expect(page).to have_link "Manage Content"
     end
 
     scenario "should only see lessons related to an arm" do
@@ -85,10 +65,10 @@ feature "Lessons", type: :feature do
 
       expect(page).to have_text bit_core_slides(:think_patterns_intro1).title
       expect(page).to have_text bit_core_slides(:think_patterns_intro1)
-                                .render_body[/[^<>]+/]
+        .render_body[/[^<>]+/]
       expect(page).to have_text bit_core_slides(:think_reshape_intro).title
       expect(page).to have_text bit_core_slides(:think_reshape_intro)
-                                .render_body[/[^<>]+/]
+        .render_body[/[^<>]+/]
     end
 
     scenario "viewing video slides" do
@@ -105,6 +85,13 @@ feature "Lessons", type: :feature do
       new_lesson_page.create_lesson
 
       expect(page).to have_text "Successfully created lesson"
+
+      click_on "Add Slide"
+      fill_in "Title", with: "title"
+      fill_in "Body", with: "body"
+      click_on "Create"
+
+      expect(page).to have_text "Successfully created slide"
     end
 
     scenario "create a lesson for an arm when no lessons yet exist" do

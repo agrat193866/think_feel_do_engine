@@ -20,7 +20,7 @@
                   </button>
                 <% end %>
 
-                <%= link_to "ThinkFeelDo", think_feel_do_engine.arms_path, class: "navbar-brand" %>
+                <%= link_to "ThinkFeelDo", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#"), class: "navbar-brand" %>
 
                 <ul class="nav navbar-nav pull-right visible-xs-block" style="margin-right: 10px;">
                   <%= yield :mobile_nav_right_item %>

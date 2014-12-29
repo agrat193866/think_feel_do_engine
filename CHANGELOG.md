@@ -1,3 +1,56 @@
+### 1.10.9 - 2014-12-29
+  * enhancements
+    * merged in enhanced visualization branch that improves table display
+
+### 1.10.8
+  * moved Replay intro link
+  * fixed Lesson sorting
+  * memoization for nav performance
+  * Lesson release week display
+
+### 1.10.7
+  * mailers now using the from email address and host specified in the environment config files
+
+### 1.10.6
+  * added method to LessonModule
+
+### 1.10.5
+  * migrated Lesson notificaiton code out
+
+### 1.10.4
+  * changed default value for participant contact preference to email
+
+### 1.10.3
+  * minor Module index refactor
+  * removal of duplicate Harmful Thought form
+
+### 1.10.2
+  * fix bug that involves feed items breaking home screen for engagements
+
+### 1.10.1
+  * auto-logout is more accurate with timing
+
+### 1.10.0
+
+  * change Thoughts tool to only allow harmful
+
+### 1.9.1 - 2014-12-19
+  * bug fixes
+    * correctly namespaced site_message controller and views within 'coach' and added specs
+
+### 1.9.0
+  * enhancements
+    * all clincian functionality is now nested within groups
+
+### 1.8.5
+  * fix bug that prevented adding slides to lessons
+
+### 1.8.4
+  * refactor to complete migration of Report classes to dashboard engine
+
+### 1.8.3
+  * incorporate mobile style updates/fixes
+
 ### 1.8.2
   * fix hamburger menu tool scoping bug
   * fix nav menu and tool index scoping bugs

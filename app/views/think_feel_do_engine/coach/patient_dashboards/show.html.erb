@@ -3,7 +3,7 @@
   <h1>Participant <small><%= @patient.study_id %></small></h1>
 
   <div class="btn-toolbar" role="toolbar">
-    <%= link_to "Patients", coach_patient_dashboards_path, class: "btn btn-default" %>
+    <%= link_to "Patients", coach_group_patient_dashboards_path(@group), class: "btn btn-default" %>
   </div>
 
   <div class="panel panel-default">

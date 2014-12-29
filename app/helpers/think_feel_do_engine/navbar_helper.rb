@@ -2,22 +2,27 @@ module ThinkFeelDoEngine
   # Used to display nested links in the navbar
   module NavbarHelper
     def content_module_tasks(tool, link_class, icon = "pencil")
-      content_modules = tool
-                        .content_modules
-                        .order(position: :asc)
+      @content_module_tasks ||= {}
 
-      icon_prev = "-"
-      task_statuses = task_statuses_by_id(content_modules)
-      content_modules.map do |content_module|
-        task_status =  task_statuses[content_module.id]
-        next if !task_status || task_status.provider_viz?
-        icon = task_status.task.has_didactic_content ? "book" : "pencil"
-        icon_prev = icon if icon_prev == "-"
-        divider = icon != icon_prev ? "DIVIDE" : nil
-        icon_prev = icon
+      @content_module_tasks[[tool.id, link_class, icon]] ||= (
+        content_modules = tool
+                          .content_modules
+                          .order(position: :asc)
 
-        [divider, task_status_link(task_status, link_class, icon)]
-      end.flatten.compact
+        icon_prev = "-"
+        task_statuses = task_statuses_by_id(content_modules)
+
+        content_modules.map do |content_module|
+          task_status =  task_statuses[content_module.id]
+          next if !task_status || task_status.provider_viz?
+          icon = task_status.task.has_didactic_content ? "book" : "pencil"
+          icon_prev = icon if icon_prev == "-"
+          divider = icon != icon_prev ? "DIVIDE" : nil
+          icon_prev = icon
+
+          [divider, task_status_link(task_status, link_class, icon)]
+        end.flatten.compact
+      )
     end
 
     private

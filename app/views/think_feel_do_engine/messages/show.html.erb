@@ -2,8 +2,8 @@
 
 <% if can? :create, SiteMessage %>
   <div class="btn-toolbar" role="toolbar">
-    <%= link_to "Messages", coach_messages_path, class: "btn btn-default" %>
-    <%= link_to "Compose", new_coach_message_path, class: "btn btn-default" %>
+    <%= link_to "Messages", coach_group_messages_path(@group), class: "btn btn-default" %>
+    <%= link_to "Compose", new_coach_group_message_path(@group), class: "btn btn-default" %>
   </div>
 <% end %>
 

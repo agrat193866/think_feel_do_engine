@@ -4,6 +4,7 @@ module ThinkFeelDoEngine
   module Coach
     describe ReceivedMessagesController, type: :controller do
       let(:user) { double("user", admin?: true) }
+      let(:group) { double("group", participants: []) }
       let(:source_message) { double("source message", sender_id: 3) }
       let(:message) do
         double("message", body: "", id: 1, message: source_message, subject: "")
@@ -20,6 +21,7 @@ module ThinkFeelDoEngine
 
           context "when the message is found" do
             before do
+              allow(Group).to receive(:find).and_return(group)
               allow(user).to receive_message_chain(:received_messages, :find)
                 .and_return(message)
               get :show, id: 1, use_route: :think_feel_do_engine

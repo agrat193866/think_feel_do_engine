@@ -105,35 +105,55 @@ class Participant < ActiveRecord::Base
   end
 
   def count_all_incomplete(tool)
-    return count_unread_messages if tool.title.downcase == "messages"
-    content_module_ids = tool.content_modules.includes(:content_providers)
-                         .map do |content_module|
-                           content_module.id unless content_module
-                                                    .try(:content_providers)
-                                                    .try(:first)
-                                                    .try(:viz?)
-                         end
+    @count_all_incomplete ||= {}
 
-    return false unless content_module_ids
-    membership.incomplete_tasks
-      .for_content_module_ids(content_module_ids)
-      .count
+    @count_all_incomplete[tool.id] ||= (
+      if tool.title.downcase == "messages"
+        count_unread_messages
+      else
+        content_module_ids = tool.content_modules.includes(:content_providers)
+                             .map do |content_module|
+                               content_module.id unless content_module
+                                                        .try(:content_providers)
+                                                        .try(:first)
+                                                        .try(:viz?)
+                             end
+
+        unless content_module_ids
+          false
+        else
+          membership.incomplete_tasks
+            .for_content_module_ids(content_module_ids)
+            .count
+        end
+      end
+    )
   end
 
   def count_today_incomplete(tool)
-    return count_unread_messages if tool.title.downcase == "messages"
-    content_module_ids = tool.content_modules.includes(:content_providers)
-                         .map do |content_module|
-                           content_module.id unless content_module
-                                                    .try(:content_providers)
-                                                    .try(:first)
-                                                    .try(:viz?)
-                         end
+    @count_today_incomplete ||= {}
 
-    return false unless content_module_ids
-    membership.incomplete_tasks_today
-      .for_content_module_ids(content_module_ids)
-      .count
+    @count_today_incomplete[tool.id] ||= (
+      if tool.title.downcase == "messages"
+        count_unread_messages
+      else
+        content_module_ids = tool.content_modules.includes(:content_providers)
+                             .map do |content_module|
+                               content_module.id unless content_module
+                                                        .try(:content_providers)
+                                                        .try(:first)
+                                                        .try(:viz?)
+                             end
+
+        unless content_module_ids
+          false
+        else
+          membership.incomplete_tasks_today
+            .for_content_module_ids(content_module_ids)
+            .count
+        end
+      end
+    )
   end
 
   def incomplete?(tool)

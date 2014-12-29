@@ -1,6 +1,4 @@
-<h2>Now one more, try to identify at least one harmful thought you had today.</h2>
-
-<p class="lead">We're asking for a harmful thought because it will be important later.</p>
+<h2>Just one more harmful thought and you'll be done for now...</h2>
 
 <%= form_for thought, url: create_path, method: "post", html: { role: "form", onsubmit: "validatePublic(event,'thought_shared_item_true')" } do |f| %>
   <%= render 'think_feel_do_engine/thoughts/harmful_thought', f: f %>

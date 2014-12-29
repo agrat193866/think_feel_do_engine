@@ -1,12 +1,1 @@
-<label>This thought is: (select one)</label>
-<div class="form-group">
-	<div class="btn-group" data-toggle="buttons">
-	  <% thought.class::EFFECTS.each do |effect| %>
-	  		<% btn_color = effect == "helpful" ? "success" : "danger" %>
-	  		<% btn_color = (effect != "helpful") && (effect != "harmful") ? "default" : btn_color %>
-			<%= "<label class='btn btn-#{btn_color}'>".html_safe %>
-		        <%= f.radio_button :effect, effect, required: true %> <%= effect %>
-		    </label>
-	  <% end %>
-	</div>
-</div>
+<%= f.hidden_field :effect, value: "harmful" %>
