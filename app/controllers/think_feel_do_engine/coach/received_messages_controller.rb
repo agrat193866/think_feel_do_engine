@@ -10,7 +10,7 @@ module ThinkFeelDoEngine
 
       def show
         @received_message = current_user.received_messages.find(params[:id])
-        authorize! :read, @received_message
+        authorize! :show, @received_message
         @received_message.try(:mark_read)
         render(
           template: "think_feel_do_engine/messages/show",

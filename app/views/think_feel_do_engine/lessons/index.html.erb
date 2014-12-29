@@ -1,8 +1,9 @@
-<h1>Listing Lessons</h1>
+<h1>Listing Lesson Modules <small><%= @arm.title %></small></h1>
 
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Content Dashboard", arm_content_dashboard_index_path(@arm), class: "btn btn-default" %>
 	<%= link_to "New", new_arm_lesson_path(@arm), class: "btn btn-default" %>
+	<%= link_to "All Content", arm_lessons_all_content_path(@arm), class: "btn btn-default" %>
 </div>
 
 <table class="table table-hover">
@@ -10,9 +11,8 @@
 		<tr>
 			<th>Position</th>
 			<th>Title</th>
+      <th>Tool</th>
 			<th>No. of Slides</th>
-			<th>Created At</th>
-			<th>Updated At</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -20,14 +20,14 @@
 		<% @lessons.includes(content_providers: :source_content).each do |lesson| %>
 			<tr id="lesson-<%= lesson.id %>">
 				<td>
+					<span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span>
 					<%= lesson.position %>
 				</td>
-				<td><span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span><td>
+				<td>
 					<%= link_to lesson.pretty_title, arm_lesson_path(@arm, lesson) %>
 				</td>
+				<td><%= lesson.tool.title %></td>
 				<td><%= lesson.slides.count %></td>
-				<td><%= lesson.created_at.to_s :date_time_with_meridian %></td>
-				<td><%= lesson.updated_at.to_s :date_time_with_meridian %></td>
 				<td>
 					<%= link_to "Edit", edit_arm_lesson_path(@arm, lesson), class: "btn btn-default" %>
 					<%= link_to "Delete", arm_lesson_path(@arm, lesson), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

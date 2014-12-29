@@ -22,3 +22,4 @@
 //= require think_feel_do_engine/bootstrap-timepicker
 //= require think_feel_do_engine/messages
 //= require think_feel_do_engine/scrollindicator
+//= require think_feel_do_engine/validate_social_sharing

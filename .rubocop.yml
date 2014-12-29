@@ -37,6 +37,9 @@ LineLength:
 MethodLength:
   Max: 15
 
+PredicateName:
+  Enabled: false
+
 StringLiterals:
   EnforcedStyle: double_quotes
 

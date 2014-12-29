@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
       layout "manage"
 
       def index
-        authorize! :index, Message
+        authorize! :show, Message
         @participants = current_user.participants
         render(
           locals: {

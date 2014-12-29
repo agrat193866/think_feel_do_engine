@@ -35,8 +35,11 @@ class Ability
       end
       access
     end
-    can :show, Group do |group|
+    can [:show, :moderate], Group do |group|
       !(@user.participant_ids & group.participant_ids).empty?
+    end
+    can :show, Participant do |participant|
+      @user.participant_ids.include?(participant.id)
     end
     authorize_coach_messaging
     can :update, Membership do |membership|
@@ -48,14 +51,15 @@ class Ability
   end
 
   def authorize_coach_messaging
-    can :create, Message
-    can :read, Message do |message|
+    can [:create, :show], Message
+    can :show, Message do |message|
       (message.try(:sender) == @user) || (message.try(:recipient) == @user)
     end
-    can(:read, DeliveredMessage) do |message|
+    can(:show, DeliveredMessage) do |message|
       message.try(:recipient) == @user
     end
-    can :create, SiteMessage do |message|
+    can :new, SiteMessage
+    can [:create, :show], SiteMessage do |message|
       coach_has_participant? @user, message.participant_id
     end
   end
@@ -70,12 +74,12 @@ class Ability
   # think_feel_do_engine
   def authorize_content_author
     can :read, Arm
+    can :update, Group
+    can :manage, Task
     can :manage, BitCore::ContentModule
     can :manage, BitCore::ContentProvider
     can :manage, BitCore::Slideshow
     can :manage, BitCore::Slide
-    can :manage, Group
-    can :manage, Task
   end
 
   # think_feel_do_dashboard
@@ -84,7 +88,6 @@ class Ability
     can :manage, CoachAssignment
     can :manage, Group
     can :manage, Membership
-    can :manage, ThinkFeelDoDashboard::Moderator
     can :manage, Participant
     can :manage, Reports::LessonSlideView
     can :manage, User

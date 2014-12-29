@@ -81,4 +81,5 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include AuthenticationHelpers, type: :feature
+  config.include DeviseMailHelpers, type: :feature
 end

@@ -26,8 +26,13 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text("OK, let's talk about yesterday.")
 
-      select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-      select "#{ Date.yesterday.strftime("%a") } 4 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+      yesterday_str = Date.yesterday.strftime("%a")
+      select "#{ yesterday_str } 12 AM",
+             from: "About what time did you wake up? It's okay if this isn't " \
+                   "exact."
+      select "#{ yesterday_str } 4 AM",
+             from: "About what time did you go to sleep? This doesn't need " \
+                   "to be exact either."
       click_on "Create"
 
       expect(page).to have_text("Review Your Day")
@@ -129,31 +134,9 @@ feature "activity tracker", type: :feature do
       fill_in "activity_activity_type_new_title", with: "Parkour"
       click_on "Continue"
 
-      expect(page).to have_text("OK... the most important thing")
+      expect(page.body).to have_text("OK... the most important thing")
 
       click_on "Continue"
-
-      # page.execute_script("$('#unplanned_activities_0_activity_type_title').val('go paintballing')")
-      # page.execute_script("$('#unplanned_activities_1_activity_type_title').val('take out the trash')")
-
-      # page.find("input.btn[value='Continue']").trigger("click")
-
-      # expect(page).to have_text("Alright - we've picked a few important and a few fun things.")
-
-      # # This test fails if you run it between 11pm and 11:59pm
-      # page.find("#pleasure_0 .intensity_btn:nth-child(11)").trigger("click")
-      # page.find("#accomplishment_0 .intensity_btn:nth-child(11)").trigger("click")
-      # page.find("#pleasure_1 .intensity_btn:nth-child(1)").trigger("click")
-      # page.find("#accomplishment_1 .intensity_btn:nth-child(1)").trigger("click")
-      # page.find("#pleasure_2 .intensity_btn:nth-child(1)").trigger("click")
-      # page.find("#accomplishment_2 .intensity_btn:nth-child(1)").trigger("click")
-      # page.find("#pleasure_3 .intensity_btn:nth-child(1)").trigger("click")
-      # page.find("#accomplishment_3 .intensity_btn:nth-child(1)").trigger("click")
-
-      # page.find(".btn", text: "Continue").trigger("click")
-
-      # # click_on "Continue"
-      # # click_on "Continue"
 
       expect(page).to have_text("Your Planned Activities")
 
@@ -196,7 +179,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("Activity saved")
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Loving"
-        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
+        expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end
@@ -213,7 +196,7 @@ feature "activity tracker", type: :feature do
 
       with_scope "#Upcoming_Activities table.table" do
         expect(page).to have_text "Eating!"
-        expect(page).to have_text (Time.current + 1.hour).to_s(:date_time_with_meridian)
+        expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
         expect(page).to have_text "High Importance (10)"
       end

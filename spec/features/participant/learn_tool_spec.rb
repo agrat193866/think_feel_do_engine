@@ -18,7 +18,6 @@ feature "learn tool", type: :feature do
       expect(page).to have_link("Do - Awareness Introduction")
       expect(page).not_to have_link("Do - Planning Introduction")
       page.find(".list-group-item.task-status:first-child").trigger("click")
-      # click_on "Do - Awareness Introduction"
       content_module = bit_core_content_modules(:slideshow_content_module_2)
       provider = bit_core_content_providers(:content_provider_slideshow_2)
       expect(page).to have_text("LEARN", count: 2)
@@ -27,7 +26,9 @@ feature "learn tool", type: :feature do
       expect(page).to have_text("Do - Awareness Introduction")
 
       visit "/navigator/contexts/LEARN"
-      expect(page).to have_text("You have read 1 lesson out of 1.")
+      expect(page).to have_text "You have read 1 lesson out of 1."
+      expect(page).to have_text "Released #{ Date.current.to_s(:brief_date) }"
+      expect(page).to have_text "Read #{ Date.current.to_s(:brief_date) }"
     end
   end
 

@@ -76,8 +76,26 @@ feature "Lessons", type: :feature do
 
       visit "/arms/#{arms(:arm2).id}/lessons"
 
-      expect(page).to have_text "HELLO aligator"    
+      expect(page).to have_text "HELLO aligator"
       expect(page).to_not have_text "Home Introduction"
+    end
+
+    scenario "viewing all lesson slides" do
+      visit "/arms/#{ arms(:arm1).id }/lessons/all_content"
+
+      expect(page).to have_text bit_core_slides(:think_patterns_intro1).title
+      expect(page).to have_text bit_core_slides(:think_patterns_intro1)
+                                .render_body[/[^<>]+/]
+      expect(page).to have_text bit_core_slides(:think_reshape_intro).title
+      expect(page).to have_text bit_core_slides(:think_reshape_intro)
+                                .render_body[/[^<>]+/]
+    end
+
+    scenario "viewing video slides" do
+      lesson = bit_core_content_modules(:slideshow_content_module_13)
+      slide = bit_core_slides(:feel_emotions_intro1)
+      visit "/arms/#{ arms(:arm1).id }/lessons/#{ lesson.id }/" \
+            "lesson_slides/#{ slide.id }"
     end
 
     scenario "creating" do

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TaskStatus do
+describe Task do
   fixtures(
     :users, :user_roles, :participants, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
@@ -28,6 +28,13 @@ describe TaskStatus do
     expect(task2.errors.get(:base).count).to eq 1
   end
 
+  it "persists if its creator is destroyed" do
+    creator = task1.creator
+    creator.destroy
+    task = Task.find(task1.id)
+    expect(task.creator_id).to eq(nil)
+  end
+
   describe "TaskStatus creation" do
     let(:member_count) { task1.group.memberships.count }
     let(:release_day) { task1.release_day + 1 }
@@ -46,8 +53,9 @@ describe TaskStatus do
 
     context "when recurring" do
       it "adds task statuses for each membership an each day" do
-        total_days_in_study = task1.group.memberships.all.to_a
-          .sum { |m| m.length_of_study - release_day + 1 }
+        total_days_in_study = task1
+                              .group.memberships.all.to_a
+                              .sum { |m| m.length_of_study - release_day + 1 }
 
         expect do
           Task.create!(

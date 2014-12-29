@@ -4,7 +4,7 @@
   </li>
 <% end %>
 
-<% BitCore::Tool.where('title != ?', "home").all.each do |tool|  %>
+<% BitCore::Tool.where(arm_id: current_participant.try(:active_group).try(:arm_id)).where.not(title: "home").all.each do |tool|  %>
   <li class="snap-nav-item <%= tool.title %> visible-xs <%= active_tool(@navigator.context, tool) %>">
     <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: "" %>
   </li>

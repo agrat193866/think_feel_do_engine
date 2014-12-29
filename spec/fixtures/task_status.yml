@@ -3,6 +3,11 @@ task_status1:
   task: task1
   start_day: 1
 
+active_participant_think_landing:
+  membership: active_membership
+  task: group2_think_landing
+  start_day: 1
+
 task_status2:
   membership: membership1
   task: task2

@@ -42,6 +42,39 @@ feature "patient dashboard", type: :feature do
       end
     end
 
+    context "Authorization" do
+      before do
+        sign_in_user users :user2
+        visit "/coach_dashboard"
+      end
+
+      it "should only display patients they are assigned" do
+        click_on "Patients"
+
+        expect(page).to have_text("participant_for_arm4")
+        expect(page).not_to have_text("TFD-1111")
+
+        sign_in_user users :clinician1
+        visit "/coach_dashboard"
+        click_on "Patients"
+
+        expect(page).not_to have_text("participant_for_arm4")
+        expect(page).to have_text("TFD-1111")
+      end
+
+      it "should only be able to view patient data they are assigned to" do
+        visit "/coach/patient_dashboards/#{participants(:participant_for_arm4).id}"
+
+        expect(page).to have_text("Participant participant_for_arm4")
+        expect(page).not_to have_text("You are not authorized to access this page")
+
+        sign_in_user users :clinician1
+        visit "/coach/patient_dashboards/#{participants(:participant_for_arm4).id}"
+        expect(page).to_not have_text("Participant participant_for_arm4")
+        expect(page).to have_text("You are not authorized to access this page")
+      end
+    end
+
     context "Coach visits active patient" do
       before do
         sign_in_user users(:clinician1)
@@ -49,7 +82,7 @@ feature "patient dashboard", type: :feature do
       end
 
       it "displays active status" do
-        expect(page).to have_text("Participant: TFD-1111")
+        expect(page).to have_text("Participant TFD-1111")
         expect(page).to have_text("Active")
         expect(page).to have_text("Currently in week 1")
       end
@@ -63,7 +96,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes logins" do
         sign_in_participant participant1
-        sign_in_user users(:clinician1)
+        sign_in_user users :clinician1
         visit "/coach/patient_dashboards/#{ participant1.id }"
 
         expect(page).to have_the_table(
@@ -83,6 +116,7 @@ feature "patient dashboard", type: :feature do
           end
 
           sign_in_participant participant1
+
           page.find(".LEARN.hidden-xs a").trigger("click")
 
           expect(page).to have_text("Lessons")
@@ -114,7 +148,7 @@ feature "patient dashboard", type: :feature do
           page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
           click_on "Continue"
 
-          sign_in_user users(:clinician1)
+          sign_in_user users :clinician1
           visit "/coach/patient_dashboards/#{ participant1.id }"
           expect(page).to have_the_table(
             id: "learning_data",
@@ -142,6 +176,14 @@ feature "patient dashboard", type: :feature do
             .push("Released #{ Date.yesterday }")
             .push("Created #{ Date.current }")
         )
+      end
+
+      it "links to the activities visualization" do
+        expect(page).to have_content "Activities visualization"
+      end
+
+      it "links to the thoughts visualization" do
+        expect(page).to have_content "Thoughts visualization"
       end
 
       it "summarizes future activities" do
@@ -178,8 +220,9 @@ feature "patient dashboard", type: :feature do
           visit "/navigator/contexts/DO"
           click_on "#1 Awareness"
           click_on "Continue"
-          select "#{ Date.yesterday.strftime("%a") } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
-          select "#{ Date.yesterday.strftime("%a") } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
+          yesterday_str = Date.yesterday.strftime("%a")
+          select "#{ yesterday_str } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
+          select "#{ yesterday_str } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
           click_on "Create"
 
           expect(page).to have_text("How much pleasure")
@@ -277,7 +320,7 @@ feature "patient dashboard", type: :feature do
 
       it "displays participant's status" do
         visit "/coach/patient_dashboards/#{ participants(:inactive_participant).id }"
-        expect(page).to have_text("Participant: TFD-inactive")
+        expect(page).to have_text("Participant TFD-inactive")
         expect(page).to have_text("Inactive")
         expect(page).to have_text("Study has been Completed")
       end

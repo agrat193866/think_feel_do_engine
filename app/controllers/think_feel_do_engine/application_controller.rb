@@ -4,11 +4,13 @@ module ThinkFeelDoEngine
   # Site-wide controller superclass.
   class ApplicationController < ActionController::Base
     # check_authorization
+    # commented out until participant authorization
+    # can be discussed -Wehrley 12/11/15
     protect_from_forgery with: :exception
 
     def after_sign_in_path_for(resource)
       if resource.class == User
-        arms_path
+        (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#")
       else
         ParticipantAuthenticationPolicy.new(self, resource).post_sign_in_path
       end

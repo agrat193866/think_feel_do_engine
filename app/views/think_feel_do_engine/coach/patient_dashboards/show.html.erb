@@ -1,27 +1,37 @@
 <% if @patient %>
 
-  <h3>Participant: <%= @patient.study_id %></h3>
+  <h1>Participant <small><%= @patient.study_id %></small></h1>
 
-  <p>
-    <strong><i class="fa fa-calendar"></i> Started on:</strong>
-    <%= @patient.membership.start_date.to_s :brief_date %>
-  </p>
+  <div class="btn-toolbar" role="toolbar">
+    <%= link_to "Patients", coach_patient_dashboards_path, class: "btn btn-default" %>
+  </div>
 
-  <p>
-    <strong>Status:</strong>
-    <% if @patient.active_membership %>
-      <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
-    <% else %>
-      <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
-    <% end %>
-  </p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">General Patient Info</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <strong><i class="fa fa-calendar"></i> Started on:</strong>
+        <%= @patient.membership.start_date.to_s :brief_date %>
+      </p>
 
-  <p>
-    <strong>Last Logged In:</strong>
-    <%= @patient.current_sign_in_at ? @patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
-  </p>
+      <p>
+        <strong>Status:</strong>
+        <% if @patient.active_membership %>
+          <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
+        <% else %>
+          <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
+        <% end %>
+      </p>
 
-  <hr>
+      <p>
+        <strong>Last Logged In:</strong>
+        <%= @patient.current_sign_in_at ? @patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+      </p>
+    </div>
+  </div>
+
 
   <div id="vizcontainer" class="linechart">
   </div>
@@ -38,7 +48,7 @@
     <div id="phqCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-          <table class="table table-hover data-table" id="phq_assessments">
+          <table class="table table-hover generic-data-table data-table" id="phq_assessments">
             <thead>
               <tr>
                 <th>Release Date</th>
@@ -77,7 +87,7 @@
     <div id="moodCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="moods">
+  <table class="table table-hover generic-data-table data-table" id="moods">
     <thead>
       <tr>
         <th>Rating 0 (Bad) to 10 (Good)</th>
@@ -104,7 +114,7 @@
     <div id="feelingsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="emotions">
+      <table class="table table-hover generic-data-table data-table" id="emotions">
         <thead>
           <tr>
             <th>Feeling</th>
@@ -132,7 +142,7 @@
     <div id="loginsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="logins">
+  <table class="table table-hover generic-data-table data-table" id="logins">
     <thead>
       <tr>
         <th>Date/Time of Login</th>
@@ -163,10 +173,11 @@
   <table class="table table-hover data-table" id="learning_data">
     <thead>
       <tr>
+        <th>Datetime</th>
         <th>Task</th>
-        <th>Assigned Date</th>
         <th>Started At</th>
         <th>Completed At</th>
+        <th>Assigned Date</th>
         <th>Duration</th>
       </tr>
     </thead>
@@ -192,7 +203,7 @@
   <div id="activity_futureCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
       <div class="table-responsive div-table-viz">
-        <table class="table table-hover data-table" id="activities_future">
+        <table class="table table-hover generic-data-table data-table" id="activities_future">
           <thead>
             <tr>
               <th>Activity</th>
@@ -231,7 +242,7 @@
   <div id="activity_pastCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
               <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="activities_past">
+      <table class="table table-hover generic-data-table data-table" id="activities_past">
         <thead>
           <tr>
             <th>Activity</th>
@@ -261,6 +272,8 @@
   </div>
 </div>
 
+<h3><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@patient) %></h3>
+
 <div class="panel panel-default cdb_panel">
   <div class="panel-heading">
     <h3 class="panel-title adjusted-panel-title">
@@ -272,7 +285,7 @@
   <div id="thoughtsCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
               <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="thoughts">
+      <table class="table table-hover generic-data-table data-table" id="thoughts">
         <thead>
           <th>Thought</th>
           <th>Effect</th>
@@ -301,7 +314,7 @@
   <div id="messagesCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="messages">
+  <table class="table table-hover generic-data-table data-table" id="messages">
     <thead>
       <tr>
         <th>Message</th>
@@ -331,6 +344,7 @@
   <table class="table table-hover data-table" id="task_statuses">
     <thead>
       <tr>
+        <th>Datetime</th>
         <th>Task</th>
         <th>Assigned Date</th>
         <th>Completed At</th>
@@ -350,7 +364,25 @@
   var phqData, emotionData, moodRatings;
 
   $(function() {
-    return $('.data-table').dataTable({
+    return $('#task_statuses, #learning_data').dataTable({
+      sPaginationType: 'bootstrap',
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [3],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+  $(function() {
+    return $('.generic-data-table').dataTable({
       sPaginationType: 'bootstrap',
       oLanguage: {
         sSearch: 'Filter: '

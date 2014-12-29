@@ -4,7 +4,10 @@ ThinkFeelDoEngine::Engine.routes.draw do
              controllers: { sessions: "think_feel_do_engine/participants/sessions" }
   devise_for :users,
              module: :devise,
-             controllers: { sessions: "think_feel_do_engine/users/sessions" }
+             controllers: {
+                            sessions: "think_feel_do_engine/users/sessions",
+                            passwords: "think_feel_do_engine/users/passwords"
+                          }
 
   get "navigator/previous_content", to: "navigator#show_previous_content", as: "navigator_previous_content"
   get "navigator/next_content", to: "navigator#show_next_content", as: "navigator_next_content"
@@ -42,6 +45,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
       end
     end
 
+    get "lessons/all_content", as: "lessons_all_content"
+
     resources :lessons do
       collection { post :sort }
       resources :lesson_slides do
@@ -52,13 +57,16 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
   namespace :coach do
     resources :messages, only: [:index, :new, :create]
-    resources :received_messages, only: :show
-    resources :sent_messages, only: :show
     resources :patient_dashboards
     resources :phq_assessments
+    resources :received_messages, only: :show
+    resources :sent_messages, only: :show
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",
-        as: "participant_activities_visualization" 
+        as: "participant_activities_visualization"
+    get "participant_thoughts_visualization/:participant_id",
+        to: "participant_thoughts_visualizations#show",
+        as: "participant_thoughts_visualization"
   end
 
   resources :site_messages, only: [:index, :show, :new, :create]

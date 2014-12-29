@@ -11,7 +11,8 @@
           html: {
             class: "past-activity-review",
             style: index > 0 ? "display: none;" : "",
-            id: "activity-#{ activity.id }"
+            id: "activity-#{ activity.id }",
+            onsubmit: "validatePublic(event,'activity_shared_item_true')"
           }
         ) do |f| %>
       <%= f.hidden_field :id, { value: activity.id } %>
@@ -82,3 +83,4 @@
     <% end %>
   <% end %>
 <% end %>
+

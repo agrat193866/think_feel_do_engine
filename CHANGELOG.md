@@ -1,3 +1,120 @@
+### 1.8.2
+  * fix hamburger menu tool scoping bug
+  * fix nav menu and tool index scoping bugs
+
+### 1.8.1
+  * display 'read' and 'released' dates for archived lessons
+
+### 1.8.0 - 2014-12-17
+  * enhancements
+    * Remove moderatoring funcationality from this engine
+    * Updated ability file
+    * Note: some routes and paths are still present until other engines are updated.
+
+### 1.7.5
+  * Added strong password js to user password update
+
+### 1.7.4
+  * Resolved a bug with regards to confirmation logic of public activites and thoughts
+
+### 1.7.3
+  * conditionally send SMS/email notifications to Participants about Messages
+
+### 1.7.2
+  * data table sorting for participants updated
+
+### 1.7.1
+  * fix namespace issue related to Message delivery
+
+### 1.7.0
+  * Added confirmation logic for public social networking activities and thoughts
+  * Fixed logic for new lesson notifications
+
+### 1.6.9
+  * template path render fix
+
+### 1.6.8
+  * markdown helper modal added
+
+### 1.6.7
+  * markdown helper modal added
+
+### 1.6.6
+  * user password change redirect fix, redux
+
+### 1.6.5
+  * user password change redirect fix, again
+
+### 1.6.4
+  * user password change redirect fix
+
+### 1.6.3
+  * change "Landing" to "Home"
+  * fix Participant deletion, again
+  * remove Remember me from User login
+
+### 1.6.2
+  * fixed Participant deletion
+  * enabled Participant Thoughts Viz for Coach
+
+### 1.6.1 - 2014-12-15
+
+* enhancements
+  * users are able to moderate groups
+  * 'moderators' are created when a social group is created
+
+### 1.6.0 - 2014-12-15
+
+* enhancements
+  * enabled printing of all lesson content
+
+### 1.5.25 - 2014-12-15
+
+* enhancements
+  *  added wizard of oz flag to an arm
+
+### 1.5.24 - 2014-12-12
+
+* bug fix
+  *  modified after update path for user password registration
+
+### 1.5.23 - 2014-12-11
+
+* enhancements
+  * added additional authorization to User-based controllers
+
+### 1.5.22 - 2014-12-11
+
+* bug fixes
+  * removed lesson creation from content_modules route
+
+### 1.5.21 - 2014-12-11
+
+* bug fixes
+  * changed dependency from destroy to nullify on tasks for users
+
+### 1.5.20 - 2014-12-11
+
+* fixed broken video slide in lesson bug
+* removed unused rails admin template
+
+### 1.5.19 - 2014-12-11
+
+* bug fixes
+  * updated url helper methods due to breakage in tfd app
+
+### 1.5.18 - 2014-12-11
+
+* enhancements
+  * remove Remember me for Participants
+  * enable add to homescreen icon for iOS
+
+### 1.5.16 - 2014-12-11
+
+* bug fixes
+  * updated participant sign in authorization
+  * participant cannot log in if they don't have an active membership
+
 ### 1.5.15 - 2014-12-10
 
 * bug fixes

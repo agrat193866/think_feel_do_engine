@@ -18,7 +18,8 @@ module ThinkFeelDoEngine
           sign_in(resource_name, resource)
           yield resource if block_given?
           # respond_with resource, location: after_sign_in_path_for(resource)
-          respond_with resource, location: think_feel_do_engine.arms_path
+          respond_with resource, location:  (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : "#")
+          # respond_with resource, location: think_feel_do_engine.arms_path
         end
       end
     end

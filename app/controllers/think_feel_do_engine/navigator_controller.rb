@@ -4,13 +4,13 @@ module ThinkFeelDoEngine
   # Uses the Navigator to direct a participant"s flow through the site.
   class NavigatorController < ApplicationController
     include Concerns::NavigatorEnabled
-
     before_action :authenticate_participant!, :instantiate_navigator
 
     layout "tool"
 
     def show_context
       @navigator.initialize_context(params[:context_name] || "home")
+
       render "show_content"
     end
 

@@ -1,4 +1,4 @@
-<%= form_for thought, url: create_path, method: "post", html: { role: "form" } do |f| %>
+<%= form_for thought, url: create_path, method: "post", html: { role: "form", onsubmit: "validatePublic(event,'thought_shared_item_true')" } do |f| %>
   <%= render 'think_feel_do_engine/thoughts/harmful_thought', f: f %>
 
   <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
@@ -6,4 +6,5 @@
   <span class="new-shareable-form-after-form-groups" data-item-type="thought" data-action-type="created"></span>
 
   <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>
+
 <% end %>

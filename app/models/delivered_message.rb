@@ -6,13 +6,13 @@ class DeliveredMessage < ActiveRecord::Base
   validates :message, :recipient, presence: true
   validates :is_read, inclusion: { in: [true, false] }
 
-  after_create :deliver_emails
+  after_create :deliver_notifications
 
   scope :unread, -> { where(is_read: false) }
 
   scope :sent_from, lambda { |sender_id|
     joins(:message)
-    .where("messages.sender_id = ?", sender_id)
+      .where("messages.sender_id = ?", sender_id)
   }
 
   delegate :body, :render_body, :sender, :subject, to: :message
@@ -39,11 +39,15 @@ class DeliveredMessage < ActiveRecord::Base
 
   private
 
-  def deliver_emails
+  def deliver_notifications
     if recipient.instance_of? User
-      MessageNotifications.new_for_coach(recipient).deliver
+      ThinkFeelDoEngine::MessageNotifications.new_for_coach(recipient).deliver
+    elsif recipient.notify_by_sms?
+      MessageSmsNotification.deliver_to(recipient)
     else
-      MessageNotifications.new_for_participant(recipient).deliver
+      ThinkFeelDoEngine::MessageNotifications
+        .new_for_participant(recipient)
+        .deliver
     end
   rescue
     # swallow exception

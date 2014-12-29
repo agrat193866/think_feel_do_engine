@@ -39,4 +39,5 @@ Rails.application.configure do
   
   config.log_level = :error
   ThinkFeelDoEngine::Engine.routes.default_url_options[:host] = 'test.host'
+  config.allow_concurrency = false
 end

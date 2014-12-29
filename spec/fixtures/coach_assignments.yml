@@ -21,6 +21,10 @@ assignment_for_arm4:
 assignment_in_group_3:
   participant: participant3
   coach: clinician1
+
+assignment_in_group1:
+  participant: participant4
+  coach: user2
 ###
 
 # assignment_phq1:
