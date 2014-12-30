@@ -32,11 +32,12 @@ class Membership < ActiveRecord::Base
 
   scope :active, lambda {
     where("start_date <= ? OR start_date = ?", Date.current, nil)
-    .where("end_date >= ? OR end_date = ?", Date.current, nil)
+      .where("end_date >= ? OR end_date = ?", Date.current, nil)
   }
 
   def available_task_statuses
-    task_statuses
+    @available_task_statuses ||=
+      task_statuses
       .joins(:task, task: :bit_core_content_module)
       .by_position
       .where("start_day <= ?", day_in_study)
@@ -109,10 +110,9 @@ class Membership < ActiveRecord::Base
 
   def single_active_membership
     if Membership.where(participant_id: participant_id)
-                 .where("start_date <= ? AND end_date >= ?",
-                        end_date, start_date)
-                 .where.not(id: id)
-                 .exists?
+       .where("start_date <= ? AND end_date >= ?", end_date, start_date)
+       .where.not(id: id)
+       .exists?
       errors.add(:base, "There can be only one active membership")
     end
   end

@@ -35,7 +35,7 @@ LineLength:
     - spec/**/*
 
 MethodLength:
-  Max: 15
+  Max: 25
 
 PredicateName:
   Enabled: false

@@ -1,8 +1,7 @@
 <% unless current_participant.active_group.nil? %>
-  <% for tool in current_participant.active_group.arm.bit_core_tools.where('title != ?', "home") %>
-    <% if tool.title == "LEARN" %>
-      <%= yield :desktop_nav_items %>
-    <% end %>
+  <% current_participant.active_group.arm.bit_core_tools.where.not(title: "home").each do |tool| %>
+    <%= yield :desktop_nav_items if tool.title == "LEARN" %>
+
     <% if no_submenu?(tool) %>
       <li class="<%= tool.title %> hidden-xs">
         <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: make_room_for_badge(tool) %>
@@ -18,11 +17,11 @@
             <%= link_to "#{tool.title} Home", think_feel_do_engine.navigator_context_path(context_name: tool.title) %>
           </li>
 
-          <% if content_module_tasks(tool, "").count > 0 %>
-            <li class="divider"></li>
-
-            <% content_module_tasks(tool, "").each do |link| %>
-              <li <%= link == "DIVIDE" ? "class='divider'".html_safe : "" %> > <%= link == "DIVIDE" ? "" : link %></li>
+          <% content_module_tasks(tool).each do |link| %>
+            <% if link == "DIVIDE" %>
+              <li class="divider"></li>
+            <% else %>
+              <li><%= link %></li>
             <% end %>
           <% end %>
         </ul>
