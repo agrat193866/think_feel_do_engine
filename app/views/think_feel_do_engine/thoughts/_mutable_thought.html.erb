@@ -8,17 +8,17 @@
     <%= select_tag "thoughts[#{ mutable_thought.id }][effect]", options_for_select(%w(helpful harmful neither), mutable_thought.effect), style: "display: none;" %>
   </td>
   <td>
-    <span class="immutable-thought-content"><%= mutable_thought.pattern_title %></span>
+    <span class="immutable-thought-content"><%= (!mutable_thought.pattern_title.blank? ? mutable_thought.pattern_title : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
     <%= select_tag "thoughts[#{ mutable_thought.id }][pattern_id]", options_from_collection_for_select(ThoughtPattern.all, "id", "title", mutable_thought.pattern_id), style: "display: none;" %>
   </td>
   <td>
-    <span class="immutable-thought-content"><%= mutable_thought.challenging_thought %></span>
+    <span class="immutable-thought-content"><%= (!mutable_thought.challenging_thought.blank? ? mutable_thought.challenging_thought : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
     <%= text_field_tag "thoughts[#{ mutable_thought.id }][challenging_thought]", mutable_thought.challenging_thought, style: "display: none;" %>
   </td>
   <td>
-    <span class="immutable-thought-content"><%= mutable_thought.act_as_if %></span>
+    <span class="immutable-thought-content"><%= (!mutable_thought.act_as_if.blank? ? mutable_thought.act_as_if : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
     <%= text_field_tag "thoughts[#{ mutable_thought.id }][act_as_if]", mutable_thought.act_as_if, style: "display: none;" %>
   </td>
-  <td><%= mutable_thought.created_at.to_s(:date_time_with_meridian) %></td>
-  <td><%= submit_tag "Save", name: "thoughts[commit_id][#{ mutable_thought.id }]", class: "btn btn-default", style: "display: none;" %></td>
+  <td class="ignore_cell"><%= mutable_thought.created_at.to_s(:date_time_with_meridian) %></td>
+  <td class="formonly"><%= submit_tag "Save", name: "thoughts[commit_id][#{ mutable_thought.id }]", class: "btn btn-default", style: "display: none;" %></td>
 </tr>

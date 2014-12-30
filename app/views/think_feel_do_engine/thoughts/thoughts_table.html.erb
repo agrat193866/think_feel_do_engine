@@ -30,5 +30,12 @@
     $("table#thoughts .immutable-thought-content").hide();
     $("table#thoughts input,select").show();
     $("table#thoughts input[type='submit']").show();
+    $("table#thoughts tr").addClass("form-table");
   }
+  $('table.responsive').ngResponsiveTables({
+      smallPaddingCharNo: 13,
+      mediumPaddingCharNo: 18,
+      largePaddingCharNo: 30,
+      shiftedIndex:0
+    });
 </script>
