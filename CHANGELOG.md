@@ -1,3 +1,7 @@
+### 1.10.10 - 2014-12-30
+  * bug fixes
+    * updated version because tag 1.10.9 was referencing an incorrect commit (i.e., 584be81ec6af915645e0a2ba1250f0ed13979c53)
+
 ### 1.10.9 - 2014-12-29
   * enhancements
     * merged in enhanced visualization branch that improves table display
