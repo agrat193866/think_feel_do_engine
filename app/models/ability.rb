@@ -95,6 +95,8 @@ class Ability
     can :manage, ThinkFeelDoDashboard::Reports::ModuleSession
     can :manage, ThinkFeelDoDashboard::Reports::SiteSession
     can :manage, ThinkFeelDoDashboard::Reports::VideoSession
+    can :manage, ThinkFeelDoDashboard::Reports::Login
+    can :manage, ThinkFeelDoDashboard::Reports::ToolShare
     can :manage, User
   end
 end
