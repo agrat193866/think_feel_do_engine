@@ -16,6 +16,7 @@
 		init: function(){
 			this.opt = $.extend( defaults, options );
 			ngResponsiveTables.targetTable();
+			ngResponsiveTables.allowEdit();
 		},
 		targetTable: function(){
 			var that = this;
@@ -28,6 +29,14 @@
 					}
 				});
 			});
+		},
+		allowEdit: function(){
+			$selElement.attr('data-sPCN',this.opt.smallPaddingCharNo);
+			$selElement.attr('data-mPCN',this.opt.mediumPaddingCharNo);
+			$selElement.attr('data-lPCN',this.opt.largePaddingCharNo);
+			$selElement.attr('data-sI',this.opt.shiftedIndex);
+			$selElement.attr('data-hA',this.opt.headerAdjust);
+			$selElement.attr('data-headers',this.opt.headers.join());
 		},
 		checkForTableHead: function(element, index){
 			if(index >= this.opt.shiftedIndex){

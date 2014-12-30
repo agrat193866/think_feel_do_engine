@@ -1,4 +1,6 @@
 table#summary{width:99% !important;}
+table.responsive tr.form-table td input[type=text]{width:100%;}
+table.responsive tr.form-table td select{width:100%;}
 
 @media (max-width: 768px) {
   /* CSS Responsive table */
@@ -18,7 +20,9 @@ table#summary{width:99% !important;}
   table.responsive td.medium-padding { padding-top: 15px; padding-bottom: 15px; }
   table.responsive td.large-padding { padding-top: 25px; padding-bottom: 25px; }
   table.responsive td.responsive-header {background-color: #D7D7D7; font-weight: bold;}
-  table.responsive td.ignore_cell{height:0;display:none;}
+  table.responsive td.ignore_cell{height:0;display:none;}/*Cell should be completely hidden on mobile browsers*/
+  table.responsive td.formonly{height:0;display:none;border:none;}/*Cell should be hidden until the table becomes editable*/
+  table.responsive tr.form-table td.formonly{height:auto;display:initial;}
   #summary_wrapper label input{width:100%;}
 }
 
