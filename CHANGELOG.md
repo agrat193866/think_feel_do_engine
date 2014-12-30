@@ -1,3 +1,6 @@
+### 1.10.11
+  * update ability.rb
+
 ### 1.10.10 - 2014-12-30
   * bug fixes
     * updated version because tag 1.10.9 was referencing an incorrect commit (i.e., 584be81ec6af915645e0a2ba1250f0ed13979c53)
