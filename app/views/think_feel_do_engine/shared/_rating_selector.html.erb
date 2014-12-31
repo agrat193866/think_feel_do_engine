@@ -1,7 +1,7 @@
 <%= form.label name, label, for: "#{ name }_#{ object.id }" %><br>
 
 <div class="form-group">
-  <select id="<%= prefix %>[<%= name %>]" name="<%= prefix %>[<%= name %>]">
+  <select id="<%= prefix %>[<%= name %>]" name="<%= prefix %>[<%= name %>]" class="form-control">
     <% (0..10).each do |value| %>
       <option value="<%= value %>">
         <% if value == 0 || value == 5 || value == 10 %>
