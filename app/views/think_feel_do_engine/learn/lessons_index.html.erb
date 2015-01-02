@@ -12,7 +12,7 @@
             <% title = safe_get_task_title(ts) %>
             <%= title ? title : ts.title %>
             <% release_date = ts.available_for_learning_on %>
-            <p style="margin-top: 5px;margin-bottom:0px;">Released <%= release_date.to_s(:brief_date) %> - Week <%= current_participant.active_membership.week_in_study(release_date) %></p>
+            <p style="margin-top: 5px;margin-bottom:5px;">Released <%= release_date.to_s(:brief_date) %> - Week <%= current_participant.active_membership.week_in_study(release_date) %></p>
         </a>
       <% end %>
     <% else %>
@@ -36,7 +36,7 @@
           <% title = safe_get_task_title(ts) %>
           <%= title ? title : ts.title %>
           <% release_date = ts.available_for_learning_on %>
-          <p style="margin-top: 5px;margin-bottom:0px;">Released <%= release_date.to_s(:brief_date) %> - Week <%= current_participant.active_membership.week_in_study(release_date) %></p>
+          <p style="margin-top: 5px;margin-bottom:5px;">Released <%= release_date.to_s(:brief_date) %> - Week <%= current_participant.active_membership.week_in_study(release_date) %></p>
 
           <p style="margin-top: 5px;margin-bottom:0px;">Read <%= ts.completed_at.to_s(:brief_date) %></p>
         </a>
