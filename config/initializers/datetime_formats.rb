@@ -8,9 +8,9 @@ Time::DATE_FORMATS.merge!(
   },
   brief_date: ->(t) { 
     if t.year != Date.today.year
-      t.strftime("%b %d '%y")
+      t.strftime("%b %e '%y")
     else
-      t.strftime("%b %d")
+      t.strftime("%b %e")
     end
   },
   time_with_meridian: '%l%P',
