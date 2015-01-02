@@ -12,7 +12,6 @@
     vertical-align: baseline;
     background-color: #777;
     border-radius: 10px;
-
     float: right;
   }
   span.list-group-item.disabled {
@@ -60,7 +59,7 @@
             <% task_for_week.each do |ts| %>
               <% release_date = ts.available_for_learning_on %>
               <% if release_date <= Date.today %>
-                <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { "task-status-id": ts.id } do %>
+                <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
                   <h4 class="list-group-item-heading">
                     <%= safe_get_task_title(ts) %>
                     <span class="label label-<%= ts.completed_at ? "success" : "warning" %>"><%= ts.completed_at ? "R" : "Unr" %>ead</span>
