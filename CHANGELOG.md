@@ -1,3 +1,7 @@
+### 1.10.12
+  * fixed display of viz Content Modules on module index page
+  * fixed broken specs due to date formatting
+
 ### 1.10.11
   * update ability.rb
 
