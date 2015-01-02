@@ -40,9 +40,9 @@
   <% if task_status && task_status.provider_viz? %>
     <br>
     <%= task_status
-        .task
         .bit_core_content_module
         .content_providers
+        .order(:position)
         .first
         .render_current(
           self,
