@@ -1,5 +1,4 @@
 scThoughtTrackerMenuViz = function(vizData, page){
-	
 	//Properties
 	var thoughtPatterns, thoughtsList,patternFrequencies,self;
 
@@ -16,7 +15,7 @@ scThoughtTrackerMenuViz = function(vizData, page){
 	patternFrequencies = {};
 	thoughtsList = [];
     widescreen = window.innerWidth > window.innerHeight;
-    height = widescreen ? 200 : (page == "home" ? 500 : 1000);
+    height = widescreen ? 200 : (page == "home" ? 500 : 768);
     width = $("#ThoughtVizContainer").width();
 
 	/**********[Utility Methods]**********/
@@ -65,10 +64,10 @@ scThoughtTrackerMenuViz = function(vizData, page){
         else{
             if(widescreen){
                 if(page == "home") return (height/2);
-                return (Math.floor(i/3) + 1) * (Math.max((Math.min(height,width) - 80)/((objCount/3)),10) + 100);
+                return (Math.floor(i/3) + 1) * (Math.max(((Math.min(height,width) - 80)/3),10) + 50);
             }
             else if (page == "home") return (height)/(objCount + 1) * (i+1);
-            else return (i+1) * (Math.max((Math.min(height,width) - 80)/(objCount*2),10) + 30);
+            else return (i+1) * (Math.max((Math.min(height,width) - 80)/(objCount*2),10) + 50);
         }
 	}
 
@@ -122,19 +121,18 @@ scThoughtTrackerMenuViz = function(vizData, page){
     var radiusScale = null;
     if(widescreen){
         if(page == "home")
-        radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*2),10),
-                        Math.max((Math.min(height,width) - 80)/(objCount),10)];
+        radiusScale = [Math.max(Math.min(height,width)/(objCount*3),10), Math.max(Math.min(height,width)/3,10)];
         else
         radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*3),10),
-                        Math.max((Math.min(height,width) - 80)/(objCount/3),10)]
+                        Math.max((Math.min(height,width) - 80)/3,10)];
     }
     else{
         if(page == "home")
-            radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*3),10),
-                        Math.max((Math.min(height,width) - 80)/(objCount*2),10)]
+            radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*6),10),
+                        Math.max((Math.min(height,width) - 80)/6,10)];
         else
-        radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*2),10),
-                        Math.max((Math.min(height,width) - 80)/(objCount),10)]
+        radiusScale = [Math.max((Math.min(height,width) - 80)/(objCount*6),10),
+                        Math.max((Math.min(height,width) - 80)/(objCount*2),10)];
     }
 
     rRange = d3
@@ -157,7 +155,7 @@ scThoughtTrackerMenuViz = function(vizData, page){
     svg = d3
     	.select("#ThoughtVizContainer")
     	.insert("svg", ":first-child")
-        .attr("height", widescreen ? (page == "home" ? "200px" : "500px") : (page == "home" ? "500px" : "1500px"))
+        .attr("height", widescreen ? (page == "home" ? "200px" : "500px") : (page == "home" ? "500px" : "768px"))
         .attr("width",width + "px")
         .append("g")
         .attr("id", "ThoughtVizSvg")
@@ -245,7 +243,7 @@ scThoughtTrackerMenuViz = function(vizData, page){
                 100
             )
         .attr("y", 
-                0
+                20
             )
         .attr("font-weight",
             "bold");
@@ -292,8 +290,11 @@ scThoughtTrackerMenuViz = function(vizData, page){
             });
             newBody.append(userThoughts);
             newBody.append($("<h4/>",{text:"Remember..."}));
-            newBody.append($(value.recommendations));
-
+            if(value.recommendations.indexOf("</")>=0){
+                newBody.append($(value.recommendations));
+            }else{
+                newBody.append($("<p>" + value.recommendations + "</p>"));
+            }
 
             newFooter = $("<div/>");
             newFooter.attr("class","modal-footer");
