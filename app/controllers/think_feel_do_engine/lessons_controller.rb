@@ -14,11 +14,13 @@ module ThinkFeelDoEngine
 
     def all_content
       authorize! :index, ContentModules::LessonModule
-      providers = @lessons.map(&:content_providers).flatten
-      slideshows = BitCore::Slideshow
-                   .where(id: providers.map(&:source_content_id))
+      providers = @lessons.order(:position).map(&:content_providers).flatten
+      @slideshows = BitCore::Slideshow
+                    .where(id: providers.map(&:source_content_id))
+                    .group_by(&:id)
       @slides = BitCore::Slide
-                .where(bit_core_slideshow_id: slideshows.map(&:id))
+                .where(bit_core_slideshow_id: @slideshows.keys)
+                .group_by(&:bit_core_slideshow_id)
     end
 
     def show
