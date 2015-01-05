@@ -1,3 +1,7 @@
+### 1.11.0
+  * added data to click event
+  * added report permissions to Ability
+
 ### 1.10.12
   * fixed display of viz Content Modules on module index page
   * fixed broken specs due to date formatting

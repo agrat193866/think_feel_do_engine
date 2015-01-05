@@ -1,4 +1,4 @@
 # nodoc
 module ThinkFeelDoEngine
-  VERSION = "1.10.12"
+  VERSION = "1.11.0"
 end
