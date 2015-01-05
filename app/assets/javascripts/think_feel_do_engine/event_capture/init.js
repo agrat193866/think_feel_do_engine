@@ -39,7 +39,8 @@
 
     payload = {
       currentUrl: window.location.href,
-      buttonHtml: targetElement.html().trim(),
+      buttonHtml: outerHtml(targetElement),
+      parentHtml: outerHtml(targetElement.parent()),
       headers: grabHeaders()
     };
     eventClient.log({ kind: "click", payload: payload });
@@ -56,5 +57,10 @@
     }
 
     return cleaned;
+  }
+
+  function outerHtml(el) {
+    // because .outerHTML() may not be implemented in all target browsers
+    return el.clone().wrap("<p>").parent().html();
   }
 })();
