@@ -4,4 +4,8 @@
 	<%= link_to "Lessons", arm_lessons_path(@arm), class: "btn btn-default" %>
 </div>
 
-<%= render partial: "think_feel_do_engine/slides/slide", collection: @slides %>
+<% @slides.each do |lesson_id, lesson_slides| %>
+  <h3><%= lesson_slides.first.slideshow.pretty_title %></h3>
+
+  <%= render partial: "think_feel_do_engine/slides/slide", collection: lesson_slides %>
+<% end %>

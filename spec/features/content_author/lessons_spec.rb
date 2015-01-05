@@ -63,6 +63,7 @@ feature "Lessons", type: :feature do
     scenario "viewing all lesson slides" do
       visit "/arms/#{ arms(:arm1).id }/lessons/all_content"
 
+      expect(page).to have_text bit_core_slideshows(:think_patterns_intro).title
       expect(page).to have_text bit_core_slides(:think_patterns_intro1).title
       expect(page).to have_text bit_core_slides(:think_patterns_intro1)
         .render_body[/[^<>]+/]
