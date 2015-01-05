@@ -23,6 +23,6 @@ class Thought < ActiveRecord::Base
 
   scope :unreflected, lambda {
     where("challenging_thought IS NULL OR act_as_if IS NULL")
-    .where(effect: "harmful")
+      .where(effect: "harmful")
   }
 end

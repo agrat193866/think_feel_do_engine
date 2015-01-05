@@ -4,13 +4,13 @@
 class Arm < ActiveRecord::Base
   has_many :groups
   has_many :bit_core_tools,
-            class_name: "BitCore::Tool",
-            foreign_key: :arm_id,
-            dependent: :destroy
+           class_name: "BitCore::Tool",
+           foreign_key: :arm_id,
+           dependent: :destroy
   has_many :bit_core_slideshows,
-            class_name: "BitCore::Slideshow",
-            foreign_key: :arm_id,
-            dependent: :destroy
+           class_name: "BitCore::Slideshow",
+           foreign_key: :arm_id,
+           dependent: :destroy
 
   validates :title, presence: true
 

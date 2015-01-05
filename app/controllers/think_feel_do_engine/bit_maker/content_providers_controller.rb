@@ -44,7 +44,7 @@ module ThinkFeelDoEngine
           ), notice: "ContentProvider was successfully created."
         else
           flash.now[:alert] = "Unable to save ContentProvider " +
-            model_errors
+                              model_errors
           render :new
         end
       end
@@ -59,7 +59,7 @@ module ThinkFeelDoEngine
           ), notice: "ContentProvider was successfully updated."
         else
           flash.now[:alert] = "Unable to save ContentProvider " +
-            model_errors
+                              model_errors
           render :edit
         end
       end
@@ -102,8 +102,9 @@ module ThinkFeelDoEngine
       end
 
       def set_content_modules
-        @content_modules = BitCore::ContentModule
-                            .where(bit_core_tool_id: @arm.bit_core_tools.map(&:id))
+        @content_modules =
+          BitCore::ContentModule
+          .where(bit_core_tool_id: @arm.bit_core_tools.map(&:id))
       end
 
       def set_slideshows

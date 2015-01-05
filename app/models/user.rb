@@ -26,7 +26,9 @@ class User < ActiveRecord::Base
            dependent: :nullify
   has_many :user_roles, dependent: :destroy
 
-  validates :password, password_strength: { use_dictionary: true }, :if => :password_is__not_blank?
+  validates :password,
+            password_strength: { use_dictionary: true },
+            if: :password_is__not_blank?
 
   accepts_nested_attributes_for :coach_assignments
 

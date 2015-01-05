@@ -69,7 +69,6 @@ feature "Content Modules", type: :feature do
       expect(page).to_not have_content "LEARN"
     end
 
-
     it "should scope modules by arm when on edit" do
       visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:home_landing).id}/edit"
 

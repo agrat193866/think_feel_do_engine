@@ -81,7 +81,6 @@ feature "task notification", type: :feature do
 
         expect(planning_icon_count).to eq 0
       end
-
     end
 
     it "keeps the order of task_status based on the order of the content_modules position even after updating a task status", :js do

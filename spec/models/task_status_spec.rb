@@ -51,5 +51,4 @@ describe TaskStatus do
       expect(TaskStatus.where(task_id: task.id, membership_id: membership.id).count).to eq task_status_count
     end
   end
-
 end

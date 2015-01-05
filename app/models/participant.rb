@@ -119,12 +119,12 @@ class Participant < ActiveRecord::Base
                                                         .try(:viz?)
                              end
 
-        unless content_module_ids
-          false
-        else
+        if content_module_ids
           membership.incomplete_tasks
             .for_content_module_ids(content_module_ids)
             .count
+        else
+          false
         end
       end
     )
@@ -145,12 +145,12 @@ class Participant < ActiveRecord::Base
                                                         .try(:viz?)
                              end
 
-        unless content_module_ids
-          false
-        else
+        if content_module_ids
           membership.incomplete_tasks_today
             .for_content_module_ids(content_module_ids)
             .count
+        else
+          false
         end
       end
     )

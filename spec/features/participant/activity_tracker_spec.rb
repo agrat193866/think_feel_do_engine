@@ -411,7 +411,5 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Average Pleasure Discrepency: 5.17"
       expect(page).to have_text "Average Accomplishment Discrepency: 4.33"
     end
-
   end
-
 end

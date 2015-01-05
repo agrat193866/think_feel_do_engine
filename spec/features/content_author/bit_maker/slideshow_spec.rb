@@ -88,7 +88,6 @@ feature "Slideshow", type: :feature do
         expect(slideshow.title).not_to eq ""
         expect(slideshow.title).to eq "Home Introduction"
       end
-
     end
 
     it "be deleted and no longer visible" do

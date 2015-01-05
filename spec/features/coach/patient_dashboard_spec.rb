@@ -330,7 +330,7 @@ feature "patient dashboard", type: :feature do
     end
 
     it "should allow a coach to set the membership end date" do
-      sign_in_user users :clinician1   
+      sign_in_user users :clinician1
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text("Membership successfully updated")

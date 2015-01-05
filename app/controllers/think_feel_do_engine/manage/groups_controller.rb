@@ -13,7 +13,9 @@ module ThinkFeelDoEngine
         @group = @arm.groups.find(params[:id])
         authorize! :update, @group
         @task = current_user.tasks.build
-        @content_modules = BitCore::ContentModule.where(bit_core_tool_id: @arm.bit_core_tools.map(&:id))
+        @content_modules =
+          BitCore::ContentModule.where(
+            bit_core_tool_id: @arm.bit_core_tools.map(&:id))
       end
 
       private

@@ -27,7 +27,8 @@ class Activity < ActiveRecord::Base
   }
 
   scope :unscheduled_or_in_the_future, lambda {
-    where("activities.start_time IS NULL OR activities.end_time > ?", Time.current)
+    where("activities.start_time IS NULL OR activities.end_time > ?",
+          Time.current)
   }
 
   scope :in_the_future, lambda {
@@ -36,7 +37,7 @@ class Activity < ActiveRecord::Base
 
   scope :incomplete, lambda {
     where(is_complete: false)
-    .where(noncompliance_reason: nil)
+      .where(noncompliance_reason: nil)
   }
 
   scope :pleasurable, lambda {

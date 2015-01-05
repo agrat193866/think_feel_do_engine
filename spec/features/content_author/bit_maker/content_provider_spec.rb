@@ -9,7 +9,6 @@ feature "Content Provider", type: :feature do
   )
 
   context "Logged in as a content author" do
-
     before do
       sign_in_user users :content_author1
     end

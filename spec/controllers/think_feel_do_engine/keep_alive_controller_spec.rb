@@ -2,9 +2,7 @@ require "spec_helper"
 
 module ThinkFeelDoEngine
   describe KeepAliveController, type: :controller do
-
     describe "Participant GET" do
-
       context "for authenticated requests" do
         before do
           sign_in_participant
@@ -27,6 +25,5 @@ module ThinkFeelDoEngine
         end
       end
     end
-
   end
 end

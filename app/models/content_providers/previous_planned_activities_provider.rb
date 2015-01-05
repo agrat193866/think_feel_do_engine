@@ -2,7 +2,10 @@ module ContentProviders
   # Provides a form for a Participant to update previously planned Activities.
   class PreviousPlannedActivitiesProvider < BitCore::ContentProvider
     def render_current(options)
-      activities = options.participant.activities
+      activities =
+        options
+        .participant
+        .activities
         .incomplete
 
       options.view_context.render(

@@ -9,7 +9,6 @@ feature "Feel", type: :feature do
   )
 
   context "Participant on day 1 logs in" do
-
     let(:participant1) { participants(:participant1) }
     let(:mood_and_emotions_provider_day1) { bit_core_content_providers(:mood_and_emotions_index_day1) }
 
@@ -45,7 +44,6 @@ feature "Feel", type: :feature do
   end
 
   context "Participant on day 2 logs in" do
-
     let(:participant2) { participants(:participant2) }
     let(:mood_and_emotions_provider_post_day1) { bit_core_content_providers(:mood_and_emotions_index_post_day1) }
 
@@ -125,6 +123,5 @@ feature "Feel", type: :feature do
       expect(page).to have_text "Your Recent Emotions"
       expect(current_path).to eq "/navigator/modules/" + mood_and_emotions_provider_post_day1.content_module.id.to_s + "/providers/" + mood_and_emotions_provider_post_day1.id.to_s + "/1"
     end
-
   end
 end

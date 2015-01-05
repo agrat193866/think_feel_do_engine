@@ -41,15 +41,15 @@ module ContentProviders
         module_1 = BitCore::ContentModule.find_by_title("#1 Identifying")
         module_2 = BitCore::ContentModule.find_by_title("Add a New Thought")
 
-        "You can log more thoughts in " +
+        "You can log more thoughts in " \
         "#{ @view.link_to(
-          "Think #1 Identifying",
+          'Think #1 Identifying',
           @view.navigator_location_path(module_id: module_1.id),
-          style: "font-size: larger;") } or use " \
+          style: 'font-size: larger;') } or use " \
         "#{ @view.link_to(
-          "Add a New Thought",
+          'Add a New Thought',
           @view.navigator_location_path(module_id: module_2.id),
-          style: "font-size: larger;") } to do multiple steps at once."
+          style: 'font-size: larger;') } to do multiple steps at once."
       end
     end
   end

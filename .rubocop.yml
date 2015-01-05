@@ -40,6 +40,9 @@ MethodLength:
 PredicateName:
   Enabled: false
 
+RegexpLiteral:
+  Enabled: false
+
 StringLiterals:
   EnforcedStyle: double_quotes
 

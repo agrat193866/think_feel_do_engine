@@ -14,13 +14,11 @@ module ThinkFeelDoEngine
 
     def all_content
       authorize! :index, ContentModules::LessonModule
-      providers = @lessons.order(:position).map(&:content_providers).flatten
-      @slideshows = BitCore::Slideshow
-                    .where(id: providers.map(&:source_content_id))
-                    .group_by(&:id)
+      providers = @lessons.map(&:content_providers).flatten
+      slideshows = BitCore::Slideshow
+                   .where(id: providers.map(&:source_content_id))
       @slides = BitCore::Slide
-                .where(bit_core_slideshow_id: @slideshows.keys)
-                .group_by(&:bit_core_slideshow_id)
+                .where(bit_core_slideshow_id: slideshows.map(&:id))
     end
 
     def show
@@ -41,8 +39,9 @@ module ThinkFeelDoEngine
         redirect_to arm_lesson_url(@arm, @lesson),
                     notice: "Successfully created lesson"
       else
-        flash.now[:alert] = "Unable to create lesson: " +
-                            model_errors(@lesson)
+        flash.now[:alert] =
+          "Unable to create lesson: " +
+          model_errors(@lesson)
         render :new
       end
     end
@@ -58,8 +57,9 @@ module ThinkFeelDoEngine
         redirect_to arm_lesson_url(@arm, @lesson),
                     notice: "Successfully updated lesson"
       else
-        flash.now[:alert] = "Unable to update lesson: " +
-                            model_errors(@lesson)
+        flash.now[:alert] =
+          "Unable to update lesson: " +
+          model_errors(@lesson)
         render :edit
       end
     end
