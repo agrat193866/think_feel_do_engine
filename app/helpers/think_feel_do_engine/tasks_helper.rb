@@ -122,6 +122,8 @@ module ThinkFeelDoEngine
 
       return "" if title.nil?
 
+      title = todays_lesson(task_status, "Today: ").to_s + title
+
       Redcarpet::Markdown.new(
         Redcarpet::Render::HTML.new(
           filter_html: true,

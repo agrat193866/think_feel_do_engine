@@ -4,12 +4,11 @@ module ContentProviders
     def render_current(options)
       assign_variables(options)
       options.view_context.render(
-        template: "think_feel_do_engine/learn/lessons_index",
+        template: "think_feel_do_engine/learn/lessons_index_2",
         locals: {
           all_tasks: @all_tasks,
-          all_available_tasks: @all_available_tasks,
-          oldest_unread_five: @oldest_unread_five,
-          all_read_tasks: @all_read_tasks
+          membership: @participant.membership,
+          week_count: (@participant.membership.length_of_study / 7.0).ceil
         }
       )
     end

@@ -1,0 +1,51 @@
+<h1>Lessons</h1>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% (1..week_count).to_a.each do |week| %>
+    <% task_for_week = all_tasks.where("start_day > ? AND start_day <= ?", week * 7 - 7, week * 7) %>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading<%= week %>">
+        <h3 class="panel-title clearfix">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= week %>" aria-expanded="true" aria-controls="collapse<%= week %>">
+            Week <%= week %>
+          </a>
+          <span class="badge pull-right"><%= task_for_week.count %></span>
+        </h3>
+      </div>
+      <div id="collapse<%= week %>" class="panel-collapse collapse <%= 'in' if current_participant.active_membership.week_in_study == week %>" role="tabpanel" aria-labelledby="heading<%= week %>">
+        <div class="list-group">
+          <% if task_for_week.count == 0 %>
+            <div class="panel-body">
+              No lessons exist for this week.
+            </div>
+          <% else %>
+            <% task_for_week.each do |ts| %>
+              <% path = create_task_path(ts) %>
+              <a href="<%= path %>" class="list-group-item task-status" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+                  <h4 class="list-group-item-heading">
+                    <% title = safe_get_task_title(ts) %>
+                    <%= title ? title : ts.title %>
+                  </h4>
+                  <p class="list-group-item-text">
+                    <% release_date = ts.available_for_learning_on %>
+                    Released <%= release_date.to_s(:brief_date) %>
+                    <%= "&middot; Read on ".html_safe + ts.completed_at.to_s(:brief_date) if ts.completed_at %>
+                  </p>
+              </a>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('#accordion').on('hide.bs.collapse', function () {
+    $(".panel.panel-default").show()
+  })
+  $('#accordion').on('shown.bs.collapse', function () {
+    $(".panel.panel-default").hide()
+    $(".panel.panel-default .in").parent('.panel').show()
+  })
+</script>
