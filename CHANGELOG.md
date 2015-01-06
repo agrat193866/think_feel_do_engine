@@ -1,3 +1,6 @@
+### 1.12.0 - 2015-1-5
+  * Merged in visualization branch changes
+
 ### 1.11.0
   * added data to click event
   * added report permissions to Ability
