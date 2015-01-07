@@ -43,14 +43,14 @@
             </div>
           <% else %>
             <% task_for_week.each do |ts| %>
-              <% path = create_task_path(ts) %>
-              <a href="<%= path %>" class="list-group-item task-status <%= 'disabled' if current_participant.active_membership.week_in_study < week %>" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+              <% release_date = ts.available_for_learning_on %>
+              <% path = release_date <= Date.today ? create_task_path(ts) : '#' %>
+              <% title = safe_get_task_title(ts) %>
+              <a href="<%= path %>" class="list-group-item task-status <%= 'disabled' if release_date > Date.today %>" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
                   <h4 class="list-group-item-heading">
-                    <% title = safe_get_task_title(ts) %>
-                    <%= title ? title : ts.title %>
+                    <%= title ? title : ts.title %> <%= release_date <= Date.today %>
                   </h4>
                   <p class="list-group-item-text">
-                    <% release_date = ts.available_for_learning_on %>
                     <% if release_date < Date.today %>
                       <%= ts.completed_at ? "<span class='label label-info'>Read on ".html_safe + ts.completed_at.to_s(:brief_date) + "</span>".html_safe : "<span class='label label-warning'>Unread</span>".html_safe %>
                       Released on <%= release_date.to_s(:brief_date) %>
@@ -66,3 +66,9 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $('body').on('click', 'a.disabled', function(event) {
+    event.preventDefault();
+  });
+</script>
