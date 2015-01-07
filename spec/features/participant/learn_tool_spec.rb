@@ -14,9 +14,12 @@ feature "learn tool", type: :feature do
     end
 
     it "can view assigned slideshow that are released", :js do
-      expect(page).to have_text("You have read 0 lessons out of 1.")
       expect(page).to have_link("Do - Awareness Introduction")
-      expect(page).not_to have_link("Do - Planning Introduction")
+
+      click_on "Do - Planning Introduction"
+      expect(page.body).to have_css("a.disabled", count: 1)
+
+      expect(current_path).to eq "/navigator/contexts/LEARN"
       page.find(".list-group-item.task-status:first-child").trigger("click")
       content_module = bit_core_content_modules(:slideshow_content_module_2)
       provider = bit_core_content_providers(:content_provider_slideshow_2)
@@ -26,9 +29,7 @@ feature "learn tool", type: :feature do
       expect(page).to have_text("Do - Awareness Introduction")
 
       visit "/navigator/contexts/LEARN"
-      expect(page).to have_text "You have read 1 lesson out of 1."
-      expect(page).to have_text "Released #{ Date.current.to_s(:brief_date) } - Week 1"
-      expect(page).to have_text "Read #{ Date.current.to_s(:brief_date) }"
+      expect(page).to have_text "Available on #{ Date.current.to_s(:brief_date) }"
     end
   end
 
@@ -38,12 +39,16 @@ feature "learn tool", type: :feature do
       visit "/navigator/contexts/LEARN"
     end
 
+    it "highlights the current week's panel" do
+      expect(page).to have_css("div.panel-info", count: 1)
+    end
+
     it "displays assigned slideshows (with the correct slides) based on released day" do
-      expect(page).to have_text("You have read 0 lessons out of 2.")
+      expect(page).to have_text("Week 1 2")
       expect(page).to have_link("Do - Awareness Introduction")
-      expect(page).to have_text "Released #{ Date.current.to_s(:brief_date) } - Week 1"
+      expect(page).to have_text "Available on #{ Date.current.to_s(:brief_date) }"
       expect(page).to have_link("Do - Planning Introduction")
-      expect(page).to have_text "Released #{ Date.current.advance(days: -1).to_s(:brief_date) } - Week 1"
+      expect(page).to have_text "Released on #{ Date.current.advance(days: -1).to_s(:brief_date) }"
       expect(page).to have_selector(".list-group-item.task-status:last-child", text: "Do - Planning Introduction")
       page.find(".list-group-item.task-status:last-child").click
       expect(page).to have_text("LEARN")
@@ -51,24 +56,11 @@ feature "learn tool", type: :feature do
       expect(page).to have_text("The last few times you were here...")
     end
 
-    it "displays unread notification, the correct count of lessons, and lessons from the past", :js do
-      with_scope "#task-status-#{task_status(:task_status7).id}" do
-        expect(page).to have_selector("#new_lessons_list a p")
-        expect(page).not_to have_text("today's lesson")
-      end
-      with_scope "#task-status-#{task_status(:task_status8).id}" do
-        expect(page).to have_selector("#new_lessons_list a p")
-        expect(page).to have_text("today's lesson")
-      end
-      # click_on "Do - Awareness Introduction"
+    it "displays unread notification and the correct count of lessons", :js do
+      expect(page).to have_text("Week 1 2")
       page.find("p", text: "Do - Awareness Introduction").trigger("click")
       visit "/navigator/contexts/LEARN"
-      with_scope "#task-status-#{task_status(:task_status7).id}" do
-        expect(page).not_to have_selector("#new_lessons_list a p")
-      end
-      with_scope "#task-status-#{task_status(:task_status8).id}" do
-        expect(page).to have_selector("#new_lessons_list a p")
-      end
+      expect(page).to have_text("Week 1 1")
     end
   end
 end

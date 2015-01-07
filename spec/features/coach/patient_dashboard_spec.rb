@@ -144,7 +144,6 @@ feature "patient dashboard", type: :feature do
 
           sign_in_participant participant1
           page.find(".LEARN.hidden-xs a").trigger("click")
-          expect(page).to have_text "You have read"
           page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
           click_on "Continue"
 
