@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222222717) do
+ActiveRecord::Schema.define(version: 20150107192402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20141222222717) do
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_positive"
   end
 
   create_table "emotions", force: true do |t|

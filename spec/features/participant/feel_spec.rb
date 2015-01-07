@@ -66,6 +66,7 @@ feature "Feel", type: :feature do
       click_on "Continue"
       select("surprised", from: "Emotion")
       select("5 (Some)", from: "emotional_rating[rating]")
+      select("negative", from: "emotional_rating[is_positive]")
 
       page.find("#add-forms").trigger("click")
 
@@ -75,6 +76,7 @@ feature "Feel", type: :feature do
 
       with_scope "#subcontainer-1" do
         select("3", from: "emotional_rating[rating]")
+        select("positive", from: "emotional_rating[is_positive]")
       end
 
       page.find("#add-forms").trigger("click")
@@ -84,6 +86,7 @@ feature "Feel", type: :feature do
       end
 
       with_scope "#subcontainer-2" do
+        select("negative", from: "emotional_rating[is_positive]")
         select("7", from: "emotional_rating[rating]")
       end
 

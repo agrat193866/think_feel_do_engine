@@ -20,7 +20,7 @@ module ContentProviders
     end
 
     def data_attributes
-      [:emotion_id, :name, :participant_id, :rating]
+      [:emotion_id, :name, :participant_id, :rating, :is_positive]
     end
 
     def show_nav_link?
