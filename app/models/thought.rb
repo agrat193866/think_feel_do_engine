@@ -22,7 +22,10 @@ class Thought < ActiveRecord::Base
   scope :no_pattern, -> { where(pattern_id: nil) }
 
   scope :unreflected, lambda {
-    where("challenging_thought IS NULL OR act_as_if IS NULL")
-      .where(effect: "harmful")
+    where(effect: "harmful")
+      .where(self.arel_table[:challenging_thought].eq(nil)
+             .or(self.arel_table[:challenging_thought].eq(""))
+             .or(self.arel_table[:act_as_if].eq(nil))
+             .or(self.arel_table[:act_as_if].eq("")))
   }
 end
