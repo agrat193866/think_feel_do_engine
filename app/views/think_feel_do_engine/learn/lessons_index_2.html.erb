@@ -18,6 +18,9 @@
   a.list-group-item.disabled {
     background-color: #FFF;
   }
+  div.panel-heading h3.panel-title span.badge-unreleased {
+    color: #A0A0A0;
+  }
 </style>
 
 <h1>Lessons</h1>
@@ -32,7 +35,7 @@
             <%= "<i class='fa fa-calendar'></i>".html_safe if current_participant.active_membership.week_in_study == week %>
             Week <%= week %>
           </a>
-          <span class="badge"><%= task_for_week.where(completed_at: nil).count %></span>
+          <span class="badge <%= 'badge-unreleased' if current_participant.active_membership.week_in_study < week %> "><%= task_for_week.where(completed_at: nil).count %></span>
         </h3>
       </div>
       <div id="collapse<%= week %>" class="panel-collapse collapse <%= 'in' if current_participant.active_membership.week_in_study == week %>" role="tabpanel" aria-labelledby="heading<%= week %>">
