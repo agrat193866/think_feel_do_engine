@@ -68,12 +68,16 @@ feature "learn tool", type: :feature do
     end
 
     it "displays the correct count of unread lessons", :js do
-      expect(page).to have_text("Week 3 2")
+      expect(page).to have_text "Week 3 2"
 
       click_on "Do - Congratulations"
       click_on "Continue"
 
-      expect(page).to have_text("Week 3 1")
+      expect(page).to have_text "Week 3 1"
+    end
+
+    it "displays the correct count of unread lessons for future weeks" do
+      expect(page).to have_text "Week 4 1"
     end
   end
 end
