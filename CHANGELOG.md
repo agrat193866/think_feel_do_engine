@@ -1,3 +1,7 @@
+### 1.12.2 / 2015-1-8
+  * enhancements
+    * Added an additional test to check if unread lessons are displayed correctly on LEARN page
+
 ### 1.12.1 / 2015-1-8
   * Updated the LEARN page for participants
 
