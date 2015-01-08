@@ -1,3 +1,6 @@
+### 1.12.1 / 2015-1-8
+  * Updated the LEARN page for participants
+
 ### 1.12.0 - 2015-1-5
   * Merged in visualization branch changes
 

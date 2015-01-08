@@ -51,6 +51,12 @@ membership_for_group1_arm1:
   group: group1
   start_date: <%= Date.today %>
   end_date: <%= Date.today.advance(days: 4) %>
+
+membership_for_learning:
+  participant: participant_for_learning
+  group: group1
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: 50) %>
 ###
 
 # membership_phq1:

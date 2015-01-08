@@ -167,3 +167,33 @@ task_create_activity:
   release_day: 1
   is_recurring: true
   has_didactic_content: false
+
+task_learning7:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_13
+  release_day: 7
+
+task_learning14:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_4
+  release_day: 14
+
+task_learning17:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_6
+  release_day: 17
+
+task_learning21:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_5
+  release_day: 21
+
+task_learning28:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_6
+  release_day: 28

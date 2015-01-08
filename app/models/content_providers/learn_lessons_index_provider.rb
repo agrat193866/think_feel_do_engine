@@ -4,7 +4,7 @@ module ContentProviders
     def render_current(options)
       assign_variables(options)
       options.view_context.render(
-        template: "think_feel_do_engine/learn/lessons_index_2",
+        template: "think_feel_do_engine/learn/lessons_index",
         locals: {
           all_tasks: @all_tasks,
           membership: @participant.membership,
