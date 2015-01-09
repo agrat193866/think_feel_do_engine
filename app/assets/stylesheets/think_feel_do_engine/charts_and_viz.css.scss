@@ -68,7 +68,7 @@
 }
 
 .linechart span#LaxisLabel {
-  position: absolute; 
+  position: absolute;
   left:140px;
   font-size: 1.5em;
   top:0px;
@@ -190,9 +190,9 @@ div#phq_suggestion_explanation_div
   -moz-transition: opacity 0.5s;
 }
 
-div#phq_suggestion_explanation_div table, 
+div#phq_suggestion_explanation_div table,
 div#phq_suggestion_explanation_div table span.inline_format,
-div#phq_suggestion_explanation_div span.inline_format, 
+div#phq_suggestion_explanation_div span.inline_format,
 {
   font-size:1.1em;
 }
@@ -229,7 +229,7 @@ div#phq_suggestion_explanation_div table tr td
   display:none;
 }
 
-table#phq_suggestion_test_results td span.label-success, 
+table#phq_suggestion_test_results td span.label-success,
 table#phq_suggestion_test_results td span.label-danger.label-adj_danger
 {
   padding: 0.2em 0.8em 0.3em;
@@ -366,4 +366,32 @@ div#phq_suggestion_explanation_div.show_suggestion
 #legend_hidden
 {
   display: none;
+}
+
+/* Mood viz */
+div#mood, div#emotions {
+  margin-top: 20px;
+}
+.chart rect {
+  stroke: white;
+  fill-opacity: .6;
+  fill: steelblue;
+
+}
+.bar.positive {
+  fill: steelblue;
+}
+
+.bar.negative {
+  fill: brown;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
