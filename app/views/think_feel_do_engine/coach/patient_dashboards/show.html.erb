@@ -32,10 +32,6 @@
     </div>
   </div>
 
-
-  <div id="vizcontainer" class="linechart">
-  </div>
-
   <div class="panel panel-default cdb_panel">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
@@ -361,8 +357,6 @@
 <% end %>
 
 <script>
-  var phqData, emotionData, moodRatings;
-
   $(function() {
     return $('#task_statuses, #learning_data').dataTable({
       sPaginationType: 'bootstrap',
@@ -381,6 +375,7 @@
       }
     });
   });
+
   $(function() {
     return $('.generic-data-table').dataTable({
       sPaginationType: 'bootstrap',
@@ -389,15 +384,4 @@
       }
     });
   });
-
-  phqData = JSON.parse("<%= @patient.phq_assessments.map{ |phq9| [phq9.release_date.to_time.to_i, phq9.score]} %>");
-
-  emotionData = JSON.parse('<%= raw emotional_ratings(@patient).to_json %>');
-
-  moodData = JSON.parse('<%= raw mood_ratings(@patient).to_json %>');
-
-  $(document).on("page:load", sc.assessmentData(moodData, emotionData, phqData));
-
-  $(window).off(".phqfeelViz");
-  $(window).on("resize.phqfeelViz", function(){sc.assessmentData(moodData, emotionData, phqData);});
 </script>

@@ -8,6 +8,5 @@
 //= require_tree ./forms
 //= require_tree ./thought_patterns
 //= require_tree ./thoughts
-//= require think_feel_do_engine/assessment_data
 //= require think_feel_do_engine/task_status
 //= require think_feel_do_engine/responsive-table
