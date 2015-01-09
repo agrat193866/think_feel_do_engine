@@ -1,3 +1,7 @@
+### 1.12.3 / 2015-1-9
+  * enhancements
+    * fixed lesson grouping and slide sorting for all content
+
 ### 1.12.2 / 2015-1-8
   * enhancements
     * Added an additional test to check if unread lessons are displayed correctly on LEARN page
