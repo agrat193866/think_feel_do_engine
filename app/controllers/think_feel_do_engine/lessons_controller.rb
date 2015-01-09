@@ -10,16 +10,17 @@ module ThinkFeelDoEngine
 
     def index
       authorize! :index, ContentModules::LessonModule
+      @lessons = @lessons.includes(content_providers: :source_content)
+                 .order(:position)
     end
 
     def all_content
       authorize! :index, ContentModules::LessonModule
-      providers = @lessons.order(:position).map(&:content_providers).flatten
       @slideshows = BitCore::Slideshow
-                    .where(id: providers.map(&:source_content_id))
-                    .group_by(&:id)
+                    .joins(content_provider: :content_module)
+                    .merge(@lessons.order(:position))
       @slides = BitCore::Slide
-                .where(bit_core_slideshow_id: @slideshows.keys)
+                .where(bit_core_slideshow_id: @slideshows.map(&:id))
                 .group_by(&:bit_core_slideshow_id)
     end
 
@@ -124,8 +125,6 @@ module ThinkFeelDoEngine
       learn_tool_ids = @arm.bit_core_tools.where(title: "LEARN").map(&:id)
       @lessons = ContentModules::LessonModule
                  .where(bit_core_tool_id: learn_tool_ids)
-                 .includes(:content_providers)
-                 .order(:position)
     end
   end
 end

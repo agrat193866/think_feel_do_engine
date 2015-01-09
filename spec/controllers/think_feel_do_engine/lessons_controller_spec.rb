@@ -128,7 +128,7 @@ module ThinkFeelDoEngine
           let(:bit_core_content_module) { double("bit_core_content_module") }
 
           it "should render the edit page" do
-            allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
+            allow(ContentModules::LessonModule).to receive(:where) { bit_core_content_module }
             allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
 
@@ -141,7 +141,7 @@ module ThinkFeelDoEngine
           let(:bit_core_content_module) { double("bit_core_content_module") }
 
           it "should redirect to the lesson page" do
-            allow(ContentModules::LessonModule).to receive_message_chain(:where, :includes, :order) { bit_core_content_module }
+            allow(ContentModules::LessonModule).to receive(:where) { bit_core_content_module }
             allow(bit_core_content_module).to receive(:find).and_return(lesson)
             put :update, id: 1, use_route: :think_feel_do_engine
 
