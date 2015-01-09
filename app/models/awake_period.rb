@@ -10,7 +10,9 @@ class AwakePeriod < ActiveRecord::Base
   private
 
   def awake_periods_cannot_overlap
-    overlapping_period_exists = participant.awake_periods
+    overlapping_period_exists =
+      participant
+      .awake_periods
       .where("start_time < ? and end_time > ?", end_time, start_time)
       .limit(1)
       .count == 1

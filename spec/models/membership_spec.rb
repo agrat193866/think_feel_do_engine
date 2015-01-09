@@ -15,7 +15,6 @@ describe Membership do
   let(:participant_wo_membership2) { participants(:participant_wo_membership2) }
 
   describe "validations" do
-
     it "does not allow more than one active membership for a participant" do
       new_membership = Membership.new(
         group_id: group.id,
@@ -28,7 +27,6 @@ describe Membership do
     it "allows valid memberships to be updated" do
       expect { memberships(:membership1).save! }.not_to raise_error
     end
-
   end
 
   it "assigns all tasks linked to a group upon creation" do

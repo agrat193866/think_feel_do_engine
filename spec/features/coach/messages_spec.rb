@@ -10,7 +10,7 @@ feature "coach messages", type: :feature do
     :phq_assessments, :emotions, :delivered_messages)
 
   describe "Logged in as a clinician" do
-    let(:group1) { groups(:group1)}
+    let(:group1) { groups(:group1) }
 
     before do
       sign_in_user users :clinician1

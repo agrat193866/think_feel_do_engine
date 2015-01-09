@@ -10,8 +10,9 @@ module ThinkFeelDoEngine
       def index
         authorize! :show, SiteMessage
         participant_ids = @group.participant_ids
-        @site_messages = SiteMessage
-                          .where(participant_id: participant_ids)
+        @site_messages =
+          SiteMessage
+          .where(participant_id: participant_ids)
       end
 
       def show

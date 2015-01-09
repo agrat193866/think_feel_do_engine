@@ -11,13 +11,13 @@ module ThinkFeelDoEngine
       def index
         authorize! :index, BitCore::Slideshow
         @slideshows = @arm
-                        .bit_core_slideshows
+                      .bit_core_slideshows
       end
 
       def show
         @anchors = SlideshowAnchor
-                    .where(bit_core_slideshow_id: @slideshow.id)
-                    .group_by(&:target_name)
+                   .where(bit_core_slideshow_id: @slideshow.id)
+                   .group_by(&:target_name)
       end
 
       def new
@@ -27,13 +27,14 @@ module ThinkFeelDoEngine
 
       def create
         if @slideshow.save
-          @content_provider = @arm
-                                .bit_core_tools
-                                .find_or_create_by(title: "LEARN")
-                                .add_module(@slideshow.title)
-                                .add_content_provider(
-                                  "BitCore::ContentProviders::SlideshowProvider"
-                                )
+          @content_provider =
+            @arm
+            .bit_core_tools
+            .find_or_create_by(title: "LEARN")
+            .add_module(@slideshow.title)
+            .add_content_provider(
+              "BitCore::ContentProviders::SlideshowProvider"
+            )
           @content_provider.update(source_content: @slideshow)
           redirect_to arm_bit_maker_slideshows_url(@arm),
                       notice: "Successfully created slideshow"
@@ -75,9 +76,10 @@ module ThinkFeelDoEngine
 
       # Needed b/c default CanCan looks for "Slideshow & @slideshow"
       def find_slideshow
-        @slideshow = @arm
-                      .bit_core_slideshows
-                      .find(params[:id])
+        @slideshow =
+          @arm
+          .bit_core_slideshows
+          .find(params[:id])
       end
 
       def set_arm

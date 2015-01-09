@@ -27,7 +27,6 @@ describe Activity do
   end
 
   describe "scopes" do
-
     it "unplanned should only show activities where start_time and end_time are nil" do
       unplanned_activities = Activity.unplanned
       expect(unplanned_activities.load).not_to be_empty
@@ -36,6 +35,5 @@ describe Activity do
         expect(a.end_time).to be_nil
       end
     end
-
   end
 end

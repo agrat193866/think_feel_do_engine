@@ -3,10 +3,6 @@ require "spec_helper"
 feature "messages" do
   fixtures(
     :all
-    # :arms, :participants, :users, :groups, :memberships, :user_roles, :messages,
-    # :delivered_messages, :"bit_core/tools",
-    # :"bit_core/content_modules", :"bit_core/content_providers",
-    # :"bit_core/slideshows", :"bit_core/slides", :coach_assignments
   )
 
   before do

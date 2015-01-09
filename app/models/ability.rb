@@ -26,7 +26,7 @@ class Ability
   def authorize_coach
     can :index, Arm
     can :show, Arm do |arm|
-      # ToDo: make a nicer scope/sql call
+      # TODO: make a nicer scope/sql call
       access = false
       arm.groups.each do |group|
         unless access
@@ -95,6 +95,10 @@ class Ability
     can :manage, ThinkFeelDoDashboard::Reports::ModuleSession
     can :manage, ThinkFeelDoDashboard::Reports::SiteSession
     can :manage, ThinkFeelDoDashboard::Reports::VideoSession
+    can :manage, ThinkFeelDoDashboard::Reports::Login
+    can :manage, ThinkFeelDoDashboard::Reports::TaskCompletion
+    can :manage, ThinkFeelDoDashboard::Reports::ToolAccess
+    can :manage, ThinkFeelDoDashboard::Reports::ToolShare
     can :manage, User
   end
 end

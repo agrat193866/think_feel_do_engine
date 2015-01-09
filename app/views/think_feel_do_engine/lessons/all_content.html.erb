@@ -4,4 +4,9 @@
 	<%= link_to "Lessons", arm_lessons_path(@arm), class: "btn btn-default" %>
 </div>
 
-<%= render partial: "think_feel_do_engine/slides/slide", collection: @slides %>
+<% @slideshows.each do |slideshow| %>
+  <h3><%= slideshow.pretty_title %></h3>
+
+  <% slides = (@slides[slideshow.id] || []).sort { |s, t| s.position <=> t.position } %>
+  <%= render partial: "think_feel_do_engine/slides/slide", collection: slides %>
+<% end %>

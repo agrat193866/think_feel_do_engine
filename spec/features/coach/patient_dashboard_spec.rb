@@ -144,7 +144,6 @@ feature "patient dashboard", type: :feature do
 
           sign_in_participant participant1
           page.find(".LEARN.hidden-xs a").trigger("click")
-          expect(page).to have_text "You have read"
           page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
           click_on "Continue"
 
@@ -330,7 +329,7 @@ feature "patient dashboard", type: :feature do
     end
 
     it "should allow a coach to set the membership end date" do
-      sign_in_user users :clinician1   
+      sign_in_user users :clinician1
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text("Membership successfully updated")

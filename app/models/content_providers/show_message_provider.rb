@@ -27,7 +27,9 @@ module ContentProviders
     private
 
     def compose_path(options)
-      provider_id = content_module.content_providers
+      provider_id =
+        content_module
+        .content_providers
         .find_by_type("ContentProviders::NewMessageFormProvider").id
 
       options.view_context.navigator_location_path(
@@ -42,9 +44,11 @@ module ContentProviders
       participant = options.participant
       view_context = options.view_context
 
-      received_message = participant.received_messages
+      received_message =
+        participant.received_messages
         .where(message_id: view_context.params[:message_id]).first
-      sent_message = participant.messages
+      sent_message =
+        participant.messages
         .where(id: view_context.params[:message_id]).first
 
       received_message || sent_message

@@ -9,7 +9,6 @@ feature "Feel", type: :feature do
   )
 
   context "Participant on day 1 logs in" do
-
     let(:participant1) { participants(:participant1) }
     let(:mood_and_emotions_provider_day1) { bit_core_content_providers(:mood_and_emotions_index_day1) }
 
@@ -45,7 +44,6 @@ feature "Feel", type: :feature do
   end
 
   context "Participant on day 2 logs in" do
-
     let(:participant2) { participants(:participant2) }
     let(:mood_and_emotions_provider_post_day1) { bit_core_content_providers(:mood_and_emotions_index_post_day1) }
 
@@ -68,6 +66,7 @@ feature "Feel", type: :feature do
       click_on "Continue"
       select("surprised", from: "Emotion")
       select("5 (Some)", from: "emotional_rating[rating]")
+      select("negative", from: "emotional_rating[is_positive]")
 
       page.find("#add-forms").trigger("click")
 
@@ -77,6 +76,7 @@ feature "Feel", type: :feature do
 
       with_scope "#subcontainer-1" do
         select("3", from: "emotional_rating[rating]")
+        select("positive", from: "emotional_rating[is_positive]")
       end
 
       page.find("#add-forms").trigger("click")
@@ -86,6 +86,7 @@ feature "Feel", type: :feature do
       end
 
       with_scope "#subcontainer-2" do
+        select("negative", from: "emotional_rating[is_positive]")
         select("7", from: "emotional_rating[rating]")
       end
 
@@ -125,6 +126,5 @@ feature "Feel", type: :feature do
       expect(page).to have_text "Your Recent Emotions"
       expect(current_path).to eq "/navigator/modules/" + mood_and_emotions_provider_post_day1.content_module.id.to_s + "/providers/" + mood_and_emotions_provider_post_day1.id.to_s + "/1"
     end
-
   end
 end

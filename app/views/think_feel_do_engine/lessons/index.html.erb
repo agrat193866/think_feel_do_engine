@@ -11,13 +11,12 @@
 		<tr>
 			<th>Position</th>
 			<th>Title</th>
-      <th>Tool</th>
 			<th>No. of Slides</th>
 			<th></th>
 		</tr>
 	</thead>
   <tbody id="sortable-slides" data-update-url="<%= sort_arm_lessons_url(@arm, @lesson) %>">
-		<% @lessons.includes(content_providers: :source_content).each do |lesson| %>
+		<% @lessons.each do |lesson| %>
 			<tr id="lesson-<%= lesson.id %>">
 				<td>
 					<span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span>
@@ -26,7 +25,6 @@
 				<td>
 					<%= link_to lesson.pretty_title, arm_lesson_path(@arm, lesson) %>
 				</td>
-				<td><%= lesson.tool.title %></td>
 				<td><%= lesson.slides.count %></td>
 				<td>
 					<%= link_to "Edit", edit_arm_lesson_path(@arm, lesson), class: "btn btn-default" %>

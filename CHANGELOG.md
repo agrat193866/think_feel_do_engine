@@ -1,3 +1,32 @@
+### 1.12.3 / 2015-1-9
+  * enhancements
+    * fixed lesson grouping and slide sorting for all content
+
+### 1.12.2 / 2015-1-8
+  * enhancements
+    * Added an additional test to check if unread lessons are displayed correctly on LEARN page
+
+### 1.12.1 / 2015-1-8
+  * Updated the LEARN page for participants
+
+### 1.12.0 - 2015-1-5
+  * Merged in visualization branch changes
+
+### 1.11.0
+  * added data to click event
+  * added report permissions to Ability
+
+### 1.10.12
+  * fixed display of viz Content Modules on module index page
+  * fixed broken specs due to date formatting
+
+### 1.10.11
+  * update ability.rb
+
+### 1.10.10 - 2014-12-30
+  * bug fixes
+    * updated version because tag 1.10.9 was referencing an incorrect commit (i.e., 584be81ec6af915645e0a2ba1250f0ed13979c53)
+
 ### 1.10.9 - 2014-12-29
   * enhancements
     * merged in enhanced visualization branch that improves table display

@@ -2,11 +2,17 @@ module ContentProviders
   # Visualizations of participant activities.
   class YourActivitiesProvider < BitCore::ContentProvider
     def render_current(options)
-      scheduled_activities = options.participant.activities
+      scheduled_activities =
+        options
+        .participant
+        .activities
         .where(is_scheduled: true)
         .in_the_past
         .order(start_time: :desc)
-      activities = options.participant.activities
+      activities =
+        options
+        .participant
+        .activities
         .in_the_past
         .order(start_time: :desc)
       options.view_context.render(

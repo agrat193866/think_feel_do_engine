@@ -7,9 +7,8 @@ module ContentProviders
         template: "think_feel_do_engine/learn/lessons_index",
         locals: {
           all_tasks: @all_tasks,
-          all_available_tasks: @all_available_tasks,
-          oldest_unread_five: @oldest_unread_five,
-          all_read_tasks: @all_read_tasks
+          membership: @participant.membership,
+          week_count: (@participant.membership.length_of_study / 7.0).ceil
         }
       )
     end

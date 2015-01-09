@@ -14,9 +14,9 @@
 //= require bootstrap/collapse
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
-//= require rickshaw_with_d3
 //= require think_feel_do_engine/snap
 //= require moment.min
+//= require d3.min
 //
 //= require_tree ./think_feel_do_engine/shared
 //= require think_feel_do_engine/bootstrap-timepicker

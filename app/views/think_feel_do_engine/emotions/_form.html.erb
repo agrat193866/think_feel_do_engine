@@ -9,6 +9,10 @@
     <input class="form-control" id="emotional_rating_name" name="emotional_rating[name]" type="text">
   </div>
   <div class="form-group">
+    <%= f.label("Emotion Type") %>
+    <%= f.select(:is_positive, [['positive', true], ['negative', false]], {} ,class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= render(
       "think_feel_do_engine/shared/rating_selector",
       form: f,

@@ -10,7 +10,12 @@ module ThinkFeelDoEngine
 
     def after_sign_in_path_for(resource)
       if resource.class == User
-        (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : privacy_policy_path)
+        if defined?(think_feel_do_dashboard)
+          think_feel_do_dashboard.root_path
+        else
+          privacy_policy_path
+        end
+
       else
         ParticipantAuthenticationPolicy.new(self, resource).post_sign_in_path
       end
@@ -22,9 +27,17 @@ module ThinkFeelDoEngine
       )
     end
 
+    def access_denied_resource_path
+      if defined?(think_feel_do_dashboard)
+        think_feel_do_dashboard.root_path
+      else
+        privacy_policy_path
+      end
+    end
+
     rescue_from CanCan::AccessDenied do |exception|
       if current_user.coach?
-        redirect_to (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : privacy_policy_path), alert: exception.message
+        redirect_to access_denied_resource_path, alert: exception.message
       else
         redirect_to main_app.root_path, alert: exception.message
       end

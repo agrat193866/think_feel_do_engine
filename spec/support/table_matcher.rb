@@ -8,6 +8,6 @@ RSpec::Matchers.define :have_the_table do |expected|
   end
 
   failure_message do |actual|
-    "expected that\n#{ actual.find(:xpath, "//table[@id='#{ expected[:id] }']").text }\nwould contain\n|| #{ expected[:cells].join(" | ") } ||"
+    "expected that\n#{ actual.find(:xpath, "//table[@id='#{ expected[:id] }']").text }\nwould contain\n|| #{ expected[:cells].join(' | ') } ||"
   end
 end

@@ -130,7 +130,7 @@ class PhqStepping
     end
     @assessments.select! do |assessment|
       assessment.week_of_assessment.to_i >= start &&
-      assessment.week_of_assessment.to_i <= @week
+        assessment.week_of_assessment.to_i <= @week
     end
   end
 

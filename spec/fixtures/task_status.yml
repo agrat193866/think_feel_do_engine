@@ -167,3 +167,34 @@ task_status_create_activity:
   membership: membership1
   task: task_create_activity
   start_day: 1
+
+task_status4_learning:
+  membership: membership_for_learning
+  task: task17
+  start_day: 2
+  completed_at: <%= Date.today.advance(days: -15) %>
+
+task_status_learning7:
+  membership: membership_for_learning
+  task: task_learning7
+  start_day: 7
+
+task_status_learning14:
+  membership: membership_for_learning
+  task: task_learning14
+  start_day: 14
+
+task_status_learning17:
+  membership: membership_for_learning
+  task: task_learning17
+  start_day: 17
+
+task_status_learning21:
+  membership: membership_for_learning
+  task: task_learning21
+  start_day: 21
+
+task_status_learning28:
+  membership: membership_for_learning
+  task: task_learning28
+  start_day: 28

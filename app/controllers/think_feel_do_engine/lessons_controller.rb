@@ -10,15 +10,18 @@ module ThinkFeelDoEngine
 
     def index
       authorize! :index, ContentModules::LessonModule
+      @lessons = @lessons.includes(content_providers: :source_content)
+                 .order(:position)
     end
 
     def all_content
       authorize! :index, ContentModules::LessonModule
-      providers = @lessons.map(&:content_providers).flatten
-      slideshows = BitCore::Slideshow
-                   .where(id: providers.map(&:source_content_id))
+      @slideshows = BitCore::Slideshow
+                    .joins(content_provider: :content_module)
+                    .merge(@lessons.order(:position))
       @slides = BitCore::Slide
-                .where(bit_core_slideshow_id: slideshows.map(&:id))
+                .where(bit_core_slideshow_id: @slideshows.map(&:id))
+                .group_by(&:bit_core_slideshow_id)
     end
 
     def show
@@ -39,7 +42,8 @@ module ThinkFeelDoEngine
         redirect_to arm_lesson_url(@arm, @lesson),
                     notice: "Successfully created lesson"
       else
-        flash.now[:alert] = "Unable to create lesson: " +
+        flash.now[:alert] =
+          "Unable to create lesson: " +
           model_errors(@lesson)
         render :new
       end
@@ -56,7 +60,8 @@ module ThinkFeelDoEngine
         redirect_to arm_lesson_url(@arm, @lesson),
                     notice: "Successfully updated lesson"
       else
-        flash.now[:alert] = "Unable to update lesson: " +
+        flash.now[:alert] =
+          "Unable to update lesson: " +
           model_errors(@lesson)
         render :edit
       end
@@ -120,8 +125,6 @@ module ThinkFeelDoEngine
       learn_tool_ids = @arm.bit_core_tools.where(title: "LEARN").map(&:id)
       @lessons = ContentModules::LessonModule
                  .where(bit_core_tool_id: learn_tool_ids)
-                 .includes(:content_providers)
-                 .order(:position)
     end
   end
 end

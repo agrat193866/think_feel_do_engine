@@ -5,7 +5,11 @@ module ThinkFeelDoEngine
       protected
 
       def after_resetting_password_path_for(_resource)
-        (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.root_path : privacy_policy_path)
+        if defined?(think_feel_do_dashboard)
+          think_feel_do_dashboard.root_path
+        else
+          privacy_policy_path
+        end
       end
     end
   end

@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe PhqStepping do
-
   let(:low_assessments) { Hash[Date.today, 1, Date.today - 14.days, 2] }
   let(:high_range_1_assessments) { Hash[Date.today, 17, Date.today - 14.days, 18] }
   let(:high_range_2_assessments) { Hash[Date.today, 15, Date.today - 14.days, 16] }
@@ -39,7 +38,6 @@ describe PhqStepping do
   end
 
   describe "PHQ Stepping Algorithm" do
-
     it ".consecutive_low_weeks? returns true if two consecutive weeks are low" do
       phq_low_four = PhqStepping.new(low_assessments, 4)
       phq_low_five = PhqStepping.new(low_assessments, 5)
@@ -221,6 +219,5 @@ describe PhqStepping do
       expect(phq_too_many_missing.stay).to eq nil
       expect(phq_too_many_missing.release).to eq nil
     end
-
   end
 end
