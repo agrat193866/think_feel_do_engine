@@ -1,0 +1,61 @@
+<h1>
+  Activities
+  <small>
+    <%= formatted_date %>
+  </small>
+</h1>
+
+<div class="btn-toolbar">
+  <%= link_to "Previous Day", "?date=#{datetime.advance(days: -1).strftime("%d/%m/%Y")}", class: "btn btn-default" %>
+  <%= link_to "Next Day", "?date=#{datetime.advance(days: 1).strftime("%d/%m/%Y")}", class: "btn btn-default pull-right" %>
+</div>
+
+<div class="list-group">
+  <% activities.each do |activity| %>
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading">
+        <% if activity.start_time %>
+          <%= activity.start_time.strftime("%l %P") %>
+          -
+          <%= activity.end_time.strftime("%l %P") %>:
+          <%= activity.title %>
+          <span class="pull-right label label-<%= activity.completed? ? 'success' : 'warning' %>">
+            <%= activity.completed? ? 'Completed' : 'Incomplete' %>
+          </span>
+        <% end %>
+      </h4>
+      <p class="list-group-item-text">
+        Pleasure:
+        <%= activity.actual_pleasure_intensity %>
+        <%#= activity.actual_pleasure_value %>
+        &middot
+        Accomplishment:
+        <%= activity.actual_accomplishment_intensity %>
+        <%#= activity.actual_accomplishment_value %>
+      </p>
+    </a>
+  <% end.empty? and begin %>
+    <div class="alert alert-info" role="alert">
+      <strong>Notice!</strong> No activities completed in this period.
+    </div>
+  <% end %>
+</div>
+
+<input type="text" id="datepicker" style="width: 0px;border: none; padding: 0px;">
+
+<script type="text/javascript">
+  // http://stackoverflow.com/questions/4919873/how-to-get-the-date-from-jquery-ui-datepicker
+  $(function() {
+    $("#datepicker").datepicker({
+      showOn: "button",
+      buttonText: "Select Date",
+      onSelect: function(dateText, inst) {
+        var date, formattedDate;
+        date = new Date(dateText);
+        formattedDate = date.getDate() + "/" + (parseInt(date.getMonth()) + 1) + "/" + date.getFullYear();
+        return Turbolinks.visit(window.location.pathname + "?date=" + formattedDate);
+      }
+    });
+    return $("button.ui-datepicker-trigger").addClass("btn-default btn");
+  });
+</script>
