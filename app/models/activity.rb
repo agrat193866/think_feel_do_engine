@@ -15,6 +15,12 @@ class Activity < ActiveRecord::Base
 
   before_validation :create_activity_type, :set_end_time
 
+  scope :for_day, lambda { |datetime|
+    where(
+      "activities.start_time >= ? AND activities.start_time < ?",
+      datetime.beginning_of_day, datetime.advance(days: 1).beginning_of_day)
+  }
+
   scope :accomplished, lambda {
     where(
       "activities.actual_accomplishment_intensity >= ?",
