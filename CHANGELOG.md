@@ -1,3 +1,7 @@
+### 1.12.4 / 2015-1-9
+  * enhancements
+    * updated lesson roadmap
+
 ### 1.12.3 / 2015-1-9
   * enhancements
     * fixed lesson grouping and slide sorting for all content
