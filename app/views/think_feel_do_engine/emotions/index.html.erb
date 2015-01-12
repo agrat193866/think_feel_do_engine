@@ -1,21 +1,20 @@
-<h2>Your Recent Emotions (Dummy Data)</h2>
+<h2>Your Recent Emotions</h2>
 <div id="mood"></div>
 <div id="emotions"></div>
 <script>
-  var moodData = [{day: "M", intensity: 4}, {day: "T", intensity: 8}, {day: "W", intensity: 9}, {day:"R", intensity: 4}, {day:"F", intensity: 8}, {day:"Sa", intensity:9}, {day:"Su", intensity:9}];
+  var moodData = <%= mood_ratings.to_json.html_safe %>;
 
-  // var emotionsData = [{day: "M", intensity: 4, is_positive: true}, {day: "M", intensity: 5, is_positive: false}, {day: "T", intensity: 8, is_positive: true}, {day: "T", intensity: 4, is_positive: false}, {day: "W", intensity: 9, is_positive: true}, {day: "W", intensity: 5, is_positive: false}, {day: "R", intensity: 4, is_positive: true}, {day: "R", intensity: 5, is_positive: false}, {day: "F", intensity: 8, is_positive: true}, {day: "F", intensity: 4, is_positive: false}, {day: "Sa", intensity: 9, is_positive: true}, {day: "Sa", intensity: 5, is_positive: false}, {day: "Su", intensity: 9, is_positive: true}, {day: "Su", intensity: 10, is_positive: false}];
-  var emotionsData = JSON.parse("<%= emotional_ratings %>");
+  var emotionsData = <%= emotional_ratings.to_json.html_safe %>;
   var graphWidth = window.innerWidth * .9;
 
-  // var moodGraphTitle = "Mood";
-  // d3.select("#mood")
-  //   .datum(moodData)
-  //     .call(columnChart(0, 10, moodGraphTitle)
-  //       .width(graphWidth)
-  //       .height(300)
-  //       .x(function(d, i) { return d.day; })
-  //       .y(function(d, i) { return d.intensity; }));
+  var moodGraphTitle = "Mood";
+  d3.select("#mood")
+    .datum(moodData)
+      .call(columnChart(0, 10, moodGraphTitle)
+        .width(graphWidth)
+        .height(300)
+        .x(function(d, i) { return d.day; })
+        .y(function(d, i) { return d.intensity; }));
 
   var emotionGraphTitle = "Positive and Negative Emotions";
   d3.select("#emotions")
