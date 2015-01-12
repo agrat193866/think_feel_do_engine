@@ -41,14 +41,12 @@
   <% end %>
 </div>
 
-<input type="text" id="datepicker" style="width: 0px;border: none; padding: 0px;">
+Choose Date:<div id="datepicker"></div>
 
 <script type="text/javascript">
   // http://stackoverflow.com/questions/4919873/how-to-get-the-date-from-jquery-ui-datepicker
   $(function() {
     $("#datepicker").datepicker({
-      showOn: "button",
-      buttonText: "Select Date",
       onSelect: function(dateText, inst) {
         var date, formattedDate;
         date = new Date(dateText);
@@ -56,6 +54,5 @@
         return Turbolinks.visit(window.location.pathname + "?date=" + formattedDate);
       }
     });
-    return $("button.ui-datepicker-trigger").addClass("btn-default btn");
   });
 </script>
