@@ -11,7 +11,7 @@ module ContentProviders
       options.view_context.render(
         template: "think_feel_do_engine/emotions/index",
         locals: {
-          emotional_ratings: emotional_ratings(participant),
+          emotional_ratings: emotional_ratings(participant).to_json,
           mood_ratings: mood_ratings(participant)
         }
       )
@@ -22,14 +22,9 @@ module ContentProviders
     end
 
     def emotional_ratings(participant)
-      ratings = {}
-      participant.emotional_ratings.order(:created_at).each do |rating|
-        unless ratings[rating.name.to_sym]
-          ratings[rating.name.to_sym] = []
-        end
-        ratings[rating.name.to_sym] << [rating.created_at.to_i, rating.rating]
+      participant.emotional_ratings.collect do |er|
+        {day: er.created_at.to_s, intensity: er.rating, is_positive: er.is_positive}
       end
-      ratings.keys.map { |key| [key.to_sym, ratings[key.to_sym]] }
     end
 
     def mood_ratings(participant)
