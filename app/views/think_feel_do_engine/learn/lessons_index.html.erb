@@ -15,10 +15,10 @@
 
     float: right;
   }
-  a.list-group-item.disabled {
+  span.list-group-item.disabled {
     background-color: #FFF;
   }
-  a.list-group-item.disabled span.label.label-warning {
+  span.list-group-item.disabled span.label.label-warning {
     opacity: 0.7;
   }
   div.panel-heading h3.panel-title.panel-unreleased {
@@ -38,7 +38,7 @@
 </h1>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <% (1..week_count).to_a.each do |week| %>
+  <% (1..week_count).each do |week| %>
     <% task_for_week = all_tasks.where("start_day > ? AND start_day <= ?", week * 7 - 7, week * 7) %>
     <div class="panel panel-default <%= 'panel-info' if  current_participant.active_membership.week_in_study == week %>">
       <div class="panel-heading" role="tab" id="heading<%= week %>">
@@ -59,24 +59,33 @@
           <% else %>
             <% task_for_week.each do |ts| %>
               <% release_date = ts.available_for_learning_on %>
-              <% path = release_date <= Date.today ? create_task_path(ts) : '#' %>
-              <a href="<%= path %>" class="list-group-item task-status <%= 'disabled' if release_date > Date.today %>" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+              <% if release_date <= Date.today %>
+                <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { "task-status-id": ts.id } do %>
                   <h4 class="list-group-item-heading">
                     <%= safe_get_task_title(ts) %>
-                    <%= ts.completed_at ? "<span class='label label-success'>Read</span>".html_safe : "<span class='label label-warning'>Unread</span>".html_safe %>
+                    <span class="label label-<%= ts.completed_at ? "success" : "warning" %>"><%= ts.completed_at ? "R" : "Unr" %>ead</span>
                   </h4>
                   <p class="list-group-item-text">
                     <% if release_date < Date.today %>
                       Released on <%= release_date.to_s(:brief_date) %>
-                      <%=  " &middot; Read on ".html_safe + ts.completed_at.to_s(:brief_date) if ts.completed_at %>
                     <% elsif release_date == Date.today %>
                       Released Today
-                      <%=  " &middot; Read on ".html_safe + ts.completed_at.to_s(:brief_date) if ts.completed_at %>
-                    <% else %>
-                      Available on <%= release_date.to_s(:brief_date) %>
                     <% end %>
+                    <%=  " &middot; Read on ".html_safe + ts.completed_at.to_s(:brief_date) if ts.completed_at %>
                   </p>
-              </a>
+                <% end %>
+              <% else %>
+                <span class="list-group-item task-status disabled" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
+                  <h4 class="list-group-item-heading">
+                    <%= safe_get_task_title(ts) %>
+                    <span class="label label-warning">Unread</span>
+                  </h4>
+
+                  <p class="list-group-item-text">
+                    Available on <%= release_date.to_s(:brief_date) %>
+                  </p>
+                </span>
+              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -84,9 +93,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  $('body').on('click', 'a.disabled', function(event) {
-    event.preventDefault();
-  });
-</script>

@@ -18,11 +18,7 @@ feature "learn tool", type: :feature do
     end
 
     it "displays all 10 weeks" do
-      i = 1
-      while i < 11
-        expect(page).to have_text "Week #{i}"
-        i += 1
-      end
+      (1..10).each { |i| expect(page).to have_text "Week #{i}" }
     end
 
     it "highlights this week's panel" do
@@ -37,20 +33,9 @@ feature "learn tool", type: :feature do
       with_scope "div.panel-info" do
         expect(page).to have_link "Do - Congratulations Unread"
         expect(page).to have_text "Released Today"
-        expect(page).to have_link "Do - Doing Introduction Unread"
+        expect(find("span.task-status")).to have_text "Do - Doing Introduction Unread"
         expect(page).to have_text "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
       end
-    end
-
-    it "disabled lessons can't be clicked", :js do
-      expect(page.body).to have_css("a.disabled", count: 2)
-      expect(page).to have_link "Do - Doing Introduction Unread"
-      expect(page).to have_text "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
-
-      click_on "Do - Doing Introduction Unread"
-
-      expect(current_path).to eq "/navigator/contexts/LEARN"
-      expect(page).to have_link "Do - Doing Introduction Unread"
     end
 
     it "can view an assigned learning slideshow that has been released", :js do
