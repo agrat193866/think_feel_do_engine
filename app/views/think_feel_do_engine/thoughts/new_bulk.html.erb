@@ -16,7 +16,8 @@
       html: {
         class: "multi-page",
         style: i == 0 ? '' : 'display: none;',
-        role: "form"
+        role: "form",
+        onsubmit: "validatePublic(event,'thought_shared_item_true')"
       }
     ) do |f|
   %>
