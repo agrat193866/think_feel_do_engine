@@ -29,6 +29,9 @@ gem "bit_player",
     tag: "0.4.7",
     git: "https://github.com/cbitstech/bit_player.git"
 
+gem "git_tagger",
+    git: "https://github.com/eschlange/git_tagger.git"
+
 gem "twilio-ruby", "~> 3.12"
 
 group :test do

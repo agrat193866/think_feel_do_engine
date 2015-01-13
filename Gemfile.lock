@@ -25,6 +25,12 @@ GIT
       rails (>= 4.1.5)
 
 GIT
+  remote: https://github.com/eschlange/git_tagger.git
+  revision: cf7252c9ae33bd11cc5b54b1ef2fdf62748d76c0
+  specs:
+    git_tagger (0.0.1)
+
+GIT
   remote: https://github.com/rweng/jquery-datatables-rails.git
   revision: ed5307f1846ab8f0571b14f3117ecc588be5054d
   tag: v1.12.0
@@ -237,6 +243,7 @@ DEPENDENCIES
   database_cleaner (~> 1.3)
   devise (~> 3.2)
   event_capture!
+  git_tagger!
   jasmine-rails (= 0.10.0)
   jquery-datatables-rails!
   pg
