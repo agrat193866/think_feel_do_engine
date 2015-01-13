@@ -26,7 +26,7 @@ Time::DATE_FORMATS.merge!(
 Date::DATE_FORMATS.merge!(
   brief_date: ->(d) {
     if d.year != Date.today.year
-      d.strftime("%b %e %Y")
+      d.strftime("%b %e '%y")
     else
       d.strftime("%b %e")
     end

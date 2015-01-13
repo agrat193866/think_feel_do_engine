@@ -14,17 +14,25 @@
     border-radius: 10px;
     float: right;
   }
+
+  .panel-heading a {
+    text-decoration: none;
+  }
+
   span.list-group-item.disabled {
     background-color: #FFF;
   }
-  span.list-group-item.disabled span.label.label-warning {
-    opacity: 0.7;
-  }
+
   div.panel-heading h3.panel-title.panel-unreleased {
     opacity: 0.7;
   }
+
   h4.list-group-item-heading p {
-    display:inline;
+    display: inline;
+  }
+
+  h4.list-group-item-heading .unread {
+    font-weight: bold;
   }
 </style>
 
@@ -41,13 +49,13 @@
     <% task_for_week = all_tasks.where("start_day > ? AND start_day <= ?", week * 7 - 7, week * 7) %>
     <div class="panel panel-default <%= 'panel-info' if  current_participant.active_membership.week_in_study == week %>">
       <div class="panel-heading" role="tab" id="heading<%= week %>">
-        <h3 class="panel-title<%= ' panel-unreleased' if current_participant.active_membership.week_in_study < week %> ">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= week %>" aria-expanded="true" aria-controls="collapse<%= week %>">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= week %>" aria-expanded="true" aria-controls="collapse<%= week %>">
+          <h3 class="panel-title<%= ' panel-unreleased' if current_participant.active_membership.week_in_study < week %> ">
             <%= "<i class='fa fa-calendar'></i>".html_safe if current_participant.active_membership.week_in_study == week %>
             Week <%= week %>
-          </a>
-          <span class="badge"><%= task_for_week.where(completed_at: nil).count %></span>
-        </h3>
+            <span class="badge"><%= task_for_week.where(completed_at: nil).count %></span>
+          </h3>
+        </a>
       </div>
       <div id="collapse<%= week %>" class="panel-collapse collapse <%= 'in' if current_participant.active_membership.week_in_study == week %>" role="tabpanel" aria-labelledby="heading<%= week %>">
         <div class="list-group">
@@ -61,8 +69,7 @@
               <% if release_date <= Date.today %>
                 <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
                   <h4 class="list-group-item-heading">
-                    <%= safe_get_task_title(ts) %>
-                    <span class="label label-<%= ts.completed_at ? "success" : "warning" %>"><%= ts.completed_at ? "R" : "Unr" %>ead</span>
+                    <span class="lesson <%= ts.completed_at ? "read" : "unread" %>"><%= ts.title %></span>
                   </h4>
                   <p class="list-group-item-text">
                     <% if release_date < Date.today %>
@@ -70,14 +77,15 @@
                     <% elsif release_date == Date.today %>
                       Released Today
                     <% end %>
-                    <%=  " &middot; Read on ".html_safe + ts.completed_at.to_s(:brief_date) if ts.completed_at %>
+                    <% if ts.completed_at %>
+                      &middot; Read on <%= ts.completed_at.to_s(:brief_date) %>
+                    <% end %>
                   </p>
                 <% end %>
               <% else %>
                 <span class="list-group-item task-status disabled" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
                   <h4 class="list-group-item-heading">
-                    <%= safe_get_task_title(ts) %>
-                    <span class="label label-warning">Unread</span>
+                    <span class="lesson unread"><%= ts.title %></span>
                   </h4>
 
                   <p class="list-group-item-text">
