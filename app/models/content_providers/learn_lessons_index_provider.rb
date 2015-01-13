@@ -29,6 +29,7 @@ module ContentProviders
 
       (1..week_count).map do |week|
         {
+          date: membership.start_date + (week - 1) * DAYS_IN_WEEK,
           week: week,
           tasks: all_tasks
             .where(all_tasks.arel_table[:start_day]

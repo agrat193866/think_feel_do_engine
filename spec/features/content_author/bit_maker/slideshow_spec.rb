@@ -3,12 +3,7 @@ require "spec_helper"
 feature "Slideshow", type: :feature do
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
-  fixtures(
-    :arms, :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :groups, :memberships,
-    :tasks, :task_status
-  )
+  fixtures :all
 
   context "Logged in as a content author" do
     before do
@@ -25,55 +20,6 @@ feature "Slideshow", type: :feature do
     end
 
     describe "managing groups by assigning modules and setting release days" do
-      it "shows updated slideshow's title and the change is reflected in all corresponding views" do
-        expect(page).to have_text "Do - Awareness Introduction"
-        expect(page).to_not have_text "Updated Title"
-
-        visit "/arms/#{groups(:group1).arm_id}/manage/groups/#{groups(:group1).id}/edit_tasks"
-        select "Do - Awareness Introduction", from: "Select Module"
-
-        with_scope ".table" do
-          expect(page).to have_text "Do - Awareness Introduction"
-          expect(page).to_not have_text "Updated Title"
-        end
-
-        slideshow = BitCore::Slideshow.find_by_title("Do - Awareness Introduction")
-        visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
-        with_scope "#slideshow-#{slideshow.id}" do
-          click_on "Edit"
-        end
-        fill_in "Title", with: "Updated Title"
-        click_on "Update"
-        slideshow.reload
-
-        expect(slideshow.title).not_to eq "Do - Awareness Introduction"
-        expect(slideshow.title).to eq "Updated Title"
-        expect(current_path).to eq "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
-        expect(page).to_not have_text "Do - Awareness Introduction"
-        expect(page).to have_text "Updated Title"
-
-        visit "/arms/#{groups(:group1).arm_id}/manage/groups/#{groups(:group1).id}/edit_tasks"
-
-        expect(page).to have_text("Manage Task Group 1")
-
-        select "Updated Title", from: "Select Module"
-
-        expect(page).to have_text "Updated Title"
-
-        sign_in_participant participants :participant1
-        with_scope "ul#header-navbar.nav.navbar-nav .LEARN.hidden-xs" do
-          click_on "LEARN"
-        end
-
-        expect(page).not_to have_text "Do - Awareness Introduction"
-        expect(page).to have_text "Updated Title"
-
-        click_on "Updated Title"
-
-        expect(page).not_to have_text "Do - Awareness Introduction"
-        expect(page).to have_text "Updated Title"
-      end
-
       it "isn't performed if a title isn't provided and a flash messages displays this error" do
         slideshow = BitCore::Slideshow.find_by_title("Home Introduction")
         with_scope "#slideshow-#{slideshow.id}" do

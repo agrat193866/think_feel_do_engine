@@ -19,8 +19,12 @@
     text-decoration: none;
   }
 
-  span.list-group-item.disabled {
+  .list-group-item.disabled {
     background-color: #FFF;
+  }
+
+  .list-group-item .action {
+    font-size: 18px;
   }
 
   div.panel-heading h3.panel-title.panel-unreleased {
@@ -50,8 +54,7 @@
       <div class="panel-heading" role="tab" id="heading<%= tasks[:week] %>">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tasks[:week] %>" aria-expanded="true" aria-controls="collapse<%= tasks[:week] %>">
           <h3 class="panel-title<%= ' panel-unreleased' if week_in_study < tasks[:week] %> ">
-            <%= "<i class='fa fa-calendar'></i>".html_safe if week_in_study == tasks[:week] %>
-            Week <%= tasks[:week] %>
+            Week <%= tasks[:week] %> &middot; <%= tasks[:date].to_s(:brief_date) %>
             <span class="badge"><%= tasks[:tasks].select { |t| t.completed_at.nil? }.count %></span>
           </h3>
         </a>
@@ -67,10 +70,12 @@
             <% tasks[:tasks].each do |ts| %>
               <% release_date = ts.available_for_learning_on %>
               <% if release_date <= Date.today %>
-                <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
-                  <h4 class="list-group-item-heading">
-                    <span class="lesson <%= ts.completed_at ? "read" : "unread" %>"><%= ts.title %></span>
-                  </h4>
+                <span class="list-group-item task-status enabled">
+                  <%= link_to create_task_path(ts), class: "task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
+                    <h4 class="list-group-item-heading">
+                      <span class="lesson <%= ts.completed_at ? "read" : "unread" %>"><%= ts.title %></span>
+                    </h4>
+                  <% end %>
                   <p class="list-group-item-text">
                     <% if release_date < Date.today %>
                       Released on <%= release_date.to_s(:brief_date) %>
@@ -79,9 +84,12 @@
                     <% end %>
                     <% if ts.completed_at %>
                       &middot; Read on <%= ts.completed_at.to_s(:brief_date) %>
+                      <span class="visible-md-inline visible-lg-inline">
+                        &middot; <%= link_to "Printable", think_feel_do_engine.participants_lesson_path(ts.bit_core_content_module.id), class: "action" %>
+                      </span>
                     <% end %>
                   </p>
-                <% end %>
+                </span>
               <% else %>
                 <span class="list-group-item task-status disabled" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
                   <h4 class="list-group-item-heading">
