@@ -40,31 +40,31 @@
   Lessons
   <small>
     Week
-    <%= current_participant.active_membership.week_in_study %>
+    <%= week_in_study %>
   </small>
 </h1>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <% (1..week_count).each do |week| %>
-    <% task_for_week = all_tasks.where("start_day > ? AND start_day <= ?", week * 7 - 7, week * 7) %>
-    <div class="panel panel-default <%= 'panel-info' if  current_participant.active_membership.week_in_study == week %>">
-      <div class="panel-heading" role="tab" id="heading<%= week %>">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= week %>" aria-expanded="true" aria-controls="collapse<%= week %>">
-          <h3 class="panel-title<%= ' panel-unreleased' if current_participant.active_membership.week_in_study < week %> ">
-            <%= "<i class='fa fa-calendar'></i>".html_safe if current_participant.active_membership.week_in_study == week %>
-            Week <%= week %>
-            <span class="badge"><%= task_for_week.where(completed_at: nil).count %></span>
+  <% weekly_tasks.each do |tasks| %>
+    <div class="panel panel-default <%= 'panel-info' if  week_in_study == tasks[:week] %>">
+      <div class="panel-heading" role="tab" id="heading<%= tasks[:week] %>">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tasks[:week] %>" aria-expanded="true" aria-controls="collapse<%= tasks[:week] %>">
+          <h3 class="panel-title<%= ' panel-unreleased' if week_in_study < tasks[:week] %> ">
+            <%= "<i class='fa fa-calendar'></i>".html_safe if week_in_study == tasks[:week] %>
+            Week <%= tasks[:week] %>
+            <span class="badge"><%= tasks[:tasks].select { |t| t.completed_at.nil? }.count %></span>
           </h3>
         </a>
       </div>
-      <div id="collapse<%= week %>" class="panel-collapse collapse <%= 'in' if current_participant.active_membership.week_in_study == week %>" role="tabpanel" aria-labelledby="heading<%= week %>">
+
+      <div id="collapse<%= tasks[:week] %>" class="panel-collapse collapse <%= 'in' if week_in_study == tasks[:week] %>" role="tabpanel" aria-labelledby="heading<%= tasks[:week] %>">
         <div class="list-group">
-          <% if task_for_week.count == 0 %>
+          <% if tasks[:tasks].count == 0 %>
             <div class="panel-body">
               No lessons exist for this week.
             </div>
           <% else %>
-            <% task_for_week.each do |ts| %>
+            <% tasks[:tasks].each do |ts| %>
               <% release_date = ts.available_for_learning_on %>
               <% if release_date <= Date.today %>
                 <%= link_to create_task_path(ts), class: "list-group-item task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
