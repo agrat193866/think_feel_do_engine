@@ -17,6 +17,9 @@ end
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 
+git_tagger = Gem::Specification.find_by_name "git_tagger"
+load "#{git_tagger.gem_dir}/lib/tasks/deploy.rake"
+
 require "rspec/core"
 require "rspec/core/rake_task"
  
