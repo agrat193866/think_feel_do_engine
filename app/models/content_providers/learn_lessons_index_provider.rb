@@ -9,9 +9,10 @@ module ContentProviders
       options.view_context.render(
         template: "think_feel_do_engine/learn/lessons_index",
         locals: {
-          all_tasks: all_tasks(options.participant, options.app_context),
-          membership: membership,
-          week_count: (membership.length_of_study / DAYS_IN_WEEK.to_f).ceil
+          weekly_tasks: weekly_tasks(options.participant,
+                                     membership,
+                                     options.app_context),
+          week_in_study: membership.week_in_study
         }
       )
     end
@@ -22,8 +23,21 @@ module ContentProviders
 
     private
 
-    def all_tasks(participant, app_context)
-      participant.learning_tasks(content_modules(app_context))
+    def weekly_tasks(participant, membership, app_context)
+      all_tasks = participant.learning_tasks(content_modules(app_context))
+      week_count = (membership.length_of_study / DAYS_IN_WEEK.to_f).ceil
+
+      (1..week_count).map do |week|
+        {
+          date: membership.start_date + (week - 1) * DAYS_IN_WEEK,
+          week: week,
+          tasks: all_tasks
+            .where(all_tasks.arel_table[:start_day]
+                   .gt((week - 1) * DAYS_IN_WEEK))
+            .where(all_tasks.arel_table[:start_day]
+                   .lteq(week * DAYS_IN_WEEK))
+        }
+      end
     end
 
     def content_modules(app_context)

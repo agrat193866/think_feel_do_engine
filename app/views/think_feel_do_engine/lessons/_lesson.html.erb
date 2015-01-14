@@ -1,0 +1,5 @@
+<h3><%= lesson.pretty_title %></h3>
+
+<h4><a href="javascript:window.print()" class="hidden-print">Print</a> | <%= link_to "Return to Lessons", "/navigator/contexts/LEARN" %></h4>
+
+<%= render partial: "think_feel_do_engine/slides/slide", collection: lesson.slides %>
