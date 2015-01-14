@@ -1,3 +1,6 @@
+## 1.13.1 - 2015-01-14
+ * updated to latest git tagger gem
+
 ### 1.13.0
   * refactored Lessons
   * updated bit_core version
