@@ -1,3 +1,6 @@
+## 1.13.3 - 2015-01-14
+ * updated latest tagger gem
+
 ## 1.13.2 - 2015-01-14
  * updated date formatting
 
