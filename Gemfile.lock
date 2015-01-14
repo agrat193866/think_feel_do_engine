@@ -26,8 +26,8 @@ GIT
 
 GIT
   remote: https://github.com/eschlange/git_tagger.git
-  revision: b7855cff0748e5d53ee6bffe8c1584594c9eac4c
-  tag: 0.0.7
+  revision: b9ef39dd0040303e84a3abac3fefac93fb95173b
+  tag: 0.1.0
   specs:
     git_tagger (0.0.1)
 
