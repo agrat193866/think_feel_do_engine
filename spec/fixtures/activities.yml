@@ -22,6 +22,123 @@ planned_activity1:
   start_time: <%= Time.now - 3600 %>
   end_time: <%= Time.now %>
 
+###
+
+planned_activity_today_00:
+  participant: participant1
+  activity_type: eating
+  is_complete: true
+  is_scheduled: true
+  predicted_accomplishment_intensity: 8
+  predicted_pleasure_intensity: 5
+  start_time: <%= DateTime.current.advance(hours: -3) %>
+  end_time: <%= DateTime.current.advance(hours: -2) %>
+
+planned_activity_today_0:
+  participant: participant1
+  activity_type: eating
+  is_complete: true
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: -2) %>
+  end_time: <%= DateTime.current.advance(hours: -1) %>
+
+planned_activity_today_1:
+  participant: participant1
+  activity_type: eating
+  actual_accomplishment_intensity: 8
+  actual_pleasure_intensity: 1
+  predicted_accomplishment_intensity: 3
+  predicted_pleasure_intensity: 1
+  is_complete: true
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: -2) %>
+  end_time: <%= DateTime.current.advance(hours: -1) %>
+
+planned_activity_today_2:
+  participant: participant1
+  activity_type: commuting
+  is_scheduled: true
+  is_complete: true
+  start_time: <%= DateTime.current.advance(hours: -1) %>
+  end_time: <%= DateTime.current %>
+
+planned_activity_today_3:
+  participant: participant1
+  activity_type: commuting
+  predicted_accomplishment_intensity: 9
+  predicted_pleasure_intensity: 1
+  is_scheduled: true
+  is_complete: true
+  start_time: <%= DateTime.current %>
+  end_time: <%= DateTime.current.advance(hours: 1) %>
+
+planned_activity_today_4:
+  participant: participant1
+  activity_type: working
+  predicted_accomplishment_intensity: 4
+  predicted_pleasure_intensity: 5
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: 1) %>
+  end_time: <%= DateTime.current.advance(hours: 2) %>
+
+planned_activity_today_5:
+  participant: participant1
+  activity_type: working
+  predicted_accomplishment_intensity: 7
+  predicted_pleasure_intensity: 8
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: 2) %>
+  end_time: <%= DateTime.current.advance(hours: 3) %>
+
+planned_activity_today_6:
+  participant: participant1
+  activity_type: working
+  predicted_accomplishment_intensity: 1
+  predicted_pleasure_intensity: 2
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: 24) %>
+  end_time: <%= DateTime.current.advance(hours: 25) %>
+
+planned_activity_yesterday_1:
+  participant: participant1
+  activity_type: working
+  actual_accomplishment_intensity: 3
+  actual_pleasure_intensity: 8
+  predicted_accomplishment_intensity: 3
+  predicted_pleasure_intensity: 8
+  is_scheduled: true
+  is_complete: true
+  start_time: <%= DateTime.current.advance(hours: -25) %>
+  end_time: <%= DateTime.current.advance(hours: -24) %>
+
+planned_activity_yesterday_2:
+  participant: participant1
+  activity_type: working
+  actual_accomplishment_intensity: 4
+  actual_pleasure_intensity: 8
+  predicted_accomplishment_intensity: 3
+  predicted_pleasure_intensity: 8
+  is_scheduled: true
+  is_complete: true
+  start_time: <%= DateTime.current.advance(hours: -35) %>
+  end_time: <%= DateTime.current.advance(hours: -34) %>
+
+planned_activity_tmrw_1:
+  participant: participant1
+  activity_type: working
+  predicted_accomplishment_intensity: 3
+  predicted_pleasure_intensity: 8
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: 26) %>
+  end_time: <%= DateTime.current.advance(hours: 27) %>
+
+planned_activity_tmrw_2:
+  participant: participant1
+  activity_type: working
+  is_scheduled: true
+  start_time: <%= DateTime.current.advance(hours: 30) %>
+  end_time: <%= DateTime.current.advance(hours: 31) %>
+
 # planned_activity2:
 #   participant: participant1
 #   activity_type: going_to_school
