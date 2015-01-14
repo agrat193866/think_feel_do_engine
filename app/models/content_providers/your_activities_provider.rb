@@ -6,8 +6,12 @@ module ContentProviders
         template: "think_feel_do_engine/activities/visualization_2",
         locals: {
           activities: activities(options),
+          datetime: datetime(options),
           formatted_date: formatted_date(options),
-          datetime: datetime(options)
+          moods: moods(options),
+          negative_emotions: negative_emotions(options),
+          positive_emotions: positive_emotions(options),
+          completed_week_activities: completed_week_activities(options)
         }
       )
     end
@@ -16,8 +20,43 @@ module ContentProviders
       options
         .participant
         .activities
-        .order(start_time: :desc)
+        .order(start_time: :asc)
         .for_day(datetime(options))
+    end
+
+    def moods(options)
+      options
+        .participant
+        .moods
+        .order(created_at: :asc)
+        .for_day(datetime(options))
+    end
+
+    def negative_emotions(options)
+      options
+        .participant
+        .emotional_ratings
+        .negative
+        .order(created_at: :asc)
+        .for_day(datetime(options))
+    end
+
+    def positive_emotions(options)
+      options
+        .participant
+        .emotional_ratings
+        .positive
+        .order(created_at: :asc)
+        .for_day(datetime(options))
+    end
+
+    def completed_week_activities(options)
+      # .last_seven_days
+      options
+        .participant
+        .activities
+        .where(is_scheduled: true)
+        .order(start_time: :asc)
     end
 
     def formatted_date(options)
@@ -38,35 +77,3 @@ module ContentProviders
     end
   end
 end
-
-# module ContentProviders
-#   # Visualizations of participant activities.
-#   class YourActivitiesProvider < BitCore::ContentProvider
-#     def render_current(options)
-#       scheduled_activities =
-#         options
-#         .participant
-#         .activities
-#         .where(is_scheduled: true)
-#         .in_the_past
-#         .order(start_time: :desc)
-#       activities =
-#         options
-#         .participant
-#         .activities
-#         .in_the_past
-#         .order(start_time: :desc)
-#       options.view_context.render(
-#         template: "think_feel_do_engine/activities/visualization",
-#         locals: {
-#           activities: activities,
-#           scheduled_activities: scheduled_activities
-#         }
-#       )
-#     end
-
-#     def show_nav_link?
-#       false
-#     end
-#   end
-# end

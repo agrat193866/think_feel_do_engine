@@ -8,6 +8,28 @@ participant1_average:
   rating: 5
   created_at: <%= Time.now - 21.days %>
 
+#
+
+participant1_A:
+  participant: participant1
+  rating: 9
+  created_at: <%= Time.now %>
+
+participant1_B:
+  participant: participant1
+  rating: 5
+  created_at: <%= Time.now %>
+
+participant1_C:
+  participant: participant1
+  rating: 9
+  created_at: <%= Time.now - 1.day %>
+
+participant1_D:
+  participant: participant1
+  rating: 5
+  created_at: <%= Time.now + 1.day %>
+
 ###
 
 # participant1_b:

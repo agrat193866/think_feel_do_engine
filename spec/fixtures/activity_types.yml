@@ -25,3 +25,17 @@ going_for_a_walk:
 arguing_with_my_boss:
   participant: participant1
   title: Arguing with my boss
+
+###
+
+eating:
+  participant: participant1
+  title: Eating breakfast
+
+commuting:
+  participant: participant1
+  title: Commuting
+
+working:
+  participant: participant1
+  title: Working

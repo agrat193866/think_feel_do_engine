@@ -108,7 +108,7 @@
 
 		data = _.sortBy(data,function(d){ return d.start_datetime});
 
-  var dataScheduled = <%= scheduled_activities.to_json(methods: :title).html_safe %>;
+  var dataScheduled = <%= completed_week_activities.to_json(methods: :title).html_safe %>;
 
 		dataScheduled = dataScheduled.map(function(d){
 			d.start_datetime = d.start_time != null ? Date.parse(d.start_time) : Date.now();

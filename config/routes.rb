@@ -77,7 +77,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :task_status, only: [:update]
     get "public_slideshows/:slideshow_id/slides/:id", to: "public_slides#show", as: "public_slideshow_slide"
     resources :thoughts, only: :create
-    resources :activities, only: :create
+    resources :activities, only: [:update]
   end
 
   get "keepalive", to: "keep_alive#index"
