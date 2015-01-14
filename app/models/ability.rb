@@ -89,16 +89,24 @@ class Ability
     can [:index, :new, :create, :edit, :show, :update, :destroy], Group
     can :manage, Membership
     can :manage, Participant
+    can :manage, ThinkFeelDoDashboard::Reports::Comment
+    can :manage, ThinkFeelDoDashboard::Reports::Goal
+    can :manage, ThinkFeelDoDashboard::Reports::LessonModule
     can :manage, ThinkFeelDoDashboard::Reports::LessonSlideView
     can :manage, ThinkFeelDoDashboard::Reports::LessonViewing
+    can :manage, ThinkFeelDoDashboard::Reports::Like
+    can :manage, ThinkFeelDoDashboard::Reports::Login
     can :manage, ThinkFeelDoDashboard::Reports::ModulePageView
     can :manage, ThinkFeelDoDashboard::Reports::ModuleSession
+    can :manage, ThinkFeelDoDashboard::Reports::Nudge
+    can :manage, ThinkFeelDoDashboard::Reports::OffTopicPost
     can :manage, ThinkFeelDoDashboard::Reports::SiteSession
-    can :manage, ThinkFeelDoDashboard::Reports::VideoSession
-    can :manage, ThinkFeelDoDashboard::Reports::Login
     can :manage, ThinkFeelDoDashboard::Reports::TaskCompletion
     can :manage, ThinkFeelDoDashboard::Reports::ToolAccess
+    can :manage, ThinkFeelDoDashboard::Reports::ToolModule
     can :manage, ThinkFeelDoDashboard::Reports::ToolShare
+    can :manage, ThinkFeelDoDashboard::Reports::UserAgent
+    can :manage, ThinkFeelDoDashboard::Reports::VideoSession
     can :manage, User
   end
 end
