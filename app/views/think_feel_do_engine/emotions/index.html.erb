@@ -1,25 +1,49 @@
 <h2>Your Recent Emotions</h2>
+<button id="switch-interval" class="btn pull-right"><i class="fa fa-sort"> 28 Day</i></button>
 <div id="mood"></div>
 <div id="emotions"></div>
 <script>
   var moodData = <%= mood_ratings.to_json.html_safe %>;
 
   var emotionsData = <%= emotional_ratings.to_json.html_safe %>;
-  var graphWidth = window.innerWidth * .9;
+  var graphWidth = window.innerWidth * .8;
 
-  var moodGraphTitle = "Mood";
-  d3.select("#mood")
-    .datum(moodData)
-      .call(columnChart(<%= Date.today %>, 7, 0, 10, moodGraphTitle)
-        .width(graphWidth)
-        .height(300)
-        .x(function(d, i) { return moment(d.day)._d; })
-        .y(function(d, i) { return d.intensity; }));
+  var startDate = moment().subtract('days', 7);
+  var endDate = moment();
 
-  // var emotionGraphTitle = "Positive and Negative Emotions";
-  // d3.select("#emotions")
-  //   .datum(emotionsData)
-  //     .call(columnChart(-10, 10, emotionGraphTitle)
-  //       .width(graphWidth)
-  //       .height(300));
+  function drawGraphs() {
+    $("div#mood, div#emotions").empty();
+    var moodGraphTitle = "Mood";
+    d3.select("#mood")
+      .datum(moodData)
+        .call(columnChart(startDate, endDate, 0, 10, moodGraphTitle)
+          .width(graphWidth)
+          .height(300)
+          .x(function(d, i) { return moment(d.day)._d; })
+          .y(function(d, i) { return d.intensity; }));
+
+    var emotionGraphTitle = "Positive and Negative Emotions";
+    d3.select("#emotions")
+      .datum(emotionsData)
+        .call(columnChart(startDate, endDate, -10, 10, emotionGraphTitle)
+          .width(graphWidth)
+          .height(300));
+  }
+
+  drawGraphs();
+
+  $("button#switch-interval").on("click", function (){
+    if(startDate.startOf('day').isSame(moment().subtract('days', 7).startOf('day'))) {
+      startDate.subtract('days', 21);
+      $("button#switch-interval").empty().append("<i class='fa fa-sort'> 7 day</i>");
+    }
+    else {
+      startDate.add('days', 21);
+      $("button#switch-interval").empty().append("<i class='fa fa-sort'> 28 day</i>");
+    }
+
+    drawGraphs();
+    console.log(startDate._d);
+  });
+
 </script>

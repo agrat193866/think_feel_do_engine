@@ -78,7 +78,7 @@ sc.rateEmotions = function(formContainers, path, partial) {
   });
 };
 
-function columnChart(start, timeInterval, lowBound, highBound, title) {
+function columnChart(startDate, endDate, lowBound, highBound, title) {
   var margin = {top: 30, right: 10, bottom: 50, left: 50},
       width = 420,
       height = 420,
@@ -100,28 +100,28 @@ function columnChart(start, timeInterval, lowBound, highBound, title) {
       titleHeight = 25,
       averageLineThickness = 5;
 
-
   function chart(selection) {
     selection.each(function(data) {
 
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
-        return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false)];
+        if(moment(d.date).startOf('day') >= startDate || moment(d.date).startOf('day') <= endDate) {
+          return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false)];
+        }
       });
       console.log(data)
       // Update the x-scale.
       var domain = data.map(function(d) { return moment(d[0])._d } );
-      // var dayRange = d3.time.days(domain[0], domain[domain.length-1]).length;
-      var x_domain = [moment(start)._d];
-      for(var i=0;i<timeInterval;i++) {
-        var day = moment(x_domain[i])
-        x_domain.push(moment(day).add('days', 1)._d);
+      var dayRange = d3.time.days(startDate._d, endDate._d).length;
+      var x_domain = [domain[0]];
+      for(var i=0;i<dayRange;i++) {
+        var day = x_domain[i]
+        x_domain.push(moment(day).subtract('days', 1)._d);
       }
-      debugger;
       xScale
         .domain(x_domain)
-        .rangeRoundBands([0, width - margin.left - margin.right], xRoundBands);
+        .rangeRoundBands([width - margin.left - margin.right, 0], xRoundBands);
       // Update the y-scale.
       yScale
         .domain([lowBound, highBound])
@@ -166,13 +166,15 @@ function columnChart(start, timeInterval, lowBound, highBound, title) {
           positiveValues.push(data[i][1]);
         }
       }
-      svg.select(".average-lines").append("rect")
-         .attr("class", "positive-average-line")
-         .attr("width", width)
-         .attr("height", averageLineThickness)
-         .attr("x", xScale(0))
-         .attr("y", yScale(d3.mean(positiveValues)) - averageLineThickness / 2)
-         .attr("fill", "green");
+      if (positiveValues.length > 0) {
+        svg.select(".average-lines").append("rect")
+           .attr("class", "positive-average-line")
+           .attr("width", width)
+           .attr("height", averageLineThickness)
+           .attr("x", xScale(0))
+           .attr("y", yScale(d3.mean(positiveValues)) - averageLineThickness / 2)
+           .attr("fill", "green");
+      }
       if (negativeValues.length > 0) {
         svg.select(".average-lines").append("rect")
            .attr("class", "negative-average-line")
