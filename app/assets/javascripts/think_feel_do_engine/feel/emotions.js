@@ -78,7 +78,7 @@ sc.rateEmotions = function(formContainers, path, partial) {
   });
 };
 
-function columnChart(lowBound, highBound, title) {
+function columnChart(start, timeInterval, lowBound, highBound, title) {
   var margin = {top: 30, right: 10, bottom: 50, left: 50},
       width = 420,
       height = 420,
@@ -112,13 +112,13 @@ function columnChart(lowBound, highBound, title) {
       console.log(data)
       // Update the x-scale.
       var domain = data.map(function(d) { return moment(d[0])._d } );
-      var dayRange = d3.time.days(domain[0], domain[domain.length-1]).length;
-      var start_day = domain[0];
-      var x_domain = [start_day];
-      for(var i=0;i<dayRange;i++) {
+      // var dayRange = d3.time.days(domain[0], domain[domain.length-1]).length;
+      var x_domain = [moment(start)._d];
+      for(var i=0;i<timeInterval;i++) {
         var day = moment(x_domain[i])
         x_domain.push(moment(day).add('days', 1)._d);
       }
+      debugger;
       xScale
         .domain(x_domain)
         .rangeRoundBands([0, width - margin.left - margin.right], xRoundBands);

@@ -10,16 +10,16 @@
   var moodGraphTitle = "Mood";
   d3.select("#mood")
     .datum(moodData)
-      .call(columnChart(0, 10, moodGraphTitle)
+      .call(columnChart(<%= Date.today %>, 7, 0, 10, moodGraphTitle)
         .width(graphWidth)
         .height(300)
         .x(function(d, i) { return moment(d.day)._d; })
         .y(function(d, i) { return d.intensity; }));
 
-  var emotionGraphTitle = "Positive and Negative Emotions";
-  d3.select("#emotions")
-    .datum(emotionsData)
-      .call(columnChart(-10, 10, emotionGraphTitle)
-        .width(graphWidth)
-        .height(300));
+  // var emotionGraphTitle = "Positive and Negative Emotions";
+  // d3.select("#emotions")
+  //   .datum(emotionsData)
+  //     .call(columnChart(-10, 10, emotionGraphTitle)
+  //       .width(graphWidth)
+  //       .height(300));
 </script>
