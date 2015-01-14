@@ -80,6 +80,19 @@
       <div id="activity-submit-<%= activity.id %>" style="display: none;">
           <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>
       </div>
+      <script>
+        if($("select")[1].name == "activity[actual_accomplishment_intensity]"){
+          if(window.innerWidth <= window.innerHeight){
+            $("#tool-layout").css("min-height","600px");
+          }
+          $($("select")[0]).click(function(){
+            $('#wrap').animate({scrollTop:100},500);
+          });
+          $($("select")[1]).click(function(){
+            $('#wrap').animate({scrollTop:200},500);
+          });
+        }
+      </script>
     <% end %>
   <% end %>
 <% end %>

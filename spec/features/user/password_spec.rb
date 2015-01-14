@@ -15,7 +15,7 @@ feature "reset user password", type: :feature do
 
     expect(page).to have_text "You will receive an email with instructions on how to reset your password in a few minutes."
 
-    last_email.to.should include(user.email)
+    expect(last_email.to).to include(user.email)
     path = extract_password_edit_path_from_email
     visit path
 

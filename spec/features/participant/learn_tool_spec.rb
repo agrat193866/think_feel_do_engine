@@ -18,11 +18,7 @@ feature "learn tool", type: :feature do
     end
 
     it "displays all 10 weeks" do
-      i = 1
-      while i < 11
-        expect(page).to have_text "Week #{i}"
-        i += 1
-      end
+      (1..10).each { |i| expect(page).to have_text "Week #{i}" }
     end
 
     it "highlights this week's panel" do
@@ -35,49 +31,58 @@ feature "learn tool", type: :feature do
 
     it "opens and displaying this week's lessons" do
       with_scope "div.panel-info" do
-        expect(page).to have_link "Do - Congratulations Unread"
-        expect(page).to have_text "Released Today"
-        expect(page).to have_link "Do - Doing Introduction Unread"
-        expect(page).to have_text "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
+        expect(page).to have_css(".lesson.unread", count: 2)
+        expect(find(".task-status.enabled")).to have_text "Do - Congrats"
+        expect(find(".task-status.enabled")).to have_text "Released Today"
+        expect(find(".task-status.disabled")).to have_text "Do - Doing Introduction"
+        expect(find(".task-status.disabled")).to have_text(
+          "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
+        )
       end
     end
 
-    it "disabled lessons can't be clicked", :js do
-      expect(page.body).to have_css("a.disabled", count: 2)
-      expect(page).to have_link "Do - Doing Introduction Unread"
-      expect(page).to have_text "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
-
-      click_on "Do - Doing Introduction Unread"
-
-      expect(current_path).to eq "/navigator/contexts/LEARN"
-      expect(page).to have_link "Do - Doing Introduction Unread"
-    end
-
     it "can view an assigned learning slideshow that has been released", :js do
-      expect(page).to have_link "Do - Congratulations Unread"
-      expect(page).to_not have_text "Read on #{ Date.current.to_s(:brief_date) }"
+      with_scope ".panel-info" do
+        expect(find(".task-status.enabled")).to have_text "Do - Congrats"
+        expect(find(".task-status.enabled")).to_not have_text(
+          "Read on #{ Date.current.to_s(:brief_date) }"
+        )
 
-      click_on "Do - Congratulations"
+        find(".enabled .task-status").click
+      end
 
       expect(page).to have_text "Good Work!"
 
       click_on "Continue"
 
-      expect(page).to have_link "Do - Congratulations Read"
-      expect(page).to have_text "Read on #{ Date.current.to_s(:brief_date) }"
+      with_scope ".panel-info" do
+        expect(find(".task-status.enabled .read")).to have_text "Do - Congrats"
+        expect(find(".task-status.enabled")).to have_text(
+          "Read on #{ Date.current.to_s(:brief_date) }"
+        )
+      end
     end
 
     it "displays the correct count of unread lessons", :js do
-      expect(page).to have_text "Week 3 2"
+      date = Date.current.advance(days: -2)
+      expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 2"
 
-      click_on "Do - Congratulations"
+      click_on "Do - Congrats"
       click_on "Continue"
 
-      expect(page).to have_text "Week 3 1"
+      expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 1"
     end
 
     it "displays the correct count of unread lessons for future weeks" do
-      expect(page).to have_text "Week 4 1"
+      date = Date.current.advance(days: 5)
+      expect(page).to have_text "Week 4 · #{ date.to_s(:brief_date) } 1"
+    end
+
+    it "allows viewing printable page for read lessons" do
+      click_on "Printable"
+
+      expect(page).to have_text "Do - Planning Introduction"
+      expect(page).to have_link "Print"
     end
   end
 end

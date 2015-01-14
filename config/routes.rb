@@ -78,6 +78,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     get "public_slideshows/:slideshow_id/slides/:id", to: "public_slides#show", as: "public_slideshow_slide"
     resources :thoughts, only: :create
     resources :activities, only: :create
+    resources :lessons, only: :show
   end
 
   get "keepalive", to: "keep_alive#index"

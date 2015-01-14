@@ -1,14 +1,14 @@
 Time::DATE_FORMATS.merge!(
   date_time_with_meridian: ->(t) { 
     if t.year != Date.today.year
-      t.strftime("%b. %e '%y - %l:%M %P")
+      t.strftime("%b. %e %Y - %l:%M %P")
     else
       t.strftime("%b. %e - %l:%M %P")
     end
   },
   brief_date: ->(t) { 
     if t.year != Date.today.year
-      t.strftime("%b %e '%y")
+      t.strftime("%b %e %Y")
     else
       t.strftime("%b %e")
     end

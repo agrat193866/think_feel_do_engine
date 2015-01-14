@@ -111,23 +111,5 @@ module ThinkFeelDoEngine
           content_position: 1
         )
     end
-
-    def safe_get_task_title(task_status)
-      title = task_status
-              .try(:bit_core_content_module)
-              .try(:content_providers)
-              .try(:first)
-              .try(:slideshow)
-              .try(:title)
-
-      return "" if title.nil?
-
-      Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML.new(
-          filter_html: true,
-          safe_links_only: true
-        )
-      ).render(title).html_safe
-    end
   end
 end

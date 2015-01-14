@@ -1,3 +1,23 @@
+## 1.13.3 - 2015-01-14
+ * updated latest tagger gem
+
+## 1.13.2 - 2015-01-14
+ * updated date formatting
+
+## 1.13.1 - 2015-01-14
+ * updated to latest git tagger gem
+
+### 1.13.0
+  * refactored Lessons
+  * updated bit_core version
+  * fixed deprecation warning
+  * updated git_tagger version
+  * added printable option to read Lessons
+
+### 1.12.4 / 2015-1-9
+  * enhancements
+    * updated lesson roadmap
+
 ### 1.12.3 / 2015-1-9
   * enhancements
     * fixed lesson grouping and slide sorting for all content

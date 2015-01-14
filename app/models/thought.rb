@@ -23,9 +23,9 @@ class Thought < ActiveRecord::Base
 
   scope :unreflected, lambda {
     where(effect: "harmful")
-      .where(self.arel_table[:challenging_thought].eq(nil)
-             .or(self.arel_table[:challenging_thought].eq(""))
-             .or(self.arel_table[:act_as_if].eq(nil))
-             .or(self.arel_table[:act_as_if].eq("")))
+      .where(arel_table[:challenging_thought].eq(nil)
+             .or(arel_table[:challenging_thought].eq(""))
+             .or(arel_table[:act_as_if].eq(nil))
+             .or(arel_table[:act_as_if].eq("")))
   }
 end

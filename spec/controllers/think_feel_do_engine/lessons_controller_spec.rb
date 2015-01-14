@@ -3,7 +3,7 @@ require "spec_helper"
 module ThinkFeelDoEngine
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
-  describe LessonsController, type: :controller do
+  describe ThinkFeelDoEngine::LessonsController, type: :controller do
     let(:arm) { double("arm", bit_core_tools: BitCore::Tool, id: 123) }
     let(:user) { double("user", admin?: true) }
 

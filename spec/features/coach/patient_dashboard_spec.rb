@@ -108,7 +108,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes learning when not completed learning", :js do
         Timecop.travel(time_now) do
-          visit "/coach/groups/#{group1.id}/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
 
           within_table "learning_data" do
             expect(page).to_not have_text "Not Completed"
@@ -117,13 +117,13 @@ feature "patient dashboard", type: :feature do
 
           sign_in_participant participant1
 
-          page.find(".LEARN.hidden-xs a").trigger("click")
+          find(".LEARN.hidden-xs a").click
 
           expect(page).to have_text("Lessons")
 
-          page.find(".list-group-item", text: "Do - Awareness Introduction").trigger("click")
+          find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
           sign_in_user users(:clinician1)
-          visit "/coach/groups/#{group1.id}/patient_dashboards/#{ participant1.id }"
+          visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
 
           expect(page).to have_the_table(
             id: "learning_data",
@@ -143,8 +143,8 @@ feature "patient dashboard", type: :feature do
           end
 
           sign_in_participant participant1
-          page.find(".LEARN.hidden-xs a").trigger("click")
-          page.find(".list-group-item.task-status", text: "Do - Awareness Introduction").trigger("click")
+          find(".LEARN.hidden-xs a").click
+          find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
           click_on "Continue"
 
           sign_in_user users :clinician1

@@ -15,19 +15,21 @@
             <%= render 'think_feel_do_engine/shared/alerts' %>
           </div>
 
-          <div class="hidden-sm hidden-xs">
-            <div class="container">
-              <% title = BitCore::Tool.find_by_title(@navigator.context).try(:title) %>
-              <% current_module = @navigator.current_module %>
+          <% if @navigator %>
+            <div class="hidden-sm hidden-xs">
+              <div class="container">
+                <% title = BitCore::Tool.find_by_title(@navigator.context).try(:title) %>
+                <% current_module = @navigator.current_module %>
 
-              <h1 class="text-uppercase">
-                <%= title %>
-                <small class="text-capitalize">
-                  <%= current_module.try(:content_providers).try(:first).try(:slideshow).try(:pretty_title) || current_module.title %>
-                </small>
-              </h1>
+                <h1 class="text-uppercase">
+                  <%= title %>
+                  <small class="text-capitalize">
+                    <%= current_module.try(:content_providers).try(:first).try(:slideshow).try(:pretty_title) || current_module.title %>
+                  </small>
+                </h1>
+              </div>
             </div>
-          </div>
+          <% end %>
 
           <div class="container" id="tool-layout">
             <div class="row">
@@ -48,15 +50,17 @@
       <%= render 'think_feel_do_engine/shared/footer' %>
     </div>
 
-    <div class="snap-drawers">
-      <div class="snap-drawer snap-drawer-left">
-        <ul id="snap-navbar" class="nav navbar-nav navbar-snap">
-          <li class="snap-nav-item <%= 'active' if @navigator.context == 'home' %>"><%= link_to "Home", "/" %></li>
+    <% if @navigator %>
+      <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-left">
+          <ul id="snap-navbar" class="nav navbar-nav navbar-snap">
+            <li class="snap-nav-item <%= 'active' if @navigator.context == 'home' %>"><%= link_to "Home", "/" %></li>
 
-          <%= render "think_feel_do_engine/shared/participant/hamburger_nav_items" %>
-        </ul>
+            <%= render "think_feel_do_engine/shared/participant/hamburger_nav_items" %>
+          </ul>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <script type="text/javascript">
       var snapper = new Snap({

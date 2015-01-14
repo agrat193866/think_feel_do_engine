@@ -22,12 +22,16 @@ gem "jquery-datatables-rails",
     git: "https://github.com/rweng/jquery-datatables-rails.git"
 
 gem "bit_core",
-    tag: "1.3.3",
+    tag: "1.3.4",
     git: "https://github.com/cbitstech/bit_core.git"
 
 gem "bit_player",
     tag: "0.4.7",
     git: "https://github.com/cbitstech/bit_player.git"
+
+gem "git_tagger",
+    tag: "0.1.1",
+    git: "https://github.com/eschlange/git_tagger.git"
 
 gem "twilio-ruby", "~> 3.12"
 
