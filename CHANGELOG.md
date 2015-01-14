@@ -1,3 +1,10 @@
+### 1.13.0
+  * refactored Lessons
+  * updated bit_core version
+  * fixed deprecation warning
+  * updated git_tagger version
+  * added printable option to read Lessons
+
 ### 1.12.4 / 2015-1-9
   * enhancements
     * updated lesson roadmap
