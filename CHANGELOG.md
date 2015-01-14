@@ -1,3 +1,6 @@
+## 1.13.4
+ * added Report authorizations
+
 ## 1.13.3 - 2015-01-14
  * updated latest tagger gem
 
