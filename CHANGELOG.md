@@ -1,3 +1,6 @@
+## 1.13.2 - 2015-01-14
+ * updated date formatting
+
 ## 1.13.1 - 2015-01-14
  * updated to latest git tagger gem
 
