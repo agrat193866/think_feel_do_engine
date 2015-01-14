@@ -83,7 +83,7 @@ function columnChart(lowBound, highBound, title) {
       width = 420,
       height = 420,
       xRoundBands = 0.2,
-      xValue = function(d) { return d.day; },
+      xValue = function(d) { return moment(d.day)._d; },
       yValue = function(d) {
         if (d.is_positive === false) {
           return -d.intensity;
@@ -92,10 +92,11 @@ function columnChart(lowBound, highBound, title) {
           return d.intensity;
         }
       },
-      xScale = d3.scale.linear(),
+      xScale = d3.scale.ordinal(),
       yScale = d3.scale.linear(),
       yAxis = d3.svg.axis().scale(yScale).orient("left"),
       xAxis = d3.svg.axis().scale(xScale),
+      parseDate = d3.time.format("%Y-%m-%d").parse,
       titleHeight = 25,
       averageLineThickness = 5;
 
@@ -108,18 +109,30 @@ function columnChart(lowBound, highBound, title) {
       data = data.map(function(d, i) {
         return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false)];
       });
+      console.log(data)
       // Update the x-scale.
+      var domain = data.map(function(d) { return moment(d[0])._d } );
+      var dayRange = d3.time.days(domain[0], domain[domain.length-1]).length;
+      var start_day = domain[0];
+      var x_domain = [start_day];
+      for(var i=0;i<dayRange;i++) {
+        var day = moment(x_domain[i])
+        x_domain.push(moment(day).add('days', 1)._d);
+      }
       xScale
-          .domain(data.map(function(d) { return d[0];} ))
-          .rangeRoundBands([0, width - margin.left - margin.right], xRoundBands);
-
-
+        .domain(x_domain)
+        .rangeRoundBands([0, width - margin.left - margin.right], xRoundBands);
       // Update the y-scale.
       yScale
-          .domain([lowBound, highBound])
-          .range([height - margin.top - margin.bottom, 0])
-          .nice();
+        .domain([lowBound, highBound])
+        .range([height - margin.top - margin.bottom, 0])
+        .nice();
 
+      var  date_format = d3.time.format("%d %b");
+
+      xAxis
+        .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
+            .tickFormat(date_format);
 
       // Select the svg element, if it exists.
       var svg = d3.select(this).selectAll("svg").data([data]);
@@ -176,13 +189,13 @@ function columnChart(lowBound, highBound, title) {
 
      // Update the bars.
       var bar = svg.select(".bars").selectAll(".bar").data(data);
-      bar.enter().append("rect");
-      bar.exit().remove();
-      bar .attr("class", function(d, i) { return d[1] < 0 ? "bar negative" : "bar positive"; })
-          .attr("x", function(d) { return X(d); })
-          .attr("y", function(d, i) { return d[1] < 0 ? Y0() : Y(d); })
-          .attr("width", xScale.rangeBand())
-          .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); });
+          bar.enter().append("rect");
+          bar.exit().remove();
+          bar .attr("class", function(d, i) { return d[1] < 0 ? "bar negative" : "bar positive"; })
+              .attr("x", function(d) { return X(d); })
+              .attr("y", function(d, i) { return d[1] < 0 ? Y0() : Y(d); })
+              .attr("width", xScale.rangeBand())
+              .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); });
 
     // x axis at the bottom of the chart
      g.select(".x.axis")
@@ -206,6 +219,10 @@ function columnChart(lowBound, highBound, title) {
 // The x-accessor for the path generator; xScale ∘ xValue.
   function X(d) {
     return xScale(d[0]);
+  }
+
+  function X0() {
+    return xScale(0);
   }
 
   function Y0() {

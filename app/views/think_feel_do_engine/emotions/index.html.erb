@@ -13,7 +13,7 @@
       .call(columnChart(0, 10, moodGraphTitle)
         .width(graphWidth)
         .height(300)
-        .x(function(d, i) { return d.day; })
+        .x(function(d, i) { return moment(d.day)._d; })
         .y(function(d, i) { return d.intensity; }));
 
   var emotionGraphTitle = "Positive and Negative Emotions";

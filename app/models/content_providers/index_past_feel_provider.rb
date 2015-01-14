@@ -33,12 +33,12 @@ module ContentProviders
       daily_ratings.each do |day, emotions_array|
         positive_ratings = emotions_array.collect{|emotion| emotion.rating if emotion.is_positive}.compact
         if positive_ratings.size > 0
-          daily_positive = {day: day.to_i, intensity: average_rating(positive_ratings), is_positive: true}
+          daily_positive = {day: day, intensity: average_rating(positive_ratings), is_positive: true}
           averaged_ratings << daily_positive
         end
         negative_ratings = emotions_array.collect{|emotion| emotion.rating unless emotion.is_positive}.compact
         if negative_ratings.size > 0
-          daily_negative = {day: day.to_i, intensity: average_rating(negative_ratings), is_positive: false}
+          daily_negative = {day: day, intensity: average_rating(negative_ratings), is_positive: false}
           averaged_ratings << daily_negative
         end
       end
@@ -52,7 +52,7 @@ module ContentProviders
       daily_ratings.each do |day, moods_array|
         ratings = moods_array.collect{|mood| mood.rating}.compact
         if ratings.size > 0
-          averaged_ratings << {day: day.to_i, intensity: average_rating(ratings)}
+          averaged_ratings << {day: day, intensity: average_rating(ratings)}
         end
       end
       averaged_ratings
