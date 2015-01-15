@@ -17,7 +17,7 @@ module ThinkFeelDoEngine
         end
 
       else
-        ParticipantAuthenticationPolicy.new(self, resource).post_sign_in_path
+        super resource
       end
     end
 
