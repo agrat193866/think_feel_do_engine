@@ -65,6 +65,11 @@ sc.activityTracker = function(path){
 
   $(".time_picker").timepicker({disableFocus:true});
 
+  $('.date_picker').on('focus', function(){
+     $(".btn-date_picker").parents("div.input-group").children("input").blur();
+  });
+
+
   this.handleEnterKey = function(e) {
     if(e.keyCode == 13) {
       self.handleSubmitClick();
