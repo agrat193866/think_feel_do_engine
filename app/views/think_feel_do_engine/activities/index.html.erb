@@ -15,63 +15,67 @@
 <% end %>
 
 <script type="text/javascript">
-$(document).on('page:change page:load', function() 
-{
+  var getStartEndTime, isContinuousDuplicate, populateWithRow;
 
-var prevWeek = null;
+  $(document).on("page:change page:load", function() {
+    var prevWeek;
+    prevWeek = null;
+    _.each($("#recent_activities tr"), function(rows, index) {
+      var activity, row;
+      row = $(rows).children();
+      if (index === 0) {
+        return;
+      }
+      activity = getStartEndTime($(row[0]).text());
+      activity = populateWithRow(activity, row);
+      if (prevWeek === null) {
+        prevWeek = activity;
+      } else if (isContinuousDuplicate(prevWeek, activity)) {
+        $(rows).remove();
+        prevWeek.end = activity.end;
+        $(prevWeek.ref[0]).text(prevWeek.start + " - " + prevWeek.end);
+      } else {
+        prevWeek = activity;
+      }
+    });
+  });
 
-_.each($("#recent_activities tr"),
-	function(rows,index)
-	{
-		var row = $(rows).children();
-		if(index == 0) return;
-		var activity = getStartEndTime($(row[0]).text());
-		activity = populateWithRow(activity,row);
-		if(prevWeek === null){ prevWeek = activity;}
-		else if(isContinuousDuplicate(prevWeek,activity))
-		{
-			$(rows).remove();
-			prevWeek.end = activity.end;
-			$(prevWeek.ref[0]).text(prevWeek.start + " - " + prevWeek.end);
-		}
-		else
-		{
-			prevWeek = activity;
-		}
-	});
+  isContinuousDuplicate = function(prevWeek, currentWeek) {
+    return prevWeek.end === currentWeek.start && prevWeek.name === currentWeek.name && prevWeek.pleasure === currentWeek.pleasure && prevWeek.accomplishment === currentWeek.accomplishment;
+  };
 
-});
+  getStartEndTime = function(str) {
+    var e, s, split;
+    split = str.indexOf("-");
+    if (split < 0) {
+      return ["", ""];
+    }
+    s = str.substr(0, split - 1);
+    e = str.substr(split + 2);
+    return {
+      start: s,
+      end: e,
+      name: "",
+      pleasure: "",
+      accomplishment: "",
+      ref: null
+    };
+  };
 
-isContinuousDuplicate = function(prevWeek, currentWeek) {
-	return prevWeek.end == currentWeek.start
-			 && prevWeek.name == currentWeek.name
-			 && prevWeek.pleasure == currentWeek.pleasure
-			 && prevWeek.accomplishment == currentWeek.accomplishment;
-}
+  populateWithRow = function(obj, row) {
+    obj.name = $(row[1]).text();
+    obj.pleasure = $(row[2]).text();
+    obj.accomplishment = $(row[3]).text();
+    obj.ref = row;
+    return obj;
+  };
 
-getStartEndTime = function(str) {
-	var split = str.indexOf("-");
-	if (split < 0) return ["",""];
-	var s = str.substr(0,split-1);
-	var e = str.substr(split+2);
-	return {"start":s,"end":e,"name":"","pleasure":"","accomplishment":"", "ref": null};
-}
-
-populateWithRow = function(obj, row) {
-	obj.name = $(row[1]).text();
-	obj.pleasure = $(row[2]).text();
-	obj.accomplishment = $(row[3]).text();
-	obj.ref = row;
-	return obj;
-}
-
-$(function(){
-		  $('table.responsive').ngResponsiveTables({
-		  	smallPaddingCharNo: 13,
-	    	mediumPaddingCharNo: 18,
-	    	largePaddingCharNo: 30,
-	    	shiftedIndex:1
-		  });
-		});
-
+  $(function() {
+    return $("table.responsive").ngResponsiveTables({
+      smallPaddingCharNo: 13,
+      mediumPaddingCharNo: 18,
+      largePaddingCharNo: 30,
+      shiftedIndex: 1
+    });
+  });
 </script>

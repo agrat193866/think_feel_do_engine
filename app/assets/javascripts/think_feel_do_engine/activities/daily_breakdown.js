@@ -194,7 +194,7 @@
           return;
         }
         if (data.length === 0) {
-          $("#chart").html("<div class='alert alert-info'>No activities completed over this period</div>");
+          $("#chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
         }
         data = grabLastXDays(data, numOfDays);
         dates = _.uniq(_.pluck(data, "start_date"));
