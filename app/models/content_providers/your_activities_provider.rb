@@ -3,7 +3,7 @@ module ContentProviders
   class YourActivitiesProvider < BitCore::ContentProvider
     def render_current(options)
       options.view_context.render(
-        template: "think_feel_do_engine/activities/visualization_2",
+        template: "think_feel_do_engine/activities/visualization",
         locals: {
           activities: activities(options),
           datetime: datetime(options),
