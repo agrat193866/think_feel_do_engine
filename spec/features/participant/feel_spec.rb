@@ -123,7 +123,7 @@ feature "Feel", type: :feature do
       expect(rating.name).to eq "ecstatic"
       expect(rating.rating).to eq 7
       expect(rating.rating_value).to eq "Good"
-      expect(page).to have_text "Your Recent Emotions"
+      expect(page).to have_text "Tracking Your Mood & Emotions"
       expect(current_path).to eq "/navigator/modules/" + mood_and_emotions_provider_post_day1.content_module.id.to_s + "/providers/" + mood_and_emotions_provider_post_day1.id.to_s + "/1"
     end
   end
