@@ -233,14 +233,6 @@ feature "activity tracker", type: :feature do
     it "correctly calculates pleasure and accomplishment statistics for the viz", :js do
       click_on "Your Activities"
 
-      # Check for base settings
-
-      expect(page).to have_text "You have no completed activities this week."
-      page.find("#nav_main li:nth-child(2) a").trigger("click") # Daily Breakdown, text not detected by click_on
-      expect(page).to have_text "Daily Breakdown - (No activities completed in this period)"
-      click_on "3 day view"
-      expect(page).to have_text "Daily Breakdown - (No activities completed in this period)"
-
       page.find("#nav_main li:nth-child(3) a").trigger("click")
       # Predicting Your Positive Activities, text not detected by click_on for some reason
       expect(page).to have_text "Predicting Your Positive Activities"
@@ -410,6 +402,35 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "(You've done 6 out of 8 activities that you scheduled)"
       expect(page).to have_text "Average Pleasure Discrepency: 5.17"
       expect(page).to have_text "Average Accomplishment Discrepency: 4.33"
+    end
+  end
+
+  context "Participant with no acitivites is logged in" do
+    let(:participant3) { participants(:participant3) }
+
+    before do
+      sign_in_participant participant3
+      visit "/navigator/modules/656086433"
+    end
+
+    it "displays an alert if no acitivites were scheduled for a particular day" do
+      expect(page).to have_text "No activities were completed during this day."
+    end
+
+    it "displays an alert if no acitivites were scheduled over a 3-day period", :js do
+      expect(page).to_not have_text "No activities were completed during this 3-day period."
+
+      click_on "3-Day"
+
+      expect(page).to have_text "No activities were completed during this 3-day period."
+    end
+
+    it "displays an alert if no acitivites were scheduled over a 7-day period", :js do
+      expect(page).to_not have_text "No activities were completed during this 7-day period."
+
+      click_on "7-Day"
+
+      expect(page).to have_text "No activities were completed during this 7-day period."
     end
   end
 end

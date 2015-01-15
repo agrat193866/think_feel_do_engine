@@ -5,8 +5,15 @@ module ThinkFeelDoEngine
       before_action :authenticate_participant!
       before_action :set_activity, only: [:update]
 
+      # refactor...
+       def create
+        @activity = current_participant.activities.find(activity_id)
+        @activity.update(activity_params)
+      end
+      #...
+
       def update
-        if @activity.update(activity_params)
+        if @activity.update(activity_params_for_update)
           respond_to do |format|
             format.js {render inline: "Turbolinks.visit(window.location);" }
           end
@@ -18,18 +25,20 @@ module ThinkFeelDoEngine
 
       private
 
-      # def activity_id
-      #   params[:activities][:commit_id].keys.first || -1
-      # end
+      # refactor...
+      def activity_id
+        params[:activities][:commit_id].keys.first || -1
+      end
 
-      # def activity_params
-      #   params.require(:activities)
-      #     .permit(activity_id => [
-      #       :actual_pleasure_intensity,
-      #       :actual_accomplishment_intensity
-      #     ])
-      #     .fetch(activity_id)
-      # end
+      def activity_params
+        params.require(:activities)
+          .permit(activity_id => [
+            :actual_pleasure_intensity,
+            :actual_accomplishment_intensity
+          ])
+          .fetch(activity_id)
+      end
+      #...
 
       def set_activity
         @activity = current_participant
@@ -37,7 +46,7 @@ module ThinkFeelDoEngine
                       .find(params[:id])
       end
 
-      def activity_params
+      def activity_params_for_update
         params
           .require(:activity)
           .permit(
