@@ -1,50 +1,84 @@
-<h2>Your Recent Emotions</h2>
-<button id="switch-interval" class="btn pull-right"><i class="fa fa-sort"> 28 Day</i></button>
+<div class="row">
+  <div class="btn-group-wrap">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" class="interval" value="7" checked="">7 Day
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" class="interval" value="28">28 day
+      </label>
+    </div>
+  </div>
+  <nav>
+    <ul class="pager">
+      <li><a class="offset" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
+      <li><a class="offset" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
+     </ul>
+  </nav>
+  <div class="text-center" id="date-range">
+    <strong>Date</strong>
+  </div>
+</div>
 <div id="mood"></div>
 <div id="emotions"></div>
 <script>
-  var moodData = <%= mood_ratings.to_json.html_safe %>;
 
-  var emotionsData = <%= emotional_ratings.to_json.html_safe %>;
-  var graphWidth = window.innerWidth * .8;
+  // starting graph parameters assume 7 day view ending in today
+  var graphParameters = {
+    moodData: <%= mood_ratings.to_json.html_safe %>,
+    emotionsData: <%= emotional_ratings.to_json.html_safe %>,
+    graphWidth: $(".container").width(),
+    startDate: moment().subtract('days', 6).startOf('day'),
+    endDate: moment().startOf('day'),
+    interval: 7,
+    offset: 1
+  };
 
-  var startDate = moment().subtract('days', 7);
-  var endDate = moment();
+  function appendDateRange () {
+    $('div#date-range strong').empty().append(graphParameters.startDate.format('LL')+' / '+graphParameters.endDate.format('LL'));
+  }
+
+  function offsetInterval (interval, offset) {
+    var startOffset = (interval * offset) - 1;
+    var endOffset = offset === 1 ? 0 : interval * (offset-1)
+    graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
+    graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
+  }
 
   function drawGraphs() {
     $("div#mood, div#emotions").empty();
     var moodGraphTitle = "Mood";
     d3.select("#mood")
-      .datum(moodData)
-        .call(columnChart(startDate, endDate, 0, 10, moodGraphTitle)
-          .width(graphWidth)
+      .datum(graphParameters.moodData)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle)
+          .width(graphParameters.graphWidth)
           .height(300)
-          .x(function(d, i) { return moment(d.day)._d; })
+          .x(function(d, i) { return moment(d.day).startOf('day')._d; })
           .y(function(d, i) { return d.intensity; }));
 
     var emotionGraphTitle = "Positive and Negative Emotions";
     d3.select("#emotions")
-      .datum(emotionsData)
-        .call(columnChart(startDate, endDate, -10, 10, emotionGraphTitle)
-          .width(graphWidth)
-          .height(300));
+      .datum(graphParameters.emotionsData)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle)
+          .width(graphParameters.graphWidth)
+          .height(400));
+
+    graphParameters.interval > 7 ? hideTicks() : showTicks()
+    appendDateRange();
   }
 
   drawGraphs();
 
-  $("button#switch-interval").on("click", function (){
-    if(startDate.startOf('day').isSame(moment().subtract('days', 7).startOf('day'))) {
-      startDate.subtract('days', 21);
-      $("button#switch-interval").empty().append("<i class='fa fa-sort'> 7 day</i>");
-      drawGraphs();
-      hideTicks();
-    }
-    else {
-      startDate.add('days', 21);
-      $("button#switch-interval").empty().append("<i class='fa fa-sort'> 28 day</i>");
-      drawGraphs();
-      showTicks();
-    }
+  $('.interval').on("change", function (){
+    graphParameters.interval = this.value;
+    offsetInterval(graphParameters.interval, 1);
+    drawGraphs();
+  });
+
+  $('.offset').on("click", function (){
+    graphParameters.offset += parseInt($(this).data("value"));
+    offsetInterval(graphParameters.interval, graphParameters.offset);
+    drawGraphs();
   });
 
   function hideTicks () {

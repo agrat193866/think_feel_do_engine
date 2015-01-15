@@ -83,7 +83,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       width = 420,
       height = 420,
       xRoundBands = 0.2,
-      xValue = function(d) { return moment(d.day)._d; },
+      xValue = function(d) { return moment(d.day).startOf('day')._d; },
       yValue = function(d) {
         if (d.is_positive === false) {
           return -d.intensity;
@@ -106,18 +106,20 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
-        if(moment(d.date).startOf('day') >= startDate || moment(d.date).startOf('day') <= endDate) {
+        if(moment(d.date).startOf('day') >= startDate._d && moment(d.date).startOf('day') <= endDate._d) {
           return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false)];
         }
+        else {
+          return [startDate._d, 0, true];
+        }
       });
-      console.log(data)
       // Update the x-scale.
       var domain = data.map(function(d) { return moment(d[0])._d } );
       var dayRange = d3.time.days(startDate._d, endDate._d).length;
-      var x_domain = [domain[0]];
+      var x_domain = [endDate.startOf('day')._d];
       for(var i=0;i<dayRange;i++) {
         var day = x_domain[i]
-        x_domain.push(moment(day).subtract('days', 1)._d);
+        x_domain.push(moment(day).subtract('days', 1).startOf('day')._d);
       }
       xScale
         .domain(x_domain)
