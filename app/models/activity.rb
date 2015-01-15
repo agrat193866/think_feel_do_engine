@@ -33,7 +33,7 @@ class Activity < ActiveRecord::Base
   }
 
   scope :last_seven_days, lambda {
-    where("activities.start_time >= ?", Time.current.advance(days: 7).beginning_of_day)
+    where("activities.start_time >= ?", Time.current.advance(days: -7).beginning_of_day)
   }
 
   scope :unscheduled_or_in_the_future, lambda {
