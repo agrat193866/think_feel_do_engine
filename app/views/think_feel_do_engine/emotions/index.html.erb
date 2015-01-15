@@ -11,8 +11,8 @@
   </div>
   <nav>
     <ul class="pager">
-      <li><a class="offset" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
-      <li><a class="offset" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
+      <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
+      <li><a class="offset" id="next" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
      </ul>
   </nav>
   <div class="text-center" id="date-range">
@@ -24,6 +24,8 @@
 <script>
 
   // starting graph parameters assume 7 day view ending in today
+
+  var activationDate = moment(<%= current_participant.active_membership.start_date %>)
   var graphParameters = {
     moodData: <%= mood_ratings.to_json.html_safe %>,
     emotionsData: <%= emotional_ratings.to_json.html_safe %>,
@@ -43,6 +45,12 @@
     var endOffset = offset === 1 ? 0 : interval * (offset-1)
     graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
     graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
+  }
+
+  function maxOffset (activationDate, interval) {
+    var today = moment();
+    debugger;
+    return Math.ceil(today.diff(activationDate, 'days')/interval)
   }
 
   function drawGraphs() {
@@ -76,9 +84,17 @@
   });
 
   $('.offset').on("click", function (){
-    graphParameters.offset += parseInt($(this).data("value"));
-    offsetInterval(graphParameters.interval, graphParameters.offset);
-    drawGraphs();
+    if($(this).attr("id") === "next" && graphParameters.offset == 1){
+      return null
+    }
+    else if($(this).attr("id") === "previous" && graphParameters.offset == maxOffset(activationDate, graphParameters.interval)) {
+      return null
+    }
+    else {
+      graphParameters.offset += parseInt($(this).data("value"));
+      offsetInterval(graphParameters.interval, graphParameters.offset);
+      drawGraphs();
+    }
   });
 
   function hideTicks () {
