@@ -36,14 +36,22 @@
     if(startDate.startOf('day').isSame(moment().subtract('days', 7).startOf('day'))) {
       startDate.subtract('days', 21);
       $("button#switch-interval").empty().append("<i class='fa fa-sort'> 7 day</i>");
+      drawGraphs();
+      hideTicks();
     }
     else {
       startDate.add('days', 21);
       $("button#switch-interval").empty().append("<i class='fa fa-sort'> 28 day</i>");
+      drawGraphs();
+      showTicks();
     }
-
-    drawGraphs();
-    console.log(startDate._d);
   });
+
+  function hideTicks () {
+    $('g.x.axis g.tick text').hide()
+  }
+  function showTicks () {
+    $('g.x.axis g.tick text').show()
+  }
 
 </script>
