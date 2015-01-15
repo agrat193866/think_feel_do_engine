@@ -51,10 +51,10 @@ module ContentProviders
     end
 
     def completed_week_activities(options)
-      # .last_seven_days
       options
         .participant
         .activities
+        .last_seven_days
         .where(is_scheduled: true)
         .order(start_time: :asc)
     end
