@@ -1,3 +1,6 @@
+## 1.14.2 - 2015-01-16
+ * Updated a participant's activities page with collapse links and added in visualization enhancements
+
 ## 1.14.1
  * mood/emotions viz updates
 
