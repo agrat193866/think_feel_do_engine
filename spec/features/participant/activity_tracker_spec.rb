@@ -12,6 +12,7 @@ feature "activity tracker", type: :feature do
     let(:participant1) { participants(:participant1) }
 
     before do
+      Time.zone = "Central Time (US & Canada)"
       sign_in_participant participant1
       visit "/navigator/contexts/DO"
     end
@@ -230,11 +231,11 @@ feature "activity tracker", type: :feature do
   end
 
   context "Participant with activities is logged in" do
-    let(:participant) { participants(:participant2) }
+    let(:participant) { participants(:traveling_participant1) }
     let(:activity) { activities(:p2_activity_1_hr_ago) }
 
     before do
-      Time.zone = "Pacific Time (US & Canada)"
+      Time.zone = "Central Time (US & Canada)"
       t = DateTime.new(2015, 1, 15, 10)
       Timecop.travel(t)
       sign_in_participant participant
@@ -262,7 +263,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "displays a list of activities and activity details" do
-      expect(page).to have_text "6 am - 7 am: Eating breakfast"
+      expect(page).to have_text "8 am - 9 am: Eating breakfast"
       expect(page).to have_text "Accomplishment: 9 · Pleasure: 9"
 
       expect(page).to have_text "Accomplishment  Pleasure"
@@ -270,10 +271,10 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Actual  High Importance: 9  Really fun: 9"
       expect(page).to have_text "Difference  -1  -1"
 
-      expect(page).to have_text "7 am - 8 am: Working"
+      expect(page).to have_text "9 am - 10 am: Working"
       expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
 
-      expect(page).to have_text "8 am - 9 am: Working"
+      expect(page).to have_text "10 am - 11 am: Working"
     end
 
     it "allows for the updating of a past activity", :js do
@@ -314,7 +315,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the paginating to the previous day's activities" do
-      expect(page).to_not have_text "1 pm - 12 pm: Working"
+      expect(page).to_not have_text "3 pm - 2 pm: Working"
       expect(page).to_not have_text "Accomplishment: 8 · Pleasure: 9"
       expect(page).to_not have_text "Predicted Low Importance: 1 Not Fun: 2"
       expect(page).to_not have_text "Actual  High Importance: 8  Really fun: 9"
@@ -322,7 +323,7 @@ feature "activity tracker", type: :feature do
 
       click_on "Previous Day"
 
-      expect(page).to have_text "1 pm - 12 pm: Working"
+      expect(page).to have_text "3 pm - 2 pm: Working"
       expect(page).to have_text "Accomplishment: 8 · Pleasure: 9"
       expect(page).to have_text "Predicted Low Importance: 1 Not Fun: 2"
       expect(page).to have_text "Actual  High Importance: 8  Really fun: 9"
@@ -330,12 +331,12 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the paginating to the next day's activities" do
-      expect(page).to_not have_text "11 am - 12 pm: Working"
+      expect(page).to_not have_text "1 pm - 2 pm: Working"
       expect(page).to_not have_text "Predicted High Importance: 8 Kind of fun: 4"
 
       click_on "Next Day"
 
-      expect(page).to have_text "11 am - 12 pm: Working"
+      expect(page).to have_text "1 pm - 2 pm: Working"
       expect(page).to have_text "Predicted High Importance: 8 Kind of fun: 4"
       expect(page).to have_text "Actual  Not answered: Not answered:"
       expect(page).to have_text "Difference  N/A N/A"

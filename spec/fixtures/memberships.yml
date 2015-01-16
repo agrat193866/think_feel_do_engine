@@ -10,6 +10,12 @@ membership2:
   start_date: <%= Date.yesterday %>
   end_date: <%= Date.today.advance(days: 3) %>
 
+membership_traveling:
+  participant: traveling_participant1
+  group: group1
+  start_date: <%= Time.local(2015, 1, 14) %>
+  end_date: <%= Time.local(2015, 1, 18) %>
+
 inactive_membership:
   participant: inactive_participant
   group: group2

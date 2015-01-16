@@ -60,7 +60,7 @@ planned_activity_today_4:
   end_time: <%= DateTime.current.advance(hours: 2) %>
 
 p2_planned_activity_3_hrs_ago:
-  participant: participant2
+  participant: traveling_participant1
   activity_type: eating
   is_complete: true
   is_scheduled: true
@@ -72,7 +72,7 @@ p2_planned_activity_3_hrs_ago:
   end_time: <%= Time.local(2015, 1, 15, 9) %>
 
 p2_planned_activity_2_hrs_ago:
-  participant: participant2
+  participant: traveling_participant1
   activity_type: working
   is_complete: true
   is_scheduled: true
@@ -84,7 +84,7 @@ p2_planned_activity_2_hrs_ago:
   end_time: <%= Time.local(2015, 1, 15, 10) %>
 
 p2_activity_1_hr_ago:
-  participant: participant2
+  participant: traveling_participant1
   activity_type: working
   predicted_accomplishment_intensity: 6
   predicted_pleasure_intensity: 5
@@ -92,7 +92,7 @@ p2_activity_1_hr_ago:
   end_time: <%= Time.local(2015, 1, 15, 11) %>
 
 p2_activity_previous_day:
-  participant: participant2
+  participant: traveling_participant1
   activity_type: working
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 2
@@ -104,7 +104,7 @@ p2_activity_previous_day:
   end_time: <%= Time.local(2015, 1, 14, 14) %>
 
 p2_activity_next_day:
-  participant: participant2
+  participant: traveling_participant1
   activity_type: working
   is_scheduled: true
   predicted_accomplishment_intensity: 8
