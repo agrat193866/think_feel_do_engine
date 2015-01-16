@@ -1,3 +1,6 @@
+## 1.14.4
+ * fixed Lesson title format
+
 ## 1.14.3 - 2015-01-16
  * updated git tagger gem
 
