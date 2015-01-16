@@ -26,10 +26,10 @@ GIT
 
 GIT
   remote: https://github.com/eschlange/git_tagger.git
-  revision: a117179a9da95036c70b54ec0205c89fc4c3cdff
-  tag: 1.0.5
+  revision: 3720db1224888b5d2b1b639f5007a2acd3418e05
+  tag: 1.0.6
   specs:
-    git_tagger (1.0.5)
+    git_tagger (1.0.6)
 
 GIT
   remote: https://github.com/rweng/jquery-datatables-rails.git
@@ -42,7 +42,7 @@ GIT
 PATH
   remote: .
   specs:
-    think_feel_do_engine (1.14.4)
+    think_feel_do_engine (1.14.5)
       bootstrap-sass (~> 3.1)
       cancancan (~> 1.9)
       devise (~> 3.2)
