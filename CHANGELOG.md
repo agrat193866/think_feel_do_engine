@@ -1,3 +1,6 @@
+## 1.14.8 - 2015-01-16
+ * updated view helper and spelling error
+
 ## 1.14.7 - 2015-01-16
  * updated to latest git tagger
 
