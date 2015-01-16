@@ -13,7 +13,7 @@ module ThinkFeelDoEngine
           total_diff += (actual_intensity - predicted_intensity).abs
         end
       end
-      total_diff.to_f / count
+      count == 0 ? "No activities exist." : total_diff.to_f / count
     end
   end
 end

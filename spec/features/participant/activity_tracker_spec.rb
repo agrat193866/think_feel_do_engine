@@ -258,8 +258,8 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "You spent 1 hour engaged in pleasurable activities and 1 hour engaged in accomplished activities."
       expect(page).to have_text "1 activity you recorded as high pleasure, while 1 activity you recorded as high accomplishment, and 1 activity you recorded is both high pleasure and high accomplishment."
       expect(page).to have_text "Completion Score: 67% (You completed 2 out of 3 activities that you scheduled.)"
-      expect(page).to have_text "Average Accomplishment Discrepency: 1.0"
-      expect(page).to have_text "Average Pleasure Discrepency: 1.0"
+      expect(page).to have_text "Average Accomplishment Discrepancy: 1.0"
+      expect(page).to have_text "Average Pleasure Discrepancy: 1.0"
     end
 
     it "displays a list of activities and activity details" do
@@ -342,11 +342,36 @@ feature "activity tracker", type: :feature do
     end
   end
 
+
   context "Participant with no acitivites is logged in" do
-    let(:participant3) { participants(:participant3) }
+    let(:participant) { participants(:traveling_participant2) }
 
     before do
-      sign_in_participant participant3
+      Time.zone = "Central Time (US & Canada)"
+      t = DateTime.new(2015, 1, 15, 20)
+      Timecop.travel(t)
+      sign_in_participant participant
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "displays daily summary information if no accomplished activities are compeleted with 'actual' values" do
+      expect(page).to have_text "Average Accomplishment Discrepancy: No activities exist."
+    end
+
+    it "displays daily summary information if no pleasureable activities are compeleted with 'actual' values" do
+      expect(page).to have_text "Average Pleasure Discrepancy: No activities exist."
+    end
+  end
+
+  context "Participant with no acitivites is logged in" do
+    let(:participant) { participants(:participant3) }
+
+    before do
+      sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
     end
 
