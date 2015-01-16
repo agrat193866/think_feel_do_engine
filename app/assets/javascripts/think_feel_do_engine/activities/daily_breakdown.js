@@ -6,16 +6,18 @@
   window.dailyBreakdown = function (completed_activities, numOfDays) {
     var color, colorObj, data, getBucket, height, load_breakdown, margin, parse_time, width, x, xAxis, y;
     load_breakdown = function (title, data) {
-      var averageHours, cleanDay, cleanWeek, container, flatten, formatAVizTime, formatXAxisByHorizSpace, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
-      formatXAxisByHorizSpace = function (d) {
+      var averageHours, cleanDay, cleanWeek, container, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
+
+      formatXAxisLabels = function (formattedDate) {
         if (width >= (dates.length + 1) * 125) {
-          return d;
+          return formattedDate;
         }
         if (width >= (dates.length + 1) * 50) {
-          return d.substr(d.indexOf(",") + 1);
+          return formattedDate.substr(formattedDate.indexOf(",") + 1);
         }
-        return d.substr(0, 1);
+        return formattedDate.substr(0, 1);
       };
+
       averageHours = function (list) {
         var byDay;
         byDay = [];
@@ -197,7 +199,6 @@
           $("#chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
         }
         data = grabLastXDays(data, numOfDays);
-        dates = _.uniq(_.pluck(data, "start_date"));
         grouped = _.groupBy(data, function (d) {
           return d.bucket;
         });
@@ -323,7 +324,7 @@
         height = 500 - margin.top - margin.bottom;
       }
       x = d3.scale.ordinal().rangeRoundBands([0, width], 0.4);
-      xAxis = d3.svg.axis().scale(x).orient("top").tickFormat(formatXAxisByHorizSpace);
+      xAxis = d3.svg.axis().scale(x).orient("top").tickFormat(formatXAxisLabels);
       y = d3.scale.linear().rangeRound([200, 0]);
       container = d3.select("#chart").append("div");
       svg = container.append("svg").attr("class", "activity_viz").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
