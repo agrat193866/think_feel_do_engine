@@ -1,3 +1,7 @@
+## 1.14.0
+ * mood/emotions viz updates
+ * removed override for Devise login redirect
+
 ## 1.13.4
  * added Report authorizations
 
