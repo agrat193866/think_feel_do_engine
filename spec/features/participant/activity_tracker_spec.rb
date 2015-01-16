@@ -270,7 +270,6 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Predicted High Importance: 10 Really fun: 10"
       expect(page).to have_text "Actual  High Importance: 9  Really fun: 9"
       expect(page).to have_text "Difference  -1  -1"
-
       expect(page).to have_text "9 am - 10 am: Working"
       expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
 
