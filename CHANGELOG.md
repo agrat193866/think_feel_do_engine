@@ -1,3 +1,6 @@
+## 1.14.1
+ * mood/emotions viz updates
+
 ## 1.14.0
  * mood/emotions viz updates
  * removed override for Devise login redirect
