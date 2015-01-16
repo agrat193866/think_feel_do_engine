@@ -73,7 +73,7 @@
                 <span class="list-group-item task-status enabled">
                   <%= link_to create_task_path(ts), class: "task-status", id: "task-status-#{ ts.id }", data: { :"task-status-id" => ts.id } do %>
                     <h4 class="list-group-item-heading">
-                      <span class="lesson <%= ts.completed_at ? "read" : "unread" %>"><%= ts.title %></span>
+                      <span class="lesson <%= ts.completed_at ? "read" : "unread" %>"><%= ts.task.bit_core_content_module.pretty_title %></span>
                     </h4>
                   <% end %>
                   <p class="list-group-item-text">
@@ -93,7 +93,7 @@
               <% else %>
                 <span class="list-group-item task-status disabled" id="task-status-<%= ts.id %>" data-task-status-id="<%= ts.id %>">
                   <h4 class="list-group-item-heading">
-                    <span class="lesson unread"><%= ts.title %></span>
+                    <span class="lesson unread"><%= ts.task.bit_core_content_module.pretty_title %></span>
                   </h4>
 
                   <p class="list-group-item-text">
