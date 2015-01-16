@@ -15,6 +15,12 @@ class Activity < ActiveRecord::Base
 
   before_validation :create_activity_type, :set_end_time
 
+  scope :for_day, lambda { |datetime|
+    where(
+      "activities.start_time >= ? AND activities.start_time < ?",
+      datetime.beginning_of_day, datetime.advance(days: 1).beginning_of_day)
+  }
+
   scope :accomplished, lambda {
     where(
       "activities.actual_accomplishment_intensity >= ?",
@@ -26,9 +32,28 @@ class Activity < ActiveRecord::Base
     where("activities.end_time < ?", Time.current)
   }
 
+  scope :last_seven_days, lambda {
+    where(
+      "activities.start_time >= ?",
+      Time.current.advance(days: -7)
+        .beginning_of_day
+    )
+  }
+
   scope :unscheduled_or_in_the_future, lambda {
-    where("activities.start_time IS NULL OR activities.end_time > ?",
-          Time.current)
+    where(
+      "activities.start_time IS NULL OR activities.end_time > ?",
+      Time.current
+    )
+  }
+
+  scope :completed, lambda {
+    where(
+      arel_table[:is_complete].eq(true)
+      .or(
+        arel_table[:noncompliance_reason].eq(true)
+      )
+    )
   }
 
   scope :in_the_future, lambda {
@@ -90,6 +115,16 @@ class Activity < ActiveRecord::Base
 
   def rated?
     actual_pleasure_intensity || actual_accomplishment_intensity
+  end
+
+  def intensity_difference(attribute)
+    actual_intensity = send("actual_#{attribute}_intensity")
+    predicted_intensity = send("predicted_#{attribute}_intensity")
+    if actual_intensity && predicted_intensity
+      actual_intensity - predicted_intensity
+    else
+      "N/A"
+    end
   end
 
   private

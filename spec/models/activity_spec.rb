@@ -36,4 +36,26 @@ describe Activity do
       end
     end
   end
+
+  describe "instance methods" do
+    let(:activity1) { activities(:planned_activity_today_1) }
+    let(:activity2) { activities(:planned_activity_today_2) }
+    let(:activity3) { activities(:planned_activity_today_3) }
+
+    it ".intensity_difference of accomplishment returns the difference of the predicted and actual" do
+      expect(activity1.intensity_difference(:accomplishment)).to eq 5
+    end
+
+    it ".intensity_difference of pleasure returns the difference of the predicted and actual" do
+      expect(activity1.intensity_difference(:pleasure)).to eq 0
+    end
+
+    it ".intensity_difference returns 'N/A' if no intensities are given" do
+      expect(activity2.intensity_difference(:pleasure)).to eq "N/A"
+    end
+
+    it ".intensity_difference returns 'N/A' if no predictions are not given" do
+      expect(activity3.intensity_difference(:pleasure)).to eq "N/A"
+    end
+  end
 end
