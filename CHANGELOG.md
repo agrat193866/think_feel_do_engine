@@ -1,3 +1,6 @@
+## 1.14.7 - 2015-01-16
+ * updated to latest git tagger
+
 ## 1.14.6 - 2015-01-16
  * further git tagger updates for testing
 
