@@ -33,12 +33,27 @@ class Activity < ActiveRecord::Base
   }
 
   scope :last_seven_days, lambda {
-    where("activities.start_time >= ?", Time.current.advance(days: -7).beginning_of_day)
+    where(
+      "activities.start_time >= ?",
+      Time.current.advance(days: -7)
+        .beginning_of_day
+    )
   }
 
   scope :unscheduled_or_in_the_future, lambda {
-    where("activities.start_time IS NULL OR activities.end_time > ?",
-          Time.current)
+    where(
+      "activities.start_time IS NULL OR activities.end_time > ?",
+      Time.current
+    )
+  }
+
+  scope :completed, lambda {
+    where(
+      arel_table[:is_complete].eq(true)
+      .or(
+        arel_table[:noncompliance_reason].eq(true)
+      )
+    )
   }
 
   scope :in_the_future, lambda {
@@ -103,8 +118,8 @@ class Activity < ActiveRecord::Base
   end
 
   def intensity_difference(attribute)
-    actual_intensity = send("actual_#{attribute.to_s}_intensity")
-    predicted_intensity = send("predicted_#{attribute.to_s}_intensity")
+    actual_intensity = send("actual_#{attribute}_intensity")
+    predicted_intensity = send("predicted_#{attribute}_intensity")
     if actual_intensity && predicted_intensity
       actual_intensity - predicted_intensity
     else

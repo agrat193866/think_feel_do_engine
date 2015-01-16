@@ -6,16 +6,16 @@ module ThinkFeelDoEngine
       before_action :set_activity, only: [:update]
 
       # refactor...
-       def create
+      def create
         @activity = current_participant.activities.find(activity_id)
         @activity.update(activity_params)
       end
-      #...
+      # ...
 
       def update
         if @activity.update(activity_params_for_update)
           respond_to do |format|
-            format.js {render inline: "Turbolinks.visit(window.location);" }
+            format.js { render inline: "Turbolinks.visit(window.location);" }
           end
         else
           flash.now[:alert] = @activity.errors.full_messages.join(", ")
@@ -38,12 +38,12 @@ module ThinkFeelDoEngine
           ])
           .fetch(activity_id)
       end
-      #...
+      # ...
 
       def set_activity
         @activity = current_participant
-                      .activities
-                      .find(params[:id])
+                    .activities
+                    .find(params[:id])
       end
 
       def activity_params_for_update
