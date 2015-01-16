@@ -380,10 +380,12 @@ div.btn-group {
     display: inline-block;
 }
 
-div#mood, div#emotions {
+div#mood, div#emotions, div#phq {
   margin-top: 20px;
 }
-
+div#date-range {
+  color: gray;
+}
 .chart rect {
   stroke: white;
   fill-opacity: .6;

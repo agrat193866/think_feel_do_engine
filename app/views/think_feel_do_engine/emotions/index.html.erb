@@ -1,56 +1,34 @@
-<div class="row">
-  <div class="btn-group-wrap">
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default active">
-        <input type="radio" class="interval" value="7" checked="">7 Day
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" class="interval" value="28">28 day
-      </label>
+<div id="viz-container">
+  <div class="row">
+    <div class="btn-group-wrap">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default active">
+          <input type="radio" class="interval" value="7" checked="">7 Day
+        </label>
+        <label class="btn btn-default">
+          <input type="radio" class="interval" value="28">28 day
+        </label>
+      </div>
+    </div>
+    <nav>
+      <ul class="pager">
+        <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
+        <li><a class="offset" id="next" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
+       </ul>
+    </nav>
+    <div class="text-center" id="date-range">
+      <strong>Date</strong>
     </div>
   </div>
-  <nav>
-    <ul class="pager">
-      <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
-      <li><a class="offset" id="next" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
-     </ul>
-  </nav>
-  <div class="text-center" id="date-range">
-    <strong>Date</strong>
-  </div>
+  <div id="mood"></div>
+  <div id="emotions"></div>
 </div>
-<div id="mood"></div>
-<div id="emotions"></div>
 <script>
 
   // starting graph parameters assume 7 day view ending in today
+  var activationDate = activation(<%= current_participant.active_membership.start_date %>)
 
-  var activationDate = moment(<%= current_participant.active_membership.start_date %>)
-
-  var graphParameters = {
-    moodData: <%= mood_ratings.to_json.html_safe %>,
-    emotionsData: <%= emotional_ratings.to_json.html_safe %>,
-    graphWidth: $(".container").width(),
-    startDate: moment().subtract('days', 6).startOf('day'),
-    endDate: moment().startOf('day'),
-    interval: 7,
-    offset: 1
-  };
-
-  function appendDateRange () {
-    $('div#date-range strong').empty().append(graphParameters.startDate.format('LL')+' / '+graphParameters.endDate.format('LL'));
-  }
-
-  function offsetInterval (interval, offset) {
-    var startOffset = (interval * offset) - 1;
-    var endOffset = offset === 1 ? 0 : interval * (offset-1)
-    graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
-    graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
-  }
-
-  function maxOffset (activationDate, interval) {
-    return Math.ceil(moment().diff(activationDate, 'days')/interval)
-  }
+  var graphParameters = new Graph(<%= mood_ratings.to_json.html_safe %>, <%= emotional_ratings.to_json.html_safe %>, null, $("#viz-container"));
 
   function drawGraphs() {
     $("div#mood, div#emotions").empty();
@@ -71,14 +49,15 @@
           .height(400));
 
     graphParameters.interval > 7 ? hideTicks() : showTicks()
-    appendDateRange();
+    appendDateRange(graphParameters);
   }
 
   drawGraphs();
 
   $('.interval').on("change", function (){
     graphParameters.interval = this.value;
-    offsetInterval(graphParameters.interval, 1);
+    graphParameters.offset = 1;
+    offsetInterval(graphParameters);
     drawGraphs();
   });
 
@@ -91,16 +70,9 @@
     }
     else {
       graphParameters.offset += parseInt($(this).data("value"));
-      offsetInterval(graphParameters.interval, graphParameters.offset);
+      offsetInterval(graphParameters);
       drawGraphs();
     }
   });
-
-  function hideTicks () {
-    $('g.x.axis g.tick text').hide()
-  }
-  function showTicks () {
-    $('g.x.axis g.tick text').show()
-  }
 
 </script>

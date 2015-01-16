@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="btn-group-wrap">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" class="interval" value="7" checked="">7 Day
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" class="interval" value="28">28 day
+      </label>
+    </div>
+  </div>
+  <nav>
+    <ul class="pager">
+      <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">&larr;</span> Previous Period</a></li>
+      <li><a class="offset" id="next" data-value="-1" href="#">Next Period <span aria-hidden="true">&rarr;</span></a></li>
+     </ul>
+  </nav>
+  <div class="text-center" id="date-range">
+    <strong>Date</strong>
+  </div>
+</div>
+<div id="phq"></div>
+<div id="mood"></div>
+<div id="emotions"></div>
+<script>
+// starting graph parameters assume 7 day view ending in today
+var activationDate = activation("<%= patient.active_membership.start_date %>")
+var graphParameters = new Graph(
+            <%= patient.mood_rating_daily_averages.to_json.html_safe %>,
+            <%= patient.emotional_rating_daily_averages.to_json.html_safe %>,
+            <%= patient.phq_rating_daily_averages.to_json.html_safe %>,
+            $("div#viz-container")
+          );
+
+function drawGraphs() {
+  $("div#mood, div#emotions, div#phq").empty();
+  var phqGraphTitle = "PHQ9";
+  d3.select("#phq")
+    .datum(graphParameters.phqData)
+      .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 27, phqGraphTitle)
+        .width(graphParameters.graphWidth)
+        .height(300)
+        .x(function(d, i) { return moment(d.day).startOf('day')._d; })
+        .y(function(d, i) { return d.intensity; }));
+
+  var moodGraphTitle = "Mood";
+  d3.select("#mood")
+    .datum(graphParameters.moodData)
+      .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle)
+        .width(graphParameters.graphWidth)
+        .height(300)
+        .x(function(d, i) { return moment(d.day).startOf('day')._d; })
+        .y(function(d, i) { return d.intensity; }));
+
+  var emotionGraphTitle = "Positive and Negative Emotions";
+  d3.select("#emotions")
+    .datum(graphParameters.emotionsData)
+      .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle)
+        .width(graphParameters.graphWidth)
+        .height(400));
+
+  graphParameters.interval > 7 ? hideTicks() : showTicks()
+  appendDateRange(graphParameters);
+}
+
+drawGraphs();
+
+$('.interval').on("change", function (){
+  graphParameters.interval = this.value;
+  graphParameters.offset = 1;
+  offsetInterval(graphParameters);
+  drawGraphs();
+});
+
+$('.offset').on("click", function (){
+  if($(this).attr("id") === "next" && graphParameters.offset == 1){
+    return null
+  }
+  else if($(this).attr("id") === "previous" && graphParameters.offset == maxOffset(activationDate, graphParameters.interval)) {
+    return null
+  }
+  else {
+    graphParameters.offset += parseInt($(this).data("value"));
+    offsetInterval(graphParameters);
+    drawGraphs();
+  }
+});
+
+</script>

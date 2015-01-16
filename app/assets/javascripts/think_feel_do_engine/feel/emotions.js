@@ -151,7 +151,8 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           .attr("font-family","sans-serif")
           .attr("text-anchor","middle")
           .attr("font-weight","bold")
-          .text(title);
+          .text(title)
+          .attr("fill", "purple");
 
       // draw average line
       var positiveValues = [], negativeValues = [];
@@ -265,3 +266,40 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
   return chart;
 }
 
+function activation (date) {
+  return moment(date);
+}
+
+function Graph (moodData, emotionsData, phqData, container) {
+  this.moodData = moodData;
+  this.emotionsData = emotionsData;
+  this.phqData = phqData;
+  this.graphWidth = container.width() *.97;
+  this.startDate = moment().subtract('days', 6).startOf('day');
+  this.endDate = moment().startOf('day');
+  this.interval = 7;
+  this.offset = 1;
+}
+
+function offsetInterval (graphParameters) {
+  var startOffset = (graphParameters.interval * graphParameters.offset) - 1;
+  var endOffset = graphParameters.offset === 1 ? 0 : graphParameters.interval * (graphParameters.offset-1)
+  graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
+  graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
+}
+
+function appendDateRange (graphParameters) {
+  $('div#date-range strong').empty().append(graphParameters.startDate.format('LL')+' / '+graphParameters.endDate.format('LL'));
+}
+
+function maxOffset (activationDate, interval) {
+  return Math.ceil(moment().diff(activationDate, 'days')/interval)
+}
+
+function hideTicks () {
+  $('g.x.axis g.tick text').hide()
+}
+
+function showTicks () {
+  $('g.x.axis g.tick text').show()
+}
