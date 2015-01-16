@@ -31,8 +31,10 @@
       </p>
     </div>
   </div>
-  <div class="panel panel-default" id="viz-container">
-  <%= render "think_feel_do_engine/coach/patient_dashboards/vizs", patient: @patient %>
+  <% if @patient.active_membership %>
+    <div class="panel panel-default" id="viz-container">
+      <%= render "think_feel_do_engine/coach/patient_dashboards/vizs", patient: @patient %>
+  <% end %>
   </div>
   <div class="panel panel-default cdb_panel">
     <div class="panel-heading">
