@@ -26,10 +26,10 @@ GIT
 
 GIT
   remote: https://github.com/eschlange/git_tagger.git
-  revision: 7e4b06b544302b1a0a75e5a66f7deb1e8db103bf
-  tag: 1.0.2
+  revision: a117179a9da95036c70b54ec0205c89fc4c3cdff
+  tag: 1.0.5
   specs:
-    git_tagger (1.0.2)
+    git_tagger (1.0.5)
 
 GIT
   remote: https://github.com/rweng/jquery-datatables-rails.git
