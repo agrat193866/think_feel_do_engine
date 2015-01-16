@@ -32,7 +32,7 @@
     <ul class="list-group">
       <li class="list-group-item">
         <strong class="text-muted">Mood:</strong>
-        <span class="pull-right"><%= moods.all.map(&:rating).reduce(:+).to_f / moods.count %></span>
+        <span class="pull-right"><%= moods.empty? ? "No Recordings" : moods.all.map(&:rating).reduce(:+).to_f / moods.count %></span>
       </li>
       <li class="list-group-item">
         <strong class="text-muted">Positive Emotions:</strong>
@@ -65,15 +65,30 @@
         <div id="collapse-activity-summary" class="panel-collapse collapse" role="tabpanel" aria-labelledby="activity-summary">
           <div class="panel-body">
             <p>
-              You spent 2 hours (100.00% of total hours) engaged in pleasurable activities and 1 hour (50.00% of total hours) engaged in accomplishment activities!
-              2 activities you've recorded are high pleasure
-              1 activity you've recorded is high accomplishment
-              1 activity you've recorded is both high pleasure and high accomplishment
+              You spent
+              <%= pluralize(activities.pleasurable.count, 'hour') %>
+              engaged in pleasurable activities and
+              <%= pluralize(activities.accomplished.count, 'hour') %>
+              engaged in accomplished activities.
             </p>
             <p>
-              Completion score: 20.00% (You've done 2 out of 10 activities that you scheduled)
-              Average Pleasure Discrepency: 0.00
-              Average Accomplishment Discrepency: 0.00
+              <%= pluralize(activities.pleasurable.map(&:id).uniq.count, 'activity').capitalize %>
+              you recorded as high pleasure, while
+              <%= pluralize(activities.accomplished.map(&:id).uniq.count, 'activity') %>
+              you recorded as high accomplishment, and
+              <%= pluralize(activities.pleasurable.accomplished.map(&:id).uniq.count, 'activity') %>
+              you recorded is both high pleasure and high accomplishment.
+            </p>
+            <p>
+              Completion Score:
+              <%= (activities.completed.count.to_f / activities.count * 100).round %>%
+              (You completed <%= activities.completed.count %> out of <%= pluralize(activities.count, 'activity') %> that you scheduled.)
+            <p>
+            <p>
+              <strong>Average Accomplishment Discrepency:</strong> <%= average_intensity_difference(activities.completed, :accomplishment) %>
+            </p>
+            </p>
+              <strong>Average Pleasure Discrepency:</strong> <%= average_intensity_difference(activities.completed, :pleasure) %>
             </p>
           </div>
         </div>

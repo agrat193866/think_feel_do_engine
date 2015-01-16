@@ -10,8 +10,6 @@ feature "activity tracker", type: :feature do
 
   context "Participant1 is logged in" do
     let(:participant1) { participants(:participant1) }
-    let(:participant2) { participants(:participant2) }
-    let(:now) { Time.current }
 
     before do
       sign_in_participant participant1
@@ -108,7 +106,6 @@ feature "activity tracker", type: :feature do
       click_on "Complete"
 
       expect(page).to have_text "7am to 8am"
-      # ...
       expect(page).to have_text "7pm to 8pm"
     end
 
@@ -120,17 +117,18 @@ feature "activity tracker", type: :feature do
       click_on "Continue"
 
       expect(page).to have_text("We want you to plan one fun thing")
+
       find("input[value='Loving'][type='radio']").click
       find("input#future_date_picker_0").click
       find("#ui-datepicker-div .ui-datepicker-today a").click
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
-
       click_on "Continue"
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
 
       expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
+
       fill_in "activity_activity_type_new_title", with: "Parkour"
       click_on "Continue"
 
@@ -229,179 +227,118 @@ feature "activity tracker", type: :feature do
       expect(page).to_not have_text "Parkour"
       expect(page).to_not have_link "Edit"
     end
+  end
 
-    it "correctly calculates pleasure and accomplishment statistics for the viz", :js do
-      click_on "Your Activities"
+  context "Participant with activities is logged in" do
+    let(:participant) { participants(:participant2) }
+    let(:activity) { activities(:p2_activity_1_hr_ago) }
 
-      page.find("#nav_main li:nth-child(3) a").trigger("click")
-      # Predicting Your Positive Activities, text not detected by click_on for some reason
-      expect(page).to have_text "Predicting Your Positive Activities"
-      expect(page).to have_text "Completion score: 0.00%"
-      expect(page).to have_text "(You've done 0 out of 1 activity that you scheduled)"
-      expect(page).to have_text "Average Pleasure Discrepency: N/A"
-      expect(page).to have_text "Average Accomplishment Discrepency: N/A"
+    before do
+      Time.zone = "Pacific Time (US & Canada)"
+      t = DateTime.new(2015, 1, 15, 10)
+      Timecop.travel(t)
+      sign_in_participant participant
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
+    end
 
-      # Modification 1
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "prancing in the woods",
-        start_time: now - 1.hour,
-        end_time: now,
-        predicted_pleasure_intensity: 10,
-        predicted_accomplishment_intensity: 10,
-        actual_pleasure_intensity: 0,
-        actual_accomplishment_intensity: 0,
-        is_complete: true,
-        is_scheduled: true
-      )
+    after do
+      Timecop.return
+    end
 
-      visit(current_path)
-      expect(page).to have_text "You've spent 0 hours (0.00% of total hours) engaged in pleasurable activities!"
-      expect(page).to have_text "You've spent 0 hours (0.00% of total hours) engaged in accomplishment activities!"
-      page.find("#nav_main li:nth-child(2) a").trigger("click")
-      with_scope "div.prancing.in.the.woods" do
-        expect(page).to have_text("Pleasure: 0")
-        expect(page).to have_text("Accomplishment: 0")
+    it "displays daily activity averages" do
+      expect(page).to have_text "Daily Averages for Jan 15, 2015"
+      expect(page).to have_text "Mood: No Recordings"
+      expect(page).to have_text "Positive Emotions: No Recordings"
+      expect(page).to have_text "Negative Emotions: No Recordings"
+    end
+
+    it "displays daily summary information" do
+      expect(page).to have_text "Daily Summaries"
+      expect(page).to have_text "You spent 1 hour engaged in pleasurable activities and 1 hour engaged in accomplished activities."
+      expect(page).to have_text "1 activity you recorded as high pleasure, while 1 activity you recorded as high accomplishment, and 1 activity you recorded is both high pleasure and high accomplishment."
+      expect(page).to have_text "Completion Score: 67% (You completed 2 out of 3 activities that you scheduled.)"
+      expect(page).to have_text "Average Accomplishment Discrepency: 1.0"
+      expect(page).to have_text "Average Pleasure Discrepency: 1.0"
+    end
+
+    it "displays a list of activities and activity details" do
+      expect(page).to have_text "6 am - 7 am: Eating breakfast"
+      expect(page).to have_text "Accomplishment: 9 · Pleasure: 9"
+
+      expect(page).to have_text "Accomplishment  Pleasure"
+      expect(page).to have_text "Predicted High Importance: 10 Really fun: 10"
+      expect(page).to have_text "Actual  High Importance: 9  Really fun: 9"
+      expect(page).to have_text "Difference  -1  -1"
+
+      expect(page).to have_text "7 am - 8 am: Working"
+      expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
+
+      expect(page).to have_text "8 am - 9 am: Working"
+    end
+
+    it "allows for the updating of a past activity", :js do
+      expect(page).to have_text "10 am - 11 am: Working"
+
+      expect(page).to_not have_text "Predicted Average Importance: 6 Kind of fun: 5"
+      expect(page).to_not have_text "Actual  Not answered: Not answered:"
+      expect(page).to_not have_text "Difference N/A N/A"
+
+      click_on "10 am - 11 am: Working"
+
+      expect(page).to have_text "Predicted Average Importance: 6 Kind of fun: 5"
+      expect(page).to have_text "Actual  Not answered: Not answered:"
+      expect(page).to have_text "Difference N/A N/A"
+
+      with_scope "form#edit_activity_#{activity.id}" do
+        expect(page).to_not have_button "Update"
+        expect(page).to_not have_button "Cancel"
+
+        click_on "Edit"
+
+        expect(page).to have_button "Cancel"
+
+        select "1", from: "Actual accomplishment intensity"
+        select "8", from: "Actual pleasure intensity"
+        click_on "Update"
       end
 
-      page.find("#nav_main li:nth-child(3) a").trigger("click")
-      expect(page).to have_text "Completion score: 50.00%"
-      expect(page).to have_text "(You've done 1 out of 2 activities that you scheduled)"
-      expect(page).to have_text "Average Pleasure Discrepency: 10"
-      expect(page).to have_text "Average Accomplishment Discrepency: 10"
+      expect(page).to_not have_button "Update"
+      expect(page).to_not have_button "Cancel"
+      expect(page).to have_text "Accomplishment: 1 · Pleasure: 8"
 
-      # Modification 2
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "dancing in the street",
-        start_time: now - 1.hour,
-        end_time: now,
-        predicted_pleasure_intensity: 3,
-        predicted_accomplishment_intensity: 3,
-        actual_pleasure_intensity: 10,
-        actual_accomplishment_intensity: 10,
-        is_complete: true,
-        is_scheduled: true
-      )
-      visit(current_path)
-      expect(page).to have_text "You've spent 1 hour (50.00% of total hours) engaged in pleasurable activities!"
-      expect(page).to have_text "You've spent 1 hour (50.00% of total hours) engaged in accomplishment activities!"
-      expect(page).to have_text "1 activity you've recorded is high pleasure"
-      expect(page).to have_text "1 activity you've recorded is high accomplishment"
-      expect(page).to have_text "1 activity you've recorded is both high pleasure and high accomplishment"
-      page.find("#nav_main li:nth-child(2) a").trigger("click")
-      expect(page).not_to have_selector("div.prancing.in.the.woods", visible: false)
-      with_scope "div.in.the" do
-        expect(page).to have_text("Pleasure: 5")
-        expect(page).to have_text("Accomplishment: 5")
-      end
-      page.find("#nav_main li:nth-child(3) a").trigger("click")
-      expect(page).to have_text "Completion score: 66.67%"
-      expect(page).to have_text "(You've done 2 out of 3 activities that you scheduled)"
-      expect(page).to have_text "Average Pleasure Discrepency: 8.50"
-      expect(page).to have_text "Average Accomplishment Discrepency: 8.50"
+      click_on "10 am - 11 am: Working"
 
-      # Modification 3
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "walking down the lane",
-        start_time: now - 1.hour,
-        end_time: now,
-        predicted_pleasure_intensity: 3,
-        predicted_accomplishment_intensity: 3,
-        actual_pleasure_intensity: 0,
-        actual_accomplishment_intensity: 0,
-        is_complete: true,
-        is_scheduled: true
-      )
-      visit(current_path)
-      expect(page).to have_text "You've spent 1 hour (33.33% of total hours) engaged in pleasurable activities!"
-      expect(page).to have_text "You've spent 1 hour (33.33% of total hours) engaged in accomplishment activities!"
-      expect(page).to have_text "1 activity you've recorded is high pleasure"
-      expect(page).to have_text "1 activity you've recorded is high accomplishment"
-      expect(page).to have_text "1 activity you've recorded is both high pleasure and high accomplishment"
-      page.find("#nav_main li:nth-child(2) a").trigger("click")
-      expect(page).not_to have_selector("div.prancing.in.the.woods_dancing.in.the.street", visible: false)
-      with_scope "div.prancing.in.the.woods_dancing.in.the.street_walking.down.the.lane" do
-        expect(page).to have_text("Pleasure: 3")
-        expect(page).to have_text("Accomplishment: 3")
-      end
-      page.find("#nav_main li:nth-child(3) a").trigger("click")
-      expect(page).to have_text "Completion score: 75.00%"
-      expect(page).to have_text "(You've done 3 out of 4 activities that you scheduled)"
-      expect(page).to have_text "Average Pleasure Discrepency: 6.67"
-      expect(page).to have_text "Average Accomplishment Discrepency: 6.67"
+      expect(page).to have_text "Predicted  Average Importance: 6 Kind of fun: 5"
+      expect(page).to have_text "Actual  Low Importance: 1 Really fun: 8"
+      expect(page).to have_text "Difference  -5  3"
+    end
 
-      # Modification 4
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "two hour power",
-        start_time: now - 3.days - 2.hours,
-        end_time: now - 3.days,
-        predicted_pleasure_intensity: 9,
-        predicted_accomplishment_intensity: 1,
-        actual_pleasure_intensity: 10,
-        actual_accomplishment_intensity: 0,
-        is_complete: true,
-        is_scheduled: true
-      )
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "three hour power",
-        start_time: now - 2.days - 3.hours,
-        end_time: now - 2.days,
-        predicted_pleasure_intensity: 10,
-        predicted_accomplishment_intensity: 0,
-        actual_pleasure_intensity: 10,
-        actual_accomplishment_intensity: 0,
-        is_complete: true,
-        is_scheduled: true
-      )
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "four hour power",
-        start_time: now - 1.days - 4.hours,
-        end_time: now - 1.days,
-        predicted_pleasure_intensity: 0,
-        predicted_accomplishment_intensity: 5,
-        actual_pleasure_intensity: 10,
-        actual_accomplishment_intensity: 0,
-        is_complete: true,
-        is_scheduled: true
-      )
-      Activity.create(
-        participant: participants(:participant1),
-        activity_type_title: "not done",
-        start_time: now - 9.days - 4.hours,
-        end_time: now - 9.days,
-        actual_pleasure_intensity: 10,
-        actual_accomplishment_intensity: 10,
-        is_complete: false,
-        is_scheduled: true
-      )
-      visit(current_path)
-      expect(page).to have_text "You've spent 4 hours (66.67% of total hours) engaged in pleasurable activities!"
-      expect(page).to have_text "You've spent 1 hour (16.67% of total hours) engaged in accomplishment activities!"
-      expect(page).to have_text "4 activities you've recorded are high pleasure"
-      expect(page).to have_text "1 activity you've recorded is high accomplishment"
-      expect(page).to have_text "1 activity you've recorded is both high pleasure and high accomplishment"
-      page.find("#nav_main li:nth-child(2) a").trigger("click")
-      with_scope "div.prancing.in.the.woods_dancing.in.the.street_walking.down.the.lane" do
-        expect(page).to have_text("Pleasure: 3")
-        expect(page).to have_text("Accomplishment: 3")
-      end
-      with_scope "div.two.hour.power" do
-        expect(page).to have_text("Pleasure: 10")
-        expect(page).to have_text("Accomplishment: 0")
-      end
-      expect(page.all(".bucket").count).to eq(4)
-      click_on "3 day view"
-      expect(page.all(".bucket").count).to eq(3)
-      page.find("#nav_main li:nth-child(3) a").trigger("click")
-      expect(page).to have_text "Completion score: 75.00%"
-      expect(page).to have_text "(You've done 6 out of 8 activities that you scheduled)"
-      expect(page).to have_text "Average Pleasure Discrepency: 5.17"
-      expect(page).to have_text "Average Accomplishment Discrepency: 4.33"
+    it "allows for the paginating to the previous day's activities" do
+      expect(page).to_not have_text "1 pm - 12 pm: Working"
+      expect(page).to_not have_text "Accomplishment: 8 · Pleasure: 9"
+      expect(page).to_not have_text "Predicted Low Importance: 1 Not Fun: 2"
+      expect(page).to_not have_text "Actual  High Importance: 8  Really fun: 9"
+      expect(page).to_not have_text "Difference  7 7"
+
+      click_on "Previous Day"
+
+      expect(page).to have_text "1 pm - 12 pm: Working"
+      expect(page).to have_text "Accomplishment: 8 · Pleasure: 9"
+      expect(page).to have_text "Predicted Low Importance: 1 Not Fun: 2"
+      expect(page).to have_text "Actual  High Importance: 8  Really fun: 9"
+      expect(page).to have_text "Difference  7 7"
+    end
+
+    it "allows for the paginating to the next day's activities" do
+      expect(page).to_not have_text "11 am - 12 pm: Working"
+      expect(page).to_not have_text "Predicted High Importance: 8 Kind of fun: 4"
+
+      click_on "Next Day"
+
+      expect(page).to have_text "11 am - 12 pm: Working"
+      expect(page).to have_text "Predicted High Importance: 8 Kind of fun: 4"
+      expect(page).to have_text "Actual  Not answered: Not answered:"
+      expect(page).to have_text "Difference  N/A N/A"
     end
   end
 
@@ -410,7 +347,7 @@ feature "activity tracker", type: :feature do
 
     before do
       sign_in_participant participant3
-      visit "/navigator/modules/656086433"
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
     end
 
     it "displays an alert if no acitivites were scheduled for a particular day" do
