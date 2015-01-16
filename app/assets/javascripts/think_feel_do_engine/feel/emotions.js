@@ -84,7 +84,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       height = 420,
       xRoundBands = 0.2,
       xValue = function(d) { return moment(d.day).startOf('day')._d; },
-      yValue = function(d) { d.is_positive === false ? return -d.intensity : return d.intensity },
+      yValue = function(d) { return d.is_positive === false ? -d.intensity : d.intensity },
       xScale = d3.scale.ordinal(),
       yScale = d3.scale.linear(),
       yAxis = d3.svg.axis().scale(yScale).orient("left"),
