@@ -84,14 +84,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       height = 420,
       xRoundBands = 0.2,
       xValue = function(d) { return moment(d.day).startOf('day')._d; },
-      yValue = function(d) {
-        if (d.is_positive === false) {
-          return -d.intensity;
-        }
-        else {
-          return d.intensity;
-        }
-      },
+      yValue = function(d) { d.is_positive === false ? return -d.intensity : return d.intensity },
       xScale = d3.scale.ordinal(),
       yScale = d3.scale.linear(),
       yAxis = d3.svg.axis().scale(yScale).orient("left"),
@@ -117,7 +110,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       var domain = data.map(function(d) { return moment(d[0])._d } );
       var dayRange = d3.time.days(startDate._d, endDate._d).length;
       var x_domain = [endDate.startOf('day')._d];
-      for(var i=0;i<dayRange;i++) {
+      for(var i = 0; i < dayRange; i++) {
         var day = x_domain[i]
         x_domain.push(moment(day).subtract('days', 1).startOf('day')._d);
       }

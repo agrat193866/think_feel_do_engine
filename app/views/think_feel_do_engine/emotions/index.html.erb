@@ -26,6 +26,7 @@
   // starting graph parameters assume 7 day view ending in today
 
   var activationDate = moment(<%= current_participant.active_membership.start_date %>)
+
   var graphParameters = {
     moodData: <%= mood_ratings.to_json.html_safe %>,
     emotionsData: <%= emotional_ratings.to_json.html_safe %>,
@@ -48,9 +49,7 @@
   }
 
   function maxOffset (activationDate, interval) {
-    var today = moment();
-    debugger;
-    return Math.ceil(today.diff(activationDate, 'days')/interval)
+    return Math.ceil(moment().diff(activationDate, 'days')/interval)
   }
 
   function drawGraphs() {
