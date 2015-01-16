@@ -1,3 +1,6 @@
+## 1.14.5 - 2015-01-16
+ * updated to latest git tagger gem to fix an issue with engine tagging
+
 ## 1.14.4
  * fixed Lesson title format
 
