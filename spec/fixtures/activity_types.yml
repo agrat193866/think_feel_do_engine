@@ -26,8 +26,6 @@ arguing_with_my_boss:
   participant: participant1
   title: Arguing with my boss
 
-###
-
 eating:
   participant: participant1
   title: Eating breakfast
@@ -39,3 +37,7 @@ commuting:
 working:
   participant: participant1
   title: Working
+
+sleeping:
+  participant: participant1
+  title: Sleeping
