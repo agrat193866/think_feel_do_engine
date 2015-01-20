@@ -341,7 +341,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Difference  N/A N/A"
     end
   end
-  
+
   context "Participant with no predictions for acitivites is logged in" do
     let(:participant) { participants(:traveling_participant2) }
 
