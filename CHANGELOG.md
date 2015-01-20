@@ -1,3 +1,6 @@
+## 1.14.10 - 2015-01-20
+ * Updated activity visualization to show all past activities not just scheduled activities
+
 ## 1.14.9 - 2015-01-20
  * added host app version to footer
 
