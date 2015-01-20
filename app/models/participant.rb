@@ -235,7 +235,11 @@ class Participant < ActiveRecord::Base
   end
 
   def average_rating(array)
-    array.reduce(:+)/ array.size
+    sum = 0
+    array.each do |obj|
+      sum += obj[0]
+    end
+    sum / array.size
   end
 
   def emotional_rating_daily_averages
@@ -243,15 +247,15 @@ class Participant < ActiveRecord::Base
 
     daily_ratings = emotional_ratings.group_by { |er| er.created_at.to_date }
 
-    daily_ratings.each do |day, emotions_array|
-      positive_ratings = emotions_array.collect{|emotion| emotion.rating if emotion.is_positive}.compact
+    daily_ratings.each do |day, emotion_array|
+      positive_ratings = emotion_array.collect{|emotion| [emotion.rating, emotion.created_at] if emotion.is_positive}.compact
       if positive_ratings.size > 0
-        daily_positive = {day: day, intensity: average_rating(positive_ratings), is_positive: true}
+        daily_positive = {day: day, intensity: average_rating(positive_ratings), is_positive: true, drill_down: positive_ratings}
         averaged_ratings << daily_positive
       end
-      negative_ratings = emotions_array.collect{|emotion| emotion.rating unless emotion.is_positive}.compact
+      negative_ratings = emotion_array.collect{|emotion| [emotion.rating, emotion.created_at] unless emotion.is_positive}.compact
       if negative_ratings.size > 0
-        daily_negative = {day: day, intensity: average_rating(negative_ratings), is_positive: false}
+        daily_negative = {day: day, intensity: average_rating(negative_ratings), is_positive: false, drill_down: negative_ratings}
         averaged_ratings << daily_negative
       end
     end
@@ -262,9 +266,9 @@ class Participant < ActiveRecord::Base
     averaged_ratings = []
     daily_ratings = moods.group_by { |mood| mood.created_at.to_date }
     daily_ratings.each do |day, moods_array|
-      ratings = moods_array.collect{|mood| mood.rating}.compact
+      ratings = moods_array.collect{|mood| [mood.rating, mood.created_at]}.compact
       if ratings.size > 0
-        averaged_ratings << {day: day, intensity: average_rating(ratings)}
+        averaged_ratings << {day: day, intensity: average_rating(ratings), drill_down: ratings}
       end
     end
     averaged_ratings
@@ -274,9 +278,9 @@ class Participant < ActiveRecord::Base
     averaged_ratings = []
     daily_ratings = phq_assessments.group_by { |phq| phq.created_at.to_date }
     daily_ratings.each do |day, phq_array|
-      ratings = phq_array.collect{|phq| phq.score}.compact
+      ratings = phq_array.collect{|phq| [phq.score, phq.created_at]}.compact
       if ratings.size > 0
-        averaged_ratings << {day: day, intensity: average_rating(ratings)}
+        averaged_ratings << {day: day, intensity: average_rating(ratings), drill_down: ratings}
       end
     end
     averaged_ratings

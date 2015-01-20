@@ -100,7 +100,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
         if(moment(d.date).startOf('day') >= startDate._d && moment(d.date).startOf('day') <= endDate._d) {
-          return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false)];
+          return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false), d.drill_down];
         }
         else {
           return [startDate._d, 0, true];
@@ -191,10 +191,13 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           bar.enter().append("rect");
           bar.exit().remove();
           bar .attr("class", function(d, i) { return d[1] < 0 ? "bar negative" : "bar positive"; })
-              .attr("x", function(d) { return X(d); })
-              .attr("y", function(d, i) { return d[1] < 0 ? Y0() : Y(d); })
+              .attr("x", function (d) { return X(d); })
+              .attr("y", function (d, i) { return d[1] < 0 ? Y0() : Y(d); })
               .attr("width", xScale.rangeBand())
-              .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); });
+              .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); })
+              .on("click", function (d,i){
+                dailyDrillModal(d);
+              })
 
     // x axis at the bottom of the chart
      g.select(".x.axis")
@@ -264,6 +267,21 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
   };
 
   return chart;
+}
+
+function dailyDrillModal (data) {
+  var guid = Math.floor((1 + Math.random()) * 0x10000)
+               .toString(16)
+               .substring(1);
+  html = "";
+  html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
+  html += "<h4 class='modal-title' id='myModalLabel'>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
+  $.each(data[3], function(i, d){
+    html += "<p>"+moment(d[1]).format('HH:mm a')+": "+d[0]+"</p>"
+  });
+  html += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>"
+  $('body').append(html);
+  $('#smallModal-'+guid).modal();
 }
 
 function activation (date) {
