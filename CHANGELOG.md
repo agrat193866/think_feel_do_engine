@@ -1,3 +1,6 @@
+## 1.14.11 - 2015-01-20
+ * added modal popups for drilldowns in mood and emotion viz
+
 ## 1.14.10 - 2015-01-20
  * Updated activity visualization to show all past activities not just scheduled activities
 
