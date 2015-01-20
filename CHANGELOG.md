@@ -1,3 +1,6 @@
+## 1.14.9 - 2015-01-20
+ * added host app version to footer
+
 ## 1.14.8 - 2015-01-16
  * updated view helper and spelling error
 
