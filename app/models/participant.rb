@@ -235,11 +235,7 @@ class Participant < ActiveRecord::Base
   end
 
   def average_rating(array)
-    sum = 0
-    array.each do |obj|
-      sum += obj[0]
-    end
-    sum / array.size
+    array.inject(0) { |result, element| result + element[0] } / array.size
   end
 
   def emotional_rating_daily_averages

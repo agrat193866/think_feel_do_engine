@@ -13,7 +13,6 @@
 //= require bootstrap/tab
 //= require bootstrap/transition
 //= require bootstrap/modal
-//= require bootstrap/alert
 //= require bootstrap/collapse
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
