@@ -172,8 +172,8 @@
   <% end %>
 
   <div class="btn-toolbar">
-    <%= link_to "Previous Day", "?date=#{datetime.advance(days: -1).strftime("%d/%m/%Y")}", class: "btn btn-default" %>
-    <%= link_to "Next Day", "?date=#{datetime.advance(days: 1).strftime("%d/%m/%Y")}", class: "btn btn-default pull-right" %>
+    <%= link_to "Previous Day", "?date=#{local_time.advance(days: -1).strftime("%d/%m/%Y")}", class: "btn btn-default" %>
+    <%= link_to "Next Day", "?date=#{local_time.advance(days: 1).strftime("%d/%m/%Y")}", class: "btn btn-default pull-right" %>
   </div>
 </div>
 

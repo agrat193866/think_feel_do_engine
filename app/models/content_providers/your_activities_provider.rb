@@ -6,7 +6,7 @@ module ContentProviders
         template: "think_feel_do_engine/activities/visualization",
         locals: {
           activities: activities(options),
-          datetime: datetime(options),
+          local_time: local_time(options),
           formatted_date: formatted_date(options),
           moods: moods(options),
           negative_emotions: negative_emotions(options),
@@ -21,7 +21,7 @@ module ContentProviders
         .participant
         .activities
         .order(start_time: :asc)
-        .for_day(datetime(options))
+        .for_day(local_time(options))
     end
 
     def moods(options)
@@ -29,7 +29,7 @@ module ContentProviders
         .participant
         .moods
         .order(created_at: :asc)
-        .for_day(datetime(options))
+        .for_day(local_time(options))
     end
 
     def negative_emotions(options)
@@ -38,7 +38,7 @@ module ContentProviders
         .emotional_ratings
         .negative
         .order(created_at: :asc)
-        .for_day(datetime(options))
+        .for_day(local_time(options))
     end
 
     def positive_emotions(options)
@@ -47,7 +47,7 @@ module ContentProviders
         .emotional_ratings
         .positive
         .order(created_at: :asc)
-        .for_day(datetime(options))
+        .for_day(local_time(options))
     end
 
     def completed_week_activities(options)
@@ -55,20 +55,20 @@ module ContentProviders
         .participant
         .activities
         .last_seven_days
-        .where(is_scheduled: true)
+        .completed
         .order(start_time: :asc)
     end
 
     def formatted_date(options)
-      datetime(options)
+      local_time(options)
         .strftime("%b %d, %Y")
     end
 
-    def datetime(options)
+    def local_time(options)
       if options.view_context.params[:date]
-        options.view_context.params[:date].to_datetime
+        options.view_context.params[:date].to_time
       else
-        DateTime.current
+        Time.zone.now
       end
     end
 

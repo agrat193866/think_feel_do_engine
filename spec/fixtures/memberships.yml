@@ -22,6 +22,12 @@ membership_traveling2:
   start_date: <%= Time.local(2015, 1, 14) %>
   end_date: <%= Time.local(2015, 1, 18) %>
 
+membership_traveling3:
+  participant: traveling_participant3
+  group: group1
+  start_date: <%= Time.local(2015, 1, 14) %>
+  end_date: <%= Time.local(2015, 1, 18) %>
+
 inactive_membership:
   participant: inactive_participant
   group: group2

@@ -269,7 +269,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Accomplishment  Pleasure"
       expect(page).to have_text "Predicted High Importance: 10 Really fun: 10"
       expect(page).to have_text "Actual  High Importance: 9  Really fun: 9"
-      expect(page).to have_text "Difference  -1  -1"
+      expect(page).to have_text "Difference  1  1"
       expect(page).to have_text "9 am - 10 am: Working"
       expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
 
@@ -310,7 +310,7 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text "Predicted  Average Importance: 6 Kind of fun: 5"
       expect(page).to have_text "Actual  Low Importance: 1 Really fun: 8"
-      expect(page).to have_text "Difference  -5  3"
+      expect(page).to have_text "Difference  5  3"
     end
 
     it "allows for the paginating to the previous day's activities" do
@@ -342,8 +342,7 @@ feature "activity tracker", type: :feature do
     end
   end
 
-
-  context "Participant with no acitivites is logged in" do
+  context "Participant with no predictions for acitivites is logged in" do
     let(:participant) { participants(:traveling_participant2) }
 
     before do
@@ -393,6 +392,26 @@ feature "activity tracker", type: :feature do
       click_on "7-Day"
 
       expect(page).to have_text "No activities were completed during this 7-day period."
+    end
+  end
+
+  context "Participant on a day with no activities, but with activies compeleted during the pervious day" do
+    let(:participant) { participants(:traveling_participant3) }
+
+    before do
+      Time.zone = "Central Time (US & Canada)"
+      t = DateTime.new(2015, 1, 17, 1)
+      Timecop.travel(t)
+      sign_in_participant participant
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}?date=16/01/2015"
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "should see only activities in their timezone" do
+      expect(page).to have_text "No activities were completed during this day."
     end
   end
 end
