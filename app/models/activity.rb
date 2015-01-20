@@ -37,7 +37,7 @@ class Activity < ActiveRecord::Base
       "activities.start_time >= ?",
       Time.current.advance(days: -7)
         .beginning_of_day
-    )
+    ).in_the_past
   }
 
   scope :unscheduled_or_in_the_future, lambda {
@@ -121,7 +121,7 @@ class Activity < ActiveRecord::Base
     actual_intensity = send("actual_#{attribute}_intensity")
     predicted_intensity = send("predicted_#{attribute}_intensity")
     if actual_intensity && predicted_intensity
-      actual_intensity - predicted_intensity
+      (actual_intensity - predicted_intensity).abs
     else
       "N/A"
     end

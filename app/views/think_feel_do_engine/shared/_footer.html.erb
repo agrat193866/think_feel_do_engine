@@ -1,9 +1,21 @@
+<%
+  main_app_module = Rails.application.class.to_s.split("::").first
+
+  begin
+    require main_app_module.underscore
+    main_app_version = main_app_module.constantize::VERSION
+  rescue LoadError
+    main_app_version = "1.0.0"
+  end
+  %>
+
 <div class="footer hidden-sm hidden-xs">
   <div class="container">
     <p class="text-muted">
       &copy; <%= Date.current.year %> Northwestern University |
       <%= link_to "Center for Behavioral Intervention Technologies", "http://cbits.northwestern.edu" %> |
-      <%= link_to "Privacy Policy", think_feel_do_engine.privacy_policy_url %>
+      <%= link_to "Privacy Policy", think_feel_do_engine.privacy_policy_url %> |
+      version <%= main_app_version %>
     </p>
   </div>
 </div>

@@ -131,3 +131,9 @@ p3_planned_activity_at_10:
   predicted_pleasure_intensity: 1
   start_time: <%= Time.local(2015, 1, 15, 10) %>
   end_time: <%= Time.local(2015, 1, 15, 11) %>
+
+p4_planned_activity_at_23:
+  participant: traveling_participant3
+  activity_type: sleeping
+  start_time: <%= Time.local(2015, 1, 15, 22) %>
+  end_time: <%= Time.local(2015, 1, 15, 23) %>

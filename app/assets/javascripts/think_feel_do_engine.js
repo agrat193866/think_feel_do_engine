@@ -6,11 +6,14 @@
 //= require turbolinks
 //= require underscore
 //= require bootstrap/alert
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 //= require bootstrap/button
 //= require bootstrap/dropdown
 //= require bootstrap/tab
 //= require bootstrap/transition
 //= require bootstrap/modal
+//= require bootstrap/alert
 //= require bootstrap/collapse
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
