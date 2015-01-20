@@ -108,25 +108,25 @@ class Participant < ActiveRecord::Base
     @count_all_incomplete ||= {}
 
     @count_all_incomplete[tool.id] ||= (
-      if tool.title.downcase == "messages"
-        count_unread_messages
-      else
-        content_module_ids = tool.content_modules.includes(:content_providers)
+    if tool.title.downcase == "messages"
+      count_unread_messages
+    else
+      content_module_ids = tool.content_modules.includes(:content_providers)
                              .map do |content_module|
-                               content_module.id unless content_module
-                                                        .try(:content_providers)
-                                                        .try(:first)
-                                                        .try(:viz?)
-                             end
-
-        if content_module_ids
-          membership.incomplete_tasks
-            .for_content_module_ids(content_module_ids)
-            .count
-        else
-          false
-        end
+        content_module.id unless content_module
+                                   .try(:content_providers)
+                                   .try(:first)
+                                   .try(:viz?)
       end
+
+      if content_module_ids
+        membership.incomplete_tasks
+          .for_content_module_ids(content_module_ids)
+          .count
+      else
+        false
+      end
+    end
     )
   end
 
@@ -134,25 +134,25 @@ class Participant < ActiveRecord::Base
     @count_today_incomplete ||= {}
 
     @count_today_incomplete[tool.id] ||= (
-      if tool.title.downcase == "messages"
-        count_unread_messages
-      else
-        content_module_ids = tool.content_modules.includes(:content_providers)
+    if tool.title.downcase == "messages"
+      count_unread_messages
+    else
+      content_module_ids = tool.content_modules.includes(:content_providers)
                              .map do |content_module|
-                               content_module.id unless content_module
-                                                        .try(:content_providers)
-                                                        .try(:first)
-                                                        .try(:viz?)
-                             end
-
-        if content_module_ids
-          membership.incomplete_tasks_today
-            .for_content_module_ids(content_module_ids)
-            .count
-        else
-          false
-        end
+        content_module.id unless content_module
+                                   .try(:content_providers)
+                                   .try(:first)
+                                   .try(:viz?)
       end
+
+      if content_module_ids
+        membership.incomplete_tasks_today
+          .for_content_module_ids(content_module_ids)
+          .count
+      else
+        false
+      end
+    end
     )
   end
 
@@ -181,9 +181,9 @@ class Participant < ActiveRecord::Base
     end
     assessment_data = Hash[data]
     PhqStepping.new(
-                assessment_data,
-                membership.week_in_study
-            )
+      assessment_data,
+      membership.week_in_study
+    )
   end
 
   def navigation_status
@@ -235,36 +235,47 @@ class Participant < ActiveRecord::Base
   end
 
   def average_rating(array)
-    array.reduce(:+)/ array.size
+    array.reduce(:+) / array.size
   end
 
+  # rubocop:disable Metrics/MethodLength, Style/Next
   def emotional_rating_daily_averages
     averaged_ratings = []
-
     daily_ratings = emotional_ratings.group_by { |er| er.created_at.to_date }
 
     daily_ratings.each do |day, emotions_array|
-      positive_ratings = emotions_array.collect{|emotion| emotion.rating if emotion.is_positive}.compact
+      positive_ratings =
+        emotions_array
+        .collect { |emotion| emotion.rating if emotion.is_positive }.compact
       if positive_ratings.size > 0
-        daily_positive = {day: day, intensity: average_rating(positive_ratings), is_positive: true}
+        daily_positive =
+          { day: day,
+            intensity: average_rating(positive_ratings),
+            is_positive: true }
         averaged_ratings << daily_positive
       end
-      negative_ratings = emotions_array.collect{|emotion| emotion.rating unless emotion.is_positive}.compact
+      negative_ratings =
+        emotions_array
+        .collect { |emotion| emotion.rating unless emotion.is_positive }.compact
       if negative_ratings.size > 0
-        daily_negative = {day: day, intensity: average_rating(negative_ratings), is_positive: false}
+        daily_negative =
+          { day: day,
+            intensity: average_rating(negative_ratings),
+            is_positive: false }
         averaged_ratings << daily_negative
       end
     end
     averaged_ratings
   end
+  # rubocop:enable Metrics/LineLength, Style/Next
 
   def mood_rating_daily_averages
     averaged_ratings = []
     daily_ratings = moods.group_by { |mood| mood.created_at.to_date }
     daily_ratings.each do |day, moods_array|
-      ratings = moods_array.collect{|mood| mood.rating}.compact
+      ratings = moods_array.collect { mood.rating }.compact
       if ratings.size > 0
-        averaged_ratings << {day: day, intensity: average_rating(ratings)}
+        averaged_ratings << { day: day, intensity: average_rating(ratings) }
       end
     end
     averaged_ratings
@@ -274,9 +285,9 @@ class Participant < ActiveRecord::Base
     averaged_ratings = []
     daily_ratings = phq_assessments.group_by { |phq| phq.created_at.to_date }
     daily_ratings.each do |day, phq_array|
-      ratings = phq_array.collect{|phq| phq.score}.compact
+      ratings = phq_array.collect { phq.score }.compact
       if ratings.size > 0
-        averaged_ratings << {day: day, intensity: average_rating(ratings)}
+        averaged_ratings << { day: day, intensity: average_rating(ratings) }
       end
     end
     averaged_ratings
@@ -290,12 +301,12 @@ class Participant < ActiveRecord::Base
 
   def recent_period
     @recent_period ||= (
-      # when no awake period return an empty set to allow chaining
-      now = Time.new
-      start_time = recent_awake_period.try(:start_time) || now
-      end_time = recent_awake_period.try(:end_time) || now
+    # when no awake period return an empty set to allow chaining
+    now = Time.new
+    start_time = recent_awake_period.try(:start_time) || now
+    end_time = recent_awake_period.try(:end_time) || now
 
-      { start_time: start_time, end_time: end_time }
+    { start_time: start_time, end_time: end_time }
     )
   end
 end

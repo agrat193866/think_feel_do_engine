@@ -342,7 +342,6 @@ feature "activity tracker", type: :feature do
     end
   end
 
-
   context "Participant with no acitivites is logged in" do
     let(:participant) { participants(:traveling_participant2) }
 

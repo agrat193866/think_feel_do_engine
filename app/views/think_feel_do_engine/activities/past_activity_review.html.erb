@@ -12,7 +12,6 @@
             class: "past-activity-review",
             style: index > 0 ? "display: none;" : "",
             id: "activity-#{ activity.id }",
-            onsubmit: "validatePublic(event,'activity_shared_item_true')"
           }
         ) do |f| %>
       <%= f.hidden_field :id, { value: activity.id } %>
@@ -78,7 +77,11 @@
       <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="monitored"></span>
 
       <div id="activity-submit-<%= activity.id %>" style="display: none;">
-          <%= content_tag(:button, "Continue", type: "submit", class: "btn btn-primary pull-right") %>
+          <%= content_tag(:button, "Continue",
+                          type: "submit",
+                          class: "btn btn-primary pull-right",
+                          onclick: "return validateMutliFormPage(event,'activity_shared_item_true', '#{ activity.id }')")
+          %>
       </div>
       <script>
         if($("select")[1].name == "activity[actual_accomplishment_intensity]"){
