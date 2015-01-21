@@ -1,3 +1,6 @@
+## 1.14.15 - 2015-01-21
+ * fixed Addressable namespace issue
+
 ## 1.14.14 - 2015-01-21
  * updated activity viz buttons
 
