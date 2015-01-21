@@ -1,5 +1,7 @@
 # An instance of a Message sent to a Participant or User.
 class DeliveredMessage < ActiveRecord::Base
+  include Addressable
+
   belongs_to :message
   belongs_to :recipient, polymorphic: true
 
@@ -16,22 +18,6 @@ class DeliveredMessage < ActiveRecord::Base
   }
 
   delegate :body, :render_body, :sender, :subject, to: :message
-
-  def from(user)
-    if sender.id == user.id
-      "You"
-    else
-      sender.try(:study_id) ? sender.study_id : "Coach"
-    end
-  end
-
-  def to(user)
-    if recipient_id == user.id
-      "You"
-    else
-      recipient.try(:study_id) ? recipient.study_id : "Coach"
-    end
-  end
 
   def mark_read
     update(is_read: true)

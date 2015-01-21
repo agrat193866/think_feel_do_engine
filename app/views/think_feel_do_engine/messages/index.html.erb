@@ -16,12 +16,13 @@
 </ul>
 
 <div class="tab-content">
-   <div id="scroll_btn" class="landing"></div>
+  <div id="scroll_btn" class="landing"></div>
+
   <div class="tab-pane" id="inbox">
     <div class="list-group">
       <% received_messages.each do |received_message| %>
         <%= link_to show_path.call(message_id: received_message.message_id), class: "list-group-item clearfix #{ received_message.is_read ? "text-muted" : "list-group-item-read" }" do %>
-          <span class="p_message">Coach</span>
+          <span class="p_message"><%= received_message.from %></span>
           <span class="p_message pull-right"><%= received_message.created_at.to_s(:date_time_with_meridian) %></span>
           <span class="col-md-4 p_message_subject"><%= received_message.subject %></span>
         <% end %>
