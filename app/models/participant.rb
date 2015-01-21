@@ -304,21 +304,16 @@ class Participant < ActiveRecord::Base
     averaged_ratings
   end
 
-  def phq_rating_daily_averages
-    averaged_ratings = []
-    daily_ratings = phq_assessments.group_by { |phq| phq.created_at.to_date }
-    # rubocop:disable all
-    daily_ratings.each do |day, phq_array|
-    # rubocop:enable all
-      ratings = phq_array.collect { |phq| [phq.score, phq.created_at] }.compact
-      if ratings.size > 0
-        averaged_ratings << { day: day,
-                              intensity: average_rating(ratings),
-                              drill_down: ratings
-                            }
-      end
+  def phq_scores
+    ratings = []
+
+    phq_assessments.each do |phq|
+      ratings << { day: phq.release_date,
+                   intensity: phq.score,
+                   drill_down: false
+                 }
     end
-    averaged_ratings
+    ratings
   end
 
   private

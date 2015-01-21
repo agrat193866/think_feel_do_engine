@@ -199,7 +199,9 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
               .attr("width", xScale.rangeBand())
               .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); })
               .on("click", function (d,i){
-                dailyDrillModal(d);
+                if(d.drill_down !== false) {
+                  dailyDrillModal(d);
+                }
               })
 
     // x axis at the bottom of the chart

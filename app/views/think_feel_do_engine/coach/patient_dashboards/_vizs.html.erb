@@ -28,7 +28,7 @@ var activationDate = activation("<%= patient.active_membership.start_date %>")
 var graphParameters = new Graph(
             <%= patient.mood_rating_daily_averages.to_json.html_safe %>,
             <%= patient.emotional_rating_daily_averages.to_json.html_safe %>,
-            <%= patient.phq_rating_daily_averages.to_json.html_safe %>,
+            <%= patient.phq_scores.to_json.html_safe %>,
             $("div#viz-container")
           );
 
