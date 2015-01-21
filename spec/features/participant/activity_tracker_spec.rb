@@ -262,6 +262,17 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Average Pleasure Discrepancy: 1.0"
     end
 
+    it "navigates to today when 'Today' button is clicked" do
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}?date=14/1/2015"
+
+      expect(page).to have_text "Daily Averages for Jan 14, 2015"
+      expect(page).to_not have_text "Daily Averages for Jan 15, 2015"
+
+      click_on "Today"
+
+      expect(page).to have_text "Daily Averages for Jan 15, 2015"
+    end
+
     it "displays a list of activities and activity details" do
       expect(page).to have_text "8 am - 9 am: Eating breakfast"
       expect(page).to have_text "Accomplishment: 9 · Pleasure: 9"
@@ -381,7 +392,8 @@ feature "activity tracker", type: :feature do
     it "displays an alert if no acitivites were scheduled over a 3-day period", :js do
       expect(page).to_not have_text "No activities were completed during this 3-day period."
 
-      click_on "3-Day"
+      click_on "Visualize"
+      click_on "Last 3 Days"
 
       expect(page).to have_text "No activities were completed during this 3-day period."
     end
@@ -389,7 +401,8 @@ feature "activity tracker", type: :feature do
     it "displays an alert if no acitivites were scheduled over a 7-day period", :js do
       expect(page).to_not have_text "No activities were completed during this 7-day period."
 
-      click_on "7-Day"
+      click_on "Visualize"
+      click_on "Last 7 Days"
 
       expect(page).to have_text "No activities were completed during this 7-day period."
     end

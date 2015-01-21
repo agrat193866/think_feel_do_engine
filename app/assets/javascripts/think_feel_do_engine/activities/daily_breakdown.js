@@ -197,117 +197,118 @@
         }
         if (data.length === 0) {
           $("#chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
-        }
-        data = grabLastXDays(data, numOfDays);
-        grouped = _.groupBy(data, function (d) {
-          return d.bucket;
-        });
-        main_list = [];
-        main_list = averageHours(data);
-        padStacks(main_list);
-        stack = d3.layout.stack().offset("silhouette").x(function (d) {
-          return d.start_date;
-        }).y(function (d) {
-          return d.time_diff;
-        });
-        stack(main_list);
-        main_list = cleanWeek(main_list);
-        flat_list = flatten(main_list);
-        dates = _.uniq(_.pluck(flat_list, "start_date"));
-        color.domain(["high pleasure/ high accomplishment", "low pleasure/ low accomplishment", "high pleasure/ low accomplishment", "low pleasure/ high accomplishment"]);
-        latestHour = d3.max(main_list, function (d) {
-          return d3.max(d, function (d) {
-            return d.y0 + d.y;
-          });
-        });
-        latestDateTimeHour = null;
-        earliestDateTimeHour = null;
-        _.each(main_list, function (day) {
-          _.each(day, function (hour) {
-            if ((!(earliestDateTimeHour !== null)) || hour.start_hour < earliestDateTimeHour.getHours()) {
-              earliestDateTimeHour = new Date(hour.start_datetime);
-            }
-            if ((!(latestDateTimeHour !== null)) || hour.end_hour > latestDateTimeHour.getHours()) {
-              latestDateTimeHour = new Date(hour.end_datetime);
-            }
-          });
-        });
-        x.domain(dates);
-        y.domain([earliestDateTimeHour.getHours(), (latestDateTimeHour.getHours() === 23 ? latestDateTimeHour.getHours() : latestDateTimeHour.getHours() + 1)]);
-        yRange = d3.scale.linear().range([0, height]).domain([earliestDateTimeHour.getHours(), (latestDateTimeHour.getHours() === 23 ? latestDateTimeHour.getHours() : latestDateTimeHour.getHours() + 1)]);
-        yAxis = d3.svg.axis().scale(yRange).orient("left").tickFormat(formatAVizTime);
-        svg.append("g").attr("class", "y axis").attr("transform", "translate(0,0)").call(yAxis);
-        yAxis = d3.svg.axis().scale(yRange).orient("right").tickFormat(formatAVizTime);
-        svg.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ",0)").call(yAxis);
-        svg.append("g").classed("grid y_grid", true).call(yAxis.tickSize(width, 0, 0).tickFormat(""));
-        svg.append("g").attr("class", "x axis").attr("transform", "translate(0,0)").call(xAxis);
-        svg_update = svg.selectAll(".bucket").data(main_list, function (d, i) {
-          return d + i;
-        });
-        svg_update.exit().remove();
-        bucket = svg_update.enter().append("g").attr("class", "bucket").attr("title", function (d, i) {
-          return d.time_diff;
-        });
-        bucket_rect = bucket.selectAll("g").data(function (d, i) {
-          return d.map(function (k) {
-            k.parent_index = i;
-            return k;
-          });
-        }).enter().append("g");
-        sizeHour = function (hourLength) {
-          var sizeOfAnHour;
-          sizeOfAnHour = height / ((latestDateTimeHour.getHours() + 1) - earliestDateTimeHour.getHours());
-          return hourLength * sizeOfAnHour;
-        };
-        positionHour = function (hourStart) {
-          return sizeHour(hourStart) - sizeHour(earliestDateTimeHour.getHours());
-        };
-        tip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
-        bucket_rect.append("rect").attr("width", x.rangeBand()).attr("x", function (d, i) {
-          $("body").append("<div class='" + d.title.replace(/\//g, "_") + " " + d.start_time + "' style='position: absolute; left:-1000px; top: -1000px; height:0; width:0;'><span class='bold'>" + d.title + "</span><br/><br/>" + d.start_time + " - " + d.end_time + "<br/><br/>" + "<span class='bold'>" + "Pleasure: </span>" + d.actual_pleasure + "<br/>" + "<span class='bold'>" + "Accomplishment: </span>" + d.actual_accomplishment + "</div>");
-          return x(d.start_date);
-        }).attr("stroke-width", 1).attr("stroke", "rgb(192,192,192)").attr("y", function (d) {
-          return positionHour(d.start_hour + (d.start_minutes / 60));
-        }).attr("height", function (d) {
-          return sizeHour((d.end_hour + (d.end_minutes / 60)) - (d.start_hour + (d.start_minutes / 60))) || 0;
-        }).style("fill", function (d) {
-          if (typeof d.bucket !== "undefined") {
-            return colorObj[d.bucket];
-          } else {
-            return "#000000";
-          }
-        }).on("mouseover", function (d) {
-          tip.transition().duration(200).style("opacity", 0.9);
-          tip.html("<span class='bold'>" + d.title + "</span><br/><br/>" + d.start_time + " - " + d.end_time + "<br/><br/>" + "<span class='bold'>" + "Pleasure: </span>" + d.actual_pleasure + "<br/>" + "<span class='bold'>" + "Accomplishment: </span>" + d.actual_accomplishment).style("left", d3.event.pageX + "px").style("top", (d3.event.pageY - 28) + "px");
-        }).on("mouseout", function (d) {
-          tip.transition().duration(500).style("opacity", 0);
-        });
-        d3.select(".legend").remove();
-        legend = svg.append("g").attr("class", "legend").attr("transform", "translate(0," + (height + 10) + ")");
-        if ($(window).innerWidth() > 1000) {
-          color_g = legend.selectAll("g").data(color.domain()).enter().append("g").attr("transform", function (d, i) {
-            return "translate(" + (20 + (i * 200)) + ",0)";
-          });
-          color_g.append("rect").attr("width", "20px").attr("height", "20px").attr("fill", function (d) {
-            return colorObj[d];
-          }).attr("stroke", "black");
-          return color_g.selectAll("text").data(function (d) {
-            return d.split("/");
-          }).enter().append("text").attr("dx", "35px").attr("dy", function (d, i) {
-            return i * 20 + 5;
-          }).text(String);
         } else {
-          color_g = legend.selectAll("g").data(color.domain()).enter().append("g").attr("transform", function (d, i) {
-            return "translate(0," + (20 + (i * 50)) + ")";
+          data = grabLastXDays(data, numOfDays);
+          grouped = _.groupBy(data, function (d) {
+            return d.bucket;
           });
-          color_g.append("rect").attr("width", "20px").attr("height", "20px").attr("fill", function (d) {
-            return colorObj[d];
-          }).attr("stroke", "black");
-          return color_g.selectAll("text").data(function (d) {
-            return d.split("/");
-          }).enter().append("text").attr("dx", "35px").attr("dy", function (d, i) {
-            return i * 20 + 5;
-          }).text(String);
+          main_list = [];
+          main_list = averageHours(data);
+          padStacks(main_list);
+          stack = d3.layout.stack().offset("silhouette").x(function (d) {
+            return d.start_date;
+          }).y(function (d) {
+            return d.time_diff;
+          });
+          stack(main_list);
+          main_list = cleanWeek(main_list);
+          flat_list = flatten(main_list);
+          dates = _.uniq(_.pluck(flat_list, "start_date"));
+          color.domain(["high pleasure/ high accomplishment", "low pleasure/ low accomplishment", "high pleasure/ low accomplishment", "low pleasure/ high accomplishment"]);
+          latestHour = d3.max(main_list, function (d) {
+            return d3.max(d, function (d) {
+              return d.y0 + d.y;
+            });
+          });
+          latestDateTimeHour = null;
+          earliestDateTimeHour = null;
+          _.each(main_list, function (day) {
+            _.each(day, function (hour) {
+              if ((!(earliestDateTimeHour !== null)) || hour.start_hour < earliestDateTimeHour.getHours()) {
+                earliestDateTimeHour = new Date(hour.start_datetime);
+              }
+              if ((!(latestDateTimeHour !== null)) || hour.end_hour > latestDateTimeHour.getHours()) {
+                latestDateTimeHour = new Date(hour.end_datetime);
+              }
+            });
+          });
+          x.domain(dates);
+          y.domain([earliestDateTimeHour.getHours(), (latestDateTimeHour.getHours() === 23 ? latestDateTimeHour.getHours() : latestDateTimeHour.getHours() + 1)]);
+          yRange = d3.scale.linear().range([0, height]).domain([earliestDateTimeHour.getHours(), (latestDateTimeHour.getHours() === 23 ? latestDateTimeHour.getHours() : latestDateTimeHour.getHours() + 1)]);
+          yAxis = d3.svg.axis().scale(yRange).orient("left").tickFormat(formatAVizTime);
+          svg.append("g").attr("class", "y axis").attr("transform", "translate(0,0)").call(yAxis);
+          yAxis = d3.svg.axis().scale(yRange).orient("right").tickFormat(formatAVizTime);
+          svg.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ",0)").call(yAxis);
+          svg.append("g").classed("grid y_grid", true).call(yAxis.tickSize(width, 0, 0).tickFormat(""));
+          svg.append("g").attr("class", "x axis").attr("transform", "translate(0,0)").call(xAxis);
+          svg_update = svg.selectAll(".bucket").data(main_list, function (d, i) {
+            return d + i;
+          });
+          svg_update.exit().remove();
+          bucket = svg_update.enter().append("g").attr("class", "bucket").attr("title", function (d, i) {
+            return d.time_diff;
+          });
+          bucket_rect = bucket.selectAll("g").data(function (d, i) {
+            return d.map(function (k) {
+              k.parent_index = i;
+              return k;
+            });
+          }).enter().append("g");
+          sizeHour = function (hourLength) {
+            var sizeOfAnHour;
+            sizeOfAnHour = height / ((latestDateTimeHour.getHours() + 1) - earliestDateTimeHour.getHours());
+            return hourLength * sizeOfAnHour;
+          };
+          positionHour = function (hourStart) {
+            return sizeHour(hourStart) - sizeHour(earliestDateTimeHour.getHours());
+          };
+          tip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+          bucket_rect.append("rect").attr("width", x.rangeBand()).attr("x", function (d, i) {
+            $("body").append("<div class='" + d.title.replace(/\//g, "_") + " " + d.start_time + "' style='position: absolute; left:-1000px; top: -1000px; height:0; width:0;'><span class='bold'>" + d.title + "</span><br/><br/>" + d.start_time + " - " + d.end_time + "<br/><br/>" + "<span class='bold'>" + "Pleasure: </span>" + d.actual_pleasure + "<br/>" + "<span class='bold'>" + "Accomplishment: </span>" + d.actual_accomplishment + "</div>");
+            return x(d.start_date);
+          }).attr("stroke-width", 1).attr("stroke", "rgb(192,192,192)").attr("y", function (d) {
+            return positionHour(d.start_hour + (d.start_minutes / 60));
+          }).attr("height", function (d) {
+            return sizeHour((d.end_hour + (d.end_minutes / 60)) - (d.start_hour + (d.start_minutes / 60))) || 0;
+          }).style("fill", function (d) {
+            if (typeof d.bucket !== "undefined") {
+              return colorObj[d.bucket];
+            } else {
+              return "#000000";
+            }
+          }).on("mouseover", function (d) {
+            tip.transition().duration(200).style("opacity", 0.9);
+            tip.html("<span class='bold'>" + d.title + "</span><br/><br/>" + d.start_time + " - " + d.end_time + "<br/><br/>" + "<span class='bold'>" + "Pleasure: </span>" + d.actual_pleasure + "<br/>" + "<span class='bold'>" + "Accomplishment: </span>" + d.actual_accomplishment).style("left", d3.event.pageX + "px").style("top", (d3.event.pageY - 28) + "px");
+          }).on("mouseout", function (d) {
+            tip.transition().duration(500).style("opacity", 0);
+          });
+          d3.select(".legend").remove();
+          legend = svg.append("g").attr("class", "legend").attr("transform", "translate(0," + (height + 10) + ")");
+          if ($(window).innerWidth() > 1000) {
+            color_g = legend.selectAll("g").data(color.domain()).enter().append("g").attr("transform", function (d, i) {
+              return "translate(" + (20 + (i * 200)) + ",0)";
+            });
+            color_g.append("rect").attr("width", "20px").attr("height", "20px").attr("fill", function (d) {
+              return colorObj[d];
+            }).attr("stroke", "black");
+            return color_g.selectAll("text").data(function (d) {
+              return d.split("/");
+            }).enter().append("text").attr("dx", "35px").attr("dy", function (d, i) {
+              return i * 20 + 5;
+            }).text(String);
+          } else {
+            color_g = legend.selectAll("g").data(color.domain()).enter().append("g").attr("transform", function (d, i) {
+              return "translate(0," + (20 + (i * 50)) + ")";
+            });
+            color_g.append("rect").attr("width", "20px").attr("height", "20px").attr("fill", function (d) {
+              return colorObj[d];
+            }).attr("stroke", "black");
+            return color_g.selectAll("text").data(function (d) {
+              return d.split("/");
+            }).enter().append("text").attr("dx", "35px").attr("dy", function (d, i) {
+              return i * 20 + 5;
+            }).text(String);
+          }
         }
       };
       $("#chart").children().remove();
