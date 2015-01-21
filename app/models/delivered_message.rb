@@ -1,6 +1,6 @@
 # An instance of a Message sent to a Participant or User.
 class DeliveredMessage < ActiveRecord::Base
-  include Addressable
+  include ThinkFeelDoEngine::Addressable
 
   belongs_to :message
   belongs_to :recipient, polymorphic: true

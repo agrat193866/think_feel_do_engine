@@ -1,10 +1,10 @@
 require "spec_helper"
 
 class MockMessage
-  include Addressable
+  include ThinkFeelDoEngine::Addressable
 end
 
-describe Addressable do
+describe ThinkFeelDoEngine::Addressable do
   let(:message) { MockMessage.new }
 
   before do

@@ -1,6 +1,6 @@
 # A message sent from a Participant or User to a Participant or User.
 class Message < ActiveRecord::Base
-  include Addressable
+  include ThinkFeelDoEngine::Addressable
 
   belongs_to :sender, polymorphic: true
   belongs_to :recipient, polymorphic: true
