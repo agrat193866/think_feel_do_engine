@@ -2,7 +2,9 @@
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif current_participant.active_membership.present? %>
   <div class="btn-toolbar">
-    <%= link_to (fa_icon("pencil") + " Compose").html_safe, compose_path, class: "btn btn-primary" %>
+    <%= link_to compose_path, class: "btn btn-primary" do %>
+      <%= fa_icon "pencil" %> Compose
+    <% end %>
   </div>
 <% end %>
 
@@ -18,7 +20,11 @@
   <div class="tab-pane" id="inbox">
     <div class="list-group">
       <% received_messages.each do |received_message| %>
-        <%= link_to ("<span class=\"p_message\">Coach</span> ".html_safe + "<span class='p_message pull-right'>#{received_message.created_at.to_s(:date_time_with_meridian)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + received_message.subject + "</span>".html_safe), show_path.call(message_id: received_message.message_id), class: (received_message.is_read ? "text-muted list-group-item clearfix" : "list-group-item list-group-item-read clearfix") %>
+        <%= link_to show_path.call(message_id: received_message.message_id), class: "list-group-item clearfix #{ received_message.is_read ? "text-muted" : "list-group-item-read" }" do %>
+          <span class="p_message">Coach</span>
+          <span class="p_message pull-right"><%= received_message.created_at.to_s(:date_time_with_meridian) %></span>
+          <span class="col-md-4 p_message_subject"><%= received_message.subject %></span>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -28,7 +34,11 @@
       <div class="list-group">
         <% user = current_user || current_participant %>
         <% sent_messages.each do |msg| %>
-          <%= link_to "<span class=\"p_message\">To: #{msg.to(user)}</span> ".html_safe + "<span class='p_message pull-right'>#{msg.created_at.to_s(:date_time_with_meridian)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + msg.subject + "</span>".html_safe, show_path.call(message_id: msg.id), class: "text-muted list-group-item" %>
+          <%= link_to show_path.call(message_id: msg.id), class: "text-muted list-group-item" do %>
+            <span class="p_message">To: <%= msg.to user %></span>
+            <span class="p_message pull-right"><%= msg.created_at.to_s :date_time_with_meridian %></span>
+            <span class="col-md-4 p_message_subject"><%= msg.subject %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
