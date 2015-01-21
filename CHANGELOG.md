@@ -1,3 +1,6 @@
+## 1.14.12 - 2015-01-21
+ * Updated phq viz logic
+
 ## 1.14.11 - 2015-01-20
  * added modal popups for drilldowns in mood and emotion viz
 
