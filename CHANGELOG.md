@@ -1,3 +1,6 @@
+## 1.14.14 - 2015-01-21
+ * updated activity viz buttons
+
 ## 1.14.13 - 2015-01-21
  * refactored/updated Message labelling
 
