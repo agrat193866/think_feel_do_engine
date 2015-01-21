@@ -99,7 +99,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
-        if(moment(d.date).startOf('day') >= startDate._d && moment(d.date).startOf('day') <= endDate._d) {
+        if(moment(d.day).startOf('day') >= startDate._d && moment(d.day).startOf('day') <= endDate._d) {
           return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false), d.drill_down];
         }
         else {
@@ -108,16 +108,19 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       });
       // Update the x-scale.
       var domain = data.map(function(d) { return moment(d[0])._d } );
-      var dayRange = d3.time.days(startDate._d, endDate._d).length;
+      var dayRange = d3.time.days(startDate._d, endDate._d).length
       var x_domain = [endDate.startOf('day')._d];
+
       for(var i = 0; i < dayRange; i++) {
         var day = x_domain[i]
         x_domain.push(moment(day).subtract('days', 1).startOf('day')._d);
       }
+
       xScale
         .domain(x_domain)
         .rangeRoundBands([width - margin.left - margin.right, 0], xRoundBands);
       // Update the y-scale.
+
       yScale
         .domain([lowBound, highBound])
         .range([height - margin.top - margin.bottom, 0])
