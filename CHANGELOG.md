@@ -1,3 +1,6 @@
+## 1.14.13 - 2015-01-21
+ * refactored/updated Message labelling
+
 ## 1.14.12 - 2015-01-21
  * Updated phq viz logic
 
