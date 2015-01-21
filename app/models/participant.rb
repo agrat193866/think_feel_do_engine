@@ -304,7 +304,6 @@ class Participant < ActiveRecord::Base
     averaged_ratings
   end
 
-
   private
 
   def recent_awake_period

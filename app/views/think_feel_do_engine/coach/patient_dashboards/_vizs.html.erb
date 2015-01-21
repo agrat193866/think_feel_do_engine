@@ -19,7 +19,9 @@
     <strong>Date</strong>
   </div>
 </div>
-<div id="phq"></div>
+<% if patient.respond_to? 'phq_scores' %>
+  <div id="phq"></div>
+<% end %>
 <div id="mood"></div>
 <div id="emotions"></div>
 <script>
@@ -28,20 +30,23 @@ var activationDate = activation("<%= patient.active_membership.start_date %>")
 var graphParameters = new Graph(
             <%= patient.mood_rating_daily_averages.to_json.html_safe %>,
             <%= patient.emotional_rating_daily_averages.to_json.html_safe %>,
-            <%= patient.phq_scores.to_json.html_safe %>,
+            <%= patient.respond_to?('phq_scores') ? patient.phq_scores.to_json.html_safe : nil %>,
             $("div#viz-container")
           );
 
 function drawGraphs() {
   $("div#mood, div#emotions, div#phq").empty();
-  var phqGraphTitle = "PHQ9";
-  d3.select("#phq")
-    .datum(graphParameters.phqData)
-      .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 27, phqGraphTitle)
-        .width(graphParameters.graphWidth)
-        .height(300)
-        .x(function(d, i) { return moment(d.day).startOf('day')._d; })
-        .y(function(d, i) { return d.intensity; }));
+
+  <% if patient.respond_to?('phq_score') %>
+    var phqGraphTitle = "PHQ9";
+    d3.select("#phq")
+      .datum(graphParameters.phqData)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 27, phqGraphTitle)
+          .width(graphParameters.graphWidth)
+          .height(300)
+          .x(function(d, i) { return moment(d.day).startOf('day')._d; })
+          .y(function(d, i) { return d.intensity; }));
+  <% end %>
 
   var moodGraphTitle = "Mood";
   d3.select("#mood")
