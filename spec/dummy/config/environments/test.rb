@@ -12,6 +12,9 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  # added to show phq features for specs
+  config.include_phq_features = true
+
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = 'public, max-age=3600'
@@ -40,7 +43,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+
   config.log_level = :error
   ThinkFeelDoEngine::Engine.routes.default_url_options[:host] = 'test.host'
   config.allow_concurrency = false

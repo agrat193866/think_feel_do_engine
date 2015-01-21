@@ -19,7 +19,7 @@
     <strong>Date</strong>
   </div>
 </div>
-<% if patient.respond_to? 'phq_scores' %>
+<% if Rails.application.config.include_phq_features %>
   <div id="phq"></div>
 <% end %>
 <div id="mood"></div>
@@ -30,14 +30,15 @@ var activationDate = activation("<%= patient.active_membership.start_date %>")
 var graphParameters = new Graph(
             <%= patient.mood_rating_daily_averages.to_json.html_safe %>,
             <%= patient.emotional_rating_daily_averages.to_json.html_safe %>,
-            <%= patient.respond_to?('phq_scores') ? patient.phq_scores.to_json.html_safe : nil %>,
+            <%= Rails.application.config.include_phq_features ? patient.phq_scores.to_json.html_safe : "null" %>,
             $("div#viz-container")
           );
 
 function drawGraphs() {
-  $("div#mood, div#emotions, div#phq").empty();
+  $("div#mood, div#emotions").empty();
 
-  <% if patient.respond_to?('phq_score') %>
+  <% if Rails.application.config.include_phq_features %>
+    $("div#phq").empty();
     var phqGraphTitle = "PHQ9";
     d3.select("#phq")
       .datum(graphParameters.phqData)
