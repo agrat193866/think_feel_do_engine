@@ -1,3 +1,6 @@
+## 1.15.0 - 2015-01-21
+ * PHQ features are conditionally checked via config in host app
+
 ## 1.14.15 - 2015-01-21
  * fixed Addressable namespace issue
 
