@@ -3,6 +3,5 @@
     <%= task_status.completed_at ? task_status.completed_at.to_i : 0 %>
   </td>
   <td><%= task_status.task.title %></td>
-  <td><%= task_status.created_at.to_formatted_s(:short) %></td>
   <td><%= task_status.completed_at? ? task_status.completed_at.to_formatted_s(:short) : "<span class='label label-warning'>Incomplete</span>".html_safe %></td>
 </tr>

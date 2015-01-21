@@ -275,11 +275,11 @@ feature "patient dashboard", type: :feature do
       it "summarizes tasks" do
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["#1 Awareness", short_timestamp, "Incomplete"]
+          cells: ["#1 Awareness", "Incomplete"]
         )
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["Add a New Thought", short_timestamp, "Incomplete"]
+          cells: ["Add a New Thought", "Incomplete"]
         )
       end
     end
