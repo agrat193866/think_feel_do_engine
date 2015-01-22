@@ -1,4 +1,7 @@
 <tr>
+  <td style="display: none;">
+    <%= mood.created_at ? mood.created_at.to_i : 0 %>
+  </td>
   <td><%= mood.rating %></td>
   <td><%= mood.created_at.to_s(:date_time_with_meridian) %></td>
 </tr>

@@ -1,4 +1,10 @@
 <tr class=<%= get_color_class(activity) %>>
+  <td style="display: none;">
+    <%= activity.start_time ? activity.start_time.to_i : 0 %>
+  </td>
+  <td style="display: none;">
+    <%= activity.created_at ? activity.created_at.to_i : 0 %>
+  </td>
   <td><%= activity.title %></td>
   <td><%= activity.predicted_pleasure_intensity ? activity.predicted_pleasure_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
   <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe%></td>

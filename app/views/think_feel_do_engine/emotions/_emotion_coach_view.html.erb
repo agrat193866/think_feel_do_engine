@@ -1,4 +1,7 @@
 <tr>
+  <td style="display: none;">
+    <%= emotional_rating.created_at ? emotional_rating.created_at.to_i : 0 %>
+  </td>
   <td><%= emotional_rating.name %></td>
   <td><%= emotional_rating.rating %></td>
   <td><%= emotional_rating.created_at.to_s(:date_time_with_meridian) %></td>

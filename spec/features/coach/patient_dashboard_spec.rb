@@ -159,11 +159,11 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes moods" do
         expect(page).to have_the_table(
-          id: "moods",
+          id: "moods-table",
           cells: ["9", (Time.current - 28.days).to_formatted_s(:date_time_with_meridian)]
         )
         expect(page).to have_the_table(
-          id: "moods",
+          id: "moods-table",
           cells: ["5", (Time.current - 21.days).to_formatted_s(:date_time_with_meridian)]
         )
       end
@@ -267,7 +267,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes feelings" do
         expect(page).to have_the_table(
-          id: "emotions",
+          id: "emotions-table",
           cells: ["longing", longer_timestamp]
         )
       end

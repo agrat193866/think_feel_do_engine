@@ -87,9 +87,10 @@
     <div id="moodCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-  <table class="table table-hover generic-data-table data-table" id="moods">
+  <table class="table table-hover data-table" id="moods-table">
     <thead>
       <tr>
+        <th style="display: none;"></th>
         <th>Rating 0 (Bad) to 10 (Good)</th>
         <th>Date</th>
       </tr>
@@ -114,9 +115,10 @@
     <div id="feelingsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
                 <div class="table-responsive div-table-viz">
-      <table class="table table-hover generic-data-table data-table" id="emotions">
+      <table class="table table-hover data-table" id="emotions-table">
         <thead>
           <tr>
+            <th style="display: none;"></th>
             <th>Feeling</th>
             <th>Rating</th>
             <th>Date</th>
@@ -142,9 +144,10 @@
     <div id="loginsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover generic-data-table data-table" id="logins">
+  <table class="table table-hover  data-table" id="logins">
     <thead>
       <tr>
+        <th style="display: none;"></th>
         <th>Date/Time of Login</th>
       </tr>
     </thead>
@@ -173,7 +176,7 @@
   <table class="table table-hover data-table" id="learning_data">
     <thead>
       <tr>
-        <th>Datetime</th>
+        <th style="display: none;"></th>
         <th>Task</th>
         <th>Start Day</th>
         <th>Started At</th>
@@ -203,9 +206,11 @@
   <div id="activity_futureCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
       <div class="table-responsive div-table-viz">
-        <table class="table table-hover generic-data-table data-table" id="activities_future">
+        <table class="table table-hover  data-table" id="activities_future">
           <thead>
             <tr>
+              <th style="display: none;"></th>
+              <th style="display: none;"></th>
               <th>Activity</th>
               <th>Predicted Pleasure Rating</th>
               <th>Predicted Accomplishment Rating</th>
@@ -242,9 +247,11 @@
   <div id="activity_pastCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
               <div class="table-responsive div-table-viz">
-      <table class="table table-hover generic-data-table data-table" id="activities_past">
+      <table class="table table-hover  data-table" id="activities_past">
         <thead>
           <tr>
+            <th style="display: none;"></th>
+            <th style="display: none;"></th>
             <th>Activity</th>
             <th>Planned/Monitored</th>
             <th>Status</th>
@@ -344,7 +351,7 @@
   <table class="table table-hover data-table" id="task_statuses">
     <thead>
       <tr>
-        <th>Datetime</th>
+        <th style="display: none;"></th>
         <th>Task</th>
         <th>Start Date</th>
         <th>Completed At</th>
@@ -362,25 +369,6 @@
 
 <script>
   $(function() {
-    return $('#task_statuses, #learning_data').dataTable({
-      sPaginationType: 'bootstrap',
-      aoColumnDefs: [
-        {
-          aTargets: [0],
-          bVisible: false
-        },
-        {
-          aTargets: [3],
-          iDataSort: [0]
-        }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-
-  $(function() {
     return $('.generic-data-table').dataTable({
       sPaginationType: 'bootstrap',
       oLanguage: {
@@ -388,4 +376,167 @@
       }
     });
   });
+
+  $(function() {
+      return $('#learning_data').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[0, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [3],
+                  iDataSort: [0]
+              }
+          ],
+          oLanguage: {
+              sSearch: 'Filter: '
+          }
+      });
+  });
+
+  $(function() {
+      return $('#task_statuses').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[0, "asc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [3],
+                  iDataSort: [0]
+              }
+          ],
+          oLanguage: {
+              sSearch: 'Filter: '
+          }
+      });
+  });
+
+  $(function() {
+      return $('#moods-table').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[2, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [2],
+                  iDataSort: [0]
+              }
+          ]
+      });
+  });
+
+  $(function() {
+      return $('#emotions-table').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[2, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [2],
+                  iDataSort: [0]
+              }
+          ]
+      });
+  });
+
+  $(function() {
+      return $('#activities_future').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[6, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [5],
+                  iDataSort: [0]
+              },
+              {
+                  aTargets: [1],
+                  bVisible: false
+              },
+              {
+                  aTargets: [6],
+                  iDataSort: [1]
+              }
+          ]
+      });
+  });
+
+  $(function() {
+      return $('#activities_past').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[10, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [9],
+                  iDataSort: [0]
+              },
+              {
+                  aTargets: [1],
+                  bVisible: false
+              },
+              {
+                  aTargets: [10],
+                  iDataSort: [1]
+              }
+          ]
+      });
+  });
+
+  $(function() {
+      return $('#logins').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[1, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [1],
+                  iDataSort: [0]
+              }
+          ]
+      });
+  });
+
 </script>
