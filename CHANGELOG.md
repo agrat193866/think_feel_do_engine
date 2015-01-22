@@ -1,3 +1,6 @@
+## 1.15.3 - 2015-01-22
+ * updated redirect when a participant resets password
+
 ## 1.15.2 - 2015-01-22
  * fixed sorting issues in patient dashboard
 
