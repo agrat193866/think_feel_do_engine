@@ -1,3 +1,6 @@
+## 1.15.7 - 2015-01-22
+ * Correct authorization for Researchers and rubocop fixes
+
 ## 1.15.6 - 2015-01-22
  * updated patient dashboard lesson and task tables
 
