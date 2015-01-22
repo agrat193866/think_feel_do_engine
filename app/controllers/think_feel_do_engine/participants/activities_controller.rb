@@ -25,7 +25,7 @@ module ThinkFeelDoEngine
 
       private
 
-      # refactor...
+      # TODO: refactor and remove route...
       def activity_id
         params[:activities][:commit_id].keys.first || -1
       end

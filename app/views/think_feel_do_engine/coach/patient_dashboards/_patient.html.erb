@@ -11,25 +11,27 @@
     <td>
       <%= patient.active_membership ? (patient.active_membership.day_in_study / 7.0).ceil : '<span class="label label-warning">Inactive</span>'.html_safe %>
     </td>
-    
-    <td>
-      <% if (last_phq = patient.phq_assessments.last) %>
-        <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
-      <% else %>
-        <span class="label label-warning">No Completed Assessments</span>
-      <% end %>
-    </td>
 
-    <td>
-      <% if patient.phq_assessments.count > 0 %>
-        <% suggestion = patient.stepping_suggestion %>
-        <span title="Click for more details" class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
-        <button type="button" class="btn btn-link label-phq">more details</button>
-      <% else %>
-        <span title="Click for more details" class="label label-phq-none label-warning">No Completed Assessments</span>
-        <button type="button" class="btn btn-link label-phq">more details</button>
-      <% end %>
-    </td>
+    <% if Rails.application.config.include_phq_features %>
+      <td>
+        <% if (last_phq = patient.phq_assessments.last) %>
+          <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
+        <% else %>
+          <span class="label label-warning">No Completed Assessments</span>
+        <% end %>
+      </td>
+
+      <td>
+        <% if patient.phq_assessments.count > 0 %>
+          <% suggestion = patient.stepping_suggestion %>
+          <span title="Click for more details" class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
+          <button type="button" class="btn btn-link label-phq">more details</button>
+        <% else %>
+          <span title="Click for more details" class="label label-phq-none label-warning">No Completed Assessments</span>
+          <button type="button" class="btn btn-link label-phq">more details</button>
+        <% end %>
+      </td>
+    <% end %>
 
     <td>
       <%= patient.sign_in_count %>

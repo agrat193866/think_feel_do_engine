@@ -1,3 +1,18 @@
+## 1.15.1 - 2015-01-22
+ * fixed RuboCop conflict and version.rb merge conflict
+
+## 1.15.0 - 2015-01-21
+ * PHQ features are conditionally checked via config in host app
+
+## 1.14.15 - 2015-01-21
+ * fixed Addressable namespace issue
+
+## 1.14.14 - 2015-01-21
+ * updated activity viz buttons
+
+## 1.14.13 - 2015-01-21
+ * refactored/updated Message labelling
+
 ## 1.14.12 - 2015-01-21
  * Updated phq viz logic
 

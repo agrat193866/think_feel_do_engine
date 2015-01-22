@@ -102,10 +102,8 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
         if(moment(d.day).startOf('day') >= startDate._d && moment(d.day).startOf('day') <= endDate._d) {
           return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false), d.drill_down];
         }
-        else {
-          return [startDate._d, 0, true];
-        }
       });
+      data = data.filter(function(n){ return n !== undefined; });
       // Update the x-scale.
       var domain = data.map(function(d) { return moment(d[0])._d } );
       var dayRange = d3.time.days(startDate._d, endDate._d).length
@@ -199,7 +197,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
               .attr("width", xScale.rangeBand())
               .attr("height", function(d, i) { return Math.abs( Y(d) - Y0() ); })
               .on("click", function (d,i){
-                if(d.drill_down !== false) {
+                if(d[3] !== false) {
                   dailyDrillModal(d);
                 }
               })

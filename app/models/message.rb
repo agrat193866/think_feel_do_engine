@@ -1,5 +1,7 @@
 # A message sent from a Participant or User to a Participant or User.
 class Message < ActiveRecord::Base
+  include ThinkFeelDoEngine::Addressable
+
   belongs_to :sender, polymorphic: true
   belongs_to :recipient, polymorphic: true
   has_many :delivered_messages, dependent: :destroy
@@ -24,22 +26,6 @@ class Message < ActiveRecord::Base
     end
 
     rendered.html_safe
-  end
-
-  def from(user)
-    if sender.id == user.id
-      "You"
-    else
-      sender.try(:study_id) ? sender.study_id : "Coach"
-    end
-  end
-
-  def to(user)
-    if recipient_id == user.id
-      "You"
-    else
-      recipient.try(:study_id) ? recipient.study_id : "Coach"
-    end
   end
 
   private
