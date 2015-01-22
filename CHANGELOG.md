@@ -1,3 +1,6 @@
+## 1.15.6 - 2015-01-22
+ * updated patient dashboard lesson and task tables
+
 ## 1.15.5 - 2015-01-22
  * rubocop changes
 
