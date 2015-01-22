@@ -196,7 +196,7 @@
           return;
         }
         if (data.length === 0) {
-          $("#chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
+          $("#activities-chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
         } else {
           data = grabLastXDays(data, numOfDays);
           grouped = _.groupBy(data, function (d) {
@@ -311,7 +311,7 @@
           }
         }
       };
-      $("#chart").children().remove();
+      $("#activities-chart").children().remove();
       margin = {
         top: 20,
         right: 50,
@@ -327,9 +327,10 @@
       x = d3.scale.ordinal().rangeRoundBands([0, width], 0.4);
       xAxis = d3.svg.axis().scale(x).orient("top").tickFormat(formatXAxisLabels);
       y = d3.scale.linear().rangeRound([200, 0]);
-      container = d3.select("#chart").append("div");
+      container = d3.select("#activities-chart").append("div");
       svg = container.append("svg").attr("class", "activity_viz").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       updateStacked(numOfDays, data);
+      $("#activities-chart div").prepend("<p class=\"text-center\">"+numOfDays+"-Day View</p>");
     };
     getBucket = function (pleasure, accomplishment) {
       if (pleasure >= 5 && accomplishment >= 5) {

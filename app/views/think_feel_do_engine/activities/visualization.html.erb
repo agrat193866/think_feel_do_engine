@@ -21,7 +21,7 @@
 </div>
 
 <div id="do-viz-wrapper">
-  <section id="chart"></section>
+  <section id="activities-chart"></section>
 </div>
 
 <div id="datepicker" style="display: none;margin: 0 0 10px;"></div>
@@ -194,7 +194,7 @@
     });
     $("button.calendar").on("click", function(event) {
       $("div#datepicker").show();
-      $("#chart").children().remove()
+      $("#activities-chart").children().remove()
     });
     $("button.show-form").on("click", function(event) {
       var target;
