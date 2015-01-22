@@ -1,3 +1,6 @@
+## 1.15.5 - 2015-01-22
+ * rubocop changes
+
 ## 1.15.4 - 2015-01-22
  * updated the url for reply messages
 
