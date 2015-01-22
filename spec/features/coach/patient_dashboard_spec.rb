@@ -127,7 +127,7 @@ feature "patient dashboard", type: :feature do
 
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short) ,longer_timestamp, longer_timestamp, "Not Completed"]
+            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "Not Completed"]
           )
         end
         Timecop.return
@@ -151,7 +151,7 @@ feature "patient dashboard", type: :feature do
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short) ,longer_timestamp, longer_timestamp, "less than a minute"]
+            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "less than a minute"]
           )
         end
         Timecop.return
