@@ -1,7 +1,10 @@
 ThinkFeelDoEngine::Engine.routes.draw do
   devise_for :participants,
              module: :devise,
-             controllers: { sessions: "think_feel_do_engine/participants/sessions" }
+             controllers: {
+                            sessions: "think_feel_do_engine/participants/sessions",
+                            passwords: "think_feel_do_engine/participants/passwords"
+                          }
   devise_for :users,
              module: :devise,
              controllers: {

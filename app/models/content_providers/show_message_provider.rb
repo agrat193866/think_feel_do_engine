@@ -59,7 +59,7 @@ module ContentProviders
 
       "&compose_path=#{compose_path(options)}"\
       "&message_id=#{message.id}"\
-      "&subject=Reply: #{message.subject}"\
+      "&subject=Reply:%20#{message.subject.gsub(' ', '%20')}"\
       "&recipient_id=#{message.sender.id}"\
       "&recipient_type=#{message.sender.class}"\
       "&recipient=#{message.from(responder(options))}"
