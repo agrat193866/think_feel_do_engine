@@ -1,3 +1,6 @@
+## 1.15.4 - 2015-01-22
+ * updated the url for reply messages
+
 ## 1.15.3 - 2015-01-22
  * updated redirect when a participant resets password
 
