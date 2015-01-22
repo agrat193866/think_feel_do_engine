@@ -1,3 +1,6 @@
+## 1.15.8 - 2015-01-22
+ * refactored tests and fixed deprecation warnings
+
 ## 1.15.7 - 2015-01-22
  * Correct authorization for Researchers and rubocop fixes
 
