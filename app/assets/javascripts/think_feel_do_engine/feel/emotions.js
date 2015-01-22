@@ -111,7 +111,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
 
       for(var i = 0; i < dayRange; i++) {
         var day = x_domain[i]
-        x_domain.push(moment(day).subtract('days', 1).startOf('day')._d);
+        x_domain.push(moment(day).subtract(1, 'days').startOf('day')._d);
       }
 
       xScale
@@ -296,7 +296,7 @@ function Graph (moodData, emotionsData, phqData, container) {
   this.emotionsData = emotionsData;
   this.phqData = phqData;
   this.graphWidth = container.width() *.97;
-  this.startDate = moment().subtract('days', 6).startOf('day');
+  this.startDate = moment().subtract(6, 'days').startOf('day');
   this.endDate = moment().startOf('day');
   this.interval = 7;
   this.offset = 1;
@@ -305,8 +305,8 @@ function Graph (moodData, emotionsData, phqData, container) {
 function offsetInterval (graphParameters) {
   var startOffset = (graphParameters.interval * graphParameters.offset) - 1;
   var endOffset = graphParameters.offset === 1 ? 0 : graphParameters.interval * (graphParameters.offset-1)
-  graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
-  graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
+  graphParameters.startDate = moment().subtract(startOffset, 'days').startOf('day');
+  graphParameters.endDate = moment().subtract(endOffset, 'days').startOf('day');
 }
 
 function appendDateRange (graphParameters) {
