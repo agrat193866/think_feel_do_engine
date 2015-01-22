@@ -29,8 +29,8 @@ describe ThinkFeelDoEngine::Addressable do
 
     it "labels the Coach" do
       allow(CoachAssignment).to receive(:exists?)
-      .with(participant_id: recipient.id, coach_id: sender.id)
-      .and_return(true)
+        .with(participant_id: recipient.id, coach_id: sender.id)
+        .and_return(true)
 
       expect(message.from).to eq "Coach"
     end
@@ -56,8 +56,8 @@ describe ThinkFeelDoEngine::Addressable do
 
     it "labels the Coach" do
       allow(CoachAssignment).to receive(:exists?)
-      .with(participant_id: sender.id, coach_id: recipient.id)
-      .and_return(true)
+        .with(participant_id: sender.id, coach_id: recipient.id)
+        .and_return(true)
 
       expect(message.to).to eq "Coach"
     end
