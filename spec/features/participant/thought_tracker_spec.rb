@@ -14,7 +14,7 @@ feature "thought tracker", type: :feature do
   end
 
   it "implements #1 Identifying" do
-    with_scope ".left.list-group" do
+    within ".left.list-group" do
       click_on bit_core_content_modules(:think_identifying).title
     end
 
@@ -57,7 +57,7 @@ feature "thought tracker", type: :feature do
   end
 
   it "implements a 'Previous' button for slideshows " do
-    with_scope ".container .left.list-group" do
+    within ".container .left.list-group" do
       click_on bit_core_content_modules(:think_identifying).title
     end
 
@@ -77,7 +77,7 @@ feature "thought tracker", type: :feature do
   end
 
   it "implements #2 Patterns", :js do
-    with_scope ".left.list-group" do
+    within ".left.list-group" do
       click_on "#2 Patterns"
     end
 
@@ -171,7 +171,7 @@ feature "thought tracker", type: :feature do
   end
 
   it "implements 'Add a New Thought'" do
-    with_scope ".THINK ul" do
+    within ".THINK ul" do
       click_on "Add a New Thought"
     end
 
@@ -192,13 +192,13 @@ feature "thought tracker", type: :feature do
   end
 
   it "implements a new thought from the page where all harmful thoughts are displayed" do
-    with_scope ".THINK ul" do
+    within ".THINK ul" do
       click_on "Thoughts"
     end
     expect(page).to have_text "Harmful Thoughts"
     expect(page).to_not have_the_table(id: "thoughts", cells: ["I like tomatoes", "Overgeneralization", "harmful", "Oh my", "Not sure"])
 
-    with_scope "#tool-layout.container" do
+    within "#tool-layout.container" do
       click_on "Add a New Thought"
     end
 

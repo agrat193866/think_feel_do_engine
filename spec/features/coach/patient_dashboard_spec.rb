@@ -293,7 +293,7 @@ feature "patient dashboard", type: :feature do
 
       it "displays number of unread messages" do
         visit "/coach/groups/#{group1.id}/patient_dashboards"
-        with_scope "#patient-#{ participant1.id } .unread" do
+        within "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("1")
         end
         visit "/coach/groups/#{group1.id}/messages"
@@ -304,7 +304,7 @@ feature "patient dashboard", type: :feature do
 
         visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-        with_scope "#patient-#{ participant1.id } .unread" do
+        within "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("0")
         end
 

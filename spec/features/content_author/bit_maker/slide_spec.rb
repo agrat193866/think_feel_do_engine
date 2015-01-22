@@ -36,7 +36,7 @@ feature "Slide", type: :feature do
     describe "Updating" do
       it "display updated title and body" do
         slide = BitCore::Slide.find_by_title("It's simple.")
-        with_scope "#slide_#{slide.id}" do
+        within "#slide_#{slide.id}" do
           click_on "Edit"
         end
         fill_in "Title", with: "This is no longer home, it is..."
@@ -52,7 +52,7 @@ feature "Slide", type: :feature do
 
       it "not be updated if the slide doesn't have a title or body" do
         slide = BitCore::Slide.find_by_title("It's simple.")
-        with_scope "#slide_#{slide.id}" do
+        within "#slide_#{slide.id}" do
           click_on "Edit"
         end
         fill_in "Title", with: ""
@@ -70,7 +70,7 @@ feature "Slide", type: :feature do
         click_on "It's simple."
         expect(page).to have_text "It's simple."
         visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
-        with_scope "#slide_#{slide.id}" do
+        within "#slide_#{slide.id}" do
           click_on "Edit"
         end
         uncheck "Display Title For Slide"
@@ -78,7 +78,7 @@ feature "Slide", type: :feature do
         click_on "It's simple."
         expect(page).to_not have_text "It's simple."
         visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
-        with_scope "#slide_#{slide.id}" do
+        within "#slide_#{slide.id}" do
           click_on "Edit"
         end
         check "Display Title For Slide"
@@ -92,7 +92,7 @@ feature "Slide", type: :feature do
       expect(page).to have_text("It's simple.")
       slide = BitCore::Slide.find_by_title("It's simple.")
       expect(slide).not_to eq nil
-      with_scope "#slide_#{slide.id}" do
+      within "#slide_#{slide.id}" do
         click_on "Remove"
       end
       expect(BitCore::Slide.find_by_title("It's simple.")).to eq nil

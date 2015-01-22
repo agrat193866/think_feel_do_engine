@@ -30,7 +30,7 @@ feature "learn tool", type: :feature do
     end
 
     it "opens and displaying this week's lessons" do
-      with_scope "div.panel-info" do
+      within "div.panel-info" do
         expect(page).to have_css(".lesson.unread", count: 2)
         expect(find(".task-status.enabled")).to have_text "Do - Congrats"
         expect(find(".task-status.enabled")).to have_text "Released Today"
@@ -42,7 +42,7 @@ feature "learn tool", type: :feature do
     end
 
     it "can view an assigned learning slideshow that has been released", :js do
-      with_scope ".panel-info" do
+      within ".panel-info" do
         expect(find(".task-status.enabled")).to have_text "Do - Congrats"
         expect(find(".task-status.enabled")).to_not have_text(
           "Read on #{ Date.current.to_s(:brief_date) }"
@@ -55,7 +55,7 @@ feature "learn tool", type: :feature do
 
       click_on "Continue"
 
-      with_scope ".panel-info" do
+      within ".panel-info" do
         expect(find(".task-status.enabled .read")).to have_text "Do - Congrats"
         expect(find(".task-status.enabled")).to have_text(
           "Read on #{ Date.current.to_s(:brief_date) }"

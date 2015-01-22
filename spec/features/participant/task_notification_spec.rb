@@ -36,7 +36,7 @@ feature "task notification", type: :feature do
       expect(do_icon_count).to eq 1
 
       visit "/navigator/contexts/DO"
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         awareness_icon_count = page.all(".list-group-item-unread", text: "#1 Awareness").count
 
         expect(awareness_icon_count).to eq 1
@@ -59,7 +59,7 @@ feature "task notification", type: :feature do
       visit "/navigator/contexts/DO"
       click_on("Your Activities")
       visit "/navigator/contexts/DO"
-      with_scope "#sc-hamburger-menu" do
+      within "#sc-hamburger-menu" do
         click_on "Home"
       end
       do_icon_count = page.find("li.DO.hidden-xs > a").all(".badge.badge-do").count
@@ -68,7 +68,7 @@ feature "task notification", type: :feature do
 
       visit "/navigator/contexts/DO"
 
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         awareness_icon_count = page.all(".list-group-item-unread", text: "#1 Awareness").count
 
         expect(awareness_icon_count).to eq 0
@@ -141,7 +141,7 @@ feature "task notification", type: :feature do
       visit "/navigator/contexts/DO"
       expect(task_status(:task_status5).release_day).to eq 1
       expect(participants(:participant2).membership.day_in_study).to eq 2
-      with_scope ".left.list-group" do
+      within ".left.list-group" do
         expect(page.all("a#task-status-#{task_status(:task_status5).id}").count).to eq 1
       end
     end
@@ -158,7 +158,7 @@ feature "task notification", type: :feature do
 
     it "displays only the most recent task if a content module has been assigned twice" do
       visit "/navigator/contexts/THINK"
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         expect(task_status(:task_status9).bit_core_content_module_id).to eq task_status(:task_status10).bit_core_content_module_id
         expect(task_status(:task_status9).release_day).to eq 1
         expect(page.all("a#task-status-#{task_status(:task_status9).id}").count).to eq 0

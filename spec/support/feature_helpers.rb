@@ -1,7 +1,3 @@
-def with_scope(locator)
-  locator ? within(locator) { yield } : yield
-end
-
 # Save a snapshot of the current page including css and js, then open it in the
 # browser as long as there is a server listening on port 3000.
 def show_page

@@ -134,7 +134,7 @@ feature "managing tasks", type: :feature do
       visit urls.arm_manage_tasks_group_path(group1.arm, group1)
       task = Task.where(bit_core_content_module_id: do_awareness.id, release_day: 1, group_id: group1.id).first
       expect(task).to_not be_nil
-      with_scope "#task-#{task.id}" do
+      within "#task-#{task.id}" do
         click_on "Unassign"
       end
       task = Task.where(bit_core_content_module_id: do_awareness.id, release_day: 1, group_id: group1.id).first
