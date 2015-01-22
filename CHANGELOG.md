@@ -1,3 +1,6 @@
+## 1.15.2 - 2015-01-22
+ * fixed sorting issues in patient dashboard
+
 ## 1.15.1 - 2015-01-22
  * fixed RuboCop conflict and version.rb merge conflict
 
