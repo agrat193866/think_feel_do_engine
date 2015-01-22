@@ -1,3 +1,6 @@
+## 1.15.1 - 2015-01-22
+ * fixed RuboCop conflict and version.rb merge conflict
+
 ## 1.15.0 - 2015-01-21
  * PHQ features are conditionally checked via config in host app
 
