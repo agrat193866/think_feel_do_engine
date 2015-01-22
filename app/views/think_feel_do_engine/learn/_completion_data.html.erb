@@ -2,13 +2,16 @@
   <% task_status.engagements.each do |engagement| %>
     <tr>
       <td style="display: none;">
+        <%= task_status.completed_at ? task_status.completed_at.to_i : 0 %>
+      </td>
+      <td style="display: none;">
         <%= engagement.completed_at ? engagement.completed_at.to_i : 0 %>
       </td>
       <td><%= task_status.task.title %></td>
       <td><%= (task_status.membership.start_date + task_status.start_day - 1).to_date.to_formatted_s(:short) %></td>
-      <td><%= task_status.created_at.to_formatted_s(:short) %></td>
-      <td><%= engagement.created_at.to_formatted_s(:short) unless engagement.created_at.nil? %></td>
-      <td><%= engagement.completed_at ? distance_of_time_in_words(engagement.completed_at - engagement.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
+      <td><%= task_status.completed_at.to_s(:date_time_with_meridian) %></td>
+      <td><%= engagement.completed_at.to_s(:date_time_with_meridian) unless engagement.completed_at.nil? %></td>
+      <td><%= engagement.completed_at ? distance_of_time_in_words(engagement.completed_at - task_status.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
     </tr>
   <% end %>
 <% end %>
