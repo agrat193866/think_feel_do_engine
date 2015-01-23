@@ -78,7 +78,7 @@ sc.rateEmotions = function(formContainers, path, partial) {
   });
 };
 
-function columnChart(startDate, endDate, lowBound, highBound, title) {
+function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
   var margin = {top: 30, right: 10, bottom: 50, left: 50},
       width = 420,
       height = 420,
@@ -146,7 +146,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           .attr("height", height)
           .append("text")
           .attr("class", "title")
-          .attr("x", width/2)
+          .attr("x", width/2+23)
           .attr("y", titleHeight/2)
           .attr("font-size", "1.2em")
           .attr("font-family","sans-serif")
@@ -154,6 +154,26 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           .attr("font-weight","bold")
           .text(title)
           .attr("fill", "purple");
+      
+      // x axis label
+      svg.append("text")
+        .attr("class", "x axis-label")
+        .attr("text-anchor", "end")
+        .attr("x", width/2 +43)
+        .attr("y", height -5)
+        .attr("font-size", "1.8em")
+        .text("Date");
+    
+      // y axis label
+      svg.append("text")
+        .attr("class", "y axis-label")
+        .attr("text-anchor", "end")
+        .attr("x", -90)
+        .attr("y", 0)
+        .attr("dy", "1em")
+        .attr("transform", "rotate(-90)")
+        .attr("font-size", "1.8em")
+        .text(yLabel);
 
       // draw average line
       var positiveValues = [], negativeValues = [];
