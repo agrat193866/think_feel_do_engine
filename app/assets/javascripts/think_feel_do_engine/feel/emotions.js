@@ -127,7 +127,8 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
 
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
-            .tickFormat(date_format);
+            .tickFormat(date_format)
+            .tickSize(8);
 
       // Select the svg element, if it exists.
       var svg = d3.select(this).selectAll("svg").data([data]);
@@ -224,7 +225,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
     // x axis at the bottom of the chart
      g.select(".x.axis")
         .attr("transform", "translate(0," + (height - margin.top - margin.bottom) + ")")
-        .call(xAxis.orient("bottom"));
+        .call(xAxis.orient("bottom"))
 
     // zero line
      g.select(".x.axis.zero")
