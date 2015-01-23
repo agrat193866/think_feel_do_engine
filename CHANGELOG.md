@@ -1,3 +1,6 @@
+## 1.15.10 - 2015-01-23
+ * conditional now determines if title is shown
+
 ## 1.15.9 - 2015-01-23
  * fixed Message labelling
 
