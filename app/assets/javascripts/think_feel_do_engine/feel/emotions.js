@@ -91,7 +91,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       xAxis = d3.svg.axis().scale(xScale),
       parseDate = d3.time.format("%Y-%m-%d").parse,
       titleHeight = 25,
-      averageLineThickness = 5;
+      averageLineThickness = 2;
 
   function chart(selection) {
     selection.each(function(data) {
