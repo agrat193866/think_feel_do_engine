@@ -1,3 +1,6 @@
+## 1.15.9 - 2015-01-23
+ * fixed Message labelling
+
 ## 1.15.8 - 2015-01-22
  * refactored tests and fixed deprecation warnings
 
