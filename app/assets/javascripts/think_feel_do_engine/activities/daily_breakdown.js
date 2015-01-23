@@ -6,7 +6,13 @@
   window.dailyBreakdown = function (completed_activities, numOfDays) {
     var color, colorObj, data, getBucket, height, load_breakdown, margin, parse_time, width, x, xAxis, y;
     load_breakdown = function (title, data) {
-      var averageHours, cleanDay, cleanWeek, container, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
+      var averageHours, cleanDay, cleanWeek, container, displayTitle, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
+
+      displayTitle = function(data) {
+        if (!data.length === 0) {
+          $("#activities-chart div").prepend("<p class=\"text-center\">"+numOfDays+"-Day View</p>");
+        }
+      };
 
       formatXAxisLabels = function (formattedDate) {
         if (width >= (dates.length + 1) * 125) {
@@ -330,7 +336,7 @@
       container = d3.select("#activities-chart").append("div");
       svg = container.append("svg").attr("class", "activity_viz").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       updateStacked(numOfDays, data);
-      $("#activities-chart div").prepend("<p class=\"text-center\">"+numOfDays+"-Day View</p>");
+      displayTitle(data);
     };
     getBucket = function (pleasure, accomplishment) {
       if (pleasure >= 5 && accomplishment >= 5) {

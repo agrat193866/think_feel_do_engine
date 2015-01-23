@@ -389,7 +389,16 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "No activities were completed during this day."
     end
 
+    it "title is not displayed when a data is selected", :js do
+      click_on "Day"
+      click_on "Visualize"
+      click_on "Last 3 Days"
+
+      expect(page).to_not have_text "3-Day View"
+    end
+
     it "displays an alert if no acitivites were scheduled over a 3-day period", :js do
+      expect(page).to_not have_text "3-Day View"
       expect(page).to_not have_text "No activities were completed during this 3-day period."
 
       click_on "Visualize"
