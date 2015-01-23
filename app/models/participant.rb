@@ -268,7 +268,8 @@ class Participant < ActiveRecord::Base
         daily_positive = { day: day,
                            intensity: average_rating(positive_ratings),
                            is_positive: true,
-                           drill_down: positive_ratings
+                           drill_down: positive_ratings,
+                           data_type: "Emotion"
                          }
         averaged_ratings << daily_positive
       end
@@ -277,7 +278,8 @@ class Participant < ActiveRecord::Base
         daily_negative = {  day: day,
                             intensity: average_rating(negative_ratings),
                             is_positive: false,
-                            drill_down: negative_ratings
+                            drill_down: negative_ratings,
+                            data_type: "Emotion"
                          }
         averaged_ratings << daily_negative
       end
@@ -297,7 +299,9 @@ class Participant < ActiveRecord::Base
       if ratings.size > 0
         averaged_ratings << { day: day,
                               intensity: average_rating(ratings),
-                              drill_down: ratings
+                              is_positive: true,
+                              drill_down: ratings,
+                              data_type: "Mood"
                             }
       end
     end

@@ -95,12 +95,11 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
 
   function chart(selection) {
     selection.each(function(data) {
-
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
         if(moment(d.day).startOf('day') >= startDate._d && moment(d.day).startOf('day') <= endDate._d) {
-          return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false), d.drill_down];
+          return [xValue.call(data, d, i), yValue.call(data, d, i), d.is_positive, d.drill_down, d.data_type];
         }
       });
       data = data.filter(function(n){ return n !== undefined; });
@@ -296,9 +295,10 @@ function dailyDrillModal (data) {
   var guid = Math.floor((1 + Math.random()) * 0x10000)
                .toString(16)
                .substring(1);
+  var charge = data[4] === "Emotion" ? (data[2] ? "Positive" : "Negative") : "";
   html = "";
   html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
-  html += "<h4 class='modal-title' id='myModalLabel'>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
+  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
   $.each(data[3], function(i, d){
     html += "<p>"+moment(d[1]).format('hh:mm a')+": "+d[0]+"</p>"
   });
