@@ -183,7 +183,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
           positiveValues.push(data[i][1]);
         }
       }
-      if (positiveValues.length > 0) {
+      if (positiveValues.length > 1) {
         svg.select(".average-lines").append("rect")
            .attr("class", "positive-average-line")
            .attr("width", width)
@@ -192,7 +192,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
            .attr("y", yScale(d3.mean(positiveValues)) - averageLineThickness / 2)
            .attr("fill", "green");
       }
-      if (negativeValues.length > 0) {
+      if (negativeValues.length > 1) {
         svg.select(".average-lines").append("rect")
            .attr("class", "negative-average-line")
            .attr("width", width)
