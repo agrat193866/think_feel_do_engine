@@ -33,6 +33,9 @@
   </div>
   <% if @patient.active_membership %>
     <div class="panel panel-default" id="viz-container">
+      <div class="panel-heading">
+        <h3 class="panel-title">Mood and Emotions Visualizations</h3>
+      </div>
       <%= render "think_feel_do_engine/coach/patient_dashboards/vizs", patient: @patient %>
   <% end %>
   </div>
