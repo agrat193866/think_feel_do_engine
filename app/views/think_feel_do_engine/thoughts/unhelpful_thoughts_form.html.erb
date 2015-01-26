@@ -2,7 +2,7 @@
   <% thoughts.each_with_index do |thought, index| %>
 
     <!-- "slide" 1 -->
-    <div class="multi-form" style="<%= index == 0 ? '' : 'display: none;' %>">
+    <div class="multi-form<%= index == 0 ? "" : " not-displayed" %>">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title adjusted-panel-title">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- "slide" 2 -->
-    <%= form_for thought, url: update_path, html: { class: "multi-form", style: "display: none;", id: index}, remote: true do |f| %>
+    <%= form_for thought, url: update_path, html: { class: "multi-form not-displayed", id: index}, remote: true do |f| %>
       <h2>Thought <%= index + 1 %> of <%= thoughts.count %></h2>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -53,7 +53,7 @@
     <% end %>
 
     <!-- "slide" 3 -->
-    <div class="multi-form" style="display: none;">
+    <div class="multi-form not-displayed">
       <p>Because what you THINK, FEEL, Do are related, a challenging thought can change how you act.</p>
       <%= image_tag("changing_actions.gif", width: "100%") %>
       <p>After you come up with a challenging thought, you can also come up with an "As If" thought which means what you would do based on the challenging thought you came up with.</p>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- "slide 4" -->
-    <%= form_for thought, url: update_path, html: { class: "multi-form", style: "display: none;" }, remote: true do |f| %>
+    <%= form_for thought, url: update_path, html: { class: "multi-form not-displayed" }, remote: true do |f| %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title adjusted-panel-title">

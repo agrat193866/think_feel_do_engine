@@ -14,8 +14,7 @@
       url: create_path,
       remote: true,
       html: {
-        class: "multi-page",
-        style: i == 0 ? '' : 'display: none;',
+        class: "multi-page#{ i == 0 ? "" : " not-displayed" }",
         role: "form",
         onsubmit: "validatePublic(event,'thought_shared_item_true')"
       }
