@@ -44,7 +44,7 @@
 
     $("div#mood, div#mood-legend, div#emotions, div#emotion-legend").empty();
     moodGraphTitle  = "Mood";
-    moodLegendJSON = [["Positive", "#4682B4"], ["Average", "green"]];
+    moodLegendJSON = [["Positive", "#4682B4"], ["Average*", "green"]];
     d3.select("#mood")
       .datum(graphParameters.moodData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, yLabel)
@@ -52,17 +52,17 @@
           .height(300)
           .x(function(d, i) { return moment(d.day).startOf('day')._d; })
           .y(function(d, i) { return d.intensity; })
-          .drawLegend("#mood-legend", moodLegendJSON)
+          .drawLegend("#mood-legend", moodLegendJSON, "*The average of each day's average.")
         );
 
     emotionGraphTitle = "Positive and Negative Emotions";
-    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "red"], ["Average", "green"]];
+    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "red"], ["Average*", "green"]];
     d3.select("#emotions")
       .datum(graphParameters.emotionsData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle, yLabel)
           .width(graphParameters.graphWidth)
           .height(400)
-          .drawLegend("#emotion-legend", emotionLegendJSON)
+          .drawLegend("#emotion-legend", emotionLegendJSON, "*The average of each day's average.")
         );
 
     graphParameters.interval > 7 ? hideTicks() : showTicks()

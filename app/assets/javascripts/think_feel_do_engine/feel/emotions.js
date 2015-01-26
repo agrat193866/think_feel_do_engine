@@ -258,7 +258,16 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
     return yScale(d[1]);
   }
 
-  chart.drawLegend = function(legendContainer, legendItems) {
+  chart.appendHelpText = function(container, legendItems, helpText) {
+    if (helpText) {
+      return container
+            .append("text")
+            .attr("y", legendItems.length * 30 + 15)
+            .text(helpText)
+    }
+  };
+
+  chart.drawLegend = function(legendContainer, legendItems, helpText) {
     var svgContainer;
 
     svgContainer = d3.select(legendContainer).append("svg");
@@ -266,15 +275,26 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       chart.legendKeyColor(svgContainer, item, index);
       return chart.legendKeyText(svgContainer, item, index);
     });
+    chart.appendHelpText(svgContainer, legendItems, helpText);
     return chart;
   };
 
   chart.legendKeyColor = function(container, item, index) {
-    return container.append("rect").attr("x", 0).attr("y", index * 30).attr("width", 15).attr("height", 15).attr("fill", item[1]);
+    return container
+           .append("rect")
+           .attr("y", index * 30)
+           .attr("width", 15)
+           .attr("height", 15)
+           .attr("fill", item[1]);
   };
 
   chart.legendKeyText = function(container, item, index) {
-    return container.append("text").attr("x", 20).attr("y", index * 30 + 15).attr("fill", item[1]).text(item[0]);
+    return container
+           .append("text")
+           .attr("x", 20)
+           .attr("y", index * 30 + 15)
+           .attr("fill", item[1])
+           .text(item[0]);
   };
 
   chart.margin = function(_) {

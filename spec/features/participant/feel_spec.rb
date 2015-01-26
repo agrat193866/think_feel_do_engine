@@ -49,11 +49,13 @@ feature "Feel", type: :feature do
         expect(page).to have_text "Positive"
         expect(page).to have_text "Average"
         expect(page).to_not have_text "Negative"
+        expect(page).to have_text "The average of each day's average."
       end
       within "#emotion-legend" do
         expect(page).to have_text "Positive"
         expect(page).to have_text "Average"
         expect(page).to have_text "Negative"
+        expect(page).to have_text "The average of each day's average."
       end
     end
   end
