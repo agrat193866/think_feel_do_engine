@@ -42,7 +42,7 @@
   function drawGraphs() {
     var emotionGraphTitle, legendJSON, moodGraphTitle;
 
-    $("div#mood, div#emotions").empty();
+    $("div#mood, div#mood-legend, div#emotions, div#emotion-legend").empty();
     moodGraphTitle  = "Mood";
     moodLegendJSON = [["Positive", "#4682B4"], ["Average", "green"]];
     d3.select("#mood")
