@@ -46,7 +46,7 @@
           <a data-toggle="collapse" data-parent="#accordion" href="#phqCollapse">
             PHQ9
           </a>
-          <%= link_to "Manage", coach_phq_assessments_path(participant_id: @patient.id), style: "color: #428bca;" %>
+          <span class="text-primary"><%= link_to "Manage", coach_phq_assessments_path(participant_id: @patient.id) %></span>
         </h3>
       </div>
       <div id="phqCollapse" class="panel-collapse collapse in">
@@ -95,7 +95,7 @@
   <table class="table table-hover data-table" id="moods-table">
     <thead>
       <tr>
-        <th style="display: none;"></th>
+        <th class="not-displayed"></th>
         <th>Rating 0 (Bad) to 10 (Good)</th>
         <th>Date</th>
       </tr>
@@ -123,7 +123,7 @@
       <table class="table table-hover data-table" id="emotions-table">
         <thead>
           <tr>
-            <th style="display: none;"></th>
+            <th class="not-displayed"></th>
             <th>Feeling</th>
             <th>Rating</th>
             <th>Date</th>
@@ -152,7 +152,7 @@
   <table class="table table-hover  data-table" id="logins">
     <thead>
       <tr>
-        <th style="display: none;"></th>
+        <th class="not-displayed"></th>
         <th>Date/Time of Login</th>
       </tr>
     </thead>
@@ -181,9 +181,9 @@
   <table class="table table-hover data-table" id="learning_data">
     <thead>
       <tr>
-        <th style="display: none;"></th>
-        <th style="display: none;"></th>
-        <th style="display: none;"></th>
+        <th class="not-displayed"></th>
+        <th class="not-displayed"></th>
+        <th class="not-displayed"></th>
         <th>Task</th>
         <th>Availability Day</th>
         <th>Started At</th>
@@ -216,8 +216,8 @@
         <table class="table table-hover  data-table" id="activities_future">
           <thead>
             <tr>
-              <th style="display: none;"></th>
-              <th style="display: none;"></th>
+              <th class="not-displayed"></th>
+              <th class="not-displayed"></th>
               <th>Activity</th>
               <th>Predicted Pleasure Rating</th>
               <th>Predicted Accomplishment Rating</th>
@@ -257,8 +257,8 @@
       <table class="table table-hover  data-table" id="activities_past">
         <thead>
           <tr>
-            <th style="display: none;"></th>
-            <th style="display: none;"></th>
+            <th class="not-displayed"></th>
+            <th class="not-displayed"></th>
             <th>Activity</th>
             <th>Planned/Monitored</th>
             <th>Status</th>
@@ -358,7 +358,7 @@
   <table class="table table-hover data-table" id="task_statuses">
     <thead>
       <tr>
-        <th style="display: none;"></th>
+        <th class="not-displayed"></th>
         <th>Task</th>
         <th>Availability Day</th>
         <th>Completed At</th>

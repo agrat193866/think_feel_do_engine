@@ -1,0 +1,15 @@
+/* for views in think_feel_do_engine/activities/ */
+
+/* show the intensity selectors by default */
+.form-group.intensity {
+  opacity: inherit;
+  height: auto;
+}
+
+#datepicker {
+  margin: 0 0 10px;
+
+  .ui-datepicker {
+    width: 100%;
+  }
+}

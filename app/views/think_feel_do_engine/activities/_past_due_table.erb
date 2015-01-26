@@ -13,19 +13,18 @@
           <%= subtitle %>
           <%= link_to "Edit", edit_link, class: "btn btn-primary pull-right" if edit_link %>
         </p>
-        <!-- <div class="table-responsive div-table-viz"> -->
-          <table style="margin-top:20px" class="table table-hover responsive <%=table_name%>">
-            <thead>
-              <th>Activity</th>
-              <th>Planned For</th>
-              <th>Predicted Pleasure Value</th>
-              <th>Predicted Accomplishment Value</th>
-            </thead>
-            <tbody>
-              <%= render partial: 'think_feel_do_engine/activities/past_due_rows', collection: activity_list, as: :activity %>
-            </tbody>
-          </table>
-        <!-- </div> -->
+
+        <table class="table table-hover responsive <%=table_name%>">
+          <thead>
+            <th>Activity</th>
+            <th>Planned For</th>
+            <th>Predicted Pleasure Value</th>
+            <th>Predicted Accomplishment Value</th>
+          </thead>
+          <tbody>
+            <%= render partial: 'think_feel_do_engine/activities/past_due_rows', collection: activity_list, as: :activity %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -9,8 +9,7 @@
           remote: true,
           method: "put",
           html: {
-            class: "past-activity-review",
-            style: index > 0 ? "display: none;" : "",
+            class: "past-activity-review#{ index > 0 ? " not-displayed" : "" }",
             id: "activity-#{ activity.id }",
           }
         ) do |f| %>
@@ -31,7 +30,7 @@
         </label>
       </div>
 
-      <span id="activity-complete-<%= activity.id %>" style="display: none;">
+      <span id="activity-complete-<%= activity.id %>" class="not-displayed">
         <p>On a scale of 1-10 you said that you thought it would be a <%= activity.predicted_pleasure_intensity %>.</p>
 
         <div class="form-group pleasure-container">
@@ -67,7 +66,7 @@
         </div>
       </span>
 
-      <span id="activity-incomplete-<%= activity.id %>" style="display: none;">
+      <span id="activity-incomplete-<%= activity.id %>" class="not-displayed">
         <div class="form-group">
           <label for="activity_noncompliance_reason_<%= activity.id %>">Why didn't you?</label>
           <textarea class="form-control suggested" rows="3" id="activity_noncompliance_reason_<%= activity.id %>" name="activity[noncompliance_reason]"></textarea>
@@ -76,7 +75,7 @@
 
       <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="monitored"></span>
 
-      <div id="activity-submit-<%= activity.id %>" style="display: none;">
+      <div id="activity-submit-<%= activity.id %>" class="not-displayed">
           <%= content_tag(:button, "Continue",
                           type: "submit",
                           class: "btn btn-primary pull-right",
