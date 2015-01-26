@@ -1,7 +1,6 @@
 module ThinkFeelDoEngine
-  # Used for navigation link generation when the user is not authorized.
+  # Brand logo navigation helper methods
   module BrandHelper
-
     # Uses the authorization state and contextual path to determine
     # the page branding link url.
     def brand_location
@@ -24,14 +23,14 @@ module ThinkFeelDoEngine
     def no_authorization_and_sign_in_page?
       !current_user &&
         !current_participant &&
-          (current_page?(Engine.routes.url_helpers.new_user_session_path) ||
-            current_page?(Engine.routes.url_helpers.new_participant_session_path))
+        (current_page?(Engine.routes.url_helpers.new_user_session_path) ||
+        current_page?(Engine.routes.url_helpers.new_participant_session_path))
     end
 
     def no_authorization_and_user_password_update_page?
       !current_user &&
         !current_participant &&
-          current_page?(Engine.routes.url_helpers.new_user_password_path)
+        current_page?(Engine.routes.url_helpers.new_user_password_path)
     end
   end
 end

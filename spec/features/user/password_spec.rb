@@ -8,7 +8,7 @@ feature "reset user password", type: :feature do
   before { clear_emails }
 
   it "should redirect after password update", :js do
-    allow_any_instance_of(ThinkFeelDoEngine::BrandHelper).to receive(:brand_location) {"#"}
+    allow_any_instance_of(ThinkFeelDoEngine::BrandHelper).to receive(:brand_location) { "#" }
 
     visit "/users/sign_in"
     click_on "Forgot your password?"
