@@ -258,31 +258,38 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
     return yScale(d[1]);
   }
 
-  chart.appendHelpText = function(container, legendItems, helpText) {
-    if (helpText) {
-      return container
-            .append("text")
-            .attr("y", legendItems.length * 30 + 15)
-            .text(helpText)
-    }
+  chart.appendText = function(container, helpText, count) {
+    return container
+           .append("text")
+           .attr("y", count * 20 + 15)
+           .text(helpText);
   };
 
-  chart.drawLegend = function(legendContainer, legendItems, helpText) {
-    var svgContainer;
+  chart.drawLegend = function(legendContainer, legendItems, helpTextArray) {
+    var count, svgContainer;
 
+    count = 0;
     svgContainer = d3.select(legendContainer).append("svg");
+
     _.each(legendItems, function(item, index) {
-      chart.legendKeyColor(svgContainer, item, index);
-      return chart.legendKeyText(svgContainer, item, index);
+      chart.legendKeyColor(svgContainer, item, count);
+      chart.legendKeyText(svgContainer, item, count);
+      return count++;
     });
-    chart.appendHelpText(svgContainer, legendItems, helpText);
+
+    chart.addSpacing(svgContainer, count++)
+
+    _.each(helpTextArray, function(text, index, list) {
+      chart.appendText(svgContainer, text, count);
+      return count++;
+    });
     return chart;
   };
 
   chart.legendKeyColor = function(container, item, index) {
     return container
            .append("rect")
-           .attr("y", index * 30)
+           .attr("y", index * 20)
            .attr("width", 15)
            .attr("height", 15)
            .attr("fill", item[1]);
@@ -292,9 +299,15 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
     return container
            .append("text")
            .attr("x", 20)
-           .attr("y", index * 30 + 15)
+           .attr("y", index * 20 + 15)
            .attr("fill", item[1])
            .text(item[0]);
+  };
+
+  chart.addSpacing = function(container, count) {
+    container
+      .append("rect")
+      .attr("y", count * 20)
   };
 
   chart.margin = function(_) {

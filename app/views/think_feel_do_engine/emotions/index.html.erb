@@ -39,35 +39,45 @@
   var graphParameters = new Graph(<%= mood_ratings.to_json.html_safe %>, <%= emotional_ratings.to_json.html_safe %>, null, $("#viz-container"));
   var yLabel = "Intensity"
 
-  function drawGraphs() {
-    var emotionGraphTitle, legendJSON, moodGraphTitle;
+  var drawGraphs;
+
+  drawGraphs = function() {
+    var emotionGraphTitle,
+        emotionLegendJSON,
+        emotionLegendNotes,
+        moodGraphTitle,
+        moodLegendJSON,
+        moodLegendNotes;
 
     $("div#mood, div#mood-legend, div#emotions, div#emotion-legend").empty();
-    moodGraphTitle  = "Mood";
-    moodLegendJSON = [["Positive", "#4682B4"], ["Average*", "green"]];
+
+    // mood viz
+    moodGraphTitle = "Mood*";
+    moodLegendJSON = [["Positive", "#4682B4"], ["Average†", "green"]];
+    moodLegendNotes = ["†The average of each day's average.", "*Click each day for more information."];
     d3.select("#mood")
       .datum(graphParameters.moodData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, yLabel)
           .width(graphParameters.graphWidth)
           .height(300)
-          .x(function(d, i) { return moment(d.day).startOf('day')._d; })
+          .x(function(d, i) { return moment(d.day).startOf("day")._d; })
           .y(function(d, i) { return d.intensity; })
-          .drawLegend("#mood-legend", moodLegendJSON, "*The average of each day's average.")
-        );
+          .drawLegend("#mood-legend", moodLegendJSON, moodLegendNotes));
 
-    emotionGraphTitle = "Positive and Negative Emotions";
-    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "red"], ["Average*", "green"]];
+    // emotion viz
+    emotionGraphTitle = "Positive and Negative Emotions*";
+    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "#A52A2A"], ["Average†", "green"]];
+    emotionLegendNotes = ["†The average of each day's average.", "*Click each day for more information."];
     d3.select("#emotions")
       .datum(graphParameters.emotionsData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle, yLabel)
           .width(graphParameters.graphWidth)
           .height(400)
-          .drawLegend("#emotion-legend", emotionLegendJSON, "*The average of each day's average.")
-        );
+          .drawLegend("#emotion-legend", emotionLegendJSON, emotionLegendNotes));
 
     graphParameters.interval > 7 ? hideTicks() : showTicks()
-    appendDateRange(graphParameters);
-  }
+    return appendDateRange(graphParameters);
+  };
 
   drawGraphs();
 
