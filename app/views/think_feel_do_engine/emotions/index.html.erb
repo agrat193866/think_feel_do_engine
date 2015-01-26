@@ -89,7 +89,7 @@
   });
 
   $('.offset').on("click", function (){
-    if($(this).attr("id") === "next" && graphParameters.offset == 1){
+    if($(this).attr("id") === "next" && graphParameters.offset === 1){
       return null
     }
     else if($(this).attr("id") === "previous" && graphParameters.offset == maxOffset(activationDate, graphParameters.interval)) {

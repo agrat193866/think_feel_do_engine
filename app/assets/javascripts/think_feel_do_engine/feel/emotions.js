@@ -352,7 +352,8 @@ function dailyDrillModal (data) {
   html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
   html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
   $.each(data[3], function(i, d){
-    html += "<p>"+moment(d[1]).format('hh:mm a')+": "+d[0]+"</p>"
+    var emotion = d[2] == undefined ? '' : d[2]
+    html += "<p>"+moment(d[1]).format('hh:mm a')+": "+d[0]+" "+emotion+"</p>"
   });
   html += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>"
   $('body').append(html);

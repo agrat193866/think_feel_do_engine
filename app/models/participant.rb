@@ -241,7 +241,7 @@ class Participant < ActiveRecord::Base
   def positive_emotions(emotion_array)
     emotions = emotion_array.collect do |emotion|
       if emotion.is_positive
-        [emotion.rating, emotion.created_at]
+        [emotion.rating, emotion.created_at, emotion.name]
       end
     end
     emotions.compact
@@ -250,7 +250,7 @@ class Participant < ActiveRecord::Base
   def negative_emotions(emotion_array)
     emotions = emotion_array.collect do |emotion|
       unless emotion.is_positive
-        [emotion.rating, emotion.created_at]
+        [emotion.rating, emotion.created_at, emotion.name]
       end
     end
     emotions.compact
