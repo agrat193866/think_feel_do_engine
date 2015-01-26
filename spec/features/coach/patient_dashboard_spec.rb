@@ -178,7 +178,8 @@ feature "patient dashboard", type: :feature do
       end
 
       it "links to the activities visualization" do
-        expect(page).to have_content "Activities visualization"
+        click_on "Activities visualization"
+        expect(page).to have_content "Daily Averages for"
       end
 
       it "links to the thoughts visualization" do
