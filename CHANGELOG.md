@@ -1,3 +1,7 @@
+## 1.15.12 - 2015-01-26
+ * Refactored inline styles and global stylesheets
+ * removed Google Font inclusion
+
 ## 1.15.11 - 2015-01-23
  * Various mood viz style updates
 
