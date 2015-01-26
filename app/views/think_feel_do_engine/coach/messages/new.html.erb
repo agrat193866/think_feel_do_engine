@@ -2,7 +2,7 @@
 
 <% if message %>
   <%= render("think_feel_do_engine/messages/message_info", message: message) %>
-  <hr style="margin-top: 5px; margin-bottom: 5px; border-color: #D0D0D0;">
+  <hr>
 <% end %>
 
 <%= form_for @new_message, url: coach_group_messages_path(@group), html: { role: "form" } do |f| %>

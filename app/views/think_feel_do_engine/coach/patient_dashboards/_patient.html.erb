@@ -42,7 +42,7 @@
     </td>
 
     <td>
-      <%= form_for patient.membership, remote: true, html: { style: "display: inline-block;" } do |f| %>
+      <%= form_for patient.membership, remote: true do |f| %>
         <%= f.hidden_field :end_date %>
         <input type="text" class="datepicker" value="<%= patient.membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
       <% end %>
