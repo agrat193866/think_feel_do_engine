@@ -87,6 +87,16 @@ abbr.timeago {
   font-size: 100%;
 }
 
+/* main nav */
+
+#main .navbar-header .nav.pull-right {
+  margin-right: 10px;
+}
+
+/* end main nav */
+
+/* hamburger / snap menu */
+
 #hamburger_button{
   margin-left:15px;
   position: relative;
@@ -121,6 +131,8 @@ body.snapjs-left .snap-drawers{
   border-top:1px solid #D0D0D0;
   border-bottom:1px solid #A0A0A0;
 }
+
+/* end hamburger / snap menu */
 
 #header-navbar li:hover{
   background-color: #DDD;
@@ -705,6 +717,10 @@ div#date-range {
   shape-rendering: crispEdges;
 }
 
+#viz-container .legend {
+  margin-left:50px;
+}
+
 /* table */
 
 
@@ -738,4 +754,46 @@ table.responsive tr.form-table td select{width:100%;}
 
 @media (min-width: 768px){
   table.responsive tr.second-header{display:none;}
+}
+
+/* lessons */
+
+div.panel-heading h3.panel-title span.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFF;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #777;
+  border-radius: 10px;
+  float: right;
+}
+
+.panel-heading a {
+  text-decoration: none;
+}
+
+.list-group-item.disabled {
+  background-color: #FFF;
+}
+
+.list-group-item .action {
+  font-size: 18px;
+}
+
+div.panel-heading h3.panel-title.panel-unreleased {
+  opacity: 0.7;
+}
+
+h4.list-group-item-heading p {
+  display: inline;
+}
+
+h4.list-group-item-heading .unread {
+  font-weight: bold;
 }

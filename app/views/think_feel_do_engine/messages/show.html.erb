@@ -19,10 +19,9 @@
 
 <% user_id = current_user.try(:id) || current_participant.try(:id) %>
 <% unless message.sender.id == user_id %>
-  <div id="reply-container">
-    <div class="form-control" style="border: #CCC solid 1px;border-radius: 4px;height: 74px;padding: 6px 12px;">
-      Click here to <%= link_to "Reply", reply_path, class: "reply", style: "color: #777;text-decoration: underline;" %>
-    </div>
+  <div class="well">
+    <%= link_to "Reply to this message", reply_path %>
   </div>
+
   <%= link_to "Cancel", :back, class: "btn btn-default" %>
 <% end %>

@@ -1,5 +1,5 @@
 <% thought_patterns.each_with_index do |thought_pattern, i| %>
-  <div class="thought-pattern well well-lg" style="<%= i == 0 ? "" : "display: none;" %>">
+  <div class="thought-pattern well well-lg<%= i == 0 ? "" : " not-displayed" %>">
     <h3><%= thought_pattern.title %></h3>
     <p><%= thought_pattern.description %></p>
   </div>

@@ -1,13 +1,13 @@
 <% task_statuses.each do |task_status| %>
   <% task_status.engagements.each do |engagement| %>
     <tr>
-      <td style="display: none;">
+      <td class="not-displayed">
         <%= (task_status.membership.start_date + task_status.start_day - 1) ? (task_status.membership.start_date + task_status.start_day - 1).to_time.to_i : 0 %>
       </td>
-      <td style="display: none;">
+      <td class="not-displayed">
         <%= engagement.created_at ? task_status.completed_at.to_i : 0 %>
       </td>
-      <td style="display: none;">
+      <td class="not-displayed">
         <%= engagement.completed_at ? engagement.completed_at.to_i : 0 %>
       </td>
       <td><%= task_status.task.title %></td>
