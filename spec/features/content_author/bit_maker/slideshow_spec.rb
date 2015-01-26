@@ -22,7 +22,7 @@ feature "Slideshow", type: :feature do
     describe "managing groups by assigning modules and setting release days" do
       it "isn't performed if a title isn't provided and a flash messages displays this error" do
         slideshow = BitCore::Slideshow.find_by_title("Home Introduction")
-        with_scope "#slideshow-#{slideshow.id}" do
+        within "#slideshow-#{slideshow.id}" do
           click_on "Edit"
         end
         fill_in "Title", with: ""
@@ -41,7 +41,7 @@ feature "Slideshow", type: :feature do
       expect(BitCore::Slideshow.find_by_title("Home Introduction")).not_to eq nil
 
       slideshow = BitCore::Slideshow.find_by_title("Home Introduction")
-      with_scope "#slideshow-#{slideshow.id}" do
+      within "#slideshow-#{slideshow.id}" do
         click_on "Delete"
       end
 

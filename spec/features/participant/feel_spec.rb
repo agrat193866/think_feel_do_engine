@@ -18,14 +18,14 @@ feature "Feel", type: :feature do
     end
 
     it "orders modules (i.e., task_statuses) in the correct order" do
-      with_scope ".container .right.list-group" do
+      within ".container .right.list-group" do
         expect(page.find("a.list-group-item.task-status:nth-child(1)")).to have_text "Tracking Your Mood"
         expect(page.find("a.list-group-item.task-status:nth-child(2)")).to have_text "Your Recent Moods & Emotions"
       end
     end
 
     it "Rates their Mood" do
-      with_scope ".container .right.list-group" do
+      within ".container .right.list-group" do
         click_on "Tracking Your Mood"
       end
       expect(page).to have_text("Rate your Mood")
@@ -53,7 +53,7 @@ feature "Feel", type: :feature do
     end
 
     it "orders modules (i.e., task_statuses) in the correct order" do
-      with_scope ".container .right.list-group" do
+      within ".container .right.list-group" do
         expect(page.find("a.list-group-item.task-status:nth-child(1)")).to have_text "Tracking Your Mood & Emotions"
         expect(page.find("a.list-group-item.task-status:nth-child(2)")).to have_text "Your Recent Moods & Emotions"
       end
@@ -70,22 +70,22 @@ feature "Feel", type: :feature do
 
       page.find("#add-forms").trigger("click")
 
-      with_scope "#subcontainer-1" do
+      within "#subcontainer-1" do
         fill_in("Emotion", with: "Jubilant")
       end
 
-      with_scope "#subcontainer-1" do
+      within "#subcontainer-1" do
         select("3", from: "emotional_rating[rating]")
         select("positive", from: "emotional_rating[is_positive]")
       end
 
       page.find("#add-forms").trigger("click")
 
-      with_scope "#subcontainer-2" do
+      within "#subcontainer-2" do
         fill_in("Emotion", with: "Ecstatic")
       end
 
-      with_scope "#subcontainer-2" do
+      within "#subcontainer-2" do
         select("negative", from: "emotional_rating[is_positive]")
         select("7", from: "emotional_rating[rating]")
       end

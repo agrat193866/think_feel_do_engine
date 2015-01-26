@@ -6,24 +6,22 @@ module ThinkFeelDoEngine
         "You"
       elsif sender.try(:study_id)
         sender.study_id
-      elsif CoachAssignment.exists?(participant_id: recipient_id,
-                                    coach_id: sender.id)
-        "Coach"
-      else
+      elsif recipient.try(:active_group).try(:arm).try(:has_woz?)
         "Moderator"
+      else
+        "Coach"
       end
     end
 
     def to(user = nil)
-      if recipient_id == user.try(:id)
+      if recipient.id == user.try(:id)
         "You"
       elsif recipient.try(:study_id)
         recipient.study_id
-      elsif CoachAssignment.exists?(participant_id: sender.id,
-                                    coach_id: recipient_id)
-        "Coach"
-      else
+      elsif sender.try(:active_group).try(:arm).try(:has_woz?)
         "Moderator"
+      else
+        "Coach"
       end
     end
   end

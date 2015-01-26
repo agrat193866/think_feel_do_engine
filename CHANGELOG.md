@@ -1,3 +1,18 @@
+## 1.15.11 - 2015-01-23
+ * Various mood viz style updates
+
+## 1.15.10 - 2015-01-23
+ * conditional now determines if title is shown
+
+## 1.15.9 - 2015-01-23
+ * fixed Message labelling
+
+## 1.15.8 - 2015-01-22
+ * refactored tests and fixed deprecation warnings
+
+## 1.15.7 - 2015-01-22
+ * Correct authorization for Researchers and rubocop fixes
+
 ## 1.15.6 - 2015-01-22
  * updated patient dashboard lesson and task tables
 

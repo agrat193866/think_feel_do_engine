@@ -26,7 +26,7 @@ feature "coach messages", type: :feature do
     it "displays study id but not email addresses of patients" do
       expect(page).not_to have_content("participant1@example.com")
       expect(page).to have_content("TFD-1111")
-      with_scope "#inbox" do
+      within "#inbox" do
         expect(page).to have_content(users(:clinician1).received_messages.last.created_at.to_formatted_s(:short))
       end
     end
@@ -68,7 +68,7 @@ feature "coach messages", type: :feature do
       click_on "Sent"
 
       expect(page).to have_content("Reply: I like this app")
-      with_scope "#inbox" do
+      within "#inbox" do
         expect(page).to have_content(users(:clinician1).messages.last.created_at.to_formatted_s(:short))
       end
       click_on "Reply: I like this app"

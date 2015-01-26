@@ -29,13 +29,14 @@
   var activationDate = activation("<%= current_participant.active_membership.start_date %>")
 
   var graphParameters = new Graph(<%= mood_ratings.to_json.html_safe %>, <%= emotional_ratings.to_json.html_safe %>, null, $("#viz-container"));
+  var yLabel = "Intensity"
 
   function drawGraphs() {
     $("div#mood, div#emotions").empty();
     var moodGraphTitle = "Mood";
     d3.select("#mood")
       .datum(graphParameters.moodData)
-        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, yLabel)
           .width(graphParameters.graphWidth)
           .height(300)
           .x(function(d, i) { return moment(d.day).startOf('day')._d; })
@@ -44,7 +45,7 @@
     var emotionGraphTitle = "Positive and Negative Emotions";
     d3.select("#emotions")
       .datum(graphParameters.emotionsData)
-        .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle, yLabel)
           .width(graphParameters.graphWidth)
           .height(400));
 

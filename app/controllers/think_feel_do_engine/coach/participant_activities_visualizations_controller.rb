@@ -6,23 +6,20 @@ module ThinkFeelDoEngine
 
       layout "manage"
 
-      def show
-        participant = Participant.find(params[:participant_id])
-        scheduled_activities = participant
-                               .activities
-                               .where(is_scheduled: true)
-                               .in_the_past
-                               .order(start_time: :desc)
-        activities = participant
-                     .activities
-                     .in_the_past
-                     .order(start_time: :desc)
+      RenderOptions = Struct.new(
+        :view_context, :app_context, :position, :participant
+      )
 
-        render "think_feel_do_engine/activities/visualization",
-               locals: {
-                 activities: activities,
-                 scheduled_activities: scheduled_activities
-               }
+      def show
+        @participant = Participant.find(params[:participant_id])
+        provider = ContentProviders::YourActivitiesProvider.new
+        options = RenderOptions.new(
+          self,
+          @participant.navigation_status,
+          @participant.navigation_status.content_position,
+          @participant
+        )
+        provider.render_current(options)
       end
     end
   end

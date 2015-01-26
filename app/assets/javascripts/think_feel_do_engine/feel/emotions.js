@@ -78,7 +78,7 @@ sc.rateEmotions = function(formContainers, path, partial) {
   });
 };
 
-function columnChart(startDate, endDate, lowBound, highBound, title) {
+function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
   var margin = {top: 30, right: 10, bottom: 50, left: 50},
       width = 420,
       height = 420,
@@ -91,16 +91,15 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
       xAxis = d3.svg.axis().scale(xScale),
       parseDate = d3.time.format("%Y-%m-%d").parse,
       titleHeight = 25,
-      averageLineThickness = 5;
+      averageLineThickness = 2;
 
   function chart(selection) {
     selection.each(function(data) {
-
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
         if(moment(d.day).startOf('day') >= startDate._d && moment(d.day).startOf('day') <= endDate._d) {
-          return [xValue.call(data, d, i), yValue.call(data, d, i), (d.is_positive !== false), d.drill_down];
+          return [xValue.call(data, d, i), yValue.call(data, d, i), d.is_positive, d.drill_down, d.data_type];
         }
       });
       data = data.filter(function(n){ return n !== undefined; });
@@ -111,7 +110,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
 
       for(var i = 0; i < dayRange; i++) {
         var day = x_domain[i]
-        x_domain.push(moment(day).subtract('days', 1).startOf('day')._d);
+        x_domain.push(moment(day).subtract(1, 'days').startOf('day')._d);
       }
 
       xScale
@@ -128,7 +127,8 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
 
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
-            .tickFormat(date_format);
+            .tickFormat(date_format)
+            .tickSize(8);
 
       // Select the svg element, if it exists.
       var svg = d3.select(this).selectAll("svg").data([data]);
@@ -146,7 +146,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           .attr("height", height)
           .append("text")
           .attr("class", "title")
-          .attr("x", width/2)
+          .attr("x", width/2+23)
           .attr("y", titleHeight/2)
           .attr("font-size", "1.2em")
           .attr("font-family","sans-serif")
@@ -154,6 +154,26 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           .attr("font-weight","bold")
           .text(title)
           .attr("fill", "purple");
+      
+      // x axis label
+      svg.append("text")
+        .attr("class", "x axis-label")
+        .attr("text-anchor", "end")
+        .attr("x", width/2 +43)
+        .attr("y", height -5)
+        .attr("font-size", "1.8em")
+        .text("Date");
+    
+      // y axis label
+      svg.append("text")
+        .attr("class", "y axis-label")
+        .attr("text-anchor", "end")
+        .attr("x", -90)
+        .attr("y", 0)
+        .attr("dy", "1em")
+        .attr("transform", "rotate(-90)")
+        .attr("font-size", "1.8em")
+        .text(yLabel);
 
       // draw average line
       var positiveValues = [], negativeValues = [];
@@ -164,7 +184,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
           positiveValues.push(data[i][1]);
         }
       }
-      if (positiveValues.length > 0) {
+      if (positiveValues.length > 1) {
         svg.select(".average-lines").append("rect")
            .attr("class", "positive-average-line")
            .attr("width", width)
@@ -173,7 +193,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
            .attr("y", yScale(d3.mean(positiveValues)) - averageLineThickness / 2)
            .attr("fill", "green");
       }
-      if (negativeValues.length > 0) {
+      if (negativeValues.length > 1) {
         svg.select(".average-lines").append("rect")
            .attr("class", "negative-average-line")
            .attr("width", width)
@@ -205,7 +225,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title) {
     // x axis at the bottom of the chart
      g.select(".x.axis")
         .attr("transform", "translate(0," + (height - margin.top - margin.bottom) + ")")
-        .call(xAxis.orient("bottom"));
+        .call(xAxis.orient("bottom"))
 
     // zero line
      g.select(".x.axis.zero")
@@ -276,9 +296,10 @@ function dailyDrillModal (data) {
   var guid = Math.floor((1 + Math.random()) * 0x10000)
                .toString(16)
                .substring(1);
+  var charge = data[4] === "Emotion" ? (data[2] ? "Positive" : "Negative") : "";
   html = "";
   html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
-  html += "<h4 class='modal-title' id='myModalLabel'>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
+  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
   $.each(data[3], function(i, d){
     html += "<p>"+moment(d[1]).format('hh:mm a')+": "+d[0]+"</p>"
   });
@@ -296,7 +317,7 @@ function Graph (moodData, emotionsData, phqData, container) {
   this.emotionsData = emotionsData;
   this.phqData = phqData;
   this.graphWidth = container.width() *.97;
-  this.startDate = moment().subtract('days', 6).startOf('day');
+  this.startDate = moment().subtract(6, 'days').startOf('day');
   this.endDate = moment().startOf('day');
   this.interval = 7;
   this.offset = 1;
@@ -305,8 +326,8 @@ function Graph (moodData, emotionsData, phqData, container) {
 function offsetInterval (graphParameters) {
   var startOffset = (graphParameters.interval * graphParameters.offset) - 1;
   var endOffset = graphParameters.offset === 1 ? 0 : graphParameters.interval * (graphParameters.offset-1)
-  graphParameters.startDate = moment().subtract('days', startOffset).startOf('day');
-  graphParameters.endDate = moment().subtract('days', endOffset).startOf('day');
+  graphParameters.startDate = moment().subtract(startOffset, 'days').startOf('day');
+  graphParameters.endDate = moment().subtract(endOffset, 'days').startOf('day');
 }
 
 function appendDateRange (graphParameters) {

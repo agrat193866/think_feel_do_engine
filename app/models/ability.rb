@@ -75,7 +75,6 @@ class Ability
   def authorize_content_author
     can :read, Arm
     can :update, Group
-    can :manage, Task
     can :manage, BitCore::ContentModule
     can :manage, BitCore::ContentProvider
     can :manage, BitCore::Slideshow
@@ -89,6 +88,7 @@ class Ability
     can [:index, :new, :create, :edit, :show, :update, :destroy], Group
     can :manage, Membership
     can :manage, Participant
+    can :manage, Task
     can :manage, ThinkFeelDoDashboard::Reports::Comment
     can :manage, ThinkFeelDoDashboard::Reports::Goal
     can :manage, ThinkFeelDoDashboard::Reports::LessonModule

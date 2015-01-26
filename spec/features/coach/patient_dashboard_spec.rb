@@ -127,7 +127,7 @@ feature "patient dashboard", type: :feature do
 
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short) ,longer_timestamp, longer_timestamp, "Not Completed"]
+            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "Not Completed"]
           )
         end
         Timecop.return
@@ -151,7 +151,7 @@ feature "patient dashboard", type: :feature do
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short) ,longer_timestamp, longer_timestamp, "less than a minute"]
+            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "less than a minute"]
           )
         end
         Timecop.return
@@ -178,7 +178,8 @@ feature "patient dashboard", type: :feature do
       end
 
       it "links to the activities visualization" do
-        expect(page).to have_content "Activities visualization"
+        click_on "Activities visualization"
+        expect(page).to have_content "Daily Averages for"
       end
 
       it "links to the thoughts visualization" do
@@ -293,7 +294,7 @@ feature "patient dashboard", type: :feature do
 
       it "displays number of unread messages" do
         visit "/coach/groups/#{group1.id}/patient_dashboards"
-        with_scope "#patient-#{ participant1.id } .unread" do
+        within "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("1")
         end
         visit "/coach/groups/#{group1.id}/messages"
@@ -304,7 +305,7 @@ feature "patient dashboard", type: :feature do
 
         visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-        with_scope "#patient-#{ participant1.id } .unread" do
+        within "#patient-#{ participant1.id } .unread" do
           expect(page).to have_text("0")
         end
 

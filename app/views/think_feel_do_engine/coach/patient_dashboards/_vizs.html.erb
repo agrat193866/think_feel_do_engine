@@ -42,7 +42,7 @@ function drawGraphs() {
     var phqGraphTitle = "PHQ9";
     d3.select("#phq")
       .datum(graphParameters.phqData)
-        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 27, phqGraphTitle)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 27, phqGraphTitle, "Score")
           .width(graphParameters.graphWidth)
           .height(300)
           .x(function(d, i) { return moment(d.day).startOf('day')._d; })
@@ -52,7 +52,7 @@ function drawGraphs() {
   var moodGraphTitle = "Mood";
   d3.select("#mood")
     .datum(graphParameters.moodData)
-      .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle)
+      .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, "Intensity")
         .width(graphParameters.graphWidth)
         .height(300)
         .x(function(d, i) { return moment(d.day).startOf('day')._d; })
@@ -61,7 +61,7 @@ function drawGraphs() {
   var emotionGraphTitle = "Positive and Negative Emotions";
   d3.select("#emotions")
     .datum(graphParameters.emotionsData)
-      .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle)
+      .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle, "Intensity")
         .width(graphParameters.graphWidth)
         .height(400));
 

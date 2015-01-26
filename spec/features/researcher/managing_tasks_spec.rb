@@ -11,7 +11,7 @@ feature "managing tasks", type: :feature do
   )
 
   context "Logged in as a content author" do
-    let(:content_author1) { users(:content_author1) }
+    let(:researcher1) { users(:researcher1) }
     let(:participant3) { participants(:participant3) }
     let(:group1) { groups(:group1) }
     let(:group2) { groups(:group2) }
@@ -27,7 +27,7 @@ feature "managing tasks", type: :feature do
     let(:feel) { bit_core_content_modules(:feeling_tracker_module3) }
 
     before do
-      sign_in_user content_author1
+      sign_in_user researcher1
     end
 
     context "On new" do
@@ -114,7 +114,7 @@ feature "managing tasks", type: :feature do
 
         expect(page).not_to have_content("Tracking Your Mood")
 
-        sign_in_user content_author1
+        sign_in_user researcher1
         visit urls.arm_manage_tasks_group_path(group3.arm, group3)
 
         expect(page).to have_the_table(
@@ -134,7 +134,7 @@ feature "managing tasks", type: :feature do
       visit urls.arm_manage_tasks_group_path(group1.arm, group1)
       task = Task.where(bit_core_content_module_id: do_awareness.id, release_day: 1, group_id: group1.id).first
       expect(task).to_not be_nil
-      with_scope "#task-#{task.id}" do
+      within "#task-#{task.id}" do
         click_on "Unassign"
       end
       task = Task.where(bit_core_content_module_id: do_awareness.id, release_day: 1, group_id: group1.id).first

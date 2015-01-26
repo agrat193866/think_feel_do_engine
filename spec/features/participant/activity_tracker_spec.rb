@@ -72,7 +72,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "displays most recent unaccounted activity" do
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         click_on "#1 Awareness"
       end
       click_on "Continue"
@@ -91,11 +91,11 @@ feature "activity tracker", type: :feature do
       awake_period = participant1.awake_periods.build(start_time: seven_am, end_time: eight_pm)
       awake_period.save!
 
-      with_scope "#sc-hamburger-menu" do
+      within "#sc-hamburger-menu" do
         click_on "Home"
       end
       visit "/navigator/contexts/DO"
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         click_on "#1 Awareness"
       end
       click_on "Continue"
@@ -149,7 +149,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "implements #3 Doing" do
-      with_scope ".container .left.list-group" do
+      within ".container .left.list-group" do
         click_on bit_core_content_modules(:do_doing).title
       end
 
@@ -176,7 +176,7 @@ feature "activity tracker", type: :feature do
       click_on "Continue"
 
       expect(page).to have_text("Activity saved")
-      with_scope "#Upcoming_Activities table.table" do
+      within "#Upcoming_Activities table.table" do
         expect(page).to have_text "Loving"
         expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
@@ -193,7 +193,7 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text("Activity saved")
 
-      with_scope "#Upcoming_Activities table.table" do
+      within "#Upcoming_Activities table.table" do
         expect(page).to have_text "Eating!"
         expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
         expect(page).to have_text "Really fun (10)"
@@ -300,7 +300,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Actual  Not answered: Not answered:"
       expect(page).to have_text "Difference N/A N/A"
 
-      with_scope "form#edit_activity_#{activity.id}" do
+      within "form#edit_activity_#{activity.id}" do
         expect(page).to_not have_button "Update"
         expect(page).to_not have_button "Cancel"
 
@@ -389,7 +389,16 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "No activities were completed during this day."
     end
 
+    it "title is not displayed when a data is selected", :js do
+      click_on "Day"
+      click_on "Visualize"
+      click_on "Last 3 Days"
+
+      expect(page).to_not have_text "3-Day View"
+    end
+
     it "displays an alert if no acitivites were scheduled over a 3-day period", :js do
+      expect(page).to_not have_text "3-Day View"
       expect(page).to_not have_text "No activities were completed during this 3-day period."
 
       click_on "Visualize"
