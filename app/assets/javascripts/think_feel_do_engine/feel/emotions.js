@@ -236,12 +236,11 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       // Update the y-axis.
       g.select(".y.axis")
         .call(yAxis);
-
     });
   }
 
 
-// The x-accessor for the path generator; xScale ∘ xValue.
+  // The x-accessor for the path generator; xScale ∘ xValue.
   function X(d) {
     return xScale(d[0]);
   }
@@ -258,6 +257,25 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
   function Y(d) {
     return yScale(d[1]);
   }
+
+  chart.drawLegend = function(legendContainer, legendItems) {
+    var svgContainer;
+
+    svgContainer = d3.select(legendContainer).append("svg");
+    _.each(legendItems, function(item, index) {
+      chart.legendKeyColor(svgContainer, item, index);
+      return chart.legendKeyText(svgContainer, item, index);
+    });
+    return chart;
+  };
+
+  chart.legendKeyColor = function(container, item, index) {
+    return container.append("rect").attr("x", 0).attr("y", index * 30).attr("width", 15).attr("height", 15).attr("fill", item[1]);
+  };
+
+  chart.legendKeyText = function(container, item, index) {
+    return container.append("text").attr("x", 20).attr("y", index * 30 + 15).attr("fill", item[1]).text(item[0]);
+  };
 
   chart.margin = function(_) {
     if (!arguments.length) return margin;

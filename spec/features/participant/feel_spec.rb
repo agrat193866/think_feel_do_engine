@@ -41,6 +41,21 @@ feature "Feel", type: :feature do
       expect(mood.rating).to eq 5
       expect(mood.rating_value).to eq "Neither"
     end
+
+    it "displays legends for both moods and emotions", :js do
+      click_on "Your Recent Moods & Emotions"
+
+      within "#mood-legend" do
+        expect(page).to have_text "Positive"
+        expect(page).to have_text "Average"
+        expect(page).to_not have_text "Negative"
+      end
+      within "#emotion-legend" do
+        expect(page).to have_text "Positive"
+        expect(page).to have_text "Average"
+        expect(page).to have_text "Negative"
+      end
+    end
   end
 
   context "Participant on day 2 logs in" do
