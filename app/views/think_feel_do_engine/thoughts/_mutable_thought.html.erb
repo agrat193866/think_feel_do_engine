@@ -9,7 +9,7 @@
   </td>
   <td>
     <span class="immutable-thought-content"><%= (!mutable_thought.pattern_title.blank? ? mutable_thought.pattern_title : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
-    <%= select_tag "thoughts[#{ mutable_thought.id }][pattern_id]", options_from_collection_for_select(ThoughtPattern.all, "id", "title", mutable_thought.pattern_id), class: "not-displayed" %>
+    <%= select_tag "thoughts[#{ mutable_thought.id }][pattern_id]", options_from_collection_for_select(ThoughtPattern.all, "id", "title", mutable_thought.pattern_id), include_blank: true, class: "not-displayed" %>
   </td>
   <td>
     <span class="immutable-thought-content"><%= (!mutable_thought.challenging_thought.blank? ? mutable_thought.challenging_thought : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
