@@ -8,9 +8,9 @@
     load_breakdown = function (title, data) {
       var averageHours, cleanDay, cleanWeek, container, displayTitle, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
 
-      displayTitle = function(data) {
-        if (!data.length === 0) {
-          $("#activities-chart div").prepend("<p class=\"text-center\">"+numOfDays+"-Day View</p>");
+      displayTitle = function(dayFilter, data) {
+        if (data.length !== 0) {
+          $("#activities-chart div").prepend("<p class=\"text-center\">"+dayFilter+"-Day View</p>");
         }
       };
 
@@ -336,7 +336,7 @@
       container = d3.select("#activities-chart").append("div");
       svg = container.append("svg").attr("class", "activity_viz").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       updateStacked(numOfDays, data);
-      displayTitle(data);
+      displayTitle(numOfDays, data);
     };
     getBucket = function (pleasure, accomplishment) {
       if (pleasure >= 5 && accomplishment >= 5) {
