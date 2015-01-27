@@ -1,3 +1,6 @@
+## 1.15.14 - 2015-01-27
+ * updated viz tick styles
+
 ## 1.15.13 - 2015-01-27
  * displays title on activity visualization and removes redundant class attribute
 
