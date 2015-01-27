@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107192402) do
+ActiveRecord::Schema.define(version: 20150127204950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,12 +206,14 @@ ActiveRecord::Schema.define(version: 20150107192402) do
   add_index "groups", ["title"], name: "index_groups_on_title", unique: true, using: :btree
 
   create_table "memberships", force: true do |t|
-    t.integer  "group_id",       null: false
-    t.integer  "participant_id", null: false
+    t.integer  "group_id",                       null: false
+    t.integer  "participant_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "start_date"
     t.date     "end_date"
+    t.boolean  "is_complete",    default: false
+    t.boolean  "is_stepped",     default: false
   end
 
   add_index "memberships", ["group_id", "participant_id"], name: "index_memberships_on_group_id_and_participant_id", unique: true, using: :btree

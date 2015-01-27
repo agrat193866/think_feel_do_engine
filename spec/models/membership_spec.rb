@@ -37,6 +37,8 @@ describe Membership do
       group_id: group_without_members1.id,
       start_date: Date.today,
       end_date: Date.today + 13.days)
+    expect(participant_wo_membership1.membership.is_stepped).to eq false
+    expect(participant_wo_membership1.membership.is_complete).to eq false
     expect(participant_wo_membership1.membership.tasks.map(&:id)).to eq task_ids
   end
 
