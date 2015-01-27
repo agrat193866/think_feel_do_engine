@@ -116,7 +116,6 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       xScale
         .domain(x_domain)
         .rangeRoundBands([width - margin.left - margin.right, 0], xRoundBands);
-      // Update the y-scale.
 
       yScale
         .domain([lowBound, highBound])
@@ -124,10 +123,22 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
         .nice();
 
       var  date_format = d3.time.format("%d %b");
-
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
-            .tickFormat(date_format)
+            .tickFormat(function (d){
+              var currentDate = moment(d)
+              var startDate = moment(x_domain[0])
+              var endDate = moment(x_domain[x_domain.length - 1])
+              if (startDate.diff(endDate, 'days') <= 6) {
+                return date_format(d)
+              }
+              else if (startDate.diff(currentDate, 'days') == 0  || startDate.diff(currentDate, 'days') % 6 == 0 ){
+                return date_format(d)
+              }
+              else {
+                return ''
+              }
+            })
             .tickSize(8);
 
       // Select the svg element, if it exists.
@@ -226,15 +237,28 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
         .attr("transform", "translate(0," + (height - margin.top - margin.bottom) + ")")
         .call(xAxis.orient("bottom"))
 
+      // Update the y-axis.
+      g.select(".y.axis")
+        .call(yAxis);
+      
+      d3.selectAll("g.x.axis g.tick line")
+          .attr("y2", function(d){
+            var currentDate = moment(d)
+            var startDate = moment(x_domain[0])
+            var endDate = moment(x_domain[x_domain.length - 1])
+            if (startDate.diff(currentDate, 'days') == 0  || startDate.diff(currentDate, 'days') % 6 == 0 ){
+              return 8
+            }
+            else {
+              return 4
+            }
+        });
     // zero line
      g.select(".x.axis.zero")
         .attr("transform", "translate(0," + Y0() + ")")
         .call(xAxis.tickFormat("").tickSize(0));
 
 
-      // Update the y-axis.
-      g.select(".y.axis")
-        .call(yAxis);
     });
   }
 
@@ -390,7 +414,7 @@ function maxOffset (activationDate, interval) {
 }
 
 function hideTicks () {
-  $('g.x.axis g.tick text').hide()
+  //$('g.x.axis g.tick text').hide()
 }
 
 function showTicks () {
