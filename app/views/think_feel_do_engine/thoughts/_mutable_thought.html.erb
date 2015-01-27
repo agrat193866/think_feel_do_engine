@@ -20,5 +20,5 @@
     <%= text_field_tag "thoughts[#{ mutable_thought.id }][act_as_if]", mutable_thought.act_as_if, class: "not-displayed" %>
   </td>
   <td class="ignore_cell"><%= mutable_thought.created_at.to_s(:date_time_with_meridian) %></td>
-  <td class="formonly"><%= submit_tag "Save", name: "thoughts[commit_id][#{ mutable_thought.id }]", class: "btn btn-default", class: "not-displayed" %></td>
+  <td class="formonly"><%= submit_tag "Save", name: "thoughts[commit_id][#{ mutable_thought.id }]", class: "btn btn-default not-displayed" %></td>
 </tr>
