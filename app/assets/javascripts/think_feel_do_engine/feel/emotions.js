@@ -412,11 +412,3 @@ function appendDateRange (graphParameters) {
 function maxOffset (activationDate, interval) {
   return Math.ceil(moment().diff(activationDate, 'days')/interval)
 }
-
-function hideTicks () {
-  //$('g.x.axis g.tick text').hide()
-}
-
-function showTicks () {
-  $('g.x.axis g.tick text').show()
-}

@@ -28,12 +28,10 @@
 <script>
 
   // starting graph parameters assume 7 day view ending in today
-  var activationDate = activation("<%= current_participant.active_membership.start_date %>")
+  var activationDate = activation("<%= current_participant.created_at %>")
 
   var graphParameters = new Graph(<%= mood_ratings.to_json.html_safe %>, <%= emotional_ratings.to_json.html_safe %>, null, $("#viz-container"));
   var yLabel = "Intensity"
-
-  var drawGraphs;
 
   drawGraphs = function() {
     var emotionGraphTitle,
@@ -69,7 +67,6 @@
           .height(400)
           .drawLegend("#emotion-legend", emotionLegendJSON, emotionLegendNotes));
 
-    graphParameters.interval > 7 ? hideTicks() : showTicks()
     return appendDateRange(graphParameters);
   };
 
