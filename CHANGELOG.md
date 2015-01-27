@@ -1,3 +1,6 @@
+## 1.15.16 - 2015-01-27
+ * only render left/right module index buckets when content exists
+
 ## 1.15.15 - 2015-01-27
  * changed start date calculation for mood vizs
 
