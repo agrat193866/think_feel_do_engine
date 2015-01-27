@@ -1,37 +1,43 @@
 <% group_id = current_participant.active_group.id %>
+<% didactic_modules = content_modules.didactic(group_id) %>
+<% non_didactic_modules = content_modules.non_didactic(group_id) %>
 
-<% content_for :left do %>
-  <div class="list-group left">
-    <% content_modules.didactic(group_id).each do |content_module| %>
-      <%# most recent task status for this membership and module %>
-      <% task_status = task_status(current_participant.membership, content_module) %>
-      <% if task_status %>
-        <% if task_status.completed_at.nil? %>
-          <%= task_status_link(task_status, "list-group-item "\
-                                            "list-group-item-unread") %>
-        <% else %>
-          <%= task_status_link(task_status) %>
+<% if didactic_modules.count > 0 %>
+  <% content_for :left do %>
+    <div class="list-group left">
+      <% didactic_modules.each do |content_module| %>
+        <%# most recent task status for this membership and module %>
+        <% task_status = task_status(current_participant.membership, content_module) %>
+        <% if task_status %>
+          <% if task_status.completed_at.nil? %>
+            <%= task_status_link(task_status, "list-group-item "\
+                                              "list-group-item-unread") %>
+          <% else %>
+            <%= task_status_link(task_status) %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>
 
-<% content_for :right do %>
-<div class="list-group right">
-    <% content_modules.non_didactic(group_id).each do |content_module| %>
-      <%# most recent task status for this membership and module %>
-      <% task_status = task_status(current_participant.membership, content_module) %>
-      <% if task_status %>
-        <% if task_status.completed_at.nil? %>
-          <%= task_status_link(task_status, "list-group-item "\
-                                            "list-group-item-unread", "pencil") %>
-        <% else %>
-          <%= task_status_link(task_status,"list-group-item list-group-item-read", "pencil") %>
+<% if non_didactic_modules.count > 0 %>
+  <% content_for :right do %>
+    <div class="list-group right">
+      <% content_modules.non_didactic(group_id).each do |content_module| %>
+        <%# most recent task status for this membership and module %>
+        <% task_status = task_status(current_participant.membership, content_module) %>
+        <% if task_status %>
+          <% if task_status.completed_at.nil? %>
+            <%= task_status_link(task_status, "list-group-item "\
+                                              "list-group-item-unread", "pencil") %>
+          <% else %>
+            <%= task_status_link(task_status,"list-group-item list-group-item-read", "pencil") %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-</div>
+    </div>
+  <% end %>
 <% end %>
 
 <% content_modules.each do |content_module| %>
