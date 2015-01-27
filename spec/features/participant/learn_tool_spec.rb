@@ -1,11 +1,7 @@
 require "spec_helper"
 
 feature "learn tool", type: :feature do
-  fixtures(
-    :arms, :participants, :"bit_core/slideshows", :"bit_core/slides", :users,
-    :"bit_core/tools", :"bit_core/content_modules", :"bit_core/content_providers",
-    :groups, :memberships, :tasks, :task_status
-  )
+  fixtures :all
 
   context "participant logged in and visits LEARN index page" do
     before do
@@ -39,6 +35,13 @@ feature "learn tool", type: :feature do
           "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
         )
       end
+    end
+
+    it "orders lessons by module position" do
+      lesson_titles = all("div.panel-info .lesson > p")
+
+      expect(lesson_titles[0]).to have_text "Do - Doing Introduction"
+      expect(lesson_titles[1]).to have_text "Do - Congrats"
     end
 
     it "can view an assigned learning slideshow that has been released", :js do

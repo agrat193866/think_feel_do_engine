@@ -25,6 +25,8 @@ module ContentProviders
 
     def weekly_tasks(participant, membership, app_context)
       all_tasks = participant.learning_tasks(content_modules(app_context))
+                  .includes(task: :bit_core_content_module)
+                  .order("bit_core_content_modules.position")
       week_count = (membership.length_of_study / DAYS_IN_WEEK.to_f).ceil
 
       (1..week_count).map do |week|
