@@ -287,6 +287,20 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "10 am - 11 am: Working"
     end
 
+    it "title is displayed when data is selected", :js do
+      click_on "Day"
+      click_on "Visualize"
+      click_on "Last 3 Days"
+
+      expect(page).to have_text "3-Day View"
+
+      click_on "Day"
+      click_on "Visualize"
+      click_on "Last 7 Days"
+
+      expect(page).to have_text "7-Day View"
+    end
+
     it "allows for the updating of a past activity", :js do
       expect(page).to have_text "10 am - 11 am: Working"
 
