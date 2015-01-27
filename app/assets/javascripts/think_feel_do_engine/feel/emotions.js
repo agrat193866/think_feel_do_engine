@@ -149,7 +149,6 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
           .attr("x", width/2+23)
           .attr("y", titleHeight/2)
           .attr("font-size", "1.2em")
-          .attr("font-family","sans-serif")
           .attr("text-anchor","middle")
           .attr("font-weight","bold")
           .text(title)
