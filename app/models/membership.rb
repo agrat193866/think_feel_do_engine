@@ -14,7 +14,9 @@ class Membership < ActiveRecord::Base
              foreign_key: :participant_id,
              inverse_of: :active_membership
   has_many :task_statuses, dependent: :destroy
-  has_many :tasks, through: :task_statuses
+  has_many :tasks,
+           -> { uniq },
+           through: :task_statuses
 
   validates :start_date, presence: true
   validates :end_date, presence: true

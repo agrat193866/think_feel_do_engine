@@ -139,8 +139,10 @@ feature "task notification", type: :feature do
 
     it "displays tasks assigned on previous days" do
       visit "/navigator/contexts/DO"
+
       expect(task_status(:task_status5).release_day).to eq 1
-      expect(participants(:participant2).membership.day_in_study).to eq 2
+      expect(participants(:participant2).active_membership.day_in_study).to eq 2
+
       within ".left.list-group" do
         expect(page.all("a#task-status-#{task_status(:task_status5).id}").count).to eq 1
       end

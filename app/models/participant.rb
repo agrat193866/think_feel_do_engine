@@ -93,7 +93,7 @@ class Participant < ActiveRecord::Base
   end
 
   def current_group
-    membership.group
+    active_membership.group
   end
 
   def fetch_data_record(association, id)
@@ -120,7 +120,7 @@ class Participant < ActiveRecord::Base
                              end
 
         if content_module_ids
-          membership.incomplete_tasks
+          active_membership.incomplete_tasks
             .for_content_module_ids(content_module_ids)
             .count
         else
@@ -146,7 +146,7 @@ class Participant < ActiveRecord::Base
                              end
 
         if content_module_ids
-          membership.incomplete_tasks_today
+          active_membership.incomplete_tasks_today
             .for_content_module_ids(content_module_ids)
             .count
         else
@@ -167,12 +167,8 @@ class Participant < ActiveRecord::Base
   end
 
   def learning_tasks(content_modules)
-    membership.task_statuses
+    active_membership.task_statuses
       .for_content_module_ids(content_modules.map(&:id))
-  end
-
-  def membership
-    @membership ||= memberships.first
   end
 
   def stepping_suggestion
@@ -182,7 +178,7 @@ class Participant < ActiveRecord::Base
     assessment_data = Hash[data]
     PhqStepping.new(
                 assessment_data,
-                membership.week_in_study
+                active_membership.week_in_study
             )
   end
 

@@ -31,27 +31,40 @@ describe Membership do
 
   it "assigns all tasks linked to a group upon creation" do
     task_ids = group_without_members1.tasks.map(&:id)
-    expect(participant_wo_membership1.membership).to be_nil
+    expect(participant_wo_membership1.active_membership).to be_nil
     Membership.create!(
       participant_id: participant_wo_membership1.id,
       group_id: group_without_members1.id,
       start_date: Date.today,
       end_date: Date.today + 13.days)
-    expect(participant_wo_membership1.membership.is_stepped).to eq false
-    expect(participant_wo_membership1.membership.is_complete).to eq false
-    expect(participant_wo_membership1.membership.tasks.map(&:id)).to eq task_ids
+    participant_wo_membership1.reload
+
+    expect(participant_wo_membership1.active_membership.is_stepped).to eq false
+    expect(participant_wo_membership1.active_membership.is_complete).to eq false
+
+    new_task_ids = participant_wo_membership1
+                   .reload
+                   .active_membership.tasks.map(&:id)
+
+    expect(new_task_ids).to eq task_ids
   end
 
-  it "assigns all reocurring tasks linked to a group upon creation" do
+  it "assigns all recurring tasks linked to a group upon creation" do
     task_ids = group_without_members2.tasks.map(&:id)
-    expect(participant_wo_membership2.membership).to be_nil
+
+    expect(participant_wo_membership2.active_membership).to be_nil
+
     Membership.create!(
       participant_id: participant_wo_membership2.id,
       group_id: group_without_members2.id,
       start_date: Date.today,
       end_date: Date.today + 4.days)
-    expect(participant_wo_membership2.membership.tasks.map(&:id).uniq).to eq task_ids
-    expect(participant_wo_membership2.membership.tasks.map(&:id).length).to eq 5
+    new_task_ids = participant_wo_membership2
+                   .reload
+                   .active_membership.tasks.map(&:id)
+
+    expect(new_task_ids.uniq).to eq task_ids
+    expect(new_task_ids.length).to eq 1
   end
 
   describe "date normalizations" do

@@ -11,10 +11,12 @@
       <h3 class="panel-title">General Patient Info</h3>
     </div>
     <div class="panel-body">
-      <p>
-        <strong><i class="fa fa-calendar"></i> Started on:</strong>
-        <%= @patient.membership.start_date.to_s :brief_date %>
-      </p>
+      <% if @patient.active_membership %>
+        <p>
+          <strong><i class="fa fa-calendar"></i> Started on:</strong>
+          <%= @patient.active_membership.start_date.to_s :brief_date %>
+        </p>
+      <% end %>
 
       <p>
         <strong>Status:</strong>
@@ -363,7 +365,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.membership.try(:task_statuses) %>
+      <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.active_membership.try(:task_statuses) %>
     </tbody>
   </table>
 </div>

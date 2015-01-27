@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
     def task_statuses_by_id(content_module_ids)
       @available_task_statuses ||=
         current_participant
-        .membership
+        .active_membership
         .available_task_statuses
         .includes(task: :bit_core_content_module)
 
