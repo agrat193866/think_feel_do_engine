@@ -1,3 +1,6 @@
+## 1.15.15 - 2015-01-27
+ * changed start date calculation for mood vizs
+
 ## 1.15.14 - 2015-01-27
  * updated viz tick styles
 
