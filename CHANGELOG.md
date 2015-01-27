@@ -1,3 +1,6 @@
+## 1.15.13 - 2015-01-27
+ * displays title on activity visualization and removes redundant class attribute
+
 ## 1.15.12 - 2015-01-26
  * Refactored inline styles and global stylesheets
  * removed Google Font inclusion
