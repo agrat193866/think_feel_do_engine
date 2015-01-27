@@ -48,5 +48,8 @@
       <% end %>
       <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
     </td>
+    <td>
+      <%= button_tag "Step", class: "btn btn-warning" %>
+    </td>
   </tr>
 <% end %>
