@@ -1,3 +1,6 @@
+## 1.16.2 - 2015-01-28
+ * added Bootstrap alert.js to login page
+
 ## 1.16.1 - 2015-01-28
  * refactored stylesheets
 
