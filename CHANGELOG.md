@@ -1,3 +1,6 @@
+## 1.16.1 - 2015-01-28
+ * refactored stylesheets
+
 ## 1.16.0 - 2015-01-28
  * prevent modification of Membership group_id
  * destroy invalid Task Statuses
