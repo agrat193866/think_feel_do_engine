@@ -1,3 +1,6 @@
+## 1.16.3 - 2015-01-28
+ * Fixed emotional rating bug
+
 ## 1.16.2 - 2015-01-28
  * added Bootstrap alert.js to login page
 
