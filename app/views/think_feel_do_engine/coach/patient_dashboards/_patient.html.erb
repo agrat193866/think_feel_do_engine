@@ -51,7 +51,16 @@
       <% end %>
     </td>
     <td>
-      <%= button_tag "Step", class: "btn btn-warning" %>
+      <% if patient.active_membership && patient.active_membership.is_stepped %>
+        Stepped
+      <% elsif patient.active_membership %>
+        <% if can? :update, patient.active_membership %>
+          <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
+            <%= f.hidden_field(:is_stepped, value: true) %>
+            <%= f.submit "Step", data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." }, class: "btn btn-warning" %>
+          <% end %>
+        <% end %>
+      <% end %>
     </td>
   </tr>
 <% end %>

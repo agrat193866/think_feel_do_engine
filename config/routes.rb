@@ -63,6 +63,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
       resources :received_messages, only: :show
       resources :sent_messages, only: :show
       resources :site_messages, only: [:index, :show, :new, :create]
+      resources :memberships, only: :update
     end
     get "participant_activities_visualization/:participant_id",
         to: "participant_activities_visualizations#show",

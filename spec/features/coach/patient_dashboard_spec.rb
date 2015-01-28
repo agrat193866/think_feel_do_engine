@@ -11,6 +11,7 @@ feature "patient dashboard", type: :feature do
   )
 
   describe "Logged in as a clinician" do
+    let(:clinician) { users(:clinician1) }
     let(:time_now) { Time.current }
     let(:short_timestamp) { time_now.to_formatted_s(:short) }
     let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
@@ -21,7 +22,7 @@ feature "patient dashboard", type: :feature do
 
     context "Coach views table with many patients" do
       before do
-        sign_in_user users :clinician1
+        sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards"
       end
 
@@ -54,7 +55,7 @@ feature "patient dashboard", type: :feature do
         expect(page).to have_text("participant_for_arm1_group1")
         expect(page).not_to have_text("TFD-1111")
 
-        sign_in_user users :clinician1
+        sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards"
 
         expect(page).not_to have_text("participant_for_arm1_group1")
@@ -67,7 +68,7 @@ feature "patient dashboard", type: :feature do
         expect(page).to have_text("Participant participant_for_arm1_group1")
         expect(page).not_to have_text("You are not authorized to access this page")
 
-        sign_in_user users :clinician1
+        sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_for_arm1_group1.id}"
 
         expect(page).to_not have_text("Participant participant_for_arm1_group1")
@@ -96,7 +97,7 @@ feature "patient dashboard", type: :feature do
 
       it "summarizes logins" do
         sign_in_participant participant1
-        sign_in_user users :clinician1
+        sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
         expect(page).to have_the_table(
@@ -147,7 +148,7 @@ feature "patient dashboard", type: :feature do
           find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
           click_on "Continue"
 
-          sign_in_user users :clinician1
+          sign_in_user clinician
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
           expect(page).to have_the_table(
             id: "learning_data",
@@ -289,7 +290,7 @@ feature "patient dashboard", type: :feature do
       let(:inactive_participant) { participants(:inactive_participant) }
 
       before do
-        sign_in_user users :clinician1
+        sign_in_user clinician
       end
 
       it "displays number of unread messages" do
@@ -330,7 +331,7 @@ feature "patient dashboard", type: :feature do
     end
 
     it "should allow a coach to set the membership end date" do
-      sign_in_user users :clinician1
+      sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text("Membership successfully updated")
@@ -341,11 +342,19 @@ feature "patient dashboard", type: :feature do
     end
 
     it "allows a coach to step a participant" do
-      sign_in_user users :clinician1
+      sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
+      save_and_open_page
       expect(page).to have_text "Step Status"
       expect(page).to have_button "Step"
+      expect(page).to_not have_text "Stepped"
+
+      click_on "Step"
+
+      expect(page).to have_text "Participant was successfully stepped."
+      expect(page).to have_text "Stepped"
+      expect(page).to_not have_button "Step"
     end
   end
 end
