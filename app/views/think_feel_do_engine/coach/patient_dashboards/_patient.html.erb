@@ -1,5 +1,5 @@
 <% if can? :show, patient %>
-  <tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.membership && patient.membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
+  <tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.active_membership && patient.active_membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
     <td>
       <%= link_to patient.study_id, coach_group_patient_dashboard_path(@group, patient) %>
     </td>
@@ -42,11 +42,16 @@
     </td>
 
     <td>
-      <%= form_for patient.membership, remote: true do |f| %>
-        <%= f.hidden_field :end_date %>
-        <input type="text" class="datepicker" value="<%= patient.membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
+      <% if patient.active_membership %>
+        <%= form_for patient.active_membership, remote: true do |f| %>
+          <%= f.hidden_field :end_date %>
+          <input type="text" class="datepicker" value="<%= patient.active_membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
+        <% end %>
+        <%= button_to "End Now", membership_path(patient.active_membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
       <% end %>
-      <%= button_to "End Now", membership_path(patient.membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
+    </td>
+    <td>
+      <%= button_tag "Step", class: "btn btn-warning" %>
     </td>
   </tr>
 <% end %>

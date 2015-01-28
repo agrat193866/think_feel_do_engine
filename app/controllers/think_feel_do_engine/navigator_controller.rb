@@ -67,7 +67,7 @@ module ThinkFeelDoEngine
 
     def last_engagment
       current_participant
-        .membership
+        .active_membership
         .task_statuses
         .for_content_module(navigator_content_module)
         .try(:last)

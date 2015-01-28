@@ -7,7 +7,7 @@
     <div class="list-group left">
       <% didactic_modules.each do |content_module| %>
         <%# most recent task status for this membership and module %>
-        <% task_status = task_status(current_participant.membership, content_module) %>
+        <% task_status = task_status(current_participant.active_membership, content_module) %>
         <% if task_status %>
           <% if task_status.completed_at.nil? %>
             <%= task_status_link(task_status, "list-group-item "\
@@ -26,7 +26,7 @@
     <div class="list-group right">
       <% content_modules.non_didactic(group_id).each do |content_module| %>
         <%# most recent task status for this membership and module %>
-        <% task_status = task_status(current_participant.membership, content_module) %>
+        <% task_status = task_status(current_participant.active_membership, content_module) %>
         <% if task_status %>
           <% if task_status.completed_at.nil? %>
             <%= task_status_link(task_status, "list-group-item "\
@@ -42,7 +42,7 @@
 
 <% content_modules.each do |content_module| %>
   <%# most recent task status for this membership and module %>
-  <% task_status = task_status(current_participant.membership, content_module) %>
+  <% task_status = task_status(current_participant.active_membership, content_module) %>
   <% if task_status && task_status.provider_viz? %>
     <br>
     <%= task_status

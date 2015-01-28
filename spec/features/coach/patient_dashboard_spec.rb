@@ -339,5 +339,13 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to have_text("Membership successfully updated")
     end
+
+    it "allows a coach to step a participant" do
+      sign_in_user users :clinician1
+      visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+      expect(page).to have_text "Step Status"
+      expect(page).to have_button "Step"
+    end
   end
 end

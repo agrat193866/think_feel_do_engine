@@ -18,6 +18,7 @@
         <th># of Logins</th>
         <th>Last Login</th>
         <th>End Date</th>
+        <th>Step Status<th>
       </tr>
     </thead>
     <tbody>
@@ -30,11 +31,11 @@
   </script>
 <% if Rails.application.config.include_phq_features %>
     <% @patients.each do |patient| %>
-      <% if patient.membership %>
+      <% if patient.active_membership %>
         <% suggestion = patient.stepping_suggestion %>
         <div
           id="phq_summary_patient-<%= patient.id %>"
-          data-week="<%= suggestion.week.to_s + ' ( Started:' + patient.membership.start_date_american + ' )' %>"
+          data-week="<%= suggestion.week.to_s + ' ( Started:' + patient.active_membership.start_date_american + ' )' %>"
           data-detailed_suggestion="<%= suggestion.detailed_suggestion %>"
           class="invis_phq_summary">
           <table>
