@@ -1,3 +1,7 @@
+## 1.16.0 - 2015-01-28
+ * prevent modification of Membership group_id
+ * destroy invalid Task Statuses
+
 ## 1.15.18 - 2015-01-28
  * clinicians have the authorization and capability to step a participant if they confirm
 
