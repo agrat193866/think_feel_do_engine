@@ -1,3 +1,6 @@
+## 1.15.18 - 2015-01-28
+ * clinicians have the authorization and capability to step a participant if they confirm
+
 ## 1.15.17 - 2015-01-28
  * added new flags indicating stepped status and trial completion status to a membership, added step button to patient edit page
 
