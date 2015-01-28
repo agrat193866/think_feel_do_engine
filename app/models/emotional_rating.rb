@@ -16,10 +16,10 @@ class EmotionalRating < ActiveRecord::Base
   before_validation :associate_emotion
 
   scope :for_day, lambda { |datetime|
-    joins(:emotion)
-      .where(
-        "emotions.created_at >= ? AND emotions.created_at < ?",
-        datetime.beginning_of_day, datetime.advance(days: 1).beginning_of_day)
+    where(
+      arel_table[:created_at].gteq(datetime.beginning_of_day)
+      .and(arel_table[:created_at].lteq(datetime.end_of_day))
+    )
   }
 
   scope :positive, -> { where(arel_table[:is_positive].eq(true)) }

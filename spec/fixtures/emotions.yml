@@ -17,3 +17,8 @@ anxious:
 surprised:
   creator: participant2
   name: surprised
+
+hangry:
+  creator: participant1
+  name: HANGRY
+  created_at: <%= DateTime.current.advance(years: -2) %>

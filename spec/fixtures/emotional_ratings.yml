@@ -22,3 +22,9 @@ surprised:
   participant: participant2
   emotion: surprised
   rating: 3
+
+hangry:
+  participant: participant1
+  emotion: hangry
+  rating: 10
+  created_at: <%= DateTime.current.advance(years: -1) %>
