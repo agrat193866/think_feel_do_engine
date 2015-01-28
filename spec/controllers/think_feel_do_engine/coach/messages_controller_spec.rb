@@ -73,15 +73,15 @@ module ThinkFeelDoEngine
           context "when the message does not save" do
             let(:errors) { double("errors", full_messages: []) }
             let(:message) { double("message", save: false, errors: errors) }
-
             before do
+              request.env['HTTP_REFERER'] = urls.new_coach_group_message_url(group) 
               allow(Group).to receive(:find).and_return(group)
               post :create, message: {
                 recipient_id: 1, recipient_type: "foo", subject: "bar", body: "asdf"
               }, use_route: :think_feel_do_engine
             end
 
-            it { expect(response).to render_template :new }
+            it { expect(response).to redirect_to :back }
           end
         end
       end

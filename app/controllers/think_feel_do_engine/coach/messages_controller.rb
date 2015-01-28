@@ -34,8 +34,7 @@ module ThinkFeelDoEngine
           redirect_to coach_group_messages_url(@group), notice: "Message saved"
         else
           errors = @message.errors.full_messages.join(", ")
-          flash.now[:alert] = "Unable to save message: #{ errors }"
-          render :new
+          redirect_to :back, alert: "Unable to save message: #{ errors }"
         end
       end
 

@@ -89,6 +89,14 @@ feature "coach messages", type: :feature do
       expect(page).to have_content "Try this link out:"
     end
 
+    it "does not allow a coach to send a message without selecting a participant" do
+      click_on "Compose"
+      fill_in("Subject", with: "Message with link")
+      fill_in("Message", with: "Try this link out:")
+      click_on("Send")
+      expect(page).to have_content "Unable to save message: Recipient can't be blank"
+    end
+
     it "displays a sent message" do
       click_on "Try out the LEARN tool"
 
