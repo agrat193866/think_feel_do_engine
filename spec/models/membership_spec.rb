@@ -1,11 +1,7 @@
 require "spec_helper"
 
 describe Membership do
-  fixtures(
-    :participants, :users, :user_roles, :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :"bit_core/content_modules", :"bit_core/content_providers",
-    :groups, :memberships, :tasks, :task_status
-  )
+  fixtures :all
 
   let(:group) { groups(:group1) }
   let(:group_without_members1) { groups(:group_without_members1) }
@@ -26,6 +22,11 @@ describe Membership do
 
     it "allows valid memberships to be updated" do
       expect { memberships(:membership1).save! }.not_to raise_error
+    end
+
+    it "doesn't allow changing the group_id" do
+      expect(memberships(:membership1).update(group: groups(:group2)))
+        .to eq false
     end
   end
 

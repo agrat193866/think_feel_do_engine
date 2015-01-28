@@ -23,6 +23,7 @@ class Membership < ActiveRecord::Base
   validates :group, presence: true
   validates :participant, presence: true
   validates :group_id, uniqueness: { scope: :participant_id }
+  validate :group_id_unchanged
   validate :single_active_membership
 
   attr_writer :start_date_american, :end_date_american
@@ -116,6 +117,12 @@ class Membership < ActiveRecord::Base
        .where.not(id: id)
        .exists?
       errors.add(:base, "There can be only one active membership")
+    end
+  end
+
+  def group_id_unchanged
+    if changed.include?("group_id") && !changes["group_id"][0].nil?
+      errors.add :group_id, "cannot be changed"
     end
   end
 end
