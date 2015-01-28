@@ -1,3 +1,6 @@
+## 1.15.17 - 2015-01-28
+ * added new flags indicating stepped status and trial completion status to a membership, added step button to patient edit page
+
 ## 1.15.16 - 2015-01-27
  * only render left/right module index buckets when content exists
 
