@@ -12,7 +12,7 @@
       <%= patient.active_membership ? (patient.active_membership.day_in_study / 7.0).ceil : '<span class="label label-warning">Inactive</span>'.html_safe %>
     </td>
 
-    <% if Rails.application.config.include_phq_features %>
+    <% if phq_features? %>
       <td>
         <% if (last_phq = patient.phq_assessments.last) %>
           <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
@@ -50,17 +50,19 @@
         <%= button_to "End Now", membership_path(patient.active_membership), onclick: "return confirm('Are you sure? You will not be able to undo this.');", method: :patch, params: { 'membership[end_date]' => Date.current }, class: "btn btn-danger" %>
       <% end %>
     </td>
-    <td>
-      <% if patient.active_membership && patient.active_membership.is_stepped %>
-        Stepped
-      <% elsif patient.active_membership %>
-        <% if can? :update, patient.active_membership %>
-          <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
-            <%= f.hidden_field(:is_stepped, value: true) %>
-            <%= f.submit "Step", data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." }, class: "btn btn-warning" %>
+    <% if phq_features? %>
+      <td>
+        <% if patient.active_membership && patient.active_membership.is_stepped %>
+          Stepped
+        <% elsif patient.active_membership %>
+          <% if can? :update, patient.active_membership %>
+            <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
+              <%= f.hidden_field(:is_stepped, value: true) %>
+              <%= f.submit "Step", data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." }, class: "btn btn-warning" %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </td>
+      </td>
+    <% end %>
   </tr>
 <% end %>

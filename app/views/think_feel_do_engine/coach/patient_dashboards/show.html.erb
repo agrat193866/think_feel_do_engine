@@ -39,7 +39,7 @@
     </div>
     <%= render "think_feel_do_engine/coach/patient_dashboards/vizs", patient: @patient %>
   </div>
-  <% if Rails.application.config.include_phq_features %>
+  <% if phq_features? %>
     <div class="panel panel-default cdb_panel">
       <div class="panel-heading">
         <h3 class="panel-title adjusted-panel-title">

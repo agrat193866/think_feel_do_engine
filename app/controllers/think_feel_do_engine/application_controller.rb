@@ -42,5 +42,14 @@ module ThinkFeelDoEngine
         redirect_to main_app.root_path, alert: exception.message
       end
     end
+
+    private
+
+    def phq_features?
+      if Rails.application.config.respond_to?(:include_phq_features)
+        Rails.application.config.include_phq_features
+      end
+    end
+    helper_method :phq_features?
   end
 end

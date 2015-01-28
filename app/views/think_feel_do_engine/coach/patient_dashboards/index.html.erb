@@ -11,14 +11,16 @@
         <th>Study Id</th>
         <th>Unread Messages</th>
         <th>Week in Treatment</th>
-        <% if Rails.application.config.include_phq_features %>
+        <% if phq_features? %>
           <th>Most Recent PHQ9 Score</th>
           <th>Step to t-CBT?</th>
         <% end %>
         <th># of Logins</th>
         <th>Last Login</th>
         <th>End Date</th>
-        <th>Step Status<th>
+        <% if phq_features? %> 
+          <th>Step Status<th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +31,7 @@
   <script>
     $('form.button_to input[type=submit]').addClass('btn btn-default');
   </script>
-<% if Rails.application.config.include_phq_features %>
+<% if phq_features? %>
     <% @patients.each do |patient| %>
       <% if patient.active_membership %>
         <% suggestion = patient.stepping_suggestion %>
