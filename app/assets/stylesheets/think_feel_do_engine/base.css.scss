@@ -40,19 +40,6 @@ abbr.timeago {
   cursor: auto;
 }
 
-#inbox.tab-pane > div.list-group a:first-child, #sent.tab-pane > div.list-group a:first-child {
-	border-top:none;
-}
-
-#sent.tab-pane > .list-group .list-group-item, #inbox.tab-pane > .list-group .list-group-item {
-  border-width: 1px 0;
-  border-radius: 0;
-}
-
-#sent.tab-pane > .list-group > .list-group-item.list-group-item-*, #inbox.tab-pane > .list-group > .list-group-item.list-group-item-* {
-  border-top:0px;
-}
-
 .list-group-item-unread {
   font-weight:bold;
 }
@@ -365,15 +352,6 @@ ul#nav_main li.active a
 /********************[Mobile Friendly Modifications]**************************/
 
 /*[Message Pages]*/
-.p_message{
-  display:inline-block;
-  font-size: 13px;
-}
-
-.p_message_subject{
-  display:block;
-}
-
 li .btn{
   white-space: normal;
   text-align:left;
