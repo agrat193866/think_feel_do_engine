@@ -1,3 +1,7 @@
+<% if (description = tool.description) %>
+  <% content_for(:tool_description) { sanitize(description).gsub(/\n/, "<br><br>").html_safe } %>
+<% end %>
+
 <% if coach.nil? %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif current_participant.active_membership.present? %>

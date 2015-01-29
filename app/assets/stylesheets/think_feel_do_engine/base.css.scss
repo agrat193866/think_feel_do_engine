@@ -16,10 +16,20 @@ h1, h2, h3 {
   display: none;
 }
 
+/* buttons */
+
 .btn-toolbar, .btn-group {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.btn-link {
+  &:focus, &:active {
+    outline: none;
+  }
+}
+
+/* end buttons */
 
 .input-group.static .form-control-static{
   -moz-border-radius-topleft: 0;

@@ -14,7 +14,8 @@ module ContentProviders
           sent_messages: sent_messages,
           received_messages: received_messages(options.participant),
           compose_path: compose_path(options.view_context),
-          show_path: show_path(options.view_context)
+          show_path: show_path(options.view_context),
+          tool: content_module.tool
         }
       )
     end
