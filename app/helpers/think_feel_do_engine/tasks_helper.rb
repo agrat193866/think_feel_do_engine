@@ -40,11 +40,11 @@ module ThinkFeelDoEngine
 
     def indicate_incomplete(tool)
       if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
-        "<span class=\"badge badge-do badge-superscript\">"\
+        "<span class=\"badge badge-do\">"\
         "#{@current_participant.count_all_incomplete(tool)}"\
         "</span>"
       elsif @current_participant.incomplete?(tool)
-        "<span class=\"badge badge-do badge-superscript\">"\
+        "<span class=\"badge badge-do\">"\
         "New!"\
         "</span>"
       else
