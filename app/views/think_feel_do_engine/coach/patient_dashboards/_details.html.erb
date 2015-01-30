@@ -22,7 +22,6 @@
             Suggestion:
             <%= suggestion.detailed_suggestion %>
           </p>
-
           <table class="table table-hover">
             <thead>
               <th>Week #</th>
@@ -33,7 +32,7 @@
               <%= render partial: "think_feel_do_engine/coach/patient_dashboards/phq_summary", collection: suggestion.assessments, as: :tested_weeks, locals: { test_summary: suggestion.results } %>
             </tbody>
           </table>
-          <%= render 'think_feel_do_engine/coach/patient_dashboards/phq_notice', tested_weeks: suggestion.assessments %>
+          <%= render 'think_feel_do_engine/coach/patient_dashboards/phq_notices', notices: phq_notices(suggestion.assessments) %>
           <%= render 'think_feel_do_engine/coach/patient_dashboards/test_summary', test_summary: suggestion.results %>
         </div>
         <div class="modal-footer">
