@@ -23,6 +23,7 @@ library:
   position: 4
   title: LEARN
   arm: arm1
+  type: Tools::Learn
 
 messages:
   position: 5
@@ -55,6 +56,7 @@ library2:
   position: 4
   title: LEARN
   arm: arm2
+  type: Tools::Learn
 
 messages2:
   position: 5
