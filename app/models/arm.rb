@@ -35,4 +35,9 @@ class Arm < ActiveRecord::Base
   def woz?
     has_woz
   end
+
+  def non_home_tools
+    bit_core_tools.where("bit_core_tools.type IS NULL OR " \
+                         "bit_core_tools.type != 'Tools::Home'")
+  end
 end

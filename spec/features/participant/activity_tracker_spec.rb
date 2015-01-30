@@ -91,9 +91,6 @@ feature "activity tracker", type: :feature do
       awake_period = participant1.awake_periods.build(start_time: seven_am, end_time: eight_pm)
       awake_period.save!
 
-      within "#sc-hamburger-menu" do
-        click_on "Home"
-      end
       visit "/navigator/contexts/DO"
       within ".container .left.list-group" do
         click_on "#1 Awareness"

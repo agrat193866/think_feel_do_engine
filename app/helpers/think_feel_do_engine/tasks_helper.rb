@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
       @assign_tool ||= {}
 
       @assign_tool[tool.id] ||= (
-        if tool.title != "home"
+        unless tool.is_a?(Tools::Home)
           "#{tool.title} #{indicate_incomplete(tool)}".html_safe
         end
       )

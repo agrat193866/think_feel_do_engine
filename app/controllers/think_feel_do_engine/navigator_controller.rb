@@ -9,7 +9,8 @@ module ThinkFeelDoEngine
     layout "tool"
 
     def show_context
-      @navigator.initialize_context(params[:context_name] || "home")
+      context_name = params[:context_name] || home_tool.try(:title)
+      @navigator.initialize_context(context_name)
 
       render "show_content"
     end
@@ -21,7 +22,7 @@ module ThinkFeelDoEngine
         content_position: params[:content_position]
       )
     rescue ActiveRecord::RecordNotFound
-      @navigator.initialize_context("home")
+      @navigator.initialize_context(home_tool.title)
       flash[:alert] = "Unable to find that module."
     ensure
       render "show_content"
@@ -97,6 +98,12 @@ module ThinkFeelDoEngine
       @navigator
         .current_content_provider
         .exists?(@navigator.content_position + 1)
+    end
+
+    def home_tool
+      current_participant.current_group
+        .arm
+        .bit_core_tools.find_by_type("Tools::Home")
     end
   end
 end

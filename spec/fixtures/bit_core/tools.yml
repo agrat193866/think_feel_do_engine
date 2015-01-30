@@ -2,6 +2,7 @@ home:
   position: 0
   title: home
   arm: arm1
+  type: Tools::Home
 
 thought_tracker:
   position: 1
@@ -27,11 +28,13 @@ messages:
   position: 5
   title: MESSAGES
   arm: arm1
+  type: Tools::Messages
 
 home2:
   position: 0
   title: HOME
   arm: arm2
+  type: Tools::Home
 
 thought_tracker2:
   position: 1
@@ -57,3 +60,4 @@ messages2:
   position: 5
   title: GMAIL
   arm: arm2
+  type: Tools::Messages

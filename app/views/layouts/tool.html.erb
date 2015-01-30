@@ -54,7 +54,8 @@
       <div class="snap-drawers">
         <div class="snap-drawer snap-drawer-left">
           <ul id="snap-navbar" class="nav navbar-nav navbar-snap">
-            <li class="snap-nav-item <%= 'active' if @navigator.context == 'home' %>"><%= link_to "Home", "/" %></li>
+            <% home_tool = current_participant.active_group.arm.bit_core_tools.find_by_type("Tools::Home") %>
+            <li class="snap-nav-item <%= 'active' if BitCore::Tool.find_by_title(@navigator.context) == home_tool %>"><%= link_to home_tool.try(:title), "/" %></li>
 
             <%= render "think_feel_do_engine/shared/participant/hamburger_nav_items" %>
           </ul>
