@@ -1,0 +1,22 @@
+<table class="table table-hover" id="<%= table_id %>">
+  <thead>
+    <tr>
+      <th>Study Id</th>
+      <th>Unread Messages</th>
+      <th>Week in Treatment</th>
+      <% if phq_features? %>
+        <th>Most Recent PHQ9 Score</th>
+        <th>Step to t-CBT?</th>
+      <% end %>
+      <th># of Logins</th>
+      <th>Last Login</th>
+      <th>End Date</th>
+      <% if phq_features? %> 
+        <th>Step Status<th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "think_feel_do_engine/coach/patient_dashboards/patient", collection: patients, as: :patient %>
+  </tbody>
+</table>

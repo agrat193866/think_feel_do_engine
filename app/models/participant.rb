@@ -60,6 +60,16 @@ class Participant < ActiveRecord::Base
     joins(:memberships).merge(Membership.inactive)
   end
 
+  scope :stepped, lambda {
+    joins(:memberships)
+      .where("memberships.is_stepped = ?", true)
+  }
+
+  scope :not_stepped, lambda {
+    joins(:memberships)
+      .where("memberships.is_stepped = ?", false)
+  }
+
   def password_is__not_blank?
     !password.blank?
   end

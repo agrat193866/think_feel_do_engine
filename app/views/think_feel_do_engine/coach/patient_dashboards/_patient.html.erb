@@ -28,7 +28,7 @@
         <% else %>
           <span class="label label-phq-none label-warning">No Completed Assessments</span>
         <% end %>
-        <%= render "think_feel_do_engine/coach/patient_dashboards/details", patient: patient %>
+        <%= render "think_feel_do_engine/coach/patient_dashboards/details", patient: patient if patient.active_membership %>
       </td>
     <% end %>
 

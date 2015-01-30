@@ -55,12 +55,35 @@ feature "patient dashboard", type: :feature do
       it "should display phq details" do
         within "#patient-#{participants(:participant_phq1).id}-details" do
           expect(page).to have_text("Patient: SCTest01")
-          expect(page).to have_text("Suggestion: Step to t-CBT")
+          expect(page).to have_text("Suggestion: Stay on i-CBT")
           expect(page).to have_text("Legend")
           expect(page).to have_text("PHQ9 assessment missing this week - values copied from previous assessment.")
           expect(page).to have_text("PHQ9 assessment missing this week - no previous assessment data to copy from.")
           expect(page).to have_text("PHQ9 assessment missing answers for up to 3 questions - using 1.5 to fill them in.")
           expect(page).to have_text("PHQ9 assessment missing answers for more than 3 questions - data unreliable")
+        end
+      end
+
+      it "should move a patient to the stepped table when stepped" do
+        expect(page).to have_text "Stepped Patients"
+        expect(page).to have_text "Not Stepped Patients"
+
+        within "#patients" do
+          expect(page).to have_text("Patient: SCTest01")
+        end
+        within "#stepped-patients" do
+          expect(page).to_not have_text("Patient: SCTest01")
+        end
+
+        within "#patient-#{participants(:participant_phq1).id}" do
+          click_on "Step"
+        end
+
+        within "#patients" do
+          expect(page).to_not have_text("Patient: SCTest01")
+        end
+        within "#stepped-patients" do
+          expect(page).to have_text("Patient: SCTest01")
         end
       end
     end
@@ -375,7 +398,9 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to_not have_text("Membership successfully updated")
 
-      click_on "End Now"
+      within "#patient-#{participants(:participant1).id}" do
+        click_on "End Now"
+      end
 
       expect(page).to have_text("Membership successfully updated")
     end
@@ -385,14 +410,17 @@ feature "patient dashboard", type: :feature do
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to have_text "Step Status"
-      expect(page).to have_button "Step"
-      expect(page).to_not have_text "Stepped"
-
-      click_on "Step"
+      within "#patient-#{participants(:participant1).id}" do
+        expect(page).to_not have_text "Stepped"
+        click_on "Step"
+      end
 
       expect(page).to have_text "Participant was successfully stepped."
-      expect(page).to have_text "Stepped"
-      expect(page).to_not have_button "Step"
+
+      within "#patient-#{participants(:participant1).id}" do
+        expect(page).to have_text "Stepped"
+        expect(page).to_not have_button "Step"
+      end
     end
   end
 end
