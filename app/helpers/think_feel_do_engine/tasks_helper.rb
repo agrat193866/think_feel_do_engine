@@ -21,7 +21,7 @@ module ThinkFeelDoEngine
     end
 
     def no_submenu?(tool)
-      tool.title.downcase == "messages" ||
+      tool.is_a?(Tools::Messages) ||
         tool.title.downcase == "learn"
     end
 

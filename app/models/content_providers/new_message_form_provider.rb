@@ -14,7 +14,8 @@ module ContentProviders
           recipient: view.params[:recipient],
           recipient_id: view.params[:recipient_id],
           recipient_type: view.params[:recipient_type],
-          subject: view.params[:subject]
+          subject: view.params[:subject],
+          tool: content_module.tool
         }
       )
     end
