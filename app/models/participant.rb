@@ -56,6 +56,10 @@ class Participant < ActiveRecord::Base
     joins(:memberships).merge(Membership.active)
   end
 
+  def self.inactive
+    joins(:memberships).merge(Membership.inactive)
+  end
+
   def password_is__not_blank?
     !password.blank?
   end

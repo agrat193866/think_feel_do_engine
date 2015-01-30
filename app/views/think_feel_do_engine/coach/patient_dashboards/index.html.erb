@@ -2,6 +2,10 @@
 
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
+  <%= link_to @active_patients ? "Inactive Patients" : "Active Patients",
+              patient_button_link(@active_patients),
+              class: "btn btn-default" %>
+
 </div>
 
 <div id="patient_dashboard_wrapper">

@@ -4,7 +4,7 @@ module ThinkFeelDoEngine
   module Coach
     describe PatientDashboardsController, type: :controller do
       describe "GET index" do
-        let(:group) { double("group", participants: []) }
+        let(:group) { double("group", participants: Participant.all) }
 
         context "for unauthenticated requests" do
           before { get :index, use_route: :think_feel_do_engine }
@@ -14,7 +14,7 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           before do
             allow(Group).to receive(:find).and_return(group)
-            sign_in_user double("user", participants: [], admin?: false, coach?: true)
+            sign_in_user double("user", participants: Participant.all, admin?: false, coach?: true)
             get :index, use_route: :think_feel_do_engine
           end
 

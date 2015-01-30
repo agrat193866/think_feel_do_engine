@@ -74,6 +74,24 @@ feature "patient dashboard", type: :feature do
         expect(page).to_not have_text("Participant participant_for_arm1_group1")
         expect(page).to have_text("You are not authorized to access this page")
       end
+
+      it "should have button to view inactive patients on initial page load" do
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+        expect(page).to have_text("Inactive Patients")
+      end
+
+      it "should have button to view active patients on inactive view" do
+        visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
+
+        expect(page).to have_text("Active Patients")
+      end
+
+      it "should show inactive patients" do
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+        expect(page).to have_text("Inactive Patients")
+      end
     end
 
     context "Coach visits active patient" do

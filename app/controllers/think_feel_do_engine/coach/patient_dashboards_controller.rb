@@ -5,11 +5,22 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_group
       before_action :set_patient, only: :show
 
+      helper_method :patient_button_link
+
       layout "manage"
 
       def index
         authorize! :show, Participant
-        @patients = @group.participants
+
+        if @group.participants
+          if "false" == params[:active]
+            @active_patients = false
+            @patients = @group.participants.inactive
+          else
+            @active_patients = true
+            @patients = @group.participants.active
+          end
+        end
       end
 
       def show
@@ -21,7 +32,19 @@ module ThinkFeelDoEngine
         end
       end
 
+      def patient_button_link(active)
+        if active
+          coach_group_patient_dashboards_path(@group, active: false)
+        else
+          coach_group_patient_dashboards_path(@group, active: true)
+        end
+      end
+
       private
+
+      def patient_dashboard_controller_params
+        params.permit(:active)
+      end
 
       def active_group
         @patient.active_group
