@@ -38,9 +38,7 @@
   </div>
   <% end %>
 
-  <% if sent_messages.empty? %>
-      <div class="alert alert-info" role="alert">No messages to display.</div>
-  <% else %>
+  <% if sent_messages.count > 0 %>
     <div class="tab-pane" id="sent">
       <div class="list-group">
         <% user = current_user || current_participant %>
