@@ -81,26 +81,28 @@ membership_for_learning:
 membership_phq1:
   participant: participant_phq1
   group: group1 
-  start_date: <%= Date.new(2014,6,24) %>
+  start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today + 365.days %>
 
-# membership_phq2:
-#   participant: participant_phq2
-#   group: group1 
-#   start_date: <%= Date.new(2014,6,17) %>
-#   end_date: <%= Date.today + 365.days %>
+membership_phq2:
+  participant: participant_phq2
+  group: group1 
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: -5) %>
+  is_stepped: true
 
-# membership_phq3:
-#   participant: participant_phq3
-#   group: group1 
-#   start_date: <%= Date.new(2014,6,10) %>
-#   end_date: <%= Date.today + 365.days %>
+membership_phq3:
+  participant: participant_phq3
+  group: group1 
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today + 365.days %>
+  is_stepped: true
 
-# membership_phq4:
-#   participant: participant_phq4
-#   group: group1 
-#   start_date: <%= Date.new(2014,5, 20) %>
-#   end_date: <%= Date.today + 365.days %>
+membership_phq4:
+  participant: participant_phq4
+  group: group1 
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: -5) %>
 
 # membership_phq5:
 #   participant: participant_phq5
