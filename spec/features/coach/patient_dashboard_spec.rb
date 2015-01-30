@@ -248,9 +248,10 @@ feature "patient dashboard", type: :feature do
 
           fill_in "What did you do from 12am to 1am?", with: "run"
           click_on "Continue"
-          # expect(page).to have_text("Take a look - does this all seem right?")
           sign_in_user users(:clinician1)
+
           visit "/coach/groups/#{group1.id}/patient_dashboards"
+
           click_on "TFD-1111"
 
           expect(page).to have_the_table(
@@ -354,7 +355,7 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to_not have_text("Membership successfully updated")
 
-      click_on "End Now"
+      click_on "Discontinue"
 
       expect(page).to have_text("Membership successfully updated")
     end
@@ -364,7 +365,6 @@ feature "patient dashboard", type: :feature do
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       save_and_open_page
-      expect(page).to have_text "Step Status"
       expect(page).to have_button "Step"
       expect(page).to_not have_text "Stepped"
 
@@ -373,6 +373,30 @@ feature "patient dashboard", type: :feature do
       expect(page).to have_text "Participant was successfully stepped."
       expect(page).to have_text "Stepped"
       expect(page).to_not have_button "Step"
+    end
+
+    it "allows a coach to withdraw a participant" do
+      sign_in_user clinician
+      visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+      save_and_open_page
+      expect(page).to have_button "Withdraw"
+
+      click_on "Withdraw"
+
+      expect(page).to_not have_text "TFD-1111"
+    end
+
+    it "allows a coach to discontinue a participant" do
+      sign_in_user clinician
+      visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+      save_and_open_page
+      expect(page).to have_button "Discontinue"
+
+      click_on "Discontinue"
+
+      expect(page).to_not have_text "TFD-1111"
     end
   end
 end

@@ -1,4 +1,4 @@
-<h1><em><%= @group.title %></em> Patient Dashboard</h1>
+<h1><em><%= @group.title %></em> Patient Dashboard - <%= @active_patients ? "Active" : "Inactive" %></h1>
 
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
@@ -15,15 +15,19 @@
         <th>Study Id</th>
         <th>Unread Messages</th>
         <th>Week in Treatment</th>
-        <% if phq_features? %>
+        <% if phq_features? && @active_patients%>
           <th>Most Recent PHQ9 Score</th>
           <th>Step to t-CBT?</th>
         <% end %>
         <th># of Logins</th>
         <th>Last Login</th>
-        <th>End Date</th>
-        <% if phq_features? %> 
-          <th>Step Status<th>
+        <% if phq_features? && @active_patients %>
+            <th></th>
+        <% end %>
+        <% if @active_patients %>
+          <th>End Date</th>
+          <th></th>
+          <th></th>
         <% end %>
       </tr>
     </thead>
