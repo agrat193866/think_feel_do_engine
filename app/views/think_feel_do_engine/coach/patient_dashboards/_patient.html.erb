@@ -24,11 +24,9 @@
       <td>
         <% if patient.phq_assessments.count > 0 %>
           <% suggestion = patient.stepping_suggestion %>
-          <span title="Click for more details" class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
-          <button type="button" class="btn btn-link label-phq">more details</button>
+          <span class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
         <% else %>
-          <span title="Click for more details" class="label label-phq-none label-warning">No Completed Assessments</span>
-          <button type="button" class="btn btn-link label-phq">more details</button>
+          <span class="label label-phq-none label-warning">No Completed Assessments</span>
         <% end %>
         <%= render "think_feel_do_engine/coach/patient_dashboards/details", patient: patient %>
       </td>

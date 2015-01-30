@@ -9,5 +9,4 @@
 //
 // internal
 //= require think_feel_do_engine/slideshows
-//= require think_feel_do_engine/phq_table_scripts
 //= require_tree ./coach
