@@ -48,10 +48,15 @@ feature "activity tracker", type: :feature do
 
       find("#copy_2").trigger("click")
 
+      find('button#submit_activities[type="submit"]').click
+      
+      expect(page).to have_css('div.has-error') 
+      
       find("#activity_type_3").trigger("click")
       fill_in("activity_type_3", with: "ate bad cheeseburgers")
       choose_rating("pleasure_3", 0)
       choose_rating("accomplishment_3", 1)
+
       find('button#submit_activities[type="submit"]').click
 
       expect(page).to have_text("ate cheeseburgers")
