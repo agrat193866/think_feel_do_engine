@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#patient-<%= patient.id %>-details">
+<button type="button" class="btn btn-link" data-toggle="modal" data-target="#patient-<%= patient.id %>-details">
   Details
 </button>
 <div class="modal fade" id="patient-<%= patient.id %>-details">
@@ -22,17 +22,29 @@
             Suggestion:
             <%= suggestion.detailed_suggestion %>
           </p>
-          <table class="table table-hover">
-            <thead>
-              <th>Week #</th>
-              <th>Date</th>
-              <th>PHQ-9 Score</th>
-            </thead>
-            <tbody>
-              <%= render partial: "think_feel_do_engine/coach/patient_dashboards/phq_summary", collection: suggestion.assessments, as: :tested_weeks, locals: { test_summary: suggestion.results } %>
-            </tbody>
-          </table>
-          <%= render 'think_feel_do_engine/coach/patient_dashboards/phq_notices', notices: phq_notices(suggestion.assessments) %>
+          <% if suggestion.assessments == {} %>
+            <div class="alert alert-info">
+              No assessment data exists.
+            </div>
+          <% else %>
+            <table class="table table-hover">
+              <thead>
+                <th>Week #</th>
+                <th>Date</th>
+                <th>PHQ-9 Score</th>
+              </thead>
+              <tbody>
+                <%= render partial: "think_feel_do_engine/coach/patient_dashboards/phq_summary", collection: suggestion.assessments, as: :tested_weeks, locals: { test_summary: suggestion.results } %>
+              </tbody>
+            </table>
+            <div class="alert alert-warning">
+              <p><strong>Legend</strong></p>
+              <p><%= fa_icon("copy") %> PHQ9 assessment missing this week - values copied from previous assessment.</p>
+              <p><%= fa_icon("ban") %> PHQ9 assessment missing this week - no previous assessment data to copy from.</p>
+              <p><%= fa_icon("question") %> PHQ9 assessment missing answers for up to 3 questions - using 1.5 to fill them in.</p>
+              <p><%= fa_icon("question-circle") %> PHQ9 assessment missing answers for more than 3 questions - data unreliable</p>
+            </div>
+          <% end %>
           <%= render 'think_feel_do_engine/coach/patient_dashboards/test_summary', test_summary: suggestion.results %>
         </div>
         <div class="modal-footer">
