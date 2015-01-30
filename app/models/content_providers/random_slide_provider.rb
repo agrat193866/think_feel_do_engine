@@ -4,7 +4,7 @@ module ContentProviders
     def render_current(options)
       slides = source_content.slides
       options.view_context.render(
-        template: "think_feel_do_engine/slides/show",
+        template: "think_feel_do_engine/slides/homepage",
         locals: {
           slide: slides.offset(rand(slides.count)).first
         }

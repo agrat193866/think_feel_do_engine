@@ -16,10 +16,20 @@ h1, h2, h3 {
   display: none;
 }
 
+/* buttons */
+
 .btn-toolbar, .btn-group {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.btn-link {
+  &:focus, &:active {
+    outline: none;
+  }
+}
+
+/* end buttons */
 
 .input-group.static .form-control-static{
   -moz-border-radius-topleft: 0;
@@ -40,19 +50,6 @@ abbr.timeago {
   cursor: auto;
 }
 
-#inbox.tab-pane > div.list-group a:first-child, #sent.tab-pane > div.list-group a:first-child {
-	border-top:none;
-}
-
-#sent.tab-pane > .list-group .list-group-item, #inbox.tab-pane > .list-group .list-group-item {
-  border-width: 1px 0;
-  border-radius: 0;
-}
-
-#sent.tab-pane > .list-group > .list-group-item.list-group-item-*, #inbox.tab-pane > .list-group > .list-group-item.list-group-item-* {
-  border-top:0px;
-}
-
 .list-group-item-unread {
   font-weight:bold;
 }
@@ -63,14 +60,6 @@ abbr.timeago {
 
 .badge-do {
   background-color: $do-color;
-}
-
-.badge-superscript {
-  position: absolute;
-  pointer-events: none;
-  right:0;
-  top:0;
-  margin-top:10px;
 }
 
 .text-lowercase {
@@ -272,21 +261,6 @@ p.lead                                 { margin-bottom: 10px; }
   color: #333;
 }
 
-.nav > li > a {
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-.nav > li > a.incomplete_badge_link{
-  padding-left: 5px;
-  padding-right: 48px;
-}
-
-.nav > li > a.incomplete_numbered_badge_link{
-  padding-left:5px;
-  padding-right:45px;
-}
-
 #new_lessons_list p:last-child
 {
   margin:0 0 14px 0;
@@ -365,15 +339,6 @@ ul#nav_main li.active a
 /********************[Mobile Friendly Modifications]**************************/
 
 /*[Message Pages]*/
-.p_message{
-  display:inline-block;
-  font-size: 13px;
-}
-
-.p_message_subject{
-  display:block;
-}
-
 li .btn{
   white-space: normal;
   text-align:left;

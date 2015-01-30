@@ -1,3 +1,7 @@
+## 1.17.0 - 2015-01-29
+ * style enhancements
+ * added help text
+
 ## 1.16.3 - 2015-01-28
  * Fixed emotional rating bug
 

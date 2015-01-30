@@ -20,6 +20,16 @@ Time::DATE_FORMATS.merge!(
     else
       t.strftime("%l%P on %b %e")
     end
+  },
+  compact: ->(t) {
+    today = Date.today
+    if t.to_date == today
+      t.strftime("%l:%M %P")
+    elsif t.year == today.year
+      t.strftime("%b %e")
+    else
+      t.strftime("%b %e %Y")
+    end
   }
 )
 

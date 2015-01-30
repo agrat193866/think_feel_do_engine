@@ -12,7 +12,8 @@ module ContentProviders
           weekly_tasks: weekly_tasks(options.participant,
                                      membership,
                                      options.app_context),
-          week_in_study: membership.week_in_study
+          week_in_study: membership.week_in_study,
+          tool: content_module.tool
         }
       )
     end

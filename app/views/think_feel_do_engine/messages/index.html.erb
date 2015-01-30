@@ -1,3 +1,7 @@
+<% if (description = tool.description) %>
+  <% content_for(:tool_description) { sanitize(description).gsub(/\n/, "<br><br>").html_safe } %>
+<% end %>
+
 <% if coach.nil? %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif current_participant.active_membership.present? %>
@@ -22,9 +26,9 @@
     <div class="list-group">
       <% received_messages.each do |received_message| %>
         <%= link_to show_path.call(message_id: received_message.message_id), class: "list-group-item clearfix #{ received_message.is_read ? "text-muted" : "list-group-item-read" }" do %>
-          <span class="p_message"><%= received_message.from %></span>
-          <span class="p_message pull-right"><%= received_message.created_at.to_s(:date_time_with_meridian) %></span>
-          <span class="col-md-4 p_message_subject"><%= received_message.subject %></span>
+          <div class="col-xs-8 col-sm-10 col-md-3"><%= truncate received_message.from, length: 18 %></div>
+          <div class="col-xs-12 col-xs-push-0 col-sm-12 col-sm-push-0 col-md-7"><%= received_message.subject %></div>
+          <div class="col-xs-pull-0 col-sm-pull-0 col-md-2"><%= received_message.created_at.to_s :compact %></div>
         <% end %>
       <% end %>
     </div>
@@ -35,10 +39,10 @@
       <div class="list-group">
         <% user = current_user || current_participant %>
         <% sent_messages.each do |msg| %>
-          <%= link_to show_path.call(message_id: msg.id), class: "text-muted list-group-item" do %>
-            <span class="p_message">To: <%= msg.to user %></span>
-            <span class="p_message pull-right"><%= msg.created_at.to_s :date_time_with_meridian %></span>
-            <span class="col-md-4 p_message_subject"><%= msg.subject %></span>
+          <%= link_to show_path.call(message_id: msg.id), class: "text-muted list-group-item clearfix" do %>
+            <div class="col-xs-8 col-sm-10 col-md-3">To: <%= truncate msg.to(user), length: 15 %></div>
+            <div class="col-xs-12 col-xs-push-0 col-sm-12 col-sm-push-0 col-md-7"><%= msg.subject %></div>
+            <div class="col-xs-pull-0 col-sm-pull-0 col-md-2"><%= msg.created_at.to_s :compact %></div>
           <% end %>
         <% end %>
       </div>
