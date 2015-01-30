@@ -93,6 +93,6 @@ feature "no historical messages" do
   end
 
   it "shows the alert for no messages to display" do
-    expect(page).to have_content 'No messages to display.'
+    expect(page).to have_content "No messages to display."
   end
-end  
+end
