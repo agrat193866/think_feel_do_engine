@@ -44,6 +44,27 @@ feature "patient dashboard", type: :feature do
       end
     end
 
+    context "Coach views table with many patients with phq features" do
+      before do
+        allow(Rails.application.config).to receive(:include_phq_features)
+          .and_return(true)
+        sign_in_user clinician
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+      end
+
+      it "should display phq details" do
+        within "#patient-#{participants(:participant_phq1).id}-details" do
+          expect(page).to have_text("Patient: SCTest01")
+          expect(page).to have_text("Suggestion: Step to t-CBT")
+          expect(page).to have_text("Legend")
+          expect(page).to have_text("PHQ9 assessment missing this week - values copied from previous assessment.")
+          expect(page).to have_text("PHQ9 assessment missing this week - no previous assessment data to copy from.")
+          expect(page).to have_text("PHQ9 assessment missing answers for up to 3 questions - using 1.5 to fill them in.")
+          expect(page).to have_text("PHQ9 assessment missing answers for more than 3 questions - data unreliable")
+        end
+      end
+    end
+
     context "Authorization" do
       before do
         sign_in_user users :user2
@@ -363,7 +384,6 @@ feature "patient dashboard", type: :feature do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-      save_and_open_page
       expect(page).to have_text "Step Status"
       expect(page).to have_button "Step"
       expect(page).to_not have_text "Stepped"
