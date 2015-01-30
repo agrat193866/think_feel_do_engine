@@ -1,3 +1,6 @@
+## 1.17.1 - 2015-01-30
+ * Patient dashboard with bootstrap modals, two tables for stepped patients, improved homepage, messaging updates
+
 ## 1.17.0 - 2015-01-29
  * style enhancements
  * added help text
