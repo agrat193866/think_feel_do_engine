@@ -1,5 +1,5 @@
 <h3><%= lesson.pretty_title %></h3>
 
-<h4><a href="javascript:window.print()" class="hidden-print">Print</a> | <%= link_to "Return to Lessons", "/navigator/contexts/LEARN" %></h4>
+<h4><a href="javascript:window.print()" class="hidden-print">Print</a> | <%= link_to "Return to Lessons", think_feel_do_engine.navigator_context_path(context_name: current_participant.current_group.arm.bit_core_tools.find_by_type("Tools::Learn").title) %></h4>
 
 <%= render partial: "think_feel_do_engine/slides/slide", collection: lesson.slides %>

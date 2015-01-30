@@ -15,10 +15,11 @@ module ThinkFeelDoEngine
       private
 
       def record_not_found
-        arm_id = current_participant.active_membership.group.arm_id
+        arm = current_participant.active_membership.group.arm
+        learn_tool = arm.bit_core_tools.find_by_type("Tools::Learn")
 
         redirect_to(
-          navigator_context_url(arm_id: arm_id, context_name: "LEARN"),
+          navigator_context_url(arm_id: arm.id, context_name: learn_tool.title),
           alert: "Lesson not found"
         )
       end

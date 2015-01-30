@@ -1,6 +1,6 @@
 <% unless current_participant.active_group.nil? %>
   <% current_participant.active_group.arm.non_home_tools.each do |tool| %>
-    <%= yield :desktop_nav_items if tool.title == "LEARN" %>
+    <%= yield :desktop_nav_items if tool.is_a?(Tools::Learn) %>
 
     <% if no_submenu?(tool) %>
       <li class="<%= tool.title %> hidden-xs">

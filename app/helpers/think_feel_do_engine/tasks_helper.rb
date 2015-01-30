@@ -21,8 +21,7 @@ module ThinkFeelDoEngine
     end
 
     def no_submenu?(tool)
-      tool.is_a?(Tools::Messages) ||
-        tool.title.downcase == "learn"
+      tool.is_a?(Tools::Messages) || tool.is_a?(Tools::Learn)
     end
 
     def make_room_for_badge(tool)

@@ -4,7 +4,8 @@ module ContentModules
     after_save :update_slideshow
 
     def self.sort(arm_id, lesson_ids)
-      start_position = Arm.find(arm_id).bit_core_tools.find_by_title("LEARN")
+      start_position = Arm.find(arm_id)
+                       .bit_core_tools.find_by_type("Tools::Learn")
                        .content_modules
                        .where(type: [nil, "BitCore::ContentModule"])
                        .order(position: :asc).maximum(:position)

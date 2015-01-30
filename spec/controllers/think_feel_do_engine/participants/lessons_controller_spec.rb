@@ -14,6 +14,7 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           let(:participant) { double("participant") }
           let(:arm) { double("arm", id: 123) }
+          let(:lesson_tool) { double("lesson tool", title: "LEARN") }
           let(:lesson) { double("lesson") }
 
           before do
@@ -35,8 +36,11 @@ module ThinkFeelDoEngine
               allow(ContentModules::LessonModule).to receive(:find)
                 .and_raise(ActiveRecord::RecordNotFound)
               allow(participant).to receive_message_chain(
-                :active_membership, :group, :arm_id
-              ) { 123 }
+                :active_membership, :group, :arm
+              ) { arm }
+              allow(arm).to receive_message_chain(
+                :bit_core_tools, :find_by_type
+              ) { lesson_tool }
               get :show, id: 1, use_route: :think_feel_do_engine
             end
 

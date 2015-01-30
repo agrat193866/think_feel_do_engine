@@ -63,3 +63,10 @@ messages2:
   title: GMAIL
   arm: arm2
   type: Tools::Messages
+
+library3:
+  position: 4
+  title: LEARN
+  arm: arm3
+  type: Tools::Learn
+

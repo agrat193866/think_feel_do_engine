@@ -4,7 +4,10 @@ module ThinkFeelDoEngine
     module MessagesHelper
       # Returns grouped options for selecting a section of the site.
       def grouped_options_for_site_link_select
-        options = ["THINK", "FEEL", "DO", "LEARN"].map do |title|
+        arm = @group.arm
+        tools = arm.bit_core_tools.where(type: [nil, "Tools::Learn"])
+        options = tools.map do |tool|
+          title = tool.title
           context_options = modules_for_context(title).map do |m|
             [m.title, navigator_location_path(module_id: m.id)]
           end
