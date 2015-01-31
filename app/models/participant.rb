@@ -125,13 +125,7 @@ class Participant < ActiveRecord::Base
       if tool.is_a?(Tools::Messages)
         count_unread_messages
       else
-        content_module_ids = tool.content_modules.includes(:content_providers)
-                             .map do |content_module|
-                               content_module.id unless content_module
-                                                        .try(:content_providers)
-                                                        .try(:first)
-                                                        .try(:viz?)
-                             end
+        content_module_ids = tool.content_modules.where(is_viz: false)
 
         if content_module_ids
           active_membership.incomplete_tasks
@@ -151,13 +145,7 @@ class Participant < ActiveRecord::Base
       if tool.is_a?(Tools::Messages)
         count_unread_messages
       else
-        content_module_ids = tool.content_modules.includes(:content_providers)
-                             .map do |content_module|
-                               content_module.id unless content_module
-                                                        .try(:content_providers)
-                                                        .try(:first)
-                                                        .try(:viz?)
-                             end
+        content_module_ids = tool.content_modules.where(is_viz: false)
 
         if content_module_ids
           active_membership.incomplete_tasks_today

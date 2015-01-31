@@ -2,10 +2,6 @@ module ContentProviders
   # Provides a view of Activities that occured during a Participant"s most
   # recent AwakePeriod.
   class PastDueActivitiesViz < BitCore::ContentProvider
-    def viz?
-      true
-    end
-
     def render_current(view_context, _link_to_fullpage)
       past_due = past_due_activities(view_context)
       upcoming = upcoming_activities(view_context)

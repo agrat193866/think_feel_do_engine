@@ -36,8 +36,7 @@ class TaskStatus < ActiveRecord::Base
   }
 
   def provider_viz?
-    try(:bit_core_content_module).try(:content_providers).try(:order, :position)
-      .try(:first).try(:viz?)
+    try(:bit_core_content_module).try(:is_viz)
   end
 
   def mark_complete

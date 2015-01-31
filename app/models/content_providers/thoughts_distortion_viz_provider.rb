@@ -5,10 +5,6 @@ module ContentProviders
       "Thought"
     end
 
-    def viz?
-      true
-    end
-
     def render_current(*args)
       if args.size == 2
         render_current_home(args[0], args[1])

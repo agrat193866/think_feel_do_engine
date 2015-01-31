@@ -21,10 +21,7 @@ module ContentModules
     end
 
     def non_viz_module_ids
-      @non_viz_module_ids ||= BitCore::ContentProvider
-                              .extend(ContentProviders::Scopes)
-                              .non_visualization
-                              .map(&:bit_core_content_module_id)
+      where(is_viz: false).map(&:id)
     end
   end
 end

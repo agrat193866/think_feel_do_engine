@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130185412) do
+ActiveRecord::Schema.define(version: 20150131201021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,13 @@ ActiveRecord::Schema.define(version: 20150130185412) do
   add_index "awake_periods", ["participant_id"], name: "index_awake_periods_on_participant_id", using: :btree
 
   create_table "bit_core_content_modules", force: true do |t|
-    t.string   "title",                        null: false
-    t.integer  "position",         default: 1, null: false
-    t.integer  "bit_core_tool_id",             null: false
+    t.string   "title",                            null: false
+    t.integer  "position",         default: 1,     null: false
+    t.integer  "bit_core_tool_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.boolean  "is_viz",           default: false, null: false
   end
 
   add_index "bit_core_content_modules", ["bit_core_tool_id", "position"], name: "bit_core_content_module_position", unique: true, using: :btree

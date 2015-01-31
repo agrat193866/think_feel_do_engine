@@ -47,6 +47,7 @@ do_past_due_activities:
   title: 'Activities'
   tool: activity_tracker
   position: 7
+  is_viz: true
 
 think_landing:
   title: Think landing
@@ -87,6 +88,7 @@ think_module_distortion_viz:
   title: Thought Distortions
   tool: thought_tracker
   position: 7
+  is_viz: true
 
 feeling_tracker_landing:
   title: Feeling tracker landing

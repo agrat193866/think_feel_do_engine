@@ -16,9 +16,8 @@ module ThinkFeelDoEngine
 
         content_module_ids.map do |content_module_id|
           task_status =  task_statuses[content_module_id]
-          next if !task_status || viz_providers.find do |p|
-            p.bit_core_content_module_id ==
-              task_status.try(:bit_core_content_module).try(:id)
+          next if !task_status || viz_modules.find do |m|
+            m.id == task_status.try(:bit_core_content_module).try(:id)
           end
           icon = task_status.task.has_didactic_content ? "book" : "pencil"
           icon_prev = icon if icon_prev == "-"
@@ -32,12 +31,8 @@ module ThinkFeelDoEngine
 
     private
 
-    def viz_providers
-      @viz_providers ||= BitCore::ContentProvider
-                         .select(:id, :bit_core_content_module_id, :position,
-                                 :type)
-                         .where(position: 1)
-                         .all.select { |p| p.try(:viz?) }
+    def viz_modules
+      @viz_modules ||= BitCore::ContentModule.where(is_viz: true)
     end
 
     def task_statuses_by_id(content_module_ids)
