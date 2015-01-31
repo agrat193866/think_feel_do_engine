@@ -35,7 +35,7 @@ module ThinkFeelDoEngine
 
     def create
       authorize! :create, ContentModules::LessonModule
-      lesson_tool = @arm.bit_core_tools.find_or_create_by(title: "LEARN")
+      lesson_tool = @arm.bit_core_tools.find_by_type("Tools::Learn")
       @lesson = lesson_tool.add_module(build_lesson)
 
       if @lesson.save
@@ -122,7 +122,7 @@ module ThinkFeelDoEngine
     end
 
     def set_lessons
-      learn_tool_ids = @arm.bit_core_tools.where(title: "LEARN").map(&:id)
+      learn_tool_ids = @arm.bit_core_tools.where(type: "Tools::Learn").map(&:id)
       @lessons = ContentModules::LessonModule
                  .where(bit_core_tool_id: learn_tool_ids)
     end

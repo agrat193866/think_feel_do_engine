@@ -75,13 +75,14 @@ membership_for_learning:
   group: group1
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today.advance(days: 50) %>
+
 ###
 
-# membership_phq1:
-#   participant: participant_phq1
-#   group: group1 
-#   start_date: <%= Date.new(2014,6,24) %>
-#   end_date: <%= Date.today + 365.days %>
+membership_phq1:
+  participant: participant_phq1
+  group: group1 
+  start_date: <%= Date.new(2014,6,24) %>
+  end_date: <%= Date.today + 365.days %>
 
 # membership_phq2:
 #   participant: participant_phq2

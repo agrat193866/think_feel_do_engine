@@ -60,6 +60,16 @@ class Participant < ActiveRecord::Base
     joins(:memberships).merge(Membership.inactive)
   end
 
+  scope :stepped, lambda {
+    joins(:memberships)
+      .where("memberships.is_stepped = ?", true)
+  }
+
+  scope :not_stepped, lambda {
+    joins(:memberships)
+      .where("memberships.is_stepped = ?", false)
+  }
+
   def password_is__not_blank?
     !password.blank?
   end
@@ -112,7 +122,7 @@ class Participant < ActiveRecord::Base
     @count_all_incomplete ||= {}
 
     @count_all_incomplete[tool.id] ||= (
-      if tool.title.downcase == "messages"
+      if tool.is_a?(Tools::Messages)
         count_unread_messages
       else
         content_module_ids = tool.content_modules.includes(:content_providers)
@@ -138,7 +148,7 @@ class Participant < ActiveRecord::Base
     @count_today_incomplete ||= {}
 
     @count_today_incomplete[tool.id] ||= (
-      if tool.title.downcase == "messages"
+      if tool.is_a?(Tools::Messages)
         count_unread_messages
       else
         content_module_ids = tool.content_modules.includes(:content_providers)

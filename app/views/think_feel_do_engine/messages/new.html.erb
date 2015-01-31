@@ -30,5 +30,5 @@
   </div>
 
   <button type="submit" class="btn btn-success"><%= fa_icon("send").html_safe %> Send</button>
-  <a class="btn btn-default" href="/navigator/contexts/MESSAGES">Cancel</a>
+  <%= link_to "Cancel", think_feel_do_engine.navigator_context_path(context_name: tool.title), class: "btn btn-default" %>
 <% end %>

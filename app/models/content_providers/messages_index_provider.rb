@@ -33,7 +33,7 @@ module ContentProviders
         .find_by_type("ContentProviders::NewMessageFormProvider").id
 
       view_context.navigator_location_path(
-        context: "messages",
+        context: content_module.tool.title,
         module_id: content_module.id,
         provider_id: provider_id,
         content_position: 1
@@ -48,7 +48,7 @@ module ContentProviders
 
       lambda do |params|
         view_context.navigator_location_path({
-          context: "messages",
+          context: content_module.tool.title,
           module_id: content_module.id,
           provider_id: provider_id,
           content_position: 1

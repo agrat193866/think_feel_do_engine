@@ -18,7 +18,8 @@
     <% if @navigator %>
       <div class="collapse navbar-collapse" id="sc-hamburger-menu">
         <ul id="header-navbar" class="nav navbar-nav">
-          <li><%= link_to "Home", main_app.root_path %></li>
+          <% home_tool = current_participant.active_group.arm.bit_core_tools.find_by_type("Tools::Home") %>
+          <li><%= link_to home_tool.try(:title), main_app.root_path %></li>
           <%= render "think_feel_do_engine/shared/participant/nav_items" %>
         </ul>
 

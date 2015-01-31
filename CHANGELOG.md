@@ -1,3 +1,11 @@
+## 2.0.0 - 2015-01-30
+ * Subclassed Learn, Messages and Home Tools
+ * social sharing bug fixes
+ * spec and RuboCop fixes
+
+## 1.17.1 - 2015-01-30
+ * Patient dashboard with bootstrap modals, two tables for stepped patients, improved homepage, messaging updates
+
 ## 1.17.0 - 2015-01-29
  * style enhancements
  * added help text

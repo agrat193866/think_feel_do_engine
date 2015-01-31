@@ -59,9 +59,7 @@ feature "task notification", type: :feature do
       visit "/navigator/contexts/DO"
       click_on("Your Activities")
       visit "/navigator/contexts/DO"
-      within "#sc-hamburger-menu" do
-        click_on "Home"
-      end
+      visit "/"
       do_icon_count = page.find("li.DO.hidden-xs > a").all(".badge.badge-do").count
 
       expect(do_icon_count).to eq 0

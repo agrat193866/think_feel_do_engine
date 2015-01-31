@@ -8,8 +8,6 @@ participant1:
 
 ###
 
-# phq_assessments, participants, coach_assignments, memberships
-
 # participant1_b:
 #   participant: participant1
 #   release_date: <%= Date.yesterday - 1.day %>
@@ -24,18 +22,18 @@ participant1:
 #   q<%= n + 1 %>: <%= rng.rand(4) %>
 #   <% end %>
 
-# participant_phq1_a:
-#   participant: participant_phq1
-#   release_date: <%= Date.new(2014,6,24) + 1.week %>
-#   q1: 3
-#   q2: 3
-#   q3: 3
-#   q4: 0
-#   q5: 0
-#   q6: 0
-#   q7: 0
-#   q8: 0
-#   q9: 0
+participant_phq1_a:
+  participant: participant_phq1
+  release_date: <%= Date.new(2014,6,24) + 1.week %>
+  q1: 3
+  q2: 3
+  q3: 3
+  q4: 0
+  q5: 0
+  q6: 0
+  q7: 0
+  q8: 0
+  q9: 0
 
 # participant_phq2_a:
 #   participant: participant_phq2
@@ -140,7 +138,7 @@ participant1:
 #   q7: 0
 #   q8: 0
 #   q9: 0
-  
+
 # participant_phq10_a:
 #   participant: participant_phq10
 #   release_date: <%= Date.new(2014,4,15) + 1.week %>
@@ -192,7 +190,7 @@ participant1:
 #   q7: 0
 #   q8: 0
 #   q9: 0
-  
+
 # participant_phq14_a:
 #   participant: participant_phq14
 #   release_date: <%= Date.new(2014,6,29) + 1.week %>

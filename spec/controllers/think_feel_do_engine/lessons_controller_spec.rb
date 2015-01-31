@@ -81,7 +81,7 @@ module ThinkFeelDoEngine
 
         before do
           allow(Arm).to receive(:find) { arm }
-          allow(BitCore::Tool).to receive(:find_or_create_by) { tool }
+          allow(BitCore::Tool).to receive(:find_by_type) { tool }
           sign_in_user user
         end
 

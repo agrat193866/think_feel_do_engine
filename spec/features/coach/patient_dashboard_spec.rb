@@ -44,6 +44,50 @@ feature "patient dashboard", type: :feature do
       end
     end
 
+    context "Coach views table with many patients with phq features" do
+      before do
+        allow(Rails.application.config).to receive(:include_phq_features)
+          .and_return(true)
+        sign_in_user clinician
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+      end
+
+      it "should display phq details" do
+        within "#patient-#{participants(:participant_phq1).id}-details" do
+          expect(page).to have_text("Patient: SCTest01")
+          expect(page).to have_text("Suggestion: Stay on i-CBT")
+          expect(page).to have_text("Legend")
+          expect(page).to have_text("PHQ9 assessment missing this week - values copied from previous assessment.")
+          expect(page).to have_text("PHQ9 assessment missing this week - no previous assessment data to copy from.")
+          expect(page).to have_text("PHQ9 assessment missing answers for up to 3 questions - using 1.5 to fill them in.")
+          expect(page).to have_text("PHQ9 assessment missing answers for more than 3 questions - data unreliable")
+        end
+      end
+
+      it "should move a patient to the stepped table when stepped" do
+        expect(page).to have_text "Stepped Patients"
+        expect(page).to have_text "Not Stepped Patients"
+
+        within "#patients" do
+          expect(page).to have_text("Patient: SCTest01")
+        end
+        within "#stepped-patients" do
+          expect(page).to_not have_text("Patient: SCTest01")
+        end
+
+        within "#patient-#{participants(:participant_phq1).id}" do
+          click_on "Step"
+        end
+
+        within "#patients" do
+          expect(page).to_not have_text("Patient: SCTest01")
+        end
+        within "#stepped-patients" do
+          expect(page).to have_text("Patient: SCTest01")
+        end
+      end
+    end
+
     context "Authorization" do
       before do
         sign_in_user users :user2
@@ -355,24 +399,9 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to_not have_text("Membership successfully updated")
 
-      click_on "Discontinue"
+      first(:button, "Discontinue").click
 
       expect(page).to have_text("Membership successfully updated")
-    end
-
-    it "allows a coach to step a participant" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      save_and_open_page
-      expect(page).to have_button "Step"
-      expect(page).to_not have_text "Stepped"
-
-      click_on "Step"
-
-      expect(page).to have_text "Participant was successfully stepped."
-      expect(page).to have_text "Stepped"
-      expect(page).to_not have_button "Step"
     end
 
     it "allows a coach to withdraw a participant" do
@@ -382,7 +411,7 @@ feature "patient dashboard", type: :feature do
       save_and_open_page
       expect(page).to have_button "Withdraw"
 
-      click_on "Withdraw"
+      first(:button, "Withdraw").click
 
       expect(page).to_not have_text "TFD-1111"
     end
@@ -394,9 +423,27 @@ feature "patient dashboard", type: :feature do
       save_and_open_page
       expect(page).to have_button "Discontinue"
 
-      click_on "Discontinue"
+      first(:button, "Discontinue").click
 
       expect(page).to_not have_text "TFD-1111"
+    end
+  end
+
+  it "allows a coach to step a participant" do
+    sign_in_user clinician
+    visit "/coach/groups/#{group1.id}/patient_dashboards"
+
+    expect(page).to have_text "Step Status"
+    within "#patient-#{participants(:participant1).id}" do
+      expect(page).to_not have_text "Stepped"
+      click_on "Step"
+    end
+
+    expect(page).to have_text "Participant was successfully stepped."
+
+    within "#patient-#{participants(:participant1).id}" do
+      expect(page).to have_text "Stepped"
+      expect(page).to_not have_button "Step"
     end
   end
 end

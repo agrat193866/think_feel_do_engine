@@ -81,3 +81,18 @@ feature "messages" do
     expect(page).not_to have_text("Compose")
   end
 end
+
+feature "no historical messages" do
+  fixtures(
+    :all
+  )
+
+  before do
+    sign_in_participant participants(:participant3)
+    visit "/navigator/contexts/MESSAGES"
+  end
+
+  it "shows the alert for no messages to display" do
+    expect(page).to have_content "No messages to display."
+  end
+end

@@ -6,7 +6,7 @@ module ThinkFeelDoEngine
       @assign_tool ||= {}
 
       @assign_tool[tool.id] ||= (
-        if tool.title != "home"
+        unless tool.is_a?(Tools::Home)
           "#{tool.title} #{indicate_incomplete(tool)}".html_safe
         end
       )
@@ -21,8 +21,7 @@ module ThinkFeelDoEngine
     end
 
     def no_submenu?(tool)
-      tool.title.downcase == "messages" ||
-        tool.title.downcase == "learn"
+      tool.is_a?(Tools::Messages) || tool.is_a?(Tools::Learn)
     end
 
     def make_room_for_badge(tool)

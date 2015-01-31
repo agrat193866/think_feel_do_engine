@@ -30,7 +30,7 @@ module ThinkFeelDoEngine
           @content_provider =
             @arm
             .bit_core_tools
-            .find_or_create_by(title: "LEARN")
+            .find_by_type("Tools::Learn")
             .add_module(@slideshow.title)
             .add_content_provider(
               "BitCore::ContentProviders::SlideshowProvider"

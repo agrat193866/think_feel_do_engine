@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129160122) do
+ActiveRecord::Schema.define(version: 20150130185412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150129160122) do
     t.datetime "updated_at"
     t.integer  "arm_id",                               null: false
     t.string   "description", limit: 2048
+    t.string   "type"
   end
 
   create_table "bit_player_participant_statuses", force: true do |t|
