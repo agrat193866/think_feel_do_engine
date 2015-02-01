@@ -94,5 +94,16 @@ feature "no historical messages" do
 
   it "shows the alert for no messages to display" do
     expect(page).to have_content "No messages to display."
+
+    click_on "Compose"
+    within("#new_message") do
+      fill_in "message_subject", with: "test"
+      fill_in "message_body", with: "test test test"
+    end
+    click_on "Send"
+
+    click_on "Sent"
+    expect(page).to have_content "test"
+    expect(page).to_not have_content "No messages to display."
   end
 end

@@ -13,20 +13,19 @@
 <% end %>
 
 <ul class="nav nav-tabs" id="messages-tab">
-  <li><a href="#inbox" data-toggle="tab">Inbox (<%= received_messages.unread.count %>)</a></li>
-  <% if sent_messages.count > 0 %>
-    <li><a href="#sent" data-toggle="tab">Sent</a></li>
-  <% end %>
+ <li><a href="#inbox" data-toggle="tab">Inbox (<%= received_messages.unread.count %>)</a></li>
+ <% if sent_messages.count > 0 %>
+   <li><a href="#sent" data-toggle="tab">Sent</a></li>
+ <% end %>
 </ul>
 
 <div class="tab-content">
   <div id="scroll_btn" class="landing"></div>
-
-  <% if received_messages.empty? %>
-      <div class="alert alert-info" role="alert">No messages to display.</div>
-  <% else %>
   <div class="tab-pane" id="inbox">
     <div class="list-group">
+    <% if received_messages.empty? %>
+      <p>No messages to display.</p>
+    <% else %>
       <% received_messages.each do |received_message| %>
         <%= link_to show_path.call(message_id: received_message.message_id), class: "list-group-item clearfix #{ received_message.is_read ? "text-muted" : "list-group-item-read" }" do %>
           <div class="col-xs-8 col-sm-10 col-md-3"><%= truncate received_message.from, length: 18 %></div>
@@ -34,10 +33,13 @@
           <div class="col-xs-pull-0 col-sm-pull-0 col-md-2"><%= received_message.created_at.to_s :compact %></div>
         <% end %>
       <% end %>
+    <% end %>
     </div>
   </div>
-  <% end %>
+</div>  
 
+<div class="tab-content">
+  <div id="scroll_btn" class="landing"></div>
   <% if sent_messages.count > 0 %>
     <div class="tab-pane" id="sent">
       <div class="list-group">
