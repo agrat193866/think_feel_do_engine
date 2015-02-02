@@ -9,5 +9,5 @@
 <strong>Went to sleep</strong> <%= participant.most_recent_unfinished_awake_period.end_time.to_formatted_s(:date_time_with_meridian) %>
 
 <div class="btn-toolbar">
-  <%= content_tag(:a, ("Complete " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>
+  <%= content_tag(:a, "Complete", type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>
 </div>
