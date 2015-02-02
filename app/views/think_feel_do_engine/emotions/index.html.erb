@@ -52,7 +52,7 @@
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, "mood")
           .width(graphParameters.graphWidth)
           .height(300)
-          .x(function(d, i) { return moment(d.day).startOf("day")._d; })
+          .x(function(d, i) { return moment(new Date(d.day)).startOf("day")._d; })
           .y(function(d, i) { return d.intensity; })
           .drawLegend("#mood-legend", moodLegendJSON, moodLegendNotes));
 

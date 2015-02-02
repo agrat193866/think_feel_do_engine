@@ -83,7 +83,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       width = 420,
       height = 420,
       xRoundBands = 0.2,
-      xValue = function(d) { return moment(d.day).startOf('day')._d; },
+      xValue = function(d) { return moment(new Date(d.day)).startOf('day')._d; },
       yValue = function(d) { return d.is_positive === false ? -d.intensity : d.intensity },
       xScale = d3.scale.ordinal(),
       yScale = d3.scale.linear(),
@@ -98,19 +98,19 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       // Convert data to standard representation greedily;
       // this is needed for nondeterministic accessors.
       data = data.map(function(d, i) {
-        if(moment(d.day).startOf('day') >= startDate._d && moment(d.day).startOf('day') <= endDate._d) {
+        if(moment(new Date(d.day)).startOf('day') >= startDate._d && moment(new Date(d.day)).startOf('day') <= endDate._d) {
           return [xValue.call(data, d, i), yValue.call(data, d, i), d.is_positive, d.drill_down, d.data_type];
         }
       });
       data = data.filter(function(n){ return n !== undefined; });
       // Update the x-scale.
-      var domain = data.map(function(d) { return moment(d[0])._d } );
+      var domain = data.map(function(d) { return moment(new Date(d[0]))._d } );
       var dayRange = d3.time.days(startDate._d, endDate._d).length
       var x_domain = [endDate.startOf('day')._d];
 
       for(var i = 0; i < dayRange; i++) {
         var day = x_domain[i]
-        x_domain.push(moment(day).subtract(1, 'days').startOf('day')._d);
+        x_domain.push(moment(new Date(day)).subtract(1, 'days').startOf('day')._d);
       }
 
       xScale
@@ -126,9 +126,9 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
             .tickFormat(function (d){
-              var currentDate = moment(d)
-              var startDate = moment(x_domain[0])
-              var endDate = moment(x_domain[x_domain.length - 1])
+              var currentDate = moment(new Date(d))
+              var startDate = moment(new Date(x_domain[0]))
+              var endDate = moment(new Date(x_domain[x_domain.length - 1]))
               if (startDate.diff(endDate, 'days') <= 6) {
                 return date_format(d)
               }
@@ -276,9 +276,9 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       
       d3.selectAll("g.x.axis g.tick line")
           .attr("y2", function(d){
-            var currentDate = moment(d)
-            var startDate = moment(x_domain[0])
-            var endDate = moment(x_domain[x_domain.length - 1])
+            var currentDate = moment(new Date(d))
+            var startDate = moment(new Date(x_domain[0]))
+            var endDate = moment(new Date(x_domain[x_domain.length - 1]))
             if (startDate.diff(currentDate, 'days') == 0  || startDate.diff(currentDate, 'days') % 6 == 0 ){
               return 8
             }
@@ -406,10 +406,10 @@ function dailyDrillModal (data) {
   var charge = data[4] === "Emotion" ? (data[2] ? "Positive" : "Negative") : "";
   html = "";
   html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
-  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(data[0]).format('LL') + "</h4></div><div class='modal-body'>"
+  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(new Date(data[0])).format('LL') + "</h4></div><div class='modal-body'>"
   $.each(data[3], function(i, d){
     var emotion = d[2] == undefined ? '' : d[2]
-    html += "<p>"+moment(d[1]).format('hh:mm a')+": "+d[0]+" "+emotion+"</p>"
+    html += "<p>"+moment(new Date(d[1])).format('hh:mm a')+": "+d[0]+" "+emotion+"</p>"
   });
   html += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>"
   $('body').append(html);
@@ -417,7 +417,7 @@ function dailyDrillModal (data) {
 }
 
 function activation (date) {
-  return moment(date);
+  return moment(new Date(date));
 }
 
 function Graph (moodData, emotionsData, phqData, container) {
