@@ -18,7 +18,33 @@ module ThinkFeelDoEngine
       end
     end
 
+    def withdraw
+      @membership = Membership.find(end_params[:id])
+      if @membership.update(end_date: Date.current - 1)
+        flash[:notice] = "Membership successfully withdrawn"
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
+      else
+        flash[:alert] = @membership.errors.full_messages.to_sentence
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
+      end
+    end
+
+    def discontinue
+      @membership = Membership.find(end_params[:id])
+      if @membership.update(end_date: Date.current - 1, is_complete: true)
+        flash[:notice] = "Membership successfully ended"
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
+      else
+        flash[:alert] = @membership.errors.full_messages.to_sentence
+        redirect_to coach_group_patient_dashboards_path(@membership.group)
+      end
+    end
+
     private
+
+    def end_params
+      params.permit :id
+    end
 
     def membership_params
       params

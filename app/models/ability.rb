@@ -42,7 +42,7 @@ class Ability
       @user.participant_ids.include?(participant.id)
     end
     authorize_coach_messaging
-    can :update, Membership do |membership|
+    can [:withdraw, :discontinue, :update], Membership do |membership|
       coach_has_participant? @user.id, membership.participant_id
     end
     can :manage, PhqAssessment do |assessment|

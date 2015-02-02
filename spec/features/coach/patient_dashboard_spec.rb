@@ -395,11 +395,11 @@ feature "patient dashboard", type: :feature do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-      expect(page).to_not have_text("Membership successfully updated")
+      expect(page).to_not have_text("Membership successfully ended")
 
       first(:button, "Discontinue").click
 
-      expect(page).to have_text("Membership successfully updated")
+      expect(page).to have_text("Membership successfully ended")
     end
 
     it "allows a coach to withdraw a participant" do
