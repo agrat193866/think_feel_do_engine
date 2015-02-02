@@ -5,7 +5,7 @@
   <p>Looks like you've monitored your awake time up until the present. There's nothing more to do right now!</p>
 
   <div class="btn-toolbar">
-    <%= content_tag(:a, ("Complete " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>
+    <%= content_tag(:a, "Complete", type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>
   </div>
 <% else %>
   <%= form_for awake_period, url: create_path, :html => {:role => "form"} do |f| %>
@@ -28,7 +28,7 @@
         <%= f.select :end_time, end_hours, { prompt: 'Select Time' }, class: "form-control" %>
       </div>
 
-      <%= content_tag(:button, ("Create " + fa_icon("angle-double-right")).html_safe, type: "submit", class: "btn btn-primary form-button pull-right") %>
+      <%= content_tag(:button, "Create", type: "submit", class: "btn btn-primary form-button pull-right") %>
     </div>
   <% end %>
 <% end %>

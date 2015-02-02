@@ -30,15 +30,15 @@
     <ul class="list-group">
       <li class="list-group-item">
         <strong class="text-muted">Mood:</strong>
-        <span class="pull-right"><%= moods.empty? ? "No Recordings" : moods.all.map(&:rating).reduce(:+).to_f / moods.count %></span>
+        <span class="pull-right"><%= moods.empty? ? "No Recordings" : (moods.all.map(&:rating).reduce(:+).to_f / moods.count).round(1) %></span>
       </li>
       <li class="list-group-item">
         <strong class="text-muted">Positive Emotions:</strong>
-        <span class="pull-right"><%= positive_emotions.empty? ? "No Recordings" : positive_emotions.all.map(&:rating).reduce(:+).to_f / positive_emotions.count %></span>
+        <span class="pull-right"><%= positive_emotions.empty? ? "No Recordings" : (positive_emotions.all.map(&:rating).reduce(:+).to_f / positive_emotions.count).round(1) %></span>
       </li>
       <li class="list-group-item">
         <strong class="text-muted">Negative Emotions:</strong>
-        <span class="pull-right"><%= negative_emotions.empty? ? "No Recordings" : negative_emotions.all.map(&:rating).reduce(:+).to_f / negative_emotions.count %></span>
+        <span class="pull-right"><%= negative_emotions.empty? ? "No Recordings" : (negative_emotions.all.map(&:rating).reduce(:+).to_f / negative_emotions.count).round(1) %></span>
       </li>
     </ul>
   </div>

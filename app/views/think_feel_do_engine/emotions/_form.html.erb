@@ -10,7 +10,7 @@
   </div>
   <div class="form-group">
     <%= f.label("Emotion Type") %>
-    <%= f.select(:is_positive, [['positive', true], ['negative', false]], {} ,class: "form-control") %>
+    <%= f.select(:is_positive, [['positive', true], ['negative', false]], { include_blank: "Select one..." }, class: "form-control") %>
   </div>
   <div class="form-group">
     <%= render(
