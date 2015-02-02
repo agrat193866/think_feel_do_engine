@@ -1,3 +1,6 @@
+## 2.1.1 - 2015-02-02
+ * update viz Content Modules
+
 ## 2.1.0 - 2015-02-02
  * many changes
 
