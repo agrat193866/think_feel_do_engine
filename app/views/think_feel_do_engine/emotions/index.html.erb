@@ -49,7 +49,7 @@
     moodLegendNotes = ["†The average of each day's average.", "*Click each day for more information."];
     d3.select("#mood")
       .datum(graphParameters.moodData)
-        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, yLabel)
+        .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, "mood")
           .width(graphParameters.graphWidth)
           .height(300)
           .x(function(d, i) { return moment(d.day).startOf("day")._d; })

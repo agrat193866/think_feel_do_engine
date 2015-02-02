@@ -175,15 +175,48 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
         .text("Date");
     
       // y axis label
-      svg.append("text")
-        .attr("class", "y axis-label")
-        .attr("text-anchor", "end")
-        .attr("x", -90)
-        .attr("y", 0)
-        .attr("dy", "1em")
-        .attr("transform", "rotate(-90)")
-        .attr("font-size", "1.8em")
-        .text(yLabel);
+      if(yLabel === "mood") {
+        svg.append("text")
+          .attr("class", "y axis-label")
+          .attr("text-anchor", "end")
+          .attr("x", -220)
+          .attr("y", 0)
+          .attr("dy", "1.4em")
+          .attr("transform", "rotate(-90)")
+          .attr("font-size", "1.2em")
+          .text("Bad");
+        svg.append("text")
+          .attr("class", "y axis-label")
+          .attr("text-anchor", "end")
+          .attr("x", -115)
+          .attr("y", 0)
+          .attr("dy", "1.4em")
+          .attr("transform", "rotate(-90)")
+          .attr("font-size", "1.2em")
+          .text("Neither");
+        svg.append("text")
+          .attr("class", "y axis-label")
+          .attr("text-anchor", "end")
+          .attr("x", -30)
+          .attr("y", 0)
+          .attr("dy", "1.4em")
+          .attr("transform", "rotate(-90)")
+          .attr("font-size", "1.2em")
+          .text("Good");
+      }
+      else {
+        svg.append("text")
+          .attr("class", "y axis-label")
+          .attr("text-anchor", "end")
+          .attr("x", -90)
+          .attr("y", 0)
+          .attr("dy", "1em")
+          .attr("transform", "rotate(-90)")
+          .attr("font-size", "1.8em")
+          .text(yLabel);
+      
+      }
+      
 
       // draw average line
       var positiveValues = [], negativeValues = [];
