@@ -1,3 +1,6 @@
+## 2.0.1 - 2015-02-02
+ * Fixed merge bugs for patient dashboard and failing specs
+
 ## 2.0.0 - 2015-01-30
  * Subclassed Learn, Messages and Home Tools
  * social sharing bug fixes

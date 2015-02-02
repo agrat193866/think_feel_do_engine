@@ -294,9 +294,7 @@ feature "patient dashboard", type: :feature do
           click_on "Continue"
           sign_in_user users(:clinician1)
 
-          visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-          click_on "TFD-1111"
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participants(:participant1).id}"
 
           expect(page).to have_the_table(
             id: "activities_past",
@@ -408,7 +406,6 @@ feature "patient dashboard", type: :feature do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-      save_and_open_page
       expect(page).to have_button "Withdraw"
 
       first(:button, "Withdraw").click
@@ -420,30 +417,28 @@ feature "patient dashboard", type: :feature do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-      save_and_open_page
       expect(page).to have_button "Discontinue"
 
       first(:button, "Discontinue").click
 
       expect(page).to_not have_text "TFD-1111"
     end
-  end
 
-  it "allows a coach to step a participant" do
-    sign_in_user clinician
-    visit "/coach/groups/#{group1.id}/patient_dashboards"
+    it "allows a coach to step a participant" do
+      sign_in_user clinician
+      visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-    expect(page).to have_text "Step Status"
-    within "#patient-#{participants(:participant1).id}" do
-      expect(page).to_not have_text "Stepped"
-      click_on "Step"
-    end
+      within "#patient-#{participants(:participant1).id}" do
+        expect(page).to_not have_text "Stepped"
+        click_on "Step"
+      end
 
-    expect(page).to have_text "Participant was successfully stepped."
+      expect(page).to have_text "Participant was successfully stepped."
 
-    within "#patient-#{participants(:participant1).id}" do
-      expect(page).to have_text "Stepped"
-      expect(page).to_not have_button "Step"
+      within "#patient-#{participants(:participant1).id}" do
+        expect(page).to have_text "Stepped"
+        expect(page).to_not have_button "Step"
+      end
     end
   end
 end
