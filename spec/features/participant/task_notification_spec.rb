@@ -114,8 +114,8 @@ feature "task notification", type: :feature do
       click_on "Tracking Your Mood"
       choose_rating "new_mood", 5
 
-      click_on "Continue"
-      click_on "Continue"
+      click_on "Next"
+      click_on "Next"
 
       visit "/navigator/contexts/FEEL"
       new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood").count

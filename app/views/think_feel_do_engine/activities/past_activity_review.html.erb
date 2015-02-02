@@ -1,6 +1,6 @@
 <% if activities.count == 0 %>
   <p class="lead">It doesn't look like there are any activities for you to review at this time</p>
-  <%= link_to "Continue", navigator_next_content_path, class: "btn btn-default" %>
+  <%= link_to t(:next), navigator_next_content_path, class: "btn btn-default" %>
 <% else %>
   <% activities.each_with_index do |activity, index| %>
     <%= form_for(
@@ -76,7 +76,7 @@
       <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="monitored"></span>
 
       <div id="activity-submit-<%= activity.id %>" class="not-displayed">
-          <%= content_tag(:button, "Continue",
+          <%= content_tag(:button, t(:next),
                           type: "submit",
                           class: "btn btn-primary pull-right",
                           onclick: "return validateMutliFormPage(event,'activity_shared_item_true', '#{ activity.id }')")

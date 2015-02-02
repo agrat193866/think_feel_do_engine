@@ -17,7 +17,7 @@
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tasks[:week] %>" aria-expanded="true" aria-controls="collapse<%= tasks[:week] %>">
           <h3 class="panel-title<%= ' panel-unreleased' if week_in_study < tasks[:week] %> ">
             Week <%= tasks[:week] %> &middot; <%= tasks[:date].to_s(:brief_date) %>
-            <span class="badge"><%= tasks[:tasks].select { |t| t.completed_at.nil? }.count %></span>
+            <span class="badge"><%= tasks[:tasks].select { |t| t.completed_at.nil? }.count %> unread</span>
           </h3>
         </a>
       </div>

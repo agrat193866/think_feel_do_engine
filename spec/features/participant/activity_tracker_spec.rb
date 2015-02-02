@@ -21,7 +21,7 @@ feature "activity tracker", type: :feature do
       page.find(".container .left.list-group .list-group-item", text: "#1 Awareness").trigger("click")
 
       expect(page).to have_text(bit_core_slides(:do_awareness_intro1).body)
-      find(".btn", text: "Continue").trigger("click")
+      find(".btn", text: "Next").trigger("click")
 
       expect(page).to have_text("OK, let's talk about yesterday.")
 
@@ -62,17 +62,17 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("ate cheeseburgers")
       expect(page).to have_text("ate bad cheeseburgers", count: 3)
 
-      find(".btn", text: "Continue").trigger("click")
+      find(".btn", text: "Next").trigger("click")
 
       expect(page).to have_text("Things you found fun.")
       expect(page).to have_text("ate cheeseburgers")
 
-      find(".btn", text: "Continue").trigger("click")
+      find(".btn", text: "Next").trigger("click")
 
       expect(page).to have_text("Things that make you feel like you've accomplished something.")
       expect(page).not_to have_text("ate cheeseburgers")
 
-      find(".btn", text: "Continue").trigger("click")
+      find(".btn", text: "Next").trigger("click")
       expect(page).to have_text("#2 Planning")
     end
 
@@ -80,7 +80,7 @@ feature "activity tracker", type: :feature do
       within ".container .left.list-group" do
         click_on "#1 Awareness"
       end
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to_not have_text "Last Recorded Awake Period"
 
@@ -100,7 +100,7 @@ feature "activity tracker", type: :feature do
       within ".container .left.list-group" do
         click_on "#1 Awareness"
       end
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text "Last Recorded Awake Period"
       expect(page).to have_text seven_am.to_formatted_s(:date_time_with_meridian)
@@ -117,7 +117,7 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text "The last few times you were here..."
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("We want you to plan one fun thing")
 
@@ -126,22 +126,22 @@ feature "activity tracker", type: :feature do
       find("#ui-datepicker-div .ui-datepicker-today a").click
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
-      click_on "Continue"
+      click_on "Next"
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
 
       expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
 
       fill_in "activity_activity_type_new_title", with: "Parkour"
-      click_on "Continue"
+      click_on "Next"
 
       expect(page.body).to have_text("OK... the most important thing")
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("Your Planned Activities")
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("#3 Doing")
       expect(page).to have_text("Upcoming Activities")
@@ -157,11 +157,11 @@ feature "activity tracker", type: :feature do
 
       expect(page).to have_text(bit_core_slides(:do_doing_intro1).title)
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text(bit_core_slides(:do_doing_intro2).title)
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("You said you were going to")
       expect(page).to have_text("Loving")
@@ -175,7 +175,7 @@ feature "activity tracker", type: :feature do
       find("input[value='Loving'][type='radio']").click
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("Activity saved")
       within "#Upcoming_Activities table.table" do
@@ -191,7 +191,7 @@ feature "activity tracker", type: :feature do
       fill_in "Or add another", with: "Eating!"
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("Activity saved")
 
@@ -217,12 +217,12 @@ feature "activity tracker", type: :feature do
 
       execute_script("$('.pleasure-container input:first').trigger('click')")
       execute_script("$('.accomplishment-container input:first').trigger('click')")
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text "Activity saved"
       expect(page).to have_text "Good Work!"
 
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text "#1 Awareness"
       expect(page).to_not have_text "Recent Past Activities"

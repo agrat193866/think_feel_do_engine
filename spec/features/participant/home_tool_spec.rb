@@ -14,19 +14,19 @@ feature "home tool", type: :feature do
 
     expect(page).to have_text "It's simple"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "Log in once a day"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "Come back every day"
 
-    click_on "Continue"
+    click_on "Next"
 
     # video page
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text("It's simple")
   end

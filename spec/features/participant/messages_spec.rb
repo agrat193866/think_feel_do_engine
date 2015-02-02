@@ -90,11 +90,13 @@ feature "no historical sent messages" do
     visit "/navigator/contexts/MESSAGES"
   end
 
-  it "shows the alert for no messages to display" do
+  it "shows the alert for no messages to display in the inbox" do
     within("#inbox") do
       expect(page).to have_content "No messages to display."
     end
+  end
 
+  it "should not show alert for no messages in sent box after sending message" do
     click_on "Compose"
     within("#new_message") do
       fill_in "message_subject", with: "test"
@@ -105,6 +107,7 @@ feature "no historical sent messages" do
     within("#inbox") do
       expect(page).to have_content "No messages to display."
     end
+
     within("#sent") do
       expect(page).to have_content "test"
       expect(page).to_not have_content "No messages to display."

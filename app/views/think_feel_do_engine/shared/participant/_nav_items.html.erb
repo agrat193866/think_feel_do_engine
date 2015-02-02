@@ -2,7 +2,7 @@
 
 <% tool_navs.each do |tool_nav| %>
   <% if tool_nav.has_subnav? %>
-    <li class="<%= tool_nav.title %> dropdown hidden-xs<%= tool_nav.is_active? ? " active" : "" %>">
+    <li class="<%= tool_nav.title %> dropdown hidden-xs<%= tool_nav.is_active?(@navigator.current_module) ? " active" : "" %>">
       <%= link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
         <%= tool_nav.title %>
         <% unless tool_nav.alert.nil? %>
@@ -34,7 +34,7 @@
       </ul>
     </li>
   <% else %>
-    <li class="<%= tool_nav.title %> hidden-xs<%= tool_nav.is_active? ? " active" : "" %>">
+    <li class="<%= tool_nav.title %> hidden-xs<%= tool_nav.is_active?(@navigator.current_module) ? " active" : "" %>">
       <%= link_to think_feel_do_engine.navigator_context_path(context_name: tool_nav.title) do %>
         <%= tool_nav.title %>
         <% unless tool_nav.alert.nil? %>
