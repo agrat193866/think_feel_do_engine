@@ -45,8 +45,8 @@
 
     // mood viz
     moodGraphTitle = "Mood*";
-    moodLegendJSON = [["Positive", "#4682B4"], ["Average†", "green"]];
-    moodLegendNotes = ["†The average of each day's average.", "*Click each day for more information."];
+    moodLegendJSON = [["Mood", "#4682B4"], ["Daily Average", "green"]];
+    moodLegendNotes = ["*Click each day for more information."];
     d3.select("#mood")
       .datum(graphParameters.moodData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, 0, 10, moodGraphTitle, "mood")
@@ -58,8 +58,8 @@
 
     // emotion viz
     emotionGraphTitle = "Positive and Negative Emotions*";
-    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "#A52A2A"], ["Average†", "green"]];
-    emotionLegendNotes = ["†The average of each day's average.", "*Click each day for more information."];
+    emotionLegendJSON = [["Positive", "#4682B4"], ["Negative", "#A52A2A"], ["Daily Average", "green"]];
+    emotionLegendNotes = ["*Click each day for more information."];
     d3.select("#emotions")
       .datum(graphParameters.emotionsData)
         .call(columnChart(graphParameters.startDate, graphParameters.endDate, -10, 10, emotionGraphTitle, yLabel)
