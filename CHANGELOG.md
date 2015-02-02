@@ -1,3 +1,6 @@
+## 2.1.0 - 2015-02-02
+ * many changes
+
 ## 2.0.2 - 2015-02-02
  * Updated messaging specs
 
