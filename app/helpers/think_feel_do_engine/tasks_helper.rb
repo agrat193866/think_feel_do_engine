@@ -2,55 +2,6 @@ module ThinkFeelDoEngine
   # Used to display asterisks if tasks and tools have been assigned to a group
   # and to hide unassigned links
   module TasksHelper
-    def assign_tool(tool)
-      @assign_tool ||= {}
-
-      @assign_tool[tool.id] ||= (
-        unless tool.is_a?(Tools::Home)
-          "#{tool.title} #{indicate_incomplete(tool)}".html_safe
-        end
-      )
-    end
-
-    def active_tool(context, tool)
-      if context == tool.title
-        "active"
-      else
-        ""
-      end
-    end
-
-    def no_submenu?(tool)
-      tool.is_a?(Tools::Messages) || tool.is_a?(Tools::Learn)
-    end
-
-    def make_room_for_badge(tool)
-      @make_room_for_badge ||= {}
-
-      @make_room_for_badge[tool.id] ||= (
-        if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
-          "incomplete_numbered_badge_link"
-        elsif @current_participant.incomplete?(tool)
-          "incomplete_badge_link"
-        else ""
-        end
-      )
-    end
-
-    def indicate_incomplete(tool)
-      if no_submenu?(tool) && @current_participant.any_incomplete?(tool)
-        "<span class=\"badge badge-do\">"\
-        "#{@current_participant.count_all_incomplete(tool)}"\
-        "</span>"
-      elsif @current_participant.incomplete?(tool)
-        "<span class=\"badge badge-do\">"\
-        "New!"\
-        "</span>"
-      else
-        ""
-      end
-    end
-
     def task_status(membership, content_module)
       membership.available_task_statuses
         .for_content_module(content_module)

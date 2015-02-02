@@ -1,6 +1,13 @@
-<% (current_participant.try(:active_group).try(:arm).try(:non_home_tools) || []).each do |tool|  %>
-  <li class="snap-nav-item <%= tool.title %> visible-xs <%= active_tool(@navigator.context, tool) %>">
-    <%= link_to assign_tool(tool), think_feel_do_engine.navigator_context_path(context_name: tool.title), class: "" %>
+<% tool_navs = ToolNavItem.for_participant(current_participant) %>
+
+<% tool_navs.each do |tool_nav| %>
+  <li class="<%= tool_nav.title %><%= tool_nav.is_active? ? " active" : "" %>">
+    <%= link_to think_feel_do_engine.navigator_context_path(context_name: tool_nav.title) do %>
+      <%= tool_nav.title %>
+      <% unless tool_nav.alert.nil? %>
+        <span class="badge badge-do"><%= tool_nav.alert %></span>
+      <% end %>
+    <% end %>
   </li>
 <% end %>
 

@@ -158,16 +158,6 @@ class Participant < ActiveRecord::Base
     )
   end
 
-  def incomplete?(tool)
-    # This is usually called to check for "today's" task status
-    # Call any_incomplete for things like messages/lessons
-    count_today_incomplete(tool) > 0
-  end
-
-  def any_incomplete?(tool)
-    count_all_incomplete(tool) > 0
-  end
-
   def learning_tasks(content_modules)
     active_membership.task_statuses
       .for_content_module_ids(content_modules.map(&:id))
