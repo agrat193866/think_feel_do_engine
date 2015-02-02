@@ -22,7 +22,8 @@
 <div class="tab-content">
   <div id="scroll_btn" class="landing"></div>
   <div class="tab-pane" id="inbox">
-  <% if received_messages.empty? && sent_messages.empty?%>
+  <% if received_messages.empty? %>
+    <br>
     <p>No messages to display.</p>
   <% end %>
     <div class="list-group">
