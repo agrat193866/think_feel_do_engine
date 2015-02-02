@@ -46,17 +46,15 @@ feature "Feel", type: :feature do
       click_on "Your Recent Moods & Emotions"
 
       within "#mood-legend" do
-        expect(page).to have_text "Positive"
-        expect(page).to have_text "Average"
+        expect(page).to have_text "Mood"
+        expect(page).to have_text "Daily Average"
         expect(page).to_not have_text "Negative"
-        expect(page).to have_text "The average of each day's average."
         expect(page).to have_text "Click each day for more information."
       end
       within "#emotion-legend" do
         expect(page).to have_text "Positive"
-        expect(page).to have_text "Average"
+        expect(page).to have_text "Daily Average"
         expect(page).to have_text "Negative"
-        expect(page).to have_text "The average of each day's average."
         expect(page).to have_text "Click each day for more information."
       end
     end
