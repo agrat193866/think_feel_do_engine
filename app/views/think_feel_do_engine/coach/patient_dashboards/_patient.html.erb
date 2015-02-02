@@ -63,14 +63,14 @@
       <td>
         <%= button_to Date.current > patient.active_membership.end_date ? "End Study" : "Discontinue",
                       discontinue_membership_path(patient.active_membership.id),
-                      data: { confirm: "Are you sure? You will not be able to undo this." },
+                      data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
                       method: :get,
                       class: "btn btn-primary" %>
       </td>
       <td>
         <%= button_to "Withdraw",
                       withdraw_membership_path(patient.active_membership.id),
-                      data: { confirm: "Are you sure you would like to terminate access to this membership? This option should also be used before changing membership of the patient to a different group. You will not be able to undo this." },
+                      data: { confirm: "Are you sure you would like to terminate access to this membership? This option should also be used before changing membership of the patient to a different group or to completely revoke access to this membership. You will not be able to undo this." },
                       method: :get,
                       class: "btn btn-danger" %>
       </td>
