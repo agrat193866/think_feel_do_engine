@@ -68,7 +68,7 @@
                       class: "btn btn-primary" %>
       </td>
       <td>
-        <%= button_to "Withdraw",
+        <%= button_to "Terminate Access",
                       withdraw_membership_path(patient.active_membership.id),
                       data: { confirm: "Are you sure you would like to terminate access to this membership? This option should also be used before changing membership of the patient to a different group or to completely revoke access to this membership. You will not be able to undo this." },
                       method: :get,

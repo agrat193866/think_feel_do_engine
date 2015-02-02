@@ -208,7 +208,7 @@ feature "patient dashboard", type: :feature do
           sign_in_participant participant1
           find(".LEARN.hidden-xs a").click
           find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
-          click_on "Next"
+          click_on "Finish"
 
           sign_in_user clinician
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
@@ -406,9 +406,9 @@ feature "patient dashboard", type: :feature do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
-      expect(page).to have_button "Withdraw"
+      expect(page).to have_button "Terminate Access"
 
-      first(:button, "Withdraw").click
+      first(:button, "Terminate Access").click
 
       expect(page).to_not have_text "TFD-1111"
     end
