@@ -1,3 +1,6 @@
+## 2.0.2 - 2015-02-02
+ * Updated messaging specs
+
 ## 2.0.1 - 2015-02-02
  * Fixed merge bugs for patient dashboard and failing specs
 
