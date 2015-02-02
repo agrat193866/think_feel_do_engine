@@ -92,7 +92,7 @@ feature "no historical messages" do
     visit "/navigator/contexts/MESSAGES"
   end
 
-  it "shows the alert for no messages to display" do
+  it "shows the alert for no messages to display", :js do
     expect(page).to have_content "No messages to display."
 
     click_on "Compose"
@@ -103,7 +103,10 @@ feature "no historical messages" do
     click_on "Send"
 
     click_on "Sent"
-    expect(page).to have_content "test"
-    expect(page).to_not have_content "No messages to display."
+
+    within("#sent") do
+      expect(page).to have_content "test"
+      expect(page).to_not have_content "No messages to display."
+    end
   end
 end
