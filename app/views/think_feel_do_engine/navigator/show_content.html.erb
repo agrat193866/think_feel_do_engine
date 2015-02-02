@@ -5,6 +5,10 @@
 <% if @navigator.show_nav_link? %>
   <div class='btn-toolbar'>
   	<%= content_tag(:a, t(:back), href: navigator_previous_content_path, type: "submit", class: "btn btn-default pull-left") if @navigator.previous_content? %>
-    <%= content_tag(:a, t(:next), href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+    <% if @navigator.current_module.is_a?(ContentModules::LessonModule) && !@navigator.current_content_provider.exists?(@navigator.content_position + 1) %>
+      <%= content_tag(:a, t(:finish), href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+    <% else %>
+      <%= content_tag(:a, t(:next), href: navigator_next_content_path, type: "submit", class: "btn btn-primary pull-right") %>
+    <% end %>
   </div>
 <% end %>

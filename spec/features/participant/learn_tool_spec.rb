@@ -56,7 +56,7 @@ feature "learn tool", type: :feature do
 
       expect(page).to have_text "Good Work!"
 
-      click_on "Next"
+      click_on "Finish"
 
       within ".panel-info" do
         expect(find(".task-status.enabled .read")).to have_text "Do - Congrats"
@@ -71,7 +71,7 @@ feature "learn tool", type: :feature do
       expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 2"
 
       click_on "Do - Congrats"
-      click_on "Next"
+      click_on "Finish"
 
       expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 1"
     end
