@@ -30,7 +30,7 @@ feature "Feel", type: :feature do
       end
       expect(page).to have_text("Rate your Mood")
       select("5 (Neither)", from: "mood[rating]")
-      click_on "Continue"
+      click_on "Next"
 
       expect(page).to have_text("Mood saved")
       expect(current_path).to eq "/navigator/modules/" + mood_and_emotions_provider_day1.content_module.id.to_s + "/providers/" + mood_and_emotions_provider_day1.id.to_s + "/1"
@@ -80,7 +80,7 @@ feature "Feel", type: :feature do
       page.find(".container .right.list-group a.list-group-item.task-status:nth-child(1)").trigger("click")
       expect(page).to have_text "What is your mood right now?"
       select("5 (Neither)", from: "mood[rating]")
-      click_on "Continue"
+      click_on "Next"
       select("surprised", from: "Emotion")
       select("5 (Some)", from: "emotional_rating[rating]")
       select("negative", from: "emotional_rating[is_positive]")
@@ -107,7 +107,7 @@ feature "Feel", type: :feature do
         select("7", from: "emotional_rating[rating]")
       end
 
-      page.find("input.btn.btn-primary[value='Continue']").trigger("click")
+      page.find("input.btn.btn-primary[value='Next']").trigger("click")
 
       expect(page).to have_text("Emotional Rating saved")
 

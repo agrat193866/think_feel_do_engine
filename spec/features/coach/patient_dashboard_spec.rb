@@ -208,7 +208,7 @@ feature "patient dashboard", type: :feature do
           sign_in_participant participant1
           find(".LEARN.hidden-xs a").click
           find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
-          click_on "Continue"
+          click_on "Next"
 
           sign_in_user clinician
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
@@ -282,7 +282,7 @@ feature "patient dashboard", type: :feature do
           sign_in_participant participants(:participant1)
           visit "/navigator/contexts/DO"
           click_on "#1 Awareness"
-          click_on "Continue"
+          click_on "Next"
           yesterday_str = Date.yesterday.strftime("%a")
           select "#{ yesterday_str } 12 AM", from: "About what time did you wake up? It's okay if this isn't exact."
           select "#{ yesterday_str } 1 AM", from: "About what time did you go to sleep? This doesn't need to be exact either."
@@ -291,7 +291,7 @@ feature "patient dashboard", type: :feature do
           expect(page).to have_text("How much pleasure")
 
           fill_in "What did you do from 12am to 1am?", with: "run"
-          click_on "Continue"
+          click_on "Next"
           sign_in_user users(:clinician1)
 
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participants(:participant1).id}"

@@ -20,38 +20,38 @@ feature "thought tracker", type: :feature do
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro2).title)
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro3).title)
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro4).title)
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text("Now, your turn...")
 
     fill_in("thought_content", with: "my great thought")
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("Now list another harmful thought...")
 
     fill_in("thought_content", with: "another thought")
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("Just one more harmful thought")
 
     fill_in("thought_content", with: "another thought")
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("Good work")
 
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("#1 Identifying")
   end
@@ -64,15 +64,15 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
     expect(page).to_not have_text "Previous"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro2).title)
-    expect(page).to have_text "Continue"
+    expect(page).to have_text "Next"
 
     click_on "Previous"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
-    expect(page).to have_text "Continue"
+    expect(page).to have_text "Next"
     expect(page).to_not have_text "Previous"
   end
 
@@ -85,13 +85,13 @@ feature "thought tracker", type: :feature do
 
     i = 0
     while i < 9
-      click_on "Continue"
+      click_on "Next"
       i += 1
     end
 
     expect(page).to have_text "Helpful Thoughts"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "Let's start by figuring out which thought patterns the harmful thoughts you identified might match."
     expect(page).to have_text "One thought you had"
@@ -100,18 +100,18 @@ feature "thought tracker", type: :feature do
     select("Overgeneralization", from: "What thought pattern is this an example of?")
     # expect(page).to have_text "You see a single negative event as a never-ending pattern of defeat."
 
-    click_on "Continue"
+    click_on "Next"
     expect(page).to have_text "Thought saved"
     expect(page.find(".panel-body.adjusted-list-group-item").text).to satisfy { |s| ["ARG!", "I am insignificant"].include?(s) }
 
     select("Mental Filter", from: "What thought pattern is this an example of?")
     # expect(page).to have_text "You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water."
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "Good work!"
 
-    click_on "Continue"
+    click_on "Next"
     click_on "Thoughts"
 
     expect(page).to have_text("I am insignificant")
@@ -121,18 +121,18 @@ feature "thought tracker", type: :feature do
     page.find(".list-group-item", text: "#3 Reshape").trigger("click")
     expect(page).to have_text "Challenging Harmful Thoughts"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "You said you had the following unhelpful thoughts:"
     expect(page).to have_text "In case you've forgotten"
     expect(page).to have_text "I am useless"
     expect(page).to have_text "We're going to ask you to challenge each thought"
 
-    page.find("a.btn", text: "Continue").trigger("click")
+    page.find("a.btn", text: "Next").trigger("click")
 
     expect(page).to have_text "Challenging a thought means evaluating if the thought is accurate. A useful way to do this is to check the facts to see if the thought is true."
 
-    page.find("a.btn", text: "Continue").trigger("click")
+    page.find("a.btn", text: "Next").trigger("click")
 
     expect(page).to have_text "You said that you thought"
 
@@ -140,17 +140,17 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text "...and that this relates to this harmful thought pattern: Labeling and Mislabeling"
     expect(page).to have_text "This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: \"I'm a loser.\" When someone else's behavior rubs you the wrong way, you attach a negative label to him: \"He's a goddam louse\". Mislabeling involves describing an event with language that is highly colored and emotionally loaded."
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "1 of 3"
 
     fill_in "Now you try it. Write a challenging thought below", with: "Challenge this!"
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "Because what you THINK, FEEL, Do are related, a challenging thought can change how you act."
 
-    click_on "Continue"
+    click_on "Next"
 
     expect(page).to have_text "You thought"
     expect(page).to have_text "I am useless"
@@ -159,7 +159,7 @@ feature "thought tracker", type: :feature do
     page.execute_script("$('#thought_act_as_if').val('I would act on being superman!')")
 
     # fill_in "What could you do to ACT AS IF you believe this?", with: "I would act on being superman!"
-    click_on "Continue"
+    click_on "Next"
     expect(page).to have_text "Thought saved"
 
     visit "/navigator/contexts/THINK"
@@ -181,14 +181,14 @@ feature "thought tracker", type: :feature do
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in("Challenging Thought", with: "Oh my")
     fill_in("As If Action", with: "Not sure")
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
 
     expect(page).to have_content("I like tomatoes")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
-    expect(page).to have_selector(:link_or_button, "Continue")
+    expect(page).to have_selector(:link_or_button, "Next")
   end
 
   it "implements a new thought from the page where all harmful thoughts are displayed" do
@@ -206,13 +206,13 @@ feature "thought tracker", type: :feature do
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in("Challenging Thought", with: "Oh my")
     fill_in("As If Action", with: "Not sure")
-    click_on("Continue")
+    click_on("Next")
 
     expect(page).to have_text("Thought saved")
     expect(page).to have_text "Harmful Thoughts"
     expect(page).to have_text("I like tomatoes")
     expect(page).to have_selector(:link_or_button, "Add a New Thought", count: 1)
-    expect(page).to have_selector(:link_or_button, "Continue")
+    expect(page).to have_selector(:link_or_button, "Next")
   end
 
   it "shows a vizualization of thought distortions and their associated harmful thoughts", :js do
@@ -223,8 +223,8 @@ feature "thought tracker", type: :feature do
     fill_in "Challenging Thought", with: "Oh my"
     fill_in "As If Action", with: "Not sure"
 
-    click_on "Continue"
-    click_on "Continue"
+    click_on "Next"
+    click_on "Next"
 
     expect(page).to have_text("Think Landing")
 
@@ -235,8 +235,8 @@ feature "thought tracker", type: :feature do
     fill_in "Challenging Thought", with: "Oh my"
     fill_in "As If Action", with: "Not sure"
 
-    click_on "Continue"
-    click_on "Continue"
+    click_on "Next"
+    click_on "Next"
 
     expect(page).to have_text("Think Landing")
 
@@ -247,8 +247,8 @@ feature "thought tracker", type: :feature do
     fill_in "Challenging Thought", with: "Oh my"
     fill_in "As If Action", with: "Not sure"
 
-    click_on "Continue"
-    click_on "Continue"
+    click_on "Next"
+    click_on "Next"
 
     expect(page).to have_text("Think Landing")
 
