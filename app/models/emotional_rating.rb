@@ -8,6 +8,7 @@ class EmotionalRating < ActiveRecord::Base
   validates :emotion, presence: true
   validates :participant, presence: true
   validates :rating, presence: true, inclusion: { in: 0..10 }
+  validates :is_positive, presence: true
 
   attr_writer :name
 
