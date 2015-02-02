@@ -56,24 +56,24 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text("#1 Identifying")
   end
 
-  it "implements a 'Previous' button for slideshows " do
+  it "implements a 'Back' button for slideshows " do
     within ".container .left.list-group" do
       click_on bit_core_content_modules(:think_identifying).title
     end
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
-    expect(page).to_not have_text "Previous"
+    expect(page).to_not have_text "Back"
 
     click_on "Next"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro2).title)
     expect(page).to have_text "Next"
 
-    click_on "Previous"
+    click_on "Back"
 
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
     expect(page).to have_text "Next"
-    expect(page).to_not have_text "Previous"
+    expect(page).to_not have_text "Back"
   end
 
   it "implements #2 Patterns", :js do
