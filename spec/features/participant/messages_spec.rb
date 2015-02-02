@@ -82,18 +82,18 @@ feature "messages" do
   end
 end
 
-feature "no historical messages" do
-  fixtures(
-    :all
-  )
+feature "no historical sent messages" do
+  fixtures :all
 
   before do
     sign_in_participant participants(:participant3)
     visit "/navigator/contexts/MESSAGES"
   end
 
-  it "shows the alert for no messages to display", :js do
-    expect(page).to have_content "No messages to display."
+  it "shows the alert for no messages to display" do
+    within("#inbox") do
+      expect(page).to have_content "No messages to display."
+    end
 
     click_on "Compose"
     within("#new_message") do
@@ -102,8 +102,9 @@ feature "no historical messages" do
     end
     click_on "Send"
 
-    click_on "Sent"
-
+    within("#inbox") do
+      expect(page).to have_content "No messages to display."
+    end
     within("#sent") do
       expect(page).to have_content "test"
       expect(page).to_not have_content "No messages to display."
