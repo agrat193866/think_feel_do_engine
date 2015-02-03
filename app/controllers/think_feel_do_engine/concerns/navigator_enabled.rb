@@ -9,6 +9,7 @@ module ThinkFeelDoEngine
       private
 
       def instantiate_navigator
+        authenticate_participant! unless current_participant
         @navigator ||= BitPlayer::Navigator.new(current_participant)
       end
     end
