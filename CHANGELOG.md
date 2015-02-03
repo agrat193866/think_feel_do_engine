@@ -1,3 +1,6 @@
+## 2.2.6 - 2015-02-03
+ * ensure the Participant is authenticated when using Navigator stuff
+
 ## 2.2.5 - 2015-02-03
  * ability model has method for checking if the activity is editable
 
