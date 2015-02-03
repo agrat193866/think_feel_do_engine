@@ -1,3 +1,6 @@
+## 2.2.1 - 2015-02-03
+ * Participant can only edit the actual attributes of activities that are in the past
+
 ## 2.2.0 - 2015-02-03
  * add browser detection to Application Controller
  * make password strength check selector more specific
