@@ -236,7 +236,8 @@ feature "thought tracker", type: :feature do
     fill_in "As If Action", with: "Not sure"
 
     click_on "Next"
-    click_on "Next"
+    # don't care about the foot overlapping
+    find("a", text: "Next").trigger("click")
 
     expect(page).to have_text("Think Landing")
 
@@ -248,7 +249,7 @@ feature "thought tracker", type: :feature do
     fill_in "As If Action", with: "Not sure"
 
     click_on "Next"
-    click_on "Next"
+    find("a", text: "Next").trigger("click")
 
     expect(page).to have_text("Think Landing")
 
