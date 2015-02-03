@@ -59,14 +59,12 @@ module ThinkFeelDoEngine
       case request.user_agent
       when /iPad/i
         request.variant = :tablet
-      when /iPhone/i
+      when /iPhone|Windows Phone/i
         request.variant = :phone
       when /Android/i && /mobile/i
         request.variant = :phone
       when /Android/i
         request.variant = :tablet
-      when /Windows Phone/i
-        request.variant = :phone
       else
         request.variant = :desktop
       end
