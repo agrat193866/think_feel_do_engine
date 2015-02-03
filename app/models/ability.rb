@@ -121,6 +121,7 @@ class Ability
     can :manage, ThinkFeelDoDashboard::Reports::ToolShare
     can :manage, ThinkFeelDoDashboard::Reports::UserAgent
     can :manage, ThinkFeelDoDashboard::Reports::VideoSession
+    can :manage, ThinkFeelDoDashboard::Reports::PhqAssessment
     can :manage, User
   end
 end
