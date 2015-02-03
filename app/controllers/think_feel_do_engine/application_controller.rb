@@ -3,9 +3,8 @@ require "cancan"
 module ThinkFeelDoEngine
   # Site-wide controller superclass.
   class ApplicationController < ActionController::Base
-    # check_authorization
-    # commented out until participant authorization
-    # can be discussed -Wehrley 12/11/15
+    include ThinkFeelDoEngine::Concerns::BrowserDetective
+
     protect_from_forgery with: :exception
 
     before_action :detect_browser
@@ -53,21 +52,5 @@ module ThinkFeelDoEngine
       end
     end
     helper_method :phq_features?
-
-    # See http://richonrails.com/articles/action-pack-variants-in-rails-4-1
-    def detect_browser
-      case request.user_agent
-      when /iPad/i
-        request.variant = :tablet
-      when /iPhone|Windows Phone/i
-        request.variant = :phone
-      when /Android/i && /mobile/i
-        request.variant = :phone
-      when /Android/i
-        request.variant = :tablet
-      else
-        request.variant = :desktop
-      end
-    end
   end
 end
