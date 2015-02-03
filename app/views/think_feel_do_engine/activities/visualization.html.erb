@@ -143,7 +143,7 @@
                   </tr>
                   </tbody>
               </table>
-              <% if can? :update, activity %>
+              <% if activity.actual_editable? %>
                 <div class="panel-body not-displayed">
                   <div class="form-group">
                     <%= f.label :actual_accomplishment_intensity %>

@@ -94,6 +94,10 @@ class Activity < ActiveRecord::Base
     is_complete || noncompliance_reason
   end
 
+  def actual_editable?
+    end_time < Time.zone.now if end_time
+  end
+
   def was_recently_created?
     (Time.current - created_at) < 1.minute
   end
@@ -136,7 +140,7 @@ class Activity < ActiveRecord::Base
   end
 
   def actual_accomplishable_update(accomplishable_attr)
-    if end_time > DateTime.current &&
+    if end_time > Time.zone.now &&
        changed.include?(accomplishable_attr)
       errors.add accomplishable_attr.to_sym, "can't be updated "\
         "because activity is not in the past."

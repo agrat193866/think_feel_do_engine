@@ -26,7 +26,15 @@ describe Activity do
     end
   end
 
-  describe "updating the activity while still the future" do
+  describe "updating an activity's actual attributes is possible after it has passed" do
+    let(:activity) { activities(:planned_activity_today_1) }
+
+    it ".actual_editable? returns true" do
+      expect(activity.actual_editable?).to be_truthy
+    end
+  end
+
+  describe "updating an activity's actual attributes is not possible while it is still in the future" do
     let(:activity) { activities(:planned_activity_today_4) }
 
     it "throws an error message when updating the actual_accomplishment_intensity" do
@@ -43,6 +51,19 @@ describe Activity do
       expect(activity.errors.full_messages).to include(
         "Actual pleasure intensity can't be updated because activity is not in the past."
       )
+    end
+
+    it ".actual_editable? returns false" do
+      expect(activity.actual_editable?).to be_falsy
+    end
+  end
+
+  describe "updating an activity's actual attributes is not possible with an end_time of 'nil'" do
+    let(:activity) { activities(:unplanned_activity1) }
+
+    it ".actual_editable? returns false" do
+      expect(activity.actual_editable?).to be_falsy
+      expect(activity.actual_editable?).to be_nil
     end
   end
 
