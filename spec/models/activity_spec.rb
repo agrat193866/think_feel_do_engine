@@ -26,6 +26,26 @@ describe Activity do
     end
   end
 
+  describe "updating the activity while still the future" do
+    let(:activity) { activities(:planned_activity_today_4) }
+
+    it "throws an error message when updating the actual_accomplishment_intensity" do
+      activity.update(actual_accomplishment_intensity: 1)
+
+      expect(activity.errors.full_messages).to include(
+        "Actual accomplishment intensity can't be updated because activity is not in the past."
+      )
+    end
+
+    it "throws an error message when updating the actual_pleasure_intensity" do
+      activity.update(actual_pleasure_intensity: 1)
+
+      expect(activity.errors.full_messages).to include(
+        "Actual pleasure intensity can't be updated because activity is not in the past."
+      )
+    end
+  end
+
   describe "scopes" do
     it "unplanned should only show activities where start_time and end_time are nil" do
       unplanned_activities = Activity.unplanned

@@ -14,6 +14,7 @@ class Activity < ActiveRecord::Base
   delegate :title, to: :activity_type, prefix: false, allow_nil: true
 
   before_validation :create_activity_type, :set_end_time
+  validate :actual_accomplishable_updates, on: :update
 
   scope :for_day, lambda { |datetime|
     where(
@@ -128,6 +129,18 @@ class Activity < ActiveRecord::Base
   end
 
   private
+
+  def actual_accomplishable_updates
+    actual_accomplishable_update("actual_accomplishment_intensity")
+    actual_accomplishable_update("actual_pleasure_intensity")
+  end
+
+  def actual_accomplishable_update(accomplishable_attr)
+    if end_time > DateTime.current &&
+      changed.include?(accomplishable_attr)
+      errors.add accomplishable_attr.to_sym, "can't be updated because activity is not in the past."
+    end
+  end
 
   def create_activity_type
     new_title = activity_type_new_title.present? ? activity_type_new_title :
