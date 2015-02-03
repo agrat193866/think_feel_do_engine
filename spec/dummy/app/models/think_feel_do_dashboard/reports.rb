@@ -20,6 +20,7 @@ module ThinkFeelDoDashboard
       ToolShare
       UserAgent
       VideoSession
+      PhqAssessment
     )
 
     report_classes.each do |klass|
