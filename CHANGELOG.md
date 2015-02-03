@@ -1,3 +1,7 @@
+## 2.2.2 - 2015-02-03
+ * refactored viz providers
+ * fixed cyclomatic complexity error
+
 ## 2.2.1 - 2015-02-03
  * Participant can only edit the actual attributes of activities that are in the past
 
