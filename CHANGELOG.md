@@ -1,3 +1,6 @@
+## 2.2.3 - 2015-02-03
+ * added functionality to membership for marking it as complete
+
 ## 2.2.2 - 2015-02-03
  * refactored viz providers
  * fixed cyclomatic complexity error
