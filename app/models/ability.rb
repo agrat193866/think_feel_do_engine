@@ -8,18 +8,24 @@ class Ability
 
     if @user.instance_of?(Participant)
       authorize_participant
-    elsif @user.admin?
-      authorize_admin
-    elsif @user.coach?
-      authorize_coach
-    elsif @user.content_author?
-      authorize_content_author
-    elsif @user.researcher?
-      authorize_researcher
+    else
+      authorize_user(user)
     end
   end
 
   private
+
+  def authorize_user(user)
+    if user.admin?
+      authorize_admin
+    elsif user.coach?
+      authorize_coach
+    elsif user.content_author?
+      authorize_content_author
+    elsif user.researcher?
+      authorize_researcher
+    end
+  end
 
   def authorize_participant
     can :update, Activity do |activity|

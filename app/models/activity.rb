@@ -137,8 +137,9 @@ class Activity < ActiveRecord::Base
 
   def actual_accomplishable_update(accomplishable_attr)
     if end_time > DateTime.current &&
-      changed.include?(accomplishable_attr)
-      errors.add accomplishable_attr.to_sym, "can't be updated because activity is not in the past."
+       changed.include?(accomplishable_attr)
+      errors.add accomplishable_attr.to_sym, "can't be updated "\
+        "because activity is not in the past."
     end
   end
 

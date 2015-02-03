@@ -181,11 +181,8 @@
     $("#datepicker").datepicker({
 
       beforeShowDay: function(date) {
-
           var formattedDate = moment(date).format('YYYY-MM-DD');
           var selectableDates = <%= dates_with_activities.to_s.html_safe %>;
-
-          console.log(formattedDate);
 
           // -1 is returned if the calendar date is not in selectable dates
           if ($.inArray(formattedDate, selectableDates) != -1){
