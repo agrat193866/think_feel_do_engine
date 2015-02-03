@@ -98,30 +98,28 @@ class Ability
   # think_feel_do_dashboard
   def authorize_researcher
     can [:show, :index], Arm
-    can :manage, CoachAssignment
-    can [:index, :new, :create, :edit, :show, :update, :destroy], Group
-    can :manage, Membership
-    can :manage, Participant
-    can :manage, Task
-    can :manage, ThinkFeelDoDashboard::Reports::Comment
-    can :manage, ThinkFeelDoDashboard::Reports::Goal
-    can :manage, ThinkFeelDoDashboard::Reports::LessonModule
-    can :manage, ThinkFeelDoDashboard::Reports::LessonSlideView
-    can :manage, ThinkFeelDoDashboard::Reports::LessonViewing
-    can :manage, ThinkFeelDoDashboard::Reports::Like
-    can :manage, ThinkFeelDoDashboard::Reports::Login
-    can :manage, ThinkFeelDoDashboard::Reports::ModulePageView
-    can :manage, ThinkFeelDoDashboard::Reports::ModuleSession
-    can :manage, ThinkFeelDoDashboard::Reports::Nudge
-    can :manage, ThinkFeelDoDashboard::Reports::OffTopicPost
-    can :manage, ThinkFeelDoDashboard::Reports::SiteSession
-    can :manage, ThinkFeelDoDashboard::Reports::TaskCompletion
-    can :manage, ThinkFeelDoDashboard::Reports::ToolAccess
-    can :manage, ThinkFeelDoDashboard::Reports::ToolModule
-    can :manage, ThinkFeelDoDashboard::Reports::ToolShare
-    can :manage, ThinkFeelDoDashboard::Reports::UserAgent
-    can :manage, ThinkFeelDoDashboard::Reports::VideoSession
-    can :manage, ThinkFeelDoDashboard::Reports::PhqAssessment
-    can :manage, User
+    [Group, CoachAssignment, Membership, Participant, Task,
+     ThinkFeelDoDashboard::Reports::Comment,
+     ThinkFeelDoDashboard::Reports::Goal,
+     ThinkFeelDoDashboard::Reports::LessonModule,
+     ThinkFeelDoDashboard::Reports::LessonSlideView,
+     ThinkFeelDoDashboard::Reports::LessonViewing,
+     ThinkFeelDoDashboard::Reports::Like,
+     ThinkFeelDoDashboard::Reports::Login,
+     ThinkFeelDoDashboard::Reports::ModulePageView,
+     ThinkFeelDoDashboard::Reports::ModuleSession,
+     ThinkFeelDoDashboard::Reports::Nudge,
+     ThinkFeelDoDashboard::Reports::OffTopicPost,
+     ThinkFeelDoDashboard::Reports::SiteSession,
+     ThinkFeelDoDashboard::Reports::TaskCompletion,
+     ThinkFeelDoDashboard::Reports::ToolAccess,
+     ThinkFeelDoDashboard::Reports::ToolModule,
+     ThinkFeelDoDashboard::Reports::ToolShare,
+     ThinkFeelDoDashboard::Reports::UserAgent,
+     ThinkFeelDoDashboard::Reports::VideoSession,
+     ThinkFeelDoDashboard::Reports::PhqAssessment,
+     User].each do |klass|
+      can :manage, klass
+    end
   end
 end
