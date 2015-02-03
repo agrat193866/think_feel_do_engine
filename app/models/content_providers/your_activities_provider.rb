@@ -71,20 +71,11 @@ module ContentProviders
         .strftime("%b %d, %Y")
     end
 
-    # past dates with scheduled activities formatted for jquery datepicker
+    # dates with scheduled activities formatted for jquery datepicker
     def collect_dates_with_activities(options)
-      disposable_dates = []
-      dates_with_activities = []
-
-      past_activities(options)
-        .where("start_time <= ?", Time.now).each do |activity|
-        if disposable_dates[activity.start_time.to_i].nil?
-          disposable_dates.push(activity.start_time.to_i)
-          dates_with_activities.push(activity.start_time.strftime("%Y-%m-%d"))
-        end
-      end
-
-      dates_with_activities
+      past_activities(options).where("start_time <= ?", Time.now)
+        .uniq
+        .map { |activity| activity.start_time.to_date.strftime("%Y-%m-%d") }
     end
 
     def local_time(options)

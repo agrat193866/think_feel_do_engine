@@ -184,21 +184,17 @@
           var formattedDate = moment(date).format('YYYY-MM-DD');
           var selectableDates = <%= dates_with_activities.to_s.html_safe %>;
 
+          var selectable, style;
           // -1 is returned if the calendar date is not in selectable dates
           if ($.inArray(formattedDate, selectableDates) != -1){
-
               selectable = true;
               style = "ui-datepicker-current-day";
-
-              return styleActiveDay = [selectable, style];
           }
           else {
-
               selectable = false;
               style = "ui-datepicker-unselectable";
-
-              return styleActiveDay = [selectable, style];
           }
+        return styleActiveDay = [selectable, style];
       },
 
       onSelect: function(dateText, inst) {
