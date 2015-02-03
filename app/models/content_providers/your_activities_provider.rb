@@ -1,7 +1,7 @@
 module ContentProviders
   # Visualizations of participant activities.
   class YourActivitiesProvider < BitCore::ContentProvider
-    def render_current(options)
+    def render_current(options, _ = nil)
       options.view_context.render(
         template: "think_feel_do_engine/activities/visualization",
         locals: {

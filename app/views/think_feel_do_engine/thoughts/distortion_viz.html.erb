@@ -9,7 +9,7 @@
       <%= raw(thoughts.to_json(:methods => "pattern", :only => [:content, :challenging_thought, :act_as_if])) %>
       $(document).on('page:change', function(){
 
-<% if defined? link_to_view%>
+<% unless link_to_view.nil? %>
 
     TT = new sc.thoughtTracker(true,<%= ("\"home:" + link_to_view + "\"").html_safe %>);
 
