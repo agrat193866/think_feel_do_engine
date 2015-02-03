@@ -55,7 +55,8 @@
         .order(:position)
         .first
         .render_current(
-          self,
+          Struct.new(:view_context, :app_context, :position, :participant)
+          .new(self, nil, nil, current_participant),
           navigator_location_path(
             module_id: task_status.bit_core_content_module_id
           )

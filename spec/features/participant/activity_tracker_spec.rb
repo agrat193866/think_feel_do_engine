@@ -232,13 +232,36 @@ feature "activity tracker", type: :feature do
     end
   end
 
+  context "Traveling Participant is logged in" do
+    let(:participant) { participants(:traveling_participant1) }
+    let(:activity) { activities(:p2_activity_1_hr_ago) }
+
+    before do
+      Time.zone = "Central Time (US & Canada)"
+      t = Time.zone.parse("2015-01-15 10:30")
+      Timecop.travel(t)
+      sign_in_participant participant
+      visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "can't edit an activity's actual accomplishment or pleasurable intensity if it is in the future" do
+      within "#collapse-activity-#{activity.id}" do
+        expect(page).to_not have_text "Edit"
+      end
+    end
+  end
+
   context "Participant with activities is logged in" do
     let(:participant) { participants(:traveling_participant1) }
     let(:activity) { activities(:p2_activity_1_hr_ago) }
 
     before do
       Time.zone = "Central Time (US & Canada)"
-      t = DateTime.new(2015, 1, 15, 10)
+      t = Time.zone.parse("2015-01-15 11:01")
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
@@ -374,7 +397,7 @@ feature "activity tracker", type: :feature do
 
     before do
       Time.zone = "Central Time (US & Canada)"
-      t = DateTime.new(2015, 1, 15, 20)
+      t = Time.zone.parse("2015-01-15 20:00")
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
@@ -438,7 +461,7 @@ feature "activity tracker", type: :feature do
 
     before do
       Time.zone = "Central Time (US & Canada)"
-      t = DateTime.new(2015, 1, 17, 1)
+      t = Time.zone.parse("2015-01-17 1:00")
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}?date=16/01/2015"

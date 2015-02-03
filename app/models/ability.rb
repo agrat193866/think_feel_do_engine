@@ -4,20 +4,34 @@ class Ability
 
   def initialize(user)
     # Guest user by default
-    @user = user || User.new
+    @user = user || Participant.new
 
-    if @user.admin?
-      authorize_admin
-    elsif @user.coach?
-      authorize_coach
-    elsif @user.content_author?
-      authorize_content_author
-    elsif @user.researcher?
-      authorize_researcher
+    if @user.instance_of?(Participant)
+      authorize_participant
+    else
+      authorize_user(user)
     end
   end
 
   private
+
+  def authorize_user(user)
+    if user.admin?
+      authorize_admin
+    elsif user.coach?
+      authorize_coach
+    elsif user.content_author?
+      authorize_content_author
+    elsif user.researcher?
+      authorize_researcher
+    end
+  end
+
+  def authorize_participant
+    can :update, Activity do |activity|
+      activity.end_time < Time.zone.now
+    end
+  end
 
   def authorize_admin
     can :manage, :all

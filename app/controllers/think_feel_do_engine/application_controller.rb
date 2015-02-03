@@ -8,6 +8,8 @@ module ThinkFeelDoEngine
     # can be discussed -Wehrley 12/11/15
     protect_from_forgery with: :exception
 
+    before_action :detect_browser
+
     def after_sign_in_path_for(resource)
       if resource.class == User
         if defined?(think_feel_do_dashboard)
@@ -51,5 +53,21 @@ module ThinkFeelDoEngine
       end
     end
     helper_method :phq_features?
+
+    # See http://richonrails.com/articles/action-pack-variants-in-rails-4-1
+    def detect_browser
+      case request.user_agent
+      when /iPad/i
+        request.variant = :tablet
+      when /iPhone|Windows Phone/i
+        request.variant = :phone
+      when /Android/i && /mobile/i
+        request.variant = :phone
+      when /Android/i
+        request.variant = :tablet
+      else
+        request.variant = :desktop
+      end
+    end
   end
 end

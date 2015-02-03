@@ -34,17 +34,13 @@ class Membership < ActiveRecord::Base
   after_create :create_task_statuses
 
   scope :active, lambda {
-    where("memberships.start_date <= ? OR memberships.start_date = ?",
-          Date.current, nil)
-      .where("memberships.end_date >= ? OR memberships.end_date = ?",
-             Date.current, nil)
+    where Membership.arel_table[:start_date].lteq(Date.current)
+      .and(Membership.arel_table[:end_date].gteq(Date.current))
   }
 
   scope :inactive, lambda {
-    where(
-      Membership.arel_table[:start_date].gt(Date.current)
+    where Membership.arel_table[:start_date].gt(Date.current)
       .or(Membership.arel_table[:end_date].lt(Date.current))
-      )
   }
 
   def available_task_statuses

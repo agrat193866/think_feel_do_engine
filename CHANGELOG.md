@@ -1,3 +1,18 @@
+## 2.2.2 - 2015-02-03
+ * refactored viz providers
+ * fixed cyclomatic complexity error
+
+## 2.2.1 - 2015-02-03
+ * Participant can only edit the actual attributes of activities that are in the past
+
+## 2.2.0 - 2015-02-03
+ * add browser detection to Application Controller
+ * make password strength check selector more specific
+ * fix footer at bottom on medium-xlarge screens
+
+## 2.1.1 - 2015-02-02
+ * update viz Content Modules
+
 ## 2.1.0 - 2015-02-02
  * many changes
 
