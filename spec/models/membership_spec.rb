@@ -96,4 +96,25 @@ describe Membership do
       expect(membership.end_date).to eq Date.parse("2014-08-02")
     end
   end
+
+  describe "membership state modification" do
+    let(:start_date) { Date.parse("2012-01-02") }
+    let(:end_date) { Date.today }
+    let(:participant1) { participants(:participant1) }
+    let(:membership) do
+      Membership.new(
+        start_date: start_date,
+        end_date: end_date,
+        participant_id: participants(:participant1).id)
+    end
+
+    it "marks a membership as complete and dates back the end_date to yesterday" do
+      expect(membership.is_complete).to eq false
+
+      membership.flag_complete
+
+      expect(membership.is_complete).to eq true
+      expect(membership.end_date).to eq Date.yesterday
+    end
+  end
 end

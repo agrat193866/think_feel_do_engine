@@ -94,6 +94,14 @@ class Membership < ActiveRecord::Base
              "ContentModules::LessonModule")
   end
 
+  def flag_complete
+    if self.update(is_complete: true, end_date: Date.yesterday)
+      logger.info "Marking membership for participant: #{self.participant.study_id}, as complete."
+    else
+      logger.error "ERROR: A problem occurred while marking membership for participant: #{self.participant.study_id}, as complete!"
+    end
+  end
+
   private
 
   def normalize_dates
