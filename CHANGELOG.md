@@ -1,3 +1,6 @@
+## 2.2.5 - 2015-02-03
+ * ability model has method for checking if the activity is editable
+
 ## 2.2.4 - 2015-02-03
  * refactored Application Controller browser detection
  * adding permission to researcher to view phq assessment report
