@@ -161,19 +161,32 @@
       width: "col-md-12",
       iconlibrary: "fa",
       additionalButtons: [
-        [{
-          name: "groupCustom",
-          data: [{
-            name: "helpModal",
-            title: "Help",
-            icon: "fa fa-question",
-            callback: function(e) {
-              // render bootstrap modal
-              $("#helpModal").modal("show");
-            }
+        [
+          {
+            name: "groupCustom",
+            data: [{
+              name: "helpModal",
+              title: "Help",
+              icon: "fa fa-question",
+              callback: function(e){
+                //render bootstrap modal
+                $('#helpModal').modal('show')
+              }
+            }],
+          },
+          {
+            name: "utility",
+            data: [{
+              name: "wordCleaner",
+              title: "Clean",
+              icon: "fa fa-refresh",
+              callback: function(e){
+                //clean word input
+                $('.md-input').val(cleanWordClipboard($('.md-input').val()));
+              }
+            }]
           }]
-        }]
-      ],
+        ],
       onChange: function(e) {
         $("#source").val(e.getContent());
         $.post("<%= think_feel_do_engine.arm_bit_maker_slideshow_slide_preview_path %>",
