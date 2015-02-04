@@ -3,7 +3,6 @@ require "spec_helper"
 module ThinkFeelDoEngine
   describe MembershipsController, type: :controller do
     describe "Membership Patch" do
-
       let(:user) { double("user", admin?: true) }
       let(:membership) { double("membership", id: 1, end_date: Date.tomorrow.to_date) }
       let(:membership_valid) { double("membership_valid", end_date: Date.tomorrow.to_date) }
@@ -20,7 +19,6 @@ module ThinkFeelDoEngine
               membership: { end_date: Date.tomorrow.to_date },
               use_route: :think_feel_do_engine
         end
-
 
         it "should render a notice alert message OK response" do
           expect(flash[:notice]).to be_present
@@ -46,3 +44,5 @@ module ThinkFeelDoEngine
     end
   end
 end
+
+

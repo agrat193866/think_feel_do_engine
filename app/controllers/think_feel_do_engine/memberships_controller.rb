@@ -9,11 +9,14 @@ module ThinkFeelDoEngine
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def update
-      if ((membership_params[:end_date].to_date) > Date.today) && @membership.update(membership_params)
+      if ((membership_params[:end_date].to_date) > Date.today) &&
+         @membership.update(membership_params)
         flash[:notice] = "Membership successfully updated"
         redirect_to coach_group_patient_dashboards_path(@membership.group)
       else
-        flash[:alert] = "Unable to save membership changes. End date cannot be set prior to tomorrow's date. Please use [Discontinue] or [Terminate Access]."
+        flash[:alert] = "Unable to save membership changes. End date cannot "\
+        " be set prior to tomorrow's date. Please use [Discontinue] or "\
+        "[Terminate Access]."
         redirect_to coach_group_patient_dashboards_path(@membership.group)
       end
     end
