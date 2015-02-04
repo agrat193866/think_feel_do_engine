@@ -76,6 +76,17 @@ feature "thought tracker", type: :feature do
     expect(page).to_not have_text "Back"
   end
 
+  it "implements a 'Skip' button for skippable slideshows" do
+    Timecop.travel(Time.current + (6.minutes))
+
+    within ".container .left.list-group" do
+      click_on bit_core_content_modules(:think_identifying).title
+    end
+
+    expect(page).to have_text "Skip"
+    expect(page).to have_text("Now, your turn...")
+  end
+
   it "implements #2 Patterns", :js do
     within ".left.list-group" do
       click_on "#2 Patterns"

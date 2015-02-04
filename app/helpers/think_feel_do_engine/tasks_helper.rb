@@ -40,7 +40,7 @@ module ThinkFeelDoEngine
     def current_provider_skippable?(navigator)
       provider = navigator.current_content_provider
       mod = navigator.current_module
-      membership = current_participant.membership
+      membership = current_participant.active_membership
 
       # If the TaskStatus was *just* marked complete, this is the first time
       # viewing the ContentProvider, so we should consider it incomplete.
