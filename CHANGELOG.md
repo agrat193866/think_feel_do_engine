@@ -1,3 +1,6 @@
+## 2.3.2 - 2015-02-04
+ * refactored 'manage' layout
+
 ## 2.3.1 - 2015-02-04
  * activity method checking if actual attributes can be updated returns consistent response - either t or f
 
