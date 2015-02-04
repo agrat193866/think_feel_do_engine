@@ -1,3 +1,7 @@
+## 2.3.3 - 2015-02-04
+ * added live preview to Markdown editor
+ * participant who does not have access to site redirected to home with alert when they request a password reset
+
 ## 2.3.2 - 2015-02-04
  * refactored 'manage' layout
 
