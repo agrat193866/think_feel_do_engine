@@ -54,7 +54,6 @@ feature "thought tracker", type: :feature do
     click_on("Next")
 
     expect(page).to have_text("#1 Identifying")
-    
   end
 
   it "skips content that is skippable" do
