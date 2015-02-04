@@ -55,7 +55,7 @@
     <% end %>
     <% if patient.active_membership && @active_patients %>
       <td>
-        <%= form_for patient.active_membership, remote: true do |f| %>
+        <%= form_for patient.active_membership do |f| %>
         <%= f.hidden_field :end_date %>
         <input type="text" class="datepicker" value="<%= patient.active_membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
       <% end %>
