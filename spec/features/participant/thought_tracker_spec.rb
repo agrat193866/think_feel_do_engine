@@ -4,7 +4,7 @@ feature "thought tracker", type: :feature do
   fixtures(
     :arms, :participants, :users, :groups, :memberships, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :tasks, :thought_patterns, :thoughts,
+    :"bit_core/content_providers", :content_provider_policies, :tasks, :thought_patterns, :thoughts,
     :task_status
   )
 
@@ -54,6 +54,16 @@ feature "thought tracker", type: :feature do
     click_on("Next")
 
     expect(page).to have_text("#1 Identifying")
+    
+  end
+
+  it "skips content that is skippable" do
+    within ".container .left.list-group" do
+      click_on bit_core_content_modules(:think_identifying).title
+    end
+
+    click_on "Skip"
+    expect(page).to have_text("Now, your turn...")
   end
 
   it "implements a 'Back' button for slideshows " do
@@ -74,17 +84,6 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text(bit_core_slides(:think_identifying_intro1).title)
     expect(page).to have_text "Next"
     expect(page).to_not have_text "Back"
-  end
-
-  it "implements a 'Skip' button for skippable slideshows" do
-    Timecop.travel(Time.current + (6.minutes))
-
-    within ".container .left.list-group" do
-      click_on bit_core_content_modules(:think_identifying).title
-    end
-
-    expect(page).to have_text "Skip"
-    expect(page).to have_text("Now, your turn...")
   end
 
   it "implements #2 Patterns", :js do

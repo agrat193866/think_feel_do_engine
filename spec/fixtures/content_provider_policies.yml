@@ -1,0 +1,3 @@
+think1_slideshow_policy:
+  is_skippable_after_first_viewing: true
+  content_provider: think_identify_index
