@@ -1,3 +1,6 @@
+## 2.3.1 - 2015-02-04
+ * activity method checking if actual attributes can be updated returns consistent response - either t or f
+
 ## 2.3.0 - 2015-02-04
  * refactor layouts and styles for accommodating themes
  * refactored code to collect all past dates with scheduled activities

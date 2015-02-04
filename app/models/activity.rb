@@ -95,7 +95,11 @@ class Activity < ActiveRecord::Base
   end
 
   def actual_editable?
-    end_time < Time.zone.now if end_time
+    if end_time
+      end_time < Time.zone.now
+    else
+      false
+    end
   end
 
   def was_recently_created?

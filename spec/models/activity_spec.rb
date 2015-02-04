@@ -30,7 +30,7 @@ describe Activity do
     let(:activity) { activities(:planned_activity_today_1) }
 
     it ".actual_editable? returns true" do
-      expect(activity.actual_editable?).to be_truthy
+      expect(activity.actual_editable?).to eq true
     end
   end
 
@@ -54,7 +54,7 @@ describe Activity do
     end
 
     it ".actual_editable? returns false" do
-      expect(activity.actual_editable?).to be_falsy
+      expect(activity.actual_editable?).to eq false
     end
   end
 
@@ -62,8 +62,7 @@ describe Activity do
     let(:activity) { activities(:unplanned_activity1) }
 
     it ".actual_editable? returns false" do
-      expect(activity.actual_editable?).to be_falsy
-      expect(activity.actual_editable?).to be_nil
+      expect(activity.actual_editable?).to eq false
     end
   end
 
