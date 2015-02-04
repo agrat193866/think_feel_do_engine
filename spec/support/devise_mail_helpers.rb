@@ -13,4 +13,9 @@ module DeviseMailHelpers
     mail_body = last_email.body.to_s
     mail_body[/\/users\/password\/edit\?reset_password_token=[^"]+/]
   end
+
+  def extract_participant_password_edit_path_from_email
+    mail_body = last_email.body.to_s
+    mail_body[/\/participants\/password\/edit\?reset_password_token=[^"]+/]
+  end
 end
