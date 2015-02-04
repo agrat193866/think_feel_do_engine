@@ -19,7 +19,7 @@ module ThinkFeelDoEngine
 
       def create
         @participant = Participant.find_by(email: resource_params[:email])
-        if @participant && @participant.is_not_allowed_in_site
+        if @participant.try(:is_not_allowed_in_site)
           msg = "New password cannot be sent; this account is not active."
           redirect_to new_participant_session_path, alert: msg
         else
