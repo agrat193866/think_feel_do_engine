@@ -8,12 +8,10 @@ class Ability
 
     if @user.admin?
       authorize_admin
-    elsif @user.coach?
-      authorize_coach
-    elsif @user.content_author?
-      authorize_content_author
-    elsif @user.researcher?
-      authorize_researcher
+    else
+      authorize_coach if @user.coach?
+      authorize_content_author if @user.content_author?
+      authorize_researcher if @user.researcher?
     end
   end
 

@@ -14,7 +14,12 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           before do
             allow(Group).to receive(:find).and_return(group)
-            sign_in_user double("user", participants: Participant.all, admin?: false, coach?: true)
+            sign_in_user double("user",
+                                participants: Participant.all,
+                                admin?: false,
+                                coach?: true,
+                                content_author?: false,
+                                researcher?: false)
             get :index, use_route: :think_feel_do_engine
           end
 

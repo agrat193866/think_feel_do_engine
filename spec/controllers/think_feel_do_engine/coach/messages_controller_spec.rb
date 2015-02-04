@@ -14,7 +14,16 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
-          let(:user) { double("user", received_messages: DeliveredMessage, sent_messages: Message, admin?: false, coach?: true, participants: []) }
+          let(:user) do
+            double("user",
+                   received_messages: DeliveredMessage,
+                   sent_messages: Message,
+                   admin?: false,
+                   coach?: true,
+                   content_author?: false,
+                   researcher?: false,
+                   participants: [])
+          end
 
           before { sign_in_user user }
 
@@ -34,7 +43,15 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
-          let(:user) { double("user", participants: [], build_sent_message: nil, admin?: false, coach?: true) }
+          let(:user) do
+            double("user",
+                   participants: [],
+                   build_sent_message: nil,
+                   admin?: false,
+                   coach?: true,
+                   content_author?: false,
+                   researcher?: false)
+          end
 
           before { sign_in_user user }
 
@@ -55,7 +72,14 @@ module ThinkFeelDoEngine
 
         context "for authenticated requests" do
           let(:message) { double("message", save: true) }
-          let(:user) { double("user", build_sent_message: message, admin?: false, coach?: true) }
+          let(:user) do
+            double("user",
+                   build_sent_message: message,
+                   admin?: false,
+                   coach?: true,
+                   content_author?: false,
+                   researcher?: false)
+          end
 
           before { sign_in_user user }
 
