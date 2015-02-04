@@ -1,3 +1,7 @@
+## 2.3.0 - 2015-02-04
+ * refactor layouts and styles for accommodating themes
+ * refactored code to collect all past dates with scheduled activities
+
 ## 2.2.6 - 2015-02-03
  * ensure the Participant is authenticated when using Navigator stuff
 
