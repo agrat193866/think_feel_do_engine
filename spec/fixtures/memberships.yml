@@ -1,7 +1,7 @@
 membership1:
   participant: participant1
   group: group1
-  start_date: <%= Date.yesterday %>
+  start_date: <%= Date.today %>
   end_date: <%= Date.today.advance(days: 4) %>
 
 membership2:
