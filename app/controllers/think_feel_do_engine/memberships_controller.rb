@@ -4,8 +4,6 @@ module ThinkFeelDoEngine
     before_action :authenticate_user!
     load_and_authorize_resource
 
-    layout "manage"
-
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def update

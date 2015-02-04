@@ -9,8 +9,6 @@ module ThinkFeelDoEngine
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
 
-      layout "manage"
-
       def index
         authorize! :index, @slideshow
       end
@@ -69,6 +67,15 @@ module ThinkFeelDoEngine
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
           render nothing: true
         end
+      end
+
+      def preview
+        render text: Redcarpet::Markdown.new(
+          Redcarpet::Render::HTML.new(
+            filter_html: true,
+            safe_links_only: true
+          )
+        ).render(params[:content] || "").html_safe
       end
 
       private

@@ -4,6 +4,6 @@
 
 <%= form_for(@slide, as: :slide, url: arm_bit_maker_slideshow_slide_path(@arm,@slide.slideshow, @slide)) do |f| %>
 	<%= render "think_feel_do_engine/bit_maker/slides/fields", f: f, slide: @slide %>
-	<%= f.submit "Update", class: "btn btn-default" %>
+	<%= f.submit "Update", class: "btn btn-primary" %>
 	<%= link_to "Cancel", arm_bit_maker_slideshow_path(@arm,@slide.slideshow), class: "btn btn-default" %>
 <% end %>

@@ -19,7 +19,7 @@ namespace :seed do
     ActiveRecord::FixtureSet.create_fixtures path, [
       :arms, :participants, :"bit_core/slideshows", :"bit_core/slides",
       :"bit_core/tools", :"bit_core/content_modules",
-      :"bit_core/content_providers", :users, :user_roles, :activity_types,
+      :"bit_core/content_providers", :content_provider_policies, :users, :user_roles, :activity_types,
       :activities, :coach_assignments, :groups, :memberships, :messages,
       :delivered_messages, :thought_patterns, :thoughts,
       :tasks, :task_status, :moods, :phq_assessments, :emotions,

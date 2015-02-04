@@ -3,7 +3,6 @@ module ThinkFeelDoEngine
     # Manages coach message handling.
     class MessagesController < ApplicationController
       before_action :authenticate_user!, :set_group
-      layout "manage"
 
       def index
         authorize! :show, Message

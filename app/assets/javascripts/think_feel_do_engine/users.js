@@ -4,8 +4,6 @@
 //= require bootstrap/popover
 //= require bootstrap/collapse
 //= require bootstrap-markdown
-//= require markdown
-//= require to-markdown
 //
 // internal
 //= require think_feel_do_engine/slideshows

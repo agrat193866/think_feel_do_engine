@@ -6,8 +6,6 @@ module ThinkFeelDoEngine
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-    layout "manage"
-
     def new
       authorize! :new, BitCore::Slide
       @slide = @lesson.build_slide(slide_params)

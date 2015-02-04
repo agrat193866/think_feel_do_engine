@@ -6,7 +6,6 @@ module ThinkFeelDoEngine
       before_action :build_slideshow, only: [:create]
       before_action :find_slideshow, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource except: [:index, :new]
-      layout "manage"
 
       def index
         authorize! :index, BitCore::Slideshow

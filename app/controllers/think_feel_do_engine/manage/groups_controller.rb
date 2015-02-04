@@ -4,7 +4,6 @@ module ThinkFeelDoEngine
     class GroupsController < ApplicationController
       before_action :authenticate_user!, :set_arm
       load_and_authorize_resource except: :edit_tasks
-      layout "manage"
 
       def index
       end

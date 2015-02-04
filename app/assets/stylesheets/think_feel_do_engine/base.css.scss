@@ -1,12 +1,5 @@
-@import "bootstrap";
 
 /* Bootstrap styles */
-
-/****************************[Variables]**************************************/
-$disabled-color: #EEEEEE;
-$think-color: #72A049;
-$feel-color: #5A5198;
-$do-color: #7E4791;
 
 h1, h2, h3 {
   margin-top: 0px;
@@ -52,14 +45,6 @@ abbr.timeago {
 
 .list-group-item-unread {
   font-weight:bold;
-}
-
-.list-group-item-read {
-  background-color: $disabled-color;
-}
-
-.badge-do {
-  background-color: $do-color;
 }
 
 .text-lowercase {
@@ -141,19 +126,6 @@ body.snapjs-left .snap-drawers{
   position: relative;
 }
 
-// add contrast
-.btn-group {
-  .btn-success:active, .btn-success.active {
-    background-color: darken($brand-success, 30%);
-  }
-  .btn-danger:active, .btn-danger.active {
-    background-color: darken($brand-danger, 30%);
-  }
-  .btn-default:active, .btn-default.active {
-    background-color: lighten($gray, 40%);
-  }
-}
-
 .intensity_btn {
   padding-left: 8px;
   padding-right: 8px;
@@ -181,49 +153,17 @@ tr.inactive {
   margin: 20px 0;
 }
 
-/****************************[Variables]**************************************/
-$think-color: #72A049;
-$feel-color: #5A5198;
-$do-color: #7E4791;
-
 /**************************[Global Styles]************************************/
-a, .think                              { color: $think-color; }
-.feel, .icon-caret-right               { color: $feel-color; }
-.do, .fa-asterisk                      { color: $do-color; }
 p.lead                                 { margin-bottom: 10px; }
 #wrap                                  { background-color:white; }
 /************************[General Tool Styles]********************************/
-.tool-content {
-  h1 {
-    color: $think-color;
-  }
-  h2 {
-    color: $do-color;
-  }
-  h3 {
-    color: $do-color;
-  }
-  h4 {
-  }
-  strong {
-    color: $feel-color;
-  }
-}
 
 #tool-layout {
   h1 {
-    color: $think-color;
     font-size: 30px;
   }
   h2 {
-    color: $do-color;
     font-size: 24px;
-  }
-  h3 {
-    color: $do-color;
-  }
-  strong {
-    color: $feel-color;
   }
 }
 
@@ -294,11 +234,6 @@ ul#nav_main li
 }
 .grid path {
       stroke-width: 0;
-}
-
-ul#nav_main li a
-{
-  color: $brand-primary;
 }
 
 ul#nav_main li.active a
@@ -730,4 +665,10 @@ h4.list-group-item-heading p {
 
 h4.list-group-item-heading .unread {
   font-weight: bold;
+}
+
+/* Markdown editor */
+
+textarea.md-input {
+  width: inherit;
 }

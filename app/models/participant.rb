@@ -70,6 +70,13 @@ class Participant < ActiveRecord::Base
       .where("memberships.is_stepped = ?", false)
   }
 
+  def is_not_allowed_in_site
+    # participants not set to is_complete (withdrawal or termination)
+    # and whose end_date is in the past
+    Membership.find_by(participant_id: id)
+      .end_date < Date.today && memberships.find_by(is_complete: true).nil?
+  end
+
   def password_is__not_blank?
     !password.blank?
   end

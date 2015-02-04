@@ -20,8 +20,22 @@
 
 <div class="form-group">
   <%= f.label :body, for: "source" %>
-  <div class="editable" contenteditable="true">
-    <%= slide.render_body %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="editable" contenteditable="true">
+        <%= slide.body %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Preview</h3>
+
+      <div class="panel panel-default">
+        <div class="panel-body" id="preview">
+          <%= slide.render_body %>
+        </div>
+      </div>
+    </div>
   </div>
   <% if Rails.env.test? %>
     <%= f.text_area :body, id: "source", class: "form-control", :rows => "10" %>
@@ -140,10 +154,11 @@
 <script>
   function editableBody() {
     $(".editable").markdown({
-      autofocus:false,
-      savable:false,
+      fullscreen: { enable: false },
+      resize: "vertical",
+      hiddenButtons: "cmdPreview",
       height: 400,
-      width: 800,
+      width: "col-md-12",
       iconlibrary: "fa",
       additionalButtons: [
         [{
@@ -152,20 +167,26 @@
             name: "helpModal",
             title: "Help",
             icon: "fa fa-question",
-            callback: function(e){
-              //render bootstrap modal
-              $('#helpModal').modal('show')
+            callback: function(e) {
+              // render bootstrap modal
+              $("#helpModal").modal("show");
             }
           }]
         }]
       ],
       onChange: function(e) {
         $("#source").val(e.getContent());
+        $.post("<%= think_feel_do_engine.arm_bit_maker_slideshow_slide_preview_path %>",
+               { content: e.getContent() })
+         .done(function(preview) {
+           $("#preview").html(preview);
+         })
+         .fail(function() {
+           $("#preview").html("Unable to display a preview at this time");
+         });
       }
-
     });
   }
 
-  $(document).ready(editableBody);
-  $(document).on('page:load', editableBody);
+  $(document).on("ready, page:load, page:change", editableBody);
 </script>

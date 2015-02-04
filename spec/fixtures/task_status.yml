@@ -67,6 +67,7 @@ task_status13:
   membership: membership1
   task: task5_day1
   start_day: 1
+  completed_at:  <%= Time.now - 10.minutes %>
 
 task_status14:
   membership: membership1

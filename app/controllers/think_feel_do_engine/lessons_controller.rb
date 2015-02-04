@@ -6,8 +6,6 @@ module ThinkFeelDoEngine
     before_action :set_lesson, only: [:show, :edit, :update, :destroy]
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-    layout "manage"
-
     def index
       authorize! :index, ContentModules::LessonModule
       @lessons = @lessons.includes(content_providers: :source_content)

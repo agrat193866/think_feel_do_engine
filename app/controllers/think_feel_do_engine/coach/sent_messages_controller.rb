@@ -3,7 +3,6 @@ module ThinkFeelDoEngine
     # Enables viewing of an individual message sent by coaches.
     class SentMessagesController < ApplicationController
       before_action :authenticate_user!, :set_group
-      layout "manage"
 
       def show
         @sent_message = current_user.sent_messages.find(params[:id])

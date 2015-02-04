@@ -6,8 +6,6 @@ module ThinkFeelDoEngine
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-      layout "manage"
-
       def show
         @received_message = current_user.received_messages.find(params[:id])
         authorize! :show, @received_message
