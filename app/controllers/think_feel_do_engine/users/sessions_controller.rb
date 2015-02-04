@@ -3,6 +3,8 @@ module ThinkFeelDoEngine
     # Extends the Devise controller to notify users
     # if they don't have a role
     class SessionsController < Devise::SessionsController
+      layout "application"
+
       skip_authorization_check
 
       # Ignoring cops due to external code use.
