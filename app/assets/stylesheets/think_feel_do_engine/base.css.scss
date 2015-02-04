@@ -666,3 +666,9 @@ h4.list-group-item-heading p {
 h4.list-group-item-heading .unread {
   font-weight: bold;
 }
+
+/* Markdown editor */
+
+textarea.md-input {
+  width: inherit;
+}

@@ -11,6 +11,9 @@
     <% end %>
     <%= stylesheet_link_tag "think_feel_do_engine/print", media: "print", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application" %>
+    <% if current_user %>
+      <%= javascript_include_tag "think_feel_do_engine/users" %>
+    <% end %>
     <%= csrf_meta_tags %>
   </head>
 

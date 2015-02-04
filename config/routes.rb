@@ -38,6 +38,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
       resources :content_modules
       resources :content_providers
       resources :slideshows do
+        post "slides/preview", to: "slides#preview", as: "slide_preview"
         resources :slides do
           collection { post :sort }
         end

@@ -12,7 +12,7 @@ feature "Slide", type: :feature do
     end
 
     describe "creating" do
-      it "display title and body upon creation" do
+      it "display title and body upon creation", :js do
         expect(current_path).to eq urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
         expect(page).to_not have_text("A great slide!!")
         click_on "Add Slide"
