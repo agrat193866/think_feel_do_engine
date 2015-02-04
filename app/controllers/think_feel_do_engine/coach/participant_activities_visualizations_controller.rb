@@ -4,8 +4,6 @@ module ThinkFeelDoEngine
     class ParticipantActivitiesVisualizationsController < ApplicationController
       before_action :authenticate_user!
 
-      layout "manage"
-
       RenderOptions = Struct.new(
         :view_context, :app_context, :position, :participant
       )

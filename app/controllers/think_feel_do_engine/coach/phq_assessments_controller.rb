@@ -6,8 +6,6 @@ module ThinkFeelDoEngine
       before_action :set_participant
       before_action :set_coach_phq_assessment, only: [:edit, :update, :destroy]
 
-      layout "manage"
-
       # GET /coach/phq_assessments
       def index
         @phq_assessments = @participant.phq_assessments

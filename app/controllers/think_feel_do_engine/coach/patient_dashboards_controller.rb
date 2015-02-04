@@ -7,8 +7,6 @@ module ThinkFeelDoEngine
 
       helper_method :patient_button_link
 
-      layout "manage"
-
       def index
         authorize! :show, Participant
 

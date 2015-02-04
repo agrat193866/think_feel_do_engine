@@ -9,8 +9,6 @@ module ThinkFeelDoEngine
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
 
-      layout "manage"
-
       def index
         authorize! :index, @slideshow
       end

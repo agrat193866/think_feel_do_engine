@@ -5,8 +5,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_group
       load_and_authorize_resource except: [:index]
 
-      layout "manage"
-
       def index
         authorize! :show, SiteMessage
         participant_ids = @group.participant_ids

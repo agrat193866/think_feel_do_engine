@@ -9,6 +9,8 @@ module ThinkFeelDoEngine
 
     before_action :detect_browser
 
+    layout "application"
+
     def after_sign_in_path_for(resource)
       if resource.class == User
         if defined?(think_feel_do_dashboard)

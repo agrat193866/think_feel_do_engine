@@ -4,8 +4,6 @@ module ThinkFeelDoEngine
     class ParticipantThoughtsVisualizationsController < ApplicationController
       before_action :authenticate_user!
 
-      layout "manage"
-
       def show
         participant = Participant.find(params[:participant_id])
         thoughts = participant.thoughts.harmful

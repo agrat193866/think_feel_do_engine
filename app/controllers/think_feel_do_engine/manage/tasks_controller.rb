@@ -5,7 +5,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!
       before_action :set_group, only: [:index, :create]
       before_action :set_task, only: :destroy
-      layout "manage"
 
       def index
         authorize! :update, @group

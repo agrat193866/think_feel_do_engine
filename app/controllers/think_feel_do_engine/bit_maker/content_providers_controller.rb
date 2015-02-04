@@ -7,8 +7,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_arm,
                     :set_content_modules, :set_slideshows
 
-      layout "manage"
-
       def index
         authorize! :index, BitCore::ContentProvider
         @content_providers = BitCore::ContentProvider.all

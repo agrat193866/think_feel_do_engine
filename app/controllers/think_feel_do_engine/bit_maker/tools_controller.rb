@@ -6,7 +6,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_arm
       before_action :set_tool, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
-      layout "manage"
 
       # GET /tools
       def index

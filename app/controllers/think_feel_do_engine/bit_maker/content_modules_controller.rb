@@ -6,7 +6,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_arm, :set_tools
       before_action :set_content_module, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
-      layout "manage"
 
       # GET /content_modules
       def index
