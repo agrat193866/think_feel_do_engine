@@ -4,10 +4,12 @@
   var eventClient;
 
   $(document).on("ready, page:change", function() {
-    logRenderEvent();
+    if ($("body").data("trackEvents")) {
+      logRenderEvent();
 
-    // add listeners to clickable elements
-    $(document).on("click", "a, button, input, textarea, option, .btn", logClickEvent);
+      // add listeners to clickable elements
+      $(document).on("click", "a, button, input, textarea, option, .btn", logClickEvent);
+    }
   });
 
   // set the endpoint
