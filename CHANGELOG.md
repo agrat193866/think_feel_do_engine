@@ -1,3 +1,6 @@
+## 2.3.5 - 2015-02-05
+ * Markdown editor Word cleaner added
+
 ## 2.3.4 - 2015-02-05
  * updated patient dashboard features, fixed authorization issues with multiple roles, updated live preview functionality for slide creation, now restricting task status modifications
 
