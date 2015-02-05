@@ -1,3 +1,6 @@
+## 2.3.7 - 2015-02-05
+ * make event tracking opt in
+
 ## 2.3.6 - 2015-02-05
  * turned off Turbolinks for non-submenu nav because Goals Angular wasn't loading
 
