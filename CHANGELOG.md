@@ -1,3 +1,6 @@
+## 2.3.6 - 2015-02-05
+ * turned off Turbolinks for non-submenu nav because Goals Angular wasn't loading
+
 ## 2.3.5 - 2015-02-05
  * Markdown editor Word cleaner added
 
