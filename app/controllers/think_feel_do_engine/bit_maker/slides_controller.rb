@@ -4,7 +4,7 @@ module ThinkFeelDoEngine
     # Slides belong to slideshows
     class SlidesController < ApplicationController
       before_action :authenticate_user!, :set_arm
-      before_action :find_slideshow
+      before_action :find_slideshow, except: :preview
       before_action :find_slide, only: [:show, :edit, :update, :destroy]
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]

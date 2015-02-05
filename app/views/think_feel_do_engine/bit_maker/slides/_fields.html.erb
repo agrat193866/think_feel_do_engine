@@ -189,7 +189,7 @@
         ],
       onChange: function(e) {
         $("#source").val(e.getContent());
-        $.post("<%= think_feel_do_engine.arm_bit_maker_slideshow_slide_preview_path %>",
+        $.post("<%= think_feel_do_engine.arm_bit_maker_slide_preview_path %>",
                { content: e.getContent() })
          .done(function(preview) {
            $("#preview").html(preview);
