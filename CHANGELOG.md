@@ -1,3 +1,6 @@
+## 2.3.4 - 2015-02-05
+ * updated patient dashboard features, fixed authorization issues with multiple roles, updated live preview functionality for slide creation, now restricting task status modifications
+
 ## 2.3.3 - 2015-02-04
  * added live preview to Markdown editor
  * participant who does not have access to site redirected to home with alert when they request a password reset
