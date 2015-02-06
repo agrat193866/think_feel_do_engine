@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "PHQ assessment", type: :feature do
   describe "when a participant accesses a valid link" do

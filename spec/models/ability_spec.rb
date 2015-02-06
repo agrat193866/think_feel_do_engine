@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Ability do
   describe "User permissions" do

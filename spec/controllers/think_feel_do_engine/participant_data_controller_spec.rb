@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 module ThinkFeelDoEngine
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers

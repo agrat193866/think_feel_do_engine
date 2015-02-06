@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "coach phq assessment management", type: :feature do
   fixtures(

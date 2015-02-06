@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "reset user password", type: :feature do
   fixtures(:all)

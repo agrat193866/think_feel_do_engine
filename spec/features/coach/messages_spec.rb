@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "coach messages", type: :feature do
   fixtures(

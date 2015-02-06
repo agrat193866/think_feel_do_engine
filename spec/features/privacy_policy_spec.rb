@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Privacy Policy", :js, type: :feature do
   it "not obscured in the footer" do

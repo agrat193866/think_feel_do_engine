@@ -1,3 +1,6 @@
+## 2.3.11 - 2015-02-06
+ * updated rails helper and spec helper files
+
 ## 2.3.10 - 2015-02-06
  * updated membership save logic
 

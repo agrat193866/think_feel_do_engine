@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Activity do
   fixtures [:participants, :activity_types, :activities]

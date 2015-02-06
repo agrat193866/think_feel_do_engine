@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "participant tool availability", type: :feature do
   fixtures :all

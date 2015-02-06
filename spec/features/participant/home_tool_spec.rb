@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "home tool", type: :feature do
   fixtures(

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Content Modules", type: :feature do
   fixtures(

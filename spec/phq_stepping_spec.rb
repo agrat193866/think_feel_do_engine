@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe PhqStepping do
   let(:low_assessments) { Hash[Date.today, 1, Date.today - 14.days, 2] }

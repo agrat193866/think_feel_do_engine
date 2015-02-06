@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "learn tool", type: :feature do
   fixtures :all

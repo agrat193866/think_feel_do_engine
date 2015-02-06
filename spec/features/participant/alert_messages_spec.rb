@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "alert messages", type: :feature do
   fixtures :arms, :participants, :users, :groups, :memberships

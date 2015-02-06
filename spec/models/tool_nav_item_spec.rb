@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ToolNavItem do
   describe "#is_active?" do

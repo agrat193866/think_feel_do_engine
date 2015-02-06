@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "send participant password reset instructions for participants who can access site", type: :feature do
   fixtures(:all)

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe EmotionalRating do
   fixtures :emotions, :emotional_ratings

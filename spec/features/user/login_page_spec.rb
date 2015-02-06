@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "login page", type: :feature do
   before { visit "/users/sign_in" }

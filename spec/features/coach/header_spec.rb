@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "header", type: :feature do
   fixtures :users, :user_roles, :groups

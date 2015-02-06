@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "users notified about their role status", type: :feature do
   fixtures :users

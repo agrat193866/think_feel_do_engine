@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "managing tasks", type: :feature do
   urls = ThinkFeelDoEngine::Engine.routes.url_helpers

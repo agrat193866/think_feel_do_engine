@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Participant navigation menu", type: :feature do
   fixtures :all
