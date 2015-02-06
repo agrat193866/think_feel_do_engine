@@ -9,7 +9,11 @@
     </td>
 
     <td>
-      <%= patient.active_membership ? (patient.active_membership.day_in_study / 7.0).ceil : '<span class="label label-warning">Inactive</span>'.html_safe %>
+      <% if patient.active_membership %>
+       <%= (patient.active_membership.day_in_study / 7.0).ceil %>
+      <% else %>
+        <%= patient.is_not_allowed_in_site ? "Withdrawn" : "Discontinued" %>
+      <% end %>
     </td>
 
     <% if phq_features? && @active_patients %>

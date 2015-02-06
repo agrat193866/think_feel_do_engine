@@ -3,7 +3,11 @@
   <tr>
     <th>Study Id</th>
     <th>Unread Messages</th>
-    <th>Week in Treatment</th>
+    <% if @active_patients %>
+      <th>Week in Treatment</th>
+    <% else %>
+      <th>Inactive Status</th>
+    <% end %>
     <% if phq_features? && @active_patients%>
         <th>Most Recent PHQ9 Score</th>
         <th>Step to t-CBT?</th>
