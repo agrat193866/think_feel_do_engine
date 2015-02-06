@@ -246,7 +246,7 @@ feature "patient dashboard", type: :feature do
       end
 
       it "links to the thoughts visualization" do
-        expect(page).to have_content "Thoughts visualization"
+        click_on "Thoughts visualization"
       end
 
       it "summarizes future activities" do
