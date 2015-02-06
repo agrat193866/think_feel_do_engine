@@ -1,3 +1,6 @@
+## 2.3.9 - 2015-02-06
+ * fixed message visiblity for discontinued or ended participants
+
 ## 2.3.8 - 2015-02-06
  * removed html_safe in views where it wasn't needed
 
