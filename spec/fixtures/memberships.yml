@@ -116,3 +116,11 @@ membership_active_and_stepped:
   end_date: <%= Date.today.advance(days: 30) %>
   is_complete: false
   is_stepped: true
+
+membership_inactive2:
+  participant: inactive_participant2
+  group: group1
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: -5) %>
+  is_complete: false
+

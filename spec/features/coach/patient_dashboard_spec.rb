@@ -17,6 +17,7 @@ feature "patient dashboard", type: :feature do
     let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
     let(:participant1) { participants(:participant1) }
     let(:participant_for_arm1_group1) { participants(:participant_for_arm1_group1) }
+    let(:participant_study_complete) { participants(:participant_study_complete)}
     let(:group1) { groups(:group1) }
     let(:group2) { groups(:group2) }
 
@@ -130,6 +131,14 @@ feature "patient dashboard", type: :feature do
 
         expect(page).to have_text("Active Patients")
         expect(page).to_not have_button("Step")
+      end
+
+      it "should show status of inactive participants in inactive view" do
+        sign_in_user clinician
+        visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
+
+        expect(page).to have_text("Discontinued")
+        expect(page).to have_text("Withdrawn")
       end
 
       it "should show inactive patients" do

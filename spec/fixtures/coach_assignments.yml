@@ -29,3 +29,11 @@ assignment_in_group1:
 assignment_in_group_1b:
   participant: participant_phq1
   coach: clinician1
+
+assignment_complete_participant:
+ participant: participant_study_complete
+ coach: clinician1
+
+assignment_inactive2:
+  participant: inactive_participant2
+  coach: clinician1
