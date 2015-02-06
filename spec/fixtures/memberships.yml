@@ -108,3 +108,11 @@ membership_study_complete:
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today.advance(days: -5) %>
   is_complete: true
+
+membership_active_and_stepped:
+  participant: participant_active_and_stepped
+  group: group1
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: 30) %>
+  is_complete: false
+  is_stepped: true

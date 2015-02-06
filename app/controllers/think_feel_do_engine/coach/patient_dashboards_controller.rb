@@ -16,7 +16,10 @@ module ThinkFeelDoEngine
             @patients = @group.participants.inactive
           else
             @active_patients = true
-            @patients = @group.participants.active
+            @patients = @group
+                          .participants
+                          .active
+                          .where("memberships.is_complete = false")
           end
         end
       end

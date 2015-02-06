@@ -60,8 +60,11 @@ describe Participant do
 
     expect(participants.empty?).to be_falsy
     participants.each do |p|
-      expect(p.active_membership).to be_nil
-      expect(p.memberships.inactive.all.map(&:is_stepped).include?(false)).to be_truthy
+      if p.active_membership
+        expect(p.active_membership.is_complete == false)
+      else
+        expect(p.memberships.inactive.all.map(&:is_stepped).include?(false)).to be_truthy
+      end
     end
   end
 end

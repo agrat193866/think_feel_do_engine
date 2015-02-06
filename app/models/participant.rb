@@ -8,13 +8,7 @@ class Participant < ActiveRecord::Base
 
   has_many :memberships, dependent: :destroy
   has_one :active_membership,
-          lambda {
-            if active.empty?
-              discontinued
-            else
-              active
-            end
-          },
+          -> { active },
           class_name: "Membership",
           foreign_key: :participant_id,
           dependent: :destroy,
