@@ -20,14 +20,19 @@ feature "coach messages", type: :feature do
     it "displays study id but not email addresses of patients" do
       expect(page).not_to have_content("participant1@example.com")
       expect(page).to have_content("TFD-1111")
+
+      last_message = users(:clinician1).received_messages.last
+
       within "#inbox" do
-        expect(page).to have_content(users(:clinician1).received_messages.last.created_at.to_formatted_s(:short))
+        expect(page).to have_content(last_message.created_at.to_s(:short))
       end
     end
 
     it "allows a coach to compose and submit a new message" do
       click_on("Compose")
+
       expect(page).not_to have_text("participant1@example.com")
+
       select("TFD-1111", from: "To")
       fill_in("Subject", with: "some new message")
       fill_in("Message", with: "some body")
@@ -62,8 +67,11 @@ feature "coach messages", type: :feature do
       click_on "Sent"
 
       expect(page).to have_content("Reply: I like this app")
+
+      last_message = users(:clinician1).messages.last
+
       within "#inbox" do
-        expect(page).to have_content(users(:clinician1).messages.last.created_at.to_formatted_s(:short))
+        expect(page).to have_content(last_message.created_at.to_s(:short))
       end
       click_on "Reply: I like this app"
 
@@ -80,15 +88,18 @@ feature "coach messages", type: :feature do
       sign_in_participant participants(:participant1)
       visit "/navigator/contexts/MESSAGES"
       click_on "Message with link"
+
       expect(page).to have_content "Try this link out:"
     end
 
-    it "does not allow a coach to send a message without selecting a participant" do
+    it "doesn't allow coach to send message without selecting a participant" do
       click_on "Compose"
       fill_in("Subject", with: "Message with link")
       fill_in("Message", with: "Try this link out:")
       click_on("Send")
-      expect(page).to have_content "Unable to save message: Recipient can't be blank"
+
+      expect(page)
+        .to have_content "Unable to save message: Recipient can't be blank"
     end
 
     it "displays a sent message" do
@@ -103,15 +114,19 @@ feature "coach messages", type: :feature do
     it "displays messages for a coach from their participants" do
       click_on delivered_messages(:participant_to_coach1).subject
 
-      expect(page).to have_content delivered_messages(:participant_to_coach1).body
+      expect(page)
+        .to have_content delivered_messages(:participant_to_coach1).body
     end
 
-    it "doesn't display messages from other coach's participants" do
-      expect(page).to_not have_content(delivered_messages(:participant_to_coach2).subject)
+    it "doesn't display messages from other coaches' participants" do
+      forbidden_email_subject = delivered_messages(:participant_to_coach2).subject
+
+      expect(page).to_not have_content(forbidden_email_subject)
     end
 
     it "doesn't display another coach's participants' emails for composing messages" do
-      CoachAssignment.create(coach_id: users(:user2).id, participant_id: participants(:participant2).id)
+      CoachAssignment.create(coach_id: users(:user2).id,
+                             participant_id: participants(:participant2).id)
       click_on("Compose")
 
       expect(page).to_not have_content(participants(:participant2).email)
