@@ -1,3 +1,6 @@
+## 2.3.8 - 2015-02-06
+ * removed html_safe in views where it wasn't needed
+
 ## 2.3.7 - 2015-02-05
  * make event tracking opt in
 
