@@ -17,9 +17,9 @@ module ThinkFeelDoEngine
           else
             @active_patients = true
             @patients = @group
-                          .participants
-                          .active
-                          .where("memberships.is_complete = false")
+                        .participants
+                        .active
+                        .where("memberships.is_complete = false")
           end
         end
       end

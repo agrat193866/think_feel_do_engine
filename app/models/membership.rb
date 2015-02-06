@@ -44,7 +44,8 @@ class Membership < ActiveRecord::Base
   }
 
   scope :active, lambda {
-    where("(memberships.start_date <= ? AND memberships.end_date >= ?) OR memberships.is_complete = ?", Date.today, Date.today, true)
+    where("(memberships.start_date <= ? AND memberships.end_date >= ?)"\
+    " OR memberships.is_complete = ?", Date.today, Date.today, true)
   }
 
   def available_task_statuses
