@@ -39,7 +39,7 @@
     <td>
       <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
     </td>
-    <% if phq_features? %>
+    <% if phq_features? && @active_patients %>
         <td>
           <% if patient.active_membership && patient.active_membership.is_stepped %>
               Stepped

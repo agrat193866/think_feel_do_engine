@@ -129,6 +129,7 @@ feature "patient dashboard", type: :feature do
         visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
 
         expect(page).to have_text("Active Patients")
+        expect(page).to_not have_button("Step")
       end
 
       it "should show inactive patients" do
