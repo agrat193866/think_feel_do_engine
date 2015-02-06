@@ -1,3 +1,6 @@
+## 2.3.10 - 2015-02-06
+ * updated membership save logic
+
 ## 2.3.9 - 2015-02-06
  * fixed message visiblity for discontinued or ended participants
 
