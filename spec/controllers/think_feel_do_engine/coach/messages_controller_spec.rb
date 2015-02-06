@@ -5,7 +5,18 @@ module ThinkFeelDoEngine
     urls = ThinkFeelDoEngine::Engine.routes.url_helpers
 
     describe MessagesController, type: :controller do
-      let(:group) { double("group", participants: []) }
+      let(:group) { double("group", participant_ids: []) }
+      let(:user) do
+        double("user",
+               admin?: false,
+               coach?: true,
+               content_author?: false,
+               researcher?: false)
+      end
+
+      before do
+        allow(user).to receive_message_chain(:participants, :where) { [] }
+      end
 
       describe "GET index" do
         context "for unauthenticated requests" do
@@ -14,18 +25,11 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
-          let(:user) do
-            double("user",
-                   received_messages: DeliveredMessage,
-                   sent_messages: Message,
-                   admin?: false,
-                   coach?: true,
-                   content_author?: false,
-                   researcher?: false,
-                   participants: [])
+          before do
+            allow(user).to receive(:received_messages) { DeliveredMessage }
+            allow(user).to receive(:sent_messages) { Message }
+            sign_in_user user
           end
-
-          before { sign_in_user user }
 
           it "should render the coach messages index" do
             allow(Group).to receive(:find).and_return(group)
@@ -43,20 +47,13 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
-          let(:user) do
-            double("user",
-                   participants: [],
-                   build_sent_message: nil,
-                   admin?: false,
-                   coach?: true,
-                   content_author?: false,
-                   researcher?: false)
+          before do
+            allow(user).to receive(:build_sent_message) { nil }
+            sign_in_user user
           end
 
-          before { sign_in_user user }
-
           it "should render the new coach message form" do
-            allow(Group).to receive(:find).and_return(group)
+            allow(Group).to receive(:find) { group }
 
             get :new, use_route: :think_feel_do_engine
             expect(response).to render_template :new
@@ -85,7 +82,7 @@ module ThinkFeelDoEngine
 
           context "when the message saves" do
             before do
-              allow(Group).to receive(:find).and_return(group)
+              allow(Group).to receive(:find) { group }
               post :create, message: {
                 recipient_id: 1, recipient_type: "foo", subject: "bar", body: "asdf"
               }, use_route: :think_feel_do_engine
@@ -99,7 +96,7 @@ module ThinkFeelDoEngine
             let(:message) { double("message", save: false, errors: errors) }
             before do
               request.env["HTTP_REFERER"] = urls.new_coach_group_message_url(group)
-              allow(Group).to receive(:find).and_return(group)
+              allow(Group).to receive(:find) { group }
               post :create, message: {
                 recipient_id: 1, recipient_type: "foo", subject: "bar", body: "asdf"
               }, use_route: :think_feel_do_engine

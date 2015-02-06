@@ -5,10 +5,29 @@ feature "coach messages", type: :feature do
 
   describe "Logged in as a clinician" do
     let(:group1) { groups(:group1) }
+    let(:participant1) { participants(:participant1) }
+    let(:participant2) { participants(:participant2) }
+    let(:participant3) { participants(:participant3) }
+    let(:delivered_message1) { delivered_messages(:participant_to_coach1) }
 
     before do
       sign_in_user users :clinician1
       visit "/coach/groups/#{group1.id}/messages"
+    end
+
+    it "allows Coach to search to assigned Participant" do
+      select(participant1.study_id, from: "search")
+      click_on "Search"
+
+      expect(page).to have_content delivered_message1.subject
+    end
+
+    it "doesn't allow Coach to search for unassigned Participant" do
+      expect(page).not_to have_selector("option", text: participant2.study_id)
+    end
+
+    it "doesn't allow Coach to search for non-Group Participant" do
+      expect(page).not_to have_selector("option", text: participant3.study_id)
     end
 
     it "doesn't display links not authorize to the user" do
@@ -18,7 +37,7 @@ feature "coach messages", type: :feature do
     end
 
     it "displays study id but not email addresses of patients" do
-      expect(page).not_to have_content("participant1@example.com")
+      expect(page).not_to have_content(participant1.email)
       expect(page).to have_content("TFD-1111")
 
       last_message = users(:clinician1).received_messages.last
@@ -31,7 +50,7 @@ feature "coach messages", type: :feature do
     it "allows a coach to compose and submit a new message" do
       click_on("Compose")
 
-      expect(page).not_to have_text("participant1@example.com")
+      expect(page).not_to have_text(participant1.email)
 
       select("TFD-1111", from: "To")
       fill_in("Subject", with: "some new message")
@@ -40,6 +59,18 @@ feature "coach messages", type: :feature do
 
       expect(page).to have_content("Message saved")
       expect(ActionMailer::Base.deliveries.last.subject).to eq "New message"
+    end
+
+    it "doesn't allow Coach to compose message to an unassigned Participant" do
+      click_on "Compose"
+
+      expect(page).not_to have_selector("option", text: participant2.study_id)
+    end
+
+    it "doesn't allow Coach to compose message to non-Group Participant" do
+      click_on "Compose"
+
+      expect(page).not_to have_selector("option", text: participant3.study_id)
     end
 
     it "delivers an SMS when the Participant has that preference" do
@@ -85,7 +116,7 @@ feature "coach messages", type: :feature do
       fill_in("Subject", with: "Message with link")
       fill_in("Message", with: "Try this link out:")
       click_on("Send")
-      sign_in_participant participants(:participant1)
+      sign_in_participant participant1
       visit "/navigator/contexts/MESSAGES"
       click_on "Message with link"
 
@@ -112,10 +143,10 @@ feature "coach messages", type: :feature do
     end
 
     it "displays messages for a coach from their participants" do
-      click_on delivered_messages(:participant_to_coach1).subject
+      click_on delivered_message1.subject
 
       expect(page)
-        .to have_content delivered_messages(:participant_to_coach1).body
+        .to have_content delivered_message1.body
     end
 
     it "doesn't display messages from other coaches' participants" do

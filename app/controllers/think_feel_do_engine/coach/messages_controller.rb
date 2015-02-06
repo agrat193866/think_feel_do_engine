@@ -6,7 +6,9 @@ module ThinkFeelDoEngine
 
       def index
         authorize! :show, Message
-        @participants = @group.participants
+
+        @participants = grouped_assigned_participants
+
         render(
           locals: {
             received_messages: received_messages,
@@ -17,11 +19,13 @@ module ThinkFeelDoEngine
 
       def new
         authorize! :new, Message
+
         @new_message = current_user.build_sent_message
+
         render(
           locals: {
             message: message_for_reply,
-            participants: @group.participants
+            participants: grouped_assigned_participants
           }
         )
       end
@@ -77,6 +81,10 @@ module ThinkFeelDoEngine
 
       def set_group
         @group = Group.find(params[:group_id])
+      end
+
+      def grouped_assigned_participants
+        current_user.participants.where(id: @group.participant_ids)
       end
     end
   end
