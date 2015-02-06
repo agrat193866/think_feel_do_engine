@@ -12,6 +12,13 @@
   </div>
 <% end %>
 
+<% if @slide.type == "BitCore::AudioSlide" %>
+  <div class="form-group">
+    <%= f.label :options_soundcloud_title, "SoundCloud Title" %>
+    <%= text_field_tag "slide[options][soundcloud_title]", (@slide.options || {})[:soundcloud_title], class: "form-control" %>
+  </div>
+<% end %>
+
 <div class="checkbox">
   <label for="slide_is_title_visible">
     <%= f.check_box :is_title_visible %> Display Title For Slide

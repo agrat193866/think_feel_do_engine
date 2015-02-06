@@ -98,7 +98,7 @@ module ThinkFeelDoEngine
           params
             .require(:slide)
             .permit(:body, :position, :title, :is_title_visible, :type,
-                    options: [:vimeo_id])
+                    options: [:vimeo_id, :soundcloud_title])
         end
       end
     end
