@@ -30,7 +30,7 @@
   // starting graph parameters assume 7 day view ending in today
   var activationDate = activation("<%= current_participant.created_at %>")
 
-  var graphParameters = new Graph(<%= mood_ratings.to_json.html_safe %>, <%= emotional_ratings.to_json.html_safe %>, null, $("#viz-container"));
+  var graphParameters = new Graph(<%= sanitize(mood_ratings.to_json) %>, <%= sanitize(emotional_ratings.to_json) %>, null, $("#viz-container"));
   var yLabel = "Intensity"
 
   drawGraphs = function() {

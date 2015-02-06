@@ -38,7 +38,11 @@
     <div class="tab-pane" id="sent">
       <div class="list-group">
         <% sent_messages.each do |msg| %>
-          <%= link_to "<span class=\"p_message\">To: #{ msg.recipient_study_id }</span>".html_safe + "<span class='p_message pull-right'>#{msg.created_at.to_formatted_s(:short)}</span>".html_safe + "<span class=\"col-md-4 p_message_subject\">".html_safe + msg.subject + "</span>".html_safe, coach_group_sent_message_path(@group, msg), class: "text-muted list-group-item" %>
+          <%= link_to(coach_group_sent_message_path(@group, msg), { class: "text-muted list-group-item" }) do %>
+            To: <%= msg.recipient_study_id %>
+            <span class="pull-right"><%= msg.created_at.to_formatted_s(:short) %></span>
+            <span class="col-md-4"><%= msg.subject %></span>
+          <% end %>
         <% end %>
       </div>
     </div>

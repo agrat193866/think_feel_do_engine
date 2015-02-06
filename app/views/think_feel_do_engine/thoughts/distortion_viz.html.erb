@@ -11,7 +11,7 @@
 
 <% unless link_to_view.nil? %>
 
-    TT = new sc.thoughtTracker(true,<%= ("\"home:" + link_to_view + "\"").html_safe %>);
+    TT = new sc.thoughtTracker(true,<%= sanitize("\"home:" + link_to_view + "\"") %>);
 
 <% else %>
 

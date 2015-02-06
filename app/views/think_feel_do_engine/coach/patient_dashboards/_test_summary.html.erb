@@ -1,70 +1,39 @@
+<% init_summary_styles(test_summary) %>
+
 <table class="table table-hover">
   <thead>
     <th>Test</th>
     <th>Result</th>
   </thead>
   <tbody>
-<%
-
-init_summary_styles(test_summary)
-
-%>
-
-<%= 
-
-content_tag(:tr, 
-  content_tag(:td, 
-    ("PHQ-9 Score >= " +
-    (edge_week? ? 
-      make_bold(prev_range_start) : "") +
-      make_bold(test_summary[:upper_limit]) +
-      " for two consecutive weeks").html_safe
-    ).html_safe + 
-  content_tag(:td,
-    result_span(
-      step_string,
-      step_label
-    )
-  )
-) %>
-
-<%=
-content_tag(:tr, 
-  content_tag(:td, 
-    ("PHQ-9 Score < " + 
-    make_bold(test_summary[:upper_limit]) +
-    " and >= " +
-    make_bold(test_summary[:lower_limit]) +
-    " in any week on or past week #" + 
-    make_bold(
-      test_summary[:current_week] >= 14 ? 
-        test_summary[:current_week] : 
-        test_summary[:range_start] + 1
-      )
-    ).html_safe
-  ).html_safe + 
-  content_tag(:td,
-    result_span(
-      stay_string,
-      stay_label
-    )
-  )
-) %>
-
-<%=
-content_tag(:tr, 
-  content_tag(:td, 
-    ("PHQ-9 Score < " + 
-    make_bold(5) +
-    " for two consecutive weeks").html_safe
-  ).html_safe + 
-  content_tag(:td, 
-    result_span(
-      release_string,
-      release_label
-    )
-  )
-) 
-%>
+    <tr>
+      <td>
+        <%= "PHQ-9 Score >= #{prev_range_start if edge_week?} #{test_summary[:upper_limit]} for two consecutive weeks" %>
+      </td>
+      <td>
+        <%= result_span(step_string, step_label) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= "PHQ-9 Score < #{test_summary[:upper_limit]} and >= #{test_summary[:lower_limit]} in any week on or past week" %>
+        <% if test_summary[:current_week] >= 14 %>
+          <%= test_summary[:current_week] %>
+        <% else %>
+          <%= test_summary[:range_start] + 1 %>
+        <% end %>
+      </td>
+      <td>
+        <%= result_span(stay_string, stay_label) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= "PHQ-9 Score < 5 for two consecutive weeks" %>
+      </td>
+      <td>
+        <%= result_span(release_string, release_label) %>
+      </td>
+    </tr>
   </tbody>
 </table>

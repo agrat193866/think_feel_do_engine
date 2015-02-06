@@ -28,9 +28,9 @@
 // starting graph parameters assume 7 day view ending in today
 var activationDate = activation("<%= patient.created_at %>")
 var graphParameters = new Graph(
-            <%= patient.mood_rating_daily_averages.to_json.html_safe %>,
-            <%= patient.emotional_rating_daily_averages.to_json.html_safe %>,
-            <%= phq_features? ? patient.phq_scores.to_json.html_safe : "null" %>,
+            <%= sanitize(patient.mood_rating_daily_averages.to_json) %>,
+            <%= sanitize(patient.emotional_rating_daily_averages.to_json) %>,
+            <%= phq_features? ? sanitize(patient.phq_scores.to_json) : "null" %>,
             $("div#viz-container")
           );
 

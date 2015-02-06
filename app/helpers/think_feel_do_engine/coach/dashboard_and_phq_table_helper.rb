@@ -17,10 +17,6 @@ module ThinkFeelDoEngine
         @test_summary = test_summary
       end
 
-      def make_bold(text)
-        content_tag(:span, text, class: "inline_format bold")
-      end
-
       def result_span(text, label)
         content_tag(:span, text.to_s, class: "label label-" +
           label.to_s).html_safe
