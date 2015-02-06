@@ -43,6 +43,10 @@ class Membership < ActiveRecord::Base
       .or(Membership.arel_table[:end_date].lt(Date.current))
   }
 
+  scope :active, lambda {
+    where("memberships.is_complete = ?", true)
+  }
+
   def available_task_statuses
     @available_task_statuses ||=
       task_statuses

@@ -9,7 +9,7 @@
 
 <% if !current_participant.nil? && coach.nil? %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
-<% elsif !current_participant.nil? && current_participant.active_membership.present? %>
+<% elsif !current_participant.nil? && current_participant.active_membership.present? && current_participant.in_study? %>
   <div class="btn-toolbar">
     <%= link_to "Compose", compose_path, class: "btn btn-default" %>
   </div>
@@ -19,9 +19,11 @@
 
 <% user_id = current_user.try(:id) || current_participant.try(:id) %>
 <% unless message.sender.id == user_id %>
-  <div class="well">
+  <% if (current_participant && current_participant.in_study?) || current_user %>
+       <div class="well">
     <%= link_to "Reply to this message", reply_path %>
   </div>
+  <% end %>
 
   <%= link_to "Cancel", :back, class: "btn btn-default" %>
 <% end %>

@@ -114,3 +114,16 @@ feature "no historical sent messages" do
     end
   end
 end
+
+feature "inactive participants cannot compose messages" do
+  fixtures :all
+
+  before do
+    sign_in_participant participants(:participant3)
+    visit "/navigator/contexts/MESSAGES"
+  end
+
+  it "should not have a compose button on the message home" do
+    expect(page).to_not have_button("Compose")
+  end
+end

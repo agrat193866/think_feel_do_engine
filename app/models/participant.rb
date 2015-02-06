@@ -8,7 +8,13 @@ class Participant < ActiveRecord::Base
 
   has_many :memberships, dependent: :destroy
   has_one :active_membership,
-          -> { active },
+          lambda {
+            if active.empty?
+              discontinued
+            else
+              active
+            end
+          },
           class_name: "Membership",
           foreign_key: :participant_id,
           dependent: :destroy,
@@ -279,6 +285,15 @@ class Participant < ActiveRecord::Base
       end
     end
     averaged_ratings
+  end
+
+  def in_study?
+    if active_membership.start_date <= Date.today &&
+       active_membership.end_date >= Date.today
+      true
+    else
+      false
+    end
   end
 
   def mood_rating_daily_averages

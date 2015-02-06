@@ -4,7 +4,7 @@
 
 <% if coach.nil? %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
-<% elsif current_participant.active_membership.present? %>
+<% elsif current_participant.active_membership.present? && current_participant.in_study? %>
   <div class="btn-toolbar">
     <%= link_to compose_path, class: "btn btn-primary" do %>
       <%= fa_icon "pencil" %> Compose
