@@ -1,13 +1,7 @@
 require "rails_helper"
 
 feature "coach messages", type: :feature do
-  fixtures(
-    :arms, :users, :user_roles, :participants,
-    :"bit_core/slideshows", :"bit_core/slides",
-    :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :coach_assignments,
-    :messages, :groups, :memberships, :tasks, :task_status, :moods,
-    :phq_assessments, :emotions, :delivered_messages)
+  fixtures :all
 
   describe "Logged in as a clinician" do
     let(:group1) { groups(:group1) }
