@@ -14,6 +14,8 @@ describe Participant do
   let(:participant_phq2) { participants(:participant_phq2) }
   let(:participant_phq3) { participants(:participant_phq3) }
   let(:participant_phq4) { participants(:participant_phq4) }
+  let(:participant_study_complete) { participants(:participant_study_complete) }
+  let(:inactive_participant2) { participants(:inactive_participant2) }
 
   it "accurately describes if email should be the notification method" do
     expect(participant1.notify_by_email?).to eq true
@@ -66,5 +68,14 @@ describe Participant do
         expect(p.memberships.inactive.all.map(&:is_stepped).include?(false)).to be_truthy
       end
     end
+  end
+
+  it ".is_not_allowed_in_site returns false if participants should be able to access site" do
+    expect(participant_study_complete.is_not_allowed_in_site).to be_falsey
+    expect(participant1.is_not_allowed_in_site).to be_falsey
+  end
+
+  it ".is_not_allowed_in_site returns true if participant has been withdrawn" do
+    expect(inactive_participant2.is_not_allowed_in_site).to be_truthy
   end
 end
