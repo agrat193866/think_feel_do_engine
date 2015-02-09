@@ -1,5 +1,4 @@
 <% if @patient %>
-
   <h1>Participant <small><%= @patient.study_id %></small></h1>
 
   <div class="btn-toolbar" role="toolbar">
@@ -10,6 +9,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">General Patient Info</h3>
     </div>
+
     <div class="panel-body">
       <% if @patient.active_membership %>
         <p>
@@ -33,12 +33,14 @@
       </p>
     </div>
   </div>
+
   <div class="panel panel-default" id="viz-container">
     <div class="panel-heading">
       <h3 class="panel-title">Mood and Emotions Visualizations</h3>
     </div>
     <%= render "think_feel_do_engine/coach/patient_dashboards/vizs", patient: @patient %>
   </div>
+
   <% if phq_features? %>
     <div class="panel panel-default cdb_panel">
       <div class="panel-heading">
@@ -49,6 +51,7 @@
           <span class="text-primary"><%= link_to "Manage", coach_phq_assessments_path(participant_id: @patient.id) %></span>
         </h3>
       </div>
+
       <div id="phqCollapse" class="panel-collapse collapse in">
         <div class="panel-body">
           <div class="table-responsive div-table-viz">
@@ -75,6 +78,7 @@
               </tbody>
             </table>
           </div>
+
           <p class="text-info">* Indicates an incomplete phq assessment.</p>
         </div>
       </div>
@@ -89,23 +93,25 @@
         </a>
       </h3>
     </div>
+
     <div id="moodCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
-                <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="moods-table">
-    <thead>
-      <tr>
-        <th class="not-displayed"></th>
-        <th>Rating 0 (Bad) to 10 (Good)</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "think_feel_do_engine/moods/mood", collection: @patient.moods %>
-    </tbody>
-  </table></div>
-  </div>
-  </div>
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover data-table" id="moods-table">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th>Rating 0 (Bad) to 10 (Good)</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/moods/mood", collection: @patient.moods %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="panel panel-default cdb_panel">
@@ -119,26 +125,27 @@
 
     <div id="feelingsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
-                <div class="table-responsive div-table-viz">
-      <table class="table table-hover data-table" id="emotions-table">
-        <thead>
-          <tr>
-            <th class="not-displayed"></th>
-            <th>Feeling</th>
-            <th>Rating</th>
-            <th>Date</th>
-          </tr>
-        </thead>
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover data-table" id="emotions-table">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th>Feeling</th>
+                <th>Rating</th>
+                <th>Date</th>
+              </tr>
+            </thead>
 
-        <tbody>
-          <%= render partial: "think_feel_do_engine/emotions/emotion_coach_view", collection: @patient.emotional_ratings, as: :emotional_rating %>
-        </tbody>
-      </table></div>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/emotions/emotion_coach_view", collection: @patient.emotional_ratings, as: :emotional_rating %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#loginsCollapse">
@@ -146,28 +153,30 @@
         </a>
       </h3>
     </div>
+
     <div id="loginsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover  data-table" id="logins">
-    <thead>
-      <tr>
-        <th class="not-displayed"></th>
-        <th>Date/Time of Login</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "think_feel_do_engine/login_events/login_event", collection: @patient.participant_login_events %>
-    </tbody>
-  </table></div>
-  <p id="login-count">Total: <%= @patient.participant_login_events.count %></p>
+          <table class="table table-hover  data-table" id="logins">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th>Date/Time of Login</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/login_events/login_event", collection: @patient.participant_login_events %>
+            </tbody>
+          </table>
+        </div>
 
-</div>
-</div>
-</div>
+        <p id="login-count">Total: <%= @patient.participant_login_events.count %></p>
+      </div>
+    </div>
+  </div>
 
 
-<div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#lessonsCollapse">
@@ -175,174 +184,180 @@
         </a>
       </h3>
     </div>
+
     <div id="lessonsCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="learning_data">
-    <thead>
-      <tr>
-        <th class="not-displayed"></th>
-        <th class="not-displayed"></th>
-        <th class="not-displayed"></th>
-        <th>Task</th>
-        <th>Availability Day</th>
-        <th>Started At</th>
-        <th>Completed At</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { task_statuses: @learning_tasks } %>
-    </tbody>
-  </table>
-</div>
-</div>
-</div>
-</div>
-
-<h3><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@patient) %></h3>
-
-<div class="panel panel-default cdb_panel">
-  <div class="panel-heading">
-    <h3 id="activities_future_h3" class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#activity_futureCollapse">
-        Activities - Future
-      </a>
-    </h3>
-  </div>
-  <div id="activity_futureCollapse" class="panel-collapse collapse in">
-    <div class="panel-body">
-      <div class="table-responsive div-table-viz">
-        <table class="table table-hover  data-table" id="activities_future">
-          <thead>
-            <tr>
-              <th class="not-displayed"></th>
-              <th class="not-displayed"></th>
-              <th>Activity</th>
-              <th>Predicted Pleasure Rating</th>
-              <th>Predicted Accomplishment Rating</th>
-              <th>Scheduled Date</th>
-              <th>Created Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= render partial: "think_feel_do_engine/activities/activity_coach_view_future", collection: @patient.activities.unscheduled_or_in_the_future, as: :activity %>
-          </tbody>
-        </table>
-
-        <table id="activities_legend" class="table">
-          <tr>
-            <td class="success">High Pleasure/Accomplishment</td>
-            <td class="info">Low Pleasure, High Accomplishment</td>
-            <td class="warning">High Pleasure, Low Accomplishment</td>
-            <td class="danger">Low Pleasure/Accomplishment</td>
-          </tr>
-      </table>
+          <table class="table table-hover data-table" id="learning_data">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th class="not-displayed"></th>
+                <th class="not-displayed"></th>
+                <th>Task</th>
+                <th>Availability Day</th>
+                <th>Started At</th>
+                <th>Completed At</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { task_statuses: @learning_tasks } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 
-<div class="panel panel-default cdb_panel">
-  <div class="panel-heading">
-    <h3 id="activities_past_h3" class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#activity_pastCollapse">
-        Activities - Past
-      </a>
-    </h3>
-  </div>
-  <div id="activity_pastCollapse" class="panel-collapse collapse in">
-    <div class="panel-body">
-              <div class="table-responsive div-table-viz">
-      <table class="table table-hover  data-table" id="activities_past">
-        <thead>
-          <tr>
-            <th class="not-displayed"></th>
-            <th class="not-displayed"></th>
-            <th>Activity</th>
-            <th>Planned/Monitored</th>
-            <th>Status</th>
-            <th>Predicted Pleasure Rating</th>
-            <th>Predicted Accomplishment Rating</th>
-            <th>Actual Pleasure Rating</th>
-            <th>Actual Accomplishment Rating</th>
-            <th>Scheduled Date</th>
-            <th>Created Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render partial: "think_feel_do_engine/activities/activity_coach_view_past", collection: @patient.activities.in_the_past, as: :activity %>
-        </tbody>
-      </table>
-      <table id="activities_legend" class="table">
-        <tr>
-          <td class="success">High Pleasure/Accomplishment</td>
-          <td class="info">Low Pleasure, High Accomplishment</td>
-          <td class="warning">High Pleasure, Low Accomplishment</td>
-          <td class="danger">Low Pleasure/Accomplishment</td>
-        </tr>
-      </table></div>
+  <h3><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@patient) %></h3>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 id="activities_future_h3" class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#activity_futureCollapse">
+          Activities - Future
+        </a>
+      </h3>
     </div>
-  </div>
-</div>
-
-<h3><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@patient) %></h3>
-
-<div class="panel panel-default cdb_panel">
-  <div class="panel-heading">
-    <h3 class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#thoughtsCollapse">
-        Thoughts
-      </a>
-    </h3>
-  </div>
-  <div id="thoughtsCollapse" class="panel-collapse collapse in">
-    <div class="panel-body">
-              <div class="table-responsive div-table-viz">
-      <table class="table table-hover generic-data-table data-table" id="thoughts">
-        <thead>
-          <th>Thought</th>
-          <th>Effect</th>
-          <th>Pattern</th>
-          <th>Challenging Thought</th>
-          <th>As If Thought</th>
-          <th>Date</th>
-        </thead>
-        <tbody>
-          <%= render partial: "think_feel_do_engine/thoughts/thought", collection: @patient.thoughts %>
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default cdb_panel">
-  <div class="panel-heading">
-    <h3 class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#messagesCollapse">
-        Messages
-      </a>
-    </h3>
-  </div>
-  <div id="messagesCollapse" class="panel-collapse collapse in">
-    <div class="panel-body">
+    <div id="activity_futureCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover generic-data-table data-table" id="messages">
-    <thead>
-      <tr>
-        <th>Message</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "think_feel_do_engine/messages/message", collection: @patient.sent_messages %>
-    </tbody>
-  </table></div>
+          <table class="table table-hover  data-table" id="activities_future">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th class="not-displayed"></th>
+                <th>Activity</th>
+                <th>Predicted Pleasure Rating</th>
+                <th>Predicted Accomplishment Rating</th>
+                <th>Scheduled Date</th>
+                <th>Created Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/activities/activity_coach_view_future", collection: @patient.activities.unscheduled_or_in_the_future, as: :activity %>
+            </tbody>
+          </table>
 
-</div>
-</div>
-</div>
+          <table id="activities_legend" class="table">
+            <tr>
+              <td class="success">High Pleasure/Accomplishment</td>
+              <td class="info">Low Pleasure, High Accomplishment</td>
+              <td class="warning">High Pleasure, Low Accomplishment</td>
+              <td class="danger">Low Pleasure/Accomplishment</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 id="activities_past_h3" class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#activity_pastCollapse">
+          Activities - Past
+        </a>
+      </h3>
+    </div>
+
+    <div id="activity_pastCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover  data-table" id="activities_past">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th class="not-displayed"></th>
+                <th>Activity</th>
+                <th>Planned/Monitored</th>
+                <th>Status</th>
+                <th>Predicted Pleasure Rating</th>
+                <th>Predicted Accomplishment Rating</th>
+                <th>Actual Pleasure Rating</th>
+                <th>Actual Accomplishment Rating</th>
+                <th>Scheduled Date</th>
+                <th>Created Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/activities/activity_coach_view_past", collection: @patient.activities.in_the_past, as: :activity %>
+            </tbody>
+          </table>
+
+          <table id="activities_legend" class="table">
+            <tr>
+              <td class="success">High Pleasure/Accomplishment</td>
+              <td class="info">Low Pleasure, High Accomplishment</td>
+              <td class="warning">High Pleasure, Low Accomplishment</td>
+              <td class="danger">Low Pleasure/Accomplishment</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@patient) %></h3>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#thoughtsCollapse">
+          Thoughts
+        </a>
+      </h3>
+    </div>
+
+    <div id="thoughtsCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover generic-data-table data-table" id="thoughts">
+            <thead>
+              <th>Thought</th>
+              <th>Effect</th>
+              <th>Pattern</th>
+              <th>Challenging Thought</th>
+              <th>As If Thought</th>
+              <th>Date</th>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/thoughts/thought", collection: @patient.thoughts %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default cdb_panel">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#messagesCollapse">
+          Messages
+        </a>
+      </h3>
+    </div>
+
+    <div id="messagesCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover generic-data-table data-table" id="messages">
+            <thead>
+              <tr>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/messages/message", collection: @patient.sent_messages %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="panel panel-default cdb_panel">
     <div class="panel-heading">
@@ -352,25 +367,26 @@
         </a>
       </h3>
     </div>
+
     <div id="tasksCollapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="table-responsive div-table-viz">
-  <table class="table table-hover data-table" id="task_statuses">
-    <thead>
-      <tr>
-        <th class="not-displayed"></th>
-        <th>Task</th>
-        <th>Availability Day</th>
-        <th>Completed At</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.active_membership.try(:task_statuses) %>
-    </tbody>
-  </table>
-</div>
-  </div>
-  </div>
+          <table class="table table-hover data-table" id="task_statuses">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th>Task</th>
+                <th>Availability Day</th>
+                <th>Completed At</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.active_membership.try(:task_statuses) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
