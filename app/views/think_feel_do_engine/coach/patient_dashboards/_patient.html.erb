@@ -61,7 +61,7 @@
       <% end %>
       </td>
       <td>
-        <%= button_to Date.current > patient.active_membership.end_date ? "End Study" : "Discontinue",
+        <%= button_to "Discontinue",
                       discontinue_membership_path(patient.active_membership.id),
                       data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
                       method: :get,
