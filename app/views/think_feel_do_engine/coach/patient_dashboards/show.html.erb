@@ -34,6 +34,24 @@
     </div>
   </div>
 
+  <ul class="list-group">
+    <li class="list-group-item"><a href="#viz-container">Mood and Emotions Visualizations</a></li>
+    <% if phq_features? %>
+      <li class="list-group-item"><a href="#phq9-container">PHQ9</a></li>
+    <% end %>
+    <li class="list-group-item"><a href="#mood-container">Mood</a></li>
+    <li class="list-group-item"><a href="#feelings-container">Feelings</a></li>
+    <li class="list-group-item"><a href="#logins-container">Logins</a></li>
+    <li class="list-group-item"><a href="#lessons-container">Lessons</a></li>
+    <li class="list-group-item"><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@patient) %></li>
+    <li class="list-group-item"><a href="#activities-future-container">Activities - Future</a></li>
+    <li class="list-group-item"><a href="#activities-past-container">Activities - Past</a></li>
+    <li class="list-group-item"><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@patient) %></li>
+    <li class="list-group-item"><a href="#thoughts-container">Thoughts</a></li>
+    <li class="list-group-item"><a href="#messages-container">Messages</a></li>
+    <li class="list-group-item"><a href="#tasks-container">Tasks</a></li>
+  </ul>
+
   <div class="panel panel-default" id="viz-container">
     <div class="panel-heading">
       <h3 class="panel-title">Mood and Emotions Visualizations</h3>
@@ -42,7 +60,7 @@
   </div>
 
   <% if phq_features? %>
-    <div class="panel panel-default cdb_panel">
+    <div class="panel panel-default cdb_panel" id="phq9-container">
       <div class="panel-heading">
         <h3 class="panel-title adjusted-panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#phqCollapse">
@@ -85,7 +103,7 @@
     </div>
   <% end %>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="mood-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#moodCollapse">
@@ -114,7 +132,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="feelings-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#feelingsCollapse">
@@ -145,7 +163,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="logins-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#loginsCollapse">
@@ -176,7 +194,7 @@
   </div>
 
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="lessons-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#lessonsCollapse">
@@ -212,7 +230,7 @@
 
   <h3><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@patient) %></h3>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="activities-future-container">
     <div class="panel-heading">
       <h3 id="activities_future_h3" class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#activity_futureCollapse">
@@ -253,7 +271,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="activities-past-container">
     <div class="panel-heading">
       <h3 id="activities_past_h3" class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#activity_pastCollapse">
@@ -301,7 +319,7 @@
 
   <h3><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@patient) %></h3>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="thoughts-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#thoughtsCollapse">
@@ -331,7 +349,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="messages-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#messagesCollapse">
@@ -359,7 +377,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default cdb_panel">
+  <div class="panel panel-default cdb_panel" id="tasks-container">
     <div class="panel-heading">
       <h3 class="panel-title adjusted-panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#tasksCollapse">

@@ -202,7 +202,6 @@ feature "patient dashboard", type: :feature do
             cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "Not Completed"]
           )
         end
-        Timecop.return
       end
 
       it "summarizes learning when completed learning", :js do
@@ -226,7 +225,6 @@ feature "patient dashboard", type: :feature do
             cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "less than a minute"]
           )
         end
-        Timecop.return
       end
 
       it "summarizes moods" do
@@ -250,12 +248,13 @@ feature "patient dashboard", type: :feature do
       end
 
       it "links to the activities visualization" do
-        click_on "Activities visualization"
+        find("h3 a", text: "Activities visualization").click
+
         expect(page).to have_content "Daily Averages for"
       end
 
       it "links to the thoughts visualization" do
-        click_on "Thoughts visualization"
+        find("h3 a", text: "Thoughts visualization").click
       end
 
       it "summarizes future activities" do
@@ -320,7 +319,6 @@ feature "patient dashboard", type: :feature do
             ]
           )
         end
-        Timecop.return
       end
 
       it "summarizes thoughts" do
