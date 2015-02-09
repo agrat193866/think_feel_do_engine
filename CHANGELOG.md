@@ -1,3 +1,14 @@
+## 2.4.0 - 2015-02-09
+ * accommodate multiple assessments at one time
+ * added Wai Assessment model; refactored Phq Assessment code
+ * updated Participant Token and added spec
+ * timestamp now shows end date of participants membership in inactive patient status repo
+rt
+ * Removed logic to toggle between End now and discontinue, since End Now should never display due to automated discontinuation of ended trials
+ * Fixed a view issue with inactive patients that caused the stepping feature to be functional in the inactive view
+ * Clinicians may only send messages to Participants assigned to them and in the current Group
+ * spec refactoring
+
 ## 2.3.11 - 2015-02-06
  * updated rails helper and spec helper files
 
