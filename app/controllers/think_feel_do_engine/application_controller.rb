@@ -54,10 +54,5 @@ module ThinkFeelDoEngine
       end
     end
     helper_method :phq_features?
-    
-    def soundcloud_client_id
-      Rails.application.config.soundcloud_client_id
-    end
-    helper_method :soundcloud_client_id
   end
 end
