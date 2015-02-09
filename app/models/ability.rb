@@ -102,6 +102,7 @@ class Ability
      ThinkFeelDoDashboard::Reports::UserAgent,
      ThinkFeelDoDashboard::Reports::VideoSession,
      ThinkFeelDoDashboard::Reports::PhqAssessment,
+     ThinkFeelDoDashboard::Reports::WaiAssessment,
      User].each do |klass|
       can :manage, klass
     end

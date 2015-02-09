@@ -21,6 +21,7 @@ module ThinkFeelDoDashboard
       UserAgent
       VideoSession
       PhqAssessment
+      WaiAssessment
     )
 
     report_classes.each do |klass|
