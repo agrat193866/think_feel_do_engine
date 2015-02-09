@@ -136,8 +136,8 @@ feature "patient dashboard", type: :feature do
         sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
 
-        expect(page.find('[data-study-id=IS_SO_COMPLETE]')).to have_text("Discontinued")
-        expect(page.find('[data-study-id=INACTIVE-TWO]')).to have_text("Withdrawn")
+        expect(page.find("[data-study-id=IS_SO_COMPLETE]")).to have_text("Discontinued")
+        expect(page.find("[data-study-id=INACTIVE-TWO]")).to have_text("Withdrawn")
       end
 
       it "should show inactive patients" do
