@@ -132,6 +132,18 @@ feature "Lessons", type: :feature do
       expect(page).to have_text("Successfully created slide for lesson")
     end
 
+    scenario "adding an audio slide" do
+      visit "/arms/#{arms(:arm1).id}/lessons"
+      click_on "Home Introduction"
+      click_on "Add Audio Slide"
+      fill_in "Title", with: "Slide Beta"
+      fill_in "Audio URL", with: "1234567"
+      fill_in "Body", with: "Body B"
+      click_on "Create"
+
+      expect(page).to have_text("Successfully created slide for lesson")
+    end
+
     scenario "deleting an assigned lesson" do
       visit "/arms/#{arms(:arm1).id}/lessons"
       lessons_page.delete_lesson "Do - Awareness Introduction"

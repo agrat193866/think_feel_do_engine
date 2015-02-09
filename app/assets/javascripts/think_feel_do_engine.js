@@ -19,6 +19,7 @@
 //= require snap
 //= require moment.min
 //= require d3.min
+//= require jplayer.2.9.2.min
 //
 //= require_tree ./think_feel_do_engine/shared
 //= require bootstrap-timepicker

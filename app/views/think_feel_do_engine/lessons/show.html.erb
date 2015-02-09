@@ -5,6 +5,7 @@
   <%= link_to "Edit", edit_arm_lesson_path(@arm, @lesson), class: "btn btn-default" %>
 	<%= link_to "Add Slide", new_arm_lesson_lesson_slide_path(@arm, @lesson), class: "btn btn-default" %>
   <%= link_to "Add Video Slide", new_arm_lesson_lesson_slide_path(@arm, @lesson, slide: { type: "BitCore::VideoSlide" }), class: "btn btn-default" %>
+  <%= link_to "Add Audio Slide", new_arm_lesson_lesson_slide_path(@arm, @lesson, slide: { type: "BitCore::AudioSlide" }), class: "btn btn-default" %>
 </div>
 
 <h3>Slides</h3>

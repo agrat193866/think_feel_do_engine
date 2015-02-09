@@ -1,18 +1,18 @@
 GIT
   remote: https://github.com/cbitstech/bit_core.git
-  revision: 294c9a786505d03c30e84ece82fc3a5319205ebf
-  tag: 1.3.6
+  revision: 89deaef248007d8a21edaea20afe4b5ce7e3c030
+  tag: 1.4.0
   specs:
-    bit_core (1.3.6)
+    bit_core (1.4.0)
       rails (~> 4.1)
       redcarpet (~> 2.3)
 
 GIT
   remote: https://github.com/cbitstech/bit_player.git
-  revision: 405d5bd8a27eaae8a9a568f3575319a898adff1a
-  tag: 0.4.7
+  revision: 6cc5ae41e9dd315734da95b50312e48188d37cb0
+  tag: 0.4.9
   specs:
-    bit_player (0.4.7)
+    bit_player (0.4.9)
       rails (~> 4.1)
 
 GIT
