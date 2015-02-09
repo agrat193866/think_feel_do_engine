@@ -1,3 +1,6 @@
+## 2.5.0 - 2015-02-09
+ * Audio Slides now available
+
 ## 2.4.0 - 2015-02-09
  * accommodate multiple assessments at one time
  * added Wai Assessment model; refactored Phq Assessment code
