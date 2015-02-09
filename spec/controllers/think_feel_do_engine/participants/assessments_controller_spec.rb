@@ -59,6 +59,7 @@ module ThinkFeelDoEngine
             before do
               allow(PhqAssessment).to receive(:new) { phq9 }
               allow(phq9).to receive(:save) { true }
+              allow(token).to receive(:others_on_this_day) { [] }
             end
 
             it "should render success" do

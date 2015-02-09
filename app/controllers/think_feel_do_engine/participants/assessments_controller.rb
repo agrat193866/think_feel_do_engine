@@ -18,7 +18,16 @@ module ThinkFeelDoEngine
 
         if @assessment.save
           flash.now[:notice] = "Assessment saved"
-          render :success
+
+          if available_token
+            @token = available_token
+            @assessment = build_assessment(release_date: @token.release_date)
+
+            render "think_feel_do_engine/participants/assessments/" \
+                   "new_#{ assessment_name }"
+          else
+            render :success
+          end
         else
           errors = @assessment.errors.full_messages.join(", ")
           flash.now[:alert] = "Unable to save assessment: #{ errors }"
@@ -59,8 +68,16 @@ module ThinkFeelDoEngine
         assessment_class.to_s.underscore.to_sym
       end
 
-      def assessment_class
-        ASSESSMENT_TYPES[@token.token_type.to_sym]
+      def assessment_class(type = nil)
+        ASSESSMENT_TYPES[(type || @token.token_type).to_sym]
+      end
+
+      def available_token
+        @available_token ||= @token.others_on_this_day.to_a.find do |token|
+          !assessment_class(token.token_type)
+           .exists?(participant_id: token.participant_id,
+                    release_date: token.release_date)
+        end
       end
     end
   end

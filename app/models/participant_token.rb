@@ -18,6 +18,12 @@ class ParticipantToken < ActiveRecord::Base
     token
   end
 
+  def others_on_this_day
+    self.class.where(participant_id: participant_id,
+                     release_date: release_date)
+      .where.not(id: id)
+  end
+
   private
 
   def make_token
