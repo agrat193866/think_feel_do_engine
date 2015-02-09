@@ -1,3 +1,7 @@
+## 2.5.3 - 2015-02-09
+ * update bit_core to 1.4.1; update view due to broken spec
+ * add Wai assessment report authorization
+
 ## 2.5.2 - 2015-02-09
  * fixed issue with patient dashboard controller
 
