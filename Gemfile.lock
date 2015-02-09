@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/cbitstech/bit_core.git
-  revision: 89deaef248007d8a21edaea20afe4b5ce7e3c030
-  tag: 1.4.0
+  revision: 6363f7371af24095e1a19d8ca2174de7efa55e6f
+  tag: 1.4.1
   specs:
-    bit_core (1.4.0)
+    bit_core (1.4.1)
       rails (~> 4.1)
       redcarpet (~> 2.3)
 
