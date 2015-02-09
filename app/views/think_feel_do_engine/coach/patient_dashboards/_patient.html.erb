@@ -12,7 +12,9 @@
       <% if @active_patients %>
        <%= (patient.active_membership.day_in_study / 7.0).ceil %>
       <% else %>
-        <%= patient.is_not_allowed_in_site ? "Withdrawn " + patient.updated_at.strftime('%m-%d-%y') : "Discontinued " + patient.updated_at.strftime('%m-%d-%y') %>
+        <%= patient.is_not_allowed_in_site ? "Withdrawn " +
+                patient.memberships.first.end_date.to_s :
+                    "Discontinued " + patient.memberships.first.end_date.to_s %>
       <% end %>
     </td>
 
