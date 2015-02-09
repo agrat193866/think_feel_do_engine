@@ -1,4 +1,4 @@
 <%# referenced by both bit_maker and bit_core %>
-<% if (slide.options || {})[:soundcloud_title] %>
-  <%= render partial: "think_feel_do_engine/shared/jplayer", locals: { title: slide.options[:soundcloud_title] } %>
+<% if (slide.options || {})[:audio_url] %>
+  <%= render partial: "think_feel_do_engine/shared/jplayer", locals: { audio_url: slide.options[:audio_url] } %>
 <% end %>

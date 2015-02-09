@@ -30,19 +30,17 @@
     </div>
   </div>
 </div>
-<p><%= title %></p>
-<script src="//connect.soundcloud.com/sdk.js"></script>
+<p><%= audio_url %></p>
 <script>
   $("#jquery_jplayer_1").jPlayer({
     ready: function () {
+      debugger;
       $(this).jPlayer("setMedia", {
-        mp3: audioStream("<%= title %>", "<%= soundcloud_client_id %>")
-        //mp3: "http://api.soundcloud.com/tracks/01-autogenic/stream"
+        mp3: "<%= audio_url %>"
       });
     },
     swfPath: "http://www.jplayer.org/2.9.2/js",
     supplied: "mp3"
-
   });
 
   $('#close').on("click", function (){

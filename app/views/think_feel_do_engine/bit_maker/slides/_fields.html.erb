@@ -14,8 +14,8 @@
 
 <% if @slide.type == "BitCore::AudioSlide" %>
   <div class="form-group">
-    <%= f.label :options_soundcloud_title, "SoundCloud Title" %>
-    <%= text_field_tag "slide[options][soundcloud_title]", (@slide.options || {})[:soundcloud_title], class: "form-control" %>
+    <%= f.label :options_audio_url, "Audio URL" %>
+    <%= text_field_tag "slide[options][audio_url]", (@slide.options || {})[:audio_url], class: "form-control" %>
   </div>
 <% end %>
 
