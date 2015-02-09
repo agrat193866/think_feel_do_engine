@@ -10,7 +10,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
+git reb
 ActiveRecord::Schema.define(version: 20150209213422) do
 
   # These are extensions that must be enabled in order to support this database
@@ -207,6 +207,17 @@ ActiveRecord::Schema.define(version: 20150209213422) do
   end
 
   add_index "groups", ["title"], name: "index_groups_on_title", unique: true, using: :btree
+
+  create_table "media_access_events", force: true do |t|
+    t.string   "media_type"
+    t.integer  "participant_id"
+    t.string   "media_link"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "media_access_events", ["participant_id"], name: "index_media_access_events_on_participant_id", using: :btree
 
   create_table "memberships", force: true do |t|
     t.integer  "group_id",                       null: false
