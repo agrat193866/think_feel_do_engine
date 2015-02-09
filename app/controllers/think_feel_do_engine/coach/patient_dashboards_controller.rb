@@ -7,6 +7,7 @@ module ThinkFeelDoEngine
 
       helper_method :patient_button_link
 
+      # rubocop:disable Metrics/LineLength
       def index
         authorize! :show, Participant
 
@@ -21,12 +22,12 @@ module ThinkFeelDoEngine
             @active_patients = true
             @patients = Participant
                         .joins(:memberships)
-                        .where("memberships.group_id = ? AND" /
-                                 " memberships.is_complete = false", @group.id)
+                        .where("memberships.group_id = ? AND memberships.is_complete = false", @group.id)
                         .active
           end
         end
       end
+      # rubocop:enable Metrics/LineLength
 
       def show
         authorize! :show, @patient
