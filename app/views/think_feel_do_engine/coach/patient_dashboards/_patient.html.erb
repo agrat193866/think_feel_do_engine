@@ -1,5 +1,8 @@
 <% if can? :show, patient %>
-  <tr id="patient-<%= patient.id %>" class="<%= 'inactive' if patient.active_membership && patient.active_membership.end_date < Date.current %> <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
+  <tr id="patient-<%= patient.id %>"
+      class="<%= 'inactive' if patient.active_membership &&
+              patient.active_membership.end_date < Date.current %>
+              <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
     <td>
       <%= link_to patient.study_id, coach_group_patient_dashboard_path(@group, patient) %>
     </td>
@@ -13,15 +16,17 @@
        <%= (patient.active_membership.day_in_study / 7.0).ceil %>
       <% else %>
         <%= patient.is_not_allowed_in_site ? "Withdrawn " +
-                patient.memberships.first.end_date.to_s(:compact) :
-                    "Discontinued " + patient.memberships.first.end_date.to_s(:compact)  %>
+                patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact) :
+                    "Discontinued " + patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact)  %>
       <% end %>
     </td>
 
     <% if phq_features? && @active_patients %>
       <td>
         <% if (last_phq = patient.phq_assessments.last) %>
-          <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
+          <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%>
+          <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on
+          <%= last_phq.release_date.to_s(:brief_date) %>
         <% else %>
           <span class="label label-warning">No Completed Assessments</span>
         <% end %>
@@ -34,7 +39,8 @@
         <% else %>
           <span class="label label-phq-none label-warning">No Completed Assessments</span>
         <% end %>
-        <%= render "think_feel_do_engine/coach/patient_dashboards/details", patient: patient if patient.active_membership %>
+        <%= render "think_feel_do_engine/coach/patient_dashboards/details",
+                   patient: patient if patient.active_membership %>
       </td>
     <% end %>
 
@@ -53,7 +59,9 @@
               <% if can? :update, patient.active_membership %>
                   <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
                       <%= f.hidden_field(:is_stepped, value: true) %>
-                      <%= f.submit "Step", data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." }, class: "btn btn-success" %>
+                      <%= f.submit "Step",
+                                   data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
+                                   class: "btn btn-success" %>
                   <% end %>
               <% end %>
           <% end %>
@@ -63,7 +71,10 @@
       <td>
         <%= form_for patient.active_membership do |f| %>
         <%= f.hidden_field :end_date %>
-        <input type="text" class="datepicker" value="<%= patient.active_membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>" readonly="readonly">
+        <input type="text"
+               class="datepicker"
+               value="<%= patient.active_membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>"
+               readonly="readonly">
       <% end %>
       </td>
       <td>
