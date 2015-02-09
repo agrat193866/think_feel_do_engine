@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209195004) do
-
-  # These are extensions that must be enabled in order to support this database
+ActiveRecord::Schema.define(version: 20150209213422) do
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
