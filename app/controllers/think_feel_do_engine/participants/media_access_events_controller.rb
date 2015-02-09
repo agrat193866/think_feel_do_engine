@@ -5,13 +5,13 @@ module ThinkFeelDoEngine
       before_action :authenticate_participant!
 
       def create
-        @media_access_event = current_participant.media_access_events.build(media_access_event_params)
-        respond_to do |format|
-          if @media_access_event.save
-            format.json { render json: { media_access_event_id: @media_access_event.id, status: 201 }}
-          else
-            head :unprocessable_entity
-          end
+        @media_access_event = current_participant
+                              .media_access_events
+                              .build(media_access_event_params)
+        if @media_access_event.save
+          render json: { media_access_event_id: @media_access_event.id, status: 201 }
+        else
+          head :unprocessable_entity
         end
       end
 
