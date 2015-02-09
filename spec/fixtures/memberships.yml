@@ -102,6 +102,13 @@ membership_phq4:
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today.advance(days: -5) %>
 
+membership_participant_complete:
+  participant: participant_is_complete
+  group: group1
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: -5) %>
+  is_complete: true
+
 membership_study_complete:
   participant: participant_study_complete
   group: group1

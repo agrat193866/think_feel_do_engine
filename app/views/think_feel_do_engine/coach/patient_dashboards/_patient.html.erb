@@ -9,7 +9,7 @@
     </td>
 
     <td>
-      <% if patient.active_membership %>
+      <% if @active_patients %>
        <%= (patient.active_membership.day_in_study / 7.0).ceil %>
       <% else %>
         <%= patient.is_not_allowed_in_site ? "Withdrawn" : "Discontinued" %>
