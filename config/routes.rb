@@ -88,6 +88,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :thoughts, only: :create
     resources :activities, only: [:create, :update]
     resources :lessons, only: :show
+    resources :media_access_events, only: [:create, :update]
   end
 
   get "keepalive", to: "keep_alive#index"

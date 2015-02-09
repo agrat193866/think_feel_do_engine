@@ -30,7 +30,7 @@
     </div>
   </div>
 </div>
-<p><%= audio_url %></p>
+
 <script>
   $("#jquery_jplayer_1").jPlayer({
     ready: function () {
@@ -41,8 +41,6 @@
     swfPath: "http://www.jplayer.org/2.9.2/js",
     supplied: "mp3"
   });
-
-  $('#close').on("click", function (){
-    $("#jquery_jplayer_1").jPlayer("stop");
-  });
+  
+  mediaAccessCreate("audio", "<%= audio_url %>");
 </script>
