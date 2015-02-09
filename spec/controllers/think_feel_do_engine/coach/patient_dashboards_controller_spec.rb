@@ -14,6 +14,7 @@ module ThinkFeelDoEngine
         context "for authenticated requests" do
           before do
             allow(Group).to receive(:find).and_return(group)
+            allow(group).to receive(:id)
             sign_in_user double("user",
                                 participants: Participant.all,
                                 admin?: false,
@@ -23,7 +24,9 @@ module ThinkFeelDoEngine
             get :index, use_route: :think_feel_do_engine
           end
 
-          it { expect(response).to render_template :index }
+          it "should respond with the index page" do
+            expect(response).to render_template :index
+          end
         end
       end
 
