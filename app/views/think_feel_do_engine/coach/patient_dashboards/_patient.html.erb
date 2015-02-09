@@ -13,8 +13,8 @@
        <%= (patient.active_membership.day_in_study / 7.0).ceil %>
       <% else %>
         <%= patient.is_not_allowed_in_site ? "Withdrawn " +
-                patient.memberships.first.end_date.to_s :
-                    "Discontinued " + patient.memberships.first.end_date.to_s %>
+                patient.memberships.first.end_date.to_s(:compact) :
+                    "Discontinued " + patient.memberships.first.end_date.to_s(:compact)  %>
       <% end %>
     </td>
 
