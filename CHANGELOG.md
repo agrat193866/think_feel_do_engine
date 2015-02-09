@@ -1,3 +1,6 @@
+## 2.5.2 - 2015-02-09
+ * fixed issue with patient dashboard controller
+
 ## 2.5.1 - 2015-02-09
  * fixed patient dashboard listing for memberships that were terminated, added WAI placeholder text
 
