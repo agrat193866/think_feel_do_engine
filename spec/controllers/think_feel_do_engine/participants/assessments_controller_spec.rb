@@ -2,21 +2,23 @@ require "rails_helper"
 
 module ThinkFeelDoEngine
   module Participants
-    describe PhqAssessmentsController, type: :controller do
+    RSpec.describe AssessmentsController, type: :controller do
       shared_context "missing token" do
         before { allow(ParticipantToken).to receive(:find_by_token) { nil } }
       end
 
       shared_context "valid token" do
-        let(:token) do
-          double("participant token", participant_id: 7, release_date: Date.new)
-        end
         let(:phq9) { double("PHQ9") }
-        let(:participant) { double("participant", build_phq_assessment: phq9) }
+        let(:participant) { double("participant", id: 1) }
+        let(:token) do
+          double("participant token",
+                 participant: participant,
+                 release_date: Date.new,
+                 token_type: "phq9")
+        end
 
         before do
           allow(ParticipantToken).to receive(:find_by_token).with("T") { token }
-          allow(Participant).to receive(:find) { participant }
         end
       end
 
@@ -35,9 +37,10 @@ module ThinkFeelDoEngine
           include_context "valid token"
 
           it "should render the 'new' view" do
-            get :new, phq_assessment: { token: "T" }, use_route: :think_feel_do_engine
+            get :new, assessment: { token: "T" },
+                      use_route: :think_feel_do_engine
 
-            expect(response).to render_template(:new)
+            expect(response).to render_template(:new_phq_assessment)
           end
         end
       end
@@ -53,12 +56,16 @@ module ThinkFeelDoEngine
           include_context "valid token"
 
           describe "and the assessment saves" do
-            before { allow(phq9).to receive(:save) { true } }
+            before do
+              allow(PhqAssessment).to receive(:new) { phq9 }
+              allow(phq9).to receive(:save) { true }
+            end
 
             it "should render success" do
-              post :create, phq_assessment: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5,
-                                              q6: 6, q7: 7, q8: 8, q9: 9,
-                                              token: "T" }, use_route: :think_feel_do_engine
+              post :create, assessment: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5,
+                                          q6: 6, q7: 7, q8: 8, q9: 9,
+                                          token: "T" },
+                            use_route: :think_feel_do_engine
 
               expect(response).to render_template(:success)
             end
@@ -67,15 +74,17 @@ module ThinkFeelDoEngine
           describe "and the assessment does not save" do
             before do
               allow(phq9).to receive(:save) { false }
-              allow(phq9).to receive_message_chain(:errors, :full_messages) { [] }
+              allow(phq9)
+                .to receive_message_chain(:errors, :full_messages) { [] }
             end
 
             it "should render new" do
-              post :create, phq_assessment: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5,
-                                              q6: 6, q7: 7, q8: 8, q9: 9,
-                                              token: "T" }, use_route: :think_feel_do_engine
+              post :create, assessment: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5,
+                                          q6: 6, q7: 7, q8: 8, q9: 9,
+                                          token: "T" },
+                            use_route: :think_feel_do_engine
 
-              expect(response).to render_template(:new)
+              expect(response).to render_template(:new_phq_assessment)
             end
           end
         end

@@ -1,23 +1,23 @@
 module ThinkFeelDoEngine
   module Participants
-    # Authorizes and manages PhqAssessment administration.
-    class PhqAssessmentsController < ApplicationController
+    # Authorizes and manages WaiAssessment administration.
+    class WaiAssessmentsController < ApplicationController
       before_action :authorize_token
 
       def new
-        @phq_assessment = @participant.build_phq_assessment(
+        @wai_assessment = @participant.build_wai_assessment(
           release_date: @token.release_date
         )
       end
 
       def create
-        @phq_assessment = @participant.build_phq_assessment(assessment_params)
+        @wai_assessment = @participant.build_wai_assessment(assessment_params)
 
-        if @phq_assessment.save
+        if @wai_assessment.save
           flash.now[:notice] = "Assessment saved"
           render :success
         else
-          errors = @phq_assessment.errors.full_messages.join(", ")
+          errors = @wai_assessment.errors.full_messages.join(", ")
           flash.now[:alert] = "Unable to save assessment: #{ errors }"
           render :new
         end
@@ -26,7 +26,7 @@ module ThinkFeelDoEngine
       private
 
       def authorize_token
-        token_params = (params[:phq_assessment] || {})[:token]
+        token_params = (params[:wai_assessment] || {})[:token]
         @token = ParticipantToken.find_by_token(token_params)
 
         if @token
@@ -38,7 +38,7 @@ module ThinkFeelDoEngine
 
       def assessment_params
         params
-          .require(:phq_assessment)
+          .require(:wai_assessment)
           .permit(:q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9)
           .merge(release_date: @token.release_date)
       end

@@ -11,7 +11,7 @@ feature "PHQ assessment", type: :feature do
     end
 
     it "be submited" do
-      visit "/participants/phq_assessments/new?phq_assessment[token]=#{ token }"
+      visit "/participants/assessments/new?assessment[token]=#{ token }"
 
       expect(page).to have_text("PHQ-9")
 

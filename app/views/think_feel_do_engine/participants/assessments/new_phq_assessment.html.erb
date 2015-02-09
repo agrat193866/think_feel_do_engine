@@ -2,7 +2,7 @@
 
 <p>Over the last week, how many days have you been bothered by any of the following problems? Read each item carefully, and select your response.</p>
 
-<%= form_for [:participants, @phq_assessment], html: { class: "phq9-form" } do |f| %>
+<%= form_for [:participants, @assessment], as: :assessment, url: participants_assessments_path, html: { class: "phq9-form" } do |f| %>
   <ol>
     <li class="radio-question-group">
       <strong>Little interest or pleasure in doing things</strong><br>
@@ -68,7 +68,7 @@
       <%= f.radio_button :q9, 3 %> 6 - 7 days
     </li>
   </ol>
-  <input name="phq_assessment[token]" type="hidden" value="<%= @token %>" />
+  <input name="assessment[token]" type="hidden" value="<%= @token %>" />
   <%= f.submit "submit", class: "btn btn-default" %>
 <% end %>
 <script type="text/javascript">$("body").addClass("phq_body");</script>

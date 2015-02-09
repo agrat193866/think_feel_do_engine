@@ -81,7 +81,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
 
 
   namespace :participants do
-    resources :phq_assessments, only: [:new, :create]
+    resources :assessments, only: [:new, :create]
     resources :received_messages, only: :index
     resources :task_status, only: [:update]
     get "public_slideshows/:slideshow_id/slides/:id", to: "public_slides#show", as: "public_slideshow_slide"

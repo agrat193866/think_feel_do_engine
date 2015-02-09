@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202232642) do
+ActiveRecord::Schema.define(version: 20150206221439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -413,5 +413,36 @@ ActiveRecord::Schema.define(version: 20150202232642) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wai_assessments", force: true do |t|
+    t.date     "release_date",   null: false
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.integer  "q5"
+    t.integer  "q6"
+    t.integer  "q7"
+    t.integer  "q8"
+    t.integer  "q9"
+    t.integer  "q10"
+    t.integer  "q11"
+    t.integer  "q12"
+    t.integer  "participant_id", null: false
+    t.integer  "q1_editor_id"
+    t.integer  "q2_editor_id"
+    t.integer  "q3_editor_id"
+    t.integer  "q4_editor_id"
+    t.integer  "q5_editor_id"
+    t.integer  "q6_editor_id"
+    t.integer  "q7_editor_id"
+    t.integer  "q8_editor_id"
+    t.integer  "q9_editor_id"
+    t.integer  "q10_editor_id"
+    t.integer  "q11_editor_id"
+    t.integer  "q12_editor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
