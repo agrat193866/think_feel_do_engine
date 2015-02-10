@@ -34,7 +34,7 @@ describe Participant do
 
     expect(participants.empty?).to be_falsy
     participants.each do |p|
-      expect(p.active_membership.is_stepped).to be_truthy
+      expect(p.active_membership.stepped_on).to be_instance_of Date
     end
   end
 
@@ -43,7 +43,7 @@ describe Participant do
 
     expect(participants.empty?).to be_falsy
     participants.each do |p|
-      expect(p.active_membership.is_stepped).to be_falsy
+      expect(p.active_membership.stepped_on).to be_nil
     end
   end
 
@@ -53,7 +53,7 @@ describe Participant do
     expect(participants.empty?).to be_falsy
     participants.each do |p|
       expect(p.active_membership).to be_nil
-      expect(p.memberships.inactive.all.map(&:is_stepped).include?(true)).to be_truthy
+      expect(p.memberships.inactive.where("memberships.stepped_on IS NOT NULL").count).to be > 0
     end
   end
 
@@ -65,7 +65,7 @@ describe Participant do
       if p.active_membership
         expect(p.active_membership.is_complete == false)
       else
-        expect(p.memberships.inactive.all.map(&:is_stepped).include?(false)).to be_truthy
+        expect(p.memberships.inactive.all.map(&:stepped_on).include?(nil)).to be_truthy
       end
     end
   end

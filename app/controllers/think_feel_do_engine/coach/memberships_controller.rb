@@ -23,7 +23,7 @@ module ThinkFeelDoEngine
       def membership_params
         params
           .require(:membership)
-          .permit(:is_stepped)
+          .permit(:stepped_on)
       end
 
       def set_group

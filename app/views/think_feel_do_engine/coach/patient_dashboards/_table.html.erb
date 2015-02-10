@@ -14,6 +14,10 @@
     <% end %>
     <th># of Logins</th>
     <th>Last Login</th>
+    <% if @active_patients %>
+    <% else %>
+    <th>Stepped on Date</th>
+    <% end %>
     <% if phq_features? && @active_patients %>
         <th></th>
     <% end %>

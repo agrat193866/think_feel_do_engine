@@ -51,18 +51,26 @@
     </td>
     <% if phq_features? && @active_patients %>
         <td>
-          <% if patient.active_membership && patient.active_membership.is_stepped %>
-              Stepped
+          <% if patient.active_membership && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
+             <%= "Stepped " + patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
           <% elsif patient.active_membership %>
               <% if can? :update, patient.active_membership %>
                   <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
-                      <%= f.hidden_field(:is_stepped, value: true) %>
+                      <%= f.hidden_field(:stepped_on, value: Date.today) %>
                       <%= f.submit "Step",
                                    data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
                                    class: "btn btn-success" %>
                   <% end %>
               <% end %>
-          <% end %>
+          <% elsif patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
+            <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% end %>
+        </td>
+      <% else %>
+        <td>
+        <% if patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
+          <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% end %>
         </td>
     <% end %>
     <% if patient.active_membership && @active_patients %>
