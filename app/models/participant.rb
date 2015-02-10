@@ -68,12 +68,18 @@ class Participant < ActiveRecord::Base
 
   scope :stepped, lambda {
     joins(:memberships)
-      .where("memberships.stepped_on IS NOT NULL")
+      .where(
+        Arel::Table.new(:memberships)[:stepped_on]
+        .not_eq(nil)
+      )
   }
 
   scope :not_stepped, lambda {
     joins(:memberships)
-      .where("memberships.stepped_on IS NULL")
+      .where(
+        Arel::Table.new(:memberships)[:stepped_on]
+        .eq(nil)
+      )
   }
 
   def is_not_allowed_in_site

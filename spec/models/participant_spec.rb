@@ -1,11 +1,7 @@
 require "rails_helper"
 
 describe Participant do
-  fixtures(
-    :users, :user_roles, :participants, :"bit_core/slideshows",
-    :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :groups, :memberships, :tasks, :task_status
-  )
+  fixtures :all
 
   let(:participant1) { participants(:participant1) }
   let(:participant2) { participants(:participant2) }
@@ -27,6 +23,20 @@ describe Participant do
     expect(participant1.notify_by_sms?).to eq false
     expect(participant2.notify_by_sms?).to eq true
     expect(participant3.notify_by_sms?).to eq true
+  end
+
+  it ".stepped returns participants that have been stepped" do
+    count = Participant.stepped.count
+    participant1.active_membership.update(stepped_on: Time.now)
+
+    expect(Participant.stepped.count).to eq(count + 1)
+  end
+
+  it ".not_stepped returns participants that have not been stepped (i.e., one less now)" do
+    count = Participant.not_stepped.count
+    participant1.active_membership.update(stepped_on: Time.now)
+
+    expect(Participant.not_stepped.count).to eq(count - 1)
   end
 
   it ".active.stepped returns active participants that have been stepped" do
