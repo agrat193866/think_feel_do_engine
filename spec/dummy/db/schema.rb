@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209213422) do
+ActiveRecord::Schema.define(version: 20150210165021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150209213422) do
   create_table "arms", force: true do |t|
     t.string  "title",     default: "",    null: false
     t.boolean "is_social", default: false, null: false
-    t.boolean "has_woz",   default: false
+    t.boolean "has_woz",   default: false, null: false
   end
 
   create_table "awake_periods", force: true do |t|
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150209213422) do
   create_table "emotional_ratings", force: true do |t|
     t.integer  "participant_id", null: false
     t.integer  "emotion_id",     null: false
-    t.integer  "rating"
+    t.integer  "rating",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_positive"
@@ -251,7 +251,7 @@ ActiveRecord::Schema.define(version: 20150209213422) do
 
   create_table "moods", force: true do |t|
     t.integer  "participant_id", null: false
-    t.integer  "rating"
+    t.integer  "rating",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 20150209213422) do
   add_index "moods", ["participant_id"], name: "index_moods_on_participant_id", using: :btree
 
   create_table "participant_login_events", force: true do |t|
-    t.integer  "participant_id"
+    t.integer  "participant_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "inactive_log_out", default: false
