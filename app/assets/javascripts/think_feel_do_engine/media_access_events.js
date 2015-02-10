@@ -1,10 +1,10 @@
-window.mediaAccessCreate = function (media_type, media_link) {
+window.mediaAccessCreate = function (media_type, media_link, slide_id) {
   var postPath = "/participants/media_access_events"
   $('.jp-play').on("click", function (){
     $.ajax({
       type: "POST",
       url: postPath,
-      data: { media_access_event: { media_type: media_type, media_link: media_link }}
+      data: { media_access_event: { media_type: media_type, media_link: media_link, bit_core_slide_id: slide_id }}
     }).
     done(function(data) {
       bindStopEvent(data.media_access_event_id);

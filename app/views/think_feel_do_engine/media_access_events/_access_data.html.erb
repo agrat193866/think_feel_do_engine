@@ -1,0 +1,10 @@
+<% events.each do |event| %>
+  <tr>
+    <td><%= event.slide.title %></td>
+    <td><%= event.type %></td>
+    <td><%= (event.membership.start_date + event.start_day - 1).to_date.to_formatted_s(:short) %></td>
+    <td><%= engagement.created_at.to_s(:date_time_with_meridian) %></td>
+    <td><%= engagement.completed_at.to_s(:date_time_with_meridian) unless engagement.completed_at.nil? %></td>
+    <td><%= engagement.completed_at ? distance_of_time_in_words(engagement.completed_at - engagement.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
+  </tr>
+<% end %>

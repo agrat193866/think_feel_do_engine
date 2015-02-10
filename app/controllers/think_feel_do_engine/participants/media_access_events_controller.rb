@@ -1,6 +1,6 @@
 module ThinkFeelDoEngine
   module Participants
-    # Manage Participant Activities.
+    # Captures participant use of media.
     class MediaAccessEventsController < ApplicationController
       before_action :authenticate_participant!
 
@@ -33,7 +33,9 @@ module ThinkFeelDoEngine
 
       def media_access_event_params
         params.require(:media_access_event)
-          .permit([:media_type, :media_link, :end_time, :id])
+          .permit([
+            :media_type, :bit_core_slide_id, :media_link, :end_time, :id
+          ])
       end
     end
   end
