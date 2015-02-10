@@ -22,7 +22,7 @@ gem "jquery-datatables-rails",
     git: "https://github.com/rweng/jquery-datatables-rails.git"
 
 gem "bit_core",
-    tag: "1.4.1",
+    tag: "1.4.2",
     git: "https://github.com/cbitstech/bit_core.git"
 
 gem "bit_player",
