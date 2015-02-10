@@ -16,35 +16,49 @@ class Activity < ActiveRecord::Base
   before_validation :create_activity_type, :set_end_time
   validate :actual_accomplishable_updates, on: :update
 
-  scope :for_day, lambda { |datetime|
+  scope :for_day, lambda { |time|
     where(
-      "activities.start_time >= ? AND activities.start_time < ?",
-      datetime.beginning_of_day, datetime.advance(days: 1).beginning_of_day)
+      arel_table[:start_time]
+      .gteq(time.beginning_of_day)
+      .and(arel_table[:start_time].lteq(time.end_of_day))
+    )
   }
 
   scope :accomplished, lambda {
     where(
-      "activities.actual_accomplishment_intensity >= ?",
-      ACCOMPLISHED_CUTOFF
+      arel_table[:actual_accomplishment_intensity]
+      .gteq(ACCOMPLISHED_CUTOFF)
+    )
+  }
+
+  scope :pleasurable, lambda {
+    where(
+      arel_table[:actual_pleasure_intensity]
+      .gteq(PLEASURABLE_CUTOFF)
     )
   }
 
   scope :in_the_past, lambda {
-    where("activities.end_time < ?", Time.current)
+    where(
+      arel_table[:end_time]
+      .lt(Time.current)
+    )
   }
 
   scope :last_seven_days, lambda {
     where(
-      "activities.start_time >= ?",
-      Time.current.advance(days: -7)
-        .beginning_of_day
+      arel_table[:start_time]
+      .gteq(Time.current.advance(days: -7).beginning_of_day)
     ).in_the_past
   }
 
+  # To Do: fix naming and/or what is going on here
+  # change to start_time and is_scheduled
+  # and updated tests
   scope :unscheduled_or_in_the_future, lambda {
     where(
-      "activities.start_time IS NULL OR activities.end_time > ?",
-      Time.current
+      arel_table[:start_time].eq(nil)
+      .or(arel_table[:end_time].gt(Time.current))
     )
   }
 
@@ -57,20 +71,18 @@ class Activity < ActiveRecord::Base
     )
   }
 
+  # To Do: fix naming and/or what is going on here
+  # change to start_time
+  # and updated tests
   scope :in_the_future, lambda {
-    where("activities.end_time > ?", Time.current)
+    where(
+      arel_table[:end_time].gt(Time.current)
+    )
   }
 
   scope :incomplete, lambda {
     where(is_complete: false)
       .where(noncompliance_reason: nil)
-  }
-
-  scope :pleasurable, lambda {
-    where(
-      "activities.actual_pleasure_intensity >= ?",
-      PLEASURABLE_CUTOFF
-    )
   }
 
   scope :random, lambda {
@@ -81,9 +93,12 @@ class Activity < ActiveRecord::Base
     where(start_time: nil, end_time: nil)
   }
 
-  def self.during(start_time, end_time)
-    where("start_time >= ? AND end_time <= ?", start_time, end_time)
-  end
+  scope :during, lambda { |start_time, end_time|
+    where(
+      arel_table[:start_time].gteq(start_time)
+      .and(arel_table[:end_time].lteq(end_time))
+    )
+  }
 
   # Extend with virtual attributes.
   def self.attribute_names
