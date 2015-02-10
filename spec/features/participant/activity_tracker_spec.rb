@@ -44,8 +44,6 @@ feature "activity tracker", type: :feature do
       choose_rating("pleasure_2", 8)
       choose_rating("accomplishment_2", 9)
       click_on "Next"
-      page.accept_alert "Are you sure that you would like to make these public?"
-      expect(page).to have_content "Activity saved"
 
       expect(page).to have_content "Take a look - does this all seem right? Recently, you..."
 
