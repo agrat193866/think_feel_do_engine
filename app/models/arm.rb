@@ -37,7 +37,10 @@ class Arm < ActiveRecord::Base
   end
 
   def non_home_tools
-    bit_core_tools.where("bit_core_tools.type IS NULL OR " \
-                         "bit_core_tools.type != 'Tools::Home'")
+    tools = Arel::Table.new(:bit_core_tools)
+    bit_core_tools
+      .where(tools[:type].eq(nil)
+        .or(tools[:type].not_eq("Tools::Home"))
+      )
   end
 end
