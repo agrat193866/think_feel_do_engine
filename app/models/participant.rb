@@ -29,6 +29,10 @@ class Participant < ActiveRecord::Base
            class_name: "DeliveredMessage",
            as: :recipient,
            dependent: :destroy
+  has_many :addressed_messages,
+           class_name: "Message",
+           as: :recipient,
+           dependent: :destroy
   has_many :phq_assessments, dependent: :destroy
   has_many :participant_tokens, dependent: :destroy
   has_one :participant_status, class_name: "BitPlayer::ParticipantStatus"
