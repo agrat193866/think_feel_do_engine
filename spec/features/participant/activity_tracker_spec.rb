@@ -12,7 +12,6 @@ feature "activity tracker", type: :feature do
     let(:participant1) { participants(:participant1) }
 
     before do
-      Time.zone = "Central Time (US & Canada)"
       sign_in_participant participant1
       visit "/navigator/contexts/DO"
     end
@@ -84,11 +83,11 @@ feature "activity tracker", type: :feature do
 
       expect(page).to_not have_text "Last Recorded Awake Period"
 
-      four_am = Time.local(2014, "jan", 1, 4)
-      five_pm = Time.local(2014, "jan", 1, 17)
+      four_am = Time.utc(2014, "jan", 1, 4)
+      five_pm = Time.new(2014, "jan", 1, 17)
 
-      seven_am = Time.local(2014, "jan", 2, 7)
-      eight_pm = Time.local(2014, "jan", 2, 20)
+      seven_am = Time.new(2014, "jan", 2, 7)
+      eight_pm = Time.new(2014, "jan", 2, 20)
 
       awake_period = participant1.awake_periods.build(start_time: four_am, end_time: five_pm)
       awake_period.save!
