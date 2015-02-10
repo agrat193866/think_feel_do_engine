@@ -209,12 +209,13 @@ ActiveRecord::Schema.define(version: 20150210165021) do
   add_index "groups", ["title"], name: "index_groups_on_title", unique: true, using: :btree
 
   create_table "media_access_events", force: true do |t|
-    t.string   "media_type"
-    t.integer  "participant_id"
-    t.string   "media_link"
+    t.string   "media_type",        null: false
+    t.integer  "participant_id",    null: false
+    t.string   "media_link",        null: false
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bit_core_slide_id", null: false
   end
 
   add_index "media_access_events", ["participant_id"], name: "index_media_access_events_on_participant_id", using: :btree

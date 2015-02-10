@@ -42,5 +42,7 @@
     supplied: "mp3"
   });
   
-  mediaAccessCreate("audio", "<%= audio_url %>");
+  <% if current_participant %>  
+    mediaAccessCreate("audio", "<%= audio_url %>", "<%= slide_id %>");
+  <% end %>
 </script>
