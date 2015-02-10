@@ -87,14 +87,14 @@ membership_phq2:
   group: group1 
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today.advance(days: -5) %>
-  is_stepped: true
+  stepped_on: <%= Date.today.advance(days: -8) %>
 
 membership_phq3:
   participant: participant_phq3
   group: group1 
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today + 365.days %>
-  is_stepped: true
+  stepped_on: <%= Date.today.advance(days: -8) %>
 
 membership_phq4:
   participant: participant_phq4
@@ -122,7 +122,7 @@ membership_active_and_stepped:
   start_date: <%= Date.today.advance(days: -16) %>
   end_date: <%= Date.today.advance(days: 30) %>
   is_complete: false
-  is_stepped: true
+  stepped_on: <%= Date.today.advance(days: -8) %>
 
 membership_inactive2:
   participant: inactive_participant2
