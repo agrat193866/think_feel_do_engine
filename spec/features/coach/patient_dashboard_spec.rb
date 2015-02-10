@@ -147,6 +147,18 @@ feature "patient dashboard", type: :feature do
       end
     end
 
+    context "Coach visits discontinued patient" do
+      before do
+        sign_in_user users(:clinician1)
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_study_complete}"
+      end
+
+      it "displays inactive status" do
+        expect(page).to have_text("Participant participant_study_complete")
+        expect(page).to have_text("Inactive")
+      end
+    end
+
     context "Coach visits active patient" do
       before do
         sign_in_user users(:clinician1)

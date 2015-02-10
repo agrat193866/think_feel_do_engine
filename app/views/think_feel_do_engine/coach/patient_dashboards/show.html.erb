@@ -20,7 +20,7 @@
 
       <p>
         <strong>Status:</strong>
-        <% if @patient.active_membership %>
+        <% if @patient.active_membership && @patient.active_membership.is_complete == false %>
           <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
         <% else %>
           <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
