@@ -22,7 +22,9 @@ class Group < ActiveRecord::Base
   def learning_tasks
     tasks
       .joins(:bit_core_content_module)
-      .where("bit_core_content_modules.type = ?",
-             "ContentModules::LessonModule")
+      .where(
+        Arel::Table.new(:bit_core_content_modules)[:type]
+        .eq("ContentModules::LessonModule")
+      )
   end
 end
