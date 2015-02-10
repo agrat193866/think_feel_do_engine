@@ -51,4 +51,33 @@ describe TaskStatus do
       expect(TaskStatus.where(task_id: task.id, membership_id: membership.id).count).to eq task_status_count
     end
   end
+
+  describe "scopes" do
+    let(:lesson_module) { bit_core_content_modules(:slideshow_content_module_1) }
+    let(:membership) { memberships(:membership1) }
+    let(:task) { tasks(:task5_day2) }
+
+    it ".available_for_learning returns task statuses having a start day less than or equal to today" do
+      Timecop.travel(Date.today.advance(days: 1)) do
+        count = TaskStatus.available_for_learning(membership).count
+        TaskStatus.create(
+          start_day: 1,
+          membership: membership,
+          task: task
+        )
+        TaskStatus.create(
+          start_day: 2,
+          membership: membership,
+          task: task
+        )
+        TaskStatus.create(
+          start_day: 3,
+          membership: membership,
+          task: task
+        )
+        expect(TaskStatus.available_for_learning(membership).count).to eq(count + 2)
+      end
+      Timecop.return
+    end
+  end
 end

@@ -22,10 +22,15 @@ class TaskStatus < ActiveRecord::Base
       .where(tasks: { bit_core_content_module_id: ids })
   }
 
+  # To Do: should this be renamed or removed?
+  # Is this being used anymore?
   scope :available_for_learning, lambda { |membership|
     joins(:task, task: :bit_core_content_module)
       .by_position
-      .where("start_day <= ?", membership.day_in_study)
+      .where(
+        arel_table[:start_day]
+        .lteq(membership.day_in_study)
+      )
   }
 
   scope :completed, -> { where(arel_table["completed_at"].not_eq(nil)) }
