@@ -244,8 +244,6 @@
             <thead>
               <tr>
                 <th class="not-displayed"></th>
-                <th class="not-displayed"></th>
-                <th class="not-displayed"></th>
                 <th>Title</th>
                 <th>Availability Day</th>
                 <th>Started At</th>
@@ -483,6 +481,29 @@
               {
                   aTargets: [6],
                   iDataSort: [2]
+              }
+          ],
+          oLanguage: {
+              sSearch: 'Filter: '
+          }
+      });
+  });
+
+  $(function() {
+      return $('#access_data').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[0, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [2],
+                  iDataSort: [0]
               }
           ],
           oLanguage: {

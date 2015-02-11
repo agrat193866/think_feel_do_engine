@@ -1,14 +1,7 @@
 require "rails_helper"
 
 feature "patient dashboard", type: :feature do
-  fixtures(
-    :arms, :users, :user_roles, :participants, :"bit_core/slideshows",
-    :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :coach_assignments, :messages, :groups,
-    :memberships, :tasks, :task_status, :moods, :phq_assessments, :emotions,
-    :delivered_messages, :thought_patterns, :thoughts, :activity_types,
-    :activities, :emotional_ratings
-  )
+  fixtures(:all)
 
   describe "Logged in as a clinician" do
     let(:clinician) { users(:clinician1) }
@@ -298,7 +291,7 @@ feature "patient dashboard", type: :feature do
         )
       end
 
-      it "destinguishes between monitored and planned activities", :js do
+      it "distinguishes between monitored and planned activities", :js do
         Timecop.travel(time_now) do
           sign_in_participant participants(:participant1)
           visit "/navigator/contexts/DO"
@@ -332,6 +325,16 @@ feature "patient dashboard", type: :feature do
             ]
           )
         end
+      end
+
+      it "summarizes media access events" do
+        expect(page).to have_the_table(
+          id: "access_data",
+          cells: [
+            "Audio!",
+            participant1.media_access_events.last.created_at.to_formatted_s(:date_time_with_meridian)
+          ]
+        )
       end
 
       it "summarizes thoughts" do
