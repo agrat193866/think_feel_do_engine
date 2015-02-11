@@ -16,6 +16,45 @@ feature "activity tracker", type: :feature do
       visit "/navigator/contexts/DO"
     end
 
+    it "displays most recent unaccounted activity" do
+
+      within ".container .left.list-group" do
+        click_on "#1 Awareness"
+      end
+      expect(page).to have_content "This is just the beginning..."
+
+      click_on "Next"
+      expect(page).to have_content "OK, let's talk about yesterday."
+      expect(page).to have_content "Last Recorded Awake Period:"
+
+      click_on "Complete"
+      expect(page).to have_content "Review Your Day"
+
+      fill_in "activity_type_0", with: "Get ready for work"
+      choose_rating("pleasure_0", 6)
+      choose_rating("accomplishment_0", 7)
+      fill_in "activity_type_1", with: "Travel to work"
+      choose_rating("pleasure_1", 2)
+      choose_rating("accomplishment_1", 3)
+      fill_in "activity_type_2", with: "Work"
+      choose_rating("pleasure_2", 8)
+      choose_rating("accomplishment_2", 9)
+      click_on "Next"
+      page.accept_alert "Are you sure that you would like to make these public?"
+      expect(page).to have_content "Activity saved"
+
+      expect(page).to have_content "Take a look - does this all seem right? Recently, you..."
+
+      click_on "Next"
+      expect(page).to have_content "Things you found fun."
+
+      click_on "Next"
+      expect(page).to have_content "Things that make you feel like you've accomplished something."
+
+      click_on "Next"
+      expect(page).to have_content "Your Activities"
+    end
+
     it "implements #1 Awareness", :js do
       page.find(".container .left.list-group .list-group-item", text: "#1 Awareness").trigger("click")
 
@@ -73,39 +112,6 @@ feature "activity tracker", type: :feature do
 
       find(".btn", text: "Next").trigger("click")
       expect(page).to have_text("#2 Planning")
-    end
-
-    it "displays most recent unaccounted activity" do
-      within ".container .left.list-group" do
-        click_on "#1 Awareness"
-      end
-      click_on "Next"
-
-      expect(page).to_not have_text "Last Recorded Awake Period"
-
-      four_am = Time.utc(2014, "jan", 1, 4)
-      five_pm = Time.new(2014, "jan", 1, 17)
-
-      seven_am = Time.new(2014, "jan", 2, 7)
-      eight_pm = Time.new(2014, "jan", 2, 20)
-
-      participant1.awake_periods.create(start_time: four_am, end_time: five_pm)
-      participant1.awake_periods.create(start_time: seven_am, end_time: eight_pm)
-
-      visit "/navigator/contexts/DO"
-      within ".container .left.list-group" do
-        click_on "#1 Awareness"
-      end
-      click_on "Next"
-
-      expect(page).to have_text "Last Recorded Awake Period"
-      expect(page).to have_text seven_am.to_formatted_s(:date_time_with_meridian)
-      expect(page).to have_text eight_pm.to_formatted_s(:date_time_with_meridian)
-
-      click_on "Complete"
-
-      expect(page).to have_text "7am to 8am"
-      expect(page).to have_text "7pm to 8pm"
     end
 
     it "implements #2 Planning", :js do

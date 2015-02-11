@@ -1,7 +1,7 @@
 participant1_period1:
   participant: participant1
   start_time: <%= Time.now - 10.days %>
-  end_time: <%= Time.now - 10.days + 1.hour %>
+  end_time: <%= Time.now - 10.days + 3.hour %>
 
 participant2_period1:
   participant: participant2

@@ -19,7 +19,7 @@ planned_activity1:
   activity_type: loving
   actual_pleasure_intensity: 6
   is_scheduled: true
-  start_time: <%= Time.now - 3600 %>
+  start_time: <%= Time.now - 1.hours %>
   end_time: <%= Time.now %>
 
 planned_activity_today_1:
