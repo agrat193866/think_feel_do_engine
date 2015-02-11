@@ -28,10 +28,10 @@ class PhqSteppingAssessment
     converted_array = []
     hash.each do |date, score|
       converted_array.push(PhqSteppingAssessment.new(
-                            date,
-                            score,
-                            week_in_study
-                            )
+                             date,
+                             score,
+                             week_in_study
+                           )
                           )
     end
     converted_array
@@ -41,13 +41,13 @@ class PhqSteppingAssessment
     converted_array = []
     hash.each do |date, assessment|
       converted_array.push(PhqSteppingAssessment.new(
-                            date,
-                            assessment.score,
-                            week_in_study,
-                            nil,
-                            false,
-                            assessment
-                            )
+                             date,
+                             assessment.score,
+                             week_in_study,
+                             nil,
+                             false,
+                             assessment
+                           )
                           )
     end
     converted_array

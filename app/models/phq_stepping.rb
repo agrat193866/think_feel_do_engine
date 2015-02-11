@@ -109,11 +109,11 @@ class PhqStepping
   def copy_previous_assessment(to_copy, target_week)
     date_offset = (target_week - to_copy.week_of_assessment).weeks
     copy = PhqSteppingAssessment.new(
-            to_copy.date + date_offset,
-            to_copy.score,
-            @week,
-            target_week
-          )
+      to_copy.date + date_offset,
+      to_copy.score,
+      @week,
+      target_week
+    )
     copy.missing_answers_count = to_copy.missing_answers_count
     @assessments.push(copy)
   end

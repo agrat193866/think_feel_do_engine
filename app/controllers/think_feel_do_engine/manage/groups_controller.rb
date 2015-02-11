@@ -9,12 +9,14 @@ module ThinkFeelDoEngine
       end
 
       def edit_tasks
-        @group = @arm.groups.find(params[:id])
+        @group = @arm.groups
+                 .includes(tasks: { bit_core_content_module: :tool })
+                 .find(params[:id])
         authorize! :update, @group
         @task = current_user.tasks.build
-        @content_modules =
-          BitCore::ContentModule.where(
-            bit_core_tool_id: @arm.bit_core_tools.map(&:id))
+        @content_modules = BitCore::ContentModule
+                           .where(bit_core_tool_id: @arm.bit_core_tool_ids)
+                           .includes(:tool)
       end
 
       private

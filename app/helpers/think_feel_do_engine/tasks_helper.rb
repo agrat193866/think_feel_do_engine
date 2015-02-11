@@ -51,15 +51,15 @@ module ThinkFeelDoEngine
 
     def create_task_path(task_status)
       think_feel_do_engine.navigator_location_path(
-          module_id: task_status
-                     .bit_core_content_module_id,
-          provider_id: task_status
-                       .bit_core_content_module
-                       .content_providers
-                       .find_by_position(1)
-                       .id,
-          content_position: 1
-        )
+        module_id: task_status
+                   .bit_core_content_module_id,
+        provider_id: task_status
+                     .bit_core_content_module
+                     .content_providers
+                     .find_by_position(1)
+                     .id,
+        content_position: 1
+      )
     end
   end
 end
