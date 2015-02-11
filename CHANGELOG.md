@@ -1,3 +1,16 @@
+## 2.6.1 - 2015-02-10
+ * add Participant wai_assessments association
+
+## 2.6.0 - 2015-02-10
+ * ensure Participant recipient dependent Messages destroyed
+ * add stepped_on date column to membership and updated patient report dashboard
+ * changes instructions at the top of the WAI
+ * add missing constraints and update associations
+ * Updated patient view to determine activity based on discontinuation status
+ * patient dashboard now shows date participants were stepped
+ * adds TOC at top of coach participant dashboard
+ * added media event capture features
+
 ## 2.5.3 - 2015-02-09
  * update bit_core to 1.4.1; update view due to broken spec
  * add Wai assessment report authorization

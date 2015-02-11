@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150210164226) do
   create_table "arms", force: true do |t|
     t.string  "title",     default: "",    null: false
     t.boolean "is_social", default: false, null: false
-    t.boolean "has_woz",   default: false
+    t.boolean "has_woz",   default: false, null: false
   end
 
   create_table "awake_periods", force: true do |t|
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150210164226) do
   create_table "emotional_ratings", force: true do |t|
     t.integer  "participant_id", null: false
     t.integer  "emotion_id",     null: false
-    t.integer  "rating"
+    t.integer  "rating",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_positive"
@@ -228,7 +228,7 @@ ActiveRecord::Schema.define(version: 20150210164226) do
     t.date     "start_date",                     null: false
     t.date     "end_date",                       null: false
     t.boolean  "is_complete",    default: false, null: false
-    t.boolean  "is_stepped",     default: false, null: false
+    t.date     "stepped_on"
   end
 
   add_index "memberships", ["group_id", "participant_id"], name: "index_memberships_on_group_id_and_participant_id", unique: true, using: :btree
@@ -252,7 +252,7 @@ ActiveRecord::Schema.define(version: 20150210164226) do
 
   create_table "moods", force: true do |t|
     t.integer  "participant_id", null: false
-    t.integer  "rating"
+    t.integer  "rating",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 20150210164226) do
   add_index "moods", ["participant_id"], name: "index_moods_on_participant_id", using: :btree
 
   create_table "participant_login_events", force: true do |t|
-    t.integer  "participant_id"
+    t.integer  "participant_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "inactive_log_out", default: false

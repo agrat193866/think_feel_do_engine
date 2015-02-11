@@ -2,7 +2,7 @@
 # Between 1 and 8 groups are in each arm and each group
 # could have between 1 and 10 or so participants
 class Arm < ActiveRecord::Base
-  has_many :groups
+  has_many :groups, dependent: :nullify
   has_many :bit_core_tools,
            class_name: "BitCore::Tool",
            foreign_key: :arm_id,

@@ -40,7 +40,7 @@ describe Membership do
       end_date: Date.today + 13.days)
     participant_wo_membership1.reload
 
-    expect(participant_wo_membership1.active_membership.is_stepped).to eq false
+    expect(participant_wo_membership1.active_membership.stepped_on).to eq nil
     expect(participant_wo_membership1.active_membership.is_complete).to eq false
 
     new_task_ids = participant_wo_membership1

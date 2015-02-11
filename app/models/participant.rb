@@ -29,7 +29,12 @@ class Participant < ActiveRecord::Base
            class_name: "DeliveredMessage",
            as: :recipient,
            dependent: :destroy
+  has_many :addressed_messages,
+           class_name: "Message",
+           as: :recipient,
+           dependent: :destroy
   has_many :phq_assessments, dependent: :destroy
+  has_many :wai_assessments, dependent: :destroy
   has_many :participant_tokens, dependent: :destroy
   has_one :participant_status, class_name: "BitPlayer::ParticipantStatus"
   has_one :coach_assignment, dependent: :destroy
@@ -63,12 +68,12 @@ class Participant < ActiveRecord::Base
 
   scope :stepped, lambda {
     joins(:memberships)
-      .where("memberships.is_stepped = ?", true)
+      .where("memberships.stepped_on IS NOT NULL")
   }
 
   scope :not_stepped, lambda {
     joins(:memberships)
-      .where("memberships.is_stepped = ?", false)
+      .where("memberships.stepped_on IS NULL")
   }
 
   def is_not_allowed_in_site
