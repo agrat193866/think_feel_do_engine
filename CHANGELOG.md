@@ -1,3 +1,6 @@
+## 2.6.1 - 2015-02-10
+ * add Participant wai_assessments association
+
 ## 2.6.0 - 2015-02-10
  * ensure Participant recipient dependent Messages destroyed
  * add stepped_on date column to membership and updated patient report dashboard
