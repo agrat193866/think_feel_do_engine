@@ -12,9 +12,11 @@ class MediaAccessEvent < ActiveRecord::Base
             presence: :true
 
   def task_release_day
+    module_id = slide.slideshow.content_provider.bit_core_content_module_id
+
     Task.where(
-      bit_core_content_module_id: self.slide.slideshow.content_provider.content_module.id,
-      group_id: self.participant.active_group.id
+      bit_core_content_module_id: module_id,
+      group_id: participant.active_group.id
     ).first.release_day
   end
 end

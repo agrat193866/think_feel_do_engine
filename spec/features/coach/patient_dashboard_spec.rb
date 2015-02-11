@@ -1,7 +1,13 @@
 require "rails_helper"
 
 feature "patient dashboard", type: :feature do
-  fixtures(:all)
+  fixtures :arms, :users, :user_roles, :participants, :"bit_core/slideshows",
+           :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
+           :"bit_core/content_providers", :coach_assignments, :messages, :groups,
+           :memberships, :tasks, :task_status, :moods, :phq_assessments,
+           :emotions, :delivered_messages, :thought_patterns, :thoughts,
+           :activity_types, :activities, :emotional_ratings,
+           :media_access_events
 
   describe "Logged in as a clinician" do
     let(:clinician) { users(:clinician1) }
