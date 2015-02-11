@@ -83,17 +83,14 @@ feature "activity tracker", type: :feature do
 
       expect(page).to_not have_text "Last Recorded Awake Period"
 
-      four_am = Time.utc(2014, "jan", 1, 4)
-      five_pm = Time.new(2014, "jan", 1, 17)
+      four_am = Time.local(2014, "jan", 1, 4)
+      five_pm = Time.local(2014, "jan", 1, 17)
 
-      seven_am = Time.new(2014, "jan", 2, 7)
-      eight_pm = Time.new(2014, "jan", 2, 20)
+      seven_am = Time.local(2014, "jan", 2, 7)
+      eight_pm = Time.local(2014, "jan", 2, 20)
 
-      awake_period = participant1.awake_periods.build(start_time: four_am, end_time: five_pm)
-      awake_period.save!
-
-      awake_period = participant1.awake_periods.build(start_time: seven_am, end_time: eight_pm)
-      awake_period.save!
+      participant1.awake_periods.create(start_time: four_am, end_time: five_pm)
+      participant1.awake_periods.create(start_time: seven_am, end_time: eight_pm)
 
       visit "/navigator/contexts/DO"
       within ".container .left.list-group" do
@@ -177,6 +174,7 @@ feature "activity tracker", type: :feature do
       click_on "Next"
 
       expect(page).to have_text("Activity saved")
+
       within "#Upcoming_Activities table.table" do
         expect(page).to have_text "Loving"
         expect(page).to have_text((Time.current + 1.hour).to_s(:date_time_with_meridian))
@@ -236,8 +234,7 @@ feature "activity tracker", type: :feature do
     let(:activity) { activities(:p2_activity_1_hr_ago) }
 
     before do
-      Time.zone = "Central Time (US & Canada)"
-      t = Time.zone.parse("2015-01-15 10:30")
+      t = Time.local(2015,"jan",15,10,30,0)
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
@@ -259,8 +256,7 @@ feature "activity tracker", type: :feature do
     let(:activity) { activities(:p2_activity_1_hr_ago) }
 
     before do
-      Time.zone = "Central Time (US & Canada)"
-      t = Time.zone.parse("2015-01-15 11:01")
+      t = Time.local(2015,"jan",15,17,1,0)
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
@@ -298,17 +294,16 @@ feature "activity tracker", type: :feature do
     end
 
     it "displays a list of activities and activity details" do
-      expect(page).to have_text "8 am - 9 am: Eating breakfast"
+      expect(page).to have_text "2 pm - 3 pm: Eating breakfast"
       expect(page).to have_text "Accomplishment: 9 · Pleasure: 9"
 
       expect(page).to have_text "Accomplishment  Pleasure"
       expect(page).to have_text "Predicted High Importance: 10 Really fun: 10"
       expect(page).to have_text "Actual  High Importance: 9  Really fun: 9"
       expect(page).to have_text "Difference  1  1"
-      expect(page).to have_text "9 am - 10 am: Working"
+      expect(page).to have_text "3 pm - 4 pm: Working"
       expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
-
-      expect(page).to have_text "10 am - 11 am: Working"
+      expect(page).to have_text "4 pm - 5 pm: Working"
     end
 
     it "title is displayed when data is selected", :js do
@@ -326,13 +321,13 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the updating of a past activity", :js do
-      expect(page).to have_text "10 am - 11 am: Working"
+      expect(page).to have_text "4 pm - 5 pm: Working"
 
       expect(page).to_not have_text "Predicted Average Importance: 6 Kind of fun: 5"
       expect(page).to_not have_text "Actual  Not answered: Not answered:"
       expect(page).to_not have_text "Difference N/A N/A"
 
-      click_on "10 am - 11 am: Working"
+      click_on "4 pm - 5 pm: Working"
 
       expect(page).to have_text "Predicted Average Importance: 6 Kind of fun: 5"
       expect(page).to have_text "Actual  Not answered: Not answered:"
@@ -355,7 +350,7 @@ feature "activity tracker", type: :feature do
       expect(page).to_not have_button "Cancel"
       expect(page).to have_text "Accomplishment: 1 · Pleasure: 8"
 
-      click_on "10 am - 11 am: Working"
+      click_on "4 pm - 5 pm: Working"
 
       expect(page).to have_text "Predicted  Average Importance: 6 Kind of fun: 5"
       expect(page).to have_text "Actual  Low Importance: 1 Really fun: 8"
@@ -371,7 +366,7 @@ feature "activity tracker", type: :feature do
 
       click_on "Previous Day"
 
-      expect(page).to have_text "3 pm - 2 pm: Working"
+      expect(page).to have_text "9 pm - 8 pm: Working"
       expect(page).to have_text "Accomplishment: 8 · Pleasure: 9"
       expect(page).to have_text "Predicted Low Importance: 1 Not Fun: 2"
       expect(page).to have_text "Actual  High Importance: 8  Really fun: 9"
@@ -379,12 +374,12 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the paginating to the next day's activities" do
-      expect(page).to_not have_text "1 pm - 2 pm: Working"
+      expect(page).to_not have_text "7 pm - 8 pm: Working"
       expect(page).to_not have_text "Predicted High Importance: 8 Kind of fun: 4"
 
       click_on "Next Day"
 
-      expect(page).to have_text "1 pm - 2 pm: Working"
+      expect(page).to have_text "7 pm - 8 pm: Working"
       expect(page).to have_text "Predicted High Importance: 8 Kind of fun: 4"
       expect(page).to have_text "Actual  Not answered: Not answered:"
       expect(page).to have_text "Difference  N/A N/A"
@@ -395,8 +390,7 @@ feature "activity tracker", type: :feature do
     let(:participant) { participants(:traveling_participant2) }
 
     before do
-      Time.zone = "Central Time (US & Canada)"
-      t = Time.zone.parse("2015-01-15 20:00")
+      t = Time.local(2015,"jan",15,1,00,0)
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
@@ -459,8 +453,7 @@ feature "activity tracker", type: :feature do
     let(:participant) { participants(:traveling_participant3) }
 
     before do
-      Time.zone = "Central Time (US & Canada)"
-      t = Time.zone.parse("2015-01-17 1:00")
+      t = Time.local(2015,"jan",17,1,00,0)
       Timecop.travel(t)
       sign_in_participant participant
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}?date=16/01/2015"
