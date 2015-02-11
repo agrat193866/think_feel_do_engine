@@ -188,10 +188,9 @@ class Participant < ActiveRecord::Base
       [x.release_date, x] if x.number_answered > 0
     end
     assessment_data = Hash[data]
-    PhqStepping.new(
-                assessment_data,
-                active_membership.week_in_study
-            )
+
+    PhqStepping.new(assessment_data,
+                    active_membership.week_in_study)
   end
 
   def navigation_status
