@@ -21,6 +21,14 @@ class Task < ActiveRecord::Base
   before_save :check_if_valid_release_day
   after_create :assign_task_status_to_each_participant
 
+  scope :learning, lambda {
+    joins(:bit_core_content_module)
+      .where(
+        Arel::Table.new(:bit_core_content_modules)[:type]
+        .eq("ContentModules::LessonModule")
+      )
+  }
+
   private
 
   def check_if_valid_release_day

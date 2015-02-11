@@ -14,7 +14,10 @@ class DeliveredMessage < ActiveRecord::Base
 
   scope :sent_from, lambda { |sender_id|
     joins(:message)
-      .where("messages.sender_id = ?", sender_id)
+      .where(
+        Arel::Table.new(:messages)[:sender_id]
+        .eq(sender_id)
+      )
   }
 
   delegate :body, :render_body, :sender, :subject, to: :message

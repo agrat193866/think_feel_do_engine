@@ -1,7 +1,13 @@
 # A Nav menu item listed under a Tool Nav Item.
 class ModuleNavItem
   def self.for_content_modules(participant, content_modules)
-    content_modules.order(:position).where("position > 1")
+    content_modules
+      .where(
+        Arel::Table
+        .new(:bit_core_content_modules)[:position]
+        .gt(1)
+      )
+      .order(:position)
       .where(is_viz: false)
       .map { |m| new(participant, m) }
   end

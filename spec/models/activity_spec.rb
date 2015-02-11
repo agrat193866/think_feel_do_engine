@@ -3,6 +3,145 @@ require "rails_helper"
 describe Activity do
   fixtures [:participants, :activity_types, :activities]
 
+  describe "model scopes" do
+    let(:sleeping) { activity_types(:sleeping) }
+    let(:participant) { participants(:participant1) }
+
+    it ".for_day returns only the activities for that day" do
+      expect(activities.count).to eq 0
+
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.local(2016, 1, 15, 22))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.local(2016, 1, 16, 22))
+      activities = Activity.for_day(Time.zone.local(2016, 1, 15))
+
+      expect(activities.count).to eq 1
+    end
+
+    it ".accomplished returns actitivies that have an actual_accomplishment_intensity greater than or equal to a cutoff" do
+      count = Activity.accomplished.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 5)
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 6)
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 10)
+
+      expect(Activity.accomplished.count).to eq(count + 2)
+    end
+
+    it ".pleasureable returns actitivies that have an actual_pleasure_intensity greater than or equal to a cutoff" do
+      count = Activity.pleasurable.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_pleasure_intensity: 5)
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_pleasure_intensity: 6)
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_pleasure_intensity: 10)
+
+      expect(Activity.pleasurable.count).to eq(count + 2)
+    end
+
+    # To Do: See note in activity.rb
+    it ".in_the_future returns actitivies are planned for the future" do
+      count = Activity.in_the_future.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(hours: 1))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        # start_time: Time.current
+        start_time: Time.current.advance(hours: -1)
+      )
+
+      expect(Activity.in_the_future.count).to eq(count + 1)
+    end
+
+    it ".in_the_past returns actitivies have taken place in the past" do
+      count = Activity.in_the_past.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(hours: -1))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current)
+
+      expect(Activity.in_the_past.count).to eq(count + 1)
+    end
+
+    it ".last_seven_days returns actitivies have taken place during the last 7 days" do
+      count = Activity.last_seven_days.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(days: -7))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(days: -8))
+
+      expect(Activity.last_seven_days.count).to eq(count + 1)
+    end
+
+    # To Do: See note in activity.rb
+    it ".unscheduled_or_in_the_future returns actitivies are unscheduled or in the future" do
+      count = Activity.unscheduled_or_in_the_future.count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(days: 1))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: nil)
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.current.advance(days: -1))
+
+      expect(Activity.unscheduled_or_in_the_future.count).to eq(count + 2)
+    end
+
+    it ".during returns actitivies that were started and completed during a range of times" do
+      count = Activity.during(Time.local(2016, 1, 15, 22), Time.local(2016, 1, 15, 23)).count
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.local(2016, 1, 15, 22))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.local(2016, 1, 15, 21))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        start_time: Time.local(2016, 1, 15, 23))
+
+      expect(Activity.during(Time.local(2016, 1, 15, 22), Time.local(2016, 1, 15, 23)).count).to eq(count + 1)
+    end
+  end
+
   describe "create activity type" do
     let(:title) { "prancing in the woods" }
 
@@ -10,8 +149,7 @@ describe Activity do
       Activity.create(
         participant: participants(:participant1),
         activity_type_title: title,
-        start_time: Time.current,
-        end_time: Time.current + 1.hour
+        start_time: Time.current
       )
       expect(participants(:participant1).activity_types.exists?(title: title)).to be true
     end
@@ -19,8 +157,7 @@ describe Activity do
     it "doesn't create an activity type when it does not have an activity type title" do
       Activity.create(
         participant: participants(:participant1),
-        start_time: Time.current,
-        end_time: Time.current + 1.hour
+        start_time: Time.current
       )
       expect(participants(:participant1).activity_types.exists?(title: title)).to be false
     end

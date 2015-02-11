@@ -50,6 +50,12 @@ task5_day2:
   bit_core_content_module: think_identifying
   release_day: 2
 
+task5_day3:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: think_identifying
+  release_day: 3
+
 task6:
   creator: clinician1
   group: group1
@@ -90,6 +96,22 @@ task10:
   bit_core_content_module: feeling_tracker_module2
   release_day: 1
   termination_day: 1
+  has_didactic_content: false
+
+task10_2:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: feeling_tracker_module2
+  release_day: 2
+  termination_day: 2
+  has_didactic_content: false
+
+task10_3:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: feeling_tracker_module2
+  release_day: 3
+  termination_day: 3
   has_didactic_content: false
 
 task11:

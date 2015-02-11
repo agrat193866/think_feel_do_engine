@@ -7,13 +7,24 @@ class AwakePeriod < ActiveRecord::Base
   validate :end_time_after_start_time
   validate :awake_periods_cannot_overlap
 
+  scope :periods_for, lambda { |start_time, end_time|
+    where(
+      arel_table[:start_time]
+      .lteq(end_time)
+      .and(
+        arel_table[:end_time]
+        .gteq(start_time)
+      )
+    )
+  }
+
   private
 
   def awake_periods_cannot_overlap
     overlapping_period_exists =
       participant
       .awake_periods
-      .where("start_time < ? and end_time > ?", end_time, start_time)
+      .periods_for(start_time, end_time)
       .limit(1)
       .count == 1
     if overlapping_period_exists

@@ -6,8 +6,9 @@ class Mood < ActiveRecord::Base
 
   scope :for_day, lambda { |datetime|
     where(
-      "moods.created_at >= ? AND moods.created_at < ?",
-      datetime.beginning_of_day, datetime.advance(days: 1).beginning_of_day)
+      arel_table[:created_at].gteq(datetime.beginning_of_day)
+      .and(arel_table[:created_at].lteq(datetime.end_of_day))
+    )
   }
 
   def rating_value
