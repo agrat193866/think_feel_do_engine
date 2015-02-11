@@ -28,6 +28,14 @@ describe Membership do
       expect(memberships(:membership1).update(group: groups(:group2)))
         .to eq false
     end
+
+    it "prevents is_complete=true and an end_date in the future" do
+      expect(
+        Membership.new(end_date: Date.today + 3.days, is_complete: true)
+        .tap(&:valid?)
+        .errors[:is_complete]
+      ).not_to be_empty
+    end
   end
 
   it "assigns all tasks linked to a group upon creation" do
@@ -127,8 +135,8 @@ describe Membership do
       count = Membership.active.count
       group.memberships.create(
         is_complete: true,
-        start_date: Date.today.advance(days: 1),
-        end_date: Date.today.advance(days: 2),
+        start_date: Date.today.advance(days: -2),
+        end_date: Date.today.advance(days: -1),
         participant: participant_wo_membership4)
 
       expect(Membership.active.count).to eq count + 1

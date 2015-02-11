@@ -23,6 +23,9 @@ class Membership < ActiveRecord::Base
   validates :group, presence: true
   validates :participant, presence: true
   validates :group_id, uniqueness: { scope: :participant_id }
+  validates :is_complete,
+            inclusion: { in: [false] },
+            if: proc { |membership| membership.end_date > Date.today }
   validate :group_id_unchanged
   validate :single_active_membership
 
