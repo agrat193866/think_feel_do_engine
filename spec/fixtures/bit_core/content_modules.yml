@@ -233,3 +233,8 @@ slideshow_content_module_16:
   tool: library
   type: "ContentModules::LessonModule"
   position: 17
+
+slideshow_content_module_17:
+  title: Hi 
+  tool: library
+  position: 18

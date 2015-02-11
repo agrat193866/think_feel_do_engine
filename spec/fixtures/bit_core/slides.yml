@@ -249,3 +249,11 @@ feel_emotions_intro1:
   is_title_visible: false
   body: ''
   options: { url: "http://mohrlab.northwestern.edu/video/introtfd.mp4" }
+
+audio_slide:
+  slideshow: audio_slideshow
+  position: 1
+  title: "Audio!" 
+  body: "Yay"
+  type: BitCore::AudioSlide
+  options: { audio_url: "https://intellicare.cbits.northwestern.edu/static/audio/autogenic/01_autogenic.mp3" }

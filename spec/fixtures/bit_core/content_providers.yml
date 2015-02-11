@@ -393,3 +393,10 @@ content_provider_slideshow_16:
   source_content: learn_thoughts_intro (BitCore::Slideshow)
   content_module: slideshow_content_module_16
   position: 1
+
+content_provider_slideshow_17:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: audio_slideshow (BitCore::Slideshow)
+  content_module: slideshow_content_module_17
+  position: 1

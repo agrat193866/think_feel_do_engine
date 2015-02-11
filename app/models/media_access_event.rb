@@ -7,8 +7,8 @@ class MediaAccessEvent < ActiveRecord::Base
              foreign_key: :bit_core_slide_id
   validates :media_type, inclusion: { in: ["audio", "video"] }
   validates :media_link,
-            :participant_id,
-            :bit_core_slide_id,
+            :participant,
+            :slide,
             presence: :true
 
   def task_release_day
