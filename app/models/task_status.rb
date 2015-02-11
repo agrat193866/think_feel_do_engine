@@ -33,11 +33,38 @@ class TaskStatus < ActiveRecord::Base
       )
   }
 
-  scope :completed, -> { where(arel_table["completed_at"].not_eq(nil)) }
+  scope :completed, -> { where(arel_table[:completed_at].not_eq(nil)) }
+
+  scope :incomplete, -> { where(arel_table[:completed_at].eq(nil)) }
 
   scope :by_position, lambda {
     joins(:task, task: :bit_core_content_module)
       .order("bit_core_content_modules.position ASC")
+  }
+
+  scope :available_by_day, lambda { |day_in_study|
+    where(arel_table[:start_day].lteq(day_in_study))
+  }
+
+  scope :incomplete_by_day, lambda { |day_in_study|
+    where(arel_table[:start_day].lteq(day_in_study))
+      .incomplete
+  }
+
+  scope :incomplete_on_day, lambda { |day_in_study|
+    where(arel_table[:start_day].eq(day_in_study))
+      .incomplete
+  }
+
+  scope :not_terminated_by_day, lambda { |day_in_study|
+    tasks = Arel::Table.new(:tasks)
+    joins(:task)
+      .where(
+        tasks[:termination_day].eq(nil)
+        .or(
+          tasks[:termination_day].gteq(day_in_study)
+        )
+      )
   }
 
   def provider_viz?

@@ -68,4 +68,24 @@ describe Task do
       end
     end
   end
+
+  describe "scopes" do
+    let(:group) { groups(:group4) }
+    let(:module1) { bit_core_content_modules(:do_awareness) }
+    let(:learning_module) { bit_core_content_modules(:slideshow_content_module_1) }
+
+    it ".learning returns tasks associated with learning content modules" do
+      count = Task.learning.count
+      Task.create(
+        group: group,
+        bit_core_content_module: module1,
+        release_day: 3)
+      Task.create(
+        group: group,
+        bit_core_content_module: learning_module,
+        release_day: 3)
+
+      expect(Task.learning.count).to eq count + 1
+    end
+  end
 end

@@ -34,38 +34,37 @@ class Membership < ActiveRecord::Base
   after_create :create_task_statuses
 
   scope :active, lambda {
-    where Membership.arel_table[:start_date].lteq(Date.current)
-      .and(Membership.arel_table[:end_date].gteq(Date.current))
+    where(
+      arel_table[:start_date].lteq(Date.current)
+      .and(arel_table[:end_date].gteq(Date.current))
+      .or(arel_table[:is_complete].eq(true))
+    )
   }
 
   scope :inactive, lambda {
-    where Membership.arel_table[:start_date].gt(Date.current)
-      .or(Membership.arel_table[:end_date].lt(Date.current))
-  }
-
-  scope :active, lambda {
-    where("(memberships.start_date <= ? AND memberships.end_date >= ?)"\
-    " OR memberships.is_complete = ?", Date.today, Date.today, true)
+    where(
+      arel_table[:start_date].gt(Date.current)
+      .or(arel_table[:end_date].lt(Date.current))
+    )
   }
 
   def available_task_statuses
     @available_task_statuses ||=
       task_statuses
+      .available_by_day(day_in_study)
+      .not_terminated_by_day(day_in_study)
       .joins(:task, task: :bit_core_content_module)
       .by_position
-      .where("start_day <= ?", day_in_study)
-      .where("tasks.termination_day >= ? OR tasks.termination_day IS NULL",
-             day_in_study)
   end
 
   def incomplete_tasks
     available_task_statuses
-      .where("completed_at IS NULL AND start_day <= ?", day_in_study)
+      .incomplete_by_day(day_in_study)
   end
 
   def incomplete_tasks_today
     available_task_statuses
-      .where("completed_at IS NULL AND start_day = ?", day_in_study)
+      .incomplete_on_day(day_in_study)
   end
 
   def week_in_study(date = nil)
@@ -89,10 +88,7 @@ class Membership < ActiveRecord::Base
   end
 
   def learning_tasks
-    tasks
-      .joins(:bit_core_content_module)
-      .where("bit_core_content_modules.type = ?",
-             "ContentModules::LessonModule")
+    tasks.learning
   end
 
   def flag_complete

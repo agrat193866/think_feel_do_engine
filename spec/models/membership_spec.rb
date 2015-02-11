@@ -117,4 +117,56 @@ describe Membership do
       expect(membership.end_date).to eq Date.yesterday
     end
   end
+
+  describe "membership scopes" do
+    let(:membership) { memberships(:membership1) }
+    let(:participant_wo_membership3) { participants(:participant_wo_membership3) }
+    let(:participant_wo_membership4) { participants(:participant_wo_membership4) }
+
+    it ".active returns memberships that are completed" do
+      count = Membership.active.count
+      group.memberships.create(
+        is_complete: true,
+        start_date: Date.today.advance(days: 1),
+        end_date: Date.today.advance(days: 2),
+        participant: participant_wo_membership4)
+
+      expect(Membership.active.count).to eq count + 1
+    end
+
+    it ".active returns memberships that are started before/on today and finishing today/in the future" do
+      count = Membership.active.count
+      group.memberships.create(
+        start_date: Date.yesterday,
+        end_date: Date.tomorrow,
+        participant: participant_wo_membership1)
+      group.memberships.create(
+        start_date: Date.today.advance(days: -2),
+        end_date: Date.today.advance(days: -1),
+        participant: participant_wo_membership2)
+      group.memberships.create(
+        start_date: Date.today.advance(days: 1),
+        end_date: Date.today.advance(days: 2),
+        participant: participant_wo_membership3)
+
+      expect(Membership.active.count).to eq count + 1
+    end
+
+    it ".inactive returns memberships that are started after today or finishing in the past" do
+      count = Membership.inactive.count
+      group.memberships.create(
+        start_date: Date.today.advance(days: -2),
+        end_date: Date.today.advance(days: -1),
+        participant: participant_wo_membership1)
+      group.memberships.create(
+        start_date: Date.today.advance(days: 1),
+        end_date: Date.today.advance(days: 2),
+        participant: participant_wo_membership2)
+
+      expect(Membership.inactive.count).to eq count + 2
+    end
+
+    it ".incomplete_tasks returns task statuses that have a start date later than or equal today and not yet past their termination day" do
+    end
+  end
 end

@@ -37,9 +37,9 @@ describe TaskStatus do
   end
 
   it "creates task_statuses for all days following the release day for each participant when task is assigned as recurring" do
-    task = Task.where(bit_core_content_module_id: think_identifying.id, release_day: 3, group_id: group1.id).first
+    task = Task.where(bit_core_content_module_id: think_identifying.id, release_day: 4, group_id: group1.id).first
     expect(task).to be_nil
-    release_day = 3
+    release_day = 4
     task = user.tasks.build(
       group_id: group1.id,
       bit_core_content_module_id: think_identifying.id,
@@ -56,6 +56,10 @@ describe TaskStatus do
     let(:lesson_module) { bit_core_content_modules(:slideshow_content_module_1) }
     let(:membership) { memberships(:membership1) }
     let(:task) { tasks(:task5_day2) }
+    let(:task1) { tasks(:task5_day3) }
+    let(:task_termination_day1) { tasks(:task10) }
+    let(:task_termination_day2) { tasks(:task10_2) }
+    let(:task_termination_day3) { tasks(:task10_3) }
 
     it ".available_for_learning returns task statuses having a start day less than or equal to today" do
       Timecop.travel(Date.today.advance(days: 1)) do
@@ -63,21 +67,141 @@ describe TaskStatus do
         TaskStatus.create(
           start_day: 1,
           membership: membership,
-          task: task
-        )
+          task: task)
         TaskStatus.create(
           start_day: 2,
           membership: membership,
-          task: task
-        )
+          task: task)
         TaskStatus.create(
           start_day: 3,
           membership: membership,
-          task: task
-        )
-        expect(TaskStatus.available_for_learning(membership).count).to eq(count + 2)
+          task: task)
+
+        expect(TaskStatus.available_for_learning(membership).count).to eq count + 2
       end
-      Timecop.return
+    end
+
+    it ".available_by_day returns tasks status that have a previous start day earlier than or equal to current today" do
+      count = TaskStatus.available_by_day(2).count
+      TaskStatus.create(
+        task: task,
+        membership: membership,
+        start_day: 1)
+      TaskStatus.create(
+        task: task,
+        membership: membership,
+        start_day: 2)
+      TaskStatus.create(
+        task: task,
+        membership: membership,
+        start_day: 3)
+
+      expect(TaskStatus.available_by_day(2).count).to eq count + 2
+    end
+
+    it ".incomplete returns task statuses that are not yet marked completed" do
+      count = TaskStatus.incomplete.count
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task,
+        completed_at: nil)
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task1,
+        completed_at: Time.now)
+
+      expect(TaskStatus.incomplete.count).to eq count + 1
+    end
+
+    it ".incomplete_by_day returns task statuses that are have a start day of less than today AND not yet completed" do
+      count = TaskStatus.incomplete_by_day(2).count
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task,
+        completed_at: nil)
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task1,
+        completed_at: Time.now)
+      TaskStatus.create(
+        start_day: 3,
+        membership: membership,
+        task: task1,
+        completed_at: nil)
+
+      expect(TaskStatus.incomplete_by_day(2).count).to eq count + 1
+    end
+
+    it ".incomplete_by_day returns task statuses that are have a start day equal to today AND not yet completed" do
+      count = TaskStatus.incomplete_by_day(1).count
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task,
+        completed_at: nil)
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task1,
+        completed_at: Time.now)
+
+      expect(TaskStatus.incomplete_by_day(1).count).to eq count + 1
+    end
+
+    it ".incomplete_on_day returns task statuses that are have a start day equal to today AND not yet completed" do
+      count = TaskStatus.incomplete_on_day(2).count
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task,
+        completed_at: nil)
+      TaskStatus.create(
+        start_day: 1,
+        membership: membership,
+        task: task1,
+        completed_at: Time.now)
+      TaskStatus.create(
+        start_day: 2,
+        membership: membership,
+        task: task1,
+        completed_at: nil)
+
+      expect(TaskStatus.incomplete_on_day(2).count).to eq count + 1
+    end
+
+    it ".not_terminated_by_day returns task statuses where the task termination day is nil" do
+      count = TaskStatus.not_terminated_by_day(3).count
+      TaskStatus.create(
+        membership: membership,
+        task: task_termination_day1
+      )
+      TaskStatus.create(
+        membership: membership,
+        task: task
+      )
+      expect(TaskStatus.not_terminated_by_day(3).count).to eq count + 1
+    end
+
+    it ".not_terminated_by_day returns tasks statuses where the termination day is today or in the future" do
+      count = TaskStatus.not_terminated_by_day(2).count
+
+      TaskStatus.create(
+        membership: membership,
+        task: task_termination_day1
+      )
+      TaskStatus.create(
+        membership: membership,
+        task: task_termination_day2
+      )
+      TaskStatus.create(
+        membership: membership,
+        task: task_termination_day3
+      )
+      expect(TaskStatus.not_terminated_by_day(2).count).to eq count + 2
     end
   end
 end
