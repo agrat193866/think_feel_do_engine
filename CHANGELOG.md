@@ -1,3 +1,8 @@
+## 2.6.2 - 2015-02-11
+ * minor updates to wai, specs
+ * adds breadcrumbs to coach patient activities viz
+ * minor updates to audio slides and reporting
+
 ## 2.6.1 - 2015-02-10
  * add Participant wai_assessments association
 
