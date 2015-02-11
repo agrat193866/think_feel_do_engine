@@ -1,3 +1,8 @@
+## 2.6.3 - 2015-02-11
+ * dependent destroy for participant statuses
+ * updates keep alive controller
+ * refactor sql to arel
+
 ## 2.6.2 - 2015-02-11
  * minor updates to wai, specs
  * adds breadcrumbs to coach patient activities viz
