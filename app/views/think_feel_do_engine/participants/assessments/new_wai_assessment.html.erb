@@ -6,8 +6,6 @@
 
 <p>Please take your time to consider each question carefully.</p>
 
-<p>Your responses to these questions are keep confidential, and your therapist/coach will never see your responses.</p>
-
 <%= form_for [:participants, @assessment], as: :assessment, url: participants_assessments_path do |f| %>
   <ol>
     <% [{ text: "As a result of these sessions I am clearer as to how I might be able to change.", reversed: false },
