@@ -1,5 +1,6 @@
 module ThinkFeelDoEngine
   module Coach
+    # Displays navigational information in the form of breadcrumbs
     module ParticipantActivitiesVisualizationsHelper
       def breadcrumbs
         if controller_name == "participant_activities_visualizations"

@@ -23,10 +23,10 @@ class Task < ActiveRecord::Base
 
   scope :learning, lambda {
     joins(:bit_core_content_module)
-    .where(
-      Arel::Table.new(:bit_core_content_modules)[:type]
-      .eq("ContentModules::LessonModule")
-    )
+      .where(
+        Arel::Table.new(:bit_core_content_modules)[:type]
+        .eq("ContentModules::LessonModule")
+      )
   }
 
   private
