@@ -219,3 +219,9 @@ task_learning28:
   group: group1
   bit_core_content_module: slideshow_content_module_6
   release_day: 28
+
+task_learning29:
+  creator: clinician1
+  group: group1
+  bit_core_content_module: slideshow_content_module_17
+  release_day: 1

@@ -229,6 +229,38 @@
       </div>
     </div>
   </div>
+  
+  <div class="panel panel-default cdb_panel" id="media-access-container">
+    <div class="panel-heading">
+      <h3 class="panel-title adjusted-panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#mediaAccessCollapse">
+          Audio Access
+        </a>
+      </h3>
+    </div>
+
+    <div id="mediaAccessCollapse" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="table-responsive div-table-viz">
+          <table class="table table-hover data-table" id="access_data">
+            <thead>
+              <tr>
+                <th class="not-displayed"></th>
+                <th>Title</th>
+                <th>Availability Day</th>
+                <th>Started At</th>
+                <th>Completed At</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "think_feel_do_engine/media_access_events/access_data", locals: { events: @patient.media_access_events } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <h3><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@patient) %></h3>
 
@@ -451,6 +483,29 @@
               {
                   aTargets: [6],
                   iDataSort: [2]
+              }
+          ],
+          oLanguage: {
+              sSearch: 'Filter: '
+          }
+      });
+  });
+
+  $(function() {
+      return $('#access_data').dataTable({
+          sPaginationType: 'bootstrap',
+          order: [[0, "desc"]],
+          oLanguage: {
+              sSearch: 'Filter: '
+          },
+          aoColumnDefs: [
+              {
+                  aTargets: [0],
+                  bVisible: false
+              },
+              {
+                  aTargets: [2],
+                  iDataSort: [0]
               }
           ],
           oLanguage: {

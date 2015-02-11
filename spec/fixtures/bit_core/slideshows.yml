@@ -69,3 +69,7 @@ feel_identify_intro:
 learn_thoughts_intro:
   title: Learn - Thoughts Introduction
   arm: arm1
+
+audio_slideshow:
+  title: Audio Slideshow
+  arm: arm1
