@@ -41,7 +41,8 @@ var validateMutliFormPage = function(event, shared_item_name, activity_id) {
       return true;
     }
   }
-}
+};
+
 
 var validatePublicNoEvent = function(event, shared_item_name) {
   if ($('.'+shared_item_name).length > 0 && $('.'+shared_item_name+':checked').length > 0) {

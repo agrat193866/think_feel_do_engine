@@ -1,4 +1,4 @@
-<%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form", onsubmit: "validatePublic(event,'activity_shared_item_true')"} do |f| %>
+<%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form"} do |f| %>
   <input class="not-displayed" name="activity[is_scheduled]" value="1">
 
   <% if past_activities.count > 0 %>
