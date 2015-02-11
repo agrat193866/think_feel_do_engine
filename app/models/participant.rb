@@ -36,7 +36,9 @@ class Participant < ActiveRecord::Base
   has_many :phq_assessments, dependent: :destroy
   has_many :wai_assessments, dependent: :destroy
   has_many :participant_tokens, dependent: :destroy
-  has_one :participant_status, class_name: "BitPlayer::ParticipantStatus"
+  has_one :participant_status,
+          class_name: "BitPlayer::ParticipantStatus",
+          dependent: :destroy
   has_one :coach_assignment, dependent: :destroy
   has_one :coach, class_name: "User", through: :coach_assignment
   has_many :participant_login_events, dependent: :destroy
