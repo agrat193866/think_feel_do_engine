@@ -26,6 +26,10 @@ module ThinkFeelDoEngine
         @test_summary[:current_week] == @test_summary[:range_start]
       end
 
+      def view_membership(participant, group)
+        Membership.find_by(participant: participant, group: group)
+      end
+
       private
 
       def set_string_result(tf_condition, na_condition)

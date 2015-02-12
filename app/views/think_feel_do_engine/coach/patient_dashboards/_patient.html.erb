@@ -1,7 +1,7 @@
 <% if can? :show, patient %>
   <tr id="patient-<%= patient.id %>"
-      class="<%= 'inactive' if patient.active_membership &&
-              patient.active_membership.end_date < Date.current %>
+      class="<%= 'inactive' if view_membership(patient, @group) &&
+              view_membership(patient, @group).end_date < Date.current %>
               <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
     <td>
       <%= link_to patient.study_id, coach_group_patient_dashboard_path(@group, patient) %>
@@ -13,9 +13,9 @@
 
     <td>
       <% if @active_patients %>
-       <%= (patient.active_membership.day_in_study / 7.0).ceil %>
+       <%= (view_membership(patient, @group).day_in_study / 7.0).ceil %>
       <% else %>
-        <%= patient.is_not_allowed_in_site ? "Withdrawn " +
+        <%= !view_membership(patient, @group).is_complete ? "Withdrawn " +
                 patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact) :
                     "Discontinued " + patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact)  %>
       <% end %>
@@ -38,7 +38,7 @@
           <span class="label label-phq-none label-warning">No Completed Assessments</span>
         <% end %>
         <%= render "think_feel_do_engine/coach/patient_dashboards/details",
-                   patient: patient if patient.active_membership %>
+                   patient: patient if view_membership(patient, @group) %>
       </td>
     <% end %>
 
@@ -51,11 +51,11 @@
     </td>
     <% if phq_features? && @active_patients %>
         <td>
-          <% if patient.active_membership && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
+          <% if view_membership(patient, @group) && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
              <%= "Stepped " + patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
-          <% elsif patient.active_membership %>
-              <% if can? :update, patient.active_membership %>
-                  <%= form_for(patient.active_membership, url: coach_group_membership_path(@group, patient.active_membership), :html => { :method => :put }) do |f| %>
+          <% elsif view_membership(patient, @group) %>
+              <% if can? :update, view_membership(patient, @group) %>
+                  <%= form_for(view_membership(patient, @group), url: coach_group_membership_path(@group, view_membership(patient, @group)), :html => { :method => :put }) do |f| %>
                       <%= f.hidden_field(:stepped_on, value: Date.today) %>
                       <%= f.submit "Step",
                                    data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
@@ -73,26 +73,26 @@
         <% end %>
         </td>
     <% end %>
-    <% if patient.active_membership && @active_patients %>
+    <% if view_membership(patient, @group) && @active_patients %>
       <td>
-        <%= form_for patient.active_membership do |f| %>
+        <%= form_for view_membership(patient, @group) do |f| %>
         <%= f.hidden_field :end_date %>
         <input type="text"
                class="datepicker"
-               value="<%= patient.active_membership.end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>"
+               value="<%= view_membership(patient, @group).end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>"
                readonly="readonly">
       <% end %>
       </td>
       <td>
         <%= button_to "Discontinue",
-                      discontinue_membership_path(patient.active_membership.id),
+                      discontinue_membership_path(view_membership(patient, @group).id),
                       data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
                       method: :get,
                       class: "btn btn-primary" %>
       </td>
       <td>
         <%= button_to "Terminate Access",
-                      withdraw_membership_path(patient.active_membership.id),
+                      withdraw_membership_path(view_membership(patient, @group).id),
                       data: { confirm: "Are you sure you would like to terminate access to this membership? This option should also be used before changing membership of the patient to a different group or to completely revoke access to this membership. You will not be able to undo this." },
                       method: :get,
                       class: "btn btn-danger" %>
