@@ -1,3 +1,6 @@
+## 2.6.5 - 2015-02-12
+ * Completed media access event feature and updated membership association
+
 ## 2.6.4 - 2015-02-11
  * adds a Membership validation on is_complete
  * implemented patient dashboard table reporting for media access events
