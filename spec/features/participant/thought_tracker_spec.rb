@@ -266,5 +266,5 @@ feature "thought tracker", type: :feature do
     find(".thoughtviz_text").click
 
     expect(page).to have_text "Thought Distortions"
-  end
+    end
 end
