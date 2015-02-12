@@ -1,3 +1,9 @@
+## 2.6.4 - 2015-02-11
+ * adds a Membership validation on is_complete
+ * implemented patient dashboard table reporting for media access events
+ * improves content provider form load time
+ * improves load time of task management page
+
 ## 2.6.3 - 2015-02-11
  * dependent destroy for participant statuses
  * updates keep alive controller
