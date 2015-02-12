@@ -54,5 +54,12 @@ module ThinkFeelDoEngine
       end
     end
     helper_method :phq_features?
+
+    def social_features?
+      if Rails.application.config.respond_to?(:include_social_features)
+        Rails.application.config.include_social_features
+      end
+    end
+    helper_method :social_features?
   end
 end
