@@ -20,7 +20,7 @@ feature "activity tracker", type: :feature do
       find("##{ element_id } select").find(:xpath, "option[#{(value + 1)}]").select_option
     end
 
-    it "displays most recent unaccounted activity" :js do
+    it "displays most recent unaccounted activity", :js do
 
       within ".container .left.list-group" do
         click_on "#1 Awareness"
@@ -191,7 +191,7 @@ feature "activity tracker", type: :feature do
 
   context "Traveling Participant is logged in" do
     let(:participant) { participants(:traveling_participant1) }
-    let(:activity) { activities(:p2_activity_1_hr_ago) }
+    let(:activity) { activities(:p2_activity_next_day) }
 
     before do
       t = Time.now - 268.hours
@@ -253,7 +253,7 @@ feature "activity tracker", type: :feature do
 
       click_on "Today"
 
-      expect(page).to have_text "Daily Averages for Jan 15, 2015"
+      expect(page).to have_text "Daily Averages for " + today.strftime("%b %d, %Y")
     end
 
     it "displays a list of activities and activity details" do
@@ -327,12 +327,12 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the paginating to the next day's activities" do
-      expect(page).to_not have_text "7 pm - 8 pm: Working"
+      expect(page).to_not have_text "Commuting"
       expect(page).to_not have_text "Predicted High Importance: 8 Kind of fun: 4"
 
       click_on "Next Day"
 
-      expect(page).to have_text "7 pm - 8 pm: Working"
+      expect(page).to have_text "Commuting"
       expect(page).to have_text "Predicted High Importance: 8 Kind of fun: 4"
       expect(page).to have_text "Actual  Not answered: Not answered:"
       expect(page).to have_text "Difference  N/A N/A"
