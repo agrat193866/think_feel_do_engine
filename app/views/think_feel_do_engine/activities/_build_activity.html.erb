@@ -84,7 +84,9 @@
     ) %>
   </div>
 
-  <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+  <% if current_participant.active_group.arm.social? %>
+    <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+  <% end %>
 
   <div class="btn-group pull-right">
     <%= link_to 'Skip', navigator_next_content_path, class: 'btn btn-default btn-warning' %>

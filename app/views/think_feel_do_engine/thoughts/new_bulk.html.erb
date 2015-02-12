@@ -26,7 +26,9 @@
 
     <%= render 'think_feel_do_engine/thoughts/thought_effects', f: f, thought: thought %>
 
-    <span class="new-shareable-form-after-form-groups" data-item-type="thought" data-action-type="created"></span>
+    <% if current_participant.active_group.arm.social? %>
+      <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+    <% end %>
 
     <%= content_tag(:button, t(:next), type: "submit", class: "btn btn-primary pull-right") %>
   <% end %>

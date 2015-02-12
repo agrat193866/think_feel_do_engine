@@ -267,4 +267,31 @@ feature "thought tracker", type: :feature do
 
     expect(page).to have_text "Thought Distortions"
   end
+
+  context "Participant who belongs to a social arm is logged in" do
+    let(:participant) { participants(:participant_for_arm1_group1) }
+
+    before do
+      sign_in_participant participant
+    end
+
+    it "shows social participants option to share" do
+      visit "/navigator/modules/#{bit_core_tools(:thought_tracker).id}"
+      expect(page).to have_text "Share the content of this activity?"
+    end
+  end
+
+  context "Participant who belongs to non-social arm is logged in" do
+    let(:participant) { participants(:active_participant) }
+
+    before do
+      sign_in_participant participant
+    end
+
+    it "does not show non-social participants option to share" do
+      visit "/navigator/modules/#{bit_core_tools(:thought_tracker2).id}"
+      expect(page).not_to have_text "Share the content of this activity?"
+    end
+  end
+
 end

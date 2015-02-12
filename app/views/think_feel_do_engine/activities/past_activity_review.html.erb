@@ -73,7 +73,9 @@
         </div>
       </span>
 
-      <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="monitored"></span>
+      <% if current_participant.active_group.arm.social? %>
+        <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+      <% end %>
 
       <div id="activity-submit-<%= activity.id %>" class="not-displayed">
           <%= content_tag(:button, t(:next),

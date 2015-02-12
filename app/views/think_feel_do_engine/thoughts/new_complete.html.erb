@@ -17,7 +17,9 @@
     <%= f.text_field :act_as_if, placeholder: "example: Try my hardest anyway and see if I can improve", class: "form-control suggested" %>
   </div>
 
-  <span class="new-shareable-form-after-form-groups" data-item-type="thought" data-action-type="created"></span>
+  <% if current_participant.active_group.arm.social? %>
+    <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+  <% end %>
 
   <div class="btn-group pull-right">
     <%= link_to 'Cancel', "/navigator/contexts/THINK", class: 'btn btn-default' %>
