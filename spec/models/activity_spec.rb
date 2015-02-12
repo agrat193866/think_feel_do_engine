@@ -18,7 +18,7 @@ describe Activity do
         participant: participant,
         activity_type: sleeping,
         start_time: Time.local(2016, 1, 16, 22))
-      activities = Activity.for_day(Time.zone.local(2016, 1, 15))
+      activities = Activity.for_day(Time.local(2016, 1, 15))
 
       expect(activities.count).to eq 1
     end

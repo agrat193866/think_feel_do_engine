@@ -13,20 +13,20 @@ membership2:
 membership_traveling:
   participant: traveling_participant1
   group: group1
-  start_date: <%= Time.local(2015, 1, 14) %>
-  end_date: <%= Time.local(2015, 1, 18) %>
+  start_date: <%= Date.today.advance(days: -14) %>
+  end_date: <%= Date.today.advance(days: -10) %>
 
 membership_traveling2:
   participant: traveling_participant2
   group: group1
-  start_date: <%= Time.local(2015, 1, 14) %>
-  end_date: <%= Time.local(2015, 1, 18) %>
+  start_date: <%= Date.today.advance(days: -14) %>
+  end_date: <%= Date.today.advance(days: -10) %>
 
 membership_traveling3:
   participant: traveling_participant3
   group: group1
-  start_date: <%= Time.local(2015, 1, 14) %>
-  end_date: <%= Time.local(2015, 1, 18) %>
+  start_date: <%= Date.today.advance(days: -14) %>
+  end_date: <%= Date.today.advance(days: -10) %>
 
 inactive_membership:
   participant: inactive_participant
