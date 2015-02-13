@@ -6,6 +6,7 @@ AllCops:
     - spec/dummy/**/*
     - Rakefile
     - lib/tasks/**/*
+    - vendor/**/*
   RunRailsCops: true
 
 AbcSize:
