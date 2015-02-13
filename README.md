@@ -36,4 +36,4 @@ Set up the database
 
 run the specs
 
-    rake spec
+    ./bin/rake
