@@ -7,7 +7,7 @@
   </div>
 <% end %>
 
-<% if !current_participant.nil? && coach.nil? %>
+<% if participant_signed_in? && !current_participant.coach_assignment %>
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif !current_participant.nil? && current_participant.active_membership.present? && current_participant.in_study? %>
   <div class="btn-toolbar">
