@@ -15,7 +15,7 @@
       <div class="modal-body">
         <% suggestion = patient.stepping_suggestion %>
         <p>
-          <%= "Week #{suggestion.week} - Started on #{patient.active_membership.start_date_american}" %>
+          <%= "Week #{suggestion.week} - Started on #{view_membership(patient, @group).start_date_american}" %>
         </p>
         <p>
           Suggestion:

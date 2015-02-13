@@ -11,17 +11,17 @@
     </div>
 
     <div class="panel-body">
-      <% if @patient.active_membership %>
+      <% if view_membership(@patient, @group) %>
         <p>
           <strong><i class="fa fa-calendar"></i> Started on:</strong>
-          <%= @patient.active_membership.start_date.to_s :brief_date %>
+          <%= view_membership(@patient, @group).start_date.to_s :brief_date %>
         </p>
       <% end %>
 
       <p>
         <strong>Status:</strong>
-        <% if @patient.active_membership && @patient.active_membership.is_complete == false %>
-          <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (@patient.active_membership.day_in_study / 7.0).ceil %>
+        <% if view_membership(@patient, @group).end_date > Date.current %>
+          <span class="label label-success full-size">Active</span> &middot; Currently in week <%= (view_membership(@patient, @group).day_in_study / 7.0).ceil %>
         <% else %>
           <span class="label label-warning full-size">Inactive</span> &middot; Study has been Completed
         <% end %>
@@ -434,7 +434,7 @@
               </tr>
             </thead>
             <tbody>
-              <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: @patient.active_membership.try(:task_statuses) %>
+              <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: view_membership(@patient, @group).try(:task_statuses) %>
             </tbody>
           </table>
         </div>
