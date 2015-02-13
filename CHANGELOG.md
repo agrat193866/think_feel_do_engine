@@ -1,3 +1,11 @@
+## 2.7.0 - 2015-02-13
+ * Implement view membership helper in patient dahsboard
+ * update Travis configuration
+ * major revisions to specs, particularly time-based ones
+ * Make social sharing form conditional
+ * Remove double popup from activity builder form
+ * hide stepped information on dashboard where social features present
+
 ## 2.6.5 - 2015-02-12
  * Completed media access event feature and updated membership association
 
