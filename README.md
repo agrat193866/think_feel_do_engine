@@ -37,5 +37,3 @@ Set up the database
 run the specs
 
     rake spec
-
-To Do: added authorization in arms_controller.rb
