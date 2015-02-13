@@ -35,6 +35,10 @@ gem "git_tagger",
 
 gem "twilio-ruby", "~> 3.12"
 
+group :development, :test do
+  gem "rubocop", "~> 0.26"
+end
+
 group :test do
   gem "timecop", "~> 0.7"
 end
