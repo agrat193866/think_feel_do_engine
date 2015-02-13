@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.1.5
 before_script:
-  - echo 'Central Time (US & Canada)' | sudo tee /etc/timezone
-  - sudo dpkg-reconfigure --frontend noninteractive tzdata
   - bundle exec rake app:db:create app:db:migrate
+notifications:
+	slack:
+		secure: Ete/aNK2ejpoh/oRAjdm9XBe/8Qvsrkq8/xY/squKDcVClB5TImZRnsc0VGLYfY6H2YXPixJcirfFXh8I6eXuMEte2HVhcz/eKujBD6GzAgJXwGmYONNn2Ph3gYsDBFEowxHRY1okvD6pujaR5IFsTopISXCLLfudBUEkWYzNkI=
+		secure: F7EFxB2SVITiZaFFPwk4alJ6Z4KumuuAqFbEoKxh7MseqNEZydGLBHnWIW1XUWvh1ahaQU4P+nS8zYV7lxiXVQsgNV6vCRKqwnou1p0Wqc8jZabpWvyT0oe43q8ofVqAEwL3h8beRuIzJyswfau9eVuoyYk5T3+OowkLrPSnXKY=
+				

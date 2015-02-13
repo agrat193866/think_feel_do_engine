@@ -19,7 +19,7 @@ planned_activity1:
   activity_type: loving
   actual_pleasure_intensity: 6
   is_scheduled: true
-  start_time: <%= Time.now - 3600 %>
+  start_time: <%= Time.now - 1.hours %>
   end_time: <%= Time.now %>
 
 planned_activity_today_1:
@@ -68,8 +68,8 @@ p2_planned_activity_3_hrs_ago:
   predicted_pleasure_intensity: 10
   actual_accomplishment_intensity: 9
   actual_pleasure_intensity: 9
-  start_time: <%= Time.local(2015, 1, 15, 8) %>
-  end_time: <%= Time.local(2015, 1, 15, 9) %>
+  start_time: <%= Time.now - 291.hours %>
+  end_time: <%= Time.now - 290.hours %>
 
 p2_planned_activity_2_hrs_ago:
   participant: traveling_participant1
@@ -80,37 +80,37 @@ p2_planned_activity_2_hrs_ago:
   predicted_pleasure_intensity: 1
   actual_accomplishment_intensity: 2
   actual_pleasure_intensity: 2
-  start_time: <%= Time.local(2015, 1, 15, 9) %>
-  end_time: <%= Time.local(2015, 1, 15, 10) %>
+  start_time: <%= Time.now - 290.hours %>
+  end_time: <%= Time.now - 289.hours %>
 
 p2_activity_1_hr_ago:
   participant: traveling_participant1
   activity_type: working
   predicted_accomplishment_intensity: 6
   predicted_pleasure_intensity: 5
-  start_time: <%= Time.local(2015, 1, 15, 10) %>
-  end_time: <%= Time.local(2015, 1, 15, 11) %>
+  start_time: <%= Time.now - 289.hours %>
+  end_time: <%= Time.now - 288.hours %>
 
 p2_activity_previous_day:
   participant: traveling_participant1
-  activity_type: working
+  activity_type: jogging
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 2
-  actual_accomplishment_intensity: 8
-  actual_pleasure_intensity: 9
+  actual_accomplishment_intensity: 6
+  actual_pleasure_intensity: 7
   is_complete: true
   is_scheduled: true
-  start_time: <%= Time.local(2015, 1, 14, 15) %>
-  end_time: <%= Time.local(2015, 1, 14, 14) %>
+  start_time: <%= Time.now - 315.hours %>
+  end_time: <%= Time.now - 314.hours %>
 
 p2_activity_next_day:
   participant: traveling_participant1
-  activity_type: working
+  activity_type: commuting
   is_scheduled: true
   predicted_accomplishment_intensity: 8
   predicted_pleasure_intensity: 4
-  start_time: <%= Time.local(2015, 1, 16, 13) %>
-  end_time: <%= Time.local(2015, 1, 16, 14) %>
+  start_time: <%= Time.now - 265.hours %>
+  end_time: <%= Time.now - 264.hours %>
 
 p3_planned_activity_at_9:
   participant: traveling_participant2
@@ -119,8 +119,8 @@ p3_planned_activity_at_9:
   is_scheduled: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
-  start_time: <%= Time.local(2015, 1, 15, 9) %>
-  end_time: <%= Time.local(2015, 1, 15, 10) %>
+  start_time: <%= Time.now - 286.hours %>
+  end_time: <%= Time.now - 285.hours %>
 
 p3_planned_activity_at_10:
   participant: traveling_participant2
@@ -129,11 +129,11 @@ p3_planned_activity_at_10:
   is_scheduled: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
-  start_time: <%= Time.local(2015, 1, 15, 10) %>
-  end_time: <%= Time.local(2015, 1, 15, 11) %>
+  start_time: <%= Time.now - 285.hours %>
+  end_time: <%= Time.now - 284.hours %>
 
 p4_planned_activity_at_23:
   participant: traveling_participant3
   activity_type: sleeping
-  start_time: <%= Time.local(2015, 1, 15, 22) %>
-  end_time: <%= Time.local(2015, 1, 15, 23) %>
+  start_time: <%= Time.now - 277.hours %>
+  end_time: <%= Time.now - 266.hours %>
