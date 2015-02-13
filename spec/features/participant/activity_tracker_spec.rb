@@ -20,7 +20,7 @@ feature "activity tracker", type: :feature do
       find("##{ element_id } select").find(:xpath, "option[#{(value + 1)}]").select_option
     end
 
-    it "displays most recent unaccounted activity", :js do
+    it "implements #1 Awareness", :js do
 
       within ".container .left.list-group" do
         click_on "#1 Awareness"
