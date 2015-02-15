@@ -293,18 +293,20 @@ feature "activity tracker", type: :feature do
 
       within "form#edit_activity_#{activity.id}" do
         click_on "Edit"
-        select "1", from: "Actual accomplishment intensity"
-        select "8", from: "Actual pleasure intensity"
-        click_on "Update"
+        execute_script("$('.pleasure-container input:first').trigger('click')")
+        execute_script("$('.accomplishment-container input:first').trigger('click')")
+        within ".panel-footer" do
+          click_on "Update"
+        end
       end
 
-      expect(page).to have_text "Accomplishment: 1 · Pleasure: 8"
+      expect(page).to have_text "Accomplishment: 0 · Pleasure: 0"
 
       page.all("a", text: "Working")[1].click
 
       expect(page).to have_text "Predicted  Average Importance: 6 Kind of fun: 5"
-      expect(page).to have_text "Actual  Low Importance: 1 Really fun: 8"
-      expect(page).to have_text "Difference  5  3"
+      expect(page).to have_text "Actual Low Importance: 0 Not Fun: 0"
+      expect(page).to have_text "Difference  6  5"
     end
 
     it "allows for the paginating to the previous day's activities" do
