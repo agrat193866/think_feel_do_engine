@@ -217,10 +217,6 @@ feature "activity tracker", type: :feature do
     let(:participant) { participants(:traveling_participant1) }
     let(:activity) { activities(:p2_activity_1_hr_ago) }
 
-    def choose_rating(element_id, value)
-      find("##{ element_id } select").find(:xpath, "option[#{(value + 1)}]").select_option
-    end
-
     before do
       t = Time.now - 288.hours
       Timecop.travel(t)
