@@ -121,7 +121,7 @@ feature "task notification", type: :feature do
       new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood").count
 
       expect(new_task_count).to eq 0
-      Timecop.return
+      Timecop.travel(Time.current + (1.day))
       sign_in_participant participants(:participant2)
       visit "/navigator/contexts/FEEL"
       new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood & Emotions").count
