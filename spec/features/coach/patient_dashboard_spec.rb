@@ -419,8 +419,8 @@ feature "patient dashboard", type: :feature do
       end
 
       it "displays participant's 'Inactive' status on their 'show' page" do
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id }"
-
         expect(page).to have_text("Participant TFD-inactive")
         expect(page).to have_text("Inactive")
         expect(page).to have_text("Study has been Completed")
