@@ -30,6 +30,12 @@ module ThinkFeelDoEngine
         Membership.find_by(participant: participant, group: group)
       end
 
+      def study_length_in_weeks
+        if Rails.application.config.respond_to?(:study_length_in_weeks)
+          Rails.application.config.study_length_in_weeks
+        end
+      end
+
       private
 
       def set_string_result(tf_condition, na_condition)
