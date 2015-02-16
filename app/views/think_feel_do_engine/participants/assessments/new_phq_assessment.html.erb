@@ -71,4 +71,19 @@
   <input name="assessment[token]" type="hidden" value="<%= @token %>" />
   <%= f.submit "submit", class: "btn btn-default" %>
 <% end %>
-<script type="text/javascript">$("body").addClass("phq_body");</script>
+<script type="text/javascript">
+  $("body").addClass("phq_body");
+
+  // TODO Wrap in submission event for phq form.
+  var missing_answer = false;
+  var missing_answer_list = "";
+  $(".radio-question-group").each(function(index) {
+    if (!$("input:radio[name='']:checked").val()) {
+      missing_answer = true;
+      var current_question = parseInt(index) + 1;
+      console.log("q" + current_question);
+      // TODO Add current question string
+    }
+  });
+  // TODO Write conditional to display confirmation box on return if unanswered questions...
+</script>
