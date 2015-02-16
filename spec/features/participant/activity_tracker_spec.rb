@@ -21,7 +21,7 @@ feature "activity tracker", type: :feature do
     end
 
     it "implements #1 Awareness", :js do
-
+      # Implements Awareness with last recorded awake period incomplete
       within ".container .left.list-group" do
         click_on "#1 Awareness"
       end
@@ -55,7 +55,7 @@ feature "activity tracker", type: :feature do
 
       click_on "Next"
       expect(page).to have_content "Your Activities"
-
+      # Implements Awareness with new awake period
       click_on "#1 Awareness"
       expect(page).to have_content "This is just the beginning..."
 
@@ -123,7 +123,7 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
 
       fill_in "activity_activity_type_new_title", with: "Parkour"
-      tomorrow = Date.today + 1
+      tomorrow = Time.now + 1.days
       find(".fa.fa-calendar").click
       click_on tomorrow.strftime("%e")
       click_on "Next"
@@ -201,10 +201,12 @@ feature "activity tracker", type: :feature do
     end
 
     after do
-      Timecop.return
+      t = Time.now + 268.hours
+      Timecop.travel(t)
     end
 
     it "can't edit an activity's actual accomplishment or pleasurable intensity if it is in the future" do
+      expect(page).to have_text "Commuting"
       within "#collapse-activity-#{activity.id}" do
         expect(page).to_not have_text "Edit"
       end
@@ -223,11 +225,12 @@ feature "activity tracker", type: :feature do
     end
 
     after do
-      Timecop.return
+      t = Time.now + 288.hours
+      Timecop.travel(t)
     end
 
     it "displays daily activity averages" do
-      today = Date.today
+      today = Time.now
       expect(page).to have_text "Daily Averages for " + today.strftime("%b %d, %Y")
       expect(page).to have_text "Mood: No Recordings"
       expect(page).to have_text "Positive Emotions: No Recordings"
@@ -244,8 +247,8 @@ feature "activity tracker", type: :feature do
     end
 
     it "navigates to today when 'Today' button is clicked" do
-      today = Date.today
-      yesterday = Date.today - 1
+      today = Time.now
+      yesterday = today - 1.days
       visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
       click_on "Previous Day"
       expect(page).to have_text "Daily Averages for " + yesterday.strftime("%b %d, %Y")
@@ -282,10 +285,6 @@ feature "activity tracker", type: :feature do
     end
 
     it "allows for the updating of a past activity", :js do
-      expect(page).to_not have_text "Predicted Average Importance: 6 Kind of fun: 5"
-      expect(page).to_not have_text "Actual  Not answered: Not answered:"
-      expect(page).to_not have_text "Difference N/A N/A"
-
       page.all("a", text: "Working")[1].click
 
       expect(page).to have_text "Predicted Average Importance: 6 Kind of fun: 5"
@@ -293,28 +292,21 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Difference N/A N/A"
 
       within "form#edit_activity_#{activity.id}" do
-        page.all(".btn.btn-primary.not-displayed", visible: "false")
-        page.all(".btn.btn-default.show-table.not-displayed", visible: "false")
-
         click_on "Edit"
-
-        page.all(".btn.btn-primary.not-displayed", visible: "true")
-        page.all(".btn.btn-default.show-table.not-displayed", visible: "true")
-
-        select "1", from: "Actual accomplishment intensity"
-        select "8", from: "Actual pleasure intensity"
-        click_on "Update"
+        execute_script("$('.pleasure-container input:first').trigger('click')")
+        execute_script("$('.accomplishment-container input:first').trigger('click')")
+        within ".panel-footer" do
+          click_on "Update"
+        end
       end
 
-      expect(page).to_not have_button "Update"
-      expect(page).to_not have_button "Cancel"
-      expect(page).to have_text "Accomplishment: 1 · Pleasure: 8"
+      expect(page).to have_text "Accomplishment: 0 · Pleasure: 0"
 
       page.all("a", text: "Working")[1].click
 
       expect(page).to have_text "Predicted  Average Importance: 6 Kind of fun: 5"
-      expect(page).to have_text "Actual  Low Importance: 1 Really fun: 8"
-      expect(page).to have_text "Difference  5  3"
+      expect(page).to have_text "Actual Low Importance: 0 Not Fun: 0"
+      expect(page).to have_text "Difference  6  5"
     end
 
     it "allows for the paginating to the previous day's activities" do
@@ -350,7 +342,8 @@ feature "activity tracker", type: :feature do
     end
 
     after do
-      Timecop.return
+      t = Time.now + 283.hours
+      Timecop.travel(t)
     end
 
     it "displays daily summary information if no accomplished activities are compeleted with 'actual' values" do
@@ -413,7 +406,8 @@ feature "activity tracker", type: :feature do
     end
 
     after do
-      Timecop.return
+      t = Time.now + 240.hours
+      Timecop.travel(t)
     end
 
     it "should see only activities in their timezone" do

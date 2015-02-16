@@ -226,7 +226,6 @@ feature "thought tracker", type: :feature do
 
   it "shows a vizualization of thought distortions and their associated harmful thoughts", :js do
     page.find(".list-group-item-unread", text: "Add a New Thought").click
-
     fill_in "thought_content", with: "something something"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in "Challenging Thought", with: "Oh my"
@@ -266,5 +265,5 @@ feature "thought tracker", type: :feature do
     find(".thoughtviz_text").click
 
     expect(page).to have_text "Thought Distortions"
-    end
+  end
 end

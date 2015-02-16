@@ -33,6 +33,9 @@ Dir["#{ File.dirname(__FILE__) }/support/**/*.rb"].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# Defines fixed timepoint called in the before :suite and after :suite below
+FIXED_TIMEPOINT = Time.local(2015, 1, 21, 10, 5, 0)
+
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.fixture_path = "#{ File.dirname(__FILE__) }/fixtures"
@@ -46,6 +49,14 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
+  config.before :suite do
+    Timecop.travel FIXED_TIMEPOINT
+  end
+
+  config.after :suite do
+    Timecop.return
+  end
+
   config.before(:each) do
     DatabaseCleaner.strategy = :truncation
   end
@@ -56,20 +67,13 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
-    Timecop.return
+    # Timecop.return
   end
 
   config.after(:each) do
     DatabaseCleaner.clean
   end
 
-  config.before(:all) do
-    DeferredGarbageCollection.start
-  end
-
-  config.after(:all) do
-    DeferredGarbageCollection.reconsider
-  end
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
