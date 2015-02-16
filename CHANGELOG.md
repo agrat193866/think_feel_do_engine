@@ -1,3 +1,8 @@
+## 2.7.1 - 2015-02-16
+ * prevent concurrent User/Participant login error
+ * spec/Timecop updates
+ * minor refactoring
+
 ## 2.7.0 - 2015-02-13
  * Implement view membership helper in patient dahsboard
  * update Travis configuration
