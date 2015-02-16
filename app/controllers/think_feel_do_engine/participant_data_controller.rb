@@ -20,6 +20,9 @@ module ThinkFeelDoEngine
       else
         respond_with_error
       end
+
+    rescue RuntimeError => e
+      respond_with_error e
     end
 
     def update
@@ -36,6 +39,9 @@ module ThinkFeelDoEngine
       else
         respond_with_error
       end
+
+    rescue RuntimeError => e
+      respond_with_error e
     end
 
     private
@@ -45,6 +51,10 @@ module ThinkFeelDoEngine
     end
 
     def singular_association
+      unless provider.data_class_name
+        fail "Sorry, unable to process your request. Please try again."
+      end
+
       @singular_association ||= provider.data_class_name.underscore
     end
 
@@ -58,8 +68,8 @@ module ThinkFeelDoEngine
                       .permit(provider.data_attributes)
     end
 
-    def respond_with_error
-      flash.now[:alert] = @data.errors.full_messages.join(", ")
+    def respond_with_error(message = nil)
+      flash.now[:alert] = message || @data.errors.full_messages.join(", ")
 
       respond_to do |format|
         format.html do

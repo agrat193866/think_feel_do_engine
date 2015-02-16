@@ -51,6 +51,16 @@ module ThinkFeelDoEngine
             expect(response).to render_template("think_feel_do_engine/navigator/show_content")
           end
         end
+
+        context "when there is no associated data class found" do
+          before { allow(provider).to receive(:data_class_name) { nil } }
+
+          it "sets an error message" do
+            post :create, my_data_class: { attr1: 1, attr2: 2 }, use_route: :think_feel_do_engine
+
+            expect(flash[:alert]).to be_present
+          end
+        end
       end
     end
 
