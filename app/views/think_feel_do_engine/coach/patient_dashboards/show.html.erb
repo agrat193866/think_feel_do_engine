@@ -16,6 +16,10 @@
           <strong><i class="fa fa-calendar"></i> Started on:</strong>
           <%= view_membership(@patient, @group).start_date.to_s :brief_date %>
         </p>
+        <p>
+          <strong><i class="fa fa-calendar"></i> <%= study_length_in_weeks %> weeks from the start date is:</strong>
+          <%= (view_membership(@patient, @group).start_date + study_length_in_weeks.weeks).to_s :brief_date %>
+        </p>
       <% end %>
 
       <p>

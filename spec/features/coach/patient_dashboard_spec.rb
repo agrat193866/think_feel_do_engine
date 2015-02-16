@@ -107,6 +107,7 @@ feature "patient dashboard", type: :feature do
       end
 
       it "should only be able to view patient data they are assigned to" do
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_for_arm1_group1.id}"
 
         expect(page).to have_text("Participant participant_for_arm1_group1")
@@ -150,6 +151,7 @@ feature "patient dashboard", type: :feature do
     context "Coach visits discontinued patient" do
       before do
         sign_in_user users(:clinician1)
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_study_complete.id}"
       end
 
@@ -162,6 +164,7 @@ feature "patient dashboard", type: :feature do
     context "Coach visits active patient" do
       before do
         sign_in_user users(:clinician1)
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
       end
 
@@ -374,6 +377,10 @@ feature "patient dashboard", type: :feature do
           cells: ["Add a New Thought", Date.today.to_formatted_s(:short), "Incomplete"]
         )
       end
+
+      it "should see end date if study weeks is configured" do
+        expect(page).to have_text("8 weeks from the start date is:")
+      end
     end
 
     context "Coach visits inactive patient" do
@@ -412,8 +419,8 @@ feature "patient dashboard", type: :feature do
       end
 
       it "displays participant's 'Inactive' status on their 'show' page" do
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id }"
-
         expect(page).to have_text("Participant TFD-inactive")
         expect(page).to have_text("Inactive")
         expect(page).to have_text("Study has been Completed")
@@ -473,8 +480,8 @@ feature "patient dashboard", type: :feature do
     it "allows a coach to see stepped divisions when not social" do
       sign_in_user clinician
       expect(Rails.application.config).to receive(:include_social_features)
-                                            .at_least(:twice)
-                                            .and_return(false)
+        .at_least(:twice)
+        .and_return(false)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to have_text "Stepped Patients"
@@ -484,8 +491,8 @@ feature "patient dashboard", type: :feature do
     it "allows a coach to see stepped divisions when not social" do
       sign_in_user clinician
       expect(Rails.application.config).to receive(:include_social_features)
-                                          .at_least(:twice)
-                                          .and_return(true)
+        .at_least(:twice)
+        .and_return(true)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text "Stepped Patients"
