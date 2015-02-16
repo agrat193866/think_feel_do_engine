@@ -34,7 +34,7 @@ Dir["#{ File.dirname(__FILE__) }/support/**/*.rb"].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 # Defines fixed timepoint called in the before :suite and after :suite below
-FIXED_TIMEPOINT = Time.local(2015, 1, 21, 10, 5, 0)
+FIXED_TIMEPOINT = Time.local(Date.today.year, 1, 21, 10, 5, 0)
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
