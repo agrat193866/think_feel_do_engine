@@ -90,7 +90,7 @@ describe Participant do
   end
 
   # To Do: determine if .unfinished_awake_periods is a bug
-  it ".unfinished_awake_periods scopes awake_periods to those that are associated with an activity and both have the same start_time where start_time is nil for both" # do
+  #it ".unfinished_awake_periods scopes awake_periods to those that are associated with an activity and both have the same start_time where start_time is nil for both" # do
   #   count = participant1.unfinished_awake_periods.count
   #   activity = participant1.activities.build(
   #     activity_type: activity_types(:going_to_school)
@@ -102,4 +102,8 @@ describe Participant do
 
   #   expect(participant1.unfinished_awake_periods.count).to eq count + 1
   # end
+  
+  it ".active_group_is_social? returns true if participant is in a social group" do
+    expect(participant1.active_group_is_social?).to be true
+  end
 end
