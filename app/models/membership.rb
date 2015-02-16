@@ -23,9 +23,7 @@ class Membership < ActiveRecord::Base
   validates :group, presence: true
   validates :participant, presence: true
   validates :group_id, uniqueness: { scope: :participant_id }
-  validates :is_complete,
-            inclusion: { in: [false] },
-            if: proc { |membership| membership.end_date > Date.today }
+  validate :not_complete_in_the_future
   validate :group_id_unchanged
   validate :single_active_membership
 
@@ -143,5 +141,11 @@ class Membership < ActiveRecord::Base
     if changed.include?("group_id") && !changes["group_id"][0].nil?
       errors.add :group_id, "cannot be changed"
     end
+  end
+
+  def not_complete_in_the_future
+    return unless end_date > Date.today && is_complete == true
+
+    errors.add :is_complete, "cannot be set to true for end dates in the future"
   end
 end
