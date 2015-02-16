@@ -82,6 +82,10 @@ class Participant < ActiveRecord::Base
     active_membership.nil? && !memberships.where(is_complete: true).exists?
   end
 
+  def active_group_is_social?
+    active_group && active_group.arm.social?
+  end
+
   def password_is__not_blank?
     !password.blank?
   end

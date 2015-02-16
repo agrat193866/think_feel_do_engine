@@ -4,7 +4,7 @@ describe Participant do
   fixtures(
     :users, :user_roles, :participants, :"bit_core/slideshows",
     :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :groups, :memberships, :tasks, :task_status
+    :"bit_core/content_providers", :arms, :groups, :memberships, :tasks, :task_status
   )
 
   let(:participant1) { participants(:participant1) }
@@ -77,5 +77,9 @@ describe Participant do
 
   it ".is_not_allowed_in_site returns true if participant has been withdrawn" do
     expect(inactive_participant2.is_not_allowed_in_site).to be_truthy
+  end
+  
+  it ".active_group_is_social? returns true if participant is in a social group" do
+    expect(participant1.active_group_is_social?).to be true
   end
 end
