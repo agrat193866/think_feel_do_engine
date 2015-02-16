@@ -1,3 +1,9 @@
+## 2.7.3 - 2015-02-16
+ * handle Provider lacking data class with alert
+ * rewrite validation as method due to staging fail
+ * patient show page updates
+ * specs added
+
 ## 2.7.2 - 2015-02-16
  * Updated thought views
 
