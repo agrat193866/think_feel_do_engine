@@ -1,3 +1,6 @@
+## 2.7.2 - 2015-02-16
+ * Updated thought views
+
 ## 2.7.1 - 2015-02-16
  * prevent concurrent User/Participant login error
  * spec/Timecop updates
