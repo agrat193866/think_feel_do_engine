@@ -480,8 +480,8 @@ feature "patient dashboard", type: :feature do
     it "allows a coach to see stepped divisions when not social" do
       sign_in_user clinician
       expect(Rails.application.config).to receive(:include_social_features)
-                                            .at_least(:twice)
-                                            .and_return(false)
+        .at_least(:twice)
+        .and_return(false)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to have_text "Stepped Patients"
@@ -491,8 +491,8 @@ feature "patient dashboard", type: :feature do
     it "allows a coach to see stepped divisions when not social" do
       sign_in_user clinician
       expect(Rails.application.config).to receive(:include_social_features)
-                                          .at_least(:twice)
-                                          .and_return(true)
+        .at_least(:twice)
+        .and_return(true)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text "Stepped Patients"
