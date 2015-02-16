@@ -107,6 +107,7 @@ feature "patient dashboard", type: :feature do
       end
 
       it "should only be able to view patient data they are assigned to" do
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_for_arm1_group1.id}"
 
         expect(page).to have_text("Participant participant_for_arm1_group1")
@@ -150,6 +151,7 @@ feature "patient dashboard", type: :feature do
     context "Coach visits discontinued patient" do
       before do
         sign_in_user users(:clinician1)
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant_study_complete.id}"
       end
 
@@ -162,6 +164,7 @@ feature "patient dashboard", type: :feature do
     context "Coach visits active patient" do
       before do
         sign_in_user users(:clinician1)
+        expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
       end
 
@@ -373,6 +376,10 @@ feature "patient dashboard", type: :feature do
           id: "task_statuses",
           cells: ["Add a New Thought", Date.today.to_formatted_s(:short), "Incomplete"]
         )
+      end
+
+      it "should see end date if study weeks is configured" do
+        expect(page).to have_text("8 weeks from the start date is:")
       end
     end
 
