@@ -28,3 +28,4 @@
 //= require think_feel_do_engine/validate_social_sharing
 //= require think_feel_do_engine/markdown_editor.js
 //= require think_feel_do_engine/media_access_events.js
+//= require think_feel_do_engine/assessments
