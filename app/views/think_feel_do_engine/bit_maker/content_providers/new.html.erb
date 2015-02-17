@@ -6,7 +6,7 @@
 
   <div class="btn-toolbar">
     <%= f.submit "Create", class: "btn btn-default" %>
-    <%= link_to 'Cancel', arm_bit_maker_content_providers_path(@arm), class: "btn btn-default" %>
+    <%= link_to "Cancel", (@content_provider.bit_core_content_module_id ? arm_bit_maker_content_module_path(@arm, @content_provider.bit_core_content_module_id) : arm_bit_maker_content_providers_path(@arm)), class: "btn btn-default" %>
   </div>
 
 <% end %>

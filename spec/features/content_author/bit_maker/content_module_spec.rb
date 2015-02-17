@@ -50,6 +50,7 @@ feature "Content Modules", type: :feature do
       click_on "New Provider"
 
       expect(page).to have_select("Bit core content module", selected: "DO: #{do_awareness.title}")
+      expect(page).to have_link "Cancel", href: "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{do_awareness.id}"
     end
 
     it "should scope modules by arm" do
