@@ -26,10 +26,6 @@ feature "Content Provider", type: :feature do
       visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
 
       expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
-
-      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
-
-      expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
     end
 
     it "should scope modules by arm when on new" do

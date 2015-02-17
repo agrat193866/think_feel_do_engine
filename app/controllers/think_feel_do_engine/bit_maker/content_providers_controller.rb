@@ -23,7 +23,11 @@ module ThinkFeelDoEngine
 
       def new
         authorize! :new, BitCore::ContentProvider
-        @content_provider = ContentProviderDecorator.new
+        @content_provider = ContentProviderDecorator
+                            .new(
+                              bit_core_content_module_id:
+                              params[:bit_core_content_module_id]
+                            )
       end
 
       def edit
