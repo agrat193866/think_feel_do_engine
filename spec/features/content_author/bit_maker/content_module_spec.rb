@@ -45,6 +45,13 @@ feature "Content Modules", type: :feature do
       expect(page).to_not have_content "#1 Awareness"
     end
 
+    it "should prepopulate the title of the Content Module when adding a provider to an exisiting module" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{do_awareness.id}"
+      click_on "New Provider"
+
+      expect(page).to have_select("Bit core content module", selected: "DO: #{do_awareness.title}")
+    end
+
     it "should scope modules by arm" do
       visit "/arms/#{arms(:arm2).id}/bit_maker/content_modules"
 
