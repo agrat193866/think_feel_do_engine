@@ -28,6 +28,12 @@ feature "Content Provider", type: :feature do
       expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
     end
 
+    it "cancel link should link back to all providers if creating a provider independently" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
+
+      expect(page).to have_link "Cancel", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers"
+    end
+
     it "should scope modules by arm when on new" do
       visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
 
