@@ -19,8 +19,8 @@ planned_activity1:
   activity_type: loving
   actual_pleasure_intensity: 6
   is_scheduled: true
-  start_time: <%= Time.now - 1.hours %>
-  end_time: <%= Time.now %>
+  start_time: <%= DateTime.current.advance(hours: -2) %>
+  end_time: <%= DateTime.current.advance(hours: -1) %>
 
 planned_activity_today_1:
   participant: participant4

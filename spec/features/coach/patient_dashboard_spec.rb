@@ -162,11 +162,8 @@ feature "patient dashboard", type: :feature do
     end
 
     context "Coach visits active patient" do
-      before(:each) do
-        Timecop.travel(DateTime.now.beginning_of_minute)
-      end
-
       before do
+        Timecop.travel(DateTime.now.beginning_of_minute)
         sign_in_user users(:clinician1)
         expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
@@ -301,7 +298,7 @@ feature "patient dashboard", type: :feature do
               "Not Rated",
               "6",
               "Not Rated",
-              "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
+              "Scheduled for #{ (Time.current - 2.hour).to_formatted_s(:short) }",
               short_timestamp
             ]
           )
@@ -337,7 +334,7 @@ feature "patient dashboard", type: :feature do
               "Not Rated",
               "Not Rated",
               "Not Rated",
-              "Scheduled for #{ (time_now - 1.hour).to_formatted_s(:short) }",
+              "Scheduled for #{ (time_now - 2.hour).to_formatted_s(:short) }",
               short_timestamp
             ]
           )
