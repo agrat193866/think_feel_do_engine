@@ -5,6 +5,12 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/poltergeist"
 
+require "simplecov"
+SimpleCov.minimum_coverage 89
+SimpleCov.start "rails"
+Dir[File.dirname(__FILE__) + "/../app/controllers/**/*.rb"].each { |f| require f }
+Dir[File.dirname(__FILE__) + "/../app/models/**/*.rb"].each { |f| require f }
+
 Capybara.javascript_driver = :poltergeist
 options = {
   js_errors: false,
@@ -17,13 +23,6 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 require "database_cleaner"
-# require "simplecov"
-# SimpleCov.start do
-#   add_group "Controllers", "app/controllers"
-#   add_group "Mailers", "app/mailers"
-#   add_group "Models", "app/models"
-#   add_filter "spec/"
-# end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
