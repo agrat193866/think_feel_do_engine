@@ -165,7 +165,7 @@ feature "thought tracker", type: :feature do
     expect(page).to have_text "I am useless"
     expect(page).to have_text "A challenging thought was..."
     expect(page).to have_text "Challenge this!"
-    fill_in "thought[act_as_if]", with: "I would act on being superman!"
+    find(:xpath, '//*[@id="thought_act_as_if"]').set("I would act on being superman!")
 
     # fill_in "What could you do to ACT AS IF you believe this?", with: "I would act on being superman!"
     click_on "Next"
