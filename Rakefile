@@ -21,8 +21,15 @@ RSpec::Core::RakeTask.new(:spec => "app:db:test:prepare")
 require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
+
+desc "Run Brakeman"
+task :brakeman do
+  dir = File.dirname(__FILE__)
+  puts `#{ File.join(dir, "bin", "brakeman") } #{ File.join(dir, ".") }`
+end
  
 task :default do
   Rake::Task["spec"].invoke
   Rake::Task["rubocop"].invoke
+  Rake::Task["brakeman"].invoke
 end
