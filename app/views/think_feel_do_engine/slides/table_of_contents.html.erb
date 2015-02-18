@@ -1,0 +1,17 @@
+<% if @slideshow %>
+  <h1>Slideshow <small><%= @slideshow.title %> - Table of Contents</small></h1>
+<% end %>
+
+<div class="panel-group" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading">
+      <h3 class="panel-title"><%= @slideshow.title %></h3>
+      <% @slideshow.slides.each do |slide| %>
+        <div class="panel panel-default">
+          <!-- Add link to slide -->
+          <%= slide.title %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

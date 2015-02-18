@@ -9,6 +9,8 @@ module ThinkFeelDoEngine
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
 
+      FIRST_SLIDE_POSITION = 1
+
       def index
         authorize! :index, @slideshow
       end
@@ -31,8 +33,45 @@ module ThinkFeelDoEngine
         end
       end
 
+      def create_table_of_contents
+        @slide = @slideshow.slides.build(
+          position: FIRST_SLIDE_POSITION,
+          title: "Table of Contents",
+          is_title_visible: true)
+        authorize! :create, @slide
+
+        if @slide.save
+          @slideshow.slides.each do |slide|
+            slide.update(position: slide.position + 1)
+          end
+          flash[:success] = "Successfully created table of contents for slideshow"
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slideshow)
+        else
+          flash[:alert] = @slide.errors.full_messages.join(", ")
+          render :new
+        end
+      end
+
+      def destroy_table_of_contents
+        if @slide.destroy
+          @slideshow.slides.each do |slide|
+            slide.update(position: slide.position - 1)
+          end
+
+          flash[:success] = "Slide deleted."
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
+        else
+          flash[:error] = "There were errors."
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
+        end
+      end
+
       def show
-        render "think_feel_do_engine/slides/show"
+        if @slideshow.has_table_of_contents? && FIRST_SLIDE_POSITION == @slide.position
+          render "think_feel_do_engine/slides/"
+        else
+          render "think_feel_do_engine/slides/show"
+        end
       end
 
       def edit

@@ -10,8 +10,6 @@
       <%= render 'think_feel_do_engine/slides/video', slide: slide %>
     <% when 'BitCore::AudioSlide' %>
       <%= render 'think_feel_do_engine/slides/audio', slide: slide %>
-    <% when 'TableOfContents' %>
-      <%= render 'think_feel_do_engine/slides/table_of_contents', slide: slide %>
   <% end %>
 
   <%= slide.render_body %>
