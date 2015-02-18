@@ -20,7 +20,6 @@ module ThinkFeelDoEngine
       def new
         authorize! :new, Message
 
-        @group = @group = Group.find(params[:group_id])
         @new_message = current_user.build_sent_message
 
         render(
