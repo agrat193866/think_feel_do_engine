@@ -292,18 +292,20 @@ feature "patient dashboard", type: :feature do
       end
 
       it "summarizes past activities" do
-        expect(page).to have_the_table(
-          id: "activities_past",
-          cells: [
-            "Loving",
-            "Planned",
-            "Not Rated",
-            "6",
-            "Not Rated",
-            "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
-            short_timestamp
-          ]
-        )
+        Timecop.travel(time_now) do
+          expect(page).to have_the_table(
+            id: "activities_past",
+            cells: [
+              "Loving",
+              "Planned",
+              "Not Rated",
+              "6",
+              "Not Rated",
+              "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
+              short_timestamp
+            ]
+          )
+        end
       end
 
       it "distinguishes between monitored and planned activities", :js do
