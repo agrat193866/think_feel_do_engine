@@ -10,6 +10,10 @@ feature "coach messages", type: :feature do
     let(:participant3) { participants(:participant3) }
     let(:delivered_message1) { delivered_messages(:participant_to_coach1) }
 
+    before(:each) do
+      Timecop.travel(DateTime.now.beginning_of_minute)
+    end
+
     before do
       sign_in_user users :clinician1
       visit "/coach/groups/#{group1.id}/messages"
@@ -88,26 +92,28 @@ feature "coach messages", type: :feature do
     end
 
     it "allows a coach to reply to a message" do
-      click_on "I like this app"
-      click_on "Reply"
-      fill_in("Message", with: "some body")
-      click_on("Send")
+      Timecop.travel(DateTime.now.beginning_of_minute) do
+        click_on "I like this app"
+        click_on "Reply"
+        fill_in("Message", with: "some body")
+        click_on("Send")
 
-      expect(page).to have_content("Message saved")
+        expect(page).to have_content("Message saved")
 
-      click_on "Sent"
+        click_on "Sent"
 
-      expect(page).to have_content("Reply: I like this app")
+        expect(page).to have_content("Reply: I like this app")
 
-      last_message = users(:clinician1).messages.last
+        last_message = users(:clinician1).messages.last
 
-      within "#inbox" do
-        expect(page).to have_content(last_message.created_at.to_s(:short))
+        within "#inbox" do
+          expect(page).to have_content(last_message.created_at.to_s(:short))
+        end
+        click_on "Reply: I like this app"
+
+        expect(page).to have_content("From You")
+        expect(page).to have_content("To TFD-1111")
       end
-      click_on "Reply: I like this app"
-
-      expect(page).to have_content("From You")
-      expect(page).to have_content("To TFD-1111")
     end
 
     it "allows a coach to compose and submit a new message with module links" do

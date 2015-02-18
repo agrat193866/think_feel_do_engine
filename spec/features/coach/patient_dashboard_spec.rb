@@ -162,6 +162,10 @@ feature "patient dashboard", type: :feature do
     end
 
     context "Coach visits active patient" do
+      before(:each) do
+        Timecop.travel(DateTime.now.beginning_of_minute)
+      end
+
       before do
         sign_in_user users(:clinician1)
         expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
@@ -182,19 +186,21 @@ feature "patient dashboard", type: :feature do
       end
 
       it "summarizes logins" do
-        sign_in_participant participant1
-        sign_in_user clinician
-        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
+        Timecop.travel(DateTime.now.beginning_of_minute) do
+          sign_in_participant participant1
+          sign_in_user clinician
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
-        expect(page).to have_the_table(
-          id: "logins",
-          cells: [short_timestamp]
-        )
-        expect(page).to have_xpath "//p[@id = 'login-count' and contains(., 'Total: 1')]"
+          expect(page).to have_the_table(
+            id: "logins",
+            cells: [short_timestamp]
+          )
+          expect(page).to have_xpath "//p[@id = 'login-count' and contains(., 'Total: 1')]"
+        end
       end
 
       it "summarizes learning when not completed learning", :js do
-        Timecop.travel(time_now) do
+        Timecop.travel(DateTime.now.beginning_of_minute) do
           visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
 
           within_table "learning_data" do
@@ -286,18 +292,20 @@ feature "patient dashboard", type: :feature do
       end
 
       it "summarizes past activities" do
-        expect(page).to have_the_table(
-          id: "activities_past",
-          cells: [
-            "Loving",
-            "Planned",
-            "Not Rated",
-            "6",
-            "Not Rated",
-            "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
-            short_timestamp
-          ]
-        )
+        Timecop.travel(DateTime.now.beginning_of_minute) do
+          expect(page).to have_the_table(
+            id: "activities_past",
+            cells: [
+              "Loving",
+              "Planned",
+              "Not Rated",
+              "6",
+              "Not Rated",
+              "Scheduled for #{ (Time.current - 1.hour).to_formatted_s(:short) }",
+              short_timestamp
+            ]
+          )
+        end
       end
 
       it "distinguishes between monitored and planned activities", :js do
