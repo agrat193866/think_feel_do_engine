@@ -1,0 +1,206 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "1faeab6ec45e44404bbe59fcc1dcfb82458b029261e4bbf7cc497d178710cda4",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/bit_maker/content_modules/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Arm\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.arm_path(Arm.find(params[:arm_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::BitMaker::ContentModulesController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/bit_maker/content_modules/index (ThinkFeelDoEngine::BitMaker::ContentModulesController#index)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "9785f96d81bdfc20e89893f83365505812f3b41f1e965de06ba4c66cd0eeaa66",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/bit_maker/content_providers/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Arm\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.arm_path(Arm.find(params[:arm_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::BitMaker::ContentProvidersController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/bit_maker/content_providers/index (ThinkFeelDoEngine::BitMaker::ContentProvidersController#index)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "390c7f7aa80b8b2d2e37239179b1fbb13bfa91a2407c8669b8118f3e267b71a6",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/bit_maker/slideshows/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Arm\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.arm_path(Arm.find(params[:arm_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::BitMaker::SlideshowsController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/bit_maker/slideshows/index (ThinkFeelDoEngine::BitMaker::SlideshowsController#index)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "26fead7672dd110470af566364f6c4e68495ea6afab20ee23612aa3d88adde48",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/bit_maker/tools/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Arm\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.arm_path(Arm.find(params[:arm_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::BitMaker::ToolsController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/bit_maker/tools/index (ThinkFeelDoEngine::BitMaker::ToolsController#index)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "039745632267d18f055319ff3da578fcc9f3faffe706f9aa4f5df9dc76c6848d",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/coach/messages/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Group\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.group_path(Group.find(params[:group_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::Coach::MessagesController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/coach/messages/index (ThinkFeelDoEngine::Coach::MessagesController#index)"
+      },
+      "user_input": "Group.find(params[:group_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "20b56d2518725c0398048ab2026b88ca931183c3b39d027c5e0dce9d139aaf82",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/coach/patient_dashboards/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Group\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.group_path(Group.find(params[:group_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::Coach::PatientDashboardsController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/coach/patient_dashboards/index (ThinkFeelDoEngine::Coach::PatientDashboardsController#index)"
+      },
+      "user_input": "Group.find(params[:group_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "d652af2ab511a0a7c8fc2a7d56ff1e4a83676f1ca6dac4b0500d9b1af7e3ce35",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/coach/site_messages/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Group\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.group_path(Group.find(params[:group_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::Coach::SiteMessagesController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/coach/site_messages/index (ThinkFeelDoEngine::Coach::SiteMessagesController#index)"
+      },
+      "user_input": "Group.find(params[:group_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "56f1178924d536042869970a3b88aac0fdde584d4dfd15c675085c0c6b934e76",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/lessons/index.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Arm\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.arm_path(Arm.find(params[:arm_id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::LessonsController#index"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/lessons/index (ThinkFeelDoEngine::LessonsController#index)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "fe0b504b3cfa59c499ce6bf4c5a55fcf927cb8ccaa95a286b8b7480786588e84",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/think_feel_do_engine/manage/groups/edit_tasks.html.erb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Group\", (if defined? think_feel_do_dashboard then\n  think_feel_do_dashboard.group_path(Arm.find(params[:arm_id]).groups.includes(:tasks => ({ :bit_core_content_module => :tool })).find(params[:id]))\nelse\n  \"#\"\nend), :class => \"btn btn-default\")",
+      "render_path": [
+        "ThinkFeelDoEngine::Manage::GroupsController#edit_tasks"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/manage/groups/edit_tasks (ThinkFeelDoEngine::Manage::GroupsController#edit_tasks)"
+      },
+      "user_input": "Arm.find(params[:arm_id])",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "ecd34db767d0857c589f83dca0618aff97d49d55e0c0454e71187a8f75cd569b",
+      "message": "Unsafe parameter value in link_to href",
+      "file": "app/views/think_feel_do_engine/participants/public_slides/show.html.erb",
+      "line": 5,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(t(:next), think_feel_do_engine.participants_public_slideshow_slide_path(:slideshow_id => (BitCore::Slideshow.find(params[:slideshow_id]).id), :id => (BitCore::Slideshow.find(params[:slideshow_id]).slides.find_by_position((BitCore::Slideshow.find(params[:slideshow_id]).slides.find(params[:id]).position + 1)).id)), :class => \"btn btn-primary\")",
+      "render_path": [
+        "ThinkFeelDoEngine::Participants::PublicSlidesController#show"
+      ],
+      "location": {
+        "type": "template",
+        "template": "think_feel_do_engine/participants/public_slides/show (ThinkFeelDoEngine::Participants::PublicSlidesController#show)"
+      },
+      "user_input": "params",
+      "confidence": "Medium",
+      "note": "false positive due to engine url helper method"
+    }
+  ],
+  "updated": "2015-02-18 07:56:09 -0600",
+  "brakeman_version": "3.0.1"
+}
