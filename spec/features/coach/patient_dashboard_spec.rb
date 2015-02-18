@@ -292,7 +292,7 @@ feature "patient dashboard", type: :feature do
       end
 
       it "summarizes past activities" do
-        Timecop.travel(time_now) do
+        Timecop.travel(DateTime.now.beginning_of_minute) do
           expect(page).to have_the_table(
             id: "activities_past",
             cells: [
