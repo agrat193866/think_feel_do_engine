@@ -111,14 +111,12 @@ module ThinkFeelDoEngine
            (FIRST_SLIDE_POSITION == first_slide.position ||
            FIRST_SLIDE_POSITION == second_slide.position)
           flash.now[:alert] = "Table of contents cannot be moved out of the first position."
-          render nothing: true
         elsif @slideshow.sort(params[:slide])
-          flash.now[:success] = "Reorder was successful."
-          render nothing: true
+          flash.now[:notice] = "Reorder was successful."
         else
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
-          render nothing: true
         end
+        render "think_feel_do_engine/slides/sort"
       end
 
       def preview
