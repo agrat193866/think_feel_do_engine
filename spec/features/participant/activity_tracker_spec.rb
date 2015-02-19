@@ -241,9 +241,15 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text "Daily Summaries"
       expect(page).to have_text "You spent 1 hour engaged in pleasurable activities and 1 hour engaged in accomplished activities."
       expect(page).to have_text "1 activity you recorded as high pleasure, while 1 activity you recorded as high accomplishment, and 1 activity you recorded is both high pleasure and high accomplishment."
-      expect(page).to have_text "Completion Score: 67% (You completed 2 out of 3 activities that you scheduled.)"
       expect(page).to have_text "Average Accomplishment Discrepancy: 1.0"
       expect(page).to have_text "Average Pleasure Discrepancy: 1.0"
+    end
+
+    it "displays daily completion information of only scheduled activies" do
+      scheduled_activities = participant.activities.for_day(Time.now).scheduled
+
+      expect(scheduled_activities.count).to eq 2
+      expect(page).to have_text "Completion Score: 100% (You completed 2 out of 2 activities that you scheduled.)"
     end
 
     it "navigates to today when 'Today' button is clicked" do

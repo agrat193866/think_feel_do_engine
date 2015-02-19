@@ -204,12 +204,22 @@ describe Activity do
   end
 
   describe "scopes" do
-    it "unplanned should only show activities where start_time and end_time are nil" do
+    it ".unplanned should only show activities where start_time and end_time are nil" do
       unplanned_activities = Activity.unplanned
+
       expect(unplanned_activities.load).not_to be_empty
       unplanned_activities.each do |a|
         expect(a.start_time).to be_nil
         expect(a.end_time).to be_nil
+      end
+    end
+
+    it ".scheduled returns activities where is_scheduled is true" do
+      scheduled_activities = Activity.scheduled
+
+      expect(scheduled_activities.load).not_to be_empty
+      scheduled_activities.each do |a|
+        expect(a.is_scheduled).to eq true
       end
     end
   end
