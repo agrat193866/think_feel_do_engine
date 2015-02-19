@@ -89,6 +89,10 @@ class Activity < ActiveRecord::Base
     order("RANDOM()")
   }
 
+  scope :scheduled, lambda {
+    where(is_scheduled: true)
+  }
+
   scope :unplanned, lambda {
     where(start_time: nil, end_time: nil)
   }
