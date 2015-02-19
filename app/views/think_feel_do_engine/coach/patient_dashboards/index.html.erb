@@ -11,11 +11,11 @@
 <% if !social_features? %>
     <h3>Not Stepped Patients</h3>
 <% end %>
-<%= render "think_feel_do_engine/coach/patient_dashboards/table", patients: @patients.not_stepped, table_id: "patients" %>
+<%= render "think_feel_do_engine/coach/patient_dashboards/table", patients: @participants.not_stepped, table_id: "patients" %>
 
 <% if !social_features? %>
     <h3>Stepped Patients</h3>
-    <%= render "think_feel_do_engine/coach/patient_dashboards/table", patients: @patients.stepped, table_id: "stepped-patients" %>
+    <%= render "think_feel_do_engine/coach/patient_dashboards/table", patients: @participants.stepped, table_id: "stepped-patients" %>
 <% end %>
 
 <script type="text/javascript">
