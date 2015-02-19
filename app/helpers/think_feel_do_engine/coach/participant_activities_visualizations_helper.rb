@@ -1,9 +1,13 @@
 module ThinkFeelDoEngine
   module Coach
     # Displays navigational information in the form of breadcrumbs
-    module ParticipantActivitiesVisualizationsHelper
+    module PatientDashboardHelper
+      VISUALIZATION_CONTROLLERS = [
+        "participant_activities_visualizations",
+        "participant_thoughts_visualizations"
+      ]
       def breadcrumbs
-        if controller_name == "participant_activities_visualizations"
+        if VISUALIZATION_CONTROLLERS.include? controller_name
           dashboard_path = coach_group_patient_dashboard_path(
             @participant.active_group,
             @participant
