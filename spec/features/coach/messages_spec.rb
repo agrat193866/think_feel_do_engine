@@ -116,11 +116,26 @@ feature "coach messages", type: :feature do
       end
     end
 
-    it "allows a coach to compose and submit a new message with module links", js: true do
+    it "scopes module links to those modules that have been assigned to a group via tasks" do
+      visit "/coach/groups/#{group1.id}/messages/new"
+
+      expect(page).to_not have_content "Big Time Slideshow"
+
+      Task.create(
+        creator: users(:clinician1),
+        group: group1,
+        bit_core_content_module: bit_core_content_modules(:slideshow_content_module_18),
+        release_day: 1
+      )
+      visit "/coach/groups/#{group1.id}/messages/new"
+
+      expect(page).to have_content "Big Time Slideshow"
+    end
+
+    it "allows a coach to compose and submit a new message with module links" do
       click_on("Compose")
       select("TFD-1111", from: "To")
       fill_in("Subject", with: "Message with link")
-      select("#1 Awareness", from: "Add a link")
       fill_in("Message", with: "Try this link out:")
       click_on("Send")
       sign_in_participant participant1
