@@ -1,3 +1,16 @@
+## 2.8.0 - 2015-02-19
+ * add Activities Helper spec where none existed
+ * Update Completion Calculation
+ * Remove Effect From Thoughts Table
+ * Moved activity fixture back an hour to deal with breaking
+ * include SimpleCov and set minimum code coverage
+ * many spec improvements
+ * enabled Brakeman
+ * Remove Effect From Thoughts Table
+ * Add confirmation to assessments
+ * Change Cancel HREF on Content Provider form
+ * preselect content module on Content Provider form
+
 ## 2.7.3 - 2015-02-16
  * handle Provider lacking data class with alert
  * rewrite validation as method due to staging fail
