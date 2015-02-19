@@ -6,7 +6,7 @@ require "rspec/rails"
 require "capybara/poltergeist"
 
 require "simplecov"
-SimpleCov.minimum_coverage 89
+SimpleCov.minimum_coverage 90
 SimpleCov.start "rails"
 Dir[File.dirname(__FILE__) + "/../app/controllers/**/*.rb"].each { |f| require f }
 Dir[File.dirname(__FILE__) + "/../app/models/**/*.rb"].each { |f| require f }
