@@ -4,10 +4,6 @@
     <%= text_field_tag "thoughts[#{ mutable_thought.id }][content]", mutable_thought.content, class: "not-displayed" %>
   </td>
   <td>
-    <span class="immutable-thought-content"><%= mutable_thought.effect %></span>
-    <%= select_tag "thoughts[#{ mutable_thought.id }][effect]", options_for_select(%w(helpful harmful neither), mutable_thought.effect), class: "not-displayed" %>
-  </td>
-  <td>
     <span class="immutable-thought-content"><%= (!mutable_thought.pattern_title.blank? ? mutable_thought.pattern_title : "<span class=\"label label-warning\">Not Answered</span>".html_safe) %></span>
     <%= select_tag "thoughts[#{ mutable_thought.id }][pattern_id]", options_from_collection_for_select(ThoughtPattern.all, "id", "title", mutable_thought.pattern_id), include_blank: true, class: "not-displayed" %>
   </td>

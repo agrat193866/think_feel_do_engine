@@ -224,6 +224,16 @@ feature "thought tracker", type: :feature do
     expect(page).to have_selector(:link_or_button, "Next")
   end
 
+  it "should not display a way to updated harmful thought's effect" do
+    visit "/navigator/modules/#{bit_core_content_modules(:think_module_thoughts_table).id}"
+    click_on "Edit Thoughts"
+
+    expect(page).to_not have_content "Effect"
+    expect(page).to_not have_content "harmful"
+    expect(page).to_not have_content "helpful"
+    expect(page).to_not have_content "neither"
+  end
+
   it "shows a vizualization of thought distortions and their associated harmful thoughts", :js do
     page.find(".list-group-item-unread", text: "Add a New Thought").click
     fill_in "thought_content", with: "something something"
