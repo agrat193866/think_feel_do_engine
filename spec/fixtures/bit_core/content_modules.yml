@@ -238,3 +238,8 @@ slideshow_content_module_17:
   title: Hi 
   tool: library
   position: 18
+
+slideshow_content_module_18:
+  title: Big Time Slideshow
+  tool: library
+  position: 19
