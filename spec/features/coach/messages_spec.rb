@@ -116,10 +116,11 @@ feature "coach messages", type: :feature do
       end
     end
 
-    it "allows a coach to compose and submit a new message with module links" do
+    it "allows a coach to compose and submit a new message with module links", js: true do
       click_on("Compose")
       select("TFD-1111", from: "To")
       fill_in("Subject", with: "Message with link")
+      select("#1 Awareness", from: "Add a link")
       fill_in("Message", with: "Try this link out:")
       click_on("Send")
       sign_in_participant participant1
