@@ -34,7 +34,6 @@ ThinkFeelDoEngine::Engine.routes.draw do
       get "groups/:id/edit_tasks", to: "groups#edit_tasks", as: "tasks_group"
     end
     namespace :bit_maker do
-      resources :tools
       resources :content_modules
       resources :content_providers
       post "slides/preview", to: "slides#preview", as: "slide_preview"
