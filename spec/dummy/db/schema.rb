@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210165021) do
+ActiveRecord::Schema.define(version: 20150218184531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,10 +105,11 @@ ActiveRecord::Schema.define(version: 20150210165021) do
   add_index "bit_core_slides", ["bit_core_slideshow_id", "position"], name: "bit_core_slide_position", unique: true, using: :btree
 
   create_table "bit_core_slideshows", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "arm_id",     null: false
+    t.integer  "arm_id",                                null: false
+    t.boolean  "has_table_of_contents", default: false, null: false
   end
 
   create_table "bit_core_tools", force: true do |t|

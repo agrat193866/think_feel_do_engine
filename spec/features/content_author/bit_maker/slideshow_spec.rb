@@ -60,5 +60,27 @@ feature "Slideshow", type: :feature do
       expect(page).to_not have_content "Home Intro"
       expect(page).to have_content "HOME Intro ARM@"
     end
+
+    it "should allow the addition of a table of contents slide" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
+      click_on "Do - Awareness Introduction"
+      expect(page).to have_content "Add Table of Contents"
+
+      click_on "Add Table of Contents"
+      expect(page).to have_content "Destroy Table of Contents"
+      expect(page).to have_content "Table of Contents Edit Remove"
+    end
+
+    it "should allow the deletion of a table of contents slide" do
+      visit "/arms/#{arms(:arm1).id}/bit_maker/slideshows"
+
+      click_on "Do - Awareness Introduction"
+      click_on "Add Table of Contents"
+      expect(page).to have_content "Destroy Table of Contents"
+
+      click_on "Destroy Table of Contents"
+      expect(page).to have_content "Add Table of Contents"
+      expect(page).to_not have_content "Table of Contents Edit Remove"
+    end
   end
 end
