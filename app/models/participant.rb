@@ -107,8 +107,6 @@ class Participant < ActiveRecord::Base
   end
 
   def unfinished_awake_periods
-    # awake periods for which there are no activities with corresponding
-    # start_time
     join_sql = <<-SQL
       LEFT JOIN activities
         ON activities.participant_id = awake_periods.participant_id
