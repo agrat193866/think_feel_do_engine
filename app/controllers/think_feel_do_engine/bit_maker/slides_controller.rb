@@ -47,7 +47,8 @@ module ThinkFeelDoEngine
 
         if @slide.save
           @slideshow.update(has_table_of_contents: true)
-          flash[:success] = "Successfully created table of contents for slideshow."
+          flash[:success] = "Successfully created table of contents for "\
+          "slideshow."
           redirect_to arm_bit_maker_slideshow_path(@arm, @slideshow)
         else
           flash[:alert] = @slide.errors.full_messages.join(", ")
@@ -72,7 +73,8 @@ module ThinkFeelDoEngine
       end
 
       def show
-        if @slideshow.has_table_of_contents? && FIRST_SLIDE_POSITION == @slide.position
+        if @slideshow.has_table_of_contents? &&
+           FIRST_SLIDE_POSITION == @slide.position
           render "think_feel_do_engine/slides/"
         else
           render "think_feel_do_engine/slides/show"
@@ -110,7 +112,8 @@ module ThinkFeelDoEngine
         if @slideshow.has_table_of_contents &&
            (FIRST_SLIDE_POSITION == first_slide.position ||
            FIRST_SLIDE_POSITION == second_slide.position)
-          flash.now[:alert] = "Table of contents cannot be moved out of the first position."
+          flash.now[:alert] = "Table of contents cannot be moved out of"\
+                              " the first position."
         elsif @slideshow.sort(params[:slide])
           flash.now[:notice] = "Reorder was successful."
         else
