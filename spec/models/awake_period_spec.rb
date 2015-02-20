@@ -59,23 +59,24 @@ describe AwakePeriod do
 
       expect(scoped_awake_periods.count).to eq 2
     end
+  end
 
-    it ".unfinished_awake_periods returns awake periods for which there are no activities with corresponding start_time" do
-      unfinished_awake_periods_count = participant3.unfinished_awake_periods.count
-      AwakePeriod.create(
-        participant: participant3,
-        start_time: Date.new(2014, 6, 19),
-        end_time: Date.new(2014, 6, 20))
+  describe "#unfinished_awake_periods" do
+    let(:participant) { participants(:participant3) }
+    let(:datetime) { DateTime.new(2014, 6, 19) }
 
-      expect(participant3.unfinished_awake_periods.count).to eq unfinished_awake_periods_count + 1
+    it "returns awake periods for which there are no activities with corresponding start_time" do
+      expect do
+        participant.awake_periods.create(
+          start_time: datetime,
+          end_time: datetime.advance(hours: 1))
+      end.to change{ participant.unfinished_awake_periods.count }.by(1)
 
-      Activity.create(
-        participant: participant3,
-        activity_type: activity_types(:jogging),
-        start_time: Date.new(2014, 6, 19),
-        end_time: Date.new(2014, 6, 20))
-
-      expect(participant3.unfinished_awake_periods.count).to eq unfinished_awake_periods_count
+      expect do
+        participant.activities.create(
+          activity_type: activity_types(:jogging),
+          start_time: datetime)
+      end.to change{ participant.unfinished_awake_periods.count }.by(-1)
     end
   end
 end
