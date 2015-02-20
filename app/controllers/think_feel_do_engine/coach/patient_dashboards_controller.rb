@@ -14,25 +14,26 @@ module ThinkFeelDoEngine
         if @group.participants
           if "false" == params[:active]
             @active_patients = false
-            @patients = Participant
-                        .joins(:memberships)
-                        .where("memberships.group_id = ?", @group.id)
-                        .inactive
+            @participants = Participant
+                            .joins(:memberships)
+                            .where("memberships.group_id = ?", @group.id)
+                            .inactive
           else
             @active_patients = true
-            @patients = Participant
-                        .joins(:memberships)
-                        .where("memberships.group_id = ? AND memberships.is_complete = false", @group.id)
-                        .active
+            @participants = Participant
+                            .joins(:memberships)
+                            .where("memberships.group_id = ? AND " \
+                                   "memberships.is_complete = false", @group.id)
+                            .active
           end
         end
       end
       # rubocop:enable Metrics/LineLength
 
       def show
-        authorize! :show, @patient
+        authorize! :show, @participant
         if active_group
-          @learning_tasks = @patient.learning_tasks(learning_modules)
+          @learning_tasks = @participant.learning_tasks(learning_modules)
         else
           @learning_tasks = []
         end
@@ -53,7 +54,7 @@ module ThinkFeelDoEngine
       end
 
       def active_group
-        @patient.active_group
+        @participant.active_group
       end
 
       def learning_modules
@@ -68,7 +69,7 @@ module ThinkFeelDoEngine
       end
 
       def set_patient
-        @patient = @group.participants.find(params[:id])
+        @participant = @group.participants.find(params[:id])
       end
 
       def tool_ids
