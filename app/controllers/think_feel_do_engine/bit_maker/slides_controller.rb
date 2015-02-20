@@ -142,14 +142,12 @@ module ThinkFeelDoEngine
 
       def toc_increment_slide_pos(slideshow)
         slideshow.slides.order(:position).reverse_each do |slide|
-          puts slide.position
           slide.update(position: slide.position + 1)
         end
       end
 
       def toc_decrement_slide_pos(slideshow)
         slideshow.slides.order(position: :asc).each do |slide|
-          puts slide.position
           slide.update(position: slide.position - 1)
         end
       end
