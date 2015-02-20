@@ -34,6 +34,8 @@ module ThinkFeelDoEngine
       end
 
       def create_table_of_contents
+        toc_increment_slide_pos(@slideshow)
+
         @slide = @slideshow.slides.build(
           position: FIRST_SLIDE_POSITION,
           title: "Table of Contents",
@@ -41,16 +43,13 @@ module ThinkFeelDoEngine
           body: "")
         authorize! :create, @slide
 
-        @slideshow.slides.order(position: :desc).each do |slide|
-          slide.update(position: slide.position + 1)
-        end
-
         if @slide.save
           @slideshow.update(has_table_of_contents: true)
           flash[:success] = "Successfully created table of contents for "\
           "slideshow."
           redirect_to arm_bit_maker_slideshow_path(@arm, @slideshow)
         else
+          toc_decrement_slide_pos(@slideshow)
           flash[:alert] = @slide.errors.full_messages.join(", ")
           render :new
         end
@@ -59,11 +58,8 @@ module ThinkFeelDoEngine
       def destroy_table_of_contents
         @slide = @slideshow.slides.where(position: FIRST_SLIDE_POSITION).first
         if @slide.destroy
-          @slideshow.slides.order(position: :asc).each do |slide|
-            slide.update(position: slide.position - 1)
-          end
+          toc_decrement_slide_pos(@slideshow)
           @slideshow.update(has_table_of_contents: false)
-
           flash[:success] = "Table of contents deleted."
           redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
         else
@@ -107,11 +103,9 @@ module ThinkFeelDoEngine
       def sort
         authorize! :update, BitCore::Slideshow
         first_slide = BitCore::Slide.find(params[:slide][0])
-        second_slide = BitCore::Slide.find(params[:slide][1])
 
         if @slideshow.has_table_of_contents &&
-           (FIRST_SLIDE_POSITION == first_slide.position ||
-           FIRST_SLIDE_POSITION == second_slide.position)
+           first_slide.title == "Table of Contents"
           flash.now[:alert] = "Table of contents cannot be moved out of"\
                               " the first position."
         elsif @slideshow.sort(params[:slide])
@@ -144,6 +138,20 @@ module ThinkFeelDoEngine
 
       def set_arm
         @arm = Arm.find(params[:arm_id])
+      end
+
+      def toc_increment_slide_pos(slideshow)
+        slideshow.slides.order(:position).reverse_each do |slide|
+          puts slide.position
+          slide.update(position: slide.position + 1)
+        end
+      end
+
+      def toc_decrement_slide_pos(slideshow)
+        slideshow.slides.order(position: :asc).each do |slide|
+          puts slide.position
+          slide.update(position: slide.position - 1)
+        end
       end
 
       def slide_params

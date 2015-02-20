@@ -26,19 +26,6 @@
 
 <ol id="sortable-slides" data-update-url="<%= sort_arm_bit_maker_slideshow_slides_url(@arm,@slideshow) %>">
 	<% @slideshow.slides.each do |slide| %>
-		<li class="slide" id="slide_<%= slide.id %>">
-			<span>
-				<span class="handle"><%= fa_icon("sort", class: "fa-lg") %></span>
-			</span>
-
-			<span>
-				<%= link_to slide.title, arm_bit_maker_slideshow_slide_path(@arm,@slideshow, slide) %>
-			</span>
-
-			<span>
-				<%= link_to "Edit", edit_arm_bit_maker_slideshow_slide_path(@arm,@slideshow, slide), class: "btn btn-default" %>
-				<%= link_to "Remove", arm_bit_maker_slideshow_slide_path(@arm,@slideshow, slide), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-			</span>
-		</li>
+    <%= slide_panel(slide, @slideshow, @arm) %>
 	<% end %>
 </ol>

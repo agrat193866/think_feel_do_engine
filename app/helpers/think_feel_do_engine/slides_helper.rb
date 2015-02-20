@@ -25,5 +25,13 @@ module ThinkFeelDoEngine
         render "think_feel_do_engine/slides/table_of_contents", slide: slide
       end
     end
+
+    def slide_panel(slide, slideshow, arm)
+      if slide.slideshow.has_table_of_contents && 1 == slide.position
+        render "/think_feel_do_engine/bit_maker/slideshows/toc_panel", slide: slide, slideshow: slideshow, arm: arm
+      else
+        render "/think_feel_do_engine/bit_maker/slideshows/slide_panel", slide: slide, slideshow: slideshow, arm: arm
+      end
+    end
   end
 end
