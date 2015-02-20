@@ -16,7 +16,7 @@ module ThinkFeelDoEngine
           allow(helper).to receive(:coach_group_patient_dashboard_path)
             .and_return("")
           @participant = double("participant", active_group: double("group"))
-          
+
           expect(helper).to receive(:content_for)
             .with(:breadcrumbs, /Patient Dashboard/)
 

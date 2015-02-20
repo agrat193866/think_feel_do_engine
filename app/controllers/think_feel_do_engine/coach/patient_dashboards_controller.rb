@@ -15,15 +15,16 @@ module ThinkFeelDoEngine
           if "false" == params[:active]
             @active_patients = false
             @participants = Participant
-                        .joins(:memberships)
-                        .where("memberships.group_id = ?", @group.id)
-                        .inactive
+                            .joins(:memberships)
+                            .where("memberships.group_id = ?", @group.id)
+                            .inactive
           else
             @active_patients = true
             @participants = Participant
-                        .joins(:memberships)
-                        .where("memberships.group_id = ? AND memberships.is_complete = false", @group.id)
-                        .active
+                            .joins(:memberships)
+                            .where("memberships.group_id = ? AND " \
+                                   "memberships.is_complete = false", @group.id)
+                            .active
           end
         end
       end
