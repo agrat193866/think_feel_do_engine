@@ -70,13 +70,13 @@ describe AwakePeriod do
         participant.awake_periods.create(
           start_time: datetime,
           end_time: datetime.advance(hours: 1))
-      end.to change{ participant.unfinished_awake_periods.count }.by(1)
+      end.to change { participant.unfinished_awake_periods.count }.by(1)
 
       expect do
         participant.activities.create(
           activity_type: activity_types(:jogging),
           start_time: datetime)
-      end.to change{ participant.unfinished_awake_periods.count }.by(-1)
+      end.to change { participant.unfinished_awake_periods.count }.by(-1)
     end
   end
 end
