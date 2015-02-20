@@ -1,3 +1,6 @@
+## 2.8.3 - 2015-02-20
+ * fixed TOC functionalit
+
 ## 2.8.2 - 2015-02-20
  * table of contents functionality fixed
 
