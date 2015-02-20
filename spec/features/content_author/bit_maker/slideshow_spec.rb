@@ -68,7 +68,7 @@ feature "Slideshow", type: :feature do
 
       click_on "Add Table of Contents"
       expect(page).to have_content "Destroy Table of Contents"
-      expect(page).to have_content "Table of Contents Edit Remove"
+      expect(page).to have_content "Table of Contents"
     end
 
     it "should allow the deletion of a table of contents slide" do
