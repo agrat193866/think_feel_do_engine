@@ -1,3 +1,6 @@
+## 2.8.2 - 2015-02-20
+ * table of contents functionality fixed
+
 ## 2.8.1 - 2015-02-20
  * updated lesson links, enabled breadcrumbs
 
