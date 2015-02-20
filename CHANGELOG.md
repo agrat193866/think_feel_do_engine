@@ -1,3 +1,6 @@
+## 2.8.1 - 2015-02-20
+ * updated lesson links, enabled breadcrumbs
+
 ## 2.8.0 - 2015-02-19
  * add Activities Helper spec where none existed
  * Update Completion Calculation
