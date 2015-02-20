@@ -41,6 +41,8 @@ ThinkFeelDoEngine::Engine.routes.draw do
         resources :slides do
           collection { post :sort }
         end
+        get 'create_table_of_contents', controller: :slides
+        get 'destroy_table_of_contents', controller: :slides
         resources :slideshow_anchors, only: [:create, :destroy]
       end
     end

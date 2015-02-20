@@ -5,6 +5,7 @@
 	<%= link_to "Add Slide", new_arm_bit_maker_slideshow_slide_path(@arm,@slideshow), class: "btn btn-default" %>
 	<%= link_to "Add Video Slide", new_arm_bit_maker_slideshow_slide_path(@arm, @slideshow, type: "BitCore::VideoSlide"), class: "btn btn-default" %>
 	<%= link_to "Add Audio Slide", new_arm_bit_maker_slideshow_slide_path(@arm, @slideshow, type: "BitCore::AudioSlide"), class: "btn btn-default" %>
+  <%= table_of_contents_link(@arm, @slideshow) %>
   <%= link_to "Edit", edit_arm_bit_maker_slideshow_path(@arm, @slideshow), class: "btn btn-default" %>
 	<%= link_to "Delete", arm_bit_maker_slideshow_path(@arm, @slideshow), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
@@ -41,4 +42,3 @@
 		</li>
 	<% end %>
 </ol>
-

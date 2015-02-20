@@ -9,6 +9,8 @@ module ThinkFeelDoEngine
 
       load_and_authorize_resource only: [:show, :edit, :update, :destroy]
 
+      FIRST_SLIDE_POSITION = 1
+
       def index
         authorize! :index, @slideshow
       end
@@ -31,8 +33,52 @@ module ThinkFeelDoEngine
         end
       end
 
+      def create_table_of_contents
+        @slide = @slideshow.slides.build(
+          position: FIRST_SLIDE_POSITION,
+          title: "Table of Contents",
+          is_title_visible: true,
+          body: "")
+        authorize! :create, @slide
+
+        @slideshow.slides.order(position: :desc).each do |slide|
+          slide.update(position: slide.position + 1)
+        end
+
+        if @slide.save
+          @slideshow.update(has_table_of_contents: true)
+          flash[:success] = "Successfully created table of contents for "\
+          "slideshow."
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slideshow)
+        else
+          flash[:alert] = @slide.errors.full_messages.join(", ")
+          render :new
+        end
+      end
+
+      def destroy_table_of_contents
+        @slide = @slideshow.slides.where(position: FIRST_SLIDE_POSITION).first
+        if @slide.destroy
+          @slideshow.slides.order(position: :asc).each do |slide|
+            slide.update(position: slide.position - 1)
+          end
+          @slideshow.update(has_table_of_contents: false)
+
+          flash[:success] = "Table of contents deleted."
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
+        else
+          flash[:error] = "There were errors."
+          redirect_to arm_bit_maker_slideshow_path(@arm, @slide.slideshow)
+        end
+      end
+
       def show
-        render "think_feel_do_engine/slides/show"
+        if @slideshow.has_table_of_contents? &&
+           FIRST_SLIDE_POSITION == @slide.position
+          render "think_feel_do_engine/slides/"
+        else
+          render "think_feel_do_engine/slides/show"
+        end
       end
 
       def edit
@@ -60,13 +106,20 @@ module ThinkFeelDoEngine
 
       def sort
         authorize! :update, BitCore::Slideshow
-        if @slideshow.sort(params[:slide])
-          flash.now[:success] = "Reorder was successful."
-          render nothing: true
+        first_slide = BitCore::Slide.find(params[:slide][0])
+        second_slide = BitCore::Slide.find(params[:slide][1])
+
+        if @slideshow.has_table_of_contents &&
+           (FIRST_SLIDE_POSITION == first_slide.position ||
+           FIRST_SLIDE_POSITION == second_slide.position)
+          flash.now[:alert] = "Table of contents cannot be moved out of"\
+                              " the first position."
+        elsif @slideshow.sort(params[:slide])
+          flash.now[:notice] = "Reorder was successful."
         else
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
-          render nothing: true
         end
+        render "think_feel_do_engine/slides/sort"
       end
 
       def preview
