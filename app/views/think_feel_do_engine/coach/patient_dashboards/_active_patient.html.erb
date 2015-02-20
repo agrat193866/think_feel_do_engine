@@ -12,19 +12,15 @@
     </td>
 
     <td>
-      <% if @active_patients %>
-       <%= (view_membership(patient, @group).day_in_study / 7.0).ceil %>
-      <% else %>
-        <%= !view_membership(patient, @group).is_complete ? "Withdrawn " +
-                patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact) :
-                    "Discontinued " + patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact)  %>
-      <% end %>
+        <%= (view_membership(patient, @group).day_in_study / 7.0).ceil %>
     </td>
 
-    <% if phq_features? && @active_patients %>
+    <% if phq_features? %>
       <td>
         <% if (last_phq = patient.phq_assessments.last) %>
-          <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%> <span class="bold"><%= last_phq.score %><%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
+          <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%>
+          <span class="bold"><%= last_phq.score %>
+            <%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:brief_date) %>
         <% else %>
           <span class="label label-warning">No Completed Assessments</span>
         <% end %>
@@ -49,39 +45,41 @@
     <td>
       <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
     </td>
-    <% if phq_features? && @active_patients %>
-        <td>
-          <% if view_membership(patient, @group) && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
-             <%= "Stepped " + patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
-          <% elsif view_membership(patient, @group) %>
-              <% if can? :update, view_membership(patient, @group) %>
-                  <%= form_for(view_membership(patient, @group), url: coach_group_membership_path(@group, view_membership(patient, @group)), :html => { :method => :put }) do |f| %>
-                      <%= f.hidden_field(:stepped_on, value: Date.today) %>
-                      <%= f.submit "Step",
-                                   data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
-                                   class: "btn btn-success" %>
-                  <% end %>
-              <% end %>
-          <% elsif patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
-            <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+
+    <% if phq_features? %>
+      <td>
+        <% if view_membership(patient, @group) && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
+          <%= "Stepped " + patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% elsif view_membership(patient, @group) %>
+          <% if can? :update, view_membership(patient, @group) %>
+            <%= form_for(view_membership(patient, @group), url: coach_group_membership_path(@group, view_membership(patient, @group)), :html => { :method => :put }) do |f| %>
+              <%= f.hidden_field(:stepped_on, value: Date.today) %>
+              <%= f.submit "Step",
+                           data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
+                           class: "btn btn-success" %>
+            <% end %>
+          <% end %>
+        <% elsif patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
+          <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
         <% end %>
-        </td>
-      <% else %>
-        <td>
+      </td>
+    <% else %>
+      <td>
         <% if patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
           <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
         <% end %>
-        </td>
+      </td>
     <% end %>
-    <% if view_membership(patient, @group) && @active_patients %>
+
+    <% if view_membership(patient, @group) %>
       <td>
         <%= form_for view_membership(patient, @group) do |f| %>
-        <%= f.hidden_field :end_date %>
-        <input type="text"
-               class="datepicker"
-               value="<%= view_membership(patient, @group).end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>"
-               readonly="readonly">
-      <% end %>
+          <%= f.hidden_field :end_date %>
+          <input type="text"
+                 class="datepicker"
+                 value="<%= view_membership(patient, @group).end_date.strftime("%b %e, %Y").gsub(/  /, " ") %>"
+                 readonly="readonly">
+        <% end %>
       </td>
       <td>
         <%= button_to "Discontinue",
