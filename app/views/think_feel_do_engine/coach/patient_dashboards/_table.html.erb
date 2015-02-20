@@ -29,6 +29,10 @@
   </tr>
   </thead>
   <tbody>
-  <%= render partial: "think_feel_do_engine/coach/patient_dashboards/patient", collection: patients, as: :patient %>
+  <% if @active_patients %>
+    <%= render partial: "think_feel_do_engine/coach/patient_dashboards/active_patient", collection: patients, as: :patient %>
+  <% else %>
+    <%= render partial: "think_feel_do_engine/coach/patient_dashboards/inactive_patient", collection: patients, as: :patient %>
+  <% end %>
   </tbody>
 </table>
