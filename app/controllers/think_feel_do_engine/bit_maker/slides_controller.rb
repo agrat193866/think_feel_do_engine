@@ -119,7 +119,7 @@ module ThinkFeelDoEngine
         else
           flash.now[:alert] = @slideshow.errors.full_messages.join(", ")
         end
-        render "think_feel_do_engine/slides/sort"
+        render "think_feel_do_engine/slides/sort.js"
       end
 
       def preview
