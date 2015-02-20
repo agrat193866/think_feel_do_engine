@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe AwakePeriod do
-  fixtures :participants, :awake_periods
+  fixtures :participants, :awake_periods, :activity_types
 
   describe "validations" do
     let(:period1) { awake_periods(:participant1_period1) }
@@ -58,6 +58,25 @@ describe AwakePeriod do
         end_time: Date.new(2014, 6, 23))
 
       expect(scoped_awake_periods.count).to eq 2
+    end
+  end
+
+  describe "#unfinished_awake_periods" do
+    let(:participant) { participants(:participant3) }
+    let(:datetime) { DateTime.new(2014, 6, 19) }
+
+    it "returns awake periods for which there are no activities with corresponding start_time" do
+      expect do
+        participant.awake_periods.create(
+          start_time: datetime,
+          end_time: datetime.advance(hours: 1))
+      end.to change { participant.unfinished_awake_periods.count }.by(1)
+
+      expect do
+        participant.activities.create(
+          activity_type: activity_types(:jogging),
+          start_time: datetime)
+      end.to change { participant.unfinished_awake_periods.count }.by(-1)
     end
   end
 end
