@@ -105,7 +105,7 @@ module ThinkFeelDoEngine
         first_slide = BitCore::Slide.find(params[:slide][0])
 
         if @slideshow.has_table_of_contents &&
-           first_slide.title == "Table of Contents"
+           first_slide.title != "Table of Contents"
           flash.now[:alert] = "Table of contents cannot be moved out of"\
                               " the first position."
         elsif @slideshow.sort(params[:slide])

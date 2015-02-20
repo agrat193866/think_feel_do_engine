@@ -39,7 +39,7 @@ module ThinkFeelDoEngine
           allow(Arm).to receive(:find) { arm }
           allow(slideshow_list).to receive(:find) { slideshow_with_table_of_contents }
           allow(BitCore::Slide).to receive(:all)
-          expect(BitCore::Slide).to receive(:find) { slide_toc }
+          expect(BitCore::Slide).to receive(:find) { slide_1 }
 
           post :sort, use_route: :think_feel_do_engine, id: "1", slide: ["0", "1"]
 
