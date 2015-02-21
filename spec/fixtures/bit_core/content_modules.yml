@@ -243,3 +243,9 @@ slideshow_content_module_18:
   title: Big Time Slideshow
   tool: library
   position: 19
+
+video_lesson_slideshow:
+  title: Learn - Video Slideshow
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 20
