@@ -1,1 +1,2 @@
 $('#alerts').append("<%= escape_javascript(render partial: 'think_feel_do_engine/shared/alerts', locals: { alert: alert, notice: notice }) %>");
+setTimeout(function() {window.location.reload();}, 3000);

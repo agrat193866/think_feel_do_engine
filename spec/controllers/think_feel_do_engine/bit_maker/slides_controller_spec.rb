@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
 
           post :sort, use_route: :think_feel_do_engine, id: "1", slide: ["0", "1"]
 
-          expect(session[:flash]).to eq("discard" => ["alert"], "flashes" => { "alert" => "Table of contents cannot be moved out of the first position." })
+          expect(session[:flash]).to eq("discard" => ["alert"], "flashes" => { "alert" => "Table of contents cannot be moved out of the first position. Reloading page..." })
         end
       end
     end
