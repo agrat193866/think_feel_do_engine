@@ -400,3 +400,10 @@ content_provider_slideshow_17:
   source_content: audio_slideshow (BitCore::Slideshow)
   content_module: slideshow_content_module_17
   position: 1
+
+content_provider_video_slideshow:
+  type: BitCore::ContentProviders::SlideshowProvider
+  show_next_nav: true
+  source_content: video_slideshow (BitCore::Slideshow)
+  content_module: video_lesson_slideshow
+  position: 1

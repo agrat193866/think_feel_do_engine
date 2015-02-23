@@ -257,3 +257,37 @@ audio_slide:
   body: "Yay"
   type: BitCore::AudioSlide
   options: { audio_url: "https://intellicare.cbits.northwestern.edu/static/audio/autogenic/01_autogenic.mp3" }
+
+video_slide1:
+  slideshow: video_slideshow
+  position: 1
+  title: Meet Jim
+  body: "When Jim started with ThinkFeelDo, the first thing he noticed was the recent
+    change in his behavior – how he no longer did many activities that make him happy.
+
+    Continuing to use ThinkFeelDo, Jim learned that scheduling in anything that he would enjoy
+    doing into his evening – a hobby, some exercise, time to sit down with his daughter
+    - would help him work into his day activities he enjoyed. He made sure to build
+    in time for activities that he would rate 5+ on the Pleasure scale, and 3+ on
+    the Accomplishment scale, at least a couple times per week.&nbsp;\r\n\r\nOver
+    the next few weeks, Jim was able to schedule in a number of activities during
+    the evenings. He would still sit in his chair to relax, but only for a 30-minute
+    TV show “rest break”. Then he would get up to walk the dog. Soon he was walking
+    a full hour with him! On other nights of the week, Jim would go out to
+    the garage and work on his car, or spend some time reading a book. He also asked
+    his wife to schedule a couple of dinners a week at a later time, so he could join
+    the family when he got home from work. Jim noticed that he actually looked
+    forward to getting in the car and commuting home for the evenings. He also found
+    himself going to bed earlier and sleeping better on nights that he took time to
+    do things he enjoyed, saying, “Its amazing what a difference it makes just getting
+    out of that chair and doing something that makes me feel good.”\r\n\r\nSee what
+    good can come from just starting to monitor the activities you do - or used to
+    do? Follow along in the \"Do\" tool and the next few lessons to learn how ThinkFeelDo
+    can help you, too."
+  type: BitCore::VideoSlide
+  is_title_visible: true
+  created_at: 2014-07-14 19:18:21.683866000 Z
+  updated_at: 2014-08-19 18:47:28.441026000 Z
+  options: |
+    --- !ruby/hash:ActionController::Parameters
+    vimeo_id: '102358313'

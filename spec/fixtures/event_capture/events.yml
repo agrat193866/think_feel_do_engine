@@ -1,0 +1,3056 @@
+event_capture_events_013:
+  emitted_at: <%= DateTime.now - 5523.seconds %>
+  recorded_at: <%= DateTime.now - 5523.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/THINK
+    buttonHtml: '<a class="task-status list-group-item list-group-item-unread" data-task-status-id="591080863"
+      href="/navigator/modules/954850709" id="task-status-591080863"><i class="fa fa-book"></i>
+      #1 Identifying</a>'
+    parentHtml: |-
+      <div class="list-group left">
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="591080863" href="/navigator/modules/954850709" id="task-status-591080863"><i class="fa fa-book"></i> #1 Identifying</a>
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="1029683262" href="/navigator/modules/833803412" id="task-status-1029683262"><i class="fa fa-book"></i> #2 Patterns</a>
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="173574313" href="/navigator/modules/356286248" id="task-status-173574313"><i class="fa fa-book"></i> #3 Reshape</a>
+          </div>
+    headers:
+    - THINK
+    - Think landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_014:
+  emitted_at: <%= DateTime.now - 5522.seconds %>
+  recorded_at: <%= DateTime.now - 5522.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - You are what you think...Your thoughts shape and guideThoughts are the exact sentences
+      that go through your head.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_015:
+  emitted_at: <%= DateTime.now - 5506.seconds %>
+  recorded_at: <%= DateTime.now - 5506.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - You are what you think...Your thoughts shape and guideThoughts are the exact sentences
+      that go through your head.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_016:
+  emitted_at: <%= DateTime.now - 5505.seconds %>
+  recorded_at: <%= DateTime.now - 5505.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/2
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Helpful thoughts are...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_017:
+  emitted_at: <%= DateTime.now - 5503.seconds %>
+  recorded_at: <%= DateTime.now - 5503.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/2
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Helpful thoughts are...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_018:
+  emitted_at: <%= DateTime.now - 5502.seconds %>
+  recorded_at: <%= DateTime.now - 5502.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/3
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - 'Harmful thoughts are:'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_019:
+  emitted_at: <%= DateTime.now - 5500.seconds %>
+  recorded_at: <%= DateTime.now - 5500.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/3
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - 'Harmful thoughts are:'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_020:
+  emitted_at: <%= DateTime.now - 5500.seconds %>
+  recorded_at: <%= DateTime.now - 5500.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/4
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Some quick examples...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_021:
+  emitted_at: <%= DateTime.now - 5498.seconds %>
+  recorded_at: <%= DateTime.now - 5498.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/4
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Some quick examples...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_022:
+  emitted_at: <%= DateTime.now - 5497.seconds %>
+  recorded_at: <%= DateTime.now - 5497.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_023:
+  emitted_at: <%= DateTime.now - 5496.seconds %>
+  recorded_at: <%= DateTime.now - 5496.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="example: I can never get my work done, I''m no good" required="required"
+      rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_024:
+  emitted_at: <%= DateTime.now - 5476.seconds %>
+  recorded_at: <%= DateTime.now - 5476.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_thought" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="FoEATOWg/V3jfeEANRKE54/Pdjg/17E+7Jpt0kA/YaQ="></div>
+        <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+
+
+        <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+
+          <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+        <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_025:
+  emitted_at: <%= DateTime.now - 5474.seconds %>
+  recorded_at: <%= DateTime.now - 5474.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_026:
+  emitted_at: <%= DateTime.now - 5473.seconds %>
+  recorded_at: <%= DateTime.now - 5473.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="an example thought: &quot;She thinks that she''s better than me&quot;"
+      required="required" rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+            <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="an example thought: &quot;She thinks that she's better than me&quot;" required="required" rows="3"></textarea>
+          </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_027:
+  emitted_at: <%= DateTime.now - 5461.seconds %>
+  recorded_at: <%= DateTime.now - 5461.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-page" data-remote="true" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+          <div class="form-group">
+            <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="an example thought: &quot;She thinks that she's better than me&quot;" required="required" rows="3"></textarea>
+          </div>
+
+          <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+
+            <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+          <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_028:
+  emitted_at: <%= DateTime.now - 5459.seconds %>
+  recorded_at: <%= DateTime.now - 5459.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_029:
+  emitted_at: <%= DateTime.now - 5458.seconds %>
+  recorded_at: <%= DateTime.now - 5458.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="example: I can never get my work done, I''m no good" required="required"
+      rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_030:
+  emitted_at: <%= DateTime.now - 5446.seconds %>
+  recorded_at: <%= DateTime.now - 5446.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_thought" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="FoEATOWg/V3jfeEANRKE54/Pdjg/17E+7Jpt0kA/YaQ="></div>
+        <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+
+
+        <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+          <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+        <button class="btn btn-primary pull-right" type="submit">Next</button>
+
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_031:
+  emitted_at: <%= DateTime.now - 5444.seconds %>
+  recorded_at: <%= DateTime.now - 5444.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/814811986/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Good work.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_032:
+  emitted_at: <%= DateTime.now - 5442.seconds %>
+  recorded_at: <%= DateTime.now - 5442.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/814811986/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Good work.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_033:
+  emitted_at: <%= DateTime.now - 5441.seconds %>
+  recorded_at: <%= DateTime.now - 5441.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/532035938/providers/532035938/1
+    headers:
+    - THINK
+    - Think landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_060:
+  emitted_at: <%= DateTime.now - 5351.seconds %>
+  recorded_at: <%= DateTime.now - 5351.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/301761446/providers/354438773/1
+    headers:
+    - DO
+    - "#3 Doing"
+    - Good Work!
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_061:
+  emitted_at: <%= DateTime.now - 5350.seconds %>
+  recorded_at: <%= DateTime.now - 5350.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/301761446/providers/354438773/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - DO
+    - "#3 Doing"
+    - Good Work!
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_062:
+  emitted_at: <%= DateTime.now - 5349.seconds %>
+  recorded_at: <%= DateTime.now - 5349.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/101478921/providers/708814186/1
+    headers:
+    - DO
+    - Do landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_063:
+  emitted_at: <%= DateTime.now - 5341.seconds %>
+  recorded_at: <%= DateTime.now - 5341.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/LEARN
+    buttonHtml: "<p>Do - Awareness Introduction</p>"
+    parentHtml: |-
+      <span class="lesson read"><p>Do - Awareness Introduction</p>
+      </span>
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_064:
+  emitted_at: <%= DateTime.now - 5341.seconds %>
+  recorded_at: <%= DateTime.now - 5341.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/233274310/providers/318915229/1
+    headers:
+    - LEARN
+    - Do - Awareness Introduction
+    - This is just the beginning...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_065:
+  emitted_at: <%= DateTime.now - 5339.seconds %>
+  recorded_at: <%= DateTime.now - 5339.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/233274310/providers/318915229/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Finish</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Finish</a>\n  </div>"
+    headers:
+    - LEARN
+    - Do - Awareness Introduction
+    - This is just the beginning...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_066:
+  emitted_at: <%= DateTime.now - 5338.seconds %>
+  recorded_at: <%= DateTime.now - 5338.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/368801319/providers/92512490/1
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_067:
+  emitted_at: <%= DateTime.now - 5253.seconds %>
+  recorded_at: <%= DateTime.now - 5253.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/368801319/providers/92512490/1
+    buttonHtml: |-
+      <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+                <span class="badge badge-do">1</span>
+      </a>
+    parentHtml: |-
+      <li class="MESSAGES hidden-xs">
+            <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+                <span class="badge badge-do">1</span>
+      </a>    </li>
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_068:
+  emitted_at: <%= DateTime.now - 5252.seconds %>
+  recorded_at: <%= DateTime.now - 5252.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/368801319/providers/92512490/1
+    buttonHtml: |-
+      <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+                <span class="badge badge-do">1</span>
+      </a>
+    parentHtml: |-
+      <li class="MESSAGES hidden-xs">
+            <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+                <span class="badge badge-do">1</span>
+      </a>    </li>
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_069:
+  emitted_at: <%= DateTime.now - 5250.seconds %>
+  recorded_at: <%= DateTime.now - 5250.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    headers:
+    - MESSAGES
+    - Messages landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_070:
+  emitted_at: <%= DateTime.now - 5249.seconds %>
+  recorded_at: <%= DateTime.now - 5249.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    buttonHtml: <div class="col-xs-8 col-sm-10 col-md-3">Coach</div>
+    parentHtml: |-
+      <a class="list-group-item clearfix list-group-item-read" href="/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&amp;message_id=36759538">
+                <div class="col-xs-8 col-sm-10 col-md-3">Coach</div>
+                <div class="col-xs-12 col-xs-push-0 col-sm-12 col-sm-push-0 col-md-7">Try out the LEARN tool</div>
+                <div class="col-xs-pull-0 col-sm-pull-0 col-md-2"> 2:44 pm</div>
+      </a>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_071:
+  emitted_at: <%= DateTime.now - 5248.seconds %>
+  recorded_at: <%= DateTime.now - 5248.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&message_id=36759538
+    headers:
+    - MESSAGES
+    - Messages landing
+    - Message
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_072:
+  emitted_at: <%= DateTime.now - 5246.seconds %>
+  recorded_at: <%= DateTime.now - 5246.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&message_id=36759538
+    buttonHtml: <a href="/bar">#1 Foo</a>
+    parentHtml: '<p>I think you will find it helpful. here''s a link: <a href="/bar">#1
+      Foo</a></p>'
+    headers:
+    - MESSAGES
+    - Messages landing
+    - Message
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_073:
+  emitted_at: <%= DateTime.now - 5241.seconds %>
+  recorded_at: <%= DateTime.now - 5241.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&message_id=36759538
+    headers:
+    - MESSAGES
+    - Messages landing
+    - Message
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_074:
+  emitted_at: <%= DateTime.now - 5240.seconds %>
+  recorded_at: <%= DateTime.now - 5240.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&message_id=36759538
+    buttonHtml: <a href="/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&amp;compose_path=/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&amp;message_id=36759538&amp;subject=Reply:%20Try%20out%20the%20LEARN%20tool&amp;recipient_id=600974623&amp;recipient_type=User&amp;recipient=Coach">Reply
+      to this message</a>
+    parentHtml: |-
+      <div class="well">
+          <a href="/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&amp;compose_path=/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&amp;message_id=36759538&amp;subject=Reply:%20Try%20out%20the%20LEARN%20tool&amp;recipient_id=600974623&amp;recipient_type=User&amp;recipient=Coach">Reply to this message</a>
+        </div>
+    headers:
+    - MESSAGES
+    - Messages landing
+    - Message
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_075:
+  emitted_at: <%= DateTime.now - 5238.seconds %>
+  recorded_at: <%= DateTime.now - 5238.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&compose_path=/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&message_id=36759538&subject=Reply:%20Try%20out%20the%20LEARN%20tool&recipient_id=600974623&recipient_type=User&recipient=Coach
+    headers:
+    - MESSAGES
+    - Messages landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_076:
+  emitted_at: <%= DateTime.now - 5237.seconds %>
+  recorded_at: <%= DateTime.now - 5237.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&compose_path=/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&message_id=36759538&subject=Reply:%20Try%20out%20the%20LEARN%20tool&recipient_id=600974623&recipient_type=User&recipient=Coach
+    buttonHtml: <textarea class="form-control .col-xs-12 .col-sm-6 .col-md-6 .col-lg-4"
+      id="message_body" name="message[body]"></textarea>
+    parentHtml: |-
+      <div class="form-group">
+          <label for="message_body" class="control-label">Message</label>
+          <textarea class="form-control .col-xs-12 .col-sm-6 .col-md-6 .col-lg-4" id="message_body" name="message[body]"></textarea>
+        </div>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_077:
+  emitted_at: <%= DateTime.now - 5235.seconds %>
+  recorded_at: <%= DateTime.now - 5235.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&compose_path=/navigator/modules/915512017/providers/937902287/1?context=MESSAGES&message_id=36759538&subject=Reply:%20Try%20out%20the%20LEARN%20tool&recipient_id=600974623&recipient_type=User&recipient=Coach
+    buttonHtml: <button type="submit" class="btn btn-success"><i class="fa fa-send"></i>
+      Send</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_message" id="new_message" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="FoEATOWg/V3jfeEANRKE54/Pdjg/17E+7Jpt0kA/YaQ="></div>
+
+        <label class="control-label">To Coach
+          <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="600974623">
+          <input id="message_recipient_type" name="message[recipient_type]" type="hidden" value="User">
+        </label>
+
+        <div class="form-group">
+          <label for="message_subject" class="control-label">Subject</label>
+          <input class="form-control .col-xs-12 .col-sm-6 .col-md-6 .col-lg-4" id="message_subject" name="message[subject]" required="required" type="text" value="Reply: Try out the LEARN tool">
+        </div>
+
+        <div class="form-group">
+          <label for="message_body" class="control-label">Message</label>
+          <textarea class="form-control .col-xs-12 .col-sm-6 .col-md-6 .col-lg-4" id="message_body" name="message[body]"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Send</button>
+        <a class="btn btn-default" href="/navigator/contexts/MESSAGES">Cancel</a>
+      </form>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_078:
+  emitted_at: <%= DateTime.now - 5233.seconds %>
+  recorded_at: <%= DateTime.now - 5233.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/915512017/1
+    headers:
+    - MESSAGES
+    - Messages landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_079:
+  emitted_at: <%= DateTime.now - 5231.seconds %>
+  recorded_at: <%= DateTime.now - 5231.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/915512017/providers/915512017/1
+    buttonHtml: <a class="navbar-brand" data-no-turbolink="true" href="http://localhost:3000/">ThinkFeelDo</a>
+    parentHtml: "<div class=\"navbar-header\">\n\n                <a class=\"navbar-brand\"
+      data-no-turbolink=\"true\" href=\"http://localhost:3000/\">ThinkFeelDo</a>\n\n                <ul
+      class=\"nav navbar-nav pull-right visible-xs-block\">\n                  \n                </ul>\n
+      \             </div>"
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_080:
+  emitted_at: <%= DateTime.now - 5229.seconds %>
+  recorded_at: <%= DateTime.now - 5229.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_081:
+  emitted_at: <%= DateTime.now - 4678.seconds %>
+  recorded_at: <%= DateTime.now - 4678.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    buttonHtml: <a data-method="delete" href="/participants/sign_out" rel="nofollow"><i
+      class="fa fa-sign-out"></i> Sign Out</a>
+    parentHtml: <li><a data-method="delete" href="/participants/sign_out" rel="nofollow"><i
+      class="fa fa-sign-out"></i> Sign Out</a></li>
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_082:
+  emitted_at: <%= DateTime.now - 4437.seconds %>
+  recorded_at: <%= DateTime.now - 4437.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_083:
+  emitted_at: <%= DateTime.now - 4435.seconds %>
+  recorded_at: <%= DateTime.now - 4435.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_084:
+  emitted_at: <%= DateTime.now - 4434.seconds %>
+  recorded_at: <%= DateTime.now - 4434.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/2
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_085:
+  emitted_at: <%= DateTime.now - 4433.seconds %>
+  recorded_at: <%= DateTime.now - 4433.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/2
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_086:
+  emitted_at: <%= DateTime.now - 4432.seconds %>
+  recorded_at: <%= DateTime.now - 4432.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/3
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_087:
+  emitted_at: <%= DateTime.now - 4431.seconds %>
+  recorded_at: <%= DateTime.now - 4431.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/3
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_088:
+  emitted_at: <%= DateTime.now - 4430.seconds %>
+  recorded_at: <%= DateTime.now - 4430.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/4
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_089:
+  emitted_at: <%= DateTime.now - 4339.seconds %>
+  recorded_at: <%= DateTime.now - 4339.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/4
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_090:
+  emitted_at: <%= DateTime.now - 4338.seconds %>
+  recorded_at: <%= DateTime.now - 4338.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/1
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_091:
+  emitted_at: <%= DateTime.now - 4335.seconds %>
+  recorded_at: <%= DateTime.now - 4335.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/1
+    buttonHtml: |-
+      <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+      </a>
+    parentHtml: |-
+      <li class="MESSAGES hidden-xs">
+            <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+      </a>    </li>
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_092:
+  emitted_at: <%= DateTime.now - 4334.seconds %>
+  recorded_at: <%= DateTime.now - 4334.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    headers:
+    - MESSAGES
+    - Messages landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_093:
+  emitted_at: <%= DateTime.now - 4332.seconds %>
+  recorded_at: <%= DateTime.now - 4332.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    buttonHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+    parentHtml: |-
+      <li class="THINK dropdown hidden-xs open">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/navigator/contexts/THINK">THINK Home</a>
+              </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="/navigator/modules/954850709">
+                    <i class="fa fa-book"></i> #1 Identifying
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/833803412">
+                    <i class="fa fa-book"></i> #2 Patterns
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/356286248">
+                    <i class="fa fa-book"></i> #3 Reshape
+      </a>          </li>
+                  <li class="divider"></li>
+                <li>
+                  <a href="/navigator/modules/25448458">
+                    <i class="fa fa-pencil"></i> Add a New Thought
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/90368025">
+                    <i class="fa fa-pencil"></i> Thoughts
+      </a>          </li>
+            </ul>
+          </li>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_094:
+  emitted_at: <%= DateTime.now - 4331.seconds %>
+  recorded_at: <%= DateTime.now - 4331.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    buttonHtml: |-
+      <a href="/navigator/modules/833803412">
+                    <i class="fa fa-book"></i> #2 Patterns
+      </a>
+    parentHtml: |-
+      <li>
+                  <a href="/navigator/modules/833803412">
+                    <i class="fa fa-book"></i> #2 Patterns
+      </a>          </li>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_095:
+  emitted_at: <%= DateTime.now - 4330.seconds %>
+  recorded_at: <%= DateTime.now - 4330.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412
+    headers:
+    - THINK
+    - "#2 Patterns"
+    - Like we said, you are what you think...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_096:
+  emitted_at: <%= DateTime.now - 4329.seconds %>
+  recorded_at: <%= DateTime.now - 4329.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    - Like we said, you are what you think...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_097:
+  emitted_at: <%= DateTime.now - 4328.seconds %>
+  recorded_at: <%= DateTime.now - 4328.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    headers:
+    - THINK
+    - "#2 Patterns"
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_098:
+  emitted_at: <%= DateTime.now - 4327.seconds %>
+  recorded_at: <%= DateTime.now - 4327.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: block;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Mental
+      Filter</h3>\n    <p>You pick out a single negative defeat and dwell on it exclusively
+      so that your vision of reality becomes darkened, like the drop of ink that colors
+      the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern well well-lg
+      not-displayed\">\n    <h3>Fortune Telling</h3>\n    <p>You make a negative interpretation
+      even though there are no definite facts that convincingly support your conclusion.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Magnification
+      or Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as
+      your goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>\\\"Should\\\" Statements</h3>\n    <p>You
+      try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped
+      and punished before you could be expected to do anything. \"Musts\" and \"oughts\"
+      are also offenders. The emotional consequence is guilt.\nWhen you direct should
+      statements toward others, you feel anger, frustration, and resentment.</p>\n  </div>\n
+      \ <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Labeling and
+      Mislabeling</h3>\n    <p>This is an extreme form of overgeneralization. Instead
+      of describing your error, you attach a negative label to yourself: \"I'm a loser.\"
+      When someone else's behavior rubs you the wrong way, you attach a negative label
+      to him: \"He's a goddam louse\".\nMislabeling involves describing an event with
+      language that is highly colored and emotionally loaded.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Personalization</h3>\n    <p>You see yourself
+      as the cause of some negative external event which in fact you were not primarily
+      responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_099:
+  emitted_at: <%= DateTime.now - 4305.seconds %>
+  recorded_at: <%= DateTime.now - 4305.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025
+    headers:
+    - THINK
+    - Thoughts
+    - Harmful Thoughts
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_100:
+  emitted_at: <%= DateTime.now - 4302.seconds %>
+  recorded_at: <%= DateTime.now - 4302.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025
+    buttonHtml: <a class="btn btn-default" href="/navigator/next_content"><i class="fa
+      fa-plus"></i> Add a New Thought</a>
+    parentHtml: |-
+      <div class="btn-toolbar">
+          <a class="btn btn-default" href="/navigator/next_content"><i class="fa fa-plus"></i> Add a New Thought</a>
+        <a class="btn btn-default" href="#" id="edit-thoughts-button" onclick="makeThoughtsEditable(); return false;">Edit Thoughts</a>
+      </div>
+    headers:
+    - THINK
+    - Thoughts
+    - Harmful Thoughts
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_101:
+  emitted_at: <%= DateTime.now - 4301.seconds %>
+  recorded_at: <%= DateTime.now - 4301.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/93670928/1
+    headers:
+    - THINK
+    - Thoughts
+    - Add a New Harmful Thought
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_102:
+  emitted_at: <%= DateTime.now - 4274.seconds %>
+  recorded_at: <%= DateTime.now - 4274.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/847171223/providers/787511419/1
+    headers:
+    - FEEL
+    - Feeling tracker landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_103:
+  emitted_at: <%= DateTime.now - 4325.seconds %>
+  recorded_at: <%= DateTime.now - 4325.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      block;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Fortune Telling</h3>\n    <p>You make a negative
+      interpretation even though there are no definite facts that convincingly support
+      your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n
+      \   <h3>Magnification or Catastrophizing</h3>\n    <p>You exaggerate the importance
+      of things (such as your goof-up or someone else's achievement)</p>\n  </div>\n  <div
+      class=\"thought-pattern well well-lg not-displayed\">\n    <h3>\\\"Should\\\" Statements</h3>\n
+      \   <p>You try to motivate yourself with shoulds and shouldn'ts, as if you had to
+      be whipped and punished before you could be expected to do anything. \"Musts\" and
+      \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen you direct
+      should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Labeling
+      and Mislabeling</h3>\n    <p>This is an extreme form of overgeneralization. Instead
+      of describing your error, you attach a negative label to yourself: \"I'm a loser.\"
+      When someone else's behavior rubs you the wrong way, you attach a negative label
+      to him: \"He's a goddam louse\".\nMislabeling involves describing an event with
+      language that is highly colored and emotionally loaded.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Personalization</h3>\n    <p>You see yourself
+      as the cause of some negative external event which in fact you were not primarily
+      responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_104:
+  emitted_at: <%= DateTime.now - 4325.seconds %>
+  recorded_at: <%= DateTime.now - 4325.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: block;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Magnification or Catastrophizing</h3>\n    <p>You
+      exaggerate the importance of things (such as your goof-up or someone else's achievement)</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>\\\"Should\\\"
+      Statements</h3>\n    <p>You try to motivate yourself with shoulds and shouldn'ts,
+      as if you had to be whipped and punished before you could be expected to do anything.
+      \"Musts\" and \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen
+      you direct should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Labeling
+      and Mislabeling</h3>\n    <p>This is an extreme form of overgeneralization. Instead
+      of describing your error, you attach a negative label to yourself: \"I'm a loser.\"
+      When someone else's behavior rubs you the wrong way, you attach a negative label
+      to him: \"He's a goddam louse\".\nMislabeling involves describing an event with
+      language that is highly colored and emotionally loaded.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Personalization</h3>\n    <p>You see yourself
+      as the cause of some negative external event which in fact you were not primarily
+      responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_105:
+  emitted_at: <%= DateTime.now - 4324.seconds %>
+  recorded_at: <%= DateTime.now - 4324.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: block;\">\n    <h3>Magnification or
+      Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as your
+      goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>\\\"Should\\\" Statements</h3>\n    <p>You
+      try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped
+      and punished before you could be expected to do anything. \"Musts\" and \"oughts\"
+      are also offenders. The emotional consequence is guilt.\nWhen you direct should
+      statements toward others, you feel anger, frustration, and resentment.</p>\n  </div>\n
+      \ <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Labeling and
+      Mislabeling</h3>\n    <p>This is an extreme form of overgeneralization. Instead
+      of describing your error, you attach a negative label to yourself: \"I'm a loser.\"
+      When someone else's behavior rubs you the wrong way, you attach a negative label
+      to him: \"He's a goddam louse\".\nMislabeling involves describing an event with
+      language that is highly colored and emotionally loaded.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Personalization</h3>\n    <p>You see yourself
+      as the cause of some negative external event which in fact you were not primarily
+      responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_106:
+  emitted_at: <%= DateTime.now - 4324.seconds %>
+  recorded_at: <%= DateTime.now - 4324.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Magnification or
+      Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as your
+      goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: block;\">\n    <h3>\\\"Should\\\"
+      Statements</h3>\n    <p>You try to motivate yourself with shoulds and shouldn'ts,
+      as if you had to be whipped and punished before you could be expected to do anything.
+      \"Musts\" and \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen
+      you direct should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Labeling
+      and Mislabeling</h3>\n    <p>This is an extreme form of overgeneralization. Instead
+      of describing your error, you attach a negative label to yourself: \"I'm a loser.\"
+      When someone else's behavior rubs you the wrong way, you attach a negative label
+      to him: \"He's a goddam louse\".\nMislabeling involves describing an event with
+      language that is highly colored and emotionally loaded.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\">\n    <h3>Personalization</h3>\n    <p>You see yourself
+      as the cause of some negative external event which in fact you were not primarily
+      responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_107:
+  emitted_at: <%= DateTime.now - 4274.seconds %>
+  recorded_at: <%= DateTime.now - 4274.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983#
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_108:
+  emitted_at: <%= DateTime.now - 4323.seconds %>
+  recorded_at: <%= DateTime.now - 4323.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Magnification or
+      Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as your
+      goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>\\\"Should\\\" Statements</h3>\n
+      \   <p>You try to motivate yourself with shoulds and shouldn'ts, as if you had to
+      be whipped and punished before you could be expected to do anything. \"Musts\" and
+      \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen you direct
+      should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      block;\">\n    <h3>Labeling and Mislabeling</h3>\n    <p>This is an extreme form
+      of overgeneralization. Instead of describing your error, you attach a negative label
+      to yourself: \"I'm a loser.\" When someone else's behavior rubs you the wrong way,
+      you attach a negative label to him: \"He's a goddam louse\".\nMislabeling involves
+      describing an event with language that is highly colored and emotionally loaded.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\">\n    <h3>Personalization</h3>\n
+      \   <p>You see yourself as the cause of some negative external event which in fact
+      you were not primarily responsible for.</p>\n  </div>\n\n<button class=\"btn btn-primary
+      pull-right\" id=\"next-thought-pattern\" type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_109:
+  emitted_at: <%= DateTime.now - 4322.seconds %>
+  recorded_at: <%= DateTime.now - 4322.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Magnification or
+      Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as your
+      goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>\\\"Should\\\" Statements</h3>\n
+      \   <p>You try to motivate yourself with shoulds and shouldn'ts, as if you had to
+      be whipped and punished before you could be expected to do anything. \"Musts\" and
+      \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen you direct
+      should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Labeling and Mislabeling</h3>\n    <p>This is an extreme form
+      of overgeneralization. Instead of describing your error, you attach a negative label
+      to yourself: \"I'm a loser.\" When someone else's behavior rubs you the wrong way,
+      you attach a negative label to him: \"He's a goddam louse\".\nMislabeling involves
+      describing an event with language that is highly colored and emotionally loaded.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      block;\">\n    <h3>Personalization</h3>\n    <p>You see yourself as the cause of
+      some negative external event which in fact you were not primarily responsible for.</p>\n
+      \ </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_110:
+  emitted_at: <%= DateTime.now - 4322.seconds %>
+  recorded_at: <%= DateTime.now - 4322.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/784710389/1
+    buttonHtml: <button class="btn btn-primary pull-right" id="next-thought-pattern" type="submit">Next</button>
+    parentHtml: "<div class=\"container\" id=\"tool-layout\">\n\n            <div class=\"row\">\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n\n
+      \             <div class=\"col-md-6\">\n\n                \n              </div>\n
+      \           </div>\n\n            \n\n  <div class=\"thought-pattern well well-lg\"
+      style=\"display: none;\">\n    <h3>All-or-Nothing (Black-or-White) Thinking</h3>\n
+      \   <p>You see things in black-and-white categories. If your performance falls short
+      of perfect, you see yourself as a total failure.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Overgeneralization</h3>\n
+      \   <p>You see a single negative event as a never-ending pattern of defeat.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Mental Filter</h3>\n    <p>You pick out a single negative defeat
+      and dwell on it exclusively so that your vision of reality becomes darkened, like
+      the drop of ink that colors the entire beaker of water.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Fortune Telling</h3>\n
+      \   <p>You make a negative interpretation even though there are no definite facts
+      that convincingly support your conclusion.</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>Magnification or
+      Catastrophizing</h3>\n    <p>You exaggerate the importance of things (such as your
+      goof-up or someone else's achievement)</p>\n  </div>\n  <div class=\"thought-pattern
+      well well-lg not-displayed\" style=\"display: none;\">\n    <h3>\\\"Should\\\" Statements</h3>\n
+      \   <p>You try to motivate yourself with shoulds and shouldn'ts, as if you had to
+      be whipped and punished before you could be expected to do anything. \"Musts\" and
+      \"oughts\" are also offenders. The emotional consequence is guilt.\nWhen you direct
+      should statements toward others, you feel anger, frustration, and resentment.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      none;\">\n    <h3>Labeling and Mislabeling</h3>\n    <p>This is an extreme form
+      of overgeneralization. Instead of describing your error, you attach a negative label
+      to yourself: \"I'm a loser.\" When someone else's behavior rubs you the wrong way,
+      you attach a negative label to him: \"He's a goddam louse\".\nMislabeling involves
+      describing an event with language that is highly colored and emotionally loaded.</p>\n
+      \ </div>\n  <div class=\"thought-pattern well well-lg not-displayed\" style=\"display:
+      block;\">\n    <h3>Personalization</h3>\n    <p>You see yourself as the cause of
+      some negative external event which in fact you were not primarily responsible for.</p>\n
+      \ </div>\n\n<button class=\"btn btn-primary pull-right\" id=\"next-thought-pattern\"
+      type=\"submit\">Next</button>\n\n\n\n          </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_111:
+  emitted_at: <%= DateTime.now - 4320.seconds %>
+  recorded_at: <%= DateTime.now - 4320.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/821135703/1
+    headers:
+    - THINK
+    - "#2 Patterns"
+    - Helpful Thoughts
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_112:
+  emitted_at: <%= DateTime.now - 4317.seconds %>
+  recorded_at: <%= DateTime.now - 4317.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/821135703/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#2 Patterns"
+    - Helpful Thoughts
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_113:
+  emitted_at: <%= DateTime.now - 4316.seconds %>
+  recorded_at: <%= DateTime.now - 4316.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/547333724/1
+    headers:
+    - THINK
+    - "#2 Patterns"
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_114:
+  emitted_at: <%= DateTime.now - 4311.seconds %>
+  recorded_at: <%= DateTime.now - 4311.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/547333724/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-page" data-remote="true" id="edit_thought_883344738" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344738">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">One thought you had:</h3>
+              </div>
+              <div class="panel-body adjusted-list-group-item">
+                Test harmful thought 3 @ 2:48:18
+              </div>
+            </div>
+
+            <div class="form-group">
+        <label for="thought_pattern_id">What thought pattern is this an example of?</label>
+        <span class="help-block">(don't worry if it matches more than one, just pick the closest fit)</span>
+        <select class="form-control suggested" id="thought_pattern_id" name="thought[pattern_id]"><option value="">Select one...</option>
+      <option data-description="You see things in black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure." title="You see things in black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure." value="532969532">All-or-Nothing (Black-or-White) Thinking</option>
+      <option data-description="You see a single negative event as a never-ending pattern of defeat." title="You see a single negative event as a never-ending pattern of defeat." value="131127525">Overgeneralization</option>
+      <option data-description="You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water." title="You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water." value="480065688">Mental Filter</option>
+      <option data-description="You make a negative interpretation even though there are no definite facts that convincingly support your conclusion." title="You make a negative interpretation even though there are no definite facts that convincingly support your conclusion." value="209060284">Fortune Telling</option>
+      <option data-description="You exaggerate the importance of things (such as your goof-up or someone else's achievement)" title="You exaggerate the importance of things (such as your goof-up or someone else's achievement)" value="988881683">Magnification or Catastrophizing</option>
+      <option data-description="You try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped and punished before you could be expected to do anything. &quot;Musts&quot; and &quot;oughts&quot; are also offenders. The emotional consequence is guilt.
+      When you direct should statements toward others, you feel anger, frustration, and resentment." title="You try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped and punished before you could be expected to do anything. &quot;Musts&quot; and &quot;oughts&quot; are also offenders. The emotional consequence is guilt.
+      When you direct should statements toward others, you feel anger, frustration, and resentment." value="668872260">\"Should\" Statements</option>
+      <option data-description="This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: &quot;I'm a loser.&quot; When someone else's behavior rubs you the wrong way, you attach a negative label to him: &quot;He's a goddam louse&quot;.
+      Mislabeling involves describing an event with language that is highly colored and emotionally loaded." title="This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: &quot;I'm a loser.&quot; When someone else's behavior rubs you the wrong way, you attach a negative label to him: &quot;He's a goddam louse&quot;.
+      Mislabeling involves describing an event with language that is highly colored and emotionally loaded." value="85422441">Labeling and Mislabeling</option>
+      <option data-description="You see yourself as the cause of some negative external event which in fact you were not primarily responsible for." title="You see yourself as the cause of some negative external event which in fact you were not primarily responsible for." value="723669462">Personalization</option></select>
+      </div>
+
+      <div class="alert alert-info not-displayed" id="thought-pattern-description" style="display: block;">You see a single negative event as a never-ending pattern of defeat.</div>
+
+
+            <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_115:
+  emitted_at: <%= DateTime.now - 4308.seconds %>
+  recorded_at: <%= DateTime.now - 4308.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/547333724/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-page not-displayed" data-remote="true" id="edit_thought_883344737" method="post" role="form" style="display: block;"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344737">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">One thought you had:</h3>
+              </div>
+              <div class="panel-body adjusted-list-group-item">
+                Test harmful thought 2 @ 2:48:02
+              </div>
+            </div>
+
+            <div class="form-group">
+        <label for="thought_pattern_id">What thought pattern is this an example of?</label>
+        <span class="help-block">(don't worry if it matches more than one, just pick the closest fit)</span>
+        <select class="form-control suggested" id="thought_pattern_id" name="thought[pattern_id]"><option value="">Select one...</option>
+      <option data-description="You see things in black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure." title="You see things in black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure." value="532969532">All-or-Nothing (Black-or-White) Thinking</option>
+      <option data-description="You see a single negative event as a never-ending pattern of defeat." title="You see a single negative event as a never-ending pattern of defeat." value="131127525">Overgeneralization</option>
+      <option data-description="You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water." title="You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water." value="480065688">Mental Filter</option>
+      <option data-description="You make a negative interpretation even though there are no definite facts that convincingly support your conclusion." title="You make a negative interpretation even though there are no definite facts that convincingly support your conclusion." value="209060284">Fortune Telling</option>
+      <option data-description="You exaggerate the importance of things (such as your goof-up or someone else's achievement)" title="You exaggerate the importance of things (such as your goof-up or someone else's achievement)" value="988881683">Magnification or Catastrophizing</option>
+      <option data-description="You try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped and punished before you could be expected to do anything. &quot;Musts&quot; and &quot;oughts&quot; are also offenders. The emotional consequence is guilt.
+      When you direct should statements toward others, you feel anger, frustration, and resentment." title="You try to motivate yourself with shoulds and shouldn'ts, as if you had to be whipped and punished before you could be expected to do anything. &quot;Musts&quot; and &quot;oughts&quot; are also offenders. The emotional consequence is guilt.
+      When you direct should statements toward others, you feel anger, frustration, and resentment." value="668872260">\"Should\" Statements</option>
+      <option data-description="This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: &quot;I'm a loser.&quot; When someone else's behavior rubs you the wrong way, you attach a negative label to him: &quot;He's a goddam louse&quot;.
+      Mislabeling involves describing an event with language that is highly colored and emotionally loaded." title="This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: &quot;I'm a loser.&quot; When someone else's behavior rubs you the wrong way, you attach a negative label to him: &quot;He's a goddam louse&quot;.
+      Mislabeling involves describing an event with language that is highly colored and emotionally loaded." value="85422441">Labeling and Mislabeling</option>
+      <option data-description="You see yourself as the cause of some negative external event which in fact you were not primarily responsible for." title="You see yourself as the cause of some negative external event which in fact you were not primarily responsible for." value="723669462">Personalization</option></select>
+      </div>
+
+      <div class="alert alert-info not-displayed" id="thought-pattern-description" style="display: block;">You pick out a single negative defeat and dwell on it exclusively so that your vision of reality becomes darkened, like the drop of ink that colors the entire beaker of water.</div>
+
+
+            <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_116:
+  emitted_at: <%= DateTime.now - 4307.seconds %>
+  recorded_at: <%= DateTime.now - 4307.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/547333724/1
+    buttonHtml: <span class="badge badge-do">New!</span>
+    parentHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_117:
+  emitted_at: <%= DateTime.now - 4306.seconds %>
+  recorded_at: <%= DateTime.now - 4306.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/833803412/providers/547333724/1
+    buttonHtml: |-
+      <a href="/navigator/modules/90368025">
+                    <i class="fa fa-pencil"></i> Thoughts
+      </a>
+    parentHtml: |-
+      <li>
+                  <a href="/navigator/modules/90368025">
+                    <i class="fa fa-pencil"></i> Thoughts
+      </a>          </li>
+    headers:
+    - THINK
+    - "#2 Patterns"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_118:
+  emitted_at: <%= DateTime.now - 4300.seconds %>
+  recorded_at: <%= DateTime.now - 4300.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/93670928/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="example: I can never get my work done, I''m no good" required="required"
+      rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+    headers:
+    - THINK
+    - Thoughts
+    - Add a New Harmful Thought
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_119:
+  emitted_at: <%= DateTime.now - 4294.seconds %>
+  recorded_at: <%= DateTime.now - 4294.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/93670928/1
+    buttonHtml: '<input class="form-control suggested" id="thought_challenging_thought"
+      name="thought[challenging_thought]" placeholder="example: The present doesn''t always
+      predict the future" type="text">'
+    parentHtml: |-
+      <div class="form-group">
+          <label for="thought_challenging_thought">Challenging Thought</label>
+          <input class="form-control suggested" id="thought_challenging_thought" name="thought[challenging_thought]" placeholder="example: The present doesn't always predict the future" type="text">
+        </div>
+    headers:
+    - THINK
+    - Thoughts
+    - Add a New Harmful Thought
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_120:
+  emitted_at: <%= DateTime.now - 4289.seconds %>
+  recorded_at: <%= DateTime.now - 4289.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/93670928/1
+    buttonHtml: <button class="btn btn-primary" type="submit">Next</button>
+    parentHtml: |-
+      <div class="btn-group pull-right">
+          <a class="btn btn-default" href="/navigator/contexts/THINK">Cancel</a>
+          <button class="btn btn-primary" type="submit">Next</button>
+        </div>
+    headers:
+    - THINK
+    - Thoughts
+    - Add a New Harmful Thought
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_121:
+  emitted_at: <%= DateTime.now - 4287.seconds %>
+  recorded_at: <%= DateTime.now - 4287.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/661199642/1
+    headers:
+    - THINK
+    - Thoughts
+    - Harmful Thoughts
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_122:
+  emitted_at: <%= DateTime.now - 4283.seconds %>
+  recorded_at: <%= DateTime.now - 4283.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/661199642/1
+    buttonHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              FEEL
+                <span class="badge badge-do">New!</span>
+      </a>
+    parentHtml: |-
+      <li class="FEEL dropdown hidden-xs open">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              FEEL
+                <span class="badge badge-do">New!</span>
+      </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/navigator/contexts/FEEL">FEEL Home</a>
+              </li>
+
+
+                  <li class="divider"></li>
+                <li>
+                  <a href="/navigator/modules/841495122">
+                    <i class="fa fa-pencil"></i> Tracking Your Mood
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/142790983">
+                    <i class="fa fa-pencil"></i> Your Recent Moods &amp; Emotions
+      </a>          </li>
+            </ul>
+          </li>
+    headers:
+    - THINK
+    - Thoughts
+    - Harmful Thoughts
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_123:
+  emitted_at: <%= DateTime.now - 4282.seconds %>
+  recorded_at: <%= DateTime.now - 4282.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/90368025/providers/661199642/1
+    buttonHtml: |-
+      <a href="/navigator/modules/142790983">
+                    <i class="fa fa-pencil"></i> Your Recent Moods &amp; Emotions
+      </a>
+    parentHtml: |-
+      <li>
+                  <a href="/navigator/modules/142790983">
+                    <i class="fa fa-pencil"></i> Your Recent Moods &amp; Emotions
+      </a>          </li>
+    headers:
+    - THINK
+    - Thoughts
+    - Harmful Thoughts
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_124:
+  emitted_at: <%= DateTime.now - 4281.seconds %>
+  recorded_at: <%= DateTime.now - 4281.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_125:
+  emitted_at: <%= DateTime.now - 4280.seconds %>
+  recorded_at: <%= DateTime.now - 4280.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983
+    buttonHtml: |-
+      <label class="btn btn-default">
+                <input type="radio" class="interval" value="28">28 day
+              </label>
+    parentHtml: |-
+      <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" class="interval" value="7" checked="">7 Day
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" class="interval" value="28">28 day
+              </label>
+            </div>
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_126:
+  emitted_at: <%= DateTime.now - 4279.seconds %>
+  recorded_at: <%= DateTime.now - 4279.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983
+    buttonHtml: <a class="offset" id="next" data-value="-1" href="#">Next Period <span
+      aria-hidden="true">→</span></a>
+    parentHtml: <li><a class="offset" id="next" data-value="-1" href="#">Next Period <span
+      aria-hidden="true">→</span></a></li>
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_127:
+  emitted_at: <%= DateTime.now - 4278.seconds %>
+  recorded_at: <%= DateTime.now - 4278.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983#
+    buttonHtml: <a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">←</span>
+      Previous Period</a>
+    parentHtml: <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">←</span>
+      Previous Period</a></li>
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_128:
+  emitted_at: <%= DateTime.now - 4277.seconds %>
+  recorded_at: <%= DateTime.now - 4277.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983#
+    buttonHtml: <a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">←</span>
+      Previous Period</a>
+    parentHtml: <li><a class="offset" id="previous" data-value="1" href="#"><span aria-hidden="true">←</span>
+      Previous Period</a></li>
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_129:
+  emitted_at: <%= DateTime.now - 4277.seconds %>
+  recorded_at: <%= DateTime.now - 4277.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/142790983#
+    buttonHtml: |-
+      <label class="btn btn-default">
+                <input type="radio" class="interval" value="7" checked="">7 Day
+              </label>
+    parentHtml: |-
+      <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default">
+                <input type="radio" class="interval" value="7" checked="">7 Day
+              </label>
+              <label class="btn btn-default active">
+                <input type="radio" class="interval" value="28">28 day
+              </label>
+            </div>
+    headers:
+    - FEEL
+    - Your Recent Moods & Emotions
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_130:
+  emitted_at: <%= DateTime.now - 4271.seconds %>
+  recorded_at: <%= DateTime.now - 4271.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/847171223/providers/787511419/1
+    buttonHtml: <a class="task-status list-group-item list-group-item-unread" data-task-status-id="609675654"
+      href="/navigator/modules/841495122" id="task-status-609675654"><i class="fa fa-pencil"></i>
+      Tracking Your Mood</a>
+    parentHtml: |-
+      <div class="list-group right">
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="609675654" href="/navigator/modules/841495122" id="task-status-609675654"><i class="fa fa-pencil"></i> Tracking Your Mood</a>
+                  <a class="task-status list-group-item list-group-item-read" data-task-status-id="74829752" href="/navigator/modules/142790983" id="task-status-74829752"><i class="fa fa-pencil"></i> Your Recent Moods &amp; Emotions</a>
+          </div>
+    headers:
+    - FEEL
+    - Feeling tracker landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_131:
+  emitted_at: <%= DateTime.now - 4271.seconds %>
+  recorded_at: <%= DateTime.now - 4271.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/841495122
+    headers:
+    - FEEL
+    - Tracking Your Mood
+    - Rate your Mood
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_132:
+  emitted_at: <%= DateTime.now - 4268.seconds %>
+  recorded_at: <%= DateTime.now - 4268.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/841495122
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_mood" id="new_mood" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="EKkk9PN7YocQcr3q9qAJWMHC20pdkfNExImdnf7SE+g="></div>
+        <label for="rating_">What is your mood right now?</label><br>
+
+      <div class="form-group">
+        <select id="mood[rating]" name="mood[rating]" class="form-control">
+            <option value="0">
+                0 (Bad)
+            </option>
+            <option value="1">
+                1
+            </option>
+            <option value="2">
+                2
+            </option>
+            <option value="3">
+                3
+            </option>
+            <option value="4">
+                4
+            </option>
+            <option value="5">
+                5 (Neither)
+            </option>
+            <option value="6">
+                6
+            </option>
+            <option value="7">
+                7
+            </option>
+            <option value="8">
+                8
+            </option>
+            <option value="9">
+                9
+            </option>
+            <option value="10">
+                10 (Good)
+            </option>
+        </select>
+      </div>
+
+
+        <button class="btn btn-primary pull-right" type="submit">Next</button>
+
+      </form>
+    headers:
+    - FEEL
+    - Tracking Your Mood
+    - Rate your Mood
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_133:
+  emitted_at: <%= DateTime.now - 4266.seconds %>
+  recorded_at: <%= DateTime.now - 4266.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/841495122/providers/943687691/1
+    headers:
+    - FEEL
+    - Tracking Your Mood
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_134:
+  emitted_at: <%= DateTime.now - 4265.seconds %>
+  recorded_at: <%= DateTime.now - 4265.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/841495122/providers/943687691/1
+    buttonHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+    parentHtml: |-
+      <li class="THINK dropdown hidden-xs open">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/navigator/contexts/THINK">THINK Home</a>
+              </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="/navigator/modules/954850709">
+                    <i class="fa fa-book"></i> #1 Identifying
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/833803412">
+                    <i class="fa fa-book"></i> #2 Patterns
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/356286248">
+                    <i class="fa fa-book"></i> #3 Reshape
+      </a>          </li>
+                  <li class="divider"></li>
+                <li>
+                  <a href="/navigator/modules/25448458">
+                    <i class="fa fa-pencil"></i> Add a New Thought
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/90368025">
+                    <i class="fa fa-pencil"></i> Thoughts
+      </a>          </li>
+            </ul>
+          </li>
+    headers:
+    - FEEL
+    - Tracking Your Mood
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_135:
+  emitted_at: <%= DateTime.now - 4264.seconds %>
+  recorded_at: <%= DateTime.now - 4264.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/841495122/providers/943687691/1
+    buttonHtml: |-
+      <a href="/navigator/modules/356286248">
+                    <i class="fa fa-book"></i> #3 Reshape
+      </a>
+    parentHtml: |-
+      <li>
+                  <a href="/navigator/modules/356286248">
+                    <i class="fa fa-book"></i> #3 Reshape
+      </a>          </li>
+    headers:
+    - FEEL
+    - Tracking Your Mood
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_136:
+  emitted_at: <%= DateTime.now - 4263.seconds %>
+  recorded_at: <%= DateTime.now - 4263.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Challenging Harmful Thoughts
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_137:
+  emitted_at: <%= DateTime.now - 4262.seconds %>
+  recorded_at: <%= DateTime.now - 4262.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Challenging Harmful Thoughts
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_138:
+  emitted_at: <%= DateTime.now - 4261.seconds %>
+  recorded_at: <%= DateTime.now - 4261.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/504034807/1
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - 'You said you had the following unhelpful thoughts:'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_139:
+  emitted_at: <%= DateTime.now - 4260.seconds %>
+  recorded_at: <%= DateTime.now - 4260.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/504034807/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n    \n    <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - 'You said you had the following unhelpful thoughts:'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_140:
+  emitted_at: <%= DateTime.now - 4259.seconds %>
+  recorded_at: <%= DateTime.now - 4259.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/551645196/1
+    headers:
+    - THINK
+    - "#3 Reshape"
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_141:
+  emitted_at: <%= DateTime.now - 4255.seconds %>
+  recorded_at: <%= DateTime.now - 4255.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/551645196/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#3 Reshape"
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_142:
+  emitted_at: <%= DateTime.now - 4255.seconds %>
+  recorded_at: <%= DateTime.now - 4255.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_143:
+  emitted_at: <%= DateTime.now - 4253.seconds %>
+  recorded_at: <%= DateTime.now - 4253.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <button class="next-page btn btn-primary pull-right" type="button">Next</button>
+    parentHtml: |-
+      <div class="multi-form" style="display: none;">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">
+                  You said that you thought...
+                </h3>
+              </div>
+              <div class="panel-body adjusted-list-group-item">Test harmful thought 1 @ 2:47:47</div>
+            </div>
+              <p>
+                ...and did not choose a related thought pattern.
+              </p>
+            <button class="next-page btn btn-primary pull-right" type="button">Next</button>
+          </div>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_144:
+  emitted_at: <%= DateTime.now - 4252.seconds %>
+  recorded_at: <%= DateTime.now - 4252.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <textarea class="form-control" id="challenge0" name="thought[challenging_thought]"
+      required="required" rows="3"></textarea>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-form not-displayed" data-remote="true" id="0" method="post" style="display: block;"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <h2>Thought 1 of 3</h2>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-title">
+                  Come up with a challenging thought for your thought...
+                </div>
+              </div>
+               <div class="panel-body adjusted-list-group-item">Test harmful thought 1 @ 2:47:47</div>
+            </div>
+            <label for="challenge0">Now you try it. Write a challenging thought below:</label>
+            <textarea class="form-control" id="challenge0" name="thought[challenging_thought]" required="required" rows="3"></textarea>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344736">
+            <button class="challenging btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_145:
+  emitted_at: <%= DateTime.now - 4249.seconds %>
+  recorded_at: <%= DateTime.now - 4249.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <button class="challenging btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-form not-displayed" data-remote="true" id="0" method="post" style="display: block;"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <h2>Thought 1 of 3</h2>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-title">
+                  Come up with a challenging thought for your thought...
+                </div>
+              </div>
+               <div class="panel-body adjusted-list-group-item">Test harmful thought 1 @ 2:47:47</div>
+            </div>
+            <label for="challenge0">Now you try it. Write a challenging thought below:</label>
+            <textarea class="form-control" id="challenge0" name="thought[challenging_thought]" required="required" rows="3"></textarea>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344736">
+            <button class="challenging btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_146:
+  emitted_at: <%= DateTime.now - 4247.seconds %>
+  recorded_at: <%= DateTime.now - 4247.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <button class="next-page btn btn-primary pull-right" type="button">Next</button>
+    parentHtml: |-
+      <div class="multi-form not-displayed" style="display: none;">
+            <p>Because what you THINK, FEEL, Do are related, a challenging thought can change how you act.</p>
+            <img alt="Changing actions" src="/assets/changing_actions.gif" width="100%">
+            <p>After you come up with a challenging thought, you can also come up with an "As If" action which means what you would do based on the challenging thought you came up with.</p>
+            <button class="next-page btn btn-primary pull-right" type="button">Next</button>
+          </div>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_147:
+  emitted_at: <%= DateTime.now - 4246.seconds %>
+  recorded_at: <%= DateTime.now - 4246.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <textarea class="form-control" id="thought_act_as_if" name="thought[act_as_if]"
+      required="required" rows="3"></textarea>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-form not-displayed" data-remote="true" id="edit_thought_883344736" method="post" style="display: block;"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">
+                  You thought...
+                </h3>
+              </div>
+               <div class="panel-body adjusted-list-group-item">Test harmful thought 1 @ 2:47:47</div>
+            </div>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">
+                  A challenging thought was...
+                </h3>
+              </div>
+               <div class="panel-body adjusted-list-group-item">
+                <p id="challenging-thought0">do it now</p>
+              </div>
+            </div>
+            <label for="thought_act_as_if">What could you do to ACT AS IF you believe this?</label>
+            <textarea class="form-control" id="thought_act_as_if" name="thought[act_as_if]" required="required" rows="3"></textarea><br>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344736">
+              <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_148:
+  emitted_at: <%= DateTime.now - 4243.seconds %>
+  recorded_at: <%= DateTime.now - 4243.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-form not-displayed" data-remote="true" id="edit_thought_883344736" method="post" style="display: block;"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch"></div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">
+                  You thought...
+                </h3>
+              </div>
+               <div class="panel-body adjusted-list-group-item">Test harmful thought 1 @ 2:47:47</div>
+            </div>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title adjusted-panel-title">
+                  A challenging thought was...
+                </h3>
+              </div>
+               <div class="panel-body adjusted-list-group-item">
+                <p id="challenging-thought0">do it now</p>
+              </div>
+            </div>
+            <label for="thought_act_as_if">What could you do to ACT AS IF you believe this?</label>
+            <textarea class="form-control" id="thought_act_as_if" name="thought[act_as_if]" required="required" rows="3"></textarea><br>
+            <input id="thought_id" name="thought[id]" type="hidden" value="883344736">
+              <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_149:
+  emitted_at: <%= DateTime.now - 4242.seconds %>
+  recorded_at: <%= DateTime.now - 4242.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/356286248/providers/758967851/1
+    buttonHtml: |-
+      <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+      </a>
+    parentHtml: |-
+      <li class="MESSAGES hidden-xs">
+            <a data-no-turbolink="true" href="/navigator/contexts/MESSAGES">
+              MESSAGES
+      </a>    </li>
+    headers:
+    - THINK
+    - "#3 Reshape"
+    - Thought 1 of 3Thought 2 of 3Thought 3 of 3
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_150:
+  emitted_at: <%= DateTime.now - 4240.seconds %>
+  recorded_at: <%= DateTime.now - 4240.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    headers:
+    - MESSAGES
+    - Messages landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_151:
+  emitted_at: <%= DateTime.now - 4239.seconds %>
+  recorded_at: <%= DateTime.now - 4239.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    buttonHtml: <span class="badge badge-do">New!</span>
+    parentHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              DO
+                <span class="badge badge-do">New!</span>
+      </a>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_152:
+  emitted_at: <%= DateTime.now - 4238.seconds %>
+  recorded_at: <%= DateTime.now - 4238.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/MESSAGES
+    buttonHtml: |-
+      <a href="/navigator/modules/926344597">
+                    <i class="fa fa-book"></i> #2 Planning
+      </a>
+    parentHtml: |-
+      <li>
+                  <a href="/navigator/modules/926344597">
+                    <i class="fa fa-book"></i> #2 Planning
+      </a>          </li>
+    headers:
+    - MESSAGES
+    - Messages landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_153:
+  emitted_at: <%= DateTime.now - 4237.seconds %>
+  recorded_at: <%= DateTime.now - 4237.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597
+    headers:
+    - DO
+    - "#2 Planning"
+    - The last few times you were here...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_154:
+  emitted_at: <%= DateTime.now - 4236.seconds %>
+  recorded_at: <%= DateTime.now - 4236.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - DO
+    - "#2 Planning"
+    - The last few times you were here...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_155:
+  emitted_at: <%= DateTime.now - 4235.seconds %>
+  recorded_at: <%= DateTime.now - 4235.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/45985006/1
+    headers:
+    - DO
+    - "#2 Planning"
+    - We want you to plan one fun thing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_156:
+  emitted_at: <%= DateTime.now - 4234.seconds %>
+  recorded_at: <%= DateTime.now - 4234.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/45985006/1
+    buttonHtml: <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]"
+      type="text" class="form-control-static">
+    parentHtml: |-
+      <div class="input-group static">
+            <span class="input-group-addon">
+              <input id="new_activity_radio" name="activity[activity_type_title]" type="radio" value="">
+            </span>
+
+            <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static">
+          </div>
+    headers:
+    - DO
+    - "#2 Planning"
+    - We want you to plan one fun thing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_157:
+  emitted_at: <%= DateTime.now - 4232.seconds %>
+  recorded_at: <%= DateTime.now - 4232.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/45985006/1
+    buttonHtml: <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]"
+      type="text" class="form-control-static">
+    parentHtml: |-
+      <div class="input-group static">
+            <span class="input-group-addon">
+              <input id="new_activity_radio" name="activity[activity_type_title]" type="radio" value="">
+            </span>
+
+            <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static">
+          </div>
+    headers:
+    - DO
+    - "#2 Planning"
+    - We want you to plan one fun thing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_158:
+  emitted_at: <%= DateTime.now - 4224.seconds %>
+  recorded_at: <%= DateTime.now - 4224.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/253912719/1
+    headers:
+    - DO
+    - "#2 Planning"
+    - Now, plan something that gives you a sense of accomplishment.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_159:
+  emitted_at: <%= DateTime.now - 4223.seconds %>
+  recorded_at: <%= DateTime.now - 4223.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/253912719/1
+    buttonHtml: <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]"
+      type="text" class="form-control-static">
+    parentHtml: |-
+      <div class="input-group static">
+            <span class="input-group-addon">
+              <input id="new_activity_radio" name="activity[activity_type_title]" type="radio" value="">
+            </span>
+
+            <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static">
+          </div>
+    headers:
+    - DO
+    - "#2 Planning"
+    - Now, plan something that gives you a sense of accomplishment.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_160:
+  emitted_at: <%= DateTime.now - 4215.seconds %>
+  recorded_at: <%= DateTime.now - 4215.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/74997926/1
+    headers:
+    - DO
+    - "#2 Planning"
+    - OK... the most important thing is to do more that is pleasureable and gives you
+      a sense of accomplishment
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_161:
+  emitted_at: <%= DateTime.now - 4213.seconds %>
+  recorded_at: <%= DateTime.now - 4213.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/74997926/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - DO
+    - "#2 Planning"
+    - OK... the most important thing is to do more that is pleasureable and gives you
+      a sense of accomplishment
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_162:
+  emitted_at: <%= DateTime.now - 4213.seconds %>
+  recorded_at: <%= DateTime.now - 4213.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/94466568/1
+    headers:
+    - DO
+    - "#2 Planning"
+    - Your Planned Activities
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_163:
+  emitted_at: <%= DateTime.now - 4210.seconds %>
+  recorded_at: <%= DateTime.now - 4210.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/926344597/providers/94466568/1
+    buttonHtml: <a class="navbar-brand" data-no-turbolink="true" href="http://localhost:3000/">ThinkFeelDo</a>
+    parentHtml: "<div class=\"navbar-header\">\n\n                <a class=\"navbar-brand\"
+      data-no-turbolink=\"true\" href=\"http://localhost:3000/\">ThinkFeelDo</a>\n\n                <ul
+      class=\"nav navbar-nav pull-right visible-xs-block\">\n                  \n                </ul>\n
+      \             </div>"
+    headers:
+    - DO
+    - "#2 Planning"
+    - Your Planned Activities
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_164:
+  emitted_at: <%= DateTime.now - 4208.seconds %>
+  recorded_at: <%= DateTime.now - 4208.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_165:
+  emitted_at: <%= DateTime.now - 300.seconds %>
+  recorded_at: <%= DateTime.now - 300.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_166:
+  emitted_at: <%= DateTime.now - 299.seconds %>
+  recorded_at: <%= DateTime.now - 299.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    buttonHtml: |-
+      <a data-no-turbolink="true" href="/navigator/contexts/LEARN">
+              LEARN
+                <span class="badge badge-do">1</span>
+      </a>
+    parentHtml: |-
+      <li class="LEARN hidden-xs">
+            <a data-no-turbolink="true" href="/navigator/contexts/LEARN">
+              LEARN
+                <span class="badge badge-do">1</span>
+      </a>    </li>
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_167:
+  emitted_at: <%= DateTime.now - 297.seconds %>
+  recorded_at: <%= DateTime.now - 297.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/LEARN
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_168:
+  emitted_at: <%= DateTime.now - 295.seconds %>
+  recorded_at: <%= DateTime.now - 295.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/LEARN
+    buttonHtml: "<p>Learn - Video Slideshow</p>"
+    parentHtml: |-
+      <span class="lesson unread"><p>Learn - Video Slideshow</p>
+      </span>
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_169:
+  emitted_at: <%= DateTime.now - 294.seconds %>
+  recorded_at: <%= DateTime.now - 294.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    headers:
+    - LEARN
+    - Learn - Video Slideshow
+    - Meet Jim
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_170:
+  emitted_at: <%= DateTime.now - 283.seconds %>
+  recorded_at: <%= DateTime.now - 283.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPlay
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_171:
+  emitted_at: <%= DateTime.now - 216.seconds %>
+  recorded_at: <%= DateTime.now - 216.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPause
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_172:
+  emitted_at: <%= DateTime.now - 180.seconds %>
+  recorded_at: <%= DateTime.now - 180.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPlay
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_173:
+  emitted_at: <%= DateTime.now - 128.seconds %>
+  recorded_at: <%= DateTime.now - 128.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPause
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_174:
+  emitted_at: <%= DateTime.now - 42.seconds %>
+  recorded_at: <%= DateTime.now - 42.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPlay
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_175:
+  emitted_at: <%= DateTime.now - 5.seconds %>
+  recorded_at: <%= DateTime.now - 5.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoPause
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_176:
+  emitted_at: <%= DateTime.now - 4.seconds %>
+  recorded_at: <%= DateTime.now - 4.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    remote_ip: 127.0.0.1
+  kind: videoFinish
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_177:
+  emitted_at: <%= DateTime.now - 2.seconds %>
+  recorded_at: <%= DateTime.now - 2.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Finish</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Finish</a>\n  </div>"
+    headers:
+    - LEARN
+    - Learn - Video Slideshow
+    - Meet Jim
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_178:
+  emitted_at: <%= DateTime.now - 1.seconds %>
+  recorded_at: <%= DateTime.now - 1.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/368801319/providers/92512490/1
+    headers:
+    - LEARN
+    - Lessons
+    - Lessons
+    - Week
+    - '1'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>

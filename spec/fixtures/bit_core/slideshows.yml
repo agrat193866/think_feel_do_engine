@@ -73,3 +73,7 @@ learn_thoughts_intro:
 audio_slideshow:
   title: Audio Slideshow
   arm: arm1
+
+video_slideshow:
+  title: Learn - Video Slideshow
+  arm: arm1

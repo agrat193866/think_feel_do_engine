@@ -23,7 +23,8 @@ namespace :seed do
       :activities, :coach_assignments, :groups, :memberships, :messages,
       :delivered_messages, :thought_patterns, :thoughts,
       :tasks, :task_status, :moods, :phq_assessments, :emotions,
-      :emotional_ratings, :media_access_events, :awake_periods, :slideshow_anchors
+      :emotional_ratings, :media_access_events, :awake_periods, :slideshow_anchors,
+      :"event_capture/events", :participant_login_events
     ]
   end
 end
