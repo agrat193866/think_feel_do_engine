@@ -111,9 +111,10 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("We want you to plan one fun thing")
 
       find("input[value='Loving'][type='radio']").click
-      tomorrow = Date.today + 1
       find(".fa.fa-calendar").click
-      click_on tomorrow.strftime("%e")
+      within ".ui-datepicker-calendar" do
+        page.all("a")[1].click
+      end
       choose_rating "pleasure_0", 10
       choose_rating "accomplishment_0", 10
       click_on "Next"
@@ -123,9 +124,10 @@ feature "activity tracker", type: :feature do
       expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
 
       fill_in "activity_activity_type_new_title", with: "Parkour"
-      tomorrow = Time.now + 1.days
       find(".fa.fa-calendar").click
-      click_on tomorrow.strftime("%e")
+      within ".ui-datepicker-calendar" do
+        page.all("a")[1].click
+      end
       click_on "Next"
 
       expect(page.body).to have_text("OK... the most important thing")
