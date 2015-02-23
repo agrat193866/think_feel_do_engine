@@ -1,5 +1,6 @@
 module ThinkFeelDoEngine
   module Reports
+    # Helper methods for reporting on modules.
     module ToolModule
       URL_ROOT_RE = /^[^\/]*\/\/[^\/]+/
 

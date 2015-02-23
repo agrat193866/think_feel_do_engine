@@ -3011,8 +3011,8 @@ event_capture_events_175:
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_176:
-  emitted_at: <%= DateTime.now - 5.seconds %>
-  recorded_at: <%= DateTime.now - 5.seconds %>
+  emitted_at: <%= DateTime.now - 4.seconds %>
+  recorded_at: <%= DateTime.now - 4.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1

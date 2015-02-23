@@ -24,7 +24,7 @@ namespace :seed do
       :delivered_messages, :thought_patterns, :thoughts,
       :tasks, :task_status, :moods, :phq_assessments, :emotions,
       :emotional_ratings, :media_access_events, :awake_periods, :slideshow_anchors,
-      :event_capture_events, :participant_login_events
+      :"event_capture/events", :participant_login_events
     ]
   end
 end

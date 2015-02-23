@@ -14,7 +14,7 @@ module ThinkFeelDoEngine
           end
         end
 
-        context "when lessons were viewed" do
+        context "when module pages were viewed" do
           it "returns accurate summaries" do
             select_event = event_capture_events(:event_capture_events_014)
             exit_event = event_capture_events(:event_capture_events_016)
