@@ -140,6 +140,38 @@ describe Activity do
 
       expect(Activity.during(Time.local(2016, 1, 15, 22), Time.local(2016, 1, 15, 23)).count).to eq(count + 1)
     end
+
+    it "returns a proportion of activities scheduled to activities completed as a percent" do
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 5,
+        start_time: Time.local(2016, 4, 23, 22))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 6,
+        is_complete: true,
+        start_time: Time.local(2016, 4, 23, 23))
+
+      activities = (Activity.during(Time.local(2016, 4, 23, 21), Time.local(2016, 4, 23, 24)))
+      expect(activities.completion_score).to eq(50)
+    end
+
+    it "returns a completion score of zero if no activities are completed" do
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 5,
+        start_time: Time.local(2016, 1, 15, 22))
+      Activity.create(
+        participant: participant,
+        activity_type: sleeping,
+        actual_accomplishment_intensity: 6,
+        start_time: Time.local(2016, 1, 15, 23))
+
+      expect(Activity.during(Time.local(2016, 1, 15, 21), Time.local(2016, 1, 15, 24)).completion_score).to eq(0)
+    end
   end
 
   describe "create activity type" do

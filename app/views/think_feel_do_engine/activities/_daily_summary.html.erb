@@ -25,8 +25,7 @@
           you recorded is both high pleasure and high accomplishment.
         </p>
         <p>
-          Completion Score:
-          <%= (activities.scheduled.completed.count.to_f / activities.scheduled.count * 100).round %>%
+          Completion Score: <%= activities.scheduled.completion_score %>%
           (You completed <%= activities.scheduled.completed.count %> out of <%= pluralize(activities.scheduled.count, 'activity') %> that you scheduled.)
         <p>
         <p>

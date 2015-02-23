@@ -155,6 +155,10 @@ class Activity < ActiveRecord::Base
     end
   end
 
+  def self.completion_score
+    completed.count > 0 ? (completed.count * 100 / count).round : 0
+  end
+
   private
 
   def actual_accomplishable_updates
