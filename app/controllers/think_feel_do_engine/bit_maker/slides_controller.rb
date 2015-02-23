@@ -106,8 +106,8 @@ module ThinkFeelDoEngine
 
         if @slideshow.has_table_of_contents &&
            first_slide.title != "Table of Contents"
-          flash.now[:alert] = "Table of contents cannot be moved out of"\
-                              " the first position. Reloading page..."
+          flash[:alert] = "Table of contents cannot be moved out of"\
+                              " the first position."
           render "think_feel_do_engine/slides/sort_with_reload.js"
 
         elsif @slideshow.sort(params[:slide])
