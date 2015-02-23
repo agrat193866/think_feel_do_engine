@@ -1,5 +1,415 @@
+event_capture_events_013:
+  emitted_at: <%= DateTime.now - 5523.seconds %>
+  recorded_at: <%= DateTime.now - 5523.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/THINK
+    buttonHtml: '<a class="task-status list-group-item list-group-item-unread" data-task-status-id="591080863"
+      href="/navigator/modules/954850709" id="task-status-591080863"><i class="fa fa-book"></i>
+      #1 Identifying</a>'
+    parentHtml: |-
+      <div class="list-group left">
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="591080863" href="/navigator/modules/954850709" id="task-status-591080863"><i class="fa fa-book"></i> #1 Identifying</a>
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="1029683262" href="/navigator/modules/833803412" id="task-status-1029683262"><i class="fa fa-book"></i> #2 Patterns</a>
+                  <a class="task-status list-group-item list-group-item-unread" data-task-status-id="173574313" href="/navigator/modules/356286248" id="task-status-173574313"><i class="fa fa-book"></i> #3 Reshape</a>
+          </div>
+    headers:
+    - THINK
+    - Think landing
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_014:
+  emitted_at: <%= DateTime.now - 5522.seconds %>
+  recorded_at: <%= DateTime.now - 5522.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - You are what you think...Your thoughts shape and guideThoughts are the exact sentences
+      that go through your head.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_015:
+  emitted_at: <%= DateTime.now - 5506.seconds %>
+  recorded_at: <%= DateTime.now - 5506.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - You are what you think...Your thoughts shape and guideThoughts are the exact sentences
+      that go through your head.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_016:
+  emitted_at: <%= DateTime.now - 5505.seconds %>
+  recorded_at: <%= DateTime.now - 5505.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/2
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Helpful thoughts are...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_017:
+  emitted_at: <%= DateTime.now - 5503.seconds %>
+  recorded_at: <%= DateTime.now - 5503.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/2
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Helpful thoughts are...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_018:
+  emitted_at: <%= DateTime.now - 5502.seconds %>
+  recorded_at: <%= DateTime.now - 5502.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/3
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - 'Harmful thoughts are:'
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_019:
+  emitted_at: <%= DateTime.now - 5500.seconds %>
+  recorded_at: <%= DateTime.now - 5500.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/3
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - 'Harmful thoughts are:'
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_020:
+  emitted_at: <%= DateTime.now - 5500.seconds %>
+  recorded_at: <%= DateTime.now - 5500.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/4
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Some quick examples...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_021:
+  emitted_at: <%= DateTime.now - 5498.seconds %>
+  recorded_at: <%= DateTime.now - 5498.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/1029189768/4
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Some quick examples...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_022:
+  emitted_at: <%= DateTime.now - 5497.seconds %>
+  recorded_at: <%= DateTime.now - 5497.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_023:
+  emitted_at: <%= DateTime.now - 5496.seconds %>
+  recorded_at: <%= DateTime.now - 5496.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="example: I can never get my work done, I''m no good" required="required"
+      rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_024:
+  emitted_at: <%= DateTime.now - 5476.seconds %>
+  recorded_at: <%= DateTime.now - 5476.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/575732207/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_thought" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="FoEATOWg/V3jfeEANRKE54/Pdjg/17E+7Jpt0kA/YaQ="></div>
+        <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+
+
+        <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+
+          <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+        <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now, your turn...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_025:
+  emitted_at: <%= DateTime.now - 5474.seconds %>
+  recorded_at: <%= DateTime.now - 5474.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_026:
+  emitted_at: <%= DateTime.now - 5473.seconds %>
+  recorded_at: <%= DateTime.now - 5473.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="an example thought: &quot;She thinks that she''s better than me&quot;"
+      required="required" rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+            <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="an example thought: &quot;She thinks that she's better than me&quot;" required="required" rows="3"></textarea>
+          </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_027:
+  emitted_at: <%= DateTime.now - 5461.seconds %>
+  recorded_at: <%= DateTime.now - 5461.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/816603727/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="multi-page" data-remote="true" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+          <div class="form-group">
+            <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="an example thought: &quot;She thinks that she's better than me&quot;" required="required" rows="3"></textarea>
+          </div>
+
+          <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+
+            <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+          <button class="btn btn-primary pull-right" type="submit">Next</button>
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Now list another harmful thought...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_028:
+  emitted_at: <%= DateTime.now - 5459.seconds %>
+  recorded_at: <%= DateTime.now - 5459.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_029:
+  emitted_at: <%= DateTime.now - 5458.seconds %>
+  recorded_at: <%= DateTime.now - 5458.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    buttonHtml: '<textarea class="form-control" id="thought_content" name="thought[content]"
+      placeholder="example: I can never get my work done, I''m no good" required="required"
+      rows="3"></textarea>'
+    parentHtml: |-
+      <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_030:
+  emitted_at: <%= DateTime.now - 5446.seconds %>
+  recorded_at: <%= DateTime.now - 5446.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/724504291/1
+    buttonHtml: <button class="btn btn-primary pull-right" type="submit">Next</button>
+    parentHtml: |-
+      <form accept-charset="UTF-8" action="/participant_data" class="new_thought" id="new_thought" method="post" onsubmit="validatePublic(event,'thought_shared_item_true')" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="FoEATOWg/V3jfeEANRKE54/Pdjg/17E+7Jpt0kA/YaQ="></div>
+        <div class="form-group">
+        <label class="not-displayed" for="thought_content">Harmful Thought</label>
+        <textarea class="form-control" id="thought_content" name="thought[content]" placeholder="example: I can never get my work done, I'm no good" required="required" rows="3"></textarea>
+      </div>
+
+
+        <input id="thought_effect" name="thought[effect]" type="hidden" value="harmful">
+
+          <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
+
+        <button class="btn btn-primary pull-right" type="submit">Next</button>
+
+      </form>
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Just one more harmful thought and you'll be done for now...
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_031:
+  emitted_at: <%= DateTime.now - 5444.seconds %>
+  recorded_at: <%= DateTime.now - 5444.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/814811986/1
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Good work.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_032:
+  emitted_at: <%= DateTime.now - 5442.seconds %>
+  recorded_at: <%= DateTime.now - 5442.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/954850709/providers/814811986/1
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - THINK
+    - "#1 Identifying"
+    - Good work.
+    remote_ip: 127.0.0.1
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_033:
+  emitted_at: <%= DateTime.now - 5441.seconds %>
+  recorded_at: <%= DateTime.now - 5441.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/532035938/providers/532035938/1
+    headers:
+    - THINK
+    - Think landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
 event_capture_events_060:
-  id: '58'
   emitted_at: <%= DateTime.now - 5351.seconds %>
   recorded_at: <%= DateTime.now - 5351.seconds %>
   payload: |
@@ -12,14 +422,10 @@ event_capture_events_060:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_061:
-  id: '59'
   emitted_at: <%= DateTime.now - 5350.seconds %>
   recorded_at: <%= DateTime.now - 5350.seconds %>
   payload: |
@@ -33,14 +439,10 @@ event_capture_events_061:
     - "#3 Doing"
     - Good Work!
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_062:
-  id: '60'
   emitted_at: <%= DateTime.now - 5349.seconds %>
   recorded_at: <%= DateTime.now - 5349.seconds %>
   payload: |
@@ -52,14 +454,10 @@ event_capture_events_062:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_063:
-  id: '63'
   emitted_at: <%= DateTime.now - 5341.seconds %>
   recorded_at: <%= DateTime.now - 5341.seconds %>
   payload: |
@@ -76,14 +474,10 @@ event_capture_events_063:
     - Week
     - '1'
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_064:
-  id: '64'
   emitted_at: <%= DateTime.now - 5341.seconds %>
   recorded_at: <%= DateTime.now - 5341.seconds %>
   payload: |
@@ -96,14 +490,10 @@ event_capture_events_064:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_065:
-  id: '65'
   emitted_at: <%= DateTime.now - 5339.seconds %>
   recorded_at: <%= DateTime.now - 5339.seconds %>
   payload: |
@@ -117,14 +507,10 @@ event_capture_events_065:
     - Do - Awareness Introduction
     - This is just the beginning...
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_066:
-  id: '66'
   emitted_at: <%= DateTime.now - 5338.seconds %>
   recorded_at: <%= DateTime.now - 5338.seconds %>
   payload: |
@@ -139,14 +525,10 @@ event_capture_events_066:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_067:
-  id: '67'
   emitted_at: <%= DateTime.now - 5253.seconds %>
   recorded_at: <%= DateTime.now - 5253.seconds %>
   payload: |
@@ -170,14 +552,10 @@ event_capture_events_067:
     - Week
     - '1'
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_068:
-  id: '68'
   emitted_at: <%= DateTime.now - 5252.seconds %>
   recorded_at: <%= DateTime.now - 5252.seconds %>
   payload: |
@@ -201,14 +579,10 @@ event_capture_events_068:
     - Week
     - '1'
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_069:
-  id: '69'
   emitted_at: <%= DateTime.now - 5250.seconds %>
   recorded_at: <%= DateTime.now - 5250.seconds %>
   payload: |
@@ -220,14 +594,10 @@ event_capture_events_069:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_070:
-  id: '70'
   emitted_at: <%= DateTime.now - 5249.seconds %>
   recorded_at: <%= DateTime.now - 5249.seconds %>
   payload: |
@@ -244,14 +614,10 @@ event_capture_events_070:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_071:
-  id: '71'
   emitted_at: <%= DateTime.now - 5248.seconds %>
   recorded_at: <%= DateTime.now - 5248.seconds %>
   payload: |
@@ -264,14 +630,10 @@ event_capture_events_071:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_072:
-  id: '72'
   emitted_at: <%= DateTime.now - 5246.seconds %>
   recorded_at: <%= DateTime.now - 5246.seconds %>
   payload: |
@@ -285,14 +647,10 @@ event_capture_events_072:
     - Messages landing
     - Message
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_073:
-  id: '73'
   emitted_at: <%= DateTime.now - 5241.seconds %>
   recorded_at: <%= DateTime.now - 5241.seconds %>
   payload: |
@@ -305,14 +663,10 @@ event_capture_events_073:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_074:
-  id: '74'
   emitted_at: <%= DateTime.now - 5240.seconds %>
   recorded_at: <%= DateTime.now - 5240.seconds %>
   payload: |
@@ -329,14 +683,10 @@ event_capture_events_074:
     - Messages landing
     - Message
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_075:
-  id: '75'
   emitted_at: <%= DateTime.now - 5238.seconds %>
   recorded_at: <%= DateTime.now - 5238.seconds %>
   payload: |
@@ -348,14 +698,10 @@ event_capture_events_075:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_076:
-  id: '76'
   emitted_at: <%= DateTime.now - 5237.seconds %>
   recorded_at: <%= DateTime.now - 5237.seconds %>
   payload: |
@@ -372,14 +718,10 @@ event_capture_events_076:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_077:
-  id: '77'
   emitted_at: <%= DateTime.now - 5235.seconds %>
   recorded_at: <%= DateTime.now - 5235.seconds %>
   payload: |
@@ -412,14 +754,10 @@ event_capture_events_077:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_078:
-  id: '78'
   emitted_at: <%= DateTime.now - 5233.seconds %>
   recorded_at: <%= DateTime.now - 5233.seconds %>
   payload: |
@@ -431,14 +769,10 @@ event_capture_events_078:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_079:
-  id: '79'
   emitted_at: <%= DateTime.now - 5231.seconds %>
   recorded_at: <%= DateTime.now - 5231.seconds %>
   payload: |
@@ -453,14 +787,10 @@ event_capture_events_079:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_080:
-  id: '80'
   emitted_at: <%= DateTime.now - 5229.seconds %>
   recorded_at: <%= DateTime.now - 5229.seconds %>
   payload: |
@@ -473,14 +803,10 @@ event_capture_events_080:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_081:
-  id: '81'
   emitted_at: <%= DateTime.now - 4678.seconds %>
   recorded_at: <%= DateTime.now - 4678.seconds %>
   payload: |
@@ -495,14 +821,10 @@ event_capture_events_081:
     - Landing
     - It's simple.
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_082:
-  id: '82'
   emitted_at: <%= DateTime.now - 4437.seconds %>
   recorded_at: <%= DateTime.now - 4437.seconds %>
   payload: |
@@ -515,14 +837,10 @@ event_capture_events_082:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_083:
-  id: '83'
   emitted_at: <%= DateTime.now - 4435.seconds %>
   recorded_at: <%= DateTime.now - 4435.seconds %>
   payload: |
@@ -536,14 +854,10 @@ event_capture_events_083:
     - Landing
     - It's simple.
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_084:
-  id: '84'
   emitted_at: <%= DateTime.now - 4434.seconds %>
   recorded_at: <%= DateTime.now - 4434.seconds %>
   payload: |
@@ -555,14 +869,10 @@ event_capture_events_084:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_085:
-  id: '85'
   emitted_at: <%= DateTime.now - 4433.seconds %>
   recorded_at: <%= DateTime.now - 4433.seconds %>
   payload: |
@@ -577,14 +887,10 @@ event_capture_events_085:
     - home
     - Landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_086:
-  id: '86'
   emitted_at: <%= DateTime.now - 4432.seconds %>
   recorded_at: <%= DateTime.now - 4432.seconds %>
   payload: |
@@ -596,14 +902,10 @@ event_capture_events_086:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_087:
-  id: '87'
   emitted_at: <%= DateTime.now - 4431.seconds %>
   recorded_at: <%= DateTime.now - 4431.seconds %>
   payload: |
@@ -618,14 +920,10 @@ event_capture_events_087:
     - home
     - Landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_088:
-  id: '88'
   emitted_at: <%= DateTime.now - 4430.seconds %>
   recorded_at: <%= DateTime.now - 4430.seconds %>
   payload: |
@@ -637,14 +935,10 @@ event_capture_events_088:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_089:
-  id: '89'
   emitted_at: <%= DateTime.now - 4339.seconds %>
   recorded_at: <%= DateTime.now - 4339.seconds %>
   payload: |
@@ -659,14 +953,10 @@ event_capture_events_089:
     - home
     - Landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_090:
-  id: '90'
   emitted_at: <%= DateTime.now - 4338.seconds %>
   recorded_at: <%= DateTime.now - 4338.seconds %>
   payload: |
@@ -679,14 +969,10 @@ event_capture_events_090:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_091:
-  id: '91'
   emitted_at: <%= DateTime.now - 4335.seconds %>
   recorded_at: <%= DateTime.now - 4335.seconds %>
   payload: |
@@ -706,14 +992,10 @@ event_capture_events_091:
     - Landing
     - It's simple.
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_092:
-  id: '92'
   emitted_at: <%= DateTime.now - 4334.seconds %>
   recorded_at: <%= DateTime.now - 4334.seconds %>
   payload: |
@@ -725,14 +1007,10 @@ event_capture_events_092:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_093:
-  id: '93'
   emitted_at: <%= DateTime.now - 4332.seconds %>
   recorded_at: <%= DateTime.now - 4332.seconds %>
   payload: |
@@ -783,14 +1061,10 @@ event_capture_events_093:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_094:
-  id: '94'
   emitted_at: <%= DateTime.now - 4331.seconds %>
   recorded_at: <%= DateTime.now - 4331.seconds %>
   payload: |
@@ -809,14 +1083,10 @@ event_capture_events_094:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_095:
-  id: '95'
   emitted_at: <%= DateTime.now - 4330.seconds %>
   recorded_at: <%= DateTime.now - 4330.seconds %>
   payload: |
@@ -829,14 +1099,10 @@ event_capture_events_095:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_096:
-  id: '96'
   emitted_at: <%= DateTime.now - 4329.seconds %>
   recorded_at: <%= DateTime.now - 4329.seconds %>
   payload: |
@@ -850,14 +1116,10 @@ event_capture_events_096:
     - "#2 Patterns"
     - Like we said, you are what you think...
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_097:
-  id: '97'
   emitted_at: <%= DateTime.now - 4328.seconds %>
   recorded_at: <%= DateTime.now - 4328.seconds %>
   payload: |
@@ -869,14 +1131,10 @@ event_capture_events_097:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_098:
-  id: '98'
   emitted_at: <%= DateTime.now - 4327.seconds %>
   recorded_at: <%= DateTime.now - 4327.seconds %>
   payload: |
@@ -920,14 +1178,10 @@ event_capture_events_098:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_099:
-  id: '113'
   emitted_at: <%= DateTime.now - 4305.seconds %>
   recorded_at: <%= DateTime.now - 4305.seconds %>
   payload: |
@@ -940,14 +1194,10 @@ event_capture_events_099:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_100:
-  id: '114'
   emitted_at: <%= DateTime.now - 4302.seconds %>
   recorded_at: <%= DateTime.now - 4302.seconds %>
   payload: |
@@ -965,14 +1215,10 @@ event_capture_events_100:
     - Thoughts
     - Harmful Thoughts
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_101:
-  id: '115'
   emitted_at: <%= DateTime.now - 4301.seconds %>
   recorded_at: <%= DateTime.now - 4301.seconds %>
   payload: |
@@ -985,14 +1231,10 @@ event_capture_events_101:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_102:
-  id: '129'
   emitted_at: <%= DateTime.now - 4274.seconds %>
   recorded_at: <%= DateTime.now - 4274.seconds %>
   payload: |
@@ -1004,14 +1246,10 @@ event_capture_events_102:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_103:
-  id: '99'
   emitted_at: <%= DateTime.now - 4325.seconds %>
   recorded_at: <%= DateTime.now - 4325.seconds %>
   payload: |
@@ -1055,14 +1293,10 @@ event_capture_events_103:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_104:
-  id: '100'
   emitted_at: <%= DateTime.now - 4325.seconds %>
   recorded_at: <%= DateTime.now - 4325.seconds %>
   payload: |
@@ -1106,14 +1340,10 @@ event_capture_events_104:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_105:
-  id: '101'
   emitted_at: <%= DateTime.now - 4324.seconds %>
   recorded_at: <%= DateTime.now - 4324.seconds %>
   payload: |
@@ -1158,14 +1388,10 @@ event_capture_events_105:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_106:
-  id: '102'
   emitted_at: <%= DateTime.now - 4324.seconds %>
   recorded_at: <%= DateTime.now - 4324.seconds %>
   payload: |
@@ -1210,14 +1436,10 @@ event_capture_events_106:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_107:
-  id: '128'
   emitted_at: <%= DateTime.now - 4274.seconds %>
   recorded_at: <%= DateTime.now - 4274.seconds %>
   payload: |
@@ -1230,14 +1452,10 @@ event_capture_events_107:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_108:
-  id: '103'
   emitted_at: <%= DateTime.now - 4323.seconds %>
   recorded_at: <%= DateTime.now - 4323.seconds %>
   payload: |
@@ -1282,14 +1500,10 @@ event_capture_events_108:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_109:
-  id: '104'
   emitted_at: <%= DateTime.now - 4322.seconds %>
   recorded_at: <%= DateTime.now - 4322.seconds %>
   payload: |
@@ -1335,14 +1549,10 @@ event_capture_events_109:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_110:
-  id: '105'
   emitted_at: <%= DateTime.now - 4322.seconds %>
   recorded_at: <%= DateTime.now - 4322.seconds %>
   payload: |
@@ -1388,14 +1598,10 @@ event_capture_events_110:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_111:
-  id: '106'
   emitted_at: <%= DateTime.now - 4320.seconds %>
   recorded_at: <%= DateTime.now - 4320.seconds %>
   payload: |
@@ -1408,14 +1614,10 @@ event_capture_events_111:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_112:
-  id: '107'
   emitted_at: <%= DateTime.now - 4317.seconds %>
   recorded_at: <%= DateTime.now - 4317.seconds %>
   payload: |
@@ -1429,14 +1631,10 @@ event_capture_events_112:
     - "#2 Patterns"
     - Helpful Thoughts
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_113:
-  id: '108'
   emitted_at: <%= DateTime.now - 4316.seconds %>
   recorded_at: <%= DateTime.now - 4316.seconds %>
   payload: |
@@ -1448,14 +1646,10 @@ event_capture_events_113:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_114:
-  id: '109'
   emitted_at: <%= DateTime.now - 4311.seconds %>
   recorded_at: <%= DateTime.now - 4311.seconds %>
   payload: |
@@ -1502,14 +1696,10 @@ event_capture_events_114:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_115:
-  id: '110'
   emitted_at: <%= DateTime.now - 4308.seconds %>
   recorded_at: <%= DateTime.now - 4308.seconds %>
   payload: |
@@ -1556,14 +1746,10 @@ event_capture_events_115:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_116:
-  id: '111'
   emitted_at: <%= DateTime.now - 4307.seconds %>
   recorded_at: <%= DateTime.now - 4307.seconds %>
   payload: |
@@ -1579,14 +1765,10 @@ event_capture_events_116:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_117:
-  id: '112'
   emitted_at: <%= DateTime.now - 4306.seconds %>
   recorded_at: <%= DateTime.now - 4306.seconds %>
   payload: |
@@ -1605,14 +1787,10 @@ event_capture_events_117:
     - THINK
     - "#2 Patterns"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_118:
-  id: '116'
   emitted_at: <%= DateTime.now - 4300.seconds %>
   recorded_at: <%= DateTime.now - 4300.seconds %>
   payload: |
@@ -1631,14 +1809,10 @@ event_capture_events_118:
     - Thoughts
     - Add a New Harmful Thought
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_119:
-  id: '117'
   emitted_at: <%= DateTime.now - 4294.seconds %>
   recorded_at: <%= DateTime.now - 4294.seconds %>
   payload: |
@@ -1657,14 +1831,10 @@ event_capture_events_119:
     - Thoughts
     - Add a New Harmful Thought
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_120:
-  id: '118'
   emitted_at: <%= DateTime.now - 4289.seconds %>
   recorded_at: <%= DateTime.now - 4289.seconds %>
   payload: |
@@ -1681,14 +1851,10 @@ event_capture_events_120:
     - Thoughts
     - Add a New Harmful Thought
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_121:
-  id: '119'
   emitted_at: <%= DateTime.now - 4287.seconds %>
   recorded_at: <%= DateTime.now - 4287.seconds %>
   payload: |
@@ -1701,14 +1867,10 @@ event_capture_events_121:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_122:
-  id: '120'
   emitted_at: <%= DateTime.now - 4283.seconds %>
   recorded_at: <%= DateTime.now - 4283.seconds %>
   payload: |
@@ -1747,14 +1909,10 @@ event_capture_events_122:
     - Thoughts
     - Harmful Thoughts
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_123:
-  id: '121'
   emitted_at: <%= DateTime.now - 4282.seconds %>
   recorded_at: <%= DateTime.now - 4282.seconds %>
   payload: |
@@ -1774,14 +1932,10 @@ event_capture_events_123:
     - Thoughts
     - Harmful Thoughts
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_124:
-  id: '122'
   emitted_at: <%= DateTime.now - 4281.seconds %>
   recorded_at: <%= DateTime.now - 4281.seconds %>
   payload: |
@@ -1793,14 +1947,10 @@ event_capture_events_124:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_125:
-  id: '123'
   emitted_at: <%= DateTime.now - 4280.seconds %>
   recorded_at: <%= DateTime.now - 4280.seconds %>
   payload: |
@@ -1823,14 +1973,10 @@ event_capture_events_125:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_126:
-  id: '124'
   emitted_at: <%= DateTime.now - 4279.seconds %>
   recorded_at: <%= DateTime.now - 4279.seconds %>
   payload: |
@@ -1844,14 +1990,10 @@ event_capture_events_126:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_127:
-  id: '125'
   emitted_at: <%= DateTime.now - 4278.seconds %>
   recorded_at: <%= DateTime.now - 4278.seconds %>
   payload: |
@@ -1865,14 +2007,10 @@ event_capture_events_127:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_128:
-  id: '126'
   emitted_at: <%= DateTime.now - 4277.seconds %>
   recorded_at: <%= DateTime.now - 4277.seconds %>
   payload: |
@@ -1886,14 +2024,10 @@ event_capture_events_128:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_129:
-  id: '127'
   emitted_at: <%= DateTime.now - 4277.seconds %>
   recorded_at: <%= DateTime.now - 4277.seconds %>
   payload: |
@@ -1916,14 +2050,10 @@ event_capture_events_129:
     - FEEL
     - Your Recent Moods & Emotions
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_130:
-  id: '130'
   emitted_at: <%= DateTime.now - 4271.seconds %>
   recorded_at: <%= DateTime.now - 4271.seconds %>
   payload: |
@@ -1941,14 +2071,10 @@ event_capture_events_130:
     - FEEL
     - Feeling tracker landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_131:
-  id: '131'
   emitted_at: <%= DateTime.now - 4271.seconds %>
   recorded_at: <%= DateTime.now - 4271.seconds %>
   payload: |
@@ -1961,14 +2087,10 @@ event_capture_events_131:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_132:
-  id: '132'
   emitted_at: <%= DateTime.now - 4268.seconds %>
   recorded_at: <%= DateTime.now - 4268.seconds %>
   payload: |
@@ -2026,14 +2148,10 @@ event_capture_events_132:
     - Tracking Your Mood
     - Rate your Mood
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_133:
-  id: '133'
   emitted_at: <%= DateTime.now - 4266.seconds %>
   recorded_at: <%= DateTime.now - 4266.seconds %>
   payload: |
@@ -2045,14 +2163,10 @@ event_capture_events_133:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_134:
-  id: '134'
   emitted_at: <%= DateTime.now - 4265.seconds %>
   recorded_at: <%= DateTime.now - 4265.seconds %>
   payload: |
@@ -2103,14 +2217,10 @@ event_capture_events_134:
     - FEEL
     - Tracking Your Mood
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_135:
-  id: '135'
   emitted_at: <%= DateTime.now - 4264.seconds %>
   recorded_at: <%= DateTime.now - 4264.seconds %>
   payload: |
@@ -2129,14 +2239,10 @@ event_capture_events_135:
     - FEEL
     - Tracking Your Mood
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_136:
-  id: '136'
   emitted_at: <%= DateTime.now - 4263.seconds %>
   recorded_at: <%= DateTime.now - 4263.seconds %>
   payload: |
@@ -2149,14 +2255,10 @@ event_capture_events_136:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_137:
-  id: '137'
   emitted_at: <%= DateTime.now - 4262.seconds %>
   recorded_at: <%= DateTime.now - 4262.seconds %>
   payload: |
@@ -2170,14 +2272,10 @@ event_capture_events_137:
     - "#3 Reshape"
     - Challenging Harmful Thoughts
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_138:
-  id: '138'
   emitted_at: <%= DateTime.now - 4261.seconds %>
   recorded_at: <%= DateTime.now - 4261.seconds %>
   payload: |
@@ -2190,14 +2288,10 @@ event_capture_events_138:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_139:
-  id: '139'
   emitted_at: <%= DateTime.now - 4260.seconds %>
   recorded_at: <%= DateTime.now - 4260.seconds %>
   payload: |
@@ -2211,14 +2305,10 @@ event_capture_events_139:
     - "#3 Reshape"
     - 'You said you had the following unhelpful thoughts:'
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_140:
-  id: '140'
   emitted_at: <%= DateTime.now - 4259.seconds %>
   recorded_at: <%= DateTime.now - 4259.seconds %>
   payload: |
@@ -2230,14 +2320,10 @@ event_capture_events_140:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_141:
-  id: '141'
   emitted_at: <%= DateTime.now - 4255.seconds %>
   recorded_at: <%= DateTime.now - 4255.seconds %>
   payload: |
@@ -2250,14 +2336,10 @@ event_capture_events_141:
     - THINK
     - "#3 Reshape"
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_142:
-  id: '142'
   emitted_at: <%= DateTime.now - 4255.seconds %>
   recorded_at: <%= DateTime.now - 4255.seconds %>
   payload: |
@@ -2270,14 +2352,10 @@ event_capture_events_142:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_143:
-  id: '143'
   emitted_at: <%= DateTime.now - 4253.seconds %>
   recorded_at: <%= DateTime.now - 4253.seconds %>
   payload: |
@@ -2304,14 +2382,10 @@ event_capture_events_143:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_144:
-  id: '144'
   emitted_at: <%= DateTime.now - 4252.seconds %>
   recorded_at: <%= DateTime.now - 4252.seconds %>
   payload: |
@@ -2340,14 +2414,10 @@ event_capture_events_144:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_145:
-  id: '145'
   emitted_at: <%= DateTime.now - 4249.seconds %>
   recorded_at: <%= DateTime.now - 4249.seconds %>
   payload: |
@@ -2375,14 +2445,10 @@ event_capture_events_145:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_146:
-  id: '146'
   emitted_at: <%= DateTime.now - 4247.seconds %>
   recorded_at: <%= DateTime.now - 4247.seconds %>
   payload: |
@@ -2401,14 +2467,10 @@ event_capture_events_146:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_147:
-  id: '147'
   emitted_at: <%= DateTime.now - 4246.seconds %>
   recorded_at: <%= DateTime.now - 4246.seconds %>
   payload: |
@@ -2447,14 +2509,10 @@ event_capture_events_147:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_148:
-  id: '148'
   emitted_at: <%= DateTime.now - 4243.seconds %>
   recorded_at: <%= DateTime.now - 4243.seconds %>
   payload: |
@@ -2492,14 +2550,10 @@ event_capture_events_148:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_149:
-  id: '149'
   emitted_at: <%= DateTime.now - 4242.seconds %>
   recorded_at: <%= DateTime.now - 4242.seconds %>
   payload: |
@@ -2519,14 +2573,10 @@ event_capture_events_149:
     - "#3 Reshape"
     - Thought 1 of 3Thought 2 of 3Thought 3 of 3
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_150:
-  id: '150'
   emitted_at: <%= DateTime.now - 4240.seconds %>
   recorded_at: <%= DateTime.now - 4240.seconds %>
   payload: |
@@ -2538,14 +2588,10 @@ event_capture_events_150:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_151:
-  id: '151'
   emitted_at: <%= DateTime.now - 4239.seconds %>
   recorded_at: <%= DateTime.now - 4239.seconds %>
   payload: |
@@ -2561,14 +2607,10 @@ event_capture_events_151:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_152:
-  id: '152'
   emitted_at: <%= DateTime.now - 4238.seconds %>
   recorded_at: <%= DateTime.now - 4238.seconds %>
   payload: |
@@ -2587,14 +2629,10 @@ event_capture_events_152:
     - MESSAGES
     - Messages landing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_153:
-  id: '153'
   emitted_at: <%= DateTime.now - 4237.seconds %>
   recorded_at: <%= DateTime.now - 4237.seconds %>
   payload: |
@@ -2607,14 +2645,10 @@ event_capture_events_153:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_154:
-  id: '154'
   emitted_at: <%= DateTime.now - 4236.seconds %>
   recorded_at: <%= DateTime.now - 4236.seconds %>
   payload: |
@@ -2628,14 +2662,10 @@ event_capture_events_154:
     - "#2 Planning"
     - The last few times you were here...
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_155:
-  id: '155'
   emitted_at: <%= DateTime.now - 4235.seconds %>
   recorded_at: <%= DateTime.now - 4235.seconds %>
   payload: |
@@ -2648,14 +2678,10 @@ event_capture_events_155:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_156:
-  id: '156'
   emitted_at: <%= DateTime.now - 4234.seconds %>
   recorded_at: <%= DateTime.now - 4234.seconds %>
   payload: |
@@ -2676,14 +2702,10 @@ event_capture_events_156:
     - "#2 Planning"
     - We want you to plan one fun thing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_157:
-  id: '157'
   emitted_at: <%= DateTime.now - 4232.seconds %>
   recorded_at: <%= DateTime.now - 4232.seconds %>
   payload: |
@@ -2704,14 +2726,10 @@ event_capture_events_157:
     - "#2 Planning"
     - We want you to plan one fun thing
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_158:
-  id: '158'
   emitted_at: <%= DateTime.now - 4224.seconds %>
   recorded_at: <%= DateTime.now - 4224.seconds %>
   payload: |
@@ -2724,14 +2742,10 @@ event_capture_events_158:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_159:
-  id: '159'
   emitted_at: <%= DateTime.now - 4223.seconds %>
   recorded_at: <%= DateTime.now - 4223.seconds %>
   payload: |
@@ -2752,14 +2766,10 @@ event_capture_events_159:
     - "#2 Planning"
     - Now, plan something that gives you a sense of accomplishment.
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_160:
-  id: '160'
   emitted_at: <%= DateTime.now - 4215.seconds %>
   recorded_at: <%= DateTime.now - 4215.seconds %>
   payload: |
@@ -2773,14 +2783,10 @@ event_capture_events_160:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_161:
-  id: '161'
   emitted_at: <%= DateTime.now - 4213.seconds %>
   recorded_at: <%= DateTime.now - 4213.seconds %>
   payload: |
@@ -2795,14 +2801,10 @@ event_capture_events_161:
     - OK... the most important thing is to do more that is pleasureable and gives you
       a sense of accomplishment
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_162:
-  id: '162'
   emitted_at: <%= DateTime.now - 4213.seconds %>
   recorded_at: <%= DateTime.now - 4213.seconds %>
   payload: |
@@ -2815,14 +2817,10 @@ event_capture_events_162:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_163:
-  id: '163'
   emitted_at: <%= DateTime.now - 4210.seconds %>
   recorded_at: <%= DateTime.now - 4210.seconds %>
   payload: |
@@ -2838,14 +2836,10 @@ event_capture_events_163:
     - "#2 Planning"
     - Your Planned Activities
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_164:
-  id: '164'
   emitted_at: <%= DateTime.now - 4208.seconds %>
   recorded_at: <%= DateTime.now - 4208.seconds %>
   payload: |
@@ -2858,14 +2852,10 @@ event_capture_events_164:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_165:
-  id: '165'
   emitted_at: <%= DateTime.now - 300.seconds %>
   recorded_at: <%= DateTime.now - 300.seconds %>
   payload: |
@@ -2878,14 +2868,10 @@ event_capture_events_165:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_166:
-  id: '166'
   emitted_at: <%= DateTime.now - 299.seconds %>
   recorded_at: <%= DateTime.now - 299.seconds %>
   payload: |
@@ -2907,14 +2893,10 @@ event_capture_events_166:
     - Landing
     - It's simple.
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_167:
-  id: '167'
   emitted_at: <%= DateTime.now - 297.seconds %>
   recorded_at: <%= DateTime.now - 297.seconds %>
   payload: |
@@ -2929,14 +2911,10 @@ event_capture_events_167:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_168:
-  id: '168'
   emitted_at: <%= DateTime.now - 295.seconds %>
   recorded_at: <%= DateTime.now - 295.seconds %>
   payload: |
@@ -2953,14 +2931,10 @@ event_capture_events_168:
     - Week
     - '1'
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_169:
-  id: '169'
   emitted_at: <%= DateTime.now - 294.seconds %>
   recorded_at: <%= DateTime.now - 294.seconds %>
   payload: |
@@ -2973,112 +2947,80 @@ event_capture_events_169:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_170:
-  id: '170'
   emitted_at: <%= DateTime.now - 283.seconds %>
   recorded_at: <%= DateTime.now - 283.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPlay
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_171:
-  id: '171'
   emitted_at: <%= DateTime.now - 216.seconds %>
   recorded_at: <%= DateTime.now - 216.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPause
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_172:
-  id: '172'
   emitted_at: <%= DateTime.now - 180.seconds %>
   recorded_at: <%= DateTime.now - 180.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPlay
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_173:
-  id: '173'
   emitted_at: <%= DateTime.now - 128.seconds %>
   recorded_at: <%= DateTime.now - 128.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPause
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_174:
-  id: '174'
   emitted_at: <%= DateTime.now - 42.seconds %>
   recorded_at: <%= DateTime.now - 42.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPlay
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_175:
-  id: '175'
   emitted_at: <%= DateTime.now - 5.seconds %>
   recorded_at: <%= DateTime.now - 5.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoPause
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_176:
-  id: '176'
   emitted_at: <%= DateTime.now - 5.seconds %>
   recorded_at: <%= DateTime.now - 5.seconds %>
   payload: |
     --- !ruby/hash:ActionController::Parameters
     currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: videoFinish
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_177:
-  id: '177'
   emitted_at: <%= DateTime.now - 2.seconds %>
   recorded_at: <%= DateTime.now - 2.seconds %>
   payload: |
@@ -3092,14 +3034,10 @@ event_capture_events_177:
     - Learn - Video Slideshow
     - Meet Jim
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: click
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
 
 event_capture_events_178:
-  id: '178'
   emitted_at: <%= DateTime.now - 1.seconds %>
   recorded_at: <%= DateTime.now - 1.seconds %>
   payload: |
@@ -3114,8 +3052,5 @@ event_capture_events_178:
     ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/40.0.2214.111 Safari/537.36
     remote_ip: 127.0.0.1
-  user_id: 
-  user_agent: 
-  source: 
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
