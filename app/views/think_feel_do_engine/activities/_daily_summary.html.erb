@@ -26,7 +26,11 @@
         </p>
         <p>
           Completion Score:
+          <% if activities.scheduled.completed.count > 0 %>
           <%= (activities.scheduled.completed.count.to_f / activities.scheduled.count * 100).round %>%
+          <% else %>
+            0%
+          <% end %>
           (You completed <%= activities.scheduled.completed.count %> out of <%= pluralize(activities.scheduled.count, 'activity') %> that you scheduled.)
         <p>
         <p>
