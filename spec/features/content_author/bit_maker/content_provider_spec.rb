@@ -22,12 +22,6 @@ feature "Content Provider", type: :feature do
       expect(page).to have_link "Module", href: "/arms/#{arms(:arm1).id}/bit_maker/content_modules/#{bit_core_content_modules(:do_awareness).id}"
     end
 
-    it "shoud have display a link to add provider" do
-      visit "/arms/#{arms(:arm1).id}/bit_maker/content_modules"
-
-      expect(page).to have_link "New Provider", href: "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
-    end
-
     it "cancel link should link back to all providers if creating a provider independently" do
       visit "/arms/#{arms(:arm1).id}/bit_maker/content_providers/new"
 
