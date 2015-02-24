@@ -1,3 +1,6 @@
+## 2.8.4 - 2015-02-23
+ * Updated TOC functionality, fixed various specs, added methods to activity model, several report fixes, removed new provider button
+
 ## 2.8.3 - 2015-02-20
  * fixed TOC functionalit
 
