@@ -55,6 +55,7 @@ PATH
       turbolinks (~> 2.2)
       twilio-ruby (~> 3.12)
       underscore-rails (~> 1.6)
+      user_agent_parser (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -272,6 +273,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     underscore-rails (1.7.0)
+    user_agent_parser (2.2.0)
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.4.0)
