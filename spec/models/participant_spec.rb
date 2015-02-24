@@ -12,6 +12,7 @@ describe Participant do
   let(:participant_phq4) { participants(:participant_phq4) }
   let(:participant_study_complete) { participants(:participant_study_complete) }
   let(:inactive_participant2) { participants(:inactive_participant2) }
+  let(:participant_multiple_membership) { participants(:participant_multiple_membership) }
 
   it "accurately describes if email should be the notification method" do
     expect(participant1.notify_by_email?).to eq true
@@ -91,5 +92,13 @@ describe Participant do
 
   it ".active_group_is_social? returns true if participant is in a social group" do
     expect(participant1.active_group_is_social?).to be true
+  end
+
+  it ".most_recent_membership returns membership if a participant has more than one membership" do
+    expect(participant_multiple_membership.most_recent_membership.end_date).to eq(Date.today)
+  end
+
+  it ".most_recent_membership returns membership if a participant has one membership" do
+    expect(participant1.most_recent_membership).to be_instance_of Membership
   end
 end

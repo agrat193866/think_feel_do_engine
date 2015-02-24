@@ -131,3 +131,17 @@ membership_inactive2:
   end_date: <%= Date.today.advance(days: -5) %>
   is_complete: false
 
+membership_multiple_1a:
+  participant: participant_multiple_membership
+  group: group1
+  start_date: <%= Date.today.advance(days: -16) %>
+  end_date: <%= Date.today.advance(days: -5) %>
+  is_complete: false
+
+membership_multiple_1b:
+  participant: participant_multiple_membership
+  group: group2
+  start_date: <%= Date.today.advance(days: -4) %>
+  end_date: <%= Date.today.advance(days: 0) %>
+
+

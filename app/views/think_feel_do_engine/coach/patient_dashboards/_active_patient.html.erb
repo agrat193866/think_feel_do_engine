@@ -48,8 +48,8 @@
 
     <% if phq_features? %>
       <td>
-        <% if view_membership(patient, @group) && (patient.memberships.order(end_date: :desc).first.stepped_on != nil) %>
-          <%= "Stepped " + patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% if view_membership(patient, @group) && (patient.most_recent_membership.stepped_on != nil) %>
+          <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:compact) %>
         <% elsif view_membership(patient, @group) %>
           <% if can? :update, view_membership(patient, @group) %>
             <%= form_for(view_membership(patient, @group), url: coach_group_membership_path(@group, view_membership(patient, @group)), :html => { :method => :put }) do |f| %>
@@ -59,14 +59,14 @@
                            class: "btn btn-success" %>
             <% end %>
           <% end %>
-        <% elsif patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
-          <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% elsif patient.most_recent_membership.stepped_on != nil %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:compact) %>
         <% end %>
       </td>
     <% else %>
       <td>
-        <% if patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
-          <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+        <% if patient.most_recent_membership.stepped_on != nil %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:compact) %>
         <% end %>
       </td>
     <% end %>
