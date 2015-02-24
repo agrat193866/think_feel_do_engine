@@ -32,8 +32,8 @@ module ThinkFeelDoEngine
               tool_id: mod.bit_core_tool_id,
               module_id: mod.id,
               page_headers: e.headers,
-              page_selected_at: e.emitted_at.utc.iso8601,
-              page_exited_at: page_exit_event_at(e).try(:utc).try(:iso8601)
+              page_selected_at: e.emitted_at.iso8601,
+              page_exited_at: page_exit_event_at(e).try(:iso8601)
             }
           end
         end.flatten
