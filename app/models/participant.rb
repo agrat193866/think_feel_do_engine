@@ -265,6 +265,10 @@ class Participant < ActiveRecord::Base
     emotions.compact
   end
 
+  def most_recent_membership
+    memberships.order(end_date: :desc).first
+  end
+
   def emotional_rating_daily_averages
     averaged_ratings = []
 

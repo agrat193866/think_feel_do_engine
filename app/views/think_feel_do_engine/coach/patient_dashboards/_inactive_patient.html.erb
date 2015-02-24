@@ -13,8 +13,8 @@
 
     <td>
       <%= !view_membership(patient, @group).is_complete ? "Withdrawn " +
-              patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact) :
-              "Discontinued " + patient.memberships.order(end_date: :desc).first.end_date.to_s(:compact)  %>
+              patient.most_recent_membership.end_date.to_s(:compact) :
+              "Discontinued " + patient.most_recent_membership.end_date.to_s(:compact)  %>
     </td>
 
     <td>
@@ -26,8 +26,8 @@
     </td>
 
     <td>
-      <% if patient.memberships.order(end_date: :desc).first.stepped_on != nil %>
-        <%= patient.memberships.order(end_date: :desc).first.stepped_on.to_s(:compact) %>
+      <% if patient.most_recent_membership.stepped_on != nil %>
+        <%= patient.most_recent_membership.stepped_on.to_s(:compact) %>
       <% end %>
     </td>
   </tr>
