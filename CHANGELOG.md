@@ -1,3 +1,9 @@
+## 2.8.5 - 2015-02-25
+ * revert Module Page View report timestamps to local
+ * import remaining shared reports
+ * flesh out Ability spec
+ * Add #most_recent_membership to Participant
+
 ## 2.8.4 - 2015-02-23
  * Updated TOC functionality, fixed various specs, added methods to activity model, several report fixes, removed new provider button
 
