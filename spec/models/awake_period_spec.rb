@@ -64,19 +64,39 @@ describe AwakePeriod do
   describe "#unfinished_awake_periods" do
     let(:participant) { participants(:participant3) }
     let(:datetime) { DateTime.new(2014, 6, 19) }
+    let(:datetime2) { DateTime.new(2014, 7, 21) }
 
-    it "returns awake periods for which there are no activities with corresponding start_time" do
+    it "returns awake periods for which there are no activity with a corresponding start time" do
       expect do
         participant.awake_periods.create(
           start_time: datetime,
           end_time: datetime.advance(hours: 1))
       end.to change { participant.unfinished_awake_periods.count }.by(1)
+    end
+
+    it "decrements the number of unifinished awake periods if a corresponding activity is created" do
+      participant.awake_periods.create(
+        start_time: datetime,
+        end_time: datetime.advance(hours: 1))
 
       expect do
         participant.activities.create(
-          activity_type: activity_types(:jogging),
-          start_time: datetime)
+          start_time: datetime,
+          activity_type: activity_types(:jogging))
       end.to change { participant.unfinished_awake_periods.count }.by(-1)
+    end
+
+    it "does not decrement the number of unfinished awake periods if an activity is created with a different start time" do
+      participant.awake_periods.create(
+        start_time: datetime,
+        end_time: datetime.advance(hours: 1))
+
+      expect(datetime).to_not eq datetime2
+      expect do
+        participant.activities.create(
+          start_time: datetime2,
+          activity_type: activity_types(:jogging))
+      end.to change { participant.unfinished_awake_periods.count }.by(0)
     end
   end
 end
