@@ -22,17 +22,29 @@ describe Ability do
       it "can manage all models" do
         expect(superuser.can?(:manage, :all)).to eq true
       end
+
+      it "can read Reports" do
+        expect(researcher.can?(:read, "Reports")).to eq true
+      end
     end
 
     describe "Coaches" do
       it "can list all Arms" do
         expect(coach.can?(:index, Arm)).to eq true
       end
+
+      it "cannot read Reports" do
+        expect(coach.cannot?(:read, "Report")).to eq true
+      end
     end
 
     describe "Content authors" do
       it "can view all Arms" do
         expect(content_author.can?(:read, Arm)).to eq true
+      end
+
+      it "cannot read Reports" do
+        expect(coach.cannot?(:read, "Report")).to eq true
       end
     end
 
