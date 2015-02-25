@@ -82,7 +82,8 @@ class Ability
   # think_feel_do_dashboard
   def authorize_researcher
     can [:show, :index], Arm
-    [Group, CoachAssignment, Membership, Participant, Task, User].each do |klass|
+    [Group, CoachAssignment, Membership, Participant, Task, User]
+      .each do |klass|
       can :manage, klass
     end
     can :read, "Reports"
