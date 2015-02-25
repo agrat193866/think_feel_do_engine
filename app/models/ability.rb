@@ -82,27 +82,9 @@ class Ability
   # think_feel_do_dashboard
   def authorize_researcher
     can [:show, :index], Arm
-    [Group, CoachAssignment, Membership, Participant, Task,
-     ThinkFeelDoDashboard::Reports::Comment,
-     ThinkFeelDoDashboard::Reports::Goal,
-     ThinkFeelDoEngine::Reports::LessonSlideView,
-     ThinkFeelDoEngine::Reports::LessonViewing,
-     ThinkFeelDoDashboard::Reports::Like,
-     ThinkFeelDoDashboard::Reports::Login,
-     ThinkFeelDoEngine::Reports::ModulePageView,
-     ThinkFeelDoEngine::Reports::ModuleSession,
-     ThinkFeelDoDashboard::Reports::Nudge,
-     ThinkFeelDoDashboard::Reports::OffTopicPost,
-     ThinkFeelDoDashboard::Reports::SiteSession,
-     ThinkFeelDoDashboard::Reports::TaskCompletion,
-     ThinkFeelDoDashboard::Reports::ToolAccess,
-     ThinkFeelDoDashboard::Reports::ToolShare,
-     ThinkFeelDoDashboard::Reports::UserAgent,
-     ThinkFeelDoEngine::Reports::VideoSession,
-     ThinkFeelDoDashboard::Reports::PhqAssessment,
-     ThinkFeelDoDashboard::Reports::WaiAssessment,
-     User].each do |klass|
+    [Group, CoachAssignment, Membership, Participant, Task, User].each do |klass|
       can :manage, klass
     end
+    can :read, "Reports"
   end
 end

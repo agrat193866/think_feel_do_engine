@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "underscore-rails", "~> 1.6"
   s.add_dependency "redcarpet", "~> 2.3"
   s.add_dependency "twilio-ruby", "~> 3.12"
+  s.add_dependency "user_agent_parser", "~> 2.2"
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.0"

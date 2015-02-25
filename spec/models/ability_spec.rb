@@ -22,17 +22,29 @@ describe Ability do
       it "can manage all models" do
         expect(superuser.can?(:manage, :all)).to eq true
       end
+
+      it "can read Reports" do
+        expect(researcher.can?(:read, "Reports")).to eq true
+      end
     end
 
     describe "Coaches" do
       it "can list all Arms" do
         expect(coach.can?(:index, Arm)).to eq true
       end
+
+      it "cannot read Reports" do
+        expect(coach.cannot?(:read, "Report")).to eq true
+      end
     end
 
     describe "Content authors" do
       it "can view all Arms" do
         expect(content_author.can?(:read, Arm)).to eq true
+      end
+
+      it "cannot read Reports" do
+        expect(coach.cannot?(:read, "Report")).to eq true
       end
     end
 
@@ -44,14 +56,17 @@ describe Ability do
       it "can view all Tasks" do
         expect(researcher.can?(:read, Task)).to eq true
       end
+
+      it "can read Reports" do
+        expect(researcher.can?(:read, "Reports")).to eq true
+      end
     end
 
     describe "Non-superuser, multi-role Users" do
       it "share all Roles' abilities" do
         expect(multi_role.can?(:manage, BitCore::ContentModule)).to eq true
         expect(multi_role.can?(:manage, Task)).to eq true
-        expect(multi_role.can?(:manage, ThinkFeelDoDashboard::Reports::Comment))
-          .to eq true
+        expect(multi_role.can?(:read, "Reports")).to eq true
       end
     end
   end
