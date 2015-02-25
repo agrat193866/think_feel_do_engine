@@ -1,0 +1,70 @@
+<h1>Group <small><%= @group.title %></small></h1>
+
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Group Summary</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th></td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <th>week <%= current_week %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <td>logins</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td><%= @group.logins_by_week(current_week) %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>thoughts</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td><%= @group.thoughts_by_week(current_week) %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>activities planned</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td><%= @group.activities_planned_by_week(current_week) %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>activities reviewed</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td><%= @group.activities_reviewed_by_week(current_week) %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>activities monitored</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td><%= @group.activities_monitored_by_week(current_week) %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>likes</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td>1</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>comments</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td>1</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>goals</td>
+        <% (1...study_length_in_weeks + 1).each do |current_week| %>
+          <td>1</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
