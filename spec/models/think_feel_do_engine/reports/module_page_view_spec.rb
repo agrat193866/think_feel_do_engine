@@ -29,8 +29,8 @@ module ThinkFeelDoEngine
                              "You are what you think...Your thoughts shape" \
                              " and guideThoughts are the exact sentences " \
                              "that go through your head."],
-              page_selected_at: (select_event.emitted_at).utc.iso8601,
-              page_exited_at: (exit_event.emitted_at).utc.iso8601
+              page_selected_at: (select_event.emitted_at).iso8601,
+              page_exited_at: (exit_event.emitted_at).iso8601
             )
           end
         end
