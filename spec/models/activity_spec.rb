@@ -26,60 +26,60 @@ RSpec.describe Activity do
 
     describe ".accomplished" do
       it "returns actitivies that have an actual accomplishment >= to a cutoff" do
-        expect {
+        expect do
           sleeping actual_accomplishment_intensity: 5
           sleeping actual_accomplishment_intensity: 6
           sleeping actual_accomplishment_intensity: 10
-        }.to change { Activity.accomplished.count }.by(2)
+        end.to change { Activity.accomplished.count }.by(2)
       end
     end
 
     describe ".pleasurable" do
       it "returns actitivies that have an actual pleasure >= to a cutoff" do
-        expect {
+        expect do
           sleeping actual_pleasure_intensity: 5
           sleeping actual_pleasure_intensity: 6
           sleeping actual_pleasure_intensity: 10
-        }.to change { Activity.pleasurable.count }.by(2)
+        end.to change { Activity.pleasurable.count }.by(2)
       end
     end
 
     # To Do: See note in activity.rb
     describe ".in_the_future" do
       it "returns actitivies that are planned for the future" do
-        expect {
+        expect do
           sleeping start_time: Time.current.advance(hours: 1)
           sleeping start_time: Time.current.advance(hours: -1)
-        }.to change { Activity.in_the_future.count }.by(1)
+        end.to change { Activity.in_the_future.count }.by(1)
       end
     end
 
     describe ".in_the_past" do
       it "returns actitivies have taken place in the past" do
-        expect {
+        expect do
           sleeping start_time: Time.current.advance(hours: -1)
           sleeping start_time: Time.current
-        }.to change { Activity.in_the_past.count }.by(1)
+        end.to change { Activity.in_the_past.count }.by(1)
       end
     end
 
     describe ".last_seven_days" do
       it "returns actitivies have taken place during the last 7 days" do
-        expect {
+        expect do
           sleeping start_time: Time.current.advance(days: -7)
           sleeping start_time: Time.current.advance(days: -8)
-        }.to change { Activity.last_seven_days.count }.by(1)
+        end.to change { Activity.last_seven_days.count }.by(1)
       end
     end
 
     # To Do: See note in activity.rb
     describe ".unscheduled_or_in_the_future" do
       it "returns actitivies are unscheduled or in the future" do
-        expect {
+        expect do
           sleeping start_time: Time.current.advance(days: 1)
           sleeping start_time: nil
           sleeping start_time: Time.current.advance(days: -1)
-        }.to change { Activity.unscheduled_or_in_the_future.count }.by(2)
+        end.to change { Activity.unscheduled_or_in_the_future.count }.by(2)
       end
     end
 
@@ -88,11 +88,11 @@ RSpec.describe Activity do
         period_start = Time.local(2016, 1, 15, 22)
         period_end = Time.local(2016, 1, 15, 23)
 
-        expect {
+        expect do
           sleeping start_time: period_start
           sleeping start_time: period_start - 1.hour
           sleeping start_time: period_end
-        }.to change { Activity.during(period_start, period_end).count }.by(1)
+        end.to change { Activity.during(period_start, period_end).count }.by(1)
       end
     end
 
