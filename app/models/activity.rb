@@ -15,6 +15,7 @@ class Activity < ActiveRecord::Base
 
   before_validation :create_activity_type, :set_end_time
   validate :actual_accomplishable_updates, on: :update
+  validate :predicted_intensities
 
   scope :for_day, lambda { |time|
     where(
@@ -171,6 +172,16 @@ class Activity < ActiveRecord::Base
        changed.include?(accomplishable_attr)
       errors.add accomplishable_attr.to_sym, "can't be updated "\
         "because activity is not in the past."
+    end
+  end
+
+  def predicted_intensities
+    if (predicted_accomplishment_intensity &&
+        predicted_pleasure_intensity.nil?) ||
+       (predicted_pleasure_intensity &&
+        predicted_accomplishment_intensity.nil?)
+      errors.add :base, "When predicting, you must predict "\
+                        "both pleasure and accomplishment."
     end
   end
 

@@ -235,4 +235,33 @@ RSpec.describe Activity do
       )
     end
   end
+
+  describe "validations" do
+    let(:participant) { participants(:participant1) }
+
+    def sleeping(attributes = {})
+      Activity.new({
+        participant: participant,
+        activity_type: activity_types(:sleeping)
+      }.merge(attributes))
+    end
+
+    describe ".predicted_intensities" do
+      it "returns false when validated if only predicted_accomplishment_intensity is set" do
+        expect(
+          sleeping(predicted_accomplishment_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When predicting, you must predict both pleasure and accomplishment."
+        )
+      end
+
+      it "returns false when validated if only predicted_pleasure_intensity is set" do
+        expect(
+          sleeping(predicted_pleasure_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When predicting, you must predict both pleasure and accomplishment."
+        )
+      end
+    end
+  end
 end
