@@ -15,13 +15,29 @@
           <tr>
             <th class="not-displayed"></th>
             <th>Created At</th>
+            <th>Study ID</th>
             <th>Content</th>
+            <th>Effect</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
           </thead>
           <tbody>
-
+          <% group.memberships.each do |membership| %>
+            <% membership.participant.thoughts.each do |thought| %>
+              <tr>
+                <td class="not-displayed">
+                  <%= thought.created_at ? thought.created_at.to_i : 0 %>
+                </td>
+                <td><%= thought.created_at %></td>
+                <td><%= membership.participant.study_id %></td>
+                <td><%= thought.content %></td>
+                <td><%= thought.effect %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
           </tbody>
         </table>
       </div>

@@ -15,12 +15,33 @@
           <tr>
             <th class="not-displayed"></th>
             <th>Created At</th>
-            <th>Content</th>
+            <th>Study ID</th>
+            <th>Text</th>
+            <th>Item Id</th>
+            <th>Item Type</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
           </thead>
           <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% SocialNetworking::Comment.where(participant: membership.participant).each do |comment| %>
+
+              <tr>
+                <td class="not-displayed">
+                  <%= comment.created_at ? comment.created_at.to_i : 0 %>
+                </td>
+                <td><%= comment.created_at %></td>
+                <td><%= membership.participant.study_id %></td>
+                <td><%= comment.text %></td>
+                <td><%= comment.item_id %></td>
+                <td><%= comment.item_type %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
 
           </tbody>
         </table>

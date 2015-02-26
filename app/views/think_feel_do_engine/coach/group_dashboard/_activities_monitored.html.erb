@@ -15,12 +15,44 @@
           <tr>
             <th class="not-displayed"></th>
             <th>Created At</th>
-            <th>Content</th>
+            <th>Study ID</th>
+            <th>Activity Type</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actual Accomplishment Intensity</th>
+            <th>Actual Pleasure Intensity</th>
+            <th>Predicted Accomplishment Intensity</th>
+            <th>Predicted Pleasure Intensity</th>
+            <th>Is Complete</th>
+            <th>Noncompliance Reason</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
           </thead>
           <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% membership.participant.activities.where(is_monitored: true).each do |activity| %>
+              <tr>
+                <td class="not-displayed">
+                  <%= activity.created_at ? activity.created_at.to_i : 0 %>
+                </td>
+                <td><%= activity.created_at %></td>
+                <td><%= membership.participant.study_id %></td>
+                <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
+                <td><%= activity.start_time %></td>
+                <td><%= activity.end_time %></td>
+                <td><%= activity.actual_accomplishment_intensity %></td>
+                <td><%= activity.actual_pleasure_intensity %></td>
+                <td><%= activity.predicted_accomplishment_intensity %></td>
+                <td><%= activity.predicted_pleasure_intensity %></td>
+                <td><%= activity.is_complete %></td>
+                <td><%= activity.noncompliance_reason %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
 
           </tbody>
         </table>

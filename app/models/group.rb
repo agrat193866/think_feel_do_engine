@@ -63,7 +63,7 @@ class Group < ActiveRecord::Base
         membership
           .participant
           .activities
-          .where("created_at >= ? AND created_at < ?",
+          .where("is_scheduled = true AND created_at >= ? AND created_at < ?",
                  week_start_day(week_number), week_end_day(week_number))
           .count
     end
@@ -77,7 +77,7 @@ class Group < ActiveRecord::Base
         membership
           .participant
           .activities
-          .where("created_at >= ? AND created_at < ?",
+          .where("is_monitored = true AND created_at >= ? AND created_at < ?",
                  week_start_day(week_number), week_end_day(week_number))
           .count
     end
@@ -91,11 +91,63 @@ class Group < ActiveRecord::Base
         membership
           .participant
           .activities
-          .where("created_at >= ? AND created_at < ?",
+          .where("is_complete = true AND created_at >= ? AND created_at < ?",
                  week_start_day(week_number), week_end_day(week_number))
           .count
     end
     activities_count
+  end
+
+  def goals_by_week(week_number)
+    goal_count = 0
+    self.memberships.each do |membership|
+      goal_count +=
+        SocialNetworking::Goal
+          .where(participant: membership.participant)
+          .where("created_at >= ? AND created_at < ?",
+                 week_start_day(week_number), week_end_day(week_number))
+          .count
+    end
+    goal_count
+  end
+
+  def comments_by_week(week_number)
+    comments_count = 0
+    self.memberships.each do |membership|
+      comments_count +=
+        SocialNetworking::Comment
+          .where(participant: membership.participant)
+          .where("created_at >= ? AND created_at < ?",
+                 week_start_day(week_number), week_end_day(week_number))
+          .count
+    end
+    comments_count
+  end
+
+  def on_the_mind_statements_by_week(week_number)
+    on_the_mind_statements_count = 0
+    self.memberships.each do |membership|
+      on_the_mind_statements_count +=
+        SocialNetworking::OnTheMindStatement
+          .where(participant: membership.participant)
+          .where("created_at >= ? AND created_at < ?",
+            week_start_day(week_number), week_end_day(week_number))
+          .count
+    end
+    on_the_mind_statements_count
+  end
+
+  def likes_by_week(week_number)
+    likes_statements_count = 0
+    self.memberships.each do |membership|
+      likes_statements_count +=
+        SocialNetworking::Like
+          .where(participant: membership.participant)
+          .where("created_at >= ? AND created_at < ?",
+                 week_start_day(week_number), week_end_day(week_number))
+          .count
+    end
+    likes_statements_count
   end
 
   private

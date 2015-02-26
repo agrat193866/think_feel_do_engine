@@ -15,12 +15,29 @@
           <tr>
             <th class="not-displayed"></th>
             <th>Created At</th>
-            <th>Content</th>
+            <th>Study ID</th>
+            <th>Description</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
           </thead>
           <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% SocialNetworking::OnTheMindStatement.where(participant: membership.participant).each do |statement| %>
+
+              <tr>
+                <td class="not-displayed">
+                  <%= statement.created_at ? statement.created_at.to_i : 0 %>
+                </td>
+                <td><%= statement.created_at %></td>
+                <td><%= membership.participant.study_id %></td>
+                <td><%= statement.description %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
 
           </tbody>
         </table>
