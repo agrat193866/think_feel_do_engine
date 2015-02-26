@@ -49,6 +49,11 @@ do_past_due_activities:
   position: 7
   is_viz: true
 
+view_planned_activities: 
+  title: 'View Planned Activities'
+  tool: activity_tracker
+  position: 8
+
 think_landing:
   title: Think landing
   tool: thought_tracker
