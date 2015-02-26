@@ -263,5 +263,23 @@ RSpec.describe Activity do
         )
       end
     end
+
+    describe ".actual_intensities" do
+      it "returns false when validated if only actual_accomplishment_intensity is set" do
+        expect(
+          sleeping(actual_accomplishment_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When rating actual intensities, you must rate both pleasure and accomplishment."
+        )
+      end
+
+      it "returns false when validated if only actual_pleasure_intensity is set" do
+        expect(
+          sleeping(actual_pleasure_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When rating actual intensities, you must rate both pleasure and accomplishment."
+        )
+      end
+    end
   end
 end
