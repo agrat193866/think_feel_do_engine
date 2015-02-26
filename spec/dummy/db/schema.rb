@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225221700) do
+ActiveRecord::Schema.define(version: 20150226210641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20150225221700) do
     t.text     "noncompliance_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_monitored",                       default: false, null: false
     t.boolean  "is_scheduled",                       default: false, null: false
     t.boolean  "is_reviewed",                        default: false, null: false
   end
