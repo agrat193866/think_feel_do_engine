@@ -39,8 +39,8 @@
                 <td><%= goal.is_completed %></td>
                 <td><%= goal.is_deleted %></td>
                 <td><%= goal.due_on %></td>
-                <td></td>
-                <td></td>
+                <td><%= goal.likes.all.count %></td>
+                <td><%= goal.comments.all.count %></td>
               </tr>
             <% end %>
           <% end %>
