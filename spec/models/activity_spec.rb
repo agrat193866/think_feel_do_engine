@@ -9,7 +9,11 @@ RSpec.describe Activity do
     def sleeping(attributes = {})
       Activity.create!({
         participant: participant,
-        activity_type: activity_types(:sleeping)
+        activity_type: activity_types(:sleeping),
+        predicted_accomplishment_intensity: 5,
+        predicted_pleasure_intensity: 5,
+        actual_accomplishment_intensity: 5,
+        actual_pleasure_intensity: 5
       }.merge(attributes))
     end
 
