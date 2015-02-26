@@ -11,60 +11,22 @@
 
   <div class="panel-body">
     <table class="table">
-      <tr>
-        <th></td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <th>week <%= current_week %></th>
-        <% end %>
-      </tr>
-      <tr>
-        <td>logins</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td><%= @group.logins_by_week(current_week) %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>thoughts</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td><%= @group.thoughts_by_week(current_week) %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>activities planned</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td><%= @group.activities_planned_by_week(current_week) %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>activities reviewed</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td><%= @group.activities_reviewed_by_week(current_week) %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>activities monitored</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td><%= @group.activities_monitored_by_week(current_week) %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>likes</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td>1</td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>comments</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td>1</td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>goals</td>
-        <% (1...study_length_in_weeks + 1).each do |current_week| %>
-          <td>1</td>
-        <% end %>
-      </tr>
+      <%= render partial: "think_feel_do_engine/coach/group_dashboard/summary", locals: {group: @group} %>
+      <%= render(partial: "think_feel_do_engine/coach/group_dashboard/summary_social", locals: {group: @group}) if social_features? %>
     </table>
   </div>
 </div>
+
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/lessons", locals: {group: @group} %>
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/logins", locals: {group: @group} %>
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/thoughts", locals: {group: @group} %>
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_planned", locals: {group: @group} %>
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_monitored", locals: {group: @group} %>
+<%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_reviewed", locals: {group: @group} %>
+<% if social_features? %>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/goals", locals: {group: @group} %>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/comments", locals: {group: @group} %>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/on_my_mind_statements", locals: {group: @group} %>
+<% end %>
+
+

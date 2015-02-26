@@ -1,0 +1,53 @@
+<div class="panel panel-default cdb_panel" id="logins-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#loginsCollapse">
+        Logins
+      </a>
+    </h3>
+  </div>
+
+  <div id="loginsCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="logins_data">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th>Sign-in Date</th>
+            <th>Inactivity Logout</th>
+            <th>Sign-out Date</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    return $('#logins_data').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[0, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [1],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>
