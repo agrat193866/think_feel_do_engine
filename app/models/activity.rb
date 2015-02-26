@@ -122,6 +122,30 @@ class Activity < ActiveRecord::Base
     end
   end
 
+  def monitored?
+    not_reviewed? &&
+      neither_intensity_is_rated?(:predicted) &&
+      both_intensities_rated?(:actual)
+  end
+
+  def planned?
+    not_reviewed? &&
+      neither_intensity_is_rated?(:actual) &&
+      both_intensities_rated?(:predicted)
+  end
+
+  def reviewed_and_complete?
+    reviewed? &&
+      both_intensities_rated?(:predicted) &&
+      both_intensities_rated?(:actual)
+  end
+
+  def reviewed_and_incomplete?
+    reviewed? &&
+      neither_intensity_is_rated?(:actual) &&
+      both_intensities_rated?(:predicted)
+  end
+
   def was_recently_created?
     (Time.current - created_at) < 1.minute
   end
@@ -161,6 +185,30 @@ class Activity < ActiveRecord::Base
   end
 
   private
+
+  def both_intensities_rated?(type)
+    accomplishment = send("#{type}_accomplishment_intensity")
+    pleasure = send("#{type}_pleasure_intensity")
+    !accomplishment.nil? && !pleasure.nil?
+  end
+
+  def either_intensity_is_rated?(type)
+    accomplishment = send("#{type}_accomplishment_intensity")
+    pleasure = send("#{type}_pleasure_intensity")
+    !accomplishment.nil? || !pleasure.nil?
+  end
+
+  def neither_intensity_is_rated?(type)
+    !either_intensity_is_rated?(type)
+  end
+
+  def reviewed?
+    is_reviewed?
+  end
+
+  def not_reviewed?
+    !reviewed?
+  end
 
   def actual_accomplishable_updates
     actual_accomplishable_update("actual_accomplishment_intensity")
