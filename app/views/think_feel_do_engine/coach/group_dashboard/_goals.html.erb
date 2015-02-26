@@ -15,12 +15,35 @@
           <tr>
             <th class="not-displayed"></th>
             <th>Created At</th>
-            <th>Content</th>
+            <th>Study ID</th>
+            <th>Description</th>
+            <th>Is Complete</th>
+            <th>Is Deleted</th>
+            <th>Due On</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
           </thead>
           <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% SocialNetworking::Goal.where(participant: membership.participant).each do |goal| %>
+
+              <tr>
+                <td class="not-displayed">
+                  <%= goal.created_at ? goal.created_at.to_i : 0 %>
+                </td>
+                <td><%= goal.created_at %></td>
+                <td><%= membership.participant.study_id %></td>
+                <td><%= goal.description %></td>
+                <td><%= goal.is_completed %></td>
+                <td><%= goal.is_deleted %></td>
+                <td><%= goal.due_on %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
 
           </tbody>
         </table>

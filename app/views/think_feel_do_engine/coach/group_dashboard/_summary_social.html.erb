@@ -1,18 +1,24 @@
 <tr>
-  <td>likes</td>
-  <% (1...study_length_in_weeks + 1).each do |current_week| %>
-    <td>1</td>
+  <td>on the mind statements</td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.on_the_mind_statements_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
   <td>comments</td>
-  <% (1...study_length_in_weeks + 1).each do |current_week| %>
-    <td>1</td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.comments_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
   <td>goals</td>
-  <% (1...study_length_in_weeks + 1).each do |current_week| %>
-    <td>1</td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.goals_by_week(current_week) %></td>
+  <% end %>
+</tr>
+<tr>
+  <td>likes</td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.likes_by_week(current_week) %></td>
   <% end %>
 </tr>
