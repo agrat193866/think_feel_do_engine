@@ -36,18 +36,13 @@ describe Group do
     expect(group.thoughts_by_week(1)).to eq(0)
   end
 
-  it ".activities_planned_by_week returns a count of activities "\
+  it ".activities_past_by_week returns a count of activities "\
   " planned for the first week" do
-    expect(group.activities_planned_by_week(1)).to eq(0)
+    expect(group.activities_past_by_week(1)).to eq(0)
   end
 
-  it ".activities_planned_by_week returns a count of activities "\
+  it ".activities_future_by_week returns a count of activities "\
   " monitored for the first week" do
-    expect(group.activities_planned_by_week(1)).to eq(0)
-  end
-
-  it ".activities_reviewed_by_week returns a count of activities "\
-  " planned for the first week" do
-    expect(group.activities_reviewed_by_week(1)).to eq(0)
+    expect(group.activities_future_by_week(1)).to eq(0)
   end
 end

@@ -14,11 +14,11 @@
           <thead>
           <tr>
             <th class="not-dispdlayed"></th>
-            <th>Created At</th>
             <th>Study ID</th>
-            <th>Text</th>
+            <th>Comment</th>
             <th>Item Id</th>
             <th>Item Type</th>
+            <th>Created At</th>
           </tr>
           </thead>
           <tbody>
@@ -30,11 +30,11 @@
                 <td class="not-displayed">
                   <%= comment.created_at ? comment.created_at.to_i : 0 %>
                 </td>
-                <td><%= comment.created_at.to_formatted_s(:short) %></td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= comment.text %></td>
                 <td><%= comment.item_id %></td>
                 <td><%= comment.item_type %></td>
+                <td><%= comment.created_at.to_formatted_s(:short) %></td>
               </tr>
             <% end %>
           <% end %>
@@ -59,7 +59,7 @@
           bVisible: false
         },
         {
-          aTargets: [1],
+          aTargets: [5],
           iDataSort: [0]
         }
       ],
