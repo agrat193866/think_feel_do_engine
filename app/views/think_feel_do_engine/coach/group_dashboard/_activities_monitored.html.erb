@@ -25,8 +25,7 @@
             <th>Predicted Pleasure Intensity</th>
             <th>Is Complete</th>
             <th>Noncompliance Reason</th>
-            <th>Likes</th>
-            <th>Comments</th>
+            <%= social_likes_and_comments_column_headers %>
           </tr>
           </thead>
           <tbody>
@@ -48,8 +47,7 @@
                 <td><%= activity.predicted_pleasure_intensity %></td>
                 <td><%= activity.is_complete %></td>
                 <td><%= activity.noncompliance_reason %></td>
-                <td></td>
-                <td></td>
+                <%= social_likes_and_comments_count_rows(activity) %>
               </tr>
             <% end %>
           <% end %>
