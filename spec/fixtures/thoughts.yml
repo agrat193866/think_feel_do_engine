@@ -21,3 +21,8 @@ participant1_harmful4:
   participant: participant1
   content: I am insignificant
   effect: harmful
+
+participant2_harmful1:
+  participant: participant2
+  content: I will never ever ever get all my specs to pass
+  effect: harmful
