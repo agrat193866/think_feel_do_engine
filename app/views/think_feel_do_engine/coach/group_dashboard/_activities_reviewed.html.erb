@@ -37,11 +37,11 @@
                 <td class="not-displayed">
                   <%= activity.created_at ? activity.created_at.to_i : 0 %>
                 </td>
-                <td><%= activity.created_at %></td>
+                <td><%= activity.created_at.to_formatted_s(:short) %></td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
-                <td><%= activity.start_time %></td>
-                <td><%= activity.end_time %></td>
+                <td><%= activity.start_time ? activity.start_time.to_formatted_s(:short) : "---" %></td>
+                <td><%= activity.end_time ? activity.end_time.to_formatted_s(:short) : "---" %></td>
                 <td><%= activity.actual_accomplishment_intensity %></td>
                 <td><%= activity.actual_pleasure_intensity %></td>
                 <td><%= activity.predicted_accomplishment_intensity %></td>

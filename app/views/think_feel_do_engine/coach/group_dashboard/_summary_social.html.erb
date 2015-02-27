@@ -1,17 +1,17 @@
 <tr>
-  <td>on the mind statements</td>
+  <td><a href="#on_the_mind_statements_table">on the mind statements</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.on_the_mind_statements_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>comments</td>
+  <td><a href="#comments_table">comments</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.comments_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>goals</td>
+  <td><a href="#goals_table">goals</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.goals_by_week(current_week) %></td>
   <% end %>
