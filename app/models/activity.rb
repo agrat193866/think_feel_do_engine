@@ -62,13 +62,14 @@ class Activity < ActiveRecord::Base
     )
   }
 
-  scope :completed, lambda {
-    where(
-      arel_table[:is_complete].eq(true)
-      .or(
-        arel_table[:noncompliance_reason].eq(true)
-      )
-    )
+  scope :reviewed_and_completed, lambda {
+    where(is_reviewed: true)
+      .where
+      .not(
+        predicted_accomplishment_intensity: nil,
+        predicted_pleasure_intensity: nil,
+        actual_accomplishment_intensity: nil,
+        actual_pleasure_intensity: nil)
   }
 
   # To Do: fix naming and/or what is going on here
@@ -109,15 +110,25 @@ class Activity < ActiveRecord::Base
     super + %w(activity_type_title activity_type_new_title)
   end
 
-  def completed?
-    is_complete || noncompliance_reason
-  end
-
   def actual_editable?
     if end_time
       end_time < Time.zone.now
     else
       false
+    end
+  end
+
+  def status_label
+    if monitored?
+      "Monitored"
+    elsif planned?
+      "Planned"
+    elsif reviewed_and_complete?
+      "Reviewed & Completed"
+    elsif reviewed_and_incomplete?
+      "Reviewed & Incompleted"
+    else
+      "N/A"
     end
   end
 
@@ -180,7 +191,11 @@ class Activity < ActiveRecord::Base
   end
 
   def self.completion_score
-    completed.count > 0 ? (completed.count * 100 / count).round : 0
+    if reviewed_and_completed.count > 0
+      (reviewed_and_completed.count * 100 / count).round
+    else
+      0
+    end
   end
 
   private

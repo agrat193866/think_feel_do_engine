@@ -28,6 +28,19 @@ RSpec.describe Activity do
       end
     end
 
+    describe ".reviewed_and_completed" do
+      it "returns all activities that have been reviewed and have predicted intensities, acutal intensities, and it was reviewed" do
+        expect do
+          sleeping(
+            predicted_accomplishment_intensity: 5,
+            predicted_pleasure_intensity: 5,
+            actual_accomplishment_intensity: 5,
+            actual_pleasure_intensity: 5,
+            is_reviewed: true)
+        end.to change { Activity.reviewed_and_completed.count }.by(1)
+      end
+    end
+
     describe ".accomplished" do
       it "returns actitivies that have an actual accomplishment >= to a cutoff" do
         expect do
@@ -101,14 +114,12 @@ RSpec.describe Activity do
     end
 
     describe ".completion_score" do
-      it "returns a proportion completed activities as a percent" do
+      it "returns a proportion of 'reviewed and completed' activities as a percent" do
         period_start = Time.local(2016, 4, 23, 21)
         period_end = Time.local(2016, 4, 23, 24)
 
-        sleeping(actual_accomplishment_intensity: 5,
-                 start_time: period_start + 1.hour)
-        sleeping(actual_accomplishment_intensity: 6,
-                 is_complete: true,
+        sleeping(start_time: period_start + 1.hour)
+        sleeping(is_reviewed: true,
                  start_time: period_end - 1.hour)
 
         expect(Activity.during(period_start, period_end).completion_score)
@@ -291,6 +302,38 @@ RSpec.describe Activity do
         it "returns true if the activity is reviewed, has predictions, but no acutal intensity ratings" do
           expect(running.reviewed_and_incomplete?).to be true
         end
+      end
+    end
+
+    describe "#status_label" do
+      let(:sleeping) do
+        Activity.create(
+          participant: participants(:participant1),
+          activity_type: activity_types(:sleeping))
+      end
+
+      it "returns 'Monitored' if the activity has been monitored" do
+        allow(sleeping).to receive(:monitored?).and_return(true)
+
+        expect(sleeping.status_label).to eq "Monitored"
+      end
+
+      it "returns 'Planned' if the activity has been planned" do
+        allow(sleeping).to receive(:planned?).and_return(true)
+
+        expect(sleeping.status_label).to eq "Planned"
+      end
+
+      it "returns 'Reviewed & Completed' if the activity has been Reviewed & Completed" do
+        allow(sleeping).to receive(:reviewed_and_complete?).and_return(true)
+
+        expect(sleeping.status_label).to eq "Reviewed & Completed"
+      end
+
+      it "returns 'Reviewed & Incompleted' if the activity has been Reviewed & Incompleted" do
+        allow(sleeping).to receive(:reviewed_and_incomplete?).and_return(true)
+
+        expect(sleeping.status_label).to eq "Reviewed & Incompleted"
       end
     end
 

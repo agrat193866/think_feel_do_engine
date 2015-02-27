@@ -14,6 +14,14 @@ unplanned_activity4:
   participant: participant1
   activity_type: loving
 
+planned_activity0:
+  participant: participant1
+  activity_type: loving
+  predicted_accomplishment_intensity: 3
+  predicted_pleasure_intensity: 1
+  start_time: <%= DateTime.current.advance(hours: -4) %>
+  end_time: <%= DateTime.current.advance(hours: -3) %>
+
 planned_activity1:
   participant: participant1
   activity_type: loving
@@ -64,6 +72,7 @@ p2_planned_activity_3_hrs_ago:
   activity_type: eating
   is_complete: true
   is_scheduled: true
+  is_reviewed: true
   predicted_accomplishment_intensity: 10
   predicted_pleasure_intensity: 10
   actual_accomplishment_intensity: 9
@@ -76,6 +85,7 @@ p2_planned_activity_2_hrs_ago:
   activity_type: working
   is_complete: true
   is_scheduled: true
+  is_reviewed: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
   actual_accomplishment_intensity: 2
