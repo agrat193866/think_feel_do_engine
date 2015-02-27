@@ -73,7 +73,7 @@ do_planning_transition:
   content_module: do_planning
   position: 4
 
-unplanned_activity_form_provider:
+planned_activities_provider:
   type: ContentProviders::UnplannedActivityForm
   content_module: do_planning
   position: 5
@@ -104,6 +104,11 @@ do_your_activities_viz:
   type: ContentProviders::YourActivitiesProvider
   content_module: do_your_activities_viz
   position: 1
+
+view_planned_activities:
+  type: ContentProviders::PreviousPlannedActivitiesProvider
+  content_module: view_planned_activities
+  position: 8    
 
 do_congrats_provider:
   type: BitCore::ContentProviders::SlideshowProvider
@@ -406,4 +411,8 @@ content_provider_video_slideshow:
   show_next_nav: true
   source_content: video_slideshow (BitCore::Slideshow)
   content_module: video_lesson_slideshow
+
+view_planned_activities:
+  type: ContentProviders::PreviousPlannedActivitiesProvider
+  content_module: view_planned_activities
   position: 1
