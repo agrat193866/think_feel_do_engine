@@ -9,7 +9,6 @@ class Activity < ActiveRecord::Base
   belongs_to :participant
 
   validates :activity_type, :participant, presence: true
-  validates :is_complete, inclusion: { in: [true, false] }
 
   delegate :title, to: :activity_type, prefix: false, allow_nil: true
 
