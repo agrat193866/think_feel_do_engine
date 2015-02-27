@@ -9,7 +9,11 @@ RSpec.describe Activity do
     def sleeping(attributes = {})
       Activity.create!({
         participant: participant,
-        activity_type: activity_types(:sleeping)
+        activity_type: activity_types(:sleeping),
+        predicted_accomplishment_intensity: 5,
+        predicted_pleasure_intensity: 5,
+        actual_accomplishment_intensity: 5,
+        actual_pleasure_intensity: 5
       }.merge(attributes))
     end
 
@@ -150,6 +154,146 @@ RSpec.describe Activity do
   end
 
   describe "instance methods" do
+    describe "#monitored?" do
+      def running(attributes = {})
+        Activity.create!({
+          participant: participants(:participant1),
+          activity_type: activity_types(:jogging)
+        }.merge(attributes))
+      end
+
+      it "returns false if the activity has been reviewed" do
+        expect(running(is_reviewed: true).monitored?).to be false
+      end
+
+      it "returns false if the activity has predictions" do
+        expect(running(
+          predicted_accomplishment_intensity: 2,
+          predicted_pleasure_intensity: 8
+        ).monitored?).to be false
+      end
+
+      it "returns false if actual intensities don't exist" do
+        expect(running(
+          actual_accomplishment_intensity: nil,
+          actual_pleasure_intensity: nil
+        ).monitored?).to be false
+      end
+
+      it "returns true if has actual ratings but not reviewed" do
+        expect(running(
+          actual_accomplishment_intensity: 5,
+          actual_pleasure_intensity: 3
+        ).monitored?).to be true
+      end
+    end
+
+    describe "#planned?" do
+      def running(attributes = {})
+        Activity.create!({
+          participant: participants(:participant1),
+          activity_type: activity_types(:jogging)
+        }.merge(attributes))
+      end
+
+      it "returns false if the activity it has been reviewed" do
+        expect(running(is_reviewed: true).planned?).to be false
+      end
+
+      it "returns false if the activity has actual intensity ratings" do
+        expect(running(
+          actual_accomplishment_intensity: 5,
+          actual_pleasure_intensity: 3
+        ).planned?).to be false
+      end
+
+      it "returns false if predictions don't exist" do
+        expect(running(
+          predicted_accomplishment_intensity: nil,
+          predicted_pleasure_intensity: nil
+        ).planned?).to be false
+      end
+
+      it "returns true if has predictions but not reviewed" do
+        expect(running(
+          predicted_accomplishment_intensity: 5,
+          predicted_pleasure_intensity: 3
+        ).planned?).to be true
+      end
+    end
+
+    describe "activity has predictions" do
+      describe "#reviewed_and_complete?" do
+        def running(attributes = {})
+          Activity.create!({
+            participant: participants(:participant1),
+            activity_type: activity_types(:jogging),
+            is_reviewed: true,
+            predicted_accomplishment_intensity: 5,
+            predicted_pleasure_intensity: 3,
+            actual_accomplishment_intensity: 8,
+            actual_pleasure_intensity: 7
+          }.merge(attributes))
+        end
+
+        it "returns false if not reviewed" do
+          expect(running(is_reviewed: false).reviewed_and_complete?).to be false
+        end
+
+        it "returns false if the activity does not have predicted intensity ratings" do
+          expect(running(
+            predicted_accomplishment_intensity: nil,
+            predicted_pleasure_intensity: nil
+          ).reviewed_and_complete?).to be false
+        end
+
+        it "returns false if the activity does not have actual intensity ratings" do
+          expect(running(
+            actual_accomplishment_intensity: nil,
+            actual_pleasure_intensity: nil
+          ).reviewed_and_complete?).to be false
+        end
+
+        it "returns true if it has predictions, actual intensity ratings, and is reviewed" do
+          expect(running.reviewed_and_complete?).to be true
+        end
+      end
+
+      describe "#reviewed_and_incomplete?" do
+        def running(attributes = {})
+          Activity.create!({
+            participant: participants(:participant1),
+            activity_type: activity_types(:jogging),
+            predicted_accomplishment_intensity: 5,
+            predicted_pleasure_intensity: 3,
+            is_reviewed: true
+          }.merge(attributes))
+        end
+
+        it "returns false if reviewed is false" do
+          expect(running(is_reviewed: false).reviewed_and_incomplete?).to be false
+        end
+
+        it "returns false if the activity has actual intensity ratings" do
+          expect(running(
+            actual_accomplishment_intensity: 9,
+            actual_pleasure_intensity: 1
+          ).reviewed_and_incomplete?).to be false
+        end
+
+        it "returns false if the activity does not have predicted intensity ratings" do
+          expect(running(
+            predicted_accomplishment_intensity: nil,
+            predicted_pleasure_intensity: nil
+          ).reviewed_and_incomplete?).to be false
+        end
+
+        it "returns true if the activity is reviewed, has predictions, but no acutal intensity ratings" do
+          expect(running.reviewed_and_incomplete?).to be true
+        end
+      end
+    end
+
     describe "#actual_editable?" do
       let(:activity) { activities(:planned_activity_today_1) }
 
@@ -233,6 +377,53 @@ RSpec.describe Activity do
         "Actual pleasure intensity can't be updated because activity is not " \
         "in the past."
       )
+    end
+  end
+
+  describe "validations" do
+    let(:participant) { participants(:participant1) }
+
+    def sleeping(attributes = {})
+      Activity.new({
+        participant: participant,
+        activity_type: activity_types(:sleeping)
+      }.merge(attributes))
+    end
+
+    describe ".predicted_intensities" do
+      it "returns false when validated if only predicted_accomplishment_intensity is set" do
+        expect(
+          sleeping(predicted_accomplishment_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When predicting, you must predict both pleasure and accomplishment."
+        )
+      end
+
+      it "returns false when validated if only predicted_pleasure_intensity is set" do
+        expect(
+          sleeping(predicted_pleasure_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When predicting, you must predict both pleasure and accomplishment."
+        )
+      end
+    end
+
+    describe ".actual_intensities" do
+      it "returns false when validated if only actual_accomplishment_intensity is set" do
+        expect(
+          sleeping(actual_accomplishment_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When rating actual intensities, you must rate both pleasure and accomplishment."
+        )
+      end
+
+      it "returns false when validated if only actual_pleasure_intensity is set" do
+        expect(
+          sleeping(actual_pleasure_intensity: 4).tap(&:valid?).errors.full_messages
+        ).to include(
+          "When rating actual intensities, you must rate both pleasure and accomplishment."
+        )
+      end
     end
   end
 end

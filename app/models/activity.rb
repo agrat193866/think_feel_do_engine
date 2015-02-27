@@ -15,6 +15,7 @@ class Activity < ActiveRecord::Base
 
   before_validation :create_activity_type, :set_end_time
   validate :actual_accomplishable_updates, on: :update
+  validate :predicted_intensities, :actual_intensities
 
   scope :for_day, lambda { |time|
     where(
@@ -121,6 +122,30 @@ class Activity < ActiveRecord::Base
     end
   end
 
+  def monitored?
+    not_reviewed? &&
+      neither_intensity_is_rated?(:predicted) &&
+      both_intensities_rated?(:actual)
+  end
+
+  def planned?
+    not_reviewed? &&
+      neither_intensity_is_rated?(:actual) &&
+      both_intensities_rated?(:predicted)
+  end
+
+  def reviewed_and_complete?
+    reviewed? &&
+      both_intensities_rated?(:predicted) &&
+      both_intensities_rated?(:actual)
+  end
+
+  def reviewed_and_incomplete?
+    reviewed? &&
+      neither_intensity_is_rated?(:actual) &&
+      both_intensities_rated?(:predicted)
+  end
+
   def was_recently_created?
     (Time.current - created_at) < 1.minute
   end
@@ -161,6 +186,30 @@ class Activity < ActiveRecord::Base
 
   private
 
+  def both_intensities_rated?(type)
+    accomplishment = send("#{type}_accomplishment_intensity")
+    pleasure = send("#{type}_pleasure_intensity")
+    !accomplishment.nil? && !pleasure.nil?
+  end
+
+  def either_intensity_is_rated?(type)
+    accomplishment = send("#{type}_accomplishment_intensity")
+    pleasure = send("#{type}_pleasure_intensity")
+    !accomplishment.nil? || !pleasure.nil?
+  end
+
+  def neither_intensity_is_rated?(type)
+    !either_intensity_is_rated?(type)
+  end
+
+  def reviewed?
+    is_reviewed?
+  end
+
+  def not_reviewed?
+    !reviewed?
+  end
+
   def actual_accomplishable_updates
     actual_accomplishable_update("actual_accomplishment_intensity")
     actual_accomplishable_update("actual_pleasure_intensity")
@@ -171,6 +220,26 @@ class Activity < ActiveRecord::Base
        changed.include?(accomplishable_attr)
       errors.add accomplishable_attr.to_sym, "can't be updated "\
         "because activity is not in the past."
+    end
+  end
+
+  def actual_intensities
+    if (actual_accomplishment_intensity &&
+        actual_pleasure_intensity.nil?) ||
+       (actual_pleasure_intensity &&
+        actual_accomplishment_intensity.nil?)
+      errors.add :base, "When rating actual intensities, you must "\
+                        "rate both pleasure and accomplishment."
+    end
+  end
+
+  def predicted_intensities
+    if (predicted_accomplishment_intensity &&
+        predicted_pleasure_intensity.nil?) ||
+       (predicted_pleasure_intensity &&
+        predicted_accomplishment_intensity.nil?)
+      errors.add :base, "When predicting, you must predict "\
+                        "both pleasure and accomplishment."
     end
   end
 
