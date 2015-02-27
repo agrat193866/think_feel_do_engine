@@ -17,20 +17,14 @@
   <% end %>
 </tr>
 <tr>
-  <td><a href="#activities_planned_table">activities planned</a></td>
+  <td><a href="#activities_past_table">activities past</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
-    <td><%= group.activities_planned_by_week(current_week) %></td>
+    <td><%= group.activities_past_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td><a href="#activities_reviewed_table">activities reviewed</a></td>
+  <td><a href="#activities_future_table">activities future</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
-    <td><%= group.activities_reviewed_by_week(current_week) %></td>
-  <% end %>
-</tr>
-<tr>
-  <td><a href="#activities_monitored_table">activities monitored</a></td>
-  <% (1..study_length_in_weeks).each do |current_week| %>
-    <td><%= group.activities_monitored_by_week(current_week) %></td>
+    <td><%= group.activities_future_by_week(current_week) %></td>
   <% end %>
 </tr>

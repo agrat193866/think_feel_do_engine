@@ -56,42 +56,30 @@ class Group < ActiveRecord::Base
     thought_count
   end
 
-  def activities_planned_by_week(week_number)
+  def activities_past_by_week(week_number)
     activities_count = 0
     self.memberships.each do |membership|
       activities_count +=
         membership
           .participant
           .activities
-          .where("is_scheduled = true AND created_at >= ? AND created_at < ?",
+          .in_the_past
+          .where("created_at >= ? AND created_at < ?",
                  week_start_day(week_number), week_end_day(week_number))
           .count
     end
     activities_count
   end
 
-  def activities_monitored_by_week(week_number)
+  def activities_future_by_week(week_number)
     activities_count = 0
     self.memberships.each do |membership|
       activities_count +=
         membership
           .participant
           .activities
-          .where("is_monitored = true AND created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
-    end
-    activities_count
-  end
-
-  def activities_reviewed_by_week(week_number)
-    activities_count = 0
-    self.memberships.each do |membership|
-      activities_count +=
-        membership
-          .participant
-          .activities
-          .where("is_complete = true AND created_at >= ? AND created_at < ?",
+          .unscheduled_or_in_the_future
+          .where("created_at >= ? AND created_at < ?",
                  week_start_day(week_number), week_end_day(week_number))
           .count
     end
