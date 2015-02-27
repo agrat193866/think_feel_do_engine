@@ -30,110 +30,110 @@ class Group < ActiveRecord::Base
 
   def logins_by_week(week_number)
     login_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       login_count +=
         membership
-          .participant
-          .participant_login_events
-          .where("created_at >= ? AND created_at < ?",
-            week_start_day(week_number), week_end_day(week_number))
-          .count
+        .participant
+        .participant_login_events
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     login_count
   end
 
   def thoughts_by_week(week_number)
     thought_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       thought_count +=
         membership
-          .participant
-          .thoughts
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .participant
+        .thoughts
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     thought_count
   end
 
   def activities_past_by_week(week_number)
     activities_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       activities_count +=
         membership
-          .participant
-          .activities
-          .in_the_past
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .participant
+        .activities
+        .in_the_past
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     activities_count
   end
 
   def activities_future_by_week(week_number)
     activities_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       activities_count +=
         membership
-          .participant
-          .activities
-          .unscheduled_or_in_the_future
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .participant
+        .activities
+        .unscheduled_or_in_the_future
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     activities_count
   end
 
   def goals_by_week(week_number)
     goal_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       goal_count +=
         SocialNetworking::Goal
-          .where(participant: membership.participant)
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .where(participant: membership.participant)
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     goal_count
   end
 
   def comments_by_week(week_number)
     comments_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       comments_count +=
         SocialNetworking::Comment
-          .where(participant: membership.participant)
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .where(participant: membership.participant)
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     comments_count
   end
 
   def on_the_mind_statements_by_week(week_number)
     on_the_mind_statements_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       on_the_mind_statements_count +=
         SocialNetworking::OnTheMindStatement
-          .where(participant: membership.participant)
-          .where("created_at >= ? AND created_at < ?",
-            week_start_day(week_number), week_end_day(week_number))
-          .count
+        .where(participant: membership.participant)
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     on_the_mind_statements_count
   end
 
   def likes_by_week(week_number)
     likes_statements_count = 0
-    self.memberships.each do |membership|
+    memberships.each do |membership|
       likes_statements_count +=
         SocialNetworking::Like
-          .where(participant: membership.participant)
-          .where("created_at >= ? AND created_at < ?",
-                 week_start_day(week_number), week_end_day(week_number))
-          .count
+        .where(participant: membership.participant)
+        .where("created_at >= ? AND created_at < ?",
+               week_start_day(week_number), week_end_day(week_number))
+        .count
     end
     likes_statements_count
   end
@@ -142,7 +142,7 @@ class Group < ActiveRecord::Base
 
   # Returns the earliest start date of all the group's memberships
   def start_date
-    self.memberships.order(start_date: :asc).first.start_date
+    memberships.order(start_date: :asc).first.start_date
   end
 
   def week_start_day(week_number)
