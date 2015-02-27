@@ -102,6 +102,15 @@ class Membership < ActiveRecord::Base
     end
   end
 
+  def logins_by_week(week_number)
+    self
+      .participant
+      .participant_login_events
+      .where("created_at >= ? AND created_at < ?",
+             week_start_day(week_number), week_end_day(week_number))
+      .count
+  end
+
   private
 
   def normalize_dates
@@ -147,5 +156,15 @@ class Membership < ActiveRecord::Base
     return unless end_date > Date.today && is_complete == true
 
     errors.add :is_complete, "cannot be set to true for end dates in the future"
+  end
+
+  private
+
+  def week_start_day(week_number)
+    start_date + ((week_number - 1) * 7).days
+  end
+
+  def week_end_day(week_number)
+    start_date + (week_number * 7).days
   end
 end
