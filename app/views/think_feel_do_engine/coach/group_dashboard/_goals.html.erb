@@ -33,12 +33,12 @@
                 <td class="not-displayed">
                   <%= goal.created_at ? goal.created_at.to_i : 0 %>
                 </td>
-                <td><%= goal.created_at %></td>
+                <td><%= goal.created_at.to_formatted_s(:short) %></td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= goal.description %></td>
                 <td><%= goal.is_completed %></td>
                 <td><%= goal.is_deleted %></td>
-                <td><%= goal.due_on %></td>
+                <td><%= goal.due_on.to_formatted_s(:short) %></td>
                 <td><%= goal.likes.all.count %></td>
                 <td><%= goal.comments.all.count %></td>
               </tr>

@@ -28,9 +28,9 @@
                     <%= login_event.created_at ? login_event.created_at.to_i : 0 %>
                   </td>
                   <td><%= membership.participant.study_id %></td>
-                  <td><%= login_event.created_at %></td>
+                  <td><%= login_event.created_at.to_formatted_s(:short) %></td>
                   <td><%= login_event.inactive_log_out %></td>
-                  <td><%= login_event.signed_out_at %></td>
+                  <td><%= login_event.signed_out_at ? login_event.signed_out_at.to_formatted_s(:short) : "---"%></td>
                 </tr>
               <% end %>
             <% end %>

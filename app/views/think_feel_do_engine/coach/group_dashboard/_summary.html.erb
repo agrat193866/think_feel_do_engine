@@ -5,31 +5,31 @@
   <% end %>
 </tr>
 <tr>
-  <td>logins</td>
+  <td><a href="#login_table">logins</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.logins_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>thoughts</td>
+  <td><a href="#thoughts_table">thoughts</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.thoughts_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>activities planned</td>
+  <td><a href="#activities_planned_table">activities planned</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.activities_planned_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>activities reviewed</td>
+  <td><a href="#activities_reviewed_table">activities reviewed</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.activities_reviewed_by_week(current_week) %></td>
   <% end %>
 </tr>
 <tr>
-  <td>activities monitored</td>
+  <td><a href="#activities_monitored_table">activities monitored</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.activities_monitored_by_week(current_week) %></td>
   <% end %>

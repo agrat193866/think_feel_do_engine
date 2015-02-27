@@ -18,14 +18,30 @@
 </div>
 
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/lessons", locals: {group: @group} %>
+
+<a name="login_table" />
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/logins", locals: {group: @group} %>
+
+<a name="thoughts_table" />
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/thoughts", locals: {group: @group} %>
+
+<a name="activities_planned_table" />
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_planned", locals: {group: @group} %>
+
+<a name="activities_monitored_table" />
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_monitored", locals: {group: @group} %>
+
+<a name="activities_reviewed_table" />
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_reviewed", locals: {group: @group} %>
+
 <% if social_features? %>
+  <a name="goals_table" />
   <%= render partial: "think_feel_do_engine/coach/group_dashboard/goals", locals: {group: @group} %>
+
+  <a name="comments_table" />
   <%= render partial: "think_feel_do_engine/coach/group_dashboard/comments", locals: {group: @group} %>
+
+  <a name="on_the_mind_statements_table" />
   <%= render partial: "think_feel_do_engine/coach/group_dashboard/on_my_mind_statements", locals: {group: @group} %>
 <% end %>
 

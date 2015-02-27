@@ -13,7 +13,7 @@
         <table class="table table-hover data-table" id="comments_data">
           <thead>
           <tr>
-            <th class="not-displayed"></th>
+            <th class="not-dispdlayed"></th>
             <th>Created At</th>
             <th>Study ID</th>
             <th>Text</th>
@@ -30,7 +30,7 @@
                 <td class="not-displayed">
                   <%= comment.created_at ? comment.created_at.to_i : 0 %>
                 </td>
-                <td><%= comment.created_at %></td>
+                <td><%= comment.created_at.to_formatted_s(:short) %></td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= comment.text %></td>
                 <td><%= comment.item_id %></td>
