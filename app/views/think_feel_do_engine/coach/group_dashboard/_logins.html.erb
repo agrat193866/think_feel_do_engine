@@ -1,66 +1,26 @@
-<div class="panel panel-default cdb_panel" id="logins-container">
+<div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#loginsCollapse">
-        Logins
-      </a>
-    </h3>
+    <h3 class="panel-title">Logins By Week</h3>
   </div>
 
-  <div id="loginsCollapse" class="panel-collapse collapse in">
-    <div class="panel-body">
-      <div class="table-responsive div-table-viz">
-        <table class="table table-hover data-table" id="logins_data">
-          <thead>
-            <tr>
-              <th class="not-displayed"></th>
-              <th>Study ID</th>
-              <th>Sign-in Date</th>
-              <th>Inactivity Logout</th>
-              <th>Sign-out Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% group.memberships.each do |membership| %>
-              <% membership.participant.participant_login_events.each do |login_event| %>
-                <tr>
-                  <td class="not-displayed">
-                    <%= login_event.created_at ? login_event.created_at.to_i : 0 %>
-                  </td>
-                  <td><%= membership.participant.study_id %></td>
-                  <td><%= login_event.created_at.to_formatted_s(:short) %></td>
-                  <td><%= login_event.inactive_log_out %></td>
-                  <td><%= login_event.signed_out_at ? login_event.signed_out_at.to_formatted_s(:short) : "---"%></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <div class="panel-body">
+    <table class="table">
+
+      <tr>
+        <th />
+        <% (1..study_length_in_weeks).each do |current_week| %>
+          <th>week <%= current_week %></th>
+        <% end %>
+      </tr>
+      <% group.memberships.each do | membership | %>
+        <tr>
+          <td><%= membership.participant.study_id %></a></td>
+          <% (1..study_length_in_weeks).each do |current_week| %>
+            <td><%= membership.logins_by_week(current_week) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+
+    </table>
   </div>
 </div>
-<script>
-  $(function () {
-    return $('#logins_data').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
-        {
-          aTargets: [0],
-          bVisible: false
-        },
-        {
-          aTargets: [2],
-          iDataSort: [0]
-        }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-</script>
