@@ -31,6 +31,16 @@ module ThinkFeelDoEngine
         end
         comment_count
       end
+
+      def week_in_study(date, membership)
+        puts date.inspect
+        puts membership.start_date.inspect
+        (day_in_study(date, membership) / 7.0).ceil == 0 ? 1 : (day_in_study(date, membership) / 7.0).ceil
+      end
+
+      def day_in_study(date, membership)
+        date.to_date - membership.start_date + 1
+      end
     end
   end
 end

@@ -19,6 +19,7 @@
             <th>Item Id</th>
             <th>Item Type</th>
             <th>Created At</th>
+            <th>Week</th>
           </tr>
           </thead>
           <tbody>
@@ -35,6 +36,7 @@
                 <td><%= comment.item_id %></td>
                 <td><%= comment.item_type %></td>
                 <td><%= comment.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(comment.created_at, membership) %></td>
               </tr>
             <% end %>
           <% end %>
