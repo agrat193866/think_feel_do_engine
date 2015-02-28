@@ -14,9 +14,10 @@
           <thead>
           <tr>
             <th class="not-displayed"></th>
-            <th>Created At</th>
             <th>Study ID</th>
             <th>Description</th>
+            <th>Created</th>
+            <th>Week</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
@@ -30,9 +31,10 @@
                 <td class="not-displayed">
                   <%= statement.created_at ? statement.created_at.to_i : 0 %>
                 </td>
-                <td><%= statement.created_at.to_formatted_s(:short) %></td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= statement.description %></td>
+                <td><%= statement.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(statement.created_at, membership) %></td>
                 <td><%= statement.likes.all.count %></td>
                 <td><%= statement.comments.all.count %></td>
               </tr>
@@ -59,7 +61,7 @@
           bVisible: false
         },
         {
-          aTargets: [1],
+          aTargets: [3],
           iDataSort: [0]
         }
       ],

@@ -20,6 +20,7 @@
             <th>Is Deleted</th>
             <th>Due On</th>
             <th>Created Date</th>
+            <th>Week</th>
             <th>Likes</th>
             <th>Comments</th>
           </tr>
@@ -39,6 +40,7 @@
                 <td><%= goal.is_deleted %></td>
                 <td><%= goal.due_on.to_formatted_s(:short) %></td>
                 <td><%= goal.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(goal.created_at, membership) %></td>
                 <td><%= goal.likes.all.count %></td>
                 <td><%= goal.comments.all.count %></td>
               </tr>
