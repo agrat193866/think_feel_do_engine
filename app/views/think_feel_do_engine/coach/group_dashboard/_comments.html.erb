@@ -16,8 +16,7 @@
             <th class="not-dispdlayed"></th>
             <th>Study ID</th>
             <th>Comment</th>
-            <th>Item Id</th>
-            <th>Item Type</th>
+            <th>Commented On</th>
             <th>Created At</th>
             <th>Week</th>
           </tr>
@@ -26,15 +25,13 @@
 
           <% group.memberships.each do |membership| %>
             <% SocialNetworking::Comment.where(participant: membership.participant).each do |comment| %>
-
               <tr>
                 <td class="not-displayed">
                   <%= comment.created_at ? comment.created_at.to_i : 0 %>
                 </td>
                 <td><%= membership.participant.study_id %></td>
                 <td><%= comment.text %></td>
-                <td><%= comment.item_id %></td>
-                <td><%= comment.item_type %></td>
+                <td><%= comment_item_description(comment) %> </td>
                 <td><%= comment.created_at.to_formatted_s(:short) %></td>
                 <td><%= week_in_study(comment.created_at, membership) %></td>
               </tr>
@@ -61,7 +58,7 @@
           bVisible: false
         },
         {
-          aTargets: [5],
+          aTargets: [4],
           iDataSort: [0]
         }
       ],

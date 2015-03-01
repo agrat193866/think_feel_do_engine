@@ -33,13 +33,45 @@ module ThinkFeelDoEngine
       end
 
       def week_in_study(date, membership)
-        puts date.inspect
-        puts membership.start_date.inspect
         (day_in_study(date, membership) / 7.0).ceil == 0 ? 1 : (day_in_study(date, membership) / 7.0).ceil
       end
 
       def day_in_study(date, membership)
         date.to_date - membership.start_date + 1
+      end
+
+      def comment_item_description(comment)
+        case comment.item_type
+        when "SocialNetworking::OnTheMindStatement"
+          "OnTheMindStatement: "\
+          "#{SocialNetworking::
+              OnTheMindStatement.find(comment.item_id).description}"
+        when "SocialNetworking::SharedItem"
+          comment_shared_item_description(comment)
+        else
+          "Unknown Item Type, Item ID:#{comment.item_id},"\
+          " Item Type: #{comment.item_type}"
+        end
+      end
+
+      def comment_shared_item_description(comment)
+        case comment.item.item_type
+        when "Activity"
+          activity = Activity.find(comment.item.item_id)
+          "Activity: #{activity.participant.study_id},"\
+            " #{activity.activity_type.title}, #{comment.item.action_type}"
+        when "SocialNetworking::Profile"
+          "ProfileCreation: #{comment.participant.study_id}"
+        when "SocialNetworking::Goal"
+          goal = SocialNetworking::Goal.find(comment.item.item_id)
+          "Goal: #{goal.participant.study_id}, #{goal.description}"
+        when "Thought"
+          thought = Thought.find(comment.item.item_id)
+          "Thought: #{thought.participant.study_id}, #{thought.description}"
+        else
+          "Unknown SharedItem Type, Item ID:#{comment.item_id},"\
+          " Item Type: #{comment.item_type}"
+        end
       end
     end
   end
