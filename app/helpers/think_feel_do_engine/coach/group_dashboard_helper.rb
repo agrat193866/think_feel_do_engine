@@ -33,7 +33,11 @@ module ThinkFeelDoEngine
       end
 
       def week_in_study(date, membership)
-        (day_in_study(date, membership) / 7.0).ceil == 0 ? 1 : (day_in_study(date, membership) / 7.0).ceil
+        if (day_in_study(date, membership) / 7.0).ceil == 0
+          1
+        else
+          (day_in_study(date, membership) / 7.0).ceil
+        end
       end
 
       def day_in_study(date, membership)
