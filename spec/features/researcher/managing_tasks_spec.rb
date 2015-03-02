@@ -68,7 +68,7 @@ feature "managing tasks", type: :feature do
         select("Tracking Your Mood & Emotions", from: "Select Module")
         fill_in "Release Day", with: 2
         check "Is this a recurring task?"
-        fill_in "Recurring termination day", with: 4
+        fill_in "Termination day", with: 4
         click_on "Assign"
         task = Task.where(bit_core_content_module_id: feel.id, release_day: 2, group_id: group3.id).first
 
