@@ -105,8 +105,8 @@ class Membership < ActiveRecord::Base
   def logins_by_week(week_number)
     participant
       .participant_login_events
-      .where("created_at >= ? AND created_at < ?",
-             week_start_day(week_number), week_end_day(week_number))
+      .where(participant_login_events[created_at].gteq(week_start_day(week_number)))
+      .where(participant_login_events[created_at].lt(week_end_day(week_number)))
       .count
   end
 

@@ -35,8 +35,8 @@ class Group < ActiveRecord::Base
         membership
         .participant
         .participant_login_events
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(participant_login_events[created_at].gteq(week_start_day(week_number)))
+        .where(participant_login_events[created_at].lt(week_end_day(week_number)))
         .count
     end
     login_count
@@ -49,8 +49,8 @@ class Group < ActiveRecord::Base
         membership
         .participant
         .thoughts
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(thoughts[created_at].gteq(week_start_day(week_number)))
+        .where(thoughts[created_at].lt(week_end_day(week_number)))
         .count
     end
     thought_count
@@ -64,8 +64,8 @@ class Group < ActiveRecord::Base
         .participant
         .activities
         .in_the_past
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(activities[created_at].gteq(week_start_day(week_number)))
+        .where(activities[created_at].lt(week_end_day(week_number)))
         .count
     end
     activities_count
@@ -79,8 +79,8 @@ class Group < ActiveRecord::Base
         .participant
         .activities
         .unscheduled_or_in_the_future
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(activities[created_at].gteq(week_start_day(week_number)))
+        .where(activities[created_at].lt(week_end_day(week_number)))
         .count
     end
     activities_count
@@ -92,8 +92,8 @@ class Group < ActiveRecord::Base
       goal_count +=
         SocialNetworking::Goal
         .where(participant: membership.participant)
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(social_networking_goals[created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_goals[created_at].lt(week_end_day(week_number)))
         .count
     end
     goal_count
@@ -105,8 +105,8 @@ class Group < ActiveRecord::Base
       comments_count +=
         SocialNetworking::Comment
         .where(participant: membership.participant)
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(social_networking_comments[created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_comments[created_at].lt(week_end_day(week_number)))
         .count
     end
     comments_count
@@ -118,8 +118,8 @@ class Group < ActiveRecord::Base
       on_the_mind_statements_count +=
         SocialNetworking::OnTheMindStatement
         .where(participant: membership.participant)
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(social_networking_on_the_mind_statements[created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_on_the_mind_statements[created_at].lt(week_end_day(week_number)))
         .count
     end
     on_the_mind_statements_count
@@ -131,8 +131,8 @@ class Group < ActiveRecord::Base
       likes_statements_count +=
         SocialNetworking::Like
         .where(participant: membership.participant)
-        .where("created_at >= ? AND created_at < ?",
-               week_start_day(week_number), week_end_day(week_number))
+        .where(social_networking_likes[created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_likes[created_at].lt(week_end_day(week_number)))
         .count
     end
     likes_statements_count
