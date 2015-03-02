@@ -115,8 +115,10 @@ class Group < ActiveRecord::Base
       comments_count +=
         SocialNetworking::Comment
         .where(participant: membership.participant)
-        .where(social_networking_comments[:created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_comments[:created_at].lt(week_end_day(week_number)))
+        .where(social_networking_comments[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_comments[:created_at]
+                 .lt(week_end_day(week_number)))
         .count
     end
     comments_count
@@ -130,8 +132,10 @@ class Group < ActiveRecord::Base
       on_the_mind_statements_count +=
         SocialNetworking::OnTheMindStatement
         .where(participant: membership.participant)
-        .where(social_networking_on_the_mind_statements[:created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_on_the_mind_statements[:created_at].lt(week_end_day(week_number)))
+        .where(social_networking_on_the_mind_statements[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_on_the_mind_statements[:created_at]
+                 .lt(week_end_day(week_number)))
         .count
     end
     on_the_mind_statements_count
@@ -145,8 +149,10 @@ class Group < ActiveRecord::Base
       likes_statements_count +=
         SocialNetworking::Like
         .where(participant: membership.participant)
-        .where(social_networking_likes[:created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_likes[:created_at].lt(week_end_day(week_number)))
+        .where(social_networking_likes[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_likes[:created_at]
+                 .lt(week_end_day(week_number)))
         .count
     end
     likes_statements_count

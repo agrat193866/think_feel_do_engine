@@ -106,8 +106,10 @@ class Membership < ActiveRecord::Base
     participant_login_events = Arel::Table.new(:participant_login_events)
     participant
       .participant_login_events
-      .where(participant_login_events[:created_at].gteq(week_start_day(week_number)))
-      .where(participant_login_events[:created_at].lt(week_end_day(week_number)))
+      .where(participant_login_events[:created_at]
+               .gteq(week_start_day(week_number)))
+      .where(participant_login_events[:created_at]
+               .lt(week_end_day(week_number)))
       .count
   end
 
