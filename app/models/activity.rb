@@ -62,7 +62,7 @@ class Activity < ActiveRecord::Base
     )
   }
 
-  scope :reviewed_and_completed, lambda {
+  scope :reviewed_and_complete, lambda {
     where(is_reviewed: true)
       .where
       .not(
@@ -197,8 +197,8 @@ class Activity < ActiveRecord::Base
   end
 
   def self.completion_score
-    if reviewed_and_completed.count > 0
-      (reviewed_and_completed.count * 100 / count).round
+    if reviewed_and_complete.count > 0
+      (reviewed_and_complete.count * 100 / count).round
     else
       0
     end
