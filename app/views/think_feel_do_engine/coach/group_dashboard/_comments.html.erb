@@ -24,7 +24,7 @@
           <tbody>
 
           <% group.memberships.each do |membership| %>
-            <% SocialNetworking::Comment.where(participant: membership.participant).each do |comment| %>
+            <% membership.comments.each do |comment| %>
               <tr>
                 <td class="not-displayed">
                   <%= comment.created_at ? comment.created_at.to_i : 0 %>

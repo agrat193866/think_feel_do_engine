@@ -103,11 +103,20 @@ class Membership < ActiveRecord::Base
   end
 
   def logins_by_week(week_number)
+    participant_login_events = Arel::Table.new(:participant_login_events)
     participant
       .participant_login_events
-      .where(participant_login_events[created_at].gteq(week_start_day(week_number)))
-      .where(participant_login_events[created_at].lt(week_end_day(week_number)))
+      .where(participant_login_events[:created_at].gteq(week_start_day(week_number)))
+      .where(participant_login_events[:created_at].lt(week_end_day(week_number)))
       .count
+  end
+
+  def comments
+    SocialNetworking::Comment.where(participant: participant)
+  end
+
+  def goals
+    SocialNetworking::Goal.where(participant: participant)
   end
 
   private
@@ -156,8 +165,6 @@ class Membership < ActiveRecord::Base
 
     errors.add :is_complete, "cannot be set to true for end dates in the future"
   end
-
-  private
 
   def week_start_day(week_number)
     start_date + ((week_number - 1) * 7).days

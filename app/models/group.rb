@@ -30,13 +30,16 @@ class Group < ActiveRecord::Base
 
   def logins_by_week(week_number)
     login_count = 0
+    participant_login_events = Arel::Table.new(:participant_login_events)
     memberships.each do |membership|
       login_count +=
         membership
         .participant
         .participant_login_events
-        .where(participant_login_events[created_at].gteq(week_start_day(week_number)))
-        .where(participant_login_events[created_at].lt(week_end_day(week_number)))
+        .where(participant_login_events[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(participant_login_events[:created_at]
+                 .lt(week_end_day(week_number)))
         .count
     end
     login_count
@@ -44,13 +47,14 @@ class Group < ActiveRecord::Base
 
   def thoughts_by_week(week_number)
     thought_count = 0
+    thoughts = Arel::Table.new(:thoughts)
     memberships.each do |membership|
       thought_count +=
         membership
         .participant
         .thoughts
-        .where(thoughts[created_at].gteq(week_start_day(week_number)))
-        .where(thoughts[created_at].lt(week_end_day(week_number)))
+        .where(thoughts[:created_at].gteq(week_start_day(week_number)))
+        .where(thoughts[:created_at].lt(week_end_day(week_number)))
         .count
     end
     thought_count
@@ -58,14 +62,15 @@ class Group < ActiveRecord::Base
 
   def activities_past_by_week(week_number)
     activities_count = 0
+    activities = Arel::Table.new(:activities)
     memberships.each do |membership|
       activities_count +=
         membership
         .participant
         .activities
         .in_the_past
-        .where(activities[created_at].gteq(week_start_day(week_number)))
-        .where(activities[created_at].lt(week_end_day(week_number)))
+        .where(activities[:created_at].gteq(week_start_day(week_number)))
+        .where(activities[:created_at].lt(week_end_day(week_number)))
         .count
     end
     activities_count
@@ -73,14 +78,15 @@ class Group < ActiveRecord::Base
 
   def activities_future_by_week(week_number)
     activities_count = 0
+    activities = Arel::Table.new(:activities)
     memberships.each do |membership|
       activities_count +=
         membership
         .participant
         .activities
         .unscheduled_or_in_the_future
-        .where(activities[created_at].gteq(week_start_day(week_number)))
-        .where(activities[created_at].lt(week_end_day(week_number)))
+        .where(activities[:created_at].gteq(week_start_day(week_number)))
+        .where(activities[:created_at].lt(week_end_day(week_number)))
         .count
     end
     activities_count
@@ -88,12 +94,15 @@ class Group < ActiveRecord::Base
 
   def goals_by_week(week_number)
     goal_count = 0
+    social_networking_goals = Arel::Table.new(:social_networking_goals)
     memberships.each do |membership|
       goal_count +=
         SocialNetworking::Goal
         .where(participant: membership.participant)
-        .where(social_networking_goals[created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_goals[created_at].lt(week_end_day(week_number)))
+        .where(social_networking_goals[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_goals[:created_at]
+                 .lt(week_end_day(week_number)))
         .count
     end
     goal_count
@@ -101,12 +110,13 @@ class Group < ActiveRecord::Base
 
   def comments_by_week(week_number)
     comments_count = 0
+    social_networking_comments = Arel::Table.new(:social_networking_comments)
     memberships.each do |membership|
       comments_count +=
         SocialNetworking::Comment
         .where(participant: membership.participant)
-        .where(social_networking_comments[created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_comments[created_at].lt(week_end_day(week_number)))
+        .where(social_networking_comments[:created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_comments[:created_at].lt(week_end_day(week_number)))
         .count
     end
     comments_count
@@ -114,12 +124,14 @@ class Group < ActiveRecord::Base
 
   def on_the_mind_statements_by_week(week_number)
     on_the_mind_statements_count = 0
+    social_networking_on_the_mind_statements =
+      Arel::Table.new(:social_networking_on_the_mind_statements)
     memberships.each do |membership|
       on_the_mind_statements_count +=
         SocialNetworking::OnTheMindStatement
         .where(participant: membership.participant)
-        .where(social_networking_on_the_mind_statements[created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_on_the_mind_statements[created_at].lt(week_end_day(week_number)))
+        .where(social_networking_on_the_mind_statements[:created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_on_the_mind_statements[:created_at].lt(week_end_day(week_number)))
         .count
     end
     on_the_mind_statements_count
@@ -127,12 +139,14 @@ class Group < ActiveRecord::Base
 
   def likes_by_week(week_number)
     likes_statements_count = 0
+    social_networking_likes =
+      Arel::Table.new(:social_networking_likes)
     memberships.each do |membership|
       likes_statements_count +=
         SocialNetworking::Like
         .where(participant: membership.participant)
-        .where(social_networking_likes[created_at].gteq(week_start_day(week_number)))
-        .where(social_networking_likes[created_at].lt(week_end_day(week_number)))
+        .where(social_networking_likes[:created_at].gteq(week_start_day(week_number)))
+        .where(social_networking_likes[:created_at].lt(week_end_day(week_number)))
         .count
     end
     likes_statements_count
