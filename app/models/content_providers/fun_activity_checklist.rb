@@ -18,8 +18,7 @@ module ContentProviders
         :activity_type_new_title,
         :predicted_pleasure_intensity,
         :predicted_accomplishment_intensity,
-        :start_time,
-        :is_scheduled
+        :start_time
       ]
     end
 
