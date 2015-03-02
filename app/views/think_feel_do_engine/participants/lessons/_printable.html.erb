@@ -1,0 +1,15 @@
+<% slide = slide || @slide %>
+<div class="tool-content">
+  <% if slide.is_title_visible %>
+    <div class="slide">
+      <h1><%= slide.title %></h1>
+    </div>
+  <% end %>
+
+  <% case slide.class.to_s %>
+  <% when 'BitCore::VideoSlide' || 'BitCore::AudioSlide' %>
+    <%= slide.options['url'].to_s %>
+    [ Not shown - multimedia file] <br><br>
+  <% end %>
+  <%= slide.render_body %>
+</div>

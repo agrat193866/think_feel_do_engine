@@ -2,3 +2,16 @@
   position: inherit !important;
   height: inherit !important;
 }
+@page
+{
+  size: auto;
+  margin: 25mm 25mm 25mm 25mm;
+}
+
+body {
+  overflow: visible;
+
+  div {
+    display: inline;
+  }
+}
