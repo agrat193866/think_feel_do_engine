@@ -9,7 +9,7 @@ module ThinkFeelDoEngine
       # danger - red
 
       def get_color_class(activity)
-        if activity.completed? && activity.rated?
+        if activity.reviewed_and_complete? && activity.rated?
           rating_color(
             activity.actual_pleasure_intensity,
             activity.actual_accomplishment_intensity

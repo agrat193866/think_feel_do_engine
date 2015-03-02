@@ -19,8 +19,7 @@ module ContentProviders
         :end_time,
         :activity_type_title,
         :actual_pleasure_intensity,
-        :actual_accomplishment_intensity,
-        :is_complete
+        :actual_accomplishment_intensity
       ]
     end
 

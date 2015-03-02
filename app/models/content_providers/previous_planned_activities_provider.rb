@@ -6,7 +6,7 @@ module ContentProviders
         options
         .participant
         .activities
-        .incomplete
+        .planned
 
       options.view_context.render(
         template: "think_feel_do_engine/activities/previously_planned_fullpage",
@@ -24,7 +24,7 @@ module ContentProviders
     def data_attributes
       [
         :id, :actual_pleasure_intensity, :actual_accomplishment_intensity,
-        :is_complete, :noncompliance_reason
+        :noncompliance_reason
       ]
     end
 

@@ -26,13 +26,13 @@
         </p>
         <p>
           Completion Score: <%= activities.scheduled.completion_score %>%
-          (You completed <%= activities.scheduled.completed.count %> out of <%= pluralize(activities.scheduled.count, 'activity') %> that you scheduled.)
+          (You completed <%= activities.scheduled.reviewed_and_completed.count %> out of <%= pluralize(activities.scheduled.count, 'activity') %> that you scheduled.)
         <p>
         <p>
-          <strong>Average Accomplishment Discrepancy:</strong> <%= average_intensity_difference(activities.completed, :accomplishment) %>
+          <strong>Average Accomplishment Discrepancy:</strong> <%= average_intensity_difference(activities.reviewed_and_completed, :accomplishment) %>
         </p>
         </p>
-          <strong>Average Pleasure Discrepancy:</strong> <%= average_intensity_difference(activities.completed, :pleasure) %>
+          <strong>Average Pleasure Discrepancy:</strong> <%= average_intensity_difference(activities.reviewed_and_completed, :pleasure) %>
         </p>
       </div>
     </div>

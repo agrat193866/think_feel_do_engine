@@ -7,7 +7,7 @@ module ContentProviders
         .participant
         .activities
         .in_the_past
-        .incomplete
+        .planned
 
       options.view_context.render(
         template: "think_feel_do_engine/activities/past_activity_review",
@@ -25,7 +25,7 @@ module ContentProviders
     def data_attributes
       [
         :id, :actual_pleasure_intensity, :actual_accomplishment_intensity,
-        :is_complete, :noncompliance_reason
+        :noncompliance_reason
       ]
     end
 

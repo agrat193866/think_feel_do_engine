@@ -288,9 +288,8 @@ feature "patient dashboard", type: :feature do
               "Loving",
               "Planned",
               "Not Rated",
-              "6",
               "Not Rated",
-              "Scheduled for #{ (Time.current - 2.hour).to_formatted_s(:short) }",
+              "Scheduled for #{ (Time.current - 4.hour).to_formatted_s(:short) }",
               short_timestamp
             ]
           )
@@ -321,11 +320,10 @@ feature "patient dashboard", type: :feature do
             cells: [
               "run",
               "Monitored",
-              "Completed",
               "Not Rated",
               "Not Rated",
-              "Not Rated",
-              "Not Rated",
+              "0",
+              "0",
               "Scheduled for #{ (time_now - 2.hour).to_formatted_s(:short) }",
               short_timestamp
             ]
