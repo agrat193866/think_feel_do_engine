@@ -7,7 +7,7 @@ module ContentProviders
         .participant
         .activities
         .in_the_past
-        .incomplete
+        .planned
 
       options.view_context.render(
         template: "think_feel_do_engine/activities/past_activity_review",

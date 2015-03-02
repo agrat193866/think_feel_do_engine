@@ -81,9 +81,15 @@ class Activity < ActiveRecord::Base
     )
   }
 
-  scope :incomplete, lambda {
-    where(is_complete: false)
-      .where(noncompliance_reason: nil)
+  scope :planned, lambda {
+    where(
+      is_reviewed: false,
+      actual_accomplishment_intensity: nil,
+      actual_pleasure_intensity: nil)
+      .where
+      .not(
+        predicted_accomplishment_intensity: nil,
+        predicted_pleasure_intensity: nil)
   }
 
   scope :random, lambda {

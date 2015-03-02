@@ -24,7 +24,7 @@ module ContentProviders
         .participant
         .activities
         .in_the_past
-        .incomplete
+        .planned
         .order(start_time: :desc)
     end
 
@@ -33,7 +33,7 @@ module ContentProviders
         .participant
         .activities
         .in_the_future
-        .incomplete
+        .planned
         .order(start_time: :asc)
     end
   end

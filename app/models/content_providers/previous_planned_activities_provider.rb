@@ -6,7 +6,7 @@ module ContentProviders
         options
         .participant
         .activities
-        .incomplete
+        .planned
 
       options.view_context.render(
         template: "think_feel_do_engine/activities/previously_planned_fullpage",
