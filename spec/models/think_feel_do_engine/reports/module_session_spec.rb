@@ -16,8 +16,8 @@ module ThinkFeelDoEngine
 
         context "when modules were viewed" do
           it "returns accurate summaries" do
-            first_render_event = event_capture_events(:event_capture_events_014)
-            last_render_event = event_capture_events(:event_capture_events_014)
+            first_render_event = event_capture_events(:event_capture_events_015)
+            last_render_event = event_capture_events(:event_capture_events_015)
             data = ModuleSession.all
 
             expect(data.count).to eq 7
