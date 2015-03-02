@@ -55,13 +55,13 @@ module ThinkFeelDoEngine
           events = EventCapture::Event
                    .where(participant_id: participant.id, kind: "click")
                    .select(:participant_id, :emitted_at, :payload, :kind)
-                   .to_a
-                   .sort { |a, b| a.emitted_at <=> b.emitted_at }
-          module_select_events = events.select do |e|
-                                          modules.keys.include?(
-                                            e.current_url.gsub(URL_ROOT_RE, "")
-                                          )
-                                        end
+                   .to_a.sort { |a, b| a.emitted_at <=> b.emitted_at }
+          module_select_events = events
+                                 .select do |e|
+                                   modules.keys.include?(
+                                     e.current_url.gsub(URL_ROOT_RE, "")
+                                   )
+                                 end
 
           module_select_events.map do |e|
             module_id = modules[e.current_url.gsub(URL_ROOT_RE, "")]
