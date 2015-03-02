@@ -113,13 +113,11 @@ feature "Activities", type: :feature do
           expect(page).to have_text "Actual  Not answered: Not answered:"
           expect(page).to have_text "Difference N/A N/A"
 
-          within "form#edit_activity_#{activity.id}", :js do
+          within "form#edit_activity_#{activity.id}" do
             click_on "Edit"
             execute_script("$('.pleasure-container input:first').trigger('click')")
             execute_script("$('.accomplishment-container input:first').trigger('click')")
-            within ".panel-footer" do
-              click_on "Update"
-            end
+            execute_script("$('.panel-footer input.btn-primary').trigger('click')")
           end
 
           expect(page).to have_text "Accomplishment: 0 · Pleasure: 0"
