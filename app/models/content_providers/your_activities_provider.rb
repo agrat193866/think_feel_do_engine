@@ -62,7 +62,7 @@ module ContentProviders
         .participant
         .activities
         .last_seven_days
-        .reviewed_and_completed
+        .reviewed_and_complete
         .order(start_time: :asc)
     end
 
