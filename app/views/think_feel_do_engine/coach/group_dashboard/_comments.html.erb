@@ -1,0 +1,70 @@
+<div class="panel panel-default cdb_panel" id="comments-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#commentsCollapse">
+        Comments
+      </a>
+    </h3>
+  </div>
+
+  <div id="commentsCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="comments_data">
+          <thead>
+          <tr>
+            <th class="not-dispdlayed"></th>
+            <th>Study ID</th>
+            <th>Comment</th>
+            <th>Commented On</th>
+            <th>Created At</th>
+            <th>Week</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% membership.comments.each do |comment| %>
+              <tr>
+                <td class="not-displayed">
+                  <%= comment.created_at ? comment.created_at.to_i : 0 %>
+                </td>
+                <td><%= membership.participant.display_name %></td>
+                <td><%= comment.text %></td>
+                <td><%= comment_item_description(comment) %> </td>
+                <td><%= comment.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(comment.created_at, membership) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    return $('#comments_data').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[0, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [4],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Logins By Week</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th>Study ID</th>
+        <% (1..study_length_in_weeks).each do |current_week| %>
+          <th>week <%= current_week %></th>
+        <% end %>
+      </tr>
+      <% group.memberships.each do | membership | %>
+        <tr>
+          <td><%= membership.participant.display_name %></td>
+          <% (1..study_length_in_weeks).each do |current_week| %>
+            <td><%= membership.logins_by_week(current_week) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="panel panel-default cdb_panel" id="thoughts-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#thoughtsCollapse">
+        Thoughts
+      </a>
+    </h3>
+  </div>
+
+  <div id="thoughtsCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="thoughts_data">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th>Study ID</th>
+            <th>Thought</th>
+            <th>Effect</th>
+            <th>Date</th>
+            <th>Week</th>
+            <%= social_likes_and_comments_column_headers %>
+          </tr>
+          </thead>
+          <tbody>
+          <% group.memberships.each do |membership| %>
+            <% membership.participant.thoughts.each do |thought| %>
+              <tr>
+                <td class="not-displayed">
+                  <%= thought.created_at ? thought.created_at.to_i : 0 %>
+                </td>
+                <td><%= membership.participant.display_name %></td>
+                <td><%= thought.content %></td>
+                <td><%= thought.effect %></td>
+                <td><%= thought.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(thought.created_at, membership) %></td>
+                <%= social_likes_and_comments_count_rows(thought) %>
+              </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    return $('#thoughts_data').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[0, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [4],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>

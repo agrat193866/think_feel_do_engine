@@ -62,6 +62,7 @@ ThinkFeelDoEngine::Engine.routes.draw do
     resources :groups, only: [:show] do
       resources :messages, only: [:index, :new, :create]
       resources :patient_dashboards
+      resources :group_dashboard
       resources :received_messages, only: :show
       resources :sent_messages, only: :show
       resources :site_messages, only: [:index, :show, :new, :create]

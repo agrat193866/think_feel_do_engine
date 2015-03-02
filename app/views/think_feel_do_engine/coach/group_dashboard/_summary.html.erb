@@ -1,0 +1,30 @@
+<tr>
+  <th></td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <th>week <%= current_week %></th>
+  <% end %>
+</tr>
+<tr>
+  <td><a href="#login_table">logins</a></td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.logins_by_week(current_week) %></td>
+  <% end %>
+</tr>
+<tr>
+  <td><a href="#thoughts_table">thoughts</a></td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.thoughts_by_week(current_week) %></td>
+  <% end %>
+</tr>
+<tr>
+  <td><a href="#activities_past_table">activities past</a></td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.activities_past_by_week(current_week) %></td>
+  <% end %>
+</tr>
+<tr>
+  <td><a href="#activities_future_table">activities future</a></td>
+  <% (1..study_length_in_weeks).each do |current_week| %>
+    <td><%= group.activities_future_by_week(current_week) %></td>
+  <% end %>
+</tr>

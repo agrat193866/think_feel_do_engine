@@ -1,0 +1,84 @@
+<div class="panel panel-default cdb_panel" id="activities-past-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#activitiesPastCollapse">
+        Activities Past
+      </a>
+    </h3>
+  </div>
+
+  <div id="activitiesPastCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="activities_past_data">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th>Study ID</th>
+            <th>Activity</th>
+            <th>Status</th>
+            <th>Scheduled Date</th>
+            <th>Actual Accomplishment Intensity</th>
+            <th>Actual Pleasure Intensity</th>
+            <th>Predicted Accomplishment Intensity</th>
+            <th>Predicted Pleasure Intensity</th>
+            <th>Noncompliance Reason</th>
+            <th>Created Date</th>
+            <th>Week</th>
+            <%= social_likes_and_comments_column_headers %>
+          </tr>
+          </thead>
+          <tbody>
+
+          <% group.memberships.each do |membership| %>
+            <% membership.participant.activities.in_the_past.each do |activity| %>
+              <tr>
+                <td class="not-displayed">
+                  <%= activity.created_at ? activity.created_at.to_i : 0 %>
+                </td>
+                <td><%= membership.participant.display_name %></td>
+                <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
+                <td></td>
+                <td><%= activity.end_time ? activity.end_time.to_formatted_s(:short) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
+                <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
+                <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
+                <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
+                <td><%= activity.predicted_pleasure_intensity ? activity.predicted_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
+                <td><%= activity.noncompliance_reason %></td>
+                <td><%= activity.created_at.to_formatted_s(:short) %></td>
+                <td><%= week_in_study(activity.created_at, membership) %></td>
+                <%= social_likes_and_comments_count_rows(activity) %>
+              </tr>
+            <% end %>
+          <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    return $('#activities_past_data').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[0, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [9],
+          iDataSort: [0]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+</script>
