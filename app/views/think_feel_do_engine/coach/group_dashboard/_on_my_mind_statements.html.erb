@@ -31,7 +31,7 @@
                 <td class="not-displayed">
                   <%= statement.created_at ? statement.created_at.to_i : 0 %>
                 </td>
-                <td><%= membership.participant.study_id %></td>
+                <td><%= membership.participant.display_name %></td>
                 <td><%= statement.description %></td>
                 <td><%= statement.created_at.to_formatted_s(:short) %></td>
                 <td><%= week_in_study(statement.created_at, membership) %></td>

@@ -29,7 +29,7 @@
                 <td class="not-displayed">
                   <%= thought.created_at ? thought.created_at.to_i : 0 %>
                 </td>
-                <td><%= membership.participant.study_id %></td>
+                <td><%= membership.participant.display_name %></td>
                 <td><%= thought.content %></td>
                 <td><%= thought.effect %></td>
                 <td><%= thought.created_at.to_formatted_s(:short) %></td>

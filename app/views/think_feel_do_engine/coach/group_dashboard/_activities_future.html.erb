@@ -33,7 +33,7 @@
                 <td class="not-displayed">
                   <%= activity.created_at ? activity.created_at.to_i : 0 %>
                 </td>
-                <td><%= membership.participant.study_id %></td>
+                <td><%= membership.participant.display_name %></td>
                 <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
                 <td><%= activity.end_time ? activity.end_time.to_formatted_s(:short) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
                 <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>

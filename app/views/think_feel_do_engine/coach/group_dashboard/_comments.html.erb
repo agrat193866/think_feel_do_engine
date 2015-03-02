@@ -29,7 +29,7 @@
                 <td class="not-displayed">
                   <%= comment.created_at ? comment.created_at.to_i : 0 %>
                 </td>
-                <td><%= membership.participant.study_id %></td>
+                <td><%= membership.participant.display_name %></td>
                 <td><%= comment.text %></td>
                 <td><%= comment_item_description(comment) %> </td>
                 <td><%= comment.created_at.to_formatted_s(:short) %></td>

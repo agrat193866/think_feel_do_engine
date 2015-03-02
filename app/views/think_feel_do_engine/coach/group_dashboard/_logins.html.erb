@@ -13,7 +13,7 @@
       </tr>
       <% group.memberships.each do | membership | %>
         <tr>
-          <td><%= membership.participant.study_id %></td>
+          <td><%= membership.participant.display_name %></td>
           <% (1..study_length_in_weeks).each do |current_week| %>
             <td><%= membership.logins_by_week(current_week) %></td>
           <% end %>

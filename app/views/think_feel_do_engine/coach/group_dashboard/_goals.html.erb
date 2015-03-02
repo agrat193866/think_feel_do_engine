@@ -34,7 +34,7 @@
                 <td class="not-displayed">
                   <%= goal.created_at ? goal.created_at.to_i : 0 %>
                 </td>
-                <td><%= membership.participant.study_id %></td>
+                <td><%= membership.participant.display_name %></td>
                 <td><%= goal.description %></td>
                 <td><%= goal.is_completed %></td>
                 <td><%= goal.is_deleted %></td>
