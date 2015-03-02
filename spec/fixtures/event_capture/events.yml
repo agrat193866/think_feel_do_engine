@@ -1,3 +1,276 @@
+event_capture_events_001:
+  emitted_at: <%= DateTime.now - 5666.seconds %>
+  recorded_at: <%= DateTime.now - 5666.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_002:
+  emitted_at: <%= DateTime.now - 5559.seconds %>
+  recorded_at: <%= DateTime.now - 5559.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t\n      <a class=\"btn btn-primary pull-right\"
+      href=\"/navigator/next_content\" type=\"submit\">Next</a>\n  </div>"
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_003:
+  emitted_at: <%= DateTime.now - 5559.seconds %>
+  recorded_at: <%= DateTime.now - 5559.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/2
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_004:
+  emitted_at: <%= DateTime.now - 5556.seconds %>
+  recorded_at: <%= DateTime.now - 5556.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/2
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_005:
+  emitted_at: <%= DateTime.now - 5556.seconds %>
+  recorded_at: <%= DateTime.now - 5556.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/3
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_006:
+  emitted_at: <%= DateTime.now - 5553.seconds %>
+  recorded_at: <%= DateTime.now - 5553.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/3
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_007:
+  emitted_at: <%= DateTime.now - 5553.seconds %>
+  recorded_at: <%= DateTime.now - 5553.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/4
+    headers:
+    - home
+    - Landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_008:
+  emitted_at: <%= DateTime.now - 5550.seconds %>
+  recorded_at: <%= DateTime.now - 5550.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/4
+    buttonHtml: <a class="btn btn-primary pull-right" href="/navigator/next_content" type="submit">Next</a>
+    parentHtml: "<div class=\"btn-toolbar\">\n  \t<a class=\"btn btn-default pull-left\"
+      href=\"/navigator/previous_content\" type=\"submit\">Back</a>\n      <a class=\"btn
+      btn-primary pull-right\" href=\"/navigator/next_content\" type=\"submit\">Next</a>\n
+      \ </div>"
+    headers:
+    - home
+    - Landing
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_009:
+  emitted_at: <%= DateTime.now - 5549.seconds %>
+  recorded_at: <%= DateTime.now - 5549.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/1
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_010:
+  emitted_at: <%= DateTime.now - 5526.seconds %>
+  recorded_at: <%= DateTime.now - 5526.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/1
+    buttonHtml: |-
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+    parentHtml: |-
+      <li class="THINK dropdown hidden-xs open">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+              THINK
+                <span class="badge badge-do">New!</span>
+      </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/navigator/contexts/THINK">THINK Home</a>
+              </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="/navigator/modules/954850709">
+                    <i class="fa fa-book"></i> #1 Identifying
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/833803412">
+                    <i class="fa fa-book"></i> #2 Patterns
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/356286248">
+                    <i class="fa fa-book"></i> #3 Reshape
+      </a>          </li>
+                  <li class="divider"></li>
+                <li>
+                  <a href="/navigator/modules/25448458">
+                    <i class="fa fa-pencil"></i> Add a New Thought
+      </a>          </li>
+                <li>
+                  <a href="/navigator/modules/90368025">
+                    <i class="fa fa-pencil"></i> Thoughts
+      </a>          </li>
+            </ul>
+          </li>
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_011:
+  emitted_at: <%= DateTime.now - 5525.seconds %>
+  recorded_at: <%= DateTime.now - 5525.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/437912910/providers/426024276/1
+    buttonHtml: <a href="/navigator/contexts/THINK">THINK Home</a>
+    parentHtml: |-
+      <li>
+                <a href="/navigator/contexts/THINK">THINK Home</a>
+              </li>
+    headers:
+    - home
+    - Landing
+    - It's simple.
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: click
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_012:
+  emitted_at: <%= DateTime.now - 5525.seconds %>
+  recorded_at: <%= DateTime.now - 5525.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/contexts/THINK
+    headers:
+    - THINK
+    - Think landing
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  user_id: 
+  user_agent: 
+  source: 
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
 event_capture_events_013:
   emitted_at: <%= DateTime.now - 5523.seconds %>
   recorded_at: <%= DateTime.now - 5523.seconds %>

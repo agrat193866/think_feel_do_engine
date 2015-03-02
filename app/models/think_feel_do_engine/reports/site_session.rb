@@ -21,9 +21,9 @@ module ThinkFeelDoEngine
               session = {
                 participant_id: participant.study_id,
                 sign_in_at: preceding_sign_in(participant.id,
-                                              earliest_click_time),
-                first_action_at: earliest_click_time,
-                last_action_at: latest_click_time
+                                              earliest_click_time).iso8601,
+                first_action_at: earliest_click_time.iso8601,
+                last_action_at: latest_click_time.iso8601
               }
               earliest_click_time = latest_click_time = nil
 
