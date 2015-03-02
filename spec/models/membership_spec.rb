@@ -176,5 +176,10 @@ describe Membership do
 
     it ".incomplete_tasks returns task statuses that have a start date later than or equal today and not yet past their termination day" do
     end
+
+    it ".activities_future_by_week returns a count of activities "\
+  " monitored for the first week" do
+      expect(membership.logins_by_week(1)).to eq(2)
+    end
   end
 end
