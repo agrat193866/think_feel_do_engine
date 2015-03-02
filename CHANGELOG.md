@@ -1,3 +1,11 @@
+## 2.9.0 - 2015-03-02
+ * Add group dashboard
+ * optimize performance of Module Session Report
+ * Make lesson pages more printable
+ * Refactor/rewrite Activity states and query methods
+ * Update termination day wording
+ * Activity and Thought Provider spec refactoring
+
 ## 2.8.5 - 2015-02-25
  * revert Module Page View report timestamps to local
  * import remaining shared reports
