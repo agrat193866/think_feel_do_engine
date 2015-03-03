@@ -15,20 +15,32 @@ feature "Activities", type: :feature do
       end
 
       scenario "Participant reviews an activity they completed" do
+        expect(activity.is_reviewed).to eq false
+
         choose("activity_is_complete_yes_#{activity.id}")
         select 9, from: "activity[actual_accomplishment_intensity]"
         select 4, from: "activity[actual_pleasure_intensity]"
         click_on "Next"
 
         expect("Activity Saved")
+
+        activity.reload
+
+        expect(activity.is_reviewed).to eq true
       end
 
       scenario "Participant reviews an activity they did not complete" do
+        expect(activity.is_reviewed).to eq false
+
         choose("activity_is_complete_no_#{activity.id}")
         fill_in "activity[noncompliance_reason]", with: "ate cheeseburgers instead"
         click_on "Next"
 
         expect("Activity Saved")
+
+        activity.reload
+
+        expect(activity.is_reviewed).to eq true
       end
     end
   end
