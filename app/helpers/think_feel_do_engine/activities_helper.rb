@@ -21,6 +21,8 @@ module ThinkFeelDoEngine
       "(#{help_text(activities.were_planned)})"
     end
 
+    private
+
     def help_text(activities)
       if activities.were_planned.count > 0
         "You completed #{activities.reviewed_and_complete.count} out of "\
