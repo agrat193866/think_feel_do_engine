@@ -58,18 +58,39 @@ module ThinkFeelDoEngine
         end
       end
 
-      def display_lesson_details_by_week(group)
-        content = ""
-        group.learning_tasks.each do |task|
-          task.bit_core_content_module.content_providers.collect do |content_provider|
-            puts "TEST123"
-            content_tag :h3 do
-              "#{content_provider.source_content.title}"\
-                "#{content_tag(:small, "0 of 12 complete")}"
-            end
-          end.join.inspect
+      def display_lesson_details_by_week(group, week_number)
+        group.learning_tasks.collect do |task|
+          if week_number == week_of_task(task)
+            task.bit_core_content_module.content_providers.collect do |content_provider|
+              "<tr><td>#{content_provider.source_content.title}</td>"\
+                "#{participants_that_read_lesson(task)}</tr>"
+            end.join
+          end
+        end.join
+      end
+
+      def participants_that_read_lesson(task)
+        total_assigned = 0
+        total_read = 0
+        task.task_statuses.each do |status|
+          total_assigned += 1
+          total_read += 1 if !status.completed_at.nil?
         end
-        content
+        "<td>#{total_read} of #{total_assigned} COMPLETE</td>"\
+        "<td>"\
+        "#{list_participant_names(task.group, task.complete_participant_list)}"\
+        "</td><td>"\
+        "#{list_participant_names(task.group, task.incomplete_participant_list)}</td>"
+      end
+
+      def list_participant_names(group, participants)
+        participant_list = "<ul>"
+        participants.each do |participant|
+          participant_list +=
+          "<li>#{link_to participant.display_name, coach_group_patient_dashboard_path(group, participant)}</li>" if participant
+        end
+        participant_list += "</ul>"
+        participant_list
       end
 
       def comment_shared_item_description(comment)
@@ -89,6 +110,16 @@ module ThinkFeelDoEngine
         else
           "Unknown SharedItem Type, Item ID:#{comment.item_id},"\
           " Item Type: #{comment.item_type}"
+        end
+      end
+
+      private
+
+      def week_of_task(task)
+        if (task.task_statuses.first.start_day / 7.0).ceil == 0
+          1
+        else
+          (task.task_statuses.first.start_day / 7.0).ceil
         end
       end
     end
