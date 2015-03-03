@@ -1,10 +1,13 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant starts viewing a Lesson.
     class LessonViewing
       include LessonModule
+
+      def self.columns
+        %w( participant_id lesson_id page_headers lesson_selected_at
+            last_page_number_opened last_page_opened_at )
+      end
 
       def self.all
         lessons = lesson_entries_map
@@ -35,14 +38,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id lesson_id page_headers lesson_selected_at
-                        last_page_number_opened last_page_opened_at )
-          csv << columns
-          Reports::LessonViewing.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
 
       # last event (click) with matching module id

@@ -1,9 +1,12 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: Participants complete a Phq Assessment by email.
     class PhqAssessmentReport
+      def self.columns
+        %w( participant_id date_transmitted date_completed phq1 phq2 phq3 phq4
+            phq5 phq6 phq7 phq8 phq9 )
+      end
+
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           participant.phq_assessments.map do |assessment|
@@ -26,14 +29,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id date_transmitted date_completed
-                        phq1 phq2 phq3 phq4 phq5 phq6 phq7 phq8 phq9 )
-          csv << columns
-          Reports::PhqAssessmentReport.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
     end
   end

@@ -1,10 +1,13 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: A Participant starts using a Module page.
     class ModulePageView
       include ToolModule
+
+      def self.columns
+        %w( participant_id tool_id module_id page_headers page_selected_at
+            page_exited_at )
+      end
 
       def self.all
         modules = modules_map
@@ -40,14 +43,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id tool_id module_id page_headers
-                        page_selected_at page_exited_at )
-          csv << columns
-          Reports::ModulePageView.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
 
       def self.page_exit_event_at(page_render_event)

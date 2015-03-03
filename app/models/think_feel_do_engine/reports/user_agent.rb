@@ -1,10 +1,13 @@
-require "csv"
 require "user_agent_parser"
 
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant accesses the site with a unique user agent.
     class UserAgent
+      def self.columns
+        %w( participant_id user_agent_family user_agent_version user_agent_os )
+      end
+
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           user_agents = EventCapture::Event
@@ -27,18 +30,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = [
-            "participant_id",
-            "user_agent_family",
-            "user_agent_version",
-            "user_agent_os"
-          ]
-          csv << columns
-          all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
     end
   end
