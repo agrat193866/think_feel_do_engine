@@ -58,6 +58,20 @@ module ThinkFeelDoEngine
         end
       end
 
+      def display_lesson_details_by_week(group)
+        content = ""
+        group.learning_tasks.each do |task|
+          task.bit_core_content_module.content_providers.collect do |content_provider|
+            puts "TEST123"
+            content_tag :h3 do
+              "#{content_provider.source_content.title}"\
+                "#{content_tag(:small, "0 of 12 complete")}"
+            end
+          end.join.inspect
+        end
+        content
+      end
+
       def comment_shared_item_description(comment)
         case comment.item.item_type
         when "Activity"
