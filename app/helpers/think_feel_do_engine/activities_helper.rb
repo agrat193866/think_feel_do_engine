@@ -17,22 +17,29 @@ module ThinkFeelDoEngine
     end
 
     def percent_complete_message(activities)
-      if activities.count > 0
-        "Completion Score: #{percent_complete(activities)}% "\
-        "(You completed "\
-        "#{activities.reviewed_and_complete.count} "\
-        "out of #{scheduled_message(activities.were_planned)} "\
-        "that you scheduled.)"
+      "Completion Score: #{percent_complete(activities)} "\
+      "(#{help_text(activities.were_planned)})"
+    end
+
+    private
+
+    def help_text(activities)
+      if activities.were_planned.count > 0
+        "You completed #{activities.reviewed_and_complete.count} out of "\
+        "#{scheduled_message(activities.were_planned)} that you scheduled."
       else
-        "Completion Score: Not Available (No activities were scheduled.)"
+        "No activities were scheduled."
       end
     end
 
     def percent_complete(activities)
-      (
-        activities.reviewed_and_complete.count.to_f /
-        (activities.were_planned.count).to_f * 100
-      ).round(0)
+      if activities.were_planned.count > 0
+        (activities.reviewed_and_complete.count.to_f /
+          (activities.were_planned.count).to_f * 100
+        ).round(0).to_s + "%"
+      else
+        "Not Available"
+      end
     end
 
     def scheduled_count(activities)
