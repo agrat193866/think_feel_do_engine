@@ -380,7 +380,6 @@
       d.predicted_accomplishment = (d.predicted_accomplishment_intensity !== null ? d.predicted_accomplishment_intensity : -1);
       d.actual_pleasure = (d.actual_pleasure_intensity !== null ? d.actual_pleasure_intensity : -1);
       d.actual_accomplishment = (d.actual_accomplishment_intensity !== null ? d.actual_accomplishment_intensity : -1);
-      d.completed = d.is_complete === true;
       d.start_date = parse_time(new Date(d.start_datetime));
       d.bucket = getBucket(d.actual_pleasure, d.actual_accomplishment);
       if (!isNaN(d.start_datetime) && !isNaN(d.end_datetime)) {

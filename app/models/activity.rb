@@ -97,6 +97,13 @@ class Activity < ActiveRecord::Base
         predicted_pleasure_intensity: nil)
   }
 
+  scope :with_actual_ratings, lambda {
+    where
+      .not(
+        actual_accomplishment_intensity: nil,
+        actual_pleasure_intensity: nil)
+  }
+
   scope :unplanned, lambda {
     where(start_time: nil, end_time: nil)
   }
