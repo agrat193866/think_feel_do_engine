@@ -113,7 +113,7 @@
       $("#activities").remove();
       $("#datepicker").hide();
       numOfDays = $(event.currentTarget).data("range");
-      dailyBreakdown(<%= completed_week_activities.to_json(methods: :title).html_safe %>, numOfDays);
+      dailyBreakdown(<%= with_actual_ratings.to_json(methods: :title).html_safe %>, numOfDays);
     })
   });
 </script>

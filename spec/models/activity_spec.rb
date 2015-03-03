@@ -28,6 +28,16 @@ RSpec.describe Activity do
       end
     end
 
+    describe ".with_actual_ratings" do
+      it "returns all activities that have actual intensity ratings" do
+        expect do
+          sleeping(
+            actual_accomplishment_intensity: 5,
+            actual_pleasure_intensity: 5)
+        end.to change { Activity.with_actual_ratings.count }.by(1)
+      end
+    end
+
     describe ".reviewed_and_complete" do
       it "returns all activities that have been reviewed and have predicted intensities, acutal intensities, and it was reviewed" do
         expect do

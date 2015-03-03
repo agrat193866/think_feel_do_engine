@@ -11,7 +11,7 @@ module ContentProviders
           moods: moods(options),
           negative_emotions: negative_emotions(options),
           positive_emotions: positive_emotions(options),
-          completed_week_activities: completed_week_activities(options),
+          with_actual_ratings: with_actual_ratings(options),
           dates_with_activities:  collect_dates_with_activities(options)
         }
       )
@@ -57,12 +57,12 @@ module ContentProviders
         .for_day(local_time(options))
     end
 
-    def completed_week_activities(options)
+    def with_actual_ratings(options)
       options
         .participant
         .activities
         .last_seven_days
-        .reviewed_and_complete
+        .with_actual_ratings
         .order(start_time: :asc)
     end
 
