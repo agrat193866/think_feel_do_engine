@@ -14,4 +14,18 @@ class Mood < ActiveRecord::Base
   def rating_value
     Values::Mood.from_rating(rating).to_s
   end
+
+  scope :last_seven_days, lambda {
+    where(
+      arel_table[:created_at]
+        .gteq(Time.current.advance(days: -7).beginning_of_day))
+  }
+
+  scope :for_day, lambda { |time|
+    where(
+      arel_table[:created_at]
+        .gteq(time.beginning_of_day)
+        .and(arel_table[:created_at].lteq(time.end_of_day))
+    )
+  }
 end

@@ -49,9 +49,12 @@ class Activity < ActiveRecord::Base
     where(
       arel_table[:start_time]
       .gteq(Time.current.advance(days: -7).beginning_of_day)
-    ).in_the_past
+    )
   }
 
+  # To Do: fix naming and/or what is going on here
+  # change to start_time and is_scheduled
+  # and updated tests
   scope :unscheduled_or_in_the_future, lambda {
     where(
       arel_table[:start_time].eq(nil)
@@ -69,6 +72,31 @@ class Activity < ActiveRecord::Base
         actual_pleasure_intensity: nil)
   }
 
+  scope :reviewed_and_incomplete, lambda {
+    where(is_reviewed: true)
+      .where(
+        actual_accomplishment_intensity: nil,
+        actual_pleasure_intensity: nil)
+      .where
+      .not(
+        predicted_accomplishment_intensity: nil,
+        predicted_pleasure_intensity: nil)
+  }
+
+  scope :monitored, lambda {
+    where(is_reviewed: false)
+      .where(
+        actual_accomplishment_intensity: nil,
+        actual_pleasure_intensity: nil)
+      .where
+      .not(
+        predicted_accomplishment_intensity: nil,
+        predicted_pleasure_intensity: nil)
+  }
+
+  # To Do: fix naming and/or what is going on here
+  # change to start_time
+  # and updated tests
   scope :in_the_future, lambda {
     where(
       arel_table[:end_time].gt(Time.current)

@@ -51,6 +51,32 @@ RSpec.describe Activity do
       end
     end
 
+    describe ".reviewed_and_incomplete" do
+      it "returns all activities that have been reviewed and have predicted intensities, but not actual intensities" do
+        expect do
+          sleeping(
+            predicted_accomplishment_intensity: 5,
+            predicted_pleasure_intensity: 5,
+            actual_accomplishment_intensity: nil,
+            actual_pleasure_intensity: nil,
+            is_reviewed: true)
+        end.to change { Activity.reviewed_and_incomplete.count }.by(1)
+      end
+    end
+
+    describe ".monitored" do
+      it "returns activities that have not been reviwed and have predicted intensities, but not actual intensities " do
+        expect do
+          sleeping(
+            predicted_accomplishment_intensity: 5,
+            predicted_pleasure_intensity: 5,
+            actual_accomplishment_intensity: nil,
+            actual_pleasure_intensity: nil,
+            is_reviewed: false)
+        end.to change { Activity.monitored.count }.by(1)
+      end
+    end
+
     describe ".accomplished" do
       it "returns actitivies that have an actual accomplishment >= to a cutoff" do
         expect do
