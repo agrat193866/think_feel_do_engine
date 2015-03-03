@@ -62,10 +62,10 @@ feature "Activities", type: :feature do
         end
 
         it "displays daily completion information of only scheduled activities" do
-          scheduled_activities = participant.activities.for_day(Time.now).scheduled
+          reviewed_and_complete = participant.activities.for_day(Time.now).reviewed_and_complete
+          were_planned = participant.activities.for_day(Time.now).were_planned
 
-          expect(scheduled_activities.count).to eq 2
-          expect(page).to have_text "Completion Score: 100% (You completed 2 out of 2 activities that you scheduled.)"
+          expect(page).to have_text "Completion Score: 67% (You completed #{reviewed_and_complete.count} out of #{were_planned.count} activities that you scheduled.)"
         end
 
         it "navigates to today when 'Today' button is clicked" do

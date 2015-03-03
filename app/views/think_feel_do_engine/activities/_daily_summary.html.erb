@@ -25,8 +25,7 @@
           you recorded is both high pleasure and high accomplishment.
         </p>
         <p>
-          Completion Score: <%= activities.scheduled.completion_score %>%
-          (You completed <%= activities.scheduled.reviewed_and_complete.count %> out of <%= pluralize(activities.scheduled.count, 'activity') %> that you scheduled.)
+          <%= percent_complete_message(activities) %>
         <p>
         <p>
           <strong>Average Accomplishment Discrepancy:</strong> <%= average_intensity_difference(activities.reviewed_and_complete, :accomplishment) %>

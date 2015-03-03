@@ -152,13 +152,25 @@ RSpec.describe Activity do
       end
     end
 
-    describe ".scheduled" do
-      it "returns activities where is_scheduled is true" do
-        scheduled_activities = Activity.scheduled
+    describe ".planned" do
+      it "returns activities have neither actual intensity rated and both predicted intensities rated" do
+        planned_activities = Activity.planned
 
-        expect(scheduled_activities.load).not_to be_empty
-        scheduled_activities.each do |a|
-          expect(a.is_scheduled).to eq true
+        expect(planned_activities.load).not_to be_empty
+        planned_activities.each do |a|
+          expect(a.planned?).to eq true
+        end
+      end
+    end
+
+    describe ".were_planned" do
+      it "returns activities where both predicted intensities were rated" do
+        were_planned = Activity.were_planned
+
+        expect(were_planned.load).not_to be_empty
+        were_planned.each do |a|
+          expect(a.predicted_pleasure_intensity).to_not eq nil
+          expect(a.predicted_accomplishment_intensity).to_not eq nil
         end
       end
     end

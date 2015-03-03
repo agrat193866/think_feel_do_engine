@@ -52,9 +52,6 @@ class Activity < ActiveRecord::Base
     ).in_the_past
   }
 
-  # To Do: fix naming and/or what is going on here
-  # change to start_time and is_scheduled
-  # and updated tests
   scope :unscheduled_or_in_the_future, lambda {
     where(
       arel_table[:start_time].eq(nil)
@@ -72,9 +69,6 @@ class Activity < ActiveRecord::Base
         actual_pleasure_intensity: nil)
   }
 
-  # To Do: fix naming and/or what is going on here
-  # change to start_time
-  # and updated tests
   scope :in_the_future, lambda {
     where(
       arel_table[:end_time].gt(Time.current)
@@ -96,8 +90,11 @@ class Activity < ActiveRecord::Base
     order("RANDOM()")
   }
 
-  scope :scheduled, lambda {
-    where(is_scheduled: true)
+  scope :were_planned, lambda {
+    where
+      .not(
+        predicted_accomplishment_intensity: nil,
+        predicted_pleasure_intensity: nil)
   }
 
   scope :unplanned, lambda {

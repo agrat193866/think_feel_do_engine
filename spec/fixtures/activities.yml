@@ -26,7 +26,6 @@ planned_activity1:
   participant: participant1
   activity_type: loving
   actual_pleasure_intensity: 6
-  is_scheduled: true
   start_time: <%= DateTime.current.advance(hours: -2) %>
   end_time: <%= DateTime.current.advance(hours: -1) %>
 
@@ -43,7 +42,6 @@ planned_activity_today_1:
 planned_activity_today_2:
   participant: participant4
   activity_type: commuting
-  is_scheduled: true
   start_time: <%= DateTime.current.advance(hours: -1) %>
   end_time: <%= DateTime.current %>
 
@@ -52,7 +50,6 @@ planned_activity_today_3:
   activity_type: commuting
   predicted_accomplishment_intensity: 9
   predicted_pleasure_intensity: 1
-  is_scheduled: true
   start_time: <%= DateTime.current %>
   end_time: <%= DateTime.current.advance(hours: 1) %>
 
@@ -61,14 +58,12 @@ planned_activity_today_4:
   activity_type: working
   predicted_accomplishment_intensity: 4
   predicted_pleasure_intensity: 5
-  is_scheduled: true
   start_time: <%= DateTime.current.advance(hours: 1) %>
   end_time: <%= DateTime.current.advance(hours: 2) %>
 
 p2_planned_activity_3_hrs_ago:
   participant: traveling_participant1
   activity_type: eating
-  is_scheduled: true
   is_reviewed: true
   predicted_accomplishment_intensity: 10
   predicted_pleasure_intensity: 10
@@ -80,7 +75,6 @@ p2_planned_activity_3_hrs_ago:
 p2_planned_activity_2_hrs_ago:
   participant: traveling_participant1
   activity_type: working
-  is_scheduled: true
   is_reviewed: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
@@ -104,14 +98,12 @@ p2_activity_previous_day:
   predicted_pleasure_intensity: 2
   actual_accomplishment_intensity: 6
   actual_pleasure_intensity: 7
-  is_scheduled: true
   start_time: <%= Time.now - 315.hours %>
   end_time: <%= Time.now - 314.hours %>
 
 p2_activity_next_day:
   participant: traveling_participant1
   activity_type: commuting
-  is_scheduled: true
   predicted_accomplishment_intensity: 8
   predicted_pleasure_intensity: 4
   start_time: <%= Time.now - 265.hours %>
@@ -120,7 +112,6 @@ p2_activity_next_day:
 p3_planned_activity_at_9:
   participant: traveling_participant2
   activity_type: working
-  is_scheduled: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
   start_time: <%= Time.now - 286.hours %>
@@ -129,7 +120,6 @@ p3_planned_activity_at_9:
 p3_planned_activity_at_10:
   participant: traveling_participant2
   activity_type: working
-  is_scheduled: true
   predicted_accomplishment_intensity: 1
   predicted_pleasure_intensity: 1
   start_time: <%= Time.now - 285.hours %>

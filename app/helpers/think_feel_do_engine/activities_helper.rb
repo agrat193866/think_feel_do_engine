@@ -15,5 +15,32 @@ module ThinkFeelDoEngine
       end
       count == 0 ? "No activities exist." : total_diff.to_f / count
     end
+
+    def percent_complete_message(activities)
+      if activities.count > 0
+        "Completion Score: #{percent_complete(activities)}% "\
+        "(You completed "\
+        "#{activities.reviewed_and_complete.count} "\
+        "out of #{scheduled_message(activities.were_planned)} "\
+        "that you scheduled.)"
+      else
+        "Completion Score: Not Available (No activities were scheduled.)"
+      end
+    end
+
+    def percent_complete(activities)
+      (
+        activities.reviewed_and_complete.count.to_f /
+        (activities.were_planned.count).to_f * 100
+      ).round(0)
+    end
+
+    def scheduled_count(activities)
+      activities.were_planned.count
+    end
+
+    def scheduled_message(activities)
+      pluralize(scheduled_count(activities), "activity")
+    end
   end
 end
