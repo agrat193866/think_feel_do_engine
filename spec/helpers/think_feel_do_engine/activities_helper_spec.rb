@@ -47,7 +47,13 @@ module ThinkFeelDoEngine
     describe "no activities exist" do
       describe "percent_complete_message" do
         it "returns 'NA' in the message if no activities were scheduled" do
-          expect(percent_complete_message(Activity)).to eq "Completion Score: Not Available (No activities were scheduled.)"
+          expect(percent_complete_message(Activity)).to eq "Completion Score: Not Available (#{help_text(Activity)})"
+        end
+      end
+
+      describe "help_text" do
+        it "returns help text" do
+          expect(help_text(Activity)).to eq "No activities were scheduled."
         end
       end
     end
@@ -67,13 +73,19 @@ module ThinkFeelDoEngine
 
         describe "percent_complete_message" do
           it "returns a message detailing percent complete" do
-            expect(percent_complete_message(Activity)).to eq "Completion Score: 50% (You completed 1 out of 2 activities that you scheduled.)"
+            expect(percent_complete_message(Activity)).to eq "Completion Score: 50% (#{help_text(Activity)})"
+          end
+        end
+
+        describe "help_text" do
+          it "returns help text" do
+            expect(help_text(Activity.were_planned)).to eq "You completed 1 out of 2 activities that you scheduled."
           end
         end
 
         describe "percent_complete" do
           it "to return a integer of how many activities were reviewed_and_completed out of how many were planned" do
-            expect(percent_complete(Activity)).to eq 50
+            expect(percent_complete(Activity)).to eq "50%"
           end
         end
 
