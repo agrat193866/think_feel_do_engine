@@ -1,10 +1,12 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant is active on the site for a period of time.
     class SiteSession
       THRESHOLD = 5.minutes
+
+      def self.columns
+        %w( participant_id sign_in_at first_action_at last_action_at )
+      end
 
       def self.all
         Participant.select(:id, :study_id).map do |participant|
@@ -34,13 +36,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          csv << %w( participant_id sign_in_at first_action_at last_action_at )
-          Reports::SiteSession.all.each do |s|
-            csv << [s[:participant_id], s[:sign_in_at], s[:first_action_at],
-                    s[:last_action_at]]
-          end
-        end
+        Reporter.new(self).to_csv
       end
 
       def self.click_times(participant_id)

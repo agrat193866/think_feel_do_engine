@@ -1,9 +1,11 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant completes a Task on the assigned day.
     class TaskCompletion
+      def self.columns
+        %w( participant_id title completed_on )
+      end
+
       def self.all
         Participant.select(:id, :study_id)
           .includes(:memberships).map do |participant|
@@ -25,13 +27,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id title completed_on )
-          csv << columns
-          Reports::TaskCompletion.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
     end
   end

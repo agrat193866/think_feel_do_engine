@@ -1,9 +1,11 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant accesses a Tool Module.
     class ToolAccess
+      def self.columns
+        %w( participant_id module_title came_from occurred_at )
+      end
+
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           tool_access_events(participant).map do |tool_access|
@@ -18,13 +20,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id module_title came_from occurred_at )
-          csv << columns
-          Reports::ToolAccess.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
 
       def self.tool_access_events(participant)

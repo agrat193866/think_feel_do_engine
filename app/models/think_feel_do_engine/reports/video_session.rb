@@ -1,9 +1,12 @@
-require "csv"
-
 module ThinkFeelDoEngine
   module Reports
     # Scenario: a Participant plays a video.
     class VideoSession
+      def self.columns
+        %w( participant_id video_title video_started_at video_stopped_at
+            stopping_action )
+      end
+
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           video_play_events(participant.id).map do |e|
@@ -30,14 +33,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        CSV.generate do |csv|
-          columns = %w( participant_id video_title video_started_at
-                        video_stopped_at stopping_action )
-          csv << columns
-          Reports::VideoSession.all.each do |s|
-            csv << columns.map { |c| s[c.to_sym] }
-          end
-        end
+        Reporter.new(self).to_csv
       end
 
       def self.video_play_events(participant_id)
