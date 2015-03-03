@@ -44,39 +44,49 @@ module ThinkFeelDoEngine
       end
     end
 
-    describe "daily summary information" do
-      before :each do
-        activity(predicted: 1, predicted_accomplishment: 4).save
-        activity(
-          predicted: 1,
-          predicted_accomplishment: 4,
-          actual: 1,
-          actual_accomplishment: 4,
-          is_reviewed: true
-        ).save
-      end
-
+    describe "no activities exist" do
       describe "percent_complete_message" do
-        it "returns a message detailing percent complete" do
-          expect(percent_complete_message(Activity)).to eq "Completion Score: 50% (You completed 1 out of 2 activities that you scheduled.)"
+        it "returns 'NA' in the message if no activities were scheduled" do
+          expect(percent_complete_message(Activity)).to eq "Completion Score: Not Available (No activities were scheduled.)"
         end
       end
+    end
 
-      describe "percent_complete" do
-        it "to return a integer of how many activities were reviewed_and_completed out of how many were planned" do
-          expect(percent_complete(Activity)).to eq 50
+    describe "activities exist" do
+      describe "daily summary information" do
+        before :each do
+          activity(predicted: 1, predicted_accomplishment: 4).save
+          activity(
+            predicted: 1,
+            predicted_accomplishment: 4,
+            actual: 1,
+            actual_accomplishment: 4,
+            is_reviewed: true
+          ).save
         end
-      end
 
-      describe "scheduled_count" do
-        it "returns a total count of activities 'planned' and 'reviewed and completed'" do
-          expect(scheduled_count(Activity)).to eq 2
+        describe "percent_complete_message" do
+          it "returns a message detailing percent complete" do
+            expect(percent_complete_message(Activity)).to eq "Completion Score: 50% (You completed 1 out of 2 activities that you scheduled.)"
+          end
         end
-      end
 
-      describe "scheduled_message" do
-        it "returns the pluralized version of 'activity' depending on the count" do
-          expect(scheduled_message(Activity)).to eq "2 activities"
+        describe "percent_complete" do
+          it "to return a integer of how many activities were reviewed_and_completed out of how many were planned" do
+            expect(percent_complete(Activity)).to eq 50
+          end
+        end
+
+        describe "scheduled_count" do
+          it "returns a total count of activities 'planned' and 'reviewed and completed'" do
+            expect(scheduled_count(Activity)).to eq 2
+          end
+        end
+
+        describe "scheduled_message" do
+          it "returns the pluralized version of 'activity' depending on the count" do
+            expect(scheduled_message(Activity)).to eq "2 activities"
+          end
         end
       end
     end
