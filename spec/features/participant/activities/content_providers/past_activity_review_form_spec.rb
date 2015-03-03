@@ -42,6 +42,26 @@ feature "Activities", type: :feature do
 
         expect(activity.is_reviewed).to eq true
       end
+
+      scenario "Participant reviews an activity they did not complete and actual intensities are not set", :js do
+        expect(activity.actual_accomplishment_intensity).to be_nil
+        expect(activity.actual_pleasure_intensity).to be_nil
+
+        execute_script %{
+          $("input#activity_is_complete_no_#{activity.id}").trigger('click');
+        }
+        fill_in "activity[noncompliance_reason]", with: "ate cheeseburgers instead"
+
+        click_on "Next"
+
+        expect(page).to have_text "Activity saved"
+        expect(page).to have_text "Good Work!"
+
+        activity.reload
+
+        expect(activity.actual_accomplishment_intensity).to be_nil
+        expect(activity.actual_pleasure_intensity).to be_nil
+      end
     end
   end
 end
