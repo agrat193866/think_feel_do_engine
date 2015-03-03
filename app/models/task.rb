@@ -39,7 +39,7 @@ class Task < ActiveRecord::Base
 
   def complete_participant_list
     task_statuses.collect do |status|
-      if !status.completed_at.nil?
+      unless status.completed_at.nil?
         status.participant
       end
     end

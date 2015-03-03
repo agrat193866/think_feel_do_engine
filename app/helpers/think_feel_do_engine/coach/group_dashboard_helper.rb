@@ -58,36 +58,43 @@ module ThinkFeelDoEngine
         end
       end
 
+      # Disabling next style, false positive.
+      # rubocop:disable Style/Next
       def display_lesson_details_by_week(group, week_number)
         group.learning_tasks.collect do |task|
           if week_number == week_of_task(task)
-            task.bit_core_content_module.content_providers.collect do |content_provider|
+            task.bit_core_content_module.content_providers
+              .collect do |content_provider|
               "<tr><td>#{content_provider.source_content.title}</td>"\
                 "#{participants_that_read_lesson(task)}</tr>"
             end.join
           end
         end.join
       end
+      # rubocop:enable Style/Next
 
       def participants_that_read_lesson(task)
         total_assigned = 0
         total_read = 0
         task.task_statuses.each do |status|
           total_assigned += 1
-          total_read += 1 if !status.completed_at.nil?
+          total_read += 1 unless status.completed_at.nil?
         end
         "<td>#{total_read} of #{total_assigned} COMPLETE</td>"\
         "<td>"\
         "#{list_participant_names(task.group, task.complete_participant_list)}"\
         "</td><td>"\
-        "#{list_participant_names(task.group, task.incomplete_participant_list)}</td>"
+        "#{list_participant_names(task.group,
+                                  task.incomplete_participant_list)}</td>"
       end
 
       def list_participant_names(group, participants)
         participant_list = "<ul>"
         participants.each do |participant|
           participant_list +=
-          "<li>#{link_to participant.display_name, coach_group_patient_dashboard_path(group, participant)}</li>" if participant
+          "<li>#{link_to participant.display_name,
+                         coach_group_patient_dashboard_path(
+                           group, participant)}</li>" if participant
         end
         participant_list += "</ul>"
         participant_list

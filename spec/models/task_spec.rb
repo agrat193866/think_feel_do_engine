@@ -94,9 +94,9 @@ describe Task do
 
     let(:group) { groups(:group1) }
     let(:module1) { bit_core_content_modules(:do_awareness) }
-    let(:learning_module) {
+    let(:learning_module) do
       bit_core_content_modules(:slideshow_content_module_1)
-    }
+    end
     let(:participant1) { participants(:participant1) }
 
     it "incomplete_participant_list should return a list of participants "\
