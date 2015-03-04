@@ -42,6 +42,13 @@ module ThinkFeelDoEngine
           expect(helper.comment_item_description(comment))
             .to eq("Unknown Item Type, Item ID:1, Item Type: Mood")
         end
+
+        it "should return a message when comment doesn't have associated item" do
+          comment = double("comment", item_type: "SocialNetworking::SharedItem")
+          expect(comment).to receive(:item) { nil }
+          expect(helper.comment_item_description(comment))
+            .to eq("Comment was made for an unknown item.")
+        end
       end
 
       describe "aggregate lesson details related utilities" do

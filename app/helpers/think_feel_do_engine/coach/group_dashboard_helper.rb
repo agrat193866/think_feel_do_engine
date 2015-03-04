@@ -95,22 +95,26 @@ module ThinkFeelDoEngine
       end
 
       def comment_shared_item_description(comment)
-        case comment.item.item_type
-        when "Activity"
-          activity = Activity.find(comment.item.item_id)
-          "Activity: #{activity.participant.study_id},"\
-            " #{activity.activity_type.title}, #{comment.item.action_type}"
-        when "SocialNetworking::Profile"
-          "ProfileCreation: #{comment.participant.study_id}"
-        when "SocialNetworking::Goal"
-          goal = SocialNetworking::Goal.find(comment.item.item_id)
-          "Goal: #{goal.participant.study_id}, #{goal.description}"
-        when "Thought"
-          thought = Thought.find(comment.item.item_id)
-          "Thought: #{thought.participant.study_id}, #{thought.description}"
+        if comment.item
+          case comment.item.item_type
+          when "Activity"
+            activity = Activity.find(comment.item.item_id)
+            "Activity: #{activity.participant.study_id},"\
+              " #{activity.activity_type.title}, #{comment.item.action_type}"
+          when "SocialNetworking::Profile"
+            "ProfileCreation: #{comment.participant.study_id}"
+          when "SocialNetworking::Goal"
+            goal = SocialNetworking::Goal.find(comment.item.item_id)
+            "Goal: #{goal.participant.study_id}, #{goal.description}"
+          when "Thought"
+            thought = Thought.find(comment.item.item_id)
+            "Thought: #{thought.participant.study_id}, #{thought.description}"
+          else
+            "Unknown SharedItem Type, Item ID:#{comment.item_id},"\
+            " Item Type: #{comment.item_type}"
+          end
         else
-          "Unknown SharedItem Type, Item ID:#{comment.item_id},"\
-          " Item Type: #{comment.item_type}"
+          "Comment was made for an unknown item."
         end
       end
 
