@@ -74,13 +74,7 @@ module ThinkFeelDoEngine
       # rubocop:enable Style/Next
 
       def participants_that_read_lesson(task)
-        total_assigned = 0
-        total_read = 0
-        task.task_statuses.each do |status|
-          total_assigned += 1
-          total_read += 1 unless status.completed_at.nil?
-        end
-        "<td>#{total_read} of #{total_assigned} COMPLETE</td>"\
+        "<td>#{task.total_read} of #{task.total_assigned} COMPLETE</td>"\
         "<td>"\
         "#{list_participant_names(task.group, task.complete_participant_list)}"\
         "</td><td>"\

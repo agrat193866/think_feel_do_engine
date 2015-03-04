@@ -92,13 +92,6 @@ describe Task do
   describe "participant related utility methods" do
     fixtures(:all)
 
-    let(:group) { groups(:group1) }
-    let(:module1) { bit_core_content_modules(:do_awareness) }
-    let(:learning_module) do
-      bit_core_content_modules(:slideshow_content_module_1)
-    end
-    let(:participant1) { participants(:participant1) }
-
     it "incomplete_participant_list should return a list of participants "\
     "that have not completed this task " do
       expect(task1.incomplete_participant_list.count).to be >= 2
@@ -107,6 +100,14 @@ describe Task do
     it "complete_participant_list should return a list of participants "\
     "that have completed this task " do
       expect(task1.complete_participant_list.count).to be >= 2
+    end
+
+    it "total_assigned should return the total number of statuses" do
+      expect(task1.total_assigned).to be >= (2)
+    end
+
+    it "total_read should return the total statuses marked as complete" do
+      expect(task1.total_read).to be >= (0)
     end
   end
 end
