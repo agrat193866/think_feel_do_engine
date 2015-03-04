@@ -127,7 +127,7 @@ class Activity < ActiveRecord::Base
   end
 
   def actual_editable?
-    if end_time
+    if end_time && !reviewed_and_incomplete?
       end_time < Time.zone.now
     else
       false

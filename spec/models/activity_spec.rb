@@ -392,6 +392,12 @@ RSpec.describe Activity do
       it "returns false without an end_time" do
         expect(activities(:unplanned_activity1)).not_to be_actual_editable
       end
+
+      it "returns false if the activity has been reviewed and is incomplete" do
+        allow(activity).to receive(:reviewed_and_incomplete?).and_return(true)
+
+        expect(activity).not_to be_actual_editable
+      end
     end
 
     describe "#intensity_difference" do
