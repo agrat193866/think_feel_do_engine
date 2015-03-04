@@ -115,7 +115,7 @@ module ThinkFeelDoEngine
       end
 
       private
-      
+
       def week_of_task(task)
         if (task.task_statuses.first.start_day / 7.0).ceil == 0
           1
