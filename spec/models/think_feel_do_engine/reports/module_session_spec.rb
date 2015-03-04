@@ -20,8 +20,8 @@ module ThinkFeelDoEngine
 
         context "when modules were viewed" do
           it "returns accurate summaries" do
-            first_render_event = event_capture_events(:event_capture_events_015)
-            last_render_event = event_capture_events(:event_capture_events_015)
+            first_render_event = event_capture_events(:event_capture_events_014)
+            last_render_event = event_capture_events(:event_capture_events_031)
             expect(data.count).to eq 7
             expect(data).to include(
               participant_id: "TFD-1111",
@@ -37,12 +37,12 @@ module ThinkFeelDoEngine
         end
 
         context "when there was a gap in page views" do
-          def click!(emitted_at:, url:)
+          def render!(emitted_at:, url:)
             EventCapture::Event.create!(
               emitted_at: emitted_at,
               recorded_at: emitted_at,
               payload: { currentUrl: url, headers: %w( a b c ) },
-              kind: "click",
+              kind: "render",
               participant_id: participants(:participant1).id
             )
           end
@@ -51,14 +51,14 @@ module ThinkFeelDoEngine
             EventCapture::Event.destroy_all
             now = Time.current
             module_id = bit_core_content_modules(:do_awareness).id
-            click!(emitted_at: now - 10.minutes,
-                   url: "/navigator/modules/#{ module_id }")
-            click!(emitted_at: now - 9.minutes,
-                   url: "/navigator/modules/#{ module_id }/providers/123/1")
-            click!(emitted_at: now - 8.minutes,
-                   url: "/navigator/modules/#{ module_id }/providers/123/2")
-            click!(emitted_at: now - 1.minute,
-                   url: "/navigator/modules/#{ module_id }/providers/123/3")
+            render!(emitted_at: now - 10.minutes,
+                    url: "/navigator/modules/#{ module_id }")
+            render!(emitted_at: now - 9.minutes,
+                    url: "/navigator/modules/#{ module_id }/providers/123/1")
+            render!(emitted_at: now - 8.minutes,
+                    url: "/navigator/modules/#{ module_id }/providers/123/2")
+            render!(emitted_at: now - 1.minute,
+                    url: "/navigator/modules/#{ module_id }/providers/123/3")
 
             expect(data.count).to eq 1
             expect(data).to include(
