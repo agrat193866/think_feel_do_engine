@@ -1,3 +1,6 @@
+## 3.0.2 - 2015-03-04
+ * fixed a group dashboard loading issue when goal due dates were not set, don't drop sessions from site session reports
+
 ## 3.0.1 - 2015-03-04
  * Fixed issues with group dash panel, fixed actual intensities issues, prevent actual ratings from being set.
 
