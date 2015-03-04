@@ -1,3 +1,15 @@
+## 3.0.0 - 2015-03-04
+ * fix Site Session report when no login found
+ * Group Dashboard - Lesson Panel
+ * fix inaccurately reported Module Session report
+ * set is reviewed
+ * Update Activity Viz with Rated Activities
+ * Remove Active State
+ * Set Review Attribute
+ * Add event data exports
+ * Migration Drops is_scheduled
+ * report refactoring
+
 ## 2.9.0 - 2015-03-02
  * Add group dashboard
  * optimize performance of Module Session Report
