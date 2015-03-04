@@ -45,6 +45,20 @@ class Task < ActiveRecord::Base
     end
   end
 
+  # Returns a count of the number of times this task was assigned.
+  def total_assigned
+    task_statuses.count
+  end
+
+  # Returns the count of the number of times this task was completed.
+  def total_read
+    total_read = 0
+    task_statuses.each do |status|
+      total_read += 1 unless status.completed_at.nil?
+    end
+    total_read
+  end
+
   private
 
   def check_if_valid_release_day
