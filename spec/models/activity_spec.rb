@@ -187,6 +187,24 @@ RSpec.describe Activity do
   end
 
   describe "instance methods" do
+    describe "#update_as_reviewed" do
+      let(:running) do
+        Activity.new(
+          participant: participants(:participant1),
+          activity_type: activity_types(:jogging)
+        )
+      end
+
+      it "updates activity with is_reviewed to be true" do
+        expect(running.is_reviewed).to eq false
+
+        running.update_as_reviewed
+        running.reload
+
+        expect(running.is_reviewed).to eq true
+      end
+    end
+
     describe "#monitored?" do
       def running(attributes = {})
         Activity.create!({

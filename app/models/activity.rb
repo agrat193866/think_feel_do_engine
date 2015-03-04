@@ -120,6 +120,12 @@ class Activity < ActiveRecord::Base
     super + %w(activity_type_title activity_type_new_title)
   end
 
+  def update_as_reviewed(params = {})
+    update(
+      params
+      .merge(is_reviewed: true))
+  end
+
   def actual_editable?
     if end_time
       end_time < Time.zone.now

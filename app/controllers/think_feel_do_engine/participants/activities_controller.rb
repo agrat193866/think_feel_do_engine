@@ -13,13 +13,16 @@ module ThinkFeelDoEngine
       # ...
 
       def update
-        if @activity.update(activity_params_for_update)
+        if @activity.update_as_reviewed(activity_params_for_update)
+          flash[:notice] = "Activity updated."
           respond_to do |format|
             format.js { render inline: "Turbolinks.visit(window.location);" }
           end
         else
-          flash.now[:alert] = @activity.errors.full_messages.join(", ")
-          render :edit
+          flash[:alert] = @activity.errors.full_messages.join(", ")
+          respond_to do |format|
+            format.js { render inline: "Turbolinks.visit(window.location);" }
+          end
         end
       end
 
