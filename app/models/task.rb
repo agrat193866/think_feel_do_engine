@@ -29,6 +29,22 @@ class Task < ActiveRecord::Base
       )
   }
 
+  def incomplete_participant_list
+    task_statuses.collect do |status|
+      if status.completed_at.nil?
+        status.participant
+      end
+    end
+  end
+
+  def complete_participant_list
+    task_statuses.collect do |status|
+      unless status.completed_at.nil?
+        status.participant
+      end
+    end
+  end
+
   private
 
   def check_if_valid_release_day

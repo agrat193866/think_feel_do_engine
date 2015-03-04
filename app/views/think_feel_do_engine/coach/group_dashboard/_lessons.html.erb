@@ -4,8 +4,17 @@
   </div>
 
   <div class="panel-body">
-    <table class="table">
-
-    </table>
+    <% (1..Rails.application.config.study_length_in_weeks).each do |week_number| %>
+      <h2>Week <%= week_number %></h2>
+      <table class="table">
+        <thead>
+          <td>Title</td>
+          <td></td>
+          <td>Complete</td>
+          <td>Incomplete</td>
+        </thead>
+        <%= display_lesson_details_by_week(group, week_number).html_safe %>
+      </table>
+    <% end %>
   </div>
 </div>

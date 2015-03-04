@@ -43,6 +43,34 @@ module ThinkFeelDoEngine
             .to eq("Unknown Item Type, Item ID:1, Item Type: Mood")
         end
       end
+
+      describe "aggregate lesson details related utilities" do
+        fixtures(:all)
+        let(:task1) { tasks(:task1) }
+        it "#display_lesson_details_by_week should display lesson by week" do
+          group = double("group", learning_tasks: [task1])
+          week_number = 1
+          expect(helper).to receive(:coach_group_patient_dashboard_path)
+            .exactly(12) { "some link" }
+          expect(nil).to receive(:title).exactly(5) { "some title" }
+          expect(
+            helper.display_lesson_details_by_week(group, week_number)
+          ).to eq("<tr><td>Do - Awareness Introduction</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr><tr><td>some title</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr><tr><td>some title</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr><tr><td>some title</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr><tr><td>some title</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr><tr><td>some title</td><td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td></tr>")
+        end
+
+        it "#participants_that_read_lesson should return participant info" do
+          expect(helper).to receive(:coach_group_patient_dashboard_path)
+            .exactly(2) { "some link" }
+          expect(helper.participants_that_read_lesson(task1)).to eq("<td>0 of 2 COMPLETE</td><td><ul></ul></td><td><ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul></td>")
+        end
+
+        it "#list_participant_names displays a list for task1" do
+          group = double("group", learning_tasks: [task1])
+          expect(helper).to receive(:coach_group_patient_dashboard_path)
+            .exactly(2) { "some link" }
+          expect(helper.list_participant_names(group, task1.incomplete_participant_list)).to eq("<ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul>")
+        end
+      end
     end
   end
 end
