@@ -55,9 +55,15 @@
 
         if (val === 'true') {
           $('#activity-incomplete-' + id).hide();
-          $('#activity-complete-' + id).show();
+          $('#activity-complete-' + id)
+          .show()
+          .find('select#activity_actual_accomplishment_intensity, select#activity_actual_pleasure_intensity')
+            .removeAttr("disabled")
         } else {
-          $('#activity-complete-' + id).hide();
+          $('#activity-complete-' + id)
+          .hide()
+          .find('select#activity_actual_accomplishment_intensity, select#activity_actual_pleasure_intensity')
+            .attr("disabled", "disabled");
           $('#activity-incomplete-' + id).show();
         }
 
