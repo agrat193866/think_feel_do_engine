@@ -20,10 +20,11 @@ module ThinkFeelDoEngine
 
               nil
             else
+              sign_in = preceding_sign_in(participant.id,
+                                          earliest_click_time)
               session = {
                 participant_id: participant.study_id,
-                sign_in_at: preceding_sign_in(participant.id,
-                                              earliest_click_time).iso8601,
+                sign_in_at: sign_in.try(:iso8601),
                 first_action_at: earliest_click_time.iso8601,
                 last_action_at: latest_click_time.iso8601
               }
