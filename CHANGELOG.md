@@ -1,3 +1,6 @@
+## 3.0.3 - 2015-03-04
+ * fixed issue with errant comments
+
 ## 3.0.2 - 2015-03-04
  * fixed a group dashboard loading issue when goal due dates were not set, don't drop sessions from site session reports
 
