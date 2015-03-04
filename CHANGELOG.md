@@ -1,3 +1,6 @@
+## 3.0.1 - 2015-03-04
+ * Fixed issues with group dash panel, fixed actual intensities issues, prevent actual ratings from being set.
+
 ## 3.0.0 - 2015-03-04
  * fix Site Session report when no login found
  * Group Dashboard - Lesson Panel
