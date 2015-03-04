@@ -11,15 +11,20 @@ module ThinkFeelDoEngine
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           earliest_click_time = latest_click_time = nil
-          click_times(participant.id).map do |click_time|
+          times = click_times(participant.id)
+          times.map do |click_time|
             earliest_click_time ||= click_time
+            latest_click_time ||= earliest_click_time
 
-            if latest_click_time.nil? ||
-               click_time - latest_click_time < THRESHOLD
+            if click_time - latest_click_time < THRESHOLD &&
+               click_time != times.last
+              # this click is part of the current session
               latest_click_time = click_time
 
               nil
             else
+              # this click is part of the next session or
+              # it's the last click
               sign_in = preceding_sign_in(participant.id,
                                           earliest_click_time)
               session = {
