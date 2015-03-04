@@ -22,7 +22,7 @@ participant1_harmful4:
   content: I am insignificant
   effect: harmful
 
-participant2_harmful1:
-  participant: participant2
+participant4_harmful1:
+  participant: participant4
   content: I will never ever ever get all my specs to pass
   effect: harmful

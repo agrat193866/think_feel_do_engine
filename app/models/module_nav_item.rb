@@ -25,6 +25,15 @@ class ModuleNavItem
     @content_module.id
   end
 
+  def task_status
+    Task.where(group_id: @participant.active_group.id,
+               bit_core_content_module_id: module_id)
+      .first
+      .task_statuses
+      .where(membership: @participant.active_membership)
+      .first
+  end
+
   def has_didactic_content?
     Task.where(group_id: @participant.active_group.id,
                bit_core_content_module_id: module_id)

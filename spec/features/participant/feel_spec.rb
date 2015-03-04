@@ -61,11 +61,12 @@ feature "Feel", type: :feature do
   end
 
   context "Participant on day 2 logs in" do
-    let(:participant2) { participants(:participant2) }
+    let(:participant1) { participants(:participant1) }
     let(:mood_and_emotions_provider_post_day1) { bit_core_content_providers(:mood_and_emotions_index_post_day1) }
 
     before :each do
-      sign_in_participant participant2
+      Timecop.travel(Time.current + (1.day))
+      sign_in_participant participant1
       visit "/navigator/contexts/FEEL"
     end
 
@@ -81,7 +82,7 @@ feature "Feel", type: :feature do
       expect(page).to have_text "What is your mood right now?"
       select("5 (Neither)", from: "mood[rating]")
       click_on "Next"
-      select("surprised", from: "Emotion")
+      select("angry", from: "Emotion")
       select("5 (Some)", from: "emotional_rating[rating]")
       select("negative", from: "emotional_rating[is_positive]")
 
@@ -111,13 +112,13 @@ feature "Feel", type: :feature do
 
       expect(page).to have_text("Emotional Rating saved")
 
-      e = Emotion.where(name: "surprised").first
+      e = Emotion.where(name: "angry").first
 
       expect(e).to_not be_nil
 
-      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant2.id, rating: 5).first
+      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant1.id, rating: 5).first
 
-      expect(rating.name).to eq "surprised"
+      expect(rating.name).to eq "angry"
       expect(rating.rating).to eq 5
       expect(rating.rating_value).to eq "Neither"
 
@@ -125,7 +126,7 @@ feature "Feel", type: :feature do
 
       expect(e).to_not be_nil
 
-      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant2.id).first
+      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant1.id).first
 
       expect(rating.name).to eq "jubilant"
       expect(rating.rating).to eq 3
@@ -135,7 +136,7 @@ feature "Feel", type: :feature do
 
       expect(e).to_not be_nil
 
-      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant2.id).first
+      rating = EmotionalRating.where(emotion_id: e.id, participant_id: participant1.id).first
 
       expect(rating.name).to eq "ecstatic"
       expect(rating.rating).to eq 7

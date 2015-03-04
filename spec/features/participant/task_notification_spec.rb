@@ -104,66 +104,55 @@ feature "task notification", type: :feature do
   end
 
   context "Participant logs in on the first day of the trial with assigned tasks" do
+    before do
+      sign_in_participant participants(:participant1)
+    end
+
     it "makes new tasks bold with a white background each day for reoccuring tasks", :js do
-      Timecop.travel(Time.current - (1.day))
-      sign_in_participant participants(:participant2)
-      visit "/navigator/contexts/FEEL"
-      new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood").count
+      visit "/navigator/contexts/DO"
+      new_task_count = page.all(".list-group-item-unread", text: "Your Activities").count
       expect(new_task_count).to eq 1
 
-      click_on "Tracking Your Mood"
-      choose_rating "new_mood", 5
+      click_on "Your Activities"
 
-      click_on "Next"
-      click_on "Next"
-
-      visit "/navigator/contexts/FEEL"
-      new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood").count
-
-      expect(new_task_count).to eq 0
-      Timecop.travel(Time.current + (1.day))
-      sign_in_participant participants(:participant2)
-      visit "/navigator/contexts/FEEL"
-      new_task_count = page.all(".list-group-item-unread", text: "Tracking Your Mood & Emotions").count
-
-      expect(new_task_count).to eq 1
+      visit "/navigator/contexts/DO"
+      read_task_count = page.all(".list-group-item-read", text: "Your Activities").count
+      expect(read_task_count).to eq 1
     end
   end
 
-  context "Participant logs in after assined tasks from previous days have been assigned" do
+  context "Participant logs in after assigned tasks from previous days have been assigned" do
     before do
-      sign_in_participant participants(:participant2)
+      Timecop.travel(Time.current + (1.day))
+      sign_in_participant participants(:participant1)
     end
 
     it "displays tasks assigned on previous days" do
       visit "/navigator/contexts/DO"
 
-      expect(task_status(:task_status5).release_day).to eq 1
-      expect(participants(:participant2).active_membership.day_in_study).to eq 2
+      expect(task_status(:task_status20).release_day).to eq 1
+      expect(participants(:participant1).active_membership.day_in_study).to eq 2
 
       within ".left.list-group" do
-        expect(page.all("a#task-status-#{task_status(:task_status5).id}").count).to eq 1
+        expect(page.all("a#task-status-#{task_status(:task_status20).id}").count).to eq 1
       end
     end
 
     it "doesn't display New! badge on the 'context' page if tasks are from previous days but unanswered" do
       visit "/navigator/contexts/DO"
-      expect(task_status(:task_status5).release_day).to eq 1
-      new_task_count = page.find("li.DO.hidden-xs li", text: "#{task_status(:task_status5).title}").all(".badge.badge-do").count
-      expect(new_task_count).to eq 0
-      expect(task_status(:task_status6).release_day).to eq 1
-      new_task_count = page.find("li.DO.hidden-xs li", text: "#{task_status(:task_status6).title}").all(".badge.badge-do").count
+      expect(task_status(:task_status1).release_day).to eq 1
+      new_task_count = page.find("li.DO.hidden-xs li", text: "#{task_status(:task_status1).title}").all(".badge.badge-do").count
       expect(new_task_count).to eq 0
     end
 
     it "displays only the most recent task if a content module has been assigned twice" do
-      visit "/navigator/contexts/THINK"
+      visit "/navigator/contexts/DO"
       within ".container .left.list-group" do
-        expect(task_status(:task_status9).bit_core_content_module_id).to eq task_status(:task_status10).bit_core_content_module_id
-        expect(task_status(:task_status9).release_day).to eq 1
-        expect(page.all("a#task-status-#{task_status(:task_status9).id}").count).to eq 0
-        expect(task_status(:task_status10).release_day).to eq 2
-        expect(page.all("a#task-status-#{task_status(:task_status10).id}").count).to eq 1
+        expect(task_status(:task_status1).bit_core_content_module_id).to eq task_status(:task_status1dup).bit_core_content_module_id
+        expect(task_status(:task_status1).release_day).to eq 1
+        expect(page.all("a#task-status-#{task_status(:task_status1).id}").count).to eq 0
+        expect(task_status(:task_status1dup).release_day).to eq 2
+        expect(page.all("a#task-status-#{task_status(:task_status1dup).id}").count).to eq 1
       end
     end
   end
