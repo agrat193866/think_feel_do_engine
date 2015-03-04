@@ -52,11 +52,7 @@ class Task < ActiveRecord::Base
 
   # Returns the count of the number of times this task was completed.
   def total_read
-    total_read = 0
-    task_statuses.each do |status|
-      total_read += 1 unless status.completed_at.nil?
-    end
-    total_read
+    task_statuses.where.not(completed_at: nil).count
   end
 
   private
