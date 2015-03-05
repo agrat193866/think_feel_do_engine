@@ -36,6 +36,48 @@ module ThinkFeelDoEngine
         end
       end
 
+      describe "#activity_status" do
+        let(:activity) { double("activity") }
+
+        it "should return monitored status when activity is monitored" do
+          expect(activity).to receive(:monitored?) { true }
+
+          expect(helper.activity_status(activity)).to eq("monitored")
+        end
+
+        it "should return (not reviewed) status when activity not_reviewed" do
+          expect(activity).to receive(:monitored?) { false }
+          expect(activity).to receive(:not_reviewed?) { true }
+
+          expect(helper.activity_status(activity)).to eq("not reviewed")
+        end
+
+        it "should return planned status when activity is planned?" do
+          expect(activity).to receive(:monitored?) { false }
+          expect(activity).to receive(:not_reviewed?) { false }
+          expect(activity).to receive(:planned?) { true }
+
+          expect(helper.activity_status(activity)).to eq("planned")
+        end
+        it "should return (reviewed and complete) status when activity is reviewed and complete" do
+          expect(activity).to receive(:monitored?) { false }
+          expect(activity).to receive(:not_reviewed?) { false }
+          expect(activity).to receive(:planned?) { false }
+          expect(activity).to receive(:reviewed_and_complete?) { true }
+
+          expect(helper.activity_status(activity)).to eq("reviewed and complete")
+        end
+        it "should return (reviewed and incomplete) status when activity is reviewed and incomplete" do
+          expect(activity).to receive(:monitored?) { false }
+          expect(activity).to receive(:not_reviewed?) { false }
+          expect(activity).to receive(:planned?) { false }
+          expect(activity).to receive(:reviewed_and_complete?) { false }
+          expect(activity).to receive(:reviewed_and_incomplete?) { true }
+
+          expect(helper.activity_status(activity)).to eq("reviewed and incomplete")
+        end
+      end
+
       describe "comment_item_description" do
         it "should return details for unknown shared items" do
           comment = double("comment", item_type: "Mood", item_id: 1)
