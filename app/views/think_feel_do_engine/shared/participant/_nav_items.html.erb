@@ -26,7 +26,10 @@
             <li class="divider"></li>
           <% end %>
           <li>
-            <%= link_to think_feel_do_engine.navigator_location_path(module_id: module_nav_item.module_id) do %>
+            <%= link_to think_feel_do_engine.navigator_location_path(module_id: module_nav_item.module_id),
+                        class: "task-status",
+                        id: "task-status-#{ module_nav_item.task_status.id }",
+                        data: { :"task-status-id" => module_nav_item.task_status.id } do %>
               <%= module_nav_item.has_didactic_content? ? fa_icon("book") : fa_icon("pencil") %> <%= module_nav_item.title %>
             <% end %>
           </li>

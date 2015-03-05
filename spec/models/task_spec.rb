@@ -37,7 +37,7 @@ describe Task do
 
   describe "TaskStatus creation" do
     let(:member_count) { task1.group.memberships.count }
-    let(:release_day) { task1.release_day + 1 }
+    let(:release_day) { task1.release_day + 2 }
 
     context "when non-recurring" do
       it "adds task statuses for each membership" do

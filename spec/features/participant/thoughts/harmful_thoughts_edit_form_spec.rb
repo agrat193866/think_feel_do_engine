@@ -5,7 +5,7 @@ feature "Thoughts", type: :feature do
 
   describe "When in Think #2 Patterns" do
     describe "ContentProvider::HarmfulThoughtsEditFormProvider" do
-      let(:participant) { participants(:participant2) }
+      let(:participant) { participants(:participant4) }
 
       before do
         sign_in_participant participant
