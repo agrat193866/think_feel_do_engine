@@ -1,0 +1,33 @@
+<td>
+  <%= task.total_read %> of <%= task.total_assigned %> COMPLETE
+</td>
+<td>
+  <button class="btn btn-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#completeParticipants-<%= task.id %>"
+          aria-expanded="false"
+          aria-controls="completeParticipants-<%= task.id %>">
+    View Complete Participants
+  </button>
+  <div class="collapse" id="completeParticipants-<%= task.id %>">
+    <div class="well">
+      <%= list_participant_names(task.group, task.complete_participant_list).html_safe %>
+    </div>
+  </div>
+</td>
+<td>
+  <button class="btn btn-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#incompleteParticipants-<%= task.id %>"
+          aria-expanded="false"
+          aria-controls="incompleteParticipants-<%= task.id %>">
+    View Incomplete Participants
+  </button>
+  <div class="collapse" id="incompleteParticipants-<%= task.id %>">
+    <div class="well">
+      <%= list_participant_names(task.group, task.incomplete_participant_list).html_safe %>
+    </div>
+  </div>
+</td>

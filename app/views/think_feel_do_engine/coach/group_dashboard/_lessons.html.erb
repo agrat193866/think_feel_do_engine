@@ -7,13 +7,14 @@
     <% (1..Rails.application.config.study_length_in_weeks).each do |week_number| %>
       <h2>Week <%= week_number %></h2>
       <table class="table">
-        <thead>
-          <td>Title</td>
-          <td></td>
-          <td>Complete</td>
-          <td>Incomplete</td>
-        </thead>
-        <%= display_lesson_details_by_week(group, week_number).html_safe %>
+        <% group.learning_tasks.each do |task| %>
+          <% if week_number == week_of_task(task) %>
+            <%= render partial: "think_feel_do_engine/coach/group_dashboard/learning_lesson_row",
+                       collection: task.bit_core_content_module.content_providers,
+                       as: :content_provider,
+                       locals: { task: task } %>
+          <% end %>
+        <% end %>
       </table>
     <% end %>
   </div>

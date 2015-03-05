@@ -58,28 +58,10 @@ module ThinkFeelDoEngine
         end
       end
 
-      # Disabling next style, false positive.
-      # rubocop:disable Style/Next
-      def display_lesson_details_by_week(group, week_number)
-        group.learning_tasks.collect do |task|
-          if week_number == week_of_task(task)
-            task.bit_core_content_module.content_providers
-              .collect do |content_provider|
-              "<tr><td>#{content_provider.source_content.title}</td>"\
-                "#{participants_that_read_lesson(task)}</tr>"
-            end.join
-          end
-        end.join
-      end
-      # rubocop:enable Style/Next
-
       def participants_that_read_lesson(task)
-        "<td>#{task.total_read} of #{task.total_assigned} COMPLETE</td>"\
-        "<td>"\
-        "#{list_participant_names(task.group, task.complete_participant_list)}"\
-        "</td><td>"\
-        "#{list_participant_names(task.group,
-                                  task.incomplete_participant_list)}</td>"
+        render partial: "think_feel_do_engine/coach/group_dashboard/"\
+                        "lesson_completion_breakdown",
+               locals: { task: task }
       end
 
       def list_participant_names(group, participants)
