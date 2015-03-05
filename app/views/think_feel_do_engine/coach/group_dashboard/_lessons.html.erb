@@ -9,10 +9,10 @@
       <table class="table">
         <% group.learning_tasks.each do |task| %>
           <% if week_number == week_of_task(task) %>
-            <% task.bit_core_content_module.content_providers.each do |content_provider| %>
-               <%= render partial: "think_feel_do_engine/coach/group_dashboard/learning_lesson_row",
-                          locals: {content_provider: content_provider, task: task} %>
-            <% end %>
+            <%= render partial: "think_feel_do_engine/coach/group_dashboard/learning_lesson_row",
+                       collection: task.bit_core_content_module.content_providers,
+                       as: :content_provider,
+                       locals: { task: task } %>
           <% end %>
         <% end %>
       </table>
