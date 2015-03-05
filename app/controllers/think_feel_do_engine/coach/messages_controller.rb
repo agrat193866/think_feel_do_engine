@@ -67,14 +67,14 @@ module ThinkFeelDoEngine
                    .received_messages
                    .joins(:message)
                    .order("messages.sent_at DESC")
-        return messages unless params[:search]
+        return messages unless params[:search].present?
 
         messages.sent_from(params[:search])
       end
 
       def sent_messages
         messages = current_user.sent_messages.order("messages.sent_at DESC")
-        return messages unless params[:search]
+        return messages unless params[:search].present?
 
         messages.where(recipient_id: params[:search])
       end

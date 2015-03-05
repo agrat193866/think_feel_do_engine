@@ -10,7 +10,7 @@
 <%= form_tag coach_group_messages_path(@group), :method => 'get', role: "search" do %>
   <div class="form-inline btn-toolbar">
     <div class="form-group">
-      <%= select_tag "search", options_from_collection_for_select(@participants, "id", "study_id", params[:search]), { prompt: "Participant", class: "form-control" } %>
+      <%= select_tag "search", options_from_collection_for_select(@participants, "id", "study_id", params[:search]), { prompt: "All Patients", class: "form-control" } %>
     </div>
 
     <div class="form-group">
