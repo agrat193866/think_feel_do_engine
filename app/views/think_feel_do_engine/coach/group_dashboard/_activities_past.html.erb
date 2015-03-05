@@ -37,7 +37,7 @@
                 </td>
                 <td><%= membership.participant.display_name %></td>
                 <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
-                <td></td>
+                <td><%= activity_status(activity) %></td>
                 <td><%= activity.end_time ? activity.end_time.to_formatted_s(:short) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
                 <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
                 <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>

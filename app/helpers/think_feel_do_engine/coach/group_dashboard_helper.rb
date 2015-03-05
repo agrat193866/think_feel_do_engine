@@ -100,6 +100,20 @@ module ThinkFeelDoEngine
         end
       end
 
+      def activity_status(activity)
+        if activity.monitored?
+          "monitored"
+        elsif activity.not_reviewed?
+          "not reviewed"
+        elsif activity.planned?
+          "planned"
+        elsif activity.reviewed_and_complete?
+          "reviewed and complete"
+        elsif activity.reviewed_and_incomplete?
+          "reviewed and incomplete"
+        end
+      end
+
       private
 
       def week_of_task(task)
