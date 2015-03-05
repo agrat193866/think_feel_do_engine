@@ -1,3 +1,6 @@
+## 3.0.4 - 2015-03-05
+ * view refactoring, updated lesson view, fixed status bug in toolbar
+
 ## 3.0.3 - 2015-03-04
  * fixed issue with errant comments
 
