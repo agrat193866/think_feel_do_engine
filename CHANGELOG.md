@@ -1,3 +1,6 @@
+## 3.0.5 - 2015-03-05
+ * added status to activites in group dash
+
 ## 3.0.4 - 2015-03-05
  * view refactoring, updated lesson view, fixed status bug in toolbar
 
