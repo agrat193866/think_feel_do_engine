@@ -30,7 +30,7 @@ gem "bit_player",
     git: "https://github.com/cbitstech/bit_player.git"
 
 gem "git_tagger",
-    tag: "1.0.7",
+    tag: "1.1.6",
     git: "https://github.com/eschlange/git_tagger.git"
 
 gem "twilio-ruby", "~> 3.12"
