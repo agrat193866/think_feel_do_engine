@@ -103,8 +103,6 @@ module ThinkFeelDoEngine
       def activity_status(activity)
         if activity.monitored?
           "monitored"
-        elsif activity.not_reviewed?
-          "not reviewed"
         elsif activity.planned?
           "planned"
         elsif activity.reviewed_and_complete?
