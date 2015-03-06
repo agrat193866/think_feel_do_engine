@@ -9,10 +9,11 @@ module ThinkFeelDoEngine
     class Reporter
       def initialize(collector)
         @collector = collector
+        @path = collector.name.split("::").last.downcase
       end
 
       def to_csv
-        CSV.generate do |csv|
+        CSV.open(Rails.root.join("reports/#{@path}.csv"), "wb") do |csv|
           csv << @collector.columns
           @collector.all.each do |s|
             csv << @collector.columns.map { |c| s[c.to_sym] }
