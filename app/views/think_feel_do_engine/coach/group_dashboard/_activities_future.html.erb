@@ -36,7 +36,7 @@
                 <td><%= ActivityType.find(activity.activity_type_id).title %> </td>
                 <td><%= activity.end_time ? activity.end_time.to_formatted_s(:short) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
                 <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
-                <td><%= activity.predicted_pleasure_intensity ? activity.predicted_accomplishment_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
+                <td><%= activity.predicted_pleasure_intensity ? activity.predicted_pleasure_intensity : content_tag(:span, "Not Rated", class: "label label-warning") %></td>
                 <td><%= activity.created_at.to_formatted_s(:short) %></td>
                 <td><%= week_in_study(activity.created_at, membership) %></td>
                 <%= social_likes_and_comments_count_rows(activity) %>
