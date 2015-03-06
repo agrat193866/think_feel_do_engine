@@ -346,7 +346,6 @@ feature "patient dashboard", type: :feature do
           id: "thoughts",
           cells: [
             "I am a magnet for birds",
-            "harmful",
             "Labeling and Mislabeling",
             "Birds have no idea what they are doing",
             "It was nature",
