@@ -9,6 +9,7 @@ feature "coach messages", type: :feature do
     let(:participant2) { participants(:participant2) }
     let(:participant3) { participants(:participant3) }
     let(:delivered_message1) { delivered_messages(:participant_to_coach1) }
+    let(:delivered_message2) { delivered_messages(:participant2_to_coach1) }
 
     before(:each) do
       Timecop.travel(DateTime.now.beginning_of_minute)
@@ -17,6 +18,11 @@ feature "coach messages", type: :feature do
     before do
       sign_in_user users :clinician1
       visit "/coach/groups/#{group1.id}/messages"
+    end
+
+    it "displays all messages if no search has been performed" do
+      expect(page).to have_content delivered_message1.subject
+      expect(page).to have_content delivered_message2.subject
     end
 
     it "allows Coach to search to assigned Participant" do

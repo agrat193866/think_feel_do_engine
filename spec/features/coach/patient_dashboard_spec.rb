@@ -392,7 +392,7 @@ feature "patient dashboard", type: :feature do
         end
         visit "/coach/groups/#{group1.id}/messages"
 
-        expect(page).to have_text("Inbox (1)")
+        expect(page).to have_text("Inbox (2)")
 
         click_on "I like this app"
 
@@ -404,7 +404,7 @@ feature "patient dashboard", type: :feature do
 
         visit "/coach/groups/#{group1.id}/messages"
 
-        expect(page).to have_text("Inbox (0)")
+        expect(page).to have_text("Inbox (1)")
       end
 
       it "displays participant's 'Active' status on index page" do
