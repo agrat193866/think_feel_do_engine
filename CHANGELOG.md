@@ -1,3 +1,6 @@
+## 3.0.6 - 2015-03-06
+ * fixed an issue with helper referencing private method on model
+
 ## 3.0.5 - 2015-03-05
  * added status to activites in group dash
 
