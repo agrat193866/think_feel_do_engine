@@ -35,24 +35,21 @@ class ToolNavItem
 
   def module_nav_items
     available_content_modules
-      .where(
-        Arel::Table
-        .new(:available_content_modules)[:position]
-        .gt(1)
-      )
-      .order(:position)
-      .where(is_viz: false)
+      .position_greater_than(1)
+      .is_not_viz
+      .order_by_position
   end
 
   def any_incomplete_tasks_today?
-    available_content_modules.where(is_viz: false, completed_at: nil).exists?
+    available_content_modules.is_not_viz.is_not_completed.exists?
   end
 
   private
 
   def available_content_modules
-    AvailableContentModule.where(bit_core_tool: @tool,
-                                 participant: @participant,
-                                 available_on: Date.today)
+    AvailableContentModule
+      .for_tool(@tool)
+      .for_participant(@participant)
+      .available_on(Date.today)
   end
 end

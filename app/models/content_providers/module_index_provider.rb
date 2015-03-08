@@ -15,10 +15,12 @@ module ContentProviders
       arm_id = options.participant.active_group.arm_id
       tool = BitCore::Tool.find_by_arm_id_and_title(arm_id, options.app_context)
 
-      BitCore::ContentModule.extend(ContentModules::Scopes)
-        .where(bit_core_tool_id: tool.id)
-        .where.not(id: bit_core_content_module_id)
-        .order(position: :asc)
+      AvailableContentModule
+        .for_participant(options.participant)
+        .for_tool(tool)
+        .available_by(Date.current)
+        .excludes_module(bit_core_content_module_id)
+        .latest_duplicate
     end
 
     def show_nav_link?
