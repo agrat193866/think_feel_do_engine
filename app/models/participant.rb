@@ -160,26 +160,6 @@ class Participant < ActiveRecord::Base
     )
   end
 
-  def count_today_incomplete(tool)
-    @count_today_incomplete ||= {}
-
-    @count_today_incomplete[tool.id] ||= (
-      if tool.is_a?(Tools::Messages)
-        count_unread_messages
-      else
-        content_module_ids = tool.content_modules.where(is_viz: false)
-
-        if content_module_ids
-          active_membership.incomplete_tasks_today
-            .for_content_module_ids(content_module_ids)
-            .count
-        else
-          false
-        end
-      end
-    )
-  end
-
   def learning_tasks(content_modules)
     active_membership.task_statuses
       .for_content_module_ids(content_modules.map(&:id))
