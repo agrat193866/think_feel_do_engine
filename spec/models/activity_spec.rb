@@ -213,6 +213,50 @@ RSpec.describe Activity do
   end
 
   describe "instance methods" do
+    describe "#update_as_reviewed" do
+      let(:activity) { activities(:planned_activity0) }
+
+      it "updates activity with is_reviewed to be true" do
+        expect(activity.is_reviewed).to eq false
+
+        activity.update_as_reviewed
+
+        expect(activity.is_reviewed).to eq true
+      end
+
+      it "returns false if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(activity).to_not be_valid
+      end
+
+      it "returns error messages if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(
+          activity
+          .errors
+          .full_messages
+        ).to include("Actual accomplishment intensity can't be blank.")
+      end
+
+      it "returns false if actual_pleasure_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(activity).to_not be_valid
+      end
+
+      it "returns error messages if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(
+          activity
+          .errors
+          .full_messages
+        ).to include("Actual pleasure intensity can't be blank.")
+      end
+    end
+
     describe "#monitored?" do
       def running(attributes = {})
         Activity.create!({
@@ -399,6 +443,12 @@ RSpec.describe Activity do
 
       it "returns false without an end_time" do
         expect(activities(:unplanned_activity1)).not_to be_actual_editable
+      end
+
+      it "returns false if the activity has been reviewed and is incomplete" do
+        allow(activity).to receive(:reviewed_and_incomplete?).and_return(true)
+
+        expect(activity).not_to be_actual_editable
       end
     end
 

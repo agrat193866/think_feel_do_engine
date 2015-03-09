@@ -120,6 +120,7 @@ feature "Activities", type: :feature do
             execute_script("$('.panel-footer input.btn-primary').trigger('click')")
           end
 
+          expect(page).to have_text "Activity updated"
           expect(page).to have_text "Accomplishment: 0 · Pleasure: 0"
 
           page.all("a", text: "Working")[1].click
