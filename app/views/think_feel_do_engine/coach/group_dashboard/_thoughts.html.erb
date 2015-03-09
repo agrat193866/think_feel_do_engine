@@ -16,7 +16,9 @@
             <th class="not-displayed"></th>
             <th>Display Name</th>
             <th>Thought</th>
-            <th>Effect</th>
+            <th>Pattern</th>
+            <th>Challenging Thought</th>
+            <th>As if Thought</th>
             <th>Date</th>
             <th>Week</th>
             <%= social_likes_and_comments_column_headers %>
@@ -31,7 +33,9 @@
                 </td>
                 <td><%= membership.participant.display_name %></td>
                 <td><%= thought.content %></td>
-                <td><%= thought.effect %></td>
+                <td><%= not_nil_and_populated_string(thought.pattern_title) ? thought.pattern_title : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
+                <td><%= not_nil_and_populated_string(thought.challenging_thought) ? thought.challenging_thought : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
+                <td><%= not_nil_and_populated_string(thought.act_as_if) ? thought.act_as_if : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
                 <td><%= thought.created_at.to_formatted_s(:short) %></td>
                 <td><%= week_in_study(thought.created_at, membership) %></td>
                 <%= social_likes_and_comments_count_rows(thought) %>
@@ -58,7 +62,7 @@
           bVisible: false
         },
         {
-          aTargets: [4],
+          aTargets: [6],
           iDataSort: [0]
         }
       ],

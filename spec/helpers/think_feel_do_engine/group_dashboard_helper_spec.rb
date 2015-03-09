@@ -14,6 +14,18 @@ module ThinkFeelDoEngine
         end
       end
 
+      describe "#not_nil_and_populated_string" do
+        it "returns a false if the string passed in is nil" do
+          expect(helper.not_nil_and_populated_string(nil)).to be_falsey
+        end
+        it "returns a false if the string passed in is empty" do
+          expect(helper.not_nil_and_populated_string("")).to be_falsey
+        end
+        it "returns a true if the string passed in is not populated" do
+          expect(helper.not_nil_and_populated_string("some string")).to be_truthy
+        end
+      end
+
       describe "#social_likes_and_comments_count_rows" do
         it "returns two social columns if social features are active" do
           allow(helper).to receive(:social_features?) { true }
