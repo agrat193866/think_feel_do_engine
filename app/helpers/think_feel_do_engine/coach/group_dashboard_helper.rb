@@ -112,6 +112,10 @@ module ThinkFeelDoEngine
         end
       end
 
+      def not_nil_and_populated_string(string_to_check)
+        string_to_check && !string_to_check.empty?
+      end
+
       private
 
       def week_of_task(task)
