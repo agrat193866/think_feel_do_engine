@@ -9,6 +9,8 @@ describe Membership do
   let(:participant1) { participants(:participant1) }
   let(:participant_wo_membership1) { participants(:participant_wo_membership1) }
   let(:participant_wo_membership2) { participants(:participant_wo_membership2) }
+  let(:lesson_task) { tasks(:task_learning7) }
+  let(:membership1) { memberships(:membership1) }
 
   describe "validations" do
     it "does not allow more than one active membership for a participant" do
@@ -174,12 +176,49 @@ describe Membership do
       expect(Membership.inactive.count).to eq count + 2
     end
 
-    it ".incomplete_tasks returns task statuses that have a start date later than or equal today and not yet past their termination day" do
+    it ".activities_future_by_week returns a count of activities "\
+        " monitored for the first week" do
+      expect(membership.logins_by_week(1)).to eq(2)
+    end
+  end
+
+  describe "coach dashboard helper methods" do
+    it ".lessons_read returns completed tasks that are lessons for a membership" do
+      count = memberships(:membership1).lessons_read.count
+      TaskStatus.create(
+        membership_id: membership1.id,
+        task_id: lesson_task.id,
+        completed_at: Date.today
+      )
+
+      expect(membership1.lessons_read.count).to eq count + 1
     end
 
-    it ".activities_future_by_week returns a count of activities "\
-  " monitored for the first week" do
-      expect(membership.logins_by_week(1)).to eq(2)
+    it ".lessons_read_for_day(time) returns lessons completed on a given day" do
+      count = memberships(:membership1).lessons_read_for_day(Date.today).count
+      TaskStatus.create(
+        membership_id: membership1.id,
+        task_id: lesson_task.id,
+        completed_at: Date.today
+      )
+
+      expect(membership1.lessons_read_for_day(Date.today).count).to eq count + 1
+    end
+
+    it ".lessons_read_for_week returns lessons completed in last seven days" do
+      count = memberships(:membership1).lessons_read_for_week.count
+      TaskStatus.create(
+        membership_id: membership1.id,
+        task_id: lesson_task.id,
+        completed_at: (Date.today - 1.day)
+      )
+      TaskStatus.create(
+        membership_id: membership1.id,
+        task_id: lesson_task.id,
+        completed_at: (Date.today - 8.days)
+      )
+
+      expect(membership1.lessons_read_for_week.count).to eq count + 1
     end
   end
 end

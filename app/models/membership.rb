@@ -113,12 +113,35 @@ class Membership < ActiveRecord::Base
       .count
   end
 
-  def comments
-    SocialNetworking::Comment.where(participant: participant)
+  def logins_today
+    participant_login_events = Arel::Table.new(:participant_login_events)
+    participant
+      .participant_login_events
+      .where(participant_login_events[:created_at]
+                 .gteq(Date.current.beginning_of_day))
+      .where(participant_login_events[:created_at]
+                 .lt(Date.current.end_of_day))
   end
 
-  def goals
-    SocialNetworking::Goal.where(participant: participant)
+  def lessons_read
+    task_statuses.completed.select(&:is_lesson?)
+  end
+
+  def lessons_read_for_day(time)
+    task_statuses
+      .completed
+      .where("completed_at <= ? AND completed_at >= ?",
+             time.end_of_day,
+             time.beginning_of_day)
+      .select(&:is_lesson?)
+  end
+
+  def lessons_read_for_week
+    task_statuses
+      .completed
+      .where("completed_at >= ?", Time.current.advance(days: -7)
+                                      .beginning_of_day)
+      .select(&:is_lesson?)
   end
 
   private

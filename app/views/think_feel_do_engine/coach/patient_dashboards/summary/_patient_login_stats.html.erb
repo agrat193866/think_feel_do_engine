@@ -1,0 +1,36 @@
+<div class="col-lg-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Login Info
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <p>
+        <strong>Last Logged In:</strong>
+        <%= @participant.current_sign_in_at ? @participant.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+      </p>
+
+      <p>
+        <strong>Logins Today:</strong>
+        <%= @participant.active_membership ? @participant.active_membership.logins_today.count : 0 %>
+      </p>
+
+      <p>
+        <strong>Logins in the last seven days:</strong>
+        <%= @participant.active_membership ?
+          @participant
+            .active_membership
+            .logins_by_week(@participant
+              .active_membership
+              .week_in_study(Date.today)) : 0 %>
+      </p>
+
+      <p>
+        <strong>Total Logins:</strong>
+        <%= @participant.participant_login_events.count %>
+      </p>
+    </div>
+  </div>
+</div>

@@ -24,8 +24,22 @@ class Thought < ActiveRecord::Base
   scope :unreflected, lambda {
     where(effect: "harmful")
       .where(arel_table[:challenging_thought].eq(nil)
-             .or(arel_table[:challenging_thought].eq(""))
-             .or(arel_table[:act_as_if].eq(nil))
-             .or(arel_table[:act_as_if].eq("")))
+        .or(arel_table[:challenging_thought].eq(""))
+        .or(arel_table[:act_as_if].eq(nil))
+        .or(arel_table[:act_as_if].eq("")))
+  }
+
+  scope :last_seven_days, lambda {
+    where(
+      arel_table[:created_at]
+        .gteq(Time.current.advance(days: -7).beginning_of_day))
+  }
+
+  scope :for_day, lambda { |time|
+    where(
+      arel_table[:created_at]
+        .gteq(time.beginning_of_day)
+        .and(arel_table[:created_at].lteq(time.end_of_day))
+    )
   }
 end
