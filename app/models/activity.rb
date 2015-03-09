@@ -1,6 +1,8 @@
 # Represents a real-world activity of a participant.
 class Activity < ActiveRecord::Base
-  attr_accessor :activity_type_title, :activity_type_new_title
+  attr_accessor :activity_type_title,
+                :activity_type_new_title,
+                :in_review
 
   PLEASURABLE_CUTOFF = 6
   ACCOMPLISHED_CUTOFF = 6
@@ -9,6 +11,8 @@ class Activity < ActiveRecord::Base
   belongs_to :participant
 
   validates :activity_type, :participant, presence: true
+
+  validate :actual_ratings!, on: :update, if: proc { |f| f.in_review }
 
   delegate :title, to: :activity_type, prefix: false, allow_nil: true
 
@@ -123,7 +127,12 @@ class Activity < ActiveRecord::Base
   def update_as_reviewed(params = {})
     update(
       params
-      .merge(is_reviewed: true))
+      .merge(in_review: true, is_reviewed: true))
+  end
+
+  def actual_ratings!
+    validate_actual_intensities!("accomplishment")
+    validate_actual_intensities!("pleasure")
   end
 
   def actual_editable?
@@ -271,6 +280,11 @@ class Activity < ActiveRecord::Base
       errors.add :base, "When predicting, you must predict "\
                         "both pleasure and accomplishment."
     end
+  end
+
+  def validate_actual_intensities!(attribute)
+    attribute_sym = "actual_#{attribute}_intensity".to_sym
+    errors.add attribute_sym, "can't be blank." if send(attribute_sym).nil?
   end
 
   def create_activity_type

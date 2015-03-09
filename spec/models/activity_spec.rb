@@ -188,20 +188,46 @@ RSpec.describe Activity do
 
   describe "instance methods" do
     describe "#update_as_reviewed" do
-      let(:running) do
-        Activity.new(
-          participant: participants(:participant1),
-          activity_type: activity_types(:jogging)
-        )
-      end
+      let(:activity) { activities(:planned_activity0) }
 
       it "updates activity with is_reviewed to be true" do
-        expect(running.is_reviewed).to eq false
+        expect(activity.is_reviewed).to eq false
 
-        running.update_as_reviewed
-        running.reload
+        activity.update_as_reviewed
 
-        expect(running.is_reviewed).to eq true
+        expect(activity.is_reviewed).to eq true
+      end
+
+      it "returns false if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(activity).to_not be_valid
+      end
+
+      it "returns error messages if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(
+          activity
+          .errors
+          .full_messages
+        ).to include("Actual accomplishment intensity can't be blank.")
+      end
+
+      it "returns false if actual_pleasure_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(activity).to_not be_valid
+      end
+
+      it "returns error messages if actual_accomplishment_intensity is nil" do
+        activity.update_as_reviewed
+
+        expect(
+          activity
+          .errors
+          .full_messages
+        ).to include("Actual pleasure intensity can't be blank.")
       end
     end
 
