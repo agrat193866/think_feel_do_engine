@@ -98,6 +98,19 @@ module ThinkFeelDoEngine
           expect(helper.list_participant_names(group, task1.incomplete_participant_list)).to eq("<ul><li><a href=\"some link\">Aqua</a></li><li><a href=\"some link\">Water</a></li></ul>")
         end
       end
+
+      describe "#goal_like_count" do
+        let(:goal) { double("goal", id: 1) }
+        let(:shared_item) { double("shared_items", id: 1000) }
+        let(:shared_items) { [shared_item] }
+        let(:countable) { double("countable", count: 1) }
+
+        it "should return expected like count as a number" do
+          expect(SocialNetworking::SharedItem).to receive(:where) { shared_items }
+          expect(SocialNetworking::Like).to receive(:where) { countable }
+          expect(helper.goal_like_count(goal)).to eq(1)
+        end
+      end
     end
   end
 end

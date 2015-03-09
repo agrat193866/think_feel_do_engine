@@ -112,6 +112,20 @@ module ThinkFeelDoEngine
         end
       end
 
+      def goal_like_count(goal)
+        like_total = 0
+        goal_shared_items =
+          SocialNetworking::SharedItem
+          .where(item_type: "SocialNetworking::Goal", item_id: goal.id)
+        goal_shared_items.each do |item|
+          like_total +=
+            SocialNetworking::Like
+            .where(item_type: "SocialNetworking::SharedItem",
+                   item_id: item.id).count
+        end
+        like_total
+      end
+
       private
 
       def week_of_task(task)
