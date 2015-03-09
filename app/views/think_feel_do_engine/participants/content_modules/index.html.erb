@@ -2,11 +2,10 @@
   <% content_for(:tool_description) { sanitize(description).gsub(/\n/, "<br><br>").html_safe } %>
 <% end %>
 
-<% group_id = current_participant.active_group.id %>
-<% didactic_modules = content_modules.didactic(group_id) %>
-<% non_didactic_modules = content_modules.non_didactic(group_id) %>
+<% didactic_modules = content_modules.is_not_viz.is_didactic %>
+<% non_didactic_modules = content_modules.is_not_viz.is_not_didactic %>
 
-<% if didactic_modules.count > 0 %>
+<% if didactic_modules.all.to_a.count > 0 %>
   <% content_for :left do %>
     <div class="list-group left">
       <% didactic_modules.each do |content_module| %>
@@ -25,10 +24,10 @@
   <% end %>
 <% end %>
 
-<% if non_didactic_modules.count > 0 %>
+<% if non_didactic_modules.all.to_a.count > 0 %>
   <% content_for :right do %>
     <div class="list-group right">
-      <% content_modules.non_didactic(group_id).each do |content_module| %>
+      <% non_didactic_modules.each do |content_module| %>
         <%# most recent task status for this membership and module %>
         <% task_status = task_status(current_participant.active_membership, content_module) %>
         <% if task_status %>
@@ -44,25 +43,20 @@
   <% end %>
 <% end %>
 
-<% content_modules.each do |content_module| %>
-  <%# most recent task status for this membership and module %>
-  <% task_status = task_status(current_participant.active_membership, content_module) %>
-  <% if task_status && task_status.provider_viz? %>
-    <br>
-    <%= task_status
-        .bit_core_content_module
-        .content_providers
-        .order(:position)
-        .first
-        .render_current(
-          Struct.new(:view_context, :app_context, :position, :participant)
-          .new(self, nil, nil, current_participant),
-          navigator_location_path(
-            module_id: task_status.bit_core_content_module_id
-          )
+<% content_modules.is_viz.each do |content_module| %>
+  <br>
+  <%= content_module
+      .content_providers
+      .order(:position)
+      .first
+      .render_current(
+        Struct.new(:view_context, :app_context, :position, :participant)
+        .new(self, nil, nil, current_participant),
+        navigator_location_path(
+          module_id: content_module.id
         )
-        .html_safe 
-        # render the viz provider
-    %>
-  <% end %>
+      )
+      .html_safe
+      # render the viz provider
+  %>
 <% end %>
