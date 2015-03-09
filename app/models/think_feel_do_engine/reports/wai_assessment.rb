@@ -1,7 +1,7 @@
 module ThinkFeelDoEngine
   module Reports
     # Scenario: Participants complete a Wai Assessment by email.
-    class WaiAssessmentReport
+    class WaiAssessment
       def self.columns
         %w( participant_id date_transmitted date_completed wai1 wai2 wai3 wai4
             wai5 wai6 wai7 wai8 wai9 wai10 wai11 wai12 )
