@@ -1,3 +1,6 @@
+## 3.0.7 - 2015-03-09
+ * Coach dashboards summary data
+
 ## 3.0.6 - 2015-03-06
  * fixed an issue with helper referencing private method on model
 
