@@ -1,3 +1,12 @@
+## 3.0.8 - 2015-03-09
+
+ * update Travis configuration
+ * refactor nav and module indexes with Available Content Module view backed model
+ * Fix goal like count for group dash
+ * Add Validation When Updating IsReviewed
+ * Update Activity Editability
+ * Activity Is Automatically Reviewed
+
 ## 3.0.7 - 2015-03-09
  * Coach dashboards summary data
 
