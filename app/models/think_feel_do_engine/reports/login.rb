@@ -9,12 +9,12 @@ module ThinkFeelDoEngine
       def self.all
         Participant.select(:id, :study_id).map do |participant|
           ParticipantLoginEvent
-          .where(participant_id: participant.id).map do |event|
-            {
-              participant_id: participant.study_id,
-              occurred_at: event.created_at
-            }
-          end
+            .where(participant_id: participant.id).map do |event|
+              {
+                participant_id: participant.study_id,
+                occurred_at: event.created_at
+              }
+            end
         end.flatten
       end
 

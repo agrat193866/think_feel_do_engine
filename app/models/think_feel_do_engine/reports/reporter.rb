@@ -7,14 +7,13 @@ module ThinkFeelDoEngine
     # `columns` returns a collection of column names
     # `all` returns a collection of Hashes whose keys match the column names
     class Reporter
-
       def self.fetch_reports
         return [] unless Rails.application.config.respond_to?(:reports)
         Rails.application.config.reports
       end
-      
+
       def self.file_path(name)
-        Rails.root.join("reports/#{name.to_s.gsub("_", "").downcase}.csv")
+        Rails.root.join("reports/#{name.to_s.gsub('_', '').downcase}.csv")
       end
 
       def initialize(collector)
@@ -28,13 +27,13 @@ module ThinkFeelDoEngine
         end
       end
 
-      def to_csv(csv=[])
+      def to_csv(csv = [])
         csv << @collector.columns
         @collector.all.each do |s|
           csv << @collector.columns.map { |c| s[c.to_sym] }
         end
       end
-      
+
       private
 
       def parsed_name

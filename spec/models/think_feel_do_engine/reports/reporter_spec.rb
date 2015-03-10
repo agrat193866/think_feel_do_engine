@@ -10,7 +10,7 @@ module ThinkFeelDoEngine
                              columns: %w( a b ),
                              all: [{ a: 1, b: 2 }, { a: "x", b: "y" }])
 
-          expect(Reporter.new(collector).to_csv).to eq([{:a=>1, :b=>2}, {:a=>"x", :b=>"y"}])
+          expect(Reporter.new(collector).to_csv).to eq([{ a: 1, b: 2 }, { a: "x", b: "y" }])
         end
       end
     end
