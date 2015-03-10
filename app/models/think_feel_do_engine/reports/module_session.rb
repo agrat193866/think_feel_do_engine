@@ -41,10 +41,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.all_module_interactions
         modules = module_entries_map
 

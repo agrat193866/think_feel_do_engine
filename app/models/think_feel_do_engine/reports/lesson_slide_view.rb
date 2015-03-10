@@ -32,10 +32,6 @@ module ThinkFeelDoEngine
         filtered_interactions
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.all_slide_interactions
         lessons = lessons_map
 

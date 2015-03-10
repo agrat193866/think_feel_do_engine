@@ -41,10 +41,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.click_times(participant_id)
         EventCapture::Event
           .where(participant_id: participant_id, kind: "click")
