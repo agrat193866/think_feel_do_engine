@@ -1,3 +1,7 @@
+## 3.0.11 - 2015-03-10
+ * Merge pull request #100 from cbitstech/gs-modularize-patient-dashboard
+ * Modularize patient dashboard with partials
+
 ## 3.0.10 - 2015-03-10
  * Fix broken group dash.
 
