@@ -3,6 +3,52 @@ require "rails_helper"
 describe ToolNavItem do
   fixtures :all
 
+  describe "#alert" do
+    def participant
+      participants :participant1
+    end
+
+    context "the tool is not a subclass" do
+      def tool
+        bit_core_tools :thought_tracker
+      end
+
+      context "there are incomplete tasks" do
+        it "returns 'New!'" do
+          expect(ToolNavItem.new(participant, tool).alert).to eq "New!"
+        end
+      end
+
+      context "there are no incomplete tasks" do
+        it "returns nil" do
+          TaskStatus.update_all completed_at: DateTime.now
+
+          expect(ToolNavItem.new(participant, tool).alert).to be_nil
+        end
+      end
+    end
+
+    context "the tool is a subclass" do
+      def tool
+        bit_core_tools :library
+      end
+
+      context "there are > 0 incomplete tasks" do
+        it "returns the task count" do
+          expect(ToolNavItem.new(participant, tool).alert).to eq 1
+        end
+      end
+
+      context "there are 0 incomplete tasks" do
+        it "returns nil" do
+          TaskStatus.update_all completed_at: DateTime.now
+
+          expect(ToolNavItem.new(participant, tool).alert).to be_nil
+        end
+      end
+    end
+  end
+
   describe "#is_active?" do
     def tool
       double("tool", id: 1)
@@ -63,6 +109,17 @@ describe ToolNavItem do
       titles = tool_nav(:participant2).module_nav_items.map(&:title)
 
       expect(titles.count).to eq titles.uniq.count
+    end
+
+    it "doesn't return items that have terminated" do
+      tasks(:task5_day1).update(termination_day: 1)
+      Timecop.travel(today.advance(days: 2)) do
+        terminated_items = tool_nav.module_nav_items
+                           .where(Arel::Table.new(:available_content_modules)[
+                                  :terminates_on].lt(Date.today))
+
+        expect(terminated_items.to_a.count).to eq 0
+      end
     end
   end
 end

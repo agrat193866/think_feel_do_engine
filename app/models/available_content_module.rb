@@ -40,6 +40,15 @@ class AvailableContentModule < ActiveRecord::Base
     where has_didactic_content: false
   end
 
+  def self.is_terminated_on(date)
+    where(arel_table[:terminates_on].lt(date))
+  end
+
+  def self.is_not_terminated_on(date)
+    where(arel_table[:terminates_on].eq(nil)
+          .or(arel_table[:terminates_on].gteq(date)))
+  end
+
   def self.available_by(date)
     where(arel_table[:available_on].lteq(date))
   end

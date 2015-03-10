@@ -56,5 +56,6 @@ class ToolNavItem
     AvailableContentModule
       .for_tool(@tool)
       .for_participant(@participant)
+      .is_not_terminated_on(Date.today)
   end
 end
