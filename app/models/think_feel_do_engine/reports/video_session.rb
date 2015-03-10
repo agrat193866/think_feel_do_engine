@@ -32,10 +32,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.video_play_events(participant_id)
         EventCapture::Event
           .where(participant_id: participant_id, kind: "videoPlay")

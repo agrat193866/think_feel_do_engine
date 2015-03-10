@@ -19,10 +19,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.tool_access_events(participant)
         sources = {
           "list-group left" => "Tool home",

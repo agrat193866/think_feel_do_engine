@@ -37,10 +37,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       # last event (click) with matching module id
       def self.last_page_opened(first_session_event, lesson_id)
         lesson_events =

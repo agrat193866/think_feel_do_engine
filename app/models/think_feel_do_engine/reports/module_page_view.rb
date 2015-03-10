@@ -42,10 +42,6 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
-      def self.to_csv
-        Reporter.new(self).write_csv
-      end
-
       def self.page_exit_event_at(page_render_event)
         EventCapture::Event
           .order(:emitted_at)
