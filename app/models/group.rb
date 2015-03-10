@@ -33,12 +33,12 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       membership
-      .participant
-      .participant_login_events
-      .where(participant_login_events[:created_at]
-               .gteq(week_start_day(week_number)))
-      .where(participant_login_events[:created_at]
-               .lt(week_end_day(week_number)))
+        .participant
+        .participant_login_events
+        .where(participant_login_events[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(participant_login_events[:created_at]
+                 .lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -47,10 +47,10 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       membership
-      .participant
-      .thoughts
-      .where(thoughts[:created_at].gteq(week_start_day(week_number)))
-      .where(thoughts[:created_at].lt(week_end_day(week_number)))
+        .participant
+        .thoughts
+        .where(thoughts[:created_at].gteq(week_start_day(week_number)))
+        .where(thoughts[:created_at].lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -59,11 +59,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       membership
-      .participant
-      .activities
-      .in_the_past
-      .where(activities[:created_at].gteq(week_start_day(week_number)))
-      .where(activities[:created_at].lt(week_end_day(week_number)))
+        .participant
+        .activities
+        .in_the_past
+        .where(activities[:created_at].gteq(week_start_day(week_number)))
+        .where(activities[:created_at].lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -72,11 +72,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       membership
-      .participant
-      .activities
-      .unscheduled_or_in_the_future
-      .where(activities[:created_at].gteq(week_start_day(week_number)))
-      .where(activities[:created_at].lt(week_end_day(week_number)))
+        .participant
+        .activities
+        .unscheduled_or_in_the_future
+        .where(activities[:created_at].gteq(week_start_day(week_number)))
+        .where(activities[:created_at].lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -85,11 +85,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       SocialNetworking::Goal
-      .where(participant: membership.participant)
-      .where(social_networking_goals[:created_at]
-               .gteq(week_start_day(week_number)))
-      .where(social_networking_goals[:created_at]
-               .lt(week_end_day(week_number)))
+        .where(participant: membership.participant)
+        .where(social_networking_goals[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_goals[:created_at]
+                 .lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -98,11 +98,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       SocialNetworking::Comment
-      .where(participant: membership.participant)
-      .where(social_networking_comments[:created_at]
-               .gteq(week_start_day(week_number)))
-      .where(social_networking_comments[:created_at]
-               .lt(week_end_day(week_number)))
+        .where(participant: membership.participant)
+        .where(social_networking_comments[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_comments[:created_at]
+                 .lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -112,11 +112,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       SocialNetworking::OnTheMindStatement
-      .where(participant: membership.participant)
-      .where(social_networking_on_the_mind_statements[:created_at]
-               .gteq(week_start_day(week_number)))
-      .where(social_networking_on_the_mind_statements[:created_at]
-               .lt(week_end_day(week_number)))
+        .where(participant: membership.participant)
+        .where(social_networking_on_the_mind_statements[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_on_the_mind_statements[:created_at]
+                 .lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
@@ -126,11 +126,11 @@ class Group < ActiveRecord::Base
 
     memberships.map do |membership|
       SocialNetworking::Like
-      .where(participant: membership.participant)
-      .where(social_networking_likes[:created_at]
-               .gteq(week_start_day(week_number)))
-      .where(social_networking_likes[:created_at]
-               .lt(week_end_day(week_number)))
+        .where(participant: membership.participant)
+        .where(social_networking_likes[:created_at]
+                 .gteq(week_start_day(week_number)))
+        .where(social_networking_likes[:created_at]
+                 .lt(week_end_day(week_number)))
     end.map(&:count).sum
   end
 
