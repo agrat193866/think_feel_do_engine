@@ -1,0 +1,41 @@
+<div class="panel panel-default cdb_panel" id="phq9-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#phqCollapse">
+        PHQ9
+      </a>
+      <span class="text-primary"><%= link_to "Manage", coach_phq_assessments_path(participant_id: @participant.id) %></span>
+    </h3>
+  </div>
+
+  <div id="phqCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover generic-data-table data-table" id="phq_assessments">
+          <thead>
+          <tr>
+            <th>Release Date</th>
+            <th>Created Date</th>
+            <th>Assessment Score</th>
+            <th>Incomplete?</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+            <th>Q6</th>
+            <th>Q7</th>
+            <th>Q8</th>
+            <th>Q9</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: "think_feel_do_engine/phq_assessments/phq_assessment", collection: @participant.phq_assessments.order(:release_date) %>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-info">* Indicates an incomplete phq assessment.</p>
+    </div>
+  </div>
+</div>

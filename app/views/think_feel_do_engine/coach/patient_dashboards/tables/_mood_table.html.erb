@@ -1,0 +1,28 @@
+<div class="panel panel-default cdb_panel" id="mood-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#moodCollapse">
+        Mood
+      </a>
+    </h3>
+  </div>
+
+  <div id="moodCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="moods-table">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th>Rating 0 (Bad) to 10 (Good)</th>
+            <th>Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: "think_feel_do_engine/moods/mood", collection: @participant.moods %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

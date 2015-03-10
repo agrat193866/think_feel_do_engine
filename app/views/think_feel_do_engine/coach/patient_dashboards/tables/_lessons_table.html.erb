@@ -1,0 +1,33 @@
+<div class="panel panel-default cdb_panel" id="lessons-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#lessonsCollapse">
+        Lessons
+      </a>
+    </h3>
+  </div>
+
+  <div id="lessonsCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="learning_data">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th class="not-displayed"></th>
+            <th class="not-displayed"></th>
+            <th>Task</th>
+            <th>Availability Day</th>
+            <th>Started At</th>
+            <th>Completed At</th>
+            <th>Duration</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { task_statuses: @learning_tasks } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
