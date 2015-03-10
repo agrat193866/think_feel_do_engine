@@ -60,6 +60,8 @@ class AvailableContentModule < ActiveRecord::Base
     where(arel_table[:position].gt(position))
   end
 
+  # Note that this scope must appear at the end of a chain. Its SQL doesn't
+  # play nicely with Arel.
   def self.latest_duplicate
     select("
       DISTINCT ON (has_didactic_content,
