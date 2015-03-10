@@ -38,7 +38,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        Reporter.new(self).to_csv
+        Reporter.new(self).write_csv
       end
 
       # last event (click) with matching module id

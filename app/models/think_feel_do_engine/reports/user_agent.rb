@@ -30,7 +30,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        Reporter.new(self).to_csv
+        Reporter.new(self).write_csv
       end
     end
   end
