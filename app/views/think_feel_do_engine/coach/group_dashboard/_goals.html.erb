@@ -28,7 +28,7 @@
           <tbody>
 
           <% group.memberships.each do |membership| %>
-            <% membership.goals.each do |goal| %>
+            <% membership_goals(membership).each do |goal| %>
               <tr>
                 <td class="not-displayed">
                   <%= goal.created_at ? goal.created_at.to_i : 0 %>

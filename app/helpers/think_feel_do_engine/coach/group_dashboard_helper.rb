@@ -100,6 +100,14 @@ module ThinkFeelDoEngine
         end
       end
 
+      def membership_goals(membership)
+        SocialNetworking::Goal.where(participant: membership.participant)
+      end
+
+      def membership_comments(membership)
+        SocialNetworking::Comment.where(participant: membership.participant)
+      end
+
       def activity_status(activity)
         if activity.monitored?
           "monitored"
