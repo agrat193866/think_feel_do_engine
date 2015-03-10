@@ -33,7 +33,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        Reporter.new(self).to_csv
+        Reporter.new(self).write_csv
       end
 
       def self.video_play_events(participant_id)

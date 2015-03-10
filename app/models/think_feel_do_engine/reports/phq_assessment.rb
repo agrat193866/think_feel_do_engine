@@ -1,7 +1,7 @@
 module ThinkFeelDoEngine
   module Reports
     # Scenario: Participants complete a Phq Assessment by email.
-    class PhqAssessmentReport
+    class PhqAssessment
       def self.columns
         %w( participant_id date_transmitted date_completed phq1 phq2 phq3 phq4
             phq5 phq6 phq7 phq8 phq9 )
@@ -29,7 +29,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        Reporter.new(self).to_csv
+        Reporter.new(self).write_csv
       end
     end
   end

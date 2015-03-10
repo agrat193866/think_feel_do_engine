@@ -1,16 +1,24 @@
-require "spec_helper"
-require_relative "../../../../app/models/think_feel_do_engine/reports/reporter"
+require "rails_helper"
 
 module ThinkFeelDoEngine
   module Reports
     RSpec.describe Reporter do
-      describe "#to_csv" do
-        it "produces csv from proper input" do
-          collector = double("collector",
-                             columns: %w( a b ),
-                             all: [{ a: 1, b: 2 }, { a: "x", b: "y" }])
+      let(:collector) do
+        double(name: "collector",
+               columns: %w( a b ),
+               all: [{ a: 1, b: 2 }, { a: "x", b: "y" }]
+              )
+      end
 
-          expect(Reporter.new(collector).to_csv).to eq("a,b\n1,2\nx,y\n")
+      describe "#format_csv" do
+        it "produces proper input for csv" do
+          expect(Reporter.new(collector).to_csv).to eq([{ a: 1, b: 2 }, { a: "x", b: "y" }])
+        end
+      end
+
+      describe ".file_path" do
+        it "generates the proper file path" do
+          expect(Reporter.file_path(collector.name)).to eq(Rails.root.join("reports/collector.csv"))
         end
       end
     end

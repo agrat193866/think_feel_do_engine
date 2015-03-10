@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
       end
 
       def self.to_csv
-        Reporter.new(self).to_csv
+        Reporter.new(self).write_csv
       end
 
       def self.page_exit_event_at(page_render_event)
