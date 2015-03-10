@@ -8,16 +8,12 @@
 <% if didactic_modules.all.to_a.count > 0 %>
   <% content_for :left do %>
     <div class="list-group left">
-      <% didactic_modules.each do |content_module| %>
-        <%# most recent task status for this membership and module %>
-        <% task_status = task_status(current_participant.active_membership, content_module) %>
-        <% if task_status %>
-          <% if task_status.completed_at.nil? %>
-            <%= task_status_link(task_status, "list-group-item "\
-                                              "list-group-item-unread") %>
-          <% else %>
-            <%= task_status_link(task_status) %>
-          <% end %>
+      <% didactic_modules.each do |available_module| %>
+        <% if available_module.completed_at.nil? %>
+          <%= task_status_link(available_module, "list-group-item "\
+                                            "list-group-item-unread") %>
+        <% else %>
+          <%= task_status_link(available_module) %>
         <% end %>
       <% end %>
     </div>
@@ -27,25 +23,21 @@
 <% if non_didactic_modules.all.to_a.count > 0 %>
   <% content_for :right do %>
     <div class="list-group right">
-      <% non_didactic_modules.each do |content_module| %>
-        <%# most recent task status for this membership and module %>
-        <% task_status = task_status(current_participant.active_membership, content_module) %>
-        <% if task_status %>
-          <% if task_status.completed_at.nil? %>
-            <%= task_status_link(task_status, "list-group-item "\
-                                              "list-group-item-unread", "pencil") %>
-          <% else %>
-            <%= task_status_link(task_status,"list-group-item list-group-item-read", "pencil") %>
-          <% end %>
+      <% non_didactic_modules.each do |available_module| %>
+        <% if available_module.completed_at.nil? %>
+          <%= task_status_link(available_module, "list-group-item "\
+                                            "list-group-item-unread", "pencil") %>
+        <% else %>
+          <%= task_status_link(available_module,"list-group-item list-group-item-read", "pencil") %>
         <% end %>
       <% end %>
     </div>
   <% end %>
 <% end %>
 
-<% content_modules.is_viz.each do |content_module| %>
+<% content_modules.is_viz.each do |available_module| %>
   <br>
-  <%= content_module
+  <%= available_module
       .content_providers
       .order(:position)
       .first
@@ -53,7 +45,7 @@
         Struct.new(:view_context, :app_context, :position, :participant)
         .new(self, nil, nil, current_participant),
         navigator_location_path(
-          module_id: content_module.id
+          module_id: available_module.id
         )
       )
       .html_safe

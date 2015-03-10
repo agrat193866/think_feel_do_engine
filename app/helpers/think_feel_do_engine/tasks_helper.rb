@@ -9,23 +9,19 @@ module ThinkFeelDoEngine
         .last
     end
 
-    def task_status_title(task_status)
-      task_status.title
-    end
-
     def task_status_viz(task_status)
       task_status.title
     end
 
-    def task_status_link(task_status,
-                         klass = "list-group-item list-group-item-read",
+    def task_status_link(available_module,
+                         css_class = "list-group-item list-group-item-read",
                          icon = "book")
-      link_to fa_icon(icon).html_safe + " " + task_status_title(task_status),
+      link_to fa_icon(icon).html_safe + " " + available_module.title,
               think_feel_do_engine.navigator_location_path(
-                module_id: task_status.bit_core_content_module_id
-              ), class: "task-status #{klass}",
-                 data: { task_status_id: "#{task_status.id}" },
-                 id: "task-status-#{task_status.id}"
+                module_id: available_module.id
+              ), class: "task-status #{ css_class }",
+                 data: { task_status_id: "#{available_module.task_status_id}" },
+                 id: "task-status-#{ available_module.task_status_id }"
     end
 
     def unread_task?(task_status)
