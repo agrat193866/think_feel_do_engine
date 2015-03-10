@@ -1,3 +1,12 @@
+## 3.0.10 - 2015-03-10
+ * Fix broken group dash.
+
+## 3.0.9 - 2015-03-10
+ * Install latest git_tagger gem.
+ * Update git_tagger gem.
+ * update minimum spec coverage to 90%
+ * release version 3.0.8
+
 ## 3.0.8 - 2015-03-09
 
  * update Travis configuration

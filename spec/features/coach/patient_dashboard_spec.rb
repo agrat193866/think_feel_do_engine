@@ -248,15 +248,6 @@ feature "patient dashboard", type: :feature do
         )
       end
 
-      it "summarizes phq9 assessments" do
-        expect(page).to have_the_table(
-          id: "phq_assessments",
-          cells: [15, 2, 1, 2, 2, 0, 2, 2, 1, "PHQ-9 WARNING: 3"]
-            .push("Released #{ Date.yesterday }")
-            .push("Created #{ Date.current }")
-        )
-      end
-
       it "links to the activities visualization" do
         find("h3 a", text: "Activities visualization").click
 

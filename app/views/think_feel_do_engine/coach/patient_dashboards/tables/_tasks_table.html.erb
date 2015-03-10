@@ -1,0 +1,29 @@
+<div class="panel panel-default cdb_panel" id="tasks-container">
+  <div class="panel-heading">
+    <h3 class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#tasksCollapse">
+        Tasks
+      </a>
+    </h3>
+  </div>
+
+  <div id="tasksCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover data-table" id="task_statuses">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th>Task</th>
+            <th>Availability Day</th>
+            <th>Completed At</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: "think_feel_do_engine/task_statuses/task_status", collection: view_membership(@participant, @group).try(:task_statuses) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

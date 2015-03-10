@@ -1,0 +1,20 @@
+<h3>Table of Contents</h3>
+
+<ul class="list-group">
+  <li class="list-group-item"><a href="#viz-container">Mood and Emotions Visualizations</a></li>
+  <% if phq_features? %>
+    <li class="list-group-item"><a href="#phq9-container">PHQ9</a></li>
+  <% end %>
+  <li class="list-group-item"><a href="#mood-container">Mood</a></li>
+  <li class="list-group-item"><a href="#feelings-container">Feelings</a></li>
+  <li class="list-group-item"><a href="#logins-container">Logins</a></li>
+  <li class="list-group-item"><a href="#lessons-container">Lessons</a></li>
+  <li class="list-group-item"><a href="#media-access-container">Audio Access</a></li>
+  <li class="list-group-item"><%= link_to "Activities visualization", coach_participant_activities_visualization_path(@participant) %></li>
+  <li class="list-group-item"><a href="#activities-future-container">Activities - Future</a></li>
+  <li class="list-group-item"><a href="#activities-past-container">Activities - Past</a></li>
+  <li class="list-group-item"><%= link_to "Thoughts visualization", coach_participant_thoughts_visualization_path(@participant) %></li>
+  <li class="list-group-item"><a href="#thoughts-container">Thoughts</a></li>
+  <li class="list-group-item"><a href="#messages-container">Messages</a></li>
+  <li class="list-group-item"><a href="#tasks-container">Tasks</a></li>
+</ul>

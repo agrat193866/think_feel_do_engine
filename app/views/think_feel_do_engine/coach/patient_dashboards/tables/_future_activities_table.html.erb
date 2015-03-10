@@ -1,0 +1,40 @@
+<div class="panel panel-default cdb_panel" id="activities-future-container">
+  <div class="panel-heading">
+    <h3 id="activities_future_h3" class="panel-title adjusted-panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#activity_futureCollapse">
+        Activities - Future
+      </a>
+    </h3>
+  </div>
+  <div id="activity_futureCollapse" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="table-responsive div-table-viz">
+        <table class="table table-hover  data-table" id="activities_future">
+          <thead>
+          <tr>
+            <th class="not-displayed"></th>
+            <th class="not-displayed"></th>
+            <th>Activity</th>
+            <th>Predicted Pleasure Rating</th>
+            <th>Predicted Accomplishment Rating</th>
+            <th>Scheduled Date</th>
+            <th>Created Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: "think_feel_do_engine/activities/activity_coach_view_future", collection: @participant.activities.unscheduled_or_in_the_future, as: :activity %>
+          </tbody>
+        </table>
+
+        <table id="activities_legend" class="table">
+          <tr>
+            <td class="success">High Pleasure/Accomplishment</td>
+            <td class="info">Low Pleasure, High Accomplishment</td>
+            <td class="warning">High Pleasure, Low Accomplishment</td>
+            <td class="danger">Low Pleasure/Accomplishment</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
