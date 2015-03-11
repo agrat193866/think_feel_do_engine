@@ -37,11 +37,17 @@ class ToolNavItem
     available_content_modules
       .position_greater_than(1)
       .is_not_viz
+      .available_by(Date.today)
       .order_by_position
+      .latest_duplicate
   end
 
   def any_incomplete_tasks_today?
-    available_content_modules.is_not_viz.is_not_completed.exists?
+    available_content_modules
+      .is_not_viz
+      .is_not_completed
+      .available_on(Date.today)
+      .exists?
   end
 
   private
@@ -50,6 +56,6 @@ class ToolNavItem
     AvailableContentModule
       .for_tool(@tool)
       .for_participant(@participant)
-      .available_on(Date.today)
+      .is_not_terminated_on(Date.today)
   end
 end

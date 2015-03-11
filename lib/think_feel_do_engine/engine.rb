@@ -10,7 +10,6 @@ module ThinkFeelDoEngine
     initializer "think_feel_do_engine.action_controller" do
       ActiveSupport.on_load :action_controller do
         helper ThinkFeelDoEngine::TasksHelper
-        helper ThinkFeelDoEngine::NavbarHelper
       end
     end
   end

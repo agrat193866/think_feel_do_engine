@@ -112,6 +112,7 @@ feature "managing tasks", type: :feature do
 
         click_on "FEEL Home"
 
+        # should not appear because it is recurring and set to end
         expect(page).not_to have_content("Tracking Your Mood")
 
         sign_in_user researcher1

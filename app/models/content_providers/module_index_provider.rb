@@ -20,6 +20,7 @@ module ContentProviders
         .for_tool(tool)
         .available_by(Date.current)
         .excludes_module(bit_core_content_module_id)
+        .is_not_terminated_on(Date.current)
         .latest_duplicate
     end
 
