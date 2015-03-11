@@ -13,7 +13,8 @@ module ThinkFeelDoEngine
       end
 
       def self.file_path(name)
-        Rails.root.join("reports/#{name.to_s.gsub('_', '').downcase}.csv")
+        Rails.application.config.reports_root_path
+          .join("reports/#{name.to_s.gsub('_', '').downcase}.csv")
       end
 
       def initialize(collector)
