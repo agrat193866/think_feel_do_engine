@@ -1,3 +1,16 @@
+## 3.1.0 - 2015-03-11
+ * Merge pull request #104 from cbitstech/ecf_89960950_nav_bar
+ * fix termination bug on module index pages
+ * minor Task related refactor
+ * fix tool nav bugs
+ * return appropriate modules for tool navigation
+ * Merge pull request #103 from cbitstech/ecf_group_refactor
+ * fix RuboCop
+ * refactor Group methods with Ruby conventions
+ * Merge pull request #102 from cbitstech/JAH-batch_reports
+ * Remove superfluous code from reports
+ * Merge pull request #101 from cbitstech/JAH-batch_reports
+
 ## 3.0.11 - 2015-03-10
  * Merge pull request #100 from cbitstech/gs-modularize-patient-dashboard
  * Modularize patient dashboard with partials
