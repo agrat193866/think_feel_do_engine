@@ -32,14 +32,17 @@
 <%= render partial: "think_feel_do_engine/coach/group_dashboard/activities_future", locals: {group: @group} %>
 
 <% if social_features? %>
-  <a name="goals_table"></a>
-  <%= render partial: "think_feel_do_engine/coach/group_dashboard/goals", locals: {group: @group} %>
+  <a name="on_the_mind_statements_table"></a>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/on_my_mind_statements", locals: {group: @group} %>
 
   <a name="comments_table"></a>
   <%= render partial: "think_feel_do_engine/coach/group_dashboard/comments", locals: {group: @group} %>
 
-  <a name="on_the_mind_statements_table"></a>
-  <%= render partial: "think_feel_do_engine/coach/group_dashboard/on_my_mind_statements", locals: {group: @group} %>
+  <a name="goals_table"></a>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/goals", locals: {group: @group} %>
+
+  <a name="likes_table"></a>
+  <%= render partial: "think_feel_do_engine/coach/group_dashboard/likes", locals: {group: @group} %>
 <% end %>
 
 
