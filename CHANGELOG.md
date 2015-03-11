@@ -1,3 +1,9 @@
+## 3.2.0 - 2015-03-11
+ * Merge pull request #106 from cbitstech/jah_89341398_report_path_config
+ * Configure report path in host app config
+ * Merge pull request #105 from cbitstech/gs-add-summary-table-links
+ * Add links from summary table to individual drilldown tables [#89312858]
+
 ## 3.1.0 - 2015-03-11
  * Merge pull request #104 from cbitstech/ecf_89960950_nav_bar
  * fix termination bug on module index pages
