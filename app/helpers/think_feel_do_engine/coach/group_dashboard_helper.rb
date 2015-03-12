@@ -58,10 +58,6 @@ module ThinkFeelDoEngine
         end
       end
 
-      def like_item_description(like)
-        "some description"
-      end
-
       def participants_that_read_lesson(task)
         render partial: "think_feel_do_engine/coach/group_dashboard/"\
                         "lesson_completion_breakdown",

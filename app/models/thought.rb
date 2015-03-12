@@ -42,4 +42,8 @@ class Thought < ActiveRecord::Base
         .and(arel_table[:created_at].lteq(time.end_of_day))
     )
   }
+
+  def shared_description
+    "Thought: #{ content }"
+  end
 end
