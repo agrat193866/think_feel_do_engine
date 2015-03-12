@@ -9,6 +9,10 @@ feature "group dashboard", type: :feature do
 
     context "Coach views table with many patients" do
       before do
+        Rails.application.configure do
+          config.study_length_in_weeks = 8
+          config.include_social_features = true
+        end
         sign_in_user clinician
         visit "/coach/groups/#{group1.id}/group_dashboard"
       end
