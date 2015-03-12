@@ -1,3 +1,7 @@
+## 3.2.1 - 2015-03-12
+ * Merge pull request #107 from cbitstech/gs-sanitize-reporter-file-path
+ * Reporter sanitizes the file path more strictly
+
 ## 3.2.0 - 2015-03-11
  * Merge pull request #106 from cbitstech/jah_89341398_report_path_config
  * Configure report path in host app config
