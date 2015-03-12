@@ -1,15 +1,17 @@
 module SocialNetworking
-  class Like
+  class OnTheMindStatement
+
     def self.where(query_contents)
-      SocialNetworking::Like
+      SocialNetworking::OnTheMindStatement
     end
 
     def self.each
-      SocialNetworking::Like
+      SocialNetworking::OnTheMindStatement
     end
 
     def self.count
       1
     end
+
   end
 end

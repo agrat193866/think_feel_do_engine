@@ -48,4 +48,7 @@ Rails.application.configure do
   config.log_level = :error
   ThinkFeelDoEngine::Engine.routes.default_url_options[:host] = 'test.host'
   config.allow_concurrency = false
+
+  config.study_length_in_weeks = 8
+  config.include_social_features = true
 end
