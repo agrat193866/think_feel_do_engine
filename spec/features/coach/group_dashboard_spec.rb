@@ -13,8 +13,8 @@ feature "group dashboard", type: :feature do
         visit "/coach/groups/#{group1.id}/group_dashboard"
       end
 
-      it "should display likes table" do
-        expect(page).to have_text("Likes")
+      it "should display likes container" do
+        expect(page.has_css?("#likes-container")).to be_truthy
       end
     end
   end
