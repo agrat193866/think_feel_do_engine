@@ -108,6 +108,10 @@ module ThinkFeelDoEngine
         SocialNetworking::Comment.where(participant: membership.participant)
       end
 
+      def membership_likes(membership)
+        SocialNetworking::Like.where(participant: membership.participant)
+      end
+
       def activity_status(activity)
         if activity.monitored?
           "monitored"

@@ -1,15 +1,17 @@
 module SocialNetworking
-  class Like
+  class Goal
+
     def self.where(query_contents)
-      SocialNetworking::Like
+      SocialNetworking::Goal
     end
 
     def self.each
-      SocialNetworking::Like
+      SocialNetworking::Goal
     end
 
     def self.count
       1
     end
+
   end
 end

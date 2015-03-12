@@ -152,6 +152,10 @@ class Activity < ActiveRecord::Base
     super + %w(activity_type_title activity_type_new_title)
   end
 
+  def shared_description
+    "Activity: #{activity_type.title}"
+  end
+
   def update_as_reviewed(params = {})
     update(
       params

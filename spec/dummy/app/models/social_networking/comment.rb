@@ -1,15 +1,17 @@
 module SocialNetworking
-  class Like
+  class Comment
+
     def self.where(query_contents)
-      SocialNetworking::Like
+      SocialNetworking::Comment
     end
 
     def self.each
-      SocialNetworking::Like
+      SocialNetworking::Comment
     end
 
     def self.count
       1
     end
+
   end
 end
