@@ -17,7 +17,7 @@
   <% end %>
 </tr>
 <tr>
-  <td>likes</td>
+  <td><a href="#likes_table">likes</a></td>
   <% (1..study_length_in_weeks).each do |current_week| %>
     <td><%= group.likes_by_week(current_week) %></td>
   <% end %>
