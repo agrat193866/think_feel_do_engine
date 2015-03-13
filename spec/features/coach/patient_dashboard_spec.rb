@@ -40,6 +40,8 @@ feature "patient dashboard", type: :feature do
       before do
         allow(Rails.application.config).to receive(:include_phq_features)
           .and_return(true)
+        allow(Rails.application.config).to receive(:include_social_features)
+          .and_return(false)
         sign_in_user clinician
         visit "/coach/groups/#{group1.id}/patient_dashboards"
       end
@@ -372,6 +374,8 @@ feature "patient dashboard", type: :feature do
       let(:inactive_participant) { participants(:inactive_participant) }
 
       before do
+        allow(Rails.application.config).to receive(:include_social_features)
+          .and_return(false)
         sign_in_user clinician
       end
 
