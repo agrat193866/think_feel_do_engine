@@ -27,3 +27,34 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    return $('.generic-data-table').dataTable({
+      sPaginationType: 'bootstrap',
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+
+  $(function() {
+    return $('#logins').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[1, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [1],
+          iDataSort: [0]
+        }
+      ]
+    });
+  });
+</script>
