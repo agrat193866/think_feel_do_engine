@@ -1,3 +1,12 @@
+## 3.2.2 - 2015-03-13
+ * Merge pull request #108 from cbitstech/ems-90054316-add-like-table-to-group-dash
+ * Update group dash spec config.
+ * Modify group dash spec.
+ * Add feature spec for group dash.
+ * Fix rubocop issue.
+ * Add description for shared items.
+ * Add like to group dash.
+
 ## 3.2.1 - 2015-03-12
  * Merge pull request #107 from cbitstech/gs-sanitize-reporter-file-path
  * Reporter sanitizes the file path more strictly
