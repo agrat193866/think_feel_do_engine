@@ -96,7 +96,7 @@ RSpec.describe Activity do
       end
     end
 
-    # To Do: See note in activity.rb
+    # To Do: See note in patient_activity.rb
     describe ".in_the_future" do
       it "returns actitivies that are planned for the future" do
         expect do
@@ -124,7 +124,7 @@ RSpec.describe Activity do
       end
     end
 
-    # To Do: See note in activity.rb
+    # To Do: See note in patient_activity.rb
     describe ".unscheduled_or_in_the_future" do
       it "returns actitivies are unscheduled or in the future" do
         expect do

@@ -3,6 +3,11 @@ require "rails_helper"
 feature "group dashboard", type: :feature do
   fixtures :all
 
+  after :each do
+    allow(Rails.application.config).to receive(:include_social_features)
+      .and_return(false)
+  end
+
   describe "Logged in as a clinician" do
     let(:clinician) { users(:clinician1) }
     let(:group1) { groups(:group1) }
