@@ -408,10 +408,10 @@ RSpec.describe Activity do
         expect(sleeping.status_label).to eq "Reviewed & Completed"
       end
 
-      it "returns 'Reviewed & Incompleted' if the activity has been Reviewed & Incompleted" do
+      it "returns whether an activity has been reviewed and is still incomplete" do
         allow(sleeping).to receive(:reviewed_and_incomplete?).and_return(true)
 
-        expect(sleeping.status_label).to eq "Reviewed & Incompleted"
+        expect(sleeping.status_label).to eq "Reviewed and did not complete"
       end
     end
 

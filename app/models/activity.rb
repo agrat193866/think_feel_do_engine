@@ -183,7 +183,7 @@ class Activity < ActiveRecord::Base
     elsif reviewed_and_complete?
       "Reviewed & Completed"
     elsif reviewed_and_incomplete?
-      "Reviewed & Incompleted"
+      "Reviewed and did not complete"
     else
       "N/A"
     end
