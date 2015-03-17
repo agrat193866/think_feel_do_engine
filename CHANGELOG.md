@@ -1,3 +1,11 @@
+## 3.2.3 - 2015-03-17
+ * Merge pull request #114 from cbitstech/jah_89810820_change_application_name
+ * Merge pull request #113 from cbitstech/ems-90053628-speed-group-dash-2
+ * Devise login app title configurable via locale file
+ * Add caching to group dash.
+ * Merge pull request #109 from cbitstech/gs-repatriate-reports
+ * Move reports from TFDSo host app into Engine
+
 ## 3.2.2 - 2015-03-13
  * Merge pull request #108 from cbitstech/ems-90054316-add-like-table-to-group-dash
  * Update group dash spec config.
