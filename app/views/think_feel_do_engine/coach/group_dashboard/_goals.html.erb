@@ -16,8 +16,8 @@
             <th class="not-displayed"></th>
             <th>Display Name</th>
             <th>Description</th>
-            <th>Is Complete</th>
-            <th>Is Deleted</th>
+            <th>Completed At</th>
+            <th>Deleted At</th>
             <th>Due On</th>
             <th>Created Date</th>
             <th>Week</th>
@@ -35,8 +35,8 @@
                 </td>
                 <td><%= membership.participant.display_name %></td>
                 <td><%= goal.description %></td>
-                <td><%= goal.is_completed %></td>
-                <td><%= goal.is_deleted %></td>
+                <td><%= goal.completed_at ? goal.completed_at.to_formatted_s(:short) : "incomplete"%></td>
+                <td><%= goal.deleted_at ? goal.completed_at.to_formatted_s(:short) : "not deleted" %></td>
                 <td><%= goal.due_on ? goal.due_on.to_formatted_s(:short) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
                 <td><%= goal.created_at ? goal.created_at.to_formatted_s(:short) : "---" %></td>
                 <td><%= week_in_study(goal.created_at, membership) %></td>
