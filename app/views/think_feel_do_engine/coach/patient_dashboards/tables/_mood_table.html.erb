@@ -1,13 +1,13 @@
 <div class="panel panel-default cdb_panel" id="mood-container">
   <div class="panel-heading">
     <h3 class="panel-title adjusted-panel-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#moodCollapse">
+      <a data-toggle="collapse" data-parent="#accordion" href="#moodsCollapse">
         Mood
       </a>
     </h3>
   </div>
 
-  <div id="moodCollapse" class="panel-collapse collapse in">
+  <div id="moodsCollapse" class="panel-collapse collapse in">
     <div class="panel-body">
       <div class="table-responsive div-table-viz">
         <table class="table table-hover data-table" id="moods-table">
@@ -26,3 +26,34 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    return $('.generic-data-table').dataTable({
+      sPaginationType: 'bootstrap',
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+
+  $(function() {
+    return $('#moods-table').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[2, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [2],
+          iDataSort: [0]
+        }
+      ]
+    });
+  });
+</script>

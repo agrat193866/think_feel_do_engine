@@ -31,3 +31,54 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    return $('.generic-data-table').dataTable({
+      sPaginationType: 'bootstrap',
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+
+  $(function() {
+    return $('#learning_data').dataTable({
+      sPaginationType: 'bootstrap',
+      order: [[0, "desc"]],
+      oLanguage: {
+        sSearch: 'Filter: '
+      },
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+          bVisible: false
+        },
+        {
+          aTargets: [4],
+          iDataSort: [0]
+        },
+        {
+          aTargets: [1],
+          bVisible: false
+        },
+        {
+          aTargets: [5],
+          iDataSort: [1]
+        },
+        {
+          aTargets: [2],
+          bVisible: false
+        },
+        {
+          aTargets: [6],
+          iDataSort: [2]
+        }
+      ],
+      oLanguage: {
+        sSearch: 'Filter: '
+      }
+    });
+  });
+
+</script>
