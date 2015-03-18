@@ -1,3 +1,13 @@
+## 3.2.4 - 2015-03-18
+ * Merge pull request #116 from cbitstech/ems-90620628-update-group-dash-goal-fields
+ * Update group dash goal view.
+ * Merge pull request #110 from cbitstech/gs-fix-table-js-bug
+ * Updated typo in href for moods table
+ * Put js for table pagination back in layouts
+ * Merge pull request #111 from cbitstech/gs-fix-double-sharing-popup
+ * Merge pull request #115 from cbitstech/msw_90288220_incompleted_to_not_compelete
+ * Change Incompleted to Not Complete
+
 ## 3.2.3 - 2015-03-17
  * Merge pull request #114 from cbitstech/jah_89810820_change_application_name
  * Merge pull request #113 from cbitstech/ems-90053628-speed-group-dash-2
