@@ -1,3 +1,6 @@
+## 3.2.5 - 2015-03-18
+ * Fixed logic issue.
+
 ## 3.2.4 - 2015-03-18
  * Merge pull request #116 from cbitstech/ems-90620628-update-group-dash-goal-fields
  * Update group dash goal view.
