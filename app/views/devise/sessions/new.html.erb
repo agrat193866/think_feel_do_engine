@@ -8,7 +8,7 @@
     <% if resource_name == :user %>
       <%= select_tag "user_id", options_from_collection_for_select(User.order(:email), "id", "email"), prompt: "Select user...", onchange: "location.href = '#{ think_feel_do_engine.quick_sign_in_url }?user_id=' + this.value;" %>
     <% elsif resource_name == :participant %>
-      <%= select_tag "participant_id", options_from_collection_for_select(Participant.order(:email), "id", "email"), prompt: "Select participant...", onchange: "location.href = '#{ think_feel_do_engine.quick_sign_in_url }?participant_id=' + this.value;" %>
+      <%= select_tag "participant_id", options_from_collection_for_select(Participant.includes(active_group: [:moderator]).order(:email), "id", "email"), prompt: "Select participant...", onchange: "location.href = '#{ think_feel_do_engine.quick_sign_in_url }?participant_id=' + this.value;" %>
     <% end %>
   </div>
 <% end %>
