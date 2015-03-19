@@ -460,9 +460,11 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to have_text "Participant was successfully stepped."
 
-      within "#patient-#{participants(:participant1).id}" do
-        expect(page).to have_text "Stepped"
-        expect(page).to_not have_button "Step"
+      using_wait_time 10 do
+        within "#patient-#{participants(:participant1).id}" do
+          expect(page).to have_text "Stepped"
+          expect(page).to_not have_button "Step"
+        end
       end
     end
 
