@@ -15,7 +15,9 @@ class Participant < ActiveRecord::Base
           inverse_of: :active_participant
   has_many :groups, through: :memberships
   has_one :active_group, through: :active_membership
-  has_many :activities, dependent: :destroy
+  has_many :activities,
+           -> { includes :activity_type },
+           dependent: :destroy
   has_many :awake_periods, dependent: :destroy
   has_many :activity_types, dependent: :destroy
   has_many :emotions, dependent: :destroy, foreign_key: :creator_id
