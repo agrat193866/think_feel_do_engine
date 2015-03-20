@@ -25,7 +25,7 @@ class Participant < ActiveRecord::Base
   has_many :sent_messages, class_name: "Message", as: :sender
   has_many :messages, as: :sender, dependent: :destroy
   has_many :received_messages,
-           -> { includes :message },
+           -> { includes message: :sender },
            class_name: "DeliveredMessage",
            as: :recipient,
            dependent: :destroy
