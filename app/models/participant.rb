@@ -19,7 +19,9 @@ class Participant < ActiveRecord::Base
   has_many :awake_periods, dependent: :destroy
   has_many :activity_types, dependent: :destroy
   has_many :emotions, dependent: :destroy, foreign_key: :creator_id
-  has_many :emotional_ratings, dependent: :destroy
+  has_many :emotional_ratings,
+           -> { includes :emotion },
+           dependent: :destroy
   has_many :moods, dependent: :destroy
   has_many :thoughts, dependent: :destroy
   has_many :sent_messages, class_name: "Message", as: :sender
