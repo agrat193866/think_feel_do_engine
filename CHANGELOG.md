@@ -1,3 +1,19 @@
+## 3.2.6 - 2015-03-23
+ * Merge pull request #125 from cbitstech/ems-90711482
+ * Remove redundant javascript to solve js error.
+ * Merge pull request #124 from cbitstech/gs-refactor-activity-load
+ * Merge pull request #123 from cbitstech/ems-90408368-4
+ * Add includes for activity type on activity
+ * Merge pull request #122 from cbitstech/ems-90408368-3
+ * Fix N+1 issue with message queries.
+ * Merge pull request #121 from cbitstech/ems-90408368-2
+ * Remove N+1 issue.
+ * Add includes for pattern on participant thoughts.
+ * Merge pull request #120 from cbitstech/ems-90408368-1
+ * Removed two N+1 issues from sign in page.
+ * Merge pull request #117 from cbitstech/ems-90512934-fix-intermittent-test-breakage
+ * Added wait time to test.
+
 ## 3.2.5 - 2015-03-18
  * Fixed logic issue.
 

@@ -42,7 +42,7 @@ GIT
 PATH
   remote: .
   specs:
-    think_feel_do_engine (3.2.5)
+    think_feel_do_engine (3.2.6)
       bootstrap-sass (~> 3.1)
       cancancan (~> 1.9)
       devise (~> 3.2)
@@ -100,7 +100,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.4)
+    bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     brakeman (3.0.1)
