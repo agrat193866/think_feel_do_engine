@@ -31,18 +31,9 @@
 
 <script type="text/javascript">
   $(function() {
-    return $('.generic-data-table').dataTable({
-      sPaginationType: 'bootstrap',
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-
-  $(function() {
     return $('#emotions-table').dataTable({
       sPaginationType: 'bootstrap',
-      order: [[2, "desc"]],
+      order: [[3, "desc"]],
       oLanguage: {
         sSearch: 'Filter: '
       },
@@ -52,7 +43,7 @@
           bVisible: false
         },
         {
-          aTargets: [2],
+          aTargets: [3],
           iDataSort: [0]
         }
       ]
