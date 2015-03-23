@@ -25,37 +25,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(function() {
-    return $('.generic-data-table').dataTable({
-      sPaginationType: 'bootstrap',
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-
-  $(function() {
-    return $('#messages').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[0, "asc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
-        {
-          aTargets: [0],
-          bVisible: false
-        },
-        {
-          aTargets: [3],
-          iDataSort: [0]
-        }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-</script>

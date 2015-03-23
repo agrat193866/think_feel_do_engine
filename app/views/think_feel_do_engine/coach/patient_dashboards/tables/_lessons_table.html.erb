@@ -34,15 +34,6 @@
 
 <script type="text/javascript">
   $(function() {
-    return $('.generic-data-table').dataTable({
-      sPaginationType: 'bootstrap',
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-
-  $(function() {
     return $('#learning_data').dataTable({
       sPaginationType: 'bootstrap',
       order: [[0, "desc"]],
@@ -80,5 +71,4 @@
       }
     });
   });
-
 </script>

@@ -30,15 +30,6 @@
 
 <script type="text/javascript">
   $(function() {
-    return $('.generic-data-table').dataTable({
-      sPaginationType: 'bootstrap',
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
-    });
-  });
-
-  $(function() {
     return $('#task_statuses').dataTable({
       sPaginationType: 'bootstrap',
       order: [[0, "asc"]],
