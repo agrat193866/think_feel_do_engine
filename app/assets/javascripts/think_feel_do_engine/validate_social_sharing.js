@@ -27,7 +27,7 @@ var validateMutliFormPage = function(event, shared_item_name, activity_id) {
     if (shared_item_buttons != null && 0 < shared_item_buttons.length) {
       for (var current_button_index = 0; current_button_index < shared_item_buttons.length && !validatedSocialSubmit; current_button_index++) {
         if (shared_item_buttons[current_button_index].checked) {
-          if (confirm('Are you sure that you would like to make this activity public?')) {
+          if (confirm('Are you sure that you would like to make this public?')) {
             validatedSocialSubmit = true;
             return true;
           } else {

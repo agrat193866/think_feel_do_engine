@@ -43,6 +43,18 @@ class Thought < ActiveRecord::Base
     )
   }
 
+  def status_label
+    if !pattern_id && !challenging_thought
+      "Identified"
+    elsif pattern_id && !challenging_thought
+      "Assigned a pattern to"
+    elsif challenging_thought
+      "Reshaped"
+    else
+      "Shared"
+    end
+  end
+
   def shared_description
     "Thought: #{ content }"
   end

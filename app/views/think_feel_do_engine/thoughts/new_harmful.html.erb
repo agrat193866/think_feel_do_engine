@@ -6,7 +6,7 @@
   <%= f.hidden_field(:effect) %>
 
   <% if current_participant.active_group.arm.social? %>
-    <span class="new-shareable-form-after-form-groups" data-item-type="thought" data-action-type="planned"></span>
+    <span class="new-shareable-form-after-form-groups" data-item-type="thought" data-action-type=""></span>
   <% end %>
 
   <%= content_tag(:button, t(:next), type: "submit", class: "btn btn-primary pull-right") %>
