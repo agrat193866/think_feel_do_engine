@@ -1,3 +1,7 @@
+## 3.2.7 - 2015-03-25
+ * Merge pull request #126 from cbitstech/gs-add-states-to-thoughts
+ * Add descriptions for thought sharing
+
 ## 3.2.6 - 2015-03-23
  * Merge pull request #125 from cbitstech/ems-90711482
  * Remove redundant javascript to solve js error.
