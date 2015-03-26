@@ -1,3 +1,9 @@
+## 3.2.8 - 2015-03-26
+ * Merge pull request #127 from cbitstech/cjb_spec_fix
+ * syntax fix and remove commented line
+ * One more try to fix patient_dashboard spec
+ * Update to patient_dashboard spec
+
 ## 3.2.7 - 2015-03-25
  * Merge pull request #126 from cbitstech/gs-add-states-to-thoughts
  * Add descriptions for thought sharing
