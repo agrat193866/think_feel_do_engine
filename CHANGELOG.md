@@ -1,3 +1,7 @@
+## 3.2.9 - 2015-03-26
+ * Merge pull request #128 from cbitstech/gs-activities-summary-fixes
+ * Track activity tool use more accurately
+
 ## 3.2.8 - 2015-03-26
  * Merge pull request #127 from cbitstech/cjb_spec_fix
  * syntax fix and remove commented line
