@@ -21,27 +21,27 @@
     <td><%= @participant.thoughts.last_seven_days.count %></td>
     <td><%= @participant.thoughts.count %></td>
   </tr>
-  <tr id="<%= @participant.id %>-activties-planned-totals">
-    <td><a href="#activity_futureCollapse">Activities Planned</a></td>
-    <td><%= @participant.activities.planned.for_day(Date.today).count %></td>
-    <td><%= @participant.activities.planned.last_seven_days.count %></td>
-    <td><%= @participant.activities.planned.count %></td>
-  </tr>
   <tr id="<%= @participant.id %>-activities-monitored-totals">
     <td><a href="#activity_pastCollapse">Activities Monitored</a></td>
-    <td><%= @participant.activities.monitored.for_day(Date.today).count %></td>
+    <td><%= @participant.activities.monitored.updated_for_day(Date.today).count %></td>
     <td><%= @participant.activities.monitored.last_seven_days.count %></td>
     <td><%= @participant.activities.monitored.count %></td>
   </tr>
+  <tr id="<%= @participant.id %>-activties-planned-totals">
+    <td><a href="#activity_futureCollapse">Activities Planned</a></td>
+    <td><%= @participant.activities.planned.updated_for_day(Date.today).count %></td>
+    <td><%= @participant.activities.planned.last_seven_days.count %></td>
+    <td><%= @participant.activities.planned.count %></td>
+  </tr>
   <tr id="<%= @participant.id %>-activities-reviewed-complete-totals">
     <td><a href="#activity_pastCollapse">Activities Reviewed and Completed</a></td>
-    <td><%= @participant.activities.reviewed_and_complete.for_day(Date.today).count %></td>
+    <td><%= @participant.activities.reviewed_and_complete.updated_for_day(Date.today).count %></td>
     <td><%= @participant.activities.reviewed_and_complete.last_seven_days.count %></td>
     <td><%= @participant.activities.reviewed_and_complete.count %></td>
   </tr>
   <tr id="<%= @participant.id %>-activities-reviewed-incomplete-totals">
     <td><a href="#activity_pastCollapse">Activities Reviewed and Incomplete</a></td>
-    <td><%= @participant.activities.reviewed_and_incomplete.for_day(Date.today).count %></td>
+    <td><%= @participant.activities.reviewed_and_incomplete.updated_for_day(Date.today).count %></td>
     <td><%= @participant.activities.reviewed_and_incomplete.last_seven_days.count %></td>
     <td><%= @participant.activities.reviewed_and_incomplete.count %></td>
   </tr>

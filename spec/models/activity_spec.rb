@@ -64,13 +64,13 @@ RSpec.describe Activity do
     end
 
     describe ".monitored" do
-      it "returns activities that have not been reviwed and have predicted intensities, but not actual intensities " do
+      it "returns activities that have not been reviwed and have actual intensities, but not predicted intensities " do
         expect do
           sleeping(
-            predicted_accomplishment_intensity: 5,
-            predicted_pleasure_intensity: 5,
-            actual_accomplishment_intensity: nil,
-            actual_pleasure_intensity: nil,
+            predicted_accomplishment_intensity: nil,
+            predicted_pleasure_intensity: nil,
+            actual_accomplishment_intensity: 5,
+            actual_pleasure_intensity: 5,
             is_reviewed: false)
         end.to change { Activity.monitored.count }.by(1)
       end
@@ -118,9 +118,18 @@ RSpec.describe Activity do
     describe ".last_seven_days" do
       it "returns actitivies have taken place during the last 7 days" do
         expect do
-          sleeping start_time: Time.current.advance(days: -7)
-          sleeping start_time: Time.current.advance(days: -8)
+          sleeping updated_at: Time.current.advance(days: -7)
+          sleeping updated_at: Time.current.advance(days: -8)
         end.to change { Activity.last_seven_days.count }.by(1)
+      end
+    end
+
+    describe ".updated_for_day" do
+      it "returns only the activities updated on that day" do
+        expect do
+          sleeping updated_at: Time.local(2016, 1, 15, 22)
+          sleeping updated_at: Time.local(2016, 1, 16, 22)
+        end.to change { Activity.updated_for_day(Time.local(2016, 1, 15)).count }.by 1
       end
     end
 
