@@ -51,8 +51,16 @@ class Activity < ActiveRecord::Base
 
   scope :last_seven_days, lambda {
     where(
-      arel_table[:start_time]
+      arel_table[:updated_at]
       .gteq(Time.current.advance(days: -7).beginning_of_day)
+    )
+  }
+
+  scope :updated_for_day, lambda { |time|
+    where(
+      arel_table[:updated_at]
+        .gteq(time.beginning_of_day)
+        .and(arel_table[:updated_at].lteq(time.end_of_day))
     )
   }
 
@@ -89,11 +97,11 @@ class Activity < ActiveRecord::Base
 
   scope :monitored, lambda {
     where(is_reviewed: false)
-      .where(
-        actual_accomplishment_intensity: nil,
-        actual_pleasure_intensity: nil)
       .where
       .not(
+        actual_accomplishment_intensity: nil,
+        actual_pleasure_intensity: nil)
+      .where(
         predicted_accomplishment_intensity: nil,
         predicted_pleasure_intensity: nil)
   }
