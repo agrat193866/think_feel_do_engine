@@ -461,7 +461,8 @@ feature "patient dashboard", type: :feature do
       expect(page).to have_text "Participant was successfully stepped."
 
       within "#stepped-patients" do
-        within "#patient-#{participants(:participant1).id}" do
+        # within "#patient-#{participants(:participant1).id}" do
+        within('tr', text: 'TFD-1111') do
           expect(page).to have_text "Stepped"
           expect(page).to_not have_button "Step"
         end
