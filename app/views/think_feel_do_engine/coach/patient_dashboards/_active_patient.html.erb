@@ -64,11 +64,11 @@
         <% end %>
       </td>
     <% else %>
+      <% if patient.most_recent_membership.stepped_on != nil %>
       <td>
-        <% if patient.most_recent_membership.stepped_on != nil %>
           <%= patient.most_recent_membership.stepped_on.to_s(:compact) %>
-        <% end %>
       </td>
+      <% end %>
     <% end %>
 
     <% if view_membership(patient, @group) %>
@@ -81,13 +81,15 @@
                  readonly="readonly">
         <% end %>
       </td>
-      <td>
-        <%= button_to "Discontinue",
-                      discontinue_membership_path(view_membership(patient, @group).id),
-                      data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
-                      method: :get,
-                      class: "btn btn-primary" %>
-      </td>
+      <% if phq_features? %>
+        <td>
+          <%= button_to "Discontinue",
+                        discontinue_membership_path(view_membership(patient, @group).id),
+                        data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
+                        method: :get,
+                        class: "btn btn-primary" %>
+        </td>
+      <% end %>
       <td>
         <%= button_to "Terminate Access",
                       withdraw_membership_path(view_membership(patient, @group).id),
