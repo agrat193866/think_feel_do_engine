@@ -23,7 +23,9 @@
     <% end %>
     <% if @active_patients %>
         <th>End Date</th>
-        <th></th>
+        <% if phq_features? %>
+          <th></th>
+        <% end %>
         <th></th>
     <% end %>
   </tr>
