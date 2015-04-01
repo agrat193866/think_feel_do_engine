@@ -29,9 +29,9 @@
   </tr>
   <tr id="<%= @participant.id %>-activties-planned-totals">
     <td><a href="#activity_futureCollapse">Activities Planned</a></td>
-    <td><%= @participant.activities.planned.updated_for_day(Date.today).count %></td>
-    <td><%= @participant.activities.planned.last_seven_days.count %></td>
-    <td><%= @participant.activities.planned.count %></td>
+    <td><%= activities_planned_today(@participant) %></td>
+    <td><%= activities_planned_7_day(@participant) %></td>
+    <td><%= activities_planned_total(@participant) %></td>
   </tr>
   <tr id="<%= @participant.id %>-activities-reviewed-complete-totals">
     <td><a href="#activity_pastCollapse">Activities Reviewed and Completed</a></td>
