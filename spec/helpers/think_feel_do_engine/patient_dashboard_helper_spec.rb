@@ -31,11 +31,11 @@ module ThinkFeelDoEngine
         it "should return a sum of all planned activities for today" do
           expect(participant).to receive(:activities).exactly(3).times { activities }
           expect(activities)
-            .to receive_message_chain(:planned, :updated_for_day, :count) { 1 }
+            .to receive_message_chain(:planned, :for_day, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_complete, :updated_for_day, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_complete, :for_day, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_incomplete, :updated_for_day, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_incomplete, :for_day, :count) { 1 }
           expect(activities_planned_today(participant)).to eq(3)
         end
       end
