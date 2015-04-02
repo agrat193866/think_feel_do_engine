@@ -64,6 +64,21 @@ class Activity < ActiveRecord::Base
     )
   }
 
+  scope :created_last_seven_days, lambda {
+    where(
+      arel_table[:created_at]
+        .gteq(Time.current.advance(days: -7).beginning_of_day)
+    )
+  }
+
+  scope :created_for_day, lambda { |time|
+    where(
+      arel_table[:created_at]
+        .gteq(time.beginning_of_day)
+        .and(arel_table[:created_at].lteq(time.end_of_day))
+    )
+  }
+
   # To Do: fix naming and/or what is going on here
   # change to start_time and is_scheduled
   # and updated tests

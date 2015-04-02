@@ -30,26 +30,22 @@ module ThinkFeelDoEngine
 
       def activities_planned_today(participant)
         participant
-          .activities
-          .planned
-          .updated_for_day(Date.today)
-          .count +
+          .activities.planned.created_for_day(Date.today).count +
           participant
             .activities
-            .reviewed_and_complete
-            .updated_for_day(Date.today)
-            .count +
+            .reviewed_and_complete.created_for_day(Date.today).count +
           participant
             .activities
-            .reviewed_and_incomplete
-            .updated_for_day(Date.today)
-            .count
+            .reviewed_and_incomplete.created_for_day(Date.today).count
       end
 
       def activities_planned_7_day(participant)
-        participant.activities.planned.last_seven_days.count +
-          participant.activities.reviewed_and_complete.last_seven_days.count +
-          participant.activities.reviewed_and_incomplete.last_seven_days.count
+        participant.activities
+          .planned.created_last_seven_days.count +
+          participant.activities
+            .reviewed_and_complete.created_last_seven_days.count +
+          participant.activities
+            .reviewed_and_incomplete.created_last_seven_days.count
       end
 
       def activities_planned_total(participant)
