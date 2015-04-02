@@ -31,11 +31,11 @@ module ThinkFeelDoEngine
         it "should return a sum of all planned activities for today" do
           expect(participant).to receive(:activities).exactly(3).times { activities }
           expect(activities)
-            .to receive_message_chain(:planned, :for_day, :count) { 1 }
+            .to receive_message_chain(:planned, :created_for_day, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_complete, :for_day, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_complete, :created_for_day, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_incomplete, :for_day, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_incomplete, :created_for_day, :count) { 1 }
           expect(activities_planned_today(participant)).to eq(3)
         end
       end
@@ -44,11 +44,11 @@ module ThinkFeelDoEngine
         it "should return a sum of planned activities for the last 7 days" do
           expect(participant).to receive(:activities).exactly(3).times { activities }
           expect(activities)
-            .to receive_message_chain(:planned, :last_seven_days, :count) { 1 }
+            .to receive_message_chain(:planned, :created_last_seven_days, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_complete, :last_seven_days, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_complete, :created_last_seven_days, :count) { 1 }
           expect(activities)
-            .to receive_message_chain(:reviewed_and_incomplete, :last_seven_days, :count) { 1 }
+            .to receive_message_chain(:reviewed_and_incomplete, :created_last_seven_days, :count) { 1 }
           expect(activities_planned_7_day(participant)).to eq(3)
         end
       end
