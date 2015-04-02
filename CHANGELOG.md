@@ -1,3 +1,10 @@
+## 3.2.10 - 2015-04-01
+ * Merge pull request #130 from cbitstech/ems-91421272-update-planned-activity-calculations
+ * Fix rubocop.
+ * Update planned activities counts.
+ * Merge pull request #129 from cbitstech/ems-91284340-remove-discontinue-for-non-stepped-care-apps
+ * Remove Discontinue button.
+
 ## 3.2.9 - 2015-03-26
  * Merge pull request #128 from cbitstech/gs-activities-summary-fixes
  * Track activity tool use more accurately
