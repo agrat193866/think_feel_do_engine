@@ -1,3 +1,8 @@
+## 3.2.11 - 2015-04-06
+ * Merge pull request #131 from cbitstech/ems-91421272-updated-activity-count
+ * Update planned row data tally.
+ * Change count scope.
+
 ## 3.2.10 - 2015-04-01
  * Merge pull request #130 from cbitstech/ems-91421272-update-planned-activity-calculations
  * Fix rubocop.
