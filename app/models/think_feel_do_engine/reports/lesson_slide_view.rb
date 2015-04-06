@@ -47,8 +47,8 @@ module ThinkFeelDoEngine
               lesson_id: lesson_id,
               slide_id: slide.try(:id),
               slide_title: slide.try(:title),
-              slide_selected_at: e.emitted_at,
-              slide_exited_at: next_event_at(e)
+              slide_selected_at: e.emitted_at.iso8601,
+              slide_exited_at: next_event_at(e).iso8601
             }
           end
         end.flatten

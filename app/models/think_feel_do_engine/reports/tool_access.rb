@@ -13,7 +13,7 @@ module ThinkFeelDoEngine
               participant_id: participant.study_id,
               module_title: tool_access[:title],
               came_from: tool_access[:source],
-              occurred_at: tool_access[:time]
+              occurred_at: tool_access[:time].iso8601
             }
           end
         end.flatten
