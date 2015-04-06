@@ -2,3 +2,15 @@ en:
   next: Next
   back: Back
   finish: Finish
+
+  time:
+    formats:
+      standard: "%l:%M %P"
+
+  date:
+    formats:
+      standard: "%m/%d/%Y"
+
+  datetime:
+    formats:
+      standard: "%b %d %Y %H:%M"

@@ -1,5 +1,5 @@
 <% responder = current_participant || current_user %>
-<% sent_at = message.try(:sent_at) ? "#{ message.sent_at.to_formatted_s(:short) } (#{ time_ago_in_words(message.created_at)} ago)" : "#{ message.created_at.to_formatted_s(:short) } (#{ time_ago_in_words(message.created_at)} ago)" %>
+<% sent_at = message.try(:sent_at) ? "#{ l(message.sent_at, format: :standard) } (#{ time_ago_in_words(message.created_at)} ago)" : "#{ l(message.created_at, format: :standard) } (#{ time_ago_in_words(message.created_at)} ago)" %>
 
 <h3><%= message.subject %></h3>
 <strong>From <%= message.from(responder) %></strong>

@@ -30,7 +30,7 @@ feature "patient dashboard", type: :feature do
         expect(page).not_to have_text("participant1#example.com")
         # js modal causes spec errors when expecting table values
         expect(page).to have_text("PHQ-9 WARNING 15 on " +
-            participant1.phq_assessments.last.release_date.to_s(:brief_date))
+                                    I18n.l(participant1.phq_assessments.last.release_date, format: :standard))
         expect(page).to have_text("No; Too Early")
         expect(page).to have_text("Never Logged In")
       end

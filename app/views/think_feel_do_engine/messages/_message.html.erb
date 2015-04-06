@@ -1,4 +1,4 @@
 <tr>
   <td><%= message.subject %></td>
-  <td><%= message.created_at.to_date %></td>
+  <td><%= l(message.created_at, format: :standard) %></td>
 </tr>
