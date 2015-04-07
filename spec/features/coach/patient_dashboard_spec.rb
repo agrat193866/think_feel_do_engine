@@ -12,8 +12,8 @@ feature "patient dashboard", type: :feature do
   describe "Logged in as a clinician" do
     let(:clinician) { users(:clinician1) }
     let(:time_now) { Time.current }
-    let(:short_timestamp) { time_now.to_formatted_s(:short) }
-    let(:longer_timestamp) { time_now.to_formatted_s(:date_time_with_meridian) }
+    let(:short_timestamp) { I18n.l(time_now, format: :standard) }
+    let(:longer_timestamp) { I18n.l(time_now, format: :standard) }
     let(:participant1) { participants(:participant1) }
     let(:participant_for_arm1_group1) { participants(:participant_for_arm1_group1) }
     let(:participant_study_complete) { participants(:participant_study_complete) }
@@ -172,7 +172,7 @@ feature "patient dashboard", type: :feature do
       it "summarizes messages" do
         expect(page).to have_the_table(
           id: "messages",
-          cells: ["I like this app", Date.current]
+          cells: ["I like this app", I18n.l(Date.current, format: :standard)]
         )
       end
 
@@ -242,11 +242,11 @@ feature "patient dashboard", type: :feature do
       it "summarizes moods" do
         expect(page).to have_the_table(
           id: "moods-table",
-          cells: ["9", (Time.current - 28.days).to_formatted_s(:date_time_with_meridian)]
+          cells: ["9", I18n.l((Time.current - 28.days), format: :standard)]
         )
         expect(page).to have_the_table(
           id: "moods-table",
-          cells: ["5", (Time.current - 21.days).to_formatted_s(:date_time_with_meridian)]
+          cells: ["5", I18n.l((Time.current - 21.days), format: :standard)]
         )
       end
 
@@ -282,7 +282,7 @@ feature "patient dashboard", type: :feature do
               "Planned",
               "Not Rated",
               "Not Rated",
-              "Scheduled for #{ (Time.current - 4.hour).to_formatted_s(:short) }",
+              "Scheduled for #{ I18n.l((Time.current - 4.hour), format: :standard) }",
               short_timestamp
             ]
           )
@@ -317,7 +317,7 @@ feature "patient dashboard", type: :feature do
               "Not Rated",
               "0",
               "0",
-              "Scheduled for #{ (time_now - 2.hour).to_formatted_s(:short) }",
+              "Scheduled for #{ I18n.l((time_now - 2.hour), format: :standard) }",
               short_timestamp
             ]
           )
@@ -329,7 +329,7 @@ feature "patient dashboard", type: :feature do
           id: "access_data",
           cells: [
             "Audio!",
-            participant1.media_access_events.last.created_at.to_formatted_s(:date_time_with_meridian)
+            I18n.l(participant1.media_access_events.last.created_at, format: :standard)
           ]
         )
       end
