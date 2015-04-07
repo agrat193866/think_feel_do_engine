@@ -32,7 +32,7 @@
                 <td><%= membership.participant.display_name %></td>
                 <td><%= like.item_type %></td>
                 <td><%= like.item_description %></td>
-                <td><%= like.created_at ? like.created_at.to_formatted_s(:short) : "---" %></td>
+                <td><%= like.created_at ? l(like.created_at, format: :standard) : "---" %></td>
                 <td><%= week_in_study(like.created_at, membership) %></td>
               </tr>
             <% end %>

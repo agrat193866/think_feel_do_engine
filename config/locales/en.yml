@@ -5,7 +5,7 @@ en:
 
   time:
     formats:
-      standard: "%l:%M %P"
+      standard: "%b %d %Y %H:%M"
 
   date:
     formats:
