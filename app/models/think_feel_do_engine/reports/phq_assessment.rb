@@ -13,7 +13,7 @@ module ThinkFeelDoEngine
             {
               participant_id: assessment.participant_id,
               date_transmitted: assessment.release_date,
-              date_completed: assessment.updated_at,
+              date_completed: assessment.updated_at.iso8601,
               phq1: assessment.q1,
               phq2: assessment.q2,
               phq3: assessment.q3,
