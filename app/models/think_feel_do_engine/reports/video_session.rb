@@ -51,7 +51,7 @@ module ThinkFeelDoEngine
                      .limit(1)
                      .first
 
-        return stop_event if stop_event.kind != "videoPause"
+        return stop_event if stop_event && stop_event.kind != "videoPause"
 
         # if the event is a pause and there's an immediately following finish,
         # return the finish event
