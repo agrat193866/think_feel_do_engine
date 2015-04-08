@@ -16,6 +16,6 @@
   <td><%= activity.predicted_accomplishment_intensity ? activity.predicted_accomplishment_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
   <td><%= activity.actual_pleasure_intensity ? activity.actual_pleasure_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
   <td><%= activity.actual_accomplishment_intensity ? activity.actual_accomplishment_intensity : "<span class=\"label label-warning\">Not Rated</span>".html_safe %></td>
-  <td><%= activity.start_time? ? "Scheduled for #{ activity.start_time.to_formatted_s(:short) }" : "Unscheduled" %></td>
-  <td><%= activity.created_at.to_formatted_s(:short) %></td>
+  <td><%= activity.start_time? ? "Scheduled for #{ l(activity.start_time, format: :standard) }" : "Unscheduled" %></td>
+  <td><%= l(activity.created_at, format: :standard) %></td>
 </tr>

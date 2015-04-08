@@ -39,9 +39,9 @@ feature "messages" do
     expect(page).to have_content("To: Coach")
     expect(page).to have_content("Reply: Try out the LEARN tool")
     within "#sent" do
-      expect(page).to have_content(participants(:participant1)
-                                   .messages
-                                   .last.created_at.to_formatted_s(:compact))
+      expect(page).to have_content(I18n.l(participants(:participant1)
+                                            .messages
+                                            .last.created_at, format: :standard))
     end
   end
 
@@ -62,9 +62,9 @@ feature "messages" do
     expect(page).to have_text("Try out the LEARN tool")
     expect(page).to have_text("I like this app")
     within "#inbox" do
-      expect(page).to have_content(participants(:participant1)
-                                   .received_messages
-                                   .last.created_at.to_formatted_s(:compact))
+      expect(page).to have_content(I18n.l(participants(:participant1)
+                                            .received_messages
+                                            .last.created_at, format: :standard))
     end
   end
 

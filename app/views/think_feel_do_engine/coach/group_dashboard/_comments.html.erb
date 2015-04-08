@@ -32,7 +32,7 @@
                 <td><%= membership.participant.display_name %></td>
                 <td><%= comment.text %></td>
                 <td><%= comment_item_description(comment) %> </td>
-                <td><%= comment.created_at.to_formatted_s(:short) %></td>
+                <td><%= l(comment.created_at, format: :standard) %></td>
                 <td><%= week_in_study(comment.created_at, membership) %></td>
               </tr>
             <% end %>

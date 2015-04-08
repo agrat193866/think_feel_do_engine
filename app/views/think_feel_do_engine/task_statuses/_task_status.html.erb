@@ -4,5 +4,5 @@
   </td>
   <td><%= task_status.task.title %></td>
   <td><%= (task_status.membership.start_date + task_status.start_day - 1).to_date.to_formatted_s(:short) %></td>
-  <td><%= task_status.completed_at? ? task_status.completed_at.to_formatted_s(:short) : "<span class='label label-warning'>Incomplete</span>".html_safe %></td>
+  <td><%= task_status.completed_at? ? l(task_status.completed_at, format: :standard) : "<span class='label label-warning'>Incomplete</span>".html_safe %></td>
 </tr>
