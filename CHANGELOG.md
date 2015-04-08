@@ -1,3 +1,13 @@
+## 3.2.12 - 2015-04-08
+ * Merge pull request #134 from cbitstech/ems-91544146-standardize-date-and-datetimes
+ * Add date standardizations.
+ * Merge pull request #132 from cbitstech/ecf_90707874_report_datetimes
+ * Modify remainer of patient dashboard pages.
+ * report all datetimes as iso8601
+ * Merge pull request #133 from cbitstech/ecf_failing_patient_dashboard_spec
+ * Start update of time formats on patient dashboard pages.
+ * replace actual config mutations with method stubs
+
 ## 3.2.11 - 2015-04-06
  * Merge pull request #131 from cbitstech/ems-91421272-updated-activity-count
  * Update planned row data tally.
