@@ -3,5 +3,5 @@
   <td><%= (thought.pattern_title && thought.pattern_title.length > 0) ? thought.pattern_title : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
   <td><%= (thought.challenging_thought && thought.challenging_thought.length > 0) ? thought.challenging_thought : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
   <td><%= (thought.act_as_if && thought.act_as_if.length > 0) ? thought.act_as_if : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
-  <td><%= thought.created_at.to_s(:date_time_with_meridian) %></td>
+  <td><%= l(thought.created_at, format: :standard) %></td>
 </tr>

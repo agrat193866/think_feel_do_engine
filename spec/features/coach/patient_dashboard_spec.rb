@@ -211,7 +211,7 @@ feature "patient dashboard", type: :feature do
 
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "Not Completed"]
+            cells: ["Do - Awareness Introduction", I18n.l(Date.today, format: :standard), longer_timestamp, longer_timestamp, "Not Completed"]
           )
         end
       end
@@ -234,7 +234,7 @@ feature "patient dashboard", type: :feature do
           visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
           expect(page).to have_the_table(
             id: "learning_data",
-            cells: ["Do - Awareness Introduction", Date.today.to_formatted_s(:short), longer_timestamp, longer_timestamp, "less than a minute"]
+            cells: ["Do - Awareness Introduction", I18n.l(Date.today, format: :standard), longer_timestamp, longer_timestamp, "less than a minute"]
           )
         end
       end
@@ -342,7 +342,7 @@ feature "patient dashboard", type: :feature do
             "Labeling and Mislabeling",
             "Birds have no idea what they are doing",
             "It was nature",
-            participant1.thoughts.last.created_at.to_formatted_s(:date_time_with_meridian)
+            I18n.l(participant1.thoughts.last.created_at, format: :standard)
           ]
         )
       end

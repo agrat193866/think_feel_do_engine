@@ -11,7 +11,7 @@
         <%= engagement.completed_at ? engagement.completed_at.to_i : 0 %>
       </td>
       <td><%= task_status.task.title %></td>
-      <td><%= (task_status.membership.start_date + task_status.start_day - 1).to_date.to_formatted_s(:short) %></td>
+      <td><%= l((task_status.membership.start_date + task_status.start_day - 1).to_date, format: :standard) %></td>
       <td><%= l(engagement.created_at, format: :standard) %></td>
       <td><%= l(engagement.completed_at, format: :standard) unless engagement.completed_at.nil? %></td>
       <td><%= engagement.completed_at ? distance_of_time_in_words(engagement.completed_at - engagement.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
