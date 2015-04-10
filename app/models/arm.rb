@@ -36,6 +36,10 @@ class Arm < ActiveRecord::Base
     has_woz
   end
 
+  def messaging_after_membership_complete?
+    can_message_after_membership_complete
+  end
+
   def non_home_tools
     tools = Arel::Table.new(:bit_core_tools)
     bit_core_tools
