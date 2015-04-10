@@ -34,7 +34,7 @@
 
       <p>
         <strong>Lessons read this week:</strong>
-        <%= @participant.active_membership ? @participant.active_membership.lessons_read_for_week.count : 0 %>
+        <%= view_membership(@participant, @group).lessons_read_for_week.count %>
       </p>
 
     </div>
