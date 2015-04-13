@@ -28,3 +28,7 @@ group_without_members2:
 group_for_arm4:
   title: I belong to Arm 4
   arm: arm4
+
+group5:
+  title: Group for Arm 6
+  arm: arm6

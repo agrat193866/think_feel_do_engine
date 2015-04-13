@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310171015) do
+ActiveRecord::Schema.define(version: 20150410175659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(version: 20150310171015) do
   add_index "activity_types", ["participant_id"], name: "index_activity_types_on_participant_id", using: :btree
 
   create_table "arms", force: true do |t|
-    t.string  "title",     default: "",    null: false
-    t.boolean "is_social", default: false, null: false
-    t.boolean "has_woz",   default: false, null: false
+    t.string  "title",                                 default: "",    null: false
+    t.boolean "is_social",                             default: false, null: false
+    t.boolean "has_woz",                               default: false, null: false
+    t.boolean "can_message_after_membership_complete", default: true,  null: false
   end
 
   create_table "awake_periods", force: true do |t|
