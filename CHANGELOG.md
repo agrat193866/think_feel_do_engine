@@ -1,3 +1,15 @@
+## 3.2.13 - 2015-04-14
+ * Merge pull request #138 from cbitstech/ems-91448610-arm-messaging-flag
+ * Refactor arm, update spec.
+ * Update and add specs for new message functionality.
+ * Add message display logic based on new arm flag.
+ * Merge pull request #137 from cbitstech/ems-91725858-remove-ref-to-acitve_memberships
+ * Replace references to active_membership in patient_dashboard.
+ * Merge pull request #136 from cbitstech/ems-91544146-2
+ * Format additional dates with the standard format.
+ * Merge pull request #135 from cbitstech/ems-92040770
+ * Fix instance where method can be called on nil object.
+
 ## 3.2.12 - 2015-04-08
  * Merge pull request #134 from cbitstech/ems-91544146-standardize-date-and-datetimes
  * Add date standardizations.
