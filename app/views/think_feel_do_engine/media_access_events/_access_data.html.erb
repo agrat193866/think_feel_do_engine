@@ -4,7 +4,7 @@
       <%= (event.participant.active_membership.start_date + event.task_release_day - 1) ? (event.participant.active_membership.start_date + event.task_release_day - 1).to_time.to_i : 0 %>
     </td>
     <td><%= event.slide.title %></td>
-    <td><%= (event.participant.active_membership.start_date + event.task_release_day - 1).to_date.to_formatted_s(:short) %></td>
+    <td><%= l((event.participant.active_membership.start_date + event.task_release_day - 1).to_date, format: :standard) %></td>
     <td><%= l(event.created_at, format: :standard) %></td>
     <td><%= l(event.end_time, format: :standard) unless event.end_time.nil? %></td>
     <td><%= event.end_time ? distance_of_time_in_words(event.end_time - event.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>

@@ -13,8 +13,8 @@
 
     <td>
       <%= !view_membership(patient, @group).is_complete ? "Withdrawn " +
-              patient.most_recent_membership.end_date.to_s(:compact) :
-              "Discontinued " + patient.most_recent_membership.end_date.to_s(:compact)  %>
+        l(view_membership(patient, @group).end_date, format: :standard) :
+              "Discontinued " + l(view_membership(patient, @group).end_date, format: :standard)  %>
     </td>
 
     <td>
@@ -22,12 +22,12 @@
     </td>
 
     <td>
-      <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:brief_date_time) : "Never Logged In" %>
+      <%= patient.current_sign_in_at ? l(patient.current_sign_in_at, format: :standard) : "Never Logged In" %>
     </td>
 
     <td>
-      <% if patient.most_recent_membership.stepped_on != nil %>
-        <%= patient.most_recent_membership.stepped_on.to_s(:compact) %>
+      <% if view_membership(patient, @group).stepped_on %>
+        <%= l(view_membership(patient, @group).stepped_on, format: :standard) %>
       <% end %>
     </td>
   </tr>
