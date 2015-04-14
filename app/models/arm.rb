@@ -13,6 +13,7 @@ class Arm < ActiveRecord::Base
            dependent: :destroy
 
   validates :title, presence: true
+  validates :can_message_after_membership_complete, presence: true
 
   def display_name_required_for_membership?(participant, display_name)
     if social? && display_name.empty?

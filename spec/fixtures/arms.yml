@@ -13,3 +13,8 @@ arm4:
 
 arm5:
   title: bit_core_tools type
+
+arm6:
+  title: Arm 6
+  is_social: true
+  can_message_after_membership_complete: true

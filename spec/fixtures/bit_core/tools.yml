@@ -69,3 +69,9 @@ library3:
   title: LEARN
   arm: arm3
   type: Tools::Learn
+
+messages3:
+  position: 1
+  title: MESSAGES
+  arm: arm6
+  type: Tools::Messages

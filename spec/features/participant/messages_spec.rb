@@ -127,3 +127,16 @@ feature "inactive participants cannot compose messages" do
     expect(page).to_not have_button("Compose")
   end
 end
+
+feature "discontinued participants can continue messaging if arm settings allow it" do
+  fixtures :all
+
+  before do
+    sign_in_participant participants(:participant_study_complete_2)
+    visit "/navigator/contexts/MESSAGES"
+  end
+
+  it "should have a compose button on the message home" do
+    expect(page).to have_link("Compose")
+  end
+end

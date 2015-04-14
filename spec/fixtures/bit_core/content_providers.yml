@@ -277,14 +277,29 @@ messages_landing:
   content_module: messages_landing
   position: 1
 
+messages_landing_2:
+  type: ContentProviders::MessagesIndexProvider
+  content_module: messages_landing_2
+  position: 1
+
 message_view:
   type: ContentProviders::ShowMessageProvider
   content_module: messages_landing
   position: 2
 
+message_view2:
+  type: ContentProviders::ShowMessageProvider
+  content_module: messages_landing_2
+  position: 2
+
 messages_compose:
   type: ContentProviders::NewMessageFormProvider
   content_module: messages_landing
+  position: 3
+
+messages_compose2:
+  type: ContentProviders::NewMessageFormProvider
+  content_module: messages_landing_2
   position: 3
 
 content_provider_slideshow_1:
