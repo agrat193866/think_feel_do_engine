@@ -101,9 +101,7 @@ module ThinkFeelDoEngine
     end
 
     def home_tool
-      current_participant
-        .active_membership
-        .group
+      current_participant.current_group
         .arm
         .bit_core_tools.find_by_type("Tools::Home")
     end

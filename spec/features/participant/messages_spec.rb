@@ -137,6 +137,6 @@ feature "discontinued participants can continue messaging if arm settings allow 
   end
 
   it "should have a compose button on the message home" do
-    expect(page).to_not have_button("Compose")
+    expect(page).to have_link("Compose")
   end
 end

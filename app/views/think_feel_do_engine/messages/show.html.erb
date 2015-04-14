@@ -11,7 +11,7 @@
   <p class="lead">You will be able use this tool once you have been assigned a coach</p>
 <% elsif current_user || current_participant && current_participant.active_membership.present? %>
   <div class="btn-toolbar">
-    <%= (link_to "Compose", compose_path, class: "btn btn-default") if current_user || current_participant.active_membership.group.arm.messaging_after_membership_complete? || current_participant.in_study? %>
+    <%= (link_to "Compose", compose_path, class: "btn btn-default") if current_user || current_participant.active_membership.group.arm.can_message_after_membership_complete? || current_participant.in_study? %>
   </div>
 <% end %>
 
@@ -21,7 +21,7 @@
 <% unless message.sender.id == user_id %>
   <% if (current_participant && current_participant.in_study?) || current_user %>
        <div class="well">
-         <%= (link_to "Reply to this message", reply_path) if current_user || current_participant && current_participant.active_membership.group.arm.messaging_after_membership_complete? || current_participant.in_study? %>
+         <%= (link_to "Reply to this message", reply_path) if current_user || current_participant && current_participant.active_membership.group.arm.can_message_after_membership_complete? || current_participant.in_study? %>
   </div>
   <% end %>
 

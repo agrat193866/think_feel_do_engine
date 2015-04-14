@@ -125,6 +125,11 @@ messages_landing:
   tool: messages
   position: 1
 
+messages_landing_2:
+  title: Messages landing
+  tool: messages3
+  position: 1
+
 library_landing:
   title: Lessons
   tool: library

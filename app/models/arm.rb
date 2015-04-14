@@ -13,6 +13,7 @@ class Arm < ActiveRecord::Base
            dependent: :destroy
 
   validates :title, presence: true
+  validates :can_message_after_membership_complete, presence: true
 
   def display_name_required_for_membership?(participant, display_name)
     if social? && display_name.empty?
@@ -34,10 +35,6 @@ class Arm < ActiveRecord::Base
 
   def woz?
     has_woz
-  end
-
-  def messaging_after_membership_complete?
-    can_message_after_membership_complete
   end
 
   def non_home_tools

@@ -39,5 +39,9 @@ assignment_complete2:
   coach: clinician1
 
 assignment_complete_participant:
- participant: participant_study_complete
- coach: clinician1
+  participant: participant_study_complete
+  coach: clinician1
+
+assignment_complete_participant2:
+  participant: participant_study_complete_2
+  coach: clinician1
