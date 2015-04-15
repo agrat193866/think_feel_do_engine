@@ -1,3 +1,9 @@
+## 3.2.14 - 2015-04-15
+ * Merge pull request #140 from cbitstech/ems-91448610-arm-validation
+ * Rubocop.
+ * Update Arm validation for existing migration compatibility.
+ * Merge pull request #139 from cbitstech/ems-91544146-3
+
 ## 3.2.13 - 2015-04-14
  * Merge pull request #138 from cbitstech/ems-91448610-arm-messaging-flag
  * Refactor arm, update spec.
