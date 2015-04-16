@@ -24,8 +24,8 @@ module ThinkFeelDoEngine
             {
               participant_id: participant.study_id,
               video_title: video.try(:title),
-              video_started_at: e.emitted_at,
-              video_stopped_at: next_e.try(:emitted_at),
+              video_started_at: e.emitted_at.iso8601,
+              video_stopped_at: next_e.try(:emitted_at).try(:iso8601),
               stopping_action: next_e.try(:kind)
             }
           end

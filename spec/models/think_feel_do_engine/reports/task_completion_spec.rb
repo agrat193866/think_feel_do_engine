@@ -22,7 +22,7 @@ module ThinkFeelDoEngine
             expect(data).to include(
               participant_id: "TFD-1111",
               title: "#1 Identifying",
-              completed_on: Date.today
+              completed_on: Date.today.iso8601
             )
           end
         end

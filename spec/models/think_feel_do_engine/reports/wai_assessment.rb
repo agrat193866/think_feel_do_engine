@@ -2,27 +2,27 @@ require "rails_helper"
 
 module ThinkFeelDoEngine
   module Reports
-    RSpec.describe WaiAssessmentReport do
+    RSpec.describe WaiAssessment do
       fixtures :all
 
       describe ".all" do
         context "when no assessments were taken" do
           it "returns an empty array" do
-            WaiAssessment.destroy_all
+            ::WaiAssessment.destroy_all
 
-            expect(WaiAssessmentReport.all).to be_empty
+            expect(WaiAssessment.all).to be_empty
           end
         end
 
         context "when modules were viewed" do
           it "returns accurate summaries" do
-            data = WaiAssessmentReport.all
+            data = WaiAssessment.all
 
             expect(data.count).to eq 1
             expect(data).to include(
               participant_id: "TFD-1111",
-              date_transmitted: Date.yesterday,
-              date_completed: Date.today,
+              date_transmitted: Date.yesterday.iso8601,
+              date_completed: Date.today.iso8601,
               wai1: 2,
               wai2: 3,
               wai3: 1,

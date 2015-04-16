@@ -12,7 +12,7 @@ module ThinkFeelDoEngine
             .where(participant_id: participant.id).map do |event|
               {
                 participant_id: participant.study_id,
-                occurred_at: event.created_at
+                occurred_at: event.created_at.iso8601
               }
             end
         end.flatten

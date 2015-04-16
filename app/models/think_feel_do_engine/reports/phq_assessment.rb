@@ -12,8 +12,8 @@ module ThinkFeelDoEngine
           participant.phq_assessments.map do |assessment|
             {
               participant_id: assessment.participant_id,
-              date_transmitted: assessment.release_date,
-              date_completed: assessment.updated_at.iso8601,
+              date_transmitted: assessment.release_date.iso8601,
+              date_completed: assessment.updated_at.to_date.iso8601,
               phq1: assessment.q1,
               phq2: assessment.q2,
               phq3: assessment.q3,
