@@ -20,7 +20,7 @@ module ThinkFeelDoEngine
             {
               participant_id: participant.study_id,
               title: task_status.task.title,
-              completed_on: task_status.completed_at.to_date
+              completed_on: task_status.completed_at.to_date.iso8601
             }
           end
         end.flatten.compact

@@ -12,8 +12,8 @@ module ThinkFeelDoEngine
           participant.wai_assessments.map do |assessment|
             {
               participant_id: participant.study_id,
-              date_transmitted: assessment.release_date,
-              date_completed: assessment.updated_at.to_date,
+              date_transmitted: assessment.release_date.iso8601,
+              date_completed: assessment.updated_at.to_date.iso8601,
               wai1: assessment.q1,
               wai2: assessment.q2,
               wai3: assessment.q3,
