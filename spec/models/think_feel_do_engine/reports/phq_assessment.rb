@@ -21,7 +21,7 @@ module ThinkFeelDoEngine
 
             expect(data.count).to eq 2
             expect(data).to include(
-              participant_id: phq.participant_id,
+              participant_id: phq.participant.study_id,
               date_transmitted: phq.release_date.iso8601,
               date_completed: phq.updated_at.to_date.iso8601,
               phq1: phq.q1,
