@@ -11,6 +11,7 @@
       <th>Participant</th>
       <th>Subject</th>
       <th>Body</th>
+      <th>Sent</th>
       <th></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= site_message.participant.study_id %></td>
         <td><%= site_message.subject %></td>
         <td><%= site_message.body %></td>
+        <td><%= l(site_message.created_at, format: :standard) %></td>
         <td><%= link_to 'Show', coach_group_site_message_path(@group, site_message) %></td>
       </tr>
     <% end %>
