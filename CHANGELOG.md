@@ -1,3 +1,17 @@
+## 3.2.15 - 2015-04-22
+ * Merge pull request #147 from cbitstech/cjb_task_datetime
+ * Tweak to syntax
+ * Update availability day format in tasks table
+ * Split tables in patient dashboard, update views
+ * Update table view in patient dashboard
+ * Merge pull request #145 from cbitstech/cjb_add_datetime_site_messages
+ * Add datetime to site messages view
+ * Merge pull request #144 from cbitstech/ecf_92725878_missing_module
+ * update Poltergeist version, fix specs
+ * add a kludgy fix for the thought add links
+ * Merge pull request #141 from cbitstech/ecf_90707874_iso8601
+ * make all report date(time)s use iso8601
+
 ## 3.2.14 - 2015-04-15
  * Merge pull request #140 from cbitstech/ems-91448610-arm-validation
  * Rubocop.
