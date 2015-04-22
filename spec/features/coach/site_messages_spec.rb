@@ -18,8 +18,10 @@ feature "Site messages", type: :feature do
 
     expect(page).to have_text "Subject"
     expect(page).to have_text "Body"
+    expect(page).to have_text "Sent"
     expect(page).to have_text "one weird trick"
     expect(page).to have_text "blah blah blah"
+    expect(page).to have_content I18n.l(Time.current, format: :standard)
 
     click_on "Show"
 
