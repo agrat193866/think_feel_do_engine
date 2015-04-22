@@ -14,8 +14,7 @@
     <% end %>
     <th># of Logins</th>
     <th>Last Login</th>
-    <% if @active_patients %>
-    <% else %>
+    <% if !@active_patients && !social_features? %>
     <th>Stepped on Date</th>
     <% end %>
     <% if phq_features? && @active_patients %>

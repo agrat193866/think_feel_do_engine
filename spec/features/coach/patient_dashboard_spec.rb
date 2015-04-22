@@ -82,6 +82,21 @@ feature "patient dashboard", type: :feature do
       end
     end
 
+    context "Coach views table with many patients with phq features" do
+      before do
+        allow(Rails.application.config).to receive(:include_social_features)
+          .and_return(true)
+        sign_in_user clinician
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+      end
+
+      it "does not see 'Stepped on Date' within inactive patients table" do
+        click_on "Inactive Patients"
+        expect(page).to have_css("#patients")
+        expect(page).not_to have_text "Stepped on Date"
+      end
+    end
+
     context "Authorization" do
       before do
         sign_in_user users :user2
