@@ -89,7 +89,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
       yScale = d3.scale.linear(),
       yAxis = d3.svg.axis().scale(yScale).orient("left"),
       xAxis = d3.svg.axis().scale(xScale),
-      parseDate = d3.time.format("%Y-%m-%d").parse,
+      date_format = d3.time.format("%m/%d/%Y"),
       titleHeight = 25,
       averageLineThickness = 2;
 
@@ -122,7 +122,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
         .range([height - margin.top - margin.bottom, 0])
         .nice();
 
-      var  date_format = d3.time.format("%d %b");
+      var  date_format = d3.time.format("%m/%d/%Y");
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
             .tickFormat(function (d){
@@ -406,10 +406,10 @@ function dailyDrillModal (data) {
   var charge = data[4] === "Emotion" ? (data[2] ? "Positive" : "Negative") : "";
   html = "";
   html += "<div class='modal fade' id='smallModal-"+guid+"' tabindex='-1' role='dialog' aria-labelledby='smallModal' aria-hidden='true'><div class='modal-dialog modal-sm'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>"
-  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(new Date(data[0])).format('LL') + "</h4></div><div class='modal-body'>"
+  html += "<h4 class='modal-title' id='myModalLabel'><strong>"+charge+" "+data[4]+"</strong><br>"+ moment(new Date(data[0])).format('L') + "</h4></div><div class='modal-body'>"
   $.each(data[3], function(i, d){
     var emotion = d[2] == undefined ? '' : d[2]
-    html += "<p>"+moment(new Date(d[1])).format('hh:mm a')+": "+d[0]+" "+emotion+"</p>"
+    html += "<p>"+moment(new Date(d[1])).format('h:mm a')+": "+d[0]+" "+emotion+"</p>"
   });
   html += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>"
   $('body').append(html);
@@ -439,7 +439,7 @@ function offsetInterval (graphParameters) {
 }
 
 function appendDateRange (graphParameters) {
-  $('div#date-range strong').empty().append(graphParameters.startDate.format('LL')+' / '+graphParameters.endDate.format('LL'));
+  $('div#date-range strong').empty().append(graphParameters.startDate.format('L')+' - '+graphParameters.endDate.format('L'));
 }
 
 function maxOffset (activationDate, interval) {
