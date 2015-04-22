@@ -80,6 +80,53 @@ feature "patient dashboard", type: :feature do
           expect(page).to have_text("Patient: SCTest01")
         end
       end
+
+      it "does sees correct columns in active and inactive patient views" do
+        within "#patients" do
+          expect(page).not_to have_text "Stepped on Date"
+          expect(page).to have_text "Step to t-CBT"
+        end
+
+        within "#stepped-patients" do
+          expect(page).to have_text "Stepped on Date"
+          expect(page).not_to have_text "Step to t-CBT"
+        end
+
+        click_on "Inactive Patients"
+        within "#patients" do
+          expect(page).not_to have_text "Stepped on Date"
+          expect(page).not_to have_text "Step to t-CBT"
+        end
+
+        within "#stepped-patients" do
+          expect(page).to have_text "Stepped on Date"
+          expect(page).not_to have_text "Step to t-CBT"
+        end
+      end
+    end
+
+    context "Coach views active and inactive patients without phq features" do
+      before do
+        allow(Rails.application.config).to receive(:include_phq_features)
+          .and_return(false)
+        sign_in_user clinician
+        visit "/coach/groups/#{group1.id}/patient_dashboards"
+      end
+
+      it "does sees correct columns in active and inactive patient views" do
+        expect(page).not_to have_css "#stepped-patients"
+        within "#patients" do
+          expect(page).not_to have_text "Stepped on Date"
+          expect(page).not_to have_text "Step to t-CBT"
+        end
+
+        click_on "Inactive Patients"
+        expect(page).not_to have_css "#stepped-patients"
+        within "#patients" do
+          expect(page).not_to have_text "Stepped on Date"
+          expect(page).not_to have_text "Step to t-CBT"
+        end
+      end
     end
 
     context "Authorization" do
@@ -357,11 +404,12 @@ feature "patient dashboard", type: :feature do
       it "summarizes tasks" do
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["#1 Awareness", Date.today.to_formatted_s(:short), "Incomplete"]
+          cells: ["#1 Awareness", I18n.l(Date.today, format: :standard), "Incomplete"]
         )
+
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["Add a New Harmful Thought", Date.today.to_formatted_s(:short), "Incomplete"]
+          cells: ["Add a New Harmful Thought", I18n.l(Date.today, format: :standard), "Incomplete"]
         )
       end
 
@@ -468,22 +516,22 @@ feature "patient dashboard", type: :feature do
       end
     end
 
-    it "allows a coach to see stepped divisions when not social" do
+    it "allows a coach to see stepped divisions when phq_features are present" do
       sign_in_user clinician
-      expect(Rails.application.config).to receive(:include_social_features)
+      expect(Rails.application.config).to receive(:include_phq_features)
         .at_least(:twice)
-        .and_return(false)
+        .and_return(true)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to have_text "Stepped Patients"
       expect(page).to have_text "Not Stepped Patients"
     end
 
-    it "allows a coach to see stepped divisions when not social" do
+    it "allows a coach to see stepped divisions when phq_features are not present" do
       sign_in_user clinician
-      expect(Rails.application.config).to receive(:include_social_features)
+      expect(Rails.application.config).to receive(:include_phq_features)
         .at_least(:twice)
-        .and_return(true)
+        .and_return(false)
       visit "/coach/groups/#{group1.id}/patient_dashboards"
 
       expect(page).to_not have_text "Stepped Patients"

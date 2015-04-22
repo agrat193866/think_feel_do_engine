@@ -10,16 +10,11 @@
     <% end %>
     <% if phq_features? && @active_patients%>
         <th>Most Recent PHQ9 Score</th>
-        <th>Step to t-CBT?</th>
     <% end %>
     <th># of Logins</th>
     <th>Last Login</th>
-    <% if @active_patients %>
-    <% else %>
+    <% if phq_features? %>
     <th>Stepped on Date</th>
-    <% end %>
-    <% if phq_features? && @active_patients %>
-        <th></th>
     <% end %>
     <% if @active_patients %>
         <th>End Date</th>
