@@ -1,0 +1,36 @@
+<table class="table table-hover" id="<%= table_id %>">
+  <thead>
+  <tr>
+    <th>Study Id</th>
+    <th>Unread Messages</th>
+    <% if @active_patients %>
+      <th>Week in Treatment</th>
+    <% else %>
+      <th>Inactive Status</th>
+    <% end %>
+    <% if phq_features? && @active_patients%>
+        <th>Most Recent PHQ9 Score</th>
+        <th>Step to t-CBT?</th>
+    <% end %>
+    <th># of Logins</th>
+    <th>Last Login</th>
+    <% if phq_features? && @active_patients %>
+        <th></th>
+    <% end %>
+    <% if @active_patients %>
+        <th>End Date</th>
+        <% if phq_features? %>
+          <th></th>
+        <% end %>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @active_patients %>
+    <%= render partial: "think_feel_do_engine/coach/patient_dashboards/active_patient", collection: patients, as: :patient %>
+  <% else %>
+    <%= render partial: "think_feel_do_engine/coach/patient_dashboards/inactive_patient", collection: patients, as: :patient %>
+  <% end %>
+  </tbody>
+</table>
