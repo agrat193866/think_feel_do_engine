@@ -1,12 +1,7 @@
 require "rails_helper"
 
 feature "thought tracker", type: :feature do
-  fixtures(
-    :arms, :participants, :users, :groups, :memberships, :"bit_core/slideshows",
-    :"bit_core/slides", :"bit_core/tools", :"bit_core/content_modules",
-    :"bit_core/content_providers", :content_provider_policies, :tasks, :thought_patterns, :thoughts,
-    :task_status
-  )
+  fixtures :all
 
   before do
     sign_in_participant participants(:participant1)
@@ -65,9 +60,15 @@ feature "thought tracker", type: :feature do
   end
 
   it "shows participant intro to reshape module", :js do
-    page.find(".list-group-item", text: "#3 Reshape").trigger("click")
+    page.find(".list-group-item", text: "#3 Reshape").click
+
     expect(page).to have_text "Challenging Harmful Thoughts"
+
     click_on "Next"
+
+    # add expectation here to prevent database deadlocks caused by async
+    # combined with database cleaner
+    expect(page).to have_text("You said you had the following")
   end
 
   it "should not display a way to updated harmful thought's effect" do
@@ -81,7 +82,7 @@ feature "thought tracker", type: :feature do
   end
 
   it "shows a vizualization of thought distortions and their associated harmful thoughts", :js do
-    page.find(".list-group-item-unread", text: "Add a New Thought").click
+    page.find(".list-group-item-unread", text: "Add a New Harmful Thought").click
     fill_in "thought_content", with: "something something"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
     fill_in "Challenging Thought", with: "Oh my"
@@ -92,7 +93,7 @@ feature "thought tracker", type: :feature do
 
     expect(page).to have_text("Think Landing")
 
-    page.find(".list-group-item-read", text: "Add a New Thought").click
+    page.find(".list-group-item-read", text: "Add a New Harmful Thought").click
 
     fill_in "thought_content", with: "something something 2"
     select "Overgeneralization", from: "What thought pattern is this an example of?"
@@ -105,7 +106,7 @@ feature "thought tracker", type: :feature do
 
     expect(page).to have_text("Think Landing")
 
-    page.find(".list-group-item-read", text: "Add a New Thought").click
+    page.find(".list-group-item-read", text: "Add a New Harmful Thought").click
 
     fill_in "thought_content", with: "something something 3"
     select "Overgeneralization", from: "What thought pattern is this an example of?"

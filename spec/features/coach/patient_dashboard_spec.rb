@@ -361,7 +361,7 @@ feature "patient dashboard", type: :feature do
         )
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["Add a New Thought", Date.today.to_formatted_s(:short), "Incomplete"]
+          cells: ["Add a New Harmful Thought", Date.today.to_formatted_s(:short), "Incomplete"]
         )
       end
 
