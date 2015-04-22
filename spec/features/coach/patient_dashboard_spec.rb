@@ -404,11 +404,11 @@ feature "patient dashboard", type: :feature do
       it "summarizes tasks" do
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["#1 Awareness", Date.today.to_formatted_s(:short), "Incomplete"]
+          cells: ["#1 Awareness", I18n.l(Date.today, format: :standard), "Incomplete"]
         )
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["Add a New Harmful Thought", Date.today.to_formatted_s(:short), "Incomplete"]
+          cells: ["Add a New Harmful Thought", I18n.l(Date.today, format: :standard), "Incomplete"]
         )
       end
 
