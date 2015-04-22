@@ -11,7 +11,7 @@ module ThinkFeelDoEngine
         Participant.select(:id, :study_id).map do |participant|
           participant.phq_assessments.map do |assessment|
             {
-              participant_id: assessment.participant_id,
+              participant_id: participant.study_id,
               date_transmitted: assessment.release_date.iso8601,
               date_completed: assessment.updated_at.to_date.iso8601,
               phq1: assessment.q1,
