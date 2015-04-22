@@ -406,6 +406,7 @@ feature "patient dashboard", type: :feature do
           id: "task_statuses",
           cells: ["#1 Awareness", I18n.l(Date.today, format: :standard), "Incomplete"]
         )
+
         expect(page).to have_the_table(
           id: "task_statuses",
           cells: ["Add a New Harmful Thought", I18n.l(Date.today, format: :standard), "Incomplete"]
