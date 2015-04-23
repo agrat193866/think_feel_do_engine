@@ -122,7 +122,7 @@ function columnChart(startDate, endDate, lowBound, highBound, title, yLabel) {
         .range([height - margin.top - margin.bottom, 0])
         .nice();
 
-      var  date_format = d3.time.format("%m/%d/%Y");
+      var  date_format = d3.time.format("%m/%d");
       xAxis
         .ticks(d3.time.days(x_domain[0], x_domain[x_domain.length -1]).length)
             .tickFormat(function (d){
