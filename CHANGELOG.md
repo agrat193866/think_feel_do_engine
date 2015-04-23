@@ -1,3 +1,11 @@
+## 3.2.16 - 2015-04-22
+ * Merge pull request #150 from cbitstech/ems-91448610-2
+ * Merge pull request #149 from cbitstech/ecf_92617312_phq_report
+ * Update faulty arm validator logic.
+ * use study id in PHQ report
+ * Merge pull request #148 from cbitstech/cjb_emotions_viz_datetime
+ * Update Mood/Emotions viz to conform to datetime
+
 ## 3.2.15 - 2015-04-22
  * Merge pull request #147 from cbitstech/cjb_task_datetime
  * Tweak to syntax
