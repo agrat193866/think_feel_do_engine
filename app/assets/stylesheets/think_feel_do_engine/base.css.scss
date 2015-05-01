@@ -9,6 +9,12 @@ h1, h2, h3 {
   display: none;
 }
 
+/* in bootstrap_theme.css, the .modal-backdrop value is equal to the .modal
+   value, resulting in a backdrop on top of the modal */
+.modal-backdrop {
+  z-index: 1039;
+}
+
 /* buttons */
 
 .btn-toolbar, .btn-group {
