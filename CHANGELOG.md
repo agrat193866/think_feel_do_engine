@@ -1,3 +1,12 @@
+## 3.2.17 - 2015-05-01
+ * Merge pull request #154 from cbitstech/ecf_90938810_missing_tool_descriptions
+ * add missing tool description to yieldable content
+ * Merge pull request #152 from cbitstech/cjb_emotions_viz
+ * Merge pull request #153 from cbitstech/cjb_messages_update
+ * Fix coach/messages_spec
+ * Update date on x-axis in mood and emotions viz
+ * Update datetime in coach/recieved_messages partial
+
 ## 3.2.16 - 2015-04-22
  * Merge pull request #150 from cbitstech/ems-91448610-2
  * Merge pull request #149 from cbitstech/ecf_92617312_phq_report
