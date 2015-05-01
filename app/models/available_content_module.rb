@@ -2,7 +2,8 @@
 class AvailableContentModule < ActiveRecord::Base
   self.primary_key = :id
 
-  belongs_to :bit_core_tool
+  belongs_to :bit_core_tool,
+             class_name: "BitCore::Tool"
   belongs_to :participant
   has_many :content_providers,
            class_name: "BitCore::ContentProvider",

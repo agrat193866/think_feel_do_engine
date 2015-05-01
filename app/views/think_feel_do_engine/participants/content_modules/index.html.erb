@@ -1,4 +1,4 @@
-<% if (description = content_modules.first.try(:tool).try(:description)) %>
+<% if (description = content_modules.first.try(:bit_core_tool).try(:description)) %>
   <% content_for(:tool_description) { sanitize(description).gsub(/\n/, "<br><br>").html_safe } %>
 <% end %>
 
