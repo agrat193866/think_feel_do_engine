@@ -1,3 +1,8 @@
+## 3.2.18 - 2015-05-12
+ * destroy MediaAccessEvents when destroying a Slide
+ * count password resets as login events
+ * use Devise sign_in_count for total login
+
 ## 3.2.17 - 2015-05-01
  * Merge pull request #154 from cbitstech/ecf_90938810_missing_tool_descriptions
  * add missing tool description to yieldable content
