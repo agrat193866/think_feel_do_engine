@@ -16,8 +16,8 @@ feature "send participant password reset instructions for participants who can a
     click_on "Send me reset password instructions"
 
     expect(page).to have_text "You will receive an email with instructions on how to reset your password in a few minutes."
-
     expect(last_email.to).to include(participant.email)
+
     path = extract_participant_password_edit_path_from_email
     visit path
 
@@ -25,7 +25,9 @@ feature "send participant password reset instructions for participants who can a
 
     fill_in("participant_password", with: "dog pig cat yeah!")
     fill_in("participant_password_confirmation", with: "dog pig cat yeah!")
-    click_on "Change my password"
+
+    expect { click_on "Change my password" }
+      .to change { participant.participant_login_events.count }.by(1)
 
     expect(page).to have_text "Your password has been changed successfully. You are now signed in."
     expect(current_path).to eq("/")

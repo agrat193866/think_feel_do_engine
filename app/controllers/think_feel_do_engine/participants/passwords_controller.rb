@@ -13,7 +13,9 @@ module ThinkFeelDoEngine
                 "assigned to an active group."
           redirect_to new_participant_session_path, alert: msg
         else
-          super
+          super do |resource|
+            ParticipantLoginEvent.create(participant_id: resource.id)
+          end
         end
       end
 
