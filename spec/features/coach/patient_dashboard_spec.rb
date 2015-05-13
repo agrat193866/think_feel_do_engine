@@ -237,6 +237,21 @@ feature "patient dashboard", type: :feature do
         end
       end
 
+      it "summarizes logins in during this treatment week" do
+        sign_in_participant participant1
+        Timecop.travel(Time.zone.now + 2.days) do
+          sign_in_participant participant1
+          sign_in_user clinician
+          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
+          expect(page).to have_content "Logins during this treatment week: 2"
+          Timecop.travel(Time.zone.now + 6.days) do
+            sign_in_user clinician
+            visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
+            expect(page).to have_content "Logins during this treatment week: 0"
+          end
+        end
+      end
+
       it "summarizes learning when not completed learning", :js do
         Timecop.travel(DateTime.now.beginning_of_minute) do
           visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
