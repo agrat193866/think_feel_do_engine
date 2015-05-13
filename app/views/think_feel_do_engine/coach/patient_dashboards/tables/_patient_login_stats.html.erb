@@ -18,7 +18,7 @@
       </p>
 
       <p>
-        <strong>Logins in this treatment week:</strong>
+        <strong>Logins during this treatment week:</strong>
         <%= view_membership(@participant, @group)
             .logins_by_week(view_membership(@participant, @group)
               .week_in_study(Date.today)) %>
