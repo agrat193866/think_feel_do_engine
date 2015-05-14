@@ -1,13 +1,17 @@
-<%#= form.label name, label, for: "#{ name }_#{ activity.id }" %>
 <%= form.label name, label, for: "activity_#{ name }" %>
 
 <% 
 min_text ||= "None" 
 mid_text ||= "Some"
 max_text ||= "A Lot"
+include_blank ||= false
+parameter_prefix ||= "activity"
 %>
 
-<select name="activity[<%= name %>]" id="activity_<%= name %>" class="form-control" data-selector="<%= (defined? index)? index : 0 %>">
+<select name="<%= parameter_prefix %>[<%= name %>]" id="activity_<%= name %>" class="form-control" data-selector="<%= (defined? index)? index : 0 %>">
+  <% if include_blank %>
+    <option></option>
+  <% end %>
   <% (0..10).each do |value| %>
     <option value="<%= value %>" data-intensity="<%= value %>">
       <% if value == 0 || value == 5 || value == 10 %>

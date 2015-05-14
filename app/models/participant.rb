@@ -18,6 +18,8 @@ class Participant < ActiveRecord::Base
   has_many :activities,
            -> { includes :activity_type },
            dependent: :destroy
+  has_many :planned_activities,
+           -> { includes :activity_type }
   has_many :awake_periods, dependent: :destroy
   has_many :activity_types, dependent: :destroy
   has_many :emotions, dependent: :destroy, foreign_key: :creator_id
