@@ -44,7 +44,7 @@ feature "Activities", type: :feature do
           visit "/navigator/modules/#{ bit_core_content_modules(:do_planning).id }" \
                 "/providers/" \
                 "#{ bit_core_content_providers(:do_planning_important_activity_checklist).id }/1"
-          fill_in "activity[activity_type_new_title]", with: "goat herding"
+          fill_in "planned_activity[activity_type_new_title]", with: "goat herding"
           select 5, from: "How much pleasure did you expect to get from doing this?"
           select 9, from: "How much accomplishment do you expect to get from doing this?"
           click_on "Next"

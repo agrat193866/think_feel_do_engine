@@ -1,12 +1,14 @@
+<%
+  parameter_prefix ||= "activity"
+%>
 <%= form_for current_participant.activities.build, url: create_path, method: "post", html: { role: "form", class: "activity_form", id: "activity-form"} do |f| %>
-
   <% if past_activities.count > 0 %>
     <label>Choose one</label>
 
     <% past_activities.each do |activity| %>
         <div class="input-group static">
           <span class="input-group-addon">
-            <%= radio_button_tag "activity[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }" %>
+            <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }" %>
           </span>
 
           <input type="text" class="form-control-static" value="<%= activity.title %>" readonly></input>
@@ -22,17 +24,17 @@
     </label>
     <div class="input-group static">
       <span class="input-group-addon">
-        <%= radio_button_tag "activity[activity_type_title]", "", false, id: "new_activity_radio" %>
+        <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", "", false, id: "new_activity_radio" %>
       </span>
 
-      <input id="activity_activity_type_new_title" name="activity[activity_type_new_title]" type="text" class="form-control-static"></input>
+      <input id="activity_activity_type_new_title" name="<%= parameter_prefix %>[activity_type_new_title]" type="text" class="form-control-static"></input>
     </div>
   </div>
 
   <hr/>
 
   <% index = 0 %>
-  <%= f.hidden_field :start_time, value: "", class: "start_time_#{ index }" %>
+  <%= hidden_field_tag "#{ parameter_prefix }[start_time]", "", class: "start_time_#{ index }" %>
   <div class="row activity_tracker-row">
     <div class="col-lg-6">
       <div class="input-group">
@@ -65,7 +67,9 @@
       min_text: "None",
       mid_text: "Some",
       max_text: "A Lot",
-      suggested: true
+      suggested: true,
+      include_blank: true,
+      parameter_prefix: parameter_prefix
     ) %>
   </div>
 
@@ -79,7 +83,9 @@
       min_text: "None",
       mid_text: "Some",
       max_text: "A Lot",
-      suggested: true
+      suggested: true,
+      include_blank: true,
+      parameter_prefix: parameter_prefix
     ) %>
   </div>
 

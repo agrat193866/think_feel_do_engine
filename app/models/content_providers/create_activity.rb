@@ -23,7 +23,7 @@ module ContentProviders
     end
 
     def data_class_name
-      "Activity"
+      "PlannedActivity"
     end
 
     def show_nav_link?

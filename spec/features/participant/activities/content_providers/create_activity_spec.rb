@@ -24,7 +24,7 @@ feature "Activities", type: :feature do
       end
 
       scenario "Participant may create a new activity they've not yet done" do
-        fill_in "activity[activity_type_new_title]", with: "goat herding"
+        fill_in "planned_activity[activity_type_new_title]", with: "goat herding"
         select 4, from: "activity_predicted_pleasure_intensity"
         select 7, from: "activity_predicted_accomplishment_intensity"
         click_on "Next"
