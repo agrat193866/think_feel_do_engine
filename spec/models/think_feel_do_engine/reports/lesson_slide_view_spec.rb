@@ -15,6 +15,24 @@ module ThinkFeelDoEngine
         end
 
         context "when lesson slides were viewed" do
+          it "is observed in the report" do
+            EventCapture::Event.destroy_all
+            m = bit_core_content_modules(:slideshow_content_module_2)
+            p = bit_core_content_providers(:content_provider_slideshow_2)
+
+            expect do
+              EventCapture::Event.create!(
+                kind: "render",
+                participant: participants(:participant1),
+                payload: {
+                  currentUrl: "http://localhost/navigator/modules/#{ m.id }" \
+                              "/providers/#{ p.id }/1"
+                },
+                emitted_at: Time.zone.now
+              )
+            end.to change { LessonSlideView.all.count }.by(1)
+          end
+
           it "returns accurate summaries" do
             data = LessonSlideView.all
             participant = participants(:participant1)
@@ -23,7 +41,6 @@ module ThinkFeelDoEngine
             select_event = event_capture_events(:event_capture_events_064)
             exit_event = event_capture_events(:event_capture_events_108)
 
-            expect(data.count).to eq 2
             expect(data).to include(
               participant_id: participant.study_id,
               lesson_id: lesson.id,
