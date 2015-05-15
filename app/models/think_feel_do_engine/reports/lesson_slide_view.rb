@@ -15,7 +15,7 @@ module ThinkFeelDoEngine
         # condense adjacent interactions
         filtered_interactions = []
         interactions.each_with_index do |interaction, i|
-          previous_interaction = interactions[i - 1] || {}
+          previous_interaction = i > 0 ? interactions[i - 1] : {}
           next if previous_interaction[:slide_id] == interaction[:slide_id]
 
           next_interaction = interactions[i + 1] || {}
@@ -48,7 +48,7 @@ module ThinkFeelDoEngine
               slide_id: slide.try(:id),
               slide_title: slide.try(:title),
               slide_selected_at: e.emitted_at.iso8601,
-              slide_exited_at: next_event_at(e).iso8601
+              slide_exited_at: next_event_at(e).try(:iso8601)
             }
           end
         end.flatten
