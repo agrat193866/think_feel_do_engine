@@ -1,3 +1,15 @@
+## 3.2.19 - 2015-05-14
+ * Merge pull request #159 from cbitstech/ecf_94335536_new_activity
+ * add blank predicted values for planned activities
+ * Merge pull request #158 from cbitstech/ecf_93337020_messaging_link
+ * add link to view Participant group-scoped messages
+ * Merge pull request #157 from cbitstech/cjb_7day_logins
+ * Minor tweak to language
+ * Update 'the last seven days'
+ * Update membership for participant1
+ * Add spec for seven day logins on patient dash
+ * Tag new release. (3.2.18)
+
 ## 3.2.18 - 2015-05-12
  * destroy MediaAccessEvents when destroying a Slide
  * count password resets as login events
