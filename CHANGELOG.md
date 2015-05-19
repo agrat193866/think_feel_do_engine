@@ -1,3 +1,7 @@
+## 3.2.20 - 2015-05-19
+ * Merge pull request #160 from cbitstech/ecf_93119990_lesson_slides
+ * ensure lesson slide view reports are accurate
+
 ## 3.2.19 - 2015-05-14
  * Merge pull request #159 from cbitstech/ecf_94335536_new_activity
  * add blank predicted values for planned activities
