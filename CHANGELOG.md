@@ -1,3 +1,7 @@
+## 3.2.21 - 2015-05-19
+ * Merge pull request #161 from cbitstech/ems-94335536
+ * Update view to use dynamic prefix for social form attributes.
+
 ## 3.2.20 - 2015-05-19
  * Merge pull request #160 from cbitstech/ecf_93119990_lesson_slides
  * ensure lesson slide view reports are accurate
