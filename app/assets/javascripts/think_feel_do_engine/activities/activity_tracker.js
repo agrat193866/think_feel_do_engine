@@ -123,7 +123,15 @@ sc.activityTracker = function(path){
   };
 
   this.handleSubmitClick = function(e) {
-    if(validatePublicNoEvent(e, 'activity_shared_item_true')) {
+    var shared_item_name;
+
+    if($(".activity_shared_item_true")[0]) {
+      shared_item_name = "activity_shared_item_true";
+    } else {
+      shared_item_name = "planned_activity_shared_item_true";
+    }
+    
+    if(validatePublicNoEvent(e, shared_item_name)) {
         var $forms = $("form.activity_form");
 
         sc.displayErrors();
