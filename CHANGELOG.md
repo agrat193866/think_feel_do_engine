@@ -1,3 +1,8 @@
+## 3.2.22 - 2015-05-28
+ * Merge pull request #162 from cbitstech/ems-95492972
+ * Show navbar on privacy policy page for authenticated participants.
+ * Update activity tracker to expect planned activities.
+
 ## 3.2.21 - 2015-05-19
  * Merge pull request #161 from cbitstech/ems-94335536
  * Update view to use dynamic prefix for social form attributes.
