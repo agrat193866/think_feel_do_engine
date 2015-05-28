@@ -130,7 +130,6 @@ sc.activityTracker = function(path){
     } else {
       shared_item_name = "planned_activity_shared_item_true";
     }
-    
     if(validatePublicNoEvent(e, shared_item_name)) {
         var $forms = $("form.activity_form");
 
