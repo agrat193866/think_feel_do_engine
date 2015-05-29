@@ -154,15 +154,9 @@ a.jp-pause {
 a.jp-play {
   background: url(image_path('jplayer.blue.monday.jpg')) 0 0 no-repeat;
 }
-a.jp-play:hover {
-  background: url(image_path('jplayer.blue.monday.jpg')) -41px 0 no-repeat;
-}
 a.jp-pause {
   background: url(image_path('jplayer.blue.monday.jpg')) 0 -42px no-repeat;
   display: none;
-}
-a.jp-pause:hover {
-  background: url(image_path('jplayer.blue.monday.jpg')) -41px -42px no-repeat;
 }
 
 a.jp-stop, a.jp-previous, a.jp-next {
@@ -176,9 +170,6 @@ a.jp-stop {
   margin-left:10px;
 }
 
-a.jp-stop:hover {
-  background: url(image_path('jplayer.blue.monday.jpg')) -29px -83px no-repeat;
-}
 
 a.jp-previous {
   background: url(image_path('jplayer.blue.monday.jpg')) 0 -112px no-repeat;
