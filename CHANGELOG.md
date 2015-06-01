@@ -1,3 +1,9 @@
+## 3.2.23 - 2015-06-01
+ * Merge pull request #164 from cbitstech/95493080
+ * Remove hover CSS effects from jplayer skin.
+ * Merge pull request #163 from cbitstech/msw_92125612_lesson_slide_view_report
+ * Add Try Method
+
 ## 3.2.22 - 2015-05-28
  * Merge pull request #162 from cbitstech/ems-95492972
  * Show navbar on privacy policy page for authenticated participants.
