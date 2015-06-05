@@ -1,8 +1,8 @@
 <% tool_navs = ToolNavItem.for_participant(current_participant) %>
 
-<li><%= link_to fa_icon("home", text: "Home"), brand_location %></li>
+<li class="custom-snap-width"><%= link_to fa_icon("home", text: "Home"), brand_location %></li>
 <% tool_navs.each do |tool_nav| %>
-  <li class="<%= tool_nav.title %><%= tool_nav.is_active?(@navigator.current_module) ? " active" : "" %>">
+  <li class="custom-snap-width <%= tool_nav.title %><%= tool_nav.is_active?(@navigator.current_module) ? " active" : "" %>">
     <%= link_to think_feel_do_engine.navigator_context_path(context_name: tool_nav.title) do %>
       <%= tool_nav.title %>
       <% unless tool_nav.alert.nil? %>
@@ -13,5 +13,5 @@
 <% end %>
 
 <% if current_participant %>
-  <li><%= link_to fa_icon("sign-out", text: "Sign Out"), think_feel_do_engine.destroy_participant_session_path, method: :delete %></li>
+  <li class="custom-snap-width"><%= link_to fa_icon("sign-out", text: "Sign Out"), think_feel_do_engine.destroy_participant_session_path, method: :delete %></li>
 <% end %>
