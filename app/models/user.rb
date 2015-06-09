@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     sent_messages.build(attributes)
   end
 
+  def participants_for_group(group)
+    participants.where(id: group.participant_ids)
+  end
+
   def password_is__not_blank?
     !password.blank?
   end
