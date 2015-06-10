@@ -1,15 +1,13 @@
 <h1>Message</h1>
 
-<% if can? :create, SiteMessage %>
+<% if participant_signed_in? && !current_participant.coach_assignment %>
+  <p class="lead">You will be able use this tool once you have been assigned a coach</p>
+<% elsif current_user && can?(:create, SiteMessage) %>
   <div class="btn-toolbar" role="toolbar">
     <%= link_to "Messages", coach_group_messages_path(@group), class: "btn btn-default" %>
     <%= link_to "Compose", new_coach_group_message_path(@group), class: "btn btn-default" %>
   </div>
-<% end %>
-
-<% if participant_signed_in? && !current_participant.coach_assignment %>
-  <p class="lead">You will be able use this tool once you have been assigned a coach</p>
-<% elsif current_user || current_participant && current_participant.active_membership.present? %>
+<% elsif current_participant && current_participant.active_membership.present? %>
   <div class="btn-toolbar">
     <%= (link_to "Compose", compose_path, class: "btn btn-default") if current_user || current_participant.active_membership.group.arm.can_message_after_membership_complete? || current_participant.in_study? %>
   </div>
