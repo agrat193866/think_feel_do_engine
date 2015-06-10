@@ -6,8 +6,8 @@ module ThinkFeelDoEngine
       load_and_authorize_resource except: [:index]
 
       def index
-        authorize! :show, SiteMessage
-        participant_ids = @group.participant_ids
+        authorize! :index, SiteMessage
+        participant_ids = current_user.participants_for_group(@group).ids
         @site_messages =
           SiteMessage
           .where(participant_id: participant_ids)
@@ -17,7 +17,7 @@ module ThinkFeelDoEngine
       end
 
       def new
-        @participants = @group.participants
+        @participants = current_user.participants_for_group(@group)
       end
 
       def create
