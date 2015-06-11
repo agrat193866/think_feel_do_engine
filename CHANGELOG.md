@@ -1,3 +1,13 @@
+## 3.2.24 - 2015-06-11
+ * Merge pull request #168 from cbitstech/msw_95718670_calendar_redirect
+ * Update Viz JS
+ * Merge pull request #167 from cbitstech/msw_92730868_double_compose
+ * Update Compose Button Logic
+ * Merge pull request #166 from cbitstech/msw_92731296_update_site_message_scoping
+ * Scope Site Messages
+ * Merge pull request #165 from cbitstech/msw_95745360_update_snap
+ * Update Snap to Media Query
+
 ## 3.2.23 - 2015-06-01
  * Merge pull request #164 from cbitstech/95493080
  * Remove hover CSS effects from jplayer skin.
