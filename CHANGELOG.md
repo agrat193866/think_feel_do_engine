@@ -1,3 +1,7 @@
+## 3.2.26 - 2015-06-11
+ * Merge pull request #170 from cbitstech/msw_91699288_update_message_highlighting
+ * Add Styling To Messages
+
 ## 3.2.25 - 2015-06-11
  * Merge pull request #169 from cbitstech/msw_93481574_group_validation
  * Add ActiveRecord Validation to Group
