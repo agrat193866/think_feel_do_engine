@@ -1,3 +1,7 @@
+## 3.2.25 - 2015-06-11
+ * Merge pull request #169 from cbitstech/msw_93481574_group_validation
+ * Add ActiveRecord Validation to Group
+
 ## 3.2.24 - 2015-06-11
  * Merge pull request #168 from cbitstech/msw_95718670_calendar_redirect
  * Update Viz JS
