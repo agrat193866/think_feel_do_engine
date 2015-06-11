@@ -15,7 +15,7 @@ class Group < ActiveRecord::Base
   has_many :active_participants, through: :active_memberships
 
   validates :arm_id, presence: true
-  validates :title, presence: true, length: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 50 }, uniqueness: true
 
   delegate :count, to: :memberships, prefix: true
 
