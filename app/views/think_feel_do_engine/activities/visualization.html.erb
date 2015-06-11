@@ -110,6 +110,7 @@
     $("#day-range-selector li a").on("click", function(event) {
       var numOfDays;
 
+      event.preventDefault();
       $("#activities").remove();
       $("#datepicker").hide();
       numOfDays = $(event.currentTarget).data("range");
