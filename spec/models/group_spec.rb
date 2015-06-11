@@ -7,6 +7,27 @@ describe Group do
   let(:lesson_module) { bit_core_content_modules(:slideshow_content_module_1) }
   let(:non_lesson_module) { bit_core_content_modules(:feeling_tracker_emotions_list) }
 
+  describe "validations" do
+    def group(attributes = {})
+      Group.new({
+        arm: arms(:arm1),
+        title: "tHe GrOuP!"
+      }.merge(attributes))
+    end
+
+    context "when invalid" do
+      let(:title) { "Group Title" }
+      let(:new_group) { group(title: title) }
+
+      it "is not valid when group title is already taken" do
+        group(title: title).save
+
+        expect(new_group).to_not be_valid
+        expect { new_group.save! }.to raise_error
+      end
+    end
+  end
+
   it ".learning_tasks returns the tasks whose content modules are lesson modules" do
     count = group.learning_tasks.count
     Task.create(
