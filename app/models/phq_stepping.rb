@@ -2,7 +2,7 @@
 #
 # An explanation of the algorithm:
 #
-# Weeks 4-8
+# Weeks EARLIEST_ELIGIBLE_STEPPING_WEEK - 8
 # If PHQ-9 >= 17 at two consecutive weeks, then "step" t-CBT
 # If PHQ-9 < 17 at Week 5-8, then "stay" i-CBT
 # If PHQ-9 < 5 at two consecutive weeks, schedule "post-engagement" coach call
@@ -15,6 +15,8 @@
 # If PHQ-9 < 10 and >= 5, then "stay" i-CBT
 # If PHQ-9 < 5 at two consecutive weeks, schedule "post-engagement" coach call
 class PhqStepping
+  EARLIEST_ELIGIBLE_STEPPING_WEEK = 5
+
   attr_accessor :assessments, :week, :urgency, :suggestion,
                 :detailed_suggestion, :step, :stay, :release, :range_start
 
@@ -54,7 +56,7 @@ class PhqStepping
     @upper_limit = 17
     @upper_prev_limit = 17
     @lower_limit = 0
-    @range_start = (@week < 9) ? 4 : 9
+    @range_start = (@week < 9) ? EARLIEST_ELIGIBLE_STEPPING_WEEK : 9
     @range_start = 14 if (@week >= 14)
     @edge_week = (@week == @range_start)
     @urgency = "danger"
@@ -79,7 +81,7 @@ class PhqStepping
   end
 
   def set_phq_score_ranges
-    if @week < 4
+    if @week < EARLIEST_ELIGIBLE_STEPPING_WEEK
       @urgency = "warning"
       @suggestion = "No; Too Early"
       @detailed_suggestion = "Stay on i-CBT; Too early to determine stepping."
@@ -205,7 +207,9 @@ class PhqStepping
 
   def previous_data_to_infer_from?
     unless @assessments.any? do |assessment|
-             assessment.week_of_assessment.to_i < 4
+             assessment
+             .week_of_assessment
+             .to_i < EARLIEST_ELIGIBLE_STEPPING_WEEK
            end
       sort_assessments
       fill_in_missing_unknown_assessments
@@ -221,8 +225,8 @@ class PhqStepping
 
   def build_complete_record
     return false unless previous_data_to_infer_from?
-    # Prep this period (week 4-8, 9-13, 14+) by making sure at least
-    # the start date has an associated assessment
+    # Prep this period (week EARLIEST_ELIGIBLE_STEPPING_WEEK - 8, 9-13, 14+)
+    # by making sure at least the start date has an associated assessment
     fill_in_initial_week
     filter_assessments(@range_start)
     sort_assessments
