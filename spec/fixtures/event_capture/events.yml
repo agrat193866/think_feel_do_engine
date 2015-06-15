@@ -3327,3 +3327,19 @@ event_capture_events_178:
     remote_ip: 127.0.0.1
   kind: render
   participant_id: <%= ActiveRecord::FixtureSet.identify(:participant1) %>
+
+event_capture_events_179:
+  emitted_at: <%= DateTime.now - 294.seconds %>
+  recorded_at: <%= DateTime.now - 294.seconds %>
+  payload: |
+    --- !ruby/hash:ActionController::Parameters
+    currentUrl: http://localhost:3000/navigator/modules/773397903/providers/432284478/1
+    headers:
+    - LEARN
+    - Learn - Video Slideshow
+    - Meet Joe
+    ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/40.0.2214.111 Safari/537.36
+    remote_ip: 127.0.0.1
+  kind: render
+  participant_id: <%= ActiveRecord::FixtureSet.identify(:participant2) %>

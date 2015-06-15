@@ -22,7 +22,7 @@ module ThinkFeelDoEngine
           it "returns accurate summaries" do
             event = event_capture_events(:event_capture_events_010)
 
-            expect(data.count).to eq 152
+            expect(data.count).to eq 153
             expect(data).to include(
               participant_id: "TFD-1111",
               emitted_at: event.emitted_at.iso8601,

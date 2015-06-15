@@ -15,16 +15,15 @@
           <tr>
             <th class="not-displayed"></th>
             <th class="not-displayed"></th>
-            <th class="not-displayed"></th>
-            <th>Task</th>
-            <th>Availability Day</th>
-            <th>Started At</th>
-            <th>Completed At</th>
-            <th>Duration</th>
+            <th>Lesson Title</th>
+            <th>Lesson Page</th>
+            <th>Lesson Selected At</th>
+            <th>Last Page Number Opened</th>
+            <th>Last Page Opened At</th>
           </tr>
           </thead>
           <tbody>
-          <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { task_statuses: @learning_tasks } %>
+          <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { lesson_events: @lesson_events } %>
           </tbody>
         </table>
       </div>
@@ -44,31 +43,17 @@
         {
           aTargets: [0],
           bVisible: false
-        },
-        {
-          aTargets: [4],
-          iDataSort: [0]
-        },
-        {
+        },{
           aTargets: [1],
           bVisible: false
-        },
-        {
-          aTargets: [5],
-          iDataSort: [1]
-        },
-        {
-          aTargets: [2],
-          bVisible: false
-        },
-        {
+        },{
+          aTargets: [4],
+          iDataSort: [0]
+        },{
           aTargets: [6],
-          iDataSort: [2]
+          iDataSort: [1]
         }
       ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
     });
   });
 </script>

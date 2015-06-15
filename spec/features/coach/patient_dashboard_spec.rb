@@ -252,55 +252,6 @@ feature "patient dashboard", type: :feature do
         end
       end
 
-      it "summarizes learning when not completed learning", :js do
-        Timecop.travel(DateTime.now.beginning_of_minute) do
-          visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
-
-          within_table "learning_data" do
-            expect(page).to_not have_text "Not Completed"
-            expect(page).to have_text "No data available in table"
-          end
-
-          sign_in_participant participant1
-
-          find(".LEARN.hidden-xs a").click
-
-          expect(page).to have_text("Lessons")
-
-          find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
-          sign_in_user users(:clinician1)
-          visit "/coach/groups/#{ group1.id }/patient_dashboards/#{ participant1.id }"
-
-          expect(page).to have_the_table(
-            id: "learning_data",
-            cells: ["Do - Awareness Introduction", I18n.l(Date.today, format: :standard), longer_timestamp, longer_timestamp, "Not Completed"]
-          )
-        end
-      end
-
-      it "summarizes learning when completed learning", :js do
-        Timecop.travel(time_now) do
-          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
-
-          within_table "learning_data" do
-            expect(page).to_not have_text "Not Completed"
-            expect(page).to have_text "No data available in table"
-          end
-
-          sign_in_participant participant1
-          find(".LEARN.hidden-xs a").click
-          find(".list-group-item .task-status", text: "Do - Awareness Introduction").click
-          click_on "Finish"
-
-          sign_in_user clinician
-          visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
-          expect(page).to have_the_table(
-            id: "learning_data",
-            cells: ["Do - Awareness Introduction", I18n.l(Date.today, format: :standard), longer_timestamp, longer_timestamp, "less than a minute"]
-          )
-        end
-      end
-
       it "summarizes moods" do
         expect(page).to have_the_table(
           id: "moods-table",
