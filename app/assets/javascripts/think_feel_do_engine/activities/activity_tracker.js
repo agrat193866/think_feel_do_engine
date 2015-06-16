@@ -137,7 +137,9 @@ sc.activityTracker = function(path){
 
         if ($forms.length === 1) {
             $(".start_time_0").val(self.concatStringFromPickers(0));
-            $forms.submit();
+            if ($('.has-error').length === 0) {
+              $forms.submit();
+            }
 
             return false;
         } else {
