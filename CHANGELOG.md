@@ -1,3 +1,17 @@
+## 3.2.27 - 2015-06-17
+ * Merge pull request #176 from cbitstech/cjb_login_format
+ * Add time, date, and datetime format for login info
+ * Merge pull request #172 from cbitstech/msw_96783814_update_report_event_clicks
+ * Merge pull request #175 from cbitstech/cjb_tables
+ * Display Event Data
+ * Update to Thoughts table for sorting
+ * Merge pull request #174 from cbitstech/cjb_96219076
+ * Update As If Thought to As If Action
+ * Merge pull request #173 from cbitstech/msw_94683542_incomplete_data
+ * Improve Validations
+ * Merge pull request #171 from cbitstech/msw_96449738_phq9
+ * Update Week Testing Becomes Valid
+
 ## 3.2.26 - 2015-06-11
  * Merge pull request #170 from cbitstech/msw_91699288_update_message_highlighting
  * Add Styling To Messages
