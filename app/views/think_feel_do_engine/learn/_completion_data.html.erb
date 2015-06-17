@@ -1,20 +1,15 @@
-<% task_statuses.each do |task_status| %>
-  <% task_status.engagements.each do |engagement| %>
-    <tr>
-      <td class="not-displayed">
-        <%= (task_status.membership.start_date + task_status.start_day - 1) ? (task_status.membership.start_date + task_status.start_day - 1).to_time.to_i : 0 %>
-      </td>
-      <td class="not-displayed">
-        <%= engagement.created_at ? task_status.completed_at.to_i : 0 %>
-      </td>
-      <td class="not-displayed">
-        <%= engagement.completed_at ? engagement.completed_at.to_i : 0 %>
-      </td>
-      <td><%= task_status.task.title %></td>
-      <td><%= l((task_status.membership.start_date + task_status.start_day - 1).to_date, format: :standard) %></td>
-      <td><%= l(engagement.created_at, format: :standard) %></td>
-      <td><%= l(engagement.completed_at, format: :standard) unless engagement.completed_at.nil? %></td>
-      <td><%= engagement.completed_at ? distance_of_time_in_words(engagement.completed_at - engagement.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
-    </tr>
-  <% end %>
+<% lesson_events.each do |lesson_event| %>
+  <tr>
+    <td class="not-displayed">
+      <%= DateTime.iso8601(lesson_event[:lesson_selected_at]).to_i %>
+    </td>
+    <td class="not-displayed">
+      <%= DateTime.iso8601(lesson_event[:last_page_opened_at]).to_i %>
+    </td>
+    <td><%= ContentModules::LessonModule.find(lesson_event[:lesson_id]).title %></td>
+    <td><%= lesson_event[:page_headers][2] %></td>
+    <td><%= l(DateTime.iso8601(lesson_event[:lesson_selected_at]), format: :standard) %></td>
+    <td><%= lesson_event[:last_page_number_opened] %></td>
+    <td><%= l(DateTime.iso8601(lesson_event[:last_page_opened_at]), format: :standard) %></td>
+  </tr>
 <% end %>

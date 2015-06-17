@@ -9,10 +9,15 @@ module ThinkFeelDoEngine
             last_page_number_opened last_page_opened_at )
       end
 
-      def self.all
+      def self.participant_ids(ids)
+        ids.empty? ? Participant.ids : ids
+      end
+
+      def self.all(*ids)
         lessons = lesson_entries_map
 
-        Participant.select(:id, :study_id).map do |participant|
+        Participant.select(:id, :study_id)
+          .where(id: participant_ids(ids)).map do |participant|
           lesson_select_events =
             EventCapture::Event
             .where(participant_id: participant.id, kind: "render")

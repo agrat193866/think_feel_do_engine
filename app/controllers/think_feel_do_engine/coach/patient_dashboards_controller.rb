@@ -32,11 +32,8 @@ module ThinkFeelDoEngine
 
       def show
         authorize! :show, @participant
-        if active_group
-          @learning_tasks = @participant.learning_tasks(learning_modules)
-        else
-          @learning_tasks = []
-        end
+        @lesson_events = ThinkFeelDoEngine::Reports::LessonViewing
+                         .all(@participant.id)
       end
 
       def patient_button_link(active)

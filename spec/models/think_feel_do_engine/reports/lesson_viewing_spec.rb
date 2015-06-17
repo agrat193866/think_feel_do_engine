@@ -19,11 +19,26 @@ module ThinkFeelDoEngine
             event = event_capture_events(:event_capture_events_169)
             data = LessonViewing.all
 
-            expect(data.count).to eq 2
+            expect(data.count).to eq 3
             expect(data).to include(
               participant_id: "TFD-1111",
               lesson_id: bit_core_content_modules(:video_lesson_slideshow).id,
               page_headers: ["LEARN", "Learn - Video Slideshow", "Meet Jim"],
+              lesson_selected_at: (event.emitted_at).utc.iso8601,
+              last_page_number_opened: 1,
+              last_page_opened_at: (event.emitted_at).utc.iso8601
+            )
+          end
+
+          it "returns summaries scoped to a participant" do
+            event = event_capture_events(:event_capture_events_179)
+            data = LessonViewing.all(participants(:participant2).id)
+
+            expect(data.count).to eq 1
+            expect(data).to include(
+              participant_id: "TFD-2",
+              lesson_id: bit_core_content_modules(:video_lesson_slideshow).id,
+              page_headers: ["LEARN", "Learn - Video Slideshow", "Meet Joe"],
               lesson_selected_at: (event.emitted_at).utc.iso8601,
               last_page_number_opened: 1,
               last_page_opened_at: (event.emitted_at).utc.iso8601
