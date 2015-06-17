@@ -1,4 +1,7 @@
 <tr>
+  <td class="not-displayed"> 
+    <%= thought.created_at ? thought.created_at.to_i : 0 %>
+  </td>
   <td><%= thought.content %></td>
   <td><%= (thought.pattern_title && thought.pattern_title.length > 0) ? thought.pattern_title : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
   <td><%= (thought.challenging_thought && thought.challenging_thought.length > 0) ? thought.challenging_thought : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
