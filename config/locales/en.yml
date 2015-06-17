@@ -6,11 +6,14 @@ en:
   time:
     formats:
       standard: "%b %d %Y %H:%M"
+      login: "%A, %b %d %Y %H:%M"
 
   date:
     formats:
       standard: "%m/%d/%Y"
+      login: "%A, %m/%d/%Y"
 
   datetime:
     formats:
       standard: "%b %d %Y %H:%M"
+      login: "%A, %b %d %Y %H:%M"
