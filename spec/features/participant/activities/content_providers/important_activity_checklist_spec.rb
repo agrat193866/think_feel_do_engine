@@ -17,8 +17,8 @@ feature "Activities", type: :feature do
       sign_in_participant participant
     end
 
-    describe "ContentProvider::ImportantActivityChecklist" do
-      describe "Participant plans an activity that gives them accomplishment", :js do
+    describe "ContentProvider::ImportantActivityChecklist", :js do
+      describe "Participant plans an activity that gives them accomplishment" do
         scenario "by choosing a previously created activity" do
           visit "/navigator/modules/#{ bit_core_content_modules(:do_planning).id }" \
                 "/providers/" \
@@ -45,6 +45,7 @@ feature "Activities", type: :feature do
                 "/providers/" \
                 "#{ bit_core_content_providers(:do_planning_important_activity_checklist).id }/1"
           fill_in "planned_activity[activity_type_new_title]", with: "goat herding"
+          find("input[id='new_activity_radio']").click
           select 5, from: "How much pleasure did you expect to get from doing this?"
           select 9, from: "How much accomplishment do you expect to get from doing this?"
           click_on "Next"
@@ -60,6 +61,15 @@ feature "Activities", type: :feature do
               "9"
             ]
           )
+        end
+
+        scenario "displays error message if activity fields are not filled out" do
+          visit "/navigator/modules/#{ bit_core_content_modules(:do_planning).id }" \
+                "/providers/" \
+                "#{ bit_core_content_providers(:do_planning_important_activity_checklist).id }/1"
+          click_on "Next"
+
+          expect(page).to have_text("Select at least one activity.")
         end
       end
     end

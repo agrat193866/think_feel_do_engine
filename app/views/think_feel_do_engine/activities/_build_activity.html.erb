@@ -6,13 +6,14 @@
     <label>Choose one</label>
 
     <% past_activities.each do |activity| %>
-        <div class="input-group static">
+      <div class="form-group">
+        <div class="input-group">
           <span class="input-group-addon">
-            <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }" %>
+            <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", activity.title, false, id: "activity-title-#{ activity.id }", class: "choose-one" %>
           </span>
-
-          <input type="text" class="form-control-static" value="<%= activity.title %>" readonly></input>
+          <input type="text" class="form-control" value="<%= activity.title %>" readonly></input>
         </div>
+      </div>
     <% end %>
   <% end %>
 
@@ -22,12 +23,11 @@
     <label class="control-label" for="activity_activity_type_new_title">
       Or add another
     </label>
-    <div class="input-group static">
+    <div class="input-group">
       <span class="input-group-addon">
-        <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", "", false, id: "new_activity_radio" %>
+        <%= radio_button_tag "#{ parameter_prefix }[activity_type_title]", "", false, id: "new_activity_radio", class: "choose-one" %>
       </span>
-
-      <input id="activity_activity_type_new_title" name="<%= parameter_prefix %>[activity_type_new_title]" type="text" class="form-control-static"></input>
+      <input id="activity_activity_type_new_title" name="<%= parameter_prefix %>[activity_type_new_title]" type="text" class="form-control"></input>
     </div>
   </div>
 
