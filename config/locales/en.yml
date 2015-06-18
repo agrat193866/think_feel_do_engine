@@ -7,6 +7,7 @@ en:
     formats:
       standard: "%b %d %Y %H:%M"
       login: "%A, %b %d %Y %H:%M"
+      with_seconds: "%b %d %Y %H:%M:%S"
 
   date:
     formats:
@@ -17,3 +18,4 @@ en:
     formats:
       standard: "%b %d %Y %H:%M"
       login: "%A, %b %d %Y %H:%M"
+      with_seconds: "%b %d %Y %H:%M:%S"
