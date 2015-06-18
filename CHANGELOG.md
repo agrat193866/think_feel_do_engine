@@ -1,3 +1,7 @@
+## 3.2.29 - 2015-06-18
+ * Merge pull request #180 from cbitstech/msw_97251532_template_error
+ * Add Try Block to Lesson Events
+
 ## 3.2.28 - 2015-06-18
  * Merge pull request #179 from cbitstech/msw_97251532_learning_table_template_error
  * Fix Learning Table Template Error
