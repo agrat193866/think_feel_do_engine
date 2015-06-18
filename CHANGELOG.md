@@ -1,3 +1,12 @@
+## 3.2.28 - 2015-06-18
+ * Merge pull request #179 from cbitstech/msw_97251532_learning_table_template_error
+ * Fix Learning Table Template Error
+ * Merge pull request #178 from cbitstech/cjb_messages_table
+ * Fix class in tables
+ * Make messages table filter and sortable
+ * Merge pull request #177 from cbitstech/cjb_lesson_table
+ * Add format for time, update lesson view table
+
 ## 3.2.27 - 2015-06-17
  * Merge pull request #176 from cbitstech/cjb_login_format
  * Add time, date, and datetime format for login info
