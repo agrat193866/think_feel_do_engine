@@ -41,15 +41,25 @@ RSpec.describe "think_feel_do_engine/coach/patient_dashboards" \
     end
   end
 
-  context "An event is nil" do
+  context "An event's page header is nil" do
+    let(:lesson) { double("lesson", title: "Think, Feel, Do Your Way Out of Depression") }
+
     before :each do
-      assign(:lesson_events, [nil])
+      allow(ContentModules::LessonModule).to receive(:find).and_return(lesson)
+      assign(:lesson_events, [
+        {
+          page_headers: nil,
+          lesson_selected_at: "2015-01-21T16:21",
+          last_page_number_opened: 1,
+          last_page_opened_at: "2015-02-22T15:43"
+        }
+      ])
       render partial: "think_feel_do_engine/coach/" \
                       "patient_dashboards/tables/lessons_table"
     end
 
     it "will render the table" do
-      expect(rendered).to have_text "Lesson Title"
+      expect(rendered).to have_text "Think, Feel, Do Your Way Out of Depression"
     end
   end
 end
