@@ -1,16 +1,18 @@
 <% lesson_events.each do |lesson_event| %>
-  <tr>
-    <td class="not-displayed">
-      <%= DateTime.iso8601(lesson_event[:lesson_selected_at]).to_i %>
-    </td>
-    <td class="not-displayed">
-      <%= DateTime.iso8601(lesson_event[:last_page_opened_at]).to_i %>
-    </td>
-    <td><%= ContentModules::LessonModule.find(lesson_event[:lesson_id]).title %></td>
-    <td><%= lesson_event[:page_headers][2] %></td>
-    <td><%= l(DateTime.iso8601(lesson_event[:lesson_selected_at]), format: :with_seconds) %></td>
-    <td><%= lesson_event[:last_page_number_opened] %></td>
-    <td><%= l(DateTime.iso8601(lesson_event[:last_page_opened_at]), format: :with_seconds) %></td>
-    <td><%= distance_of_time_in_words(DateTime.iso8601(lesson_event[:last_page_opened_at]) - DateTime.iso8601(lesson_event[:lesson_selected_at])) %></td>
-  </tr>
+  <% if lesson_event %>
+    <tr>
+      <td class="not-displayed">
+        <%= DateTime.iso8601(lesson_event[:lesson_selected_at]).to_i %>
+      </td>
+      <td class="not-displayed">
+        <%= DateTime.iso8601(lesson_event[:last_page_opened_at]).to_i %>
+      </td>
+      <td><%= ContentModules::LessonModule.find(lesson_event[:lesson_id]).title %></td>
+      <td><%= lesson_event[:page_headers][2] %></td>
+      <td><%= l(DateTime.iso8601(lesson_event[:lesson_selected_at]), format: :with_seconds) %></td>
+      <td><%= lesson_event[:last_page_number_opened] %></td>
+      <td><%= l(DateTime.iso8601(lesson_event[:last_page_opened_at]), format: :with_seconds) %></td>
+      <td><%= distance_of_time_in_words(DateTime.iso8601(lesson_event[:last_page_opened_at]) - DateTime.iso8601(lesson_event[:lesson_selected_at])) %></td>
+    </tr>
+  <% end %>
 <% end %>
