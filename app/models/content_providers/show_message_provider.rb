@@ -13,15 +13,20 @@ module ContentProviders
       message = load_message(options)
       message.try(:mark_read)
 
-      options.view_context.render(
-        template: "think_feel_do_engine/messages/show",
-        locals: {
-          coach: options.participant.coach,
-          compose_path: compose_path(options),
-          message: message,
-          reply_path: compose_path(options) + new_mail_params(options)
-        }
-      )
+      if message
+        options.view_context.render(
+          template: "think_feel_do_engine/messages/show",
+          locals: {
+            coach: options.participant.coach,
+            compose_path: compose_path(options),
+            message: message,
+            reply_path: compose_path(options) + new_mail_params(options)
+          }
+        )
+      else
+        options.view_context.render(
+          template: "think_feel_do_engine/messages/not_found")
+      end
     end
 
     private

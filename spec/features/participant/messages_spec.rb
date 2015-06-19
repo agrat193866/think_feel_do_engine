@@ -82,6 +82,17 @@ feature "messages" do
   end
 end
 
+feature "visit route when no message id exists" do
+  fixtures :all
+
+  it "Should render alert and navigation message" do
+    sign_in_participant participants(:participant1)
+    visit "/navigator/modules/915512017/providers/392704088/1?context=MESSAGES&message_id=1"
+
+    expect(page).to have_content "Message could not found. Click MESSAGES and try again."
+  end
+end
+
 feature "no historical sent messages" do
   fixtures :all
 
