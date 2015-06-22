@@ -24,8 +24,8 @@ feature "Activities", type: :feature do
                 "/providers/" \
                 "#{ bit_core_content_providers(:do_planning_important_activity_checklist).id }/1"
           find("input[value='Eating breakfast'][type='radio']").click
-          select 7, from: "How much pleasure did you expect to get from doing this?"
-          select 3, from: "How much accomplishment do you expect to get from doing this?"
+          select 7, from: "planned_activity[predicted_pleasure_intensity]"
+          select 3, from: "planned_activity[predicted_accomplishment_intensity]"
           click_on "Next"
           visit "/navigator/modules/#{ bit_core_content_modules(:do_planning).id }" \
                     "/providers/" \
@@ -46,8 +46,8 @@ feature "Activities", type: :feature do
                 "#{ bit_core_content_providers(:do_planning_important_activity_checklist).id }/1"
           fill_in "planned_activity[activity_type_new_title]", with: "goat herding"
           find("input[id='new_activity_radio']").click
-          select 5, from: "How much pleasure did you expect to get from doing this?"
-          select 9, from: "How much accomplishment do you expect to get from doing this?"
+          select 5, from: "planned_activity[predicted_pleasure_intensity]"
+          select 9, from: "planned_activity[predicted_accomplishment_intensity]"
           click_on "Next"
           visit "/navigator/modules/#{ bit_core_content_modules(:do_planning).id }" \
                     "/providers/" \
