@@ -15,8 +15,8 @@ feature "Activities", type: :feature do
         find("input[value='Loving'][type='radio']").click
         fill_in "future_date_picker_0", with: Date.today + 1.day
         choose_rating "pleasure_0", 10
-        select 9, from: "How much pleasure did you expect to get from doing this?"
-        select 9, from: "How much accomplishment do you expect to get from doing this?"
+        select 9, from: "planned_activity[predicted_pleasure_intensity]"
+        select 9, from: "planned_activity[predicted_accomplishment_intensity]"
         click_on "Next"
 
         expect(page).to have_text("Now, plan something that gives you a sense of accomplishment.")
