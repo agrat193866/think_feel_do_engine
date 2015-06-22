@@ -5,6 +5,44 @@ feature "Activities", type: :feature do
 
   describe "When in Your Activities" do
     describe "ContentProvider::YourActivitiesProvider" do
+      context "Participant with activities on days more than 3 days ago" do
+        let(:participant) { participants(:seasoned_participant) }
+
+        before do
+          Timecop.return
+          Membership.create!(
+            participant: participant,
+            group: groups(:group1),
+            start_date: Time.zone.today.advance(days: -7),
+            end_date: Time.zone.today.advance(days: 7))
+          Activity.create!(
+            participant: participant,
+            activity_type: activity_types(:sleeping),
+            predicted_accomplishment_intensity: 1,
+            predicted_pleasure_intensity: 2,
+            actual_accomplishment_intensity: 6,
+            actual_pleasure_intensity: 7,
+            start_time: Time.zone.now - 120.hours,
+            end_time: Time.zone.now - 119.hours)
+          sign_in_participant participants(:seasoned_participant)
+          visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
+        end
+
+        it "alerts are correctly displayed", :js do
+          click_on "Day"
+          click_on "Visualize"
+          click_on "Last 3 Days"
+
+          expect(page).to have_text "Notice! No activities were completed during this 3-day period."
+
+          click_on "Day"
+          click_on "Visualize"
+          click_on "Last 7 Days"
+
+          expect(page).to have_text "7-Day View"
+        end
+      end
+
       context "Traveling Participant is logged in" do
         let(:participant) { participants(:traveling_participant1) }
         let(:activity) { activities(:p2_activity_next_day) }
@@ -90,20 +128,6 @@ feature "Activities", type: :feature do
           expect(page).to have_text "Difference  1  1"
           expect(page).to have_text "Working"
           expect(page).to have_text "Accomplishment: 2 · Pleasure: 2"
-        end
-
-        it "title is displayed when data is selected", :js do
-          click_on "Day"
-          click_on "Visualize"
-          click_on "Last 3 Days"
-
-          expect(page).to have_text "3-Day View"
-
-          click_on "Day"
-          click_on "Visualize"
-          click_on "Last 7 Days"
-
-          expect(page).to have_text "7-Day View"
         end
 
         it "allows for the updating of a past activity", :js do

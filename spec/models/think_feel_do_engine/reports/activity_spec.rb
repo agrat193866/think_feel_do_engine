@@ -19,7 +19,7 @@ module ThinkFeelDoEngine
             data = PatientActivity.all
             activity = activities(:planned_activity1)
             participant = participants(:participant1)
-            expect(data.count).to eq 18
+            expect(data.count).to eq 19
             expect(data).to include(
               participant_id: participant.study_id,
               activity_title: activity.title,

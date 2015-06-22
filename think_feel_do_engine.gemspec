@@ -34,11 +34,11 @@ Gem::Specification.new do |s|
   s.add_dependency "twilio-ruby", "~> 3.12"
   s.add_dependency "user_agent_parser", "~> 2.2"
 
+  s.add_development_dependency "jshintrb", "~> 0.2"
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.0"
   s.add_development_dependency "poltergeist", "~> 1.6"
   s.add_development_dependency "database_cleaner", "~> 1.3"
-  s.add_development_dependency "jasmine-rails", "0.10.0"
   s.add_development_dependency "brakeman"
   s.add_development_dependency "simplecov", "~> 0.9.1"
 end

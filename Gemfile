@@ -36,6 +36,7 @@ gem "git_tagger",
 gem "twilio-ruby", "~> 3.12"
 
 group :development, :test do
+  gem "jasmine-rails"
   gem "rubocop", "~> 0.26"
 end
 

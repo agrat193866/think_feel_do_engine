@@ -150,5 +150,3 @@ membership_multiple_1b:
   group: group2
   start_date: <%= Date.today.advance(days: -4) %>
   end_date: <%= Date.today.advance(days: 0) %>
-
-
