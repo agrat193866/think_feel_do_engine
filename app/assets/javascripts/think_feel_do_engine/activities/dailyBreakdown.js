@@ -3,16 +3,42 @@
 
   var dates;
 
-  window.dailyBreakdown = function (completed_activities, numOfDays) {
+  sc.filterActivities = function(data, dayFilter) {
+    var startDay = moment().add(-dayFilter, 'days').startOf('day');
+    var lastDay = moment().startOf('day')
+
+    return _.filter(data, function(activity) {
+      var dateTime = moment(activity.start_datetime);
+      if (dateTime >= startDay && dateTime < lastDay) return activity;
+    });
+  };
+
+  sc.splitDateArray = function (arr) {
+    var fixedArray, j, lastHour;
+
+    if ((arr === null) || arr.length < 1) return [];
+    j = 0;
+    lastHour = arr[0];
+    fixedArray = [[arr[0]]];
+    _.each(arr, function (hour, index) {
+      if (index > 0) {
+        if (lastHour.start_date === hour.start_date) {
+          fixedArray[j].push(hour);
+        } else {
+          lastHour = hour;
+          fixedArray.push([]);
+          j++;
+          fixedArray[j].push(hour);
+        }
+      }
+    });
+    return fixedArray;
+  };
+
+  sc.dailyBreakdown = function (completed_activities, numOfDays) {
     var color, colorObj, data, getBucket, height, load_breakdown, margin, parse_time, width, x, xAxis, y;
     load_breakdown = function (title, data) {
-      var averageHours, cleanDay, cleanWeek, container, displayTitle, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, splitDateArray, svg, updateStacked, width, x, xAxis, y;
-
-      displayTitle = function(dayFilter, data) {
-        if (data.length !== 0) {
-          $("#activities-chart div").prepend("<p class=\"text-center\">"+dayFilter+"-Day View</p>");
-        }
-      };
+      var averageHours, cleanDay, cleanWeek, container, flatten, formatAVizTime, formatXAxisLabels, grabLastXDays, height, isInt, margin, padStacks, sortDateArray, svg, updateStacked, width, x, xAxis, y;
 
       formatXAxisLabels = function (formattedDate) {
         if (width >= (dates.length + 1) * 125) {
@@ -115,28 +141,6 @@
         }
         return 0;
       };
-      splitDateArray = function (arr) {
-        var fixedArray, j, lastHour;
-        if ((arr === null) || arr.length < 1) {
-          return;
-        }
-        j = 0;
-        lastHour = arr[0];
-        fixedArray = [[arr[0]]];
-        _.each(arr, function (hour, index) {
-          if (index > 0) {
-            if (lastHour.start_date === hour.start_date) {
-              fixedArray[j].push(hour);
-            } else {
-              lastHour = hour;
-              fixedArray.push([]);
-              j++;
-              fixedArray[j].push(hour);
-            }
-          }
-        });
-        return fixedArray;
-      };
       flatten = function (list) {
         var flattenedArray;
         flattenedArray = [];
@@ -174,8 +178,10 @@
         return list;
       };
       grabLastXDays = function (data, x) {
-        var d;
-        d = splitDateArray(data.sort(sortDateArray));
+        var d, filteredActivities;
+
+        filteredActivities = sc.filterActivities(data, x);
+        d = sc.splitDateArray(filteredActivities.sort(sortDateArray));
         return d.slice(-x);
       };
       isInt = function (n) {
@@ -201,10 +207,11 @@
         if (typeof svg === "undefined" || svg === null) {
           return;
         }
+        data = grabLastXDays(data, numOfDays);
         if (data.length === 0) {
           $("#activities-chart").html("<div class='alert alert-info'><strong>Notice!</strong> No activities were completed during this " + numOfDays + "-day period.</div>");
         } else {
-          data = grabLastXDays(data, numOfDays);
+          $("#activities-chart div").prepend("<p class=\"text-center\">"+numOfDays+"-Day View</p>");
           grouped = _.groupBy(data, function (d) {
             return d.bucket;
           });
@@ -336,7 +343,6 @@
       container = d3.select("#activities-chart").append("div");
       svg = container.append("svg").attr("class", "activity_viz").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       updateStacked(numOfDays, data);
-      displayTitle(numOfDays, data);
     };
     getBucket = function (pleasure, accomplishment) {
       if (pleasure >= 5 && accomplishment >= 5) {

@@ -18,6 +18,18 @@ require "rspec/core/rake_task"
 desc "Run all specs in spec directory (excluding plugin specs)"
 RSpec::Core::RakeTask.new(:spec)
 
+desc "Run all JS specs"
+task :js_spec do
+  Rake::Task["app:spec:javascript"].invoke
+end
+
+require "jshintrb/jshinttask"
+Jshintrb::JshintTask.new :jshint do |t|
+  t.pattern = "spec/dummy/spec/javascripts/**/*.js"
+  t.options = :defaults
+  t.globals = [:afterEach, :beforeEach, :describe, :expect, :it, :jasmine, :sc]
+end
+
 require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
@@ -27,9 +39,11 @@ task :brakeman do
   dir = File.dirname(__FILE__)
   puts `#{ File.join(dir, "bin", "brakeman") } #{ File.join(dir, ".") }`
 end
- 
+
 task :default do
   Rake::Task["spec"].invoke
+  Rake::Task["js_spec"].invoke
   Rake::Task["rubocop"].invoke
+  Rake::Task["jshint"].invoke
   Rake::Task["brakeman"].invoke
 end

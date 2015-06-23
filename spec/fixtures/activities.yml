@@ -29,6 +29,16 @@ planned_activity1:
   start_time: <%= DateTime.current.advance(hours: -2) %>
   end_time: <%= DateTime.current.advance(hours: -1) %>
 
+planned_activity_today_1b:
+  participant: participant1
+  activity_type: eating
+  actual_accomplishment_intensity: 3
+  actual_pleasure_intensity: 4
+  predicted_accomplishment_intensity: 8
+  predicted_pleasure_intensity: 2
+  start_time: <%= DateTime.current.advance(hours: -48) %>
+  end_time: <%= DateTime.current.advance(hours: -47) %>
+
 planned_activity_today_1:
   participant: participant4
   activity_type: eating
