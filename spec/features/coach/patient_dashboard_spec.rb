@@ -63,10 +63,12 @@ feature "patient dashboard", type: :feature do
         expect(page).to have_text "Not Stepped Patients"
 
         within "#patients" do
-          expect(page).to have_text("Patient: SCTest01")
+          expect(page).to have_text "Step to t-CBT?"
+          expect(page).to have_button "Details"
+          expect(page).to have_text "SCTest01"
         end
         within "#stepped-patients" do
-          expect(page).to_not have_text("Patient: SCTest01")
+          expect(page).to_not have_text "SCTest01"
         end
 
         within "#patient-#{participants(:participant_phq1).id}" do
@@ -74,10 +76,12 @@ feature "patient dashboard", type: :feature do
         end
 
         within "#patients" do
-          expect(page).to_not have_text("Patient: SCTest01")
+          expect(page).to_not have_text "SCTest01"
         end
         within "#stepped-patients" do
-          expect(page).to have_text("Patient: SCTest01")
+          expect(page).to_not have_text "Step to t-CBT?"
+          expect(page).to_not have_button "Details"
+          expect(page).to have_text "SCTest01"
         end
       end
 
