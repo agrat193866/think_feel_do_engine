@@ -11,7 +11,6 @@ module ThinkFeelDoEngine
         @nil_step = test_summary[:step?].nil?
         @nil_stay = test_summary[:stay?].nil?
         @step_or_nil_results = @nil_step || test_summary[:step?]
-        @prev_range_start = test_summary[:range_start] < 14 ? "17, " : "13, "
         define_strings(test_summary)
         define_labels(test_summary)
         @test_summary = test_summary
