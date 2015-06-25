@@ -1,5 +1,3 @@
-<% init_summary_styles(test_summary) %>
-
 <table class="table table-hover">
   <thead>
     <th>Test</th>
@@ -8,7 +6,7 @@
   <tbody>
     <tr>
       <td>
-        <%= "PHQ-9 Score >= #{prev_range_start if edge_week?} #{test_summary[:upper_limit]} for two consecutive weeks" %>
+        <%= "PHQ-9 Score >= #{test_summary[:upper_limit]} for two consecutive weeks" %>
       </td>
       <td>
         <%= result_span(step_string, step_label) %>
