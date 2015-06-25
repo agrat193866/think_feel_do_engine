@@ -2,11 +2,11 @@
   <div class="row">
     <div class="btn-group-wrap">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default active">
-          <input type="radio" class="interval" value="7" checked="">7 Day
+        <label class="btn btn-default active interval">
+          <input type="radio" value="7" checked="">7 Day
         </label>
-        <label class="btn btn-default">
-          <input type="radio" class="interval" value="28">28 day
+        <label class="btn btn-default interval">
+          <input type="radio" value="28">28 day
         </label>
       </div>
     </div>
@@ -33,7 +33,7 @@
   var graphParameters = new Graph(<%= sanitize(mood_ratings.to_json) %>, <%= sanitize(emotional_ratings.to_json) %>, null, $("#viz-container"));
   var yLabel = "Intensity"
 
-  drawGraphs = function() {
+  sc.drawGraphs = function() {
     var emotionGraphTitle,
         emotionLegendJSON,
         emotionLegendNotes,
@@ -70,27 +70,6 @@
     return appendDateRange(graphParameters);
   };
 
-  drawGraphs();
-
-  $('.interval').on("change", function (){
-    graphParameters.interval = this.value;
-    graphParameters.offset = 1;
-    offsetInterval(graphParameters);
-    drawGraphs();
-  });
-
-  $('.offset').on("click", function (){
-    if($(this).attr("id") === "next" && graphParameters.offset === 1){
-      return null
-    }
-    else if($(this).attr("id") === "previous" && graphParameters.offset == maxOffset(activationDate, graphParameters.interval)) {
-      return null
-    }
-    else {
-      graphParameters.offset += parseInt($(this).data("value"));
-      offsetInterval(graphParameters);
-      drawGraphs();
-    }
-
-  });
+  sc.drawGraphs();
+  sc.filterEmotionMoodViz(graphParameters);
 </script>
