@@ -5,7 +5,7 @@ module ThinkFeelDoEngine
     RSpec.describe ActivitiesController, type: :controller do
       describe "PUT update" do
         let(:activity) { double("activity") }
-        let(:participant) { double("participant") }
+        let(:participant) { instance_double(Participant, active_membership: true) }
 
         context "activity updates with update_as_reviewed" do
           before do

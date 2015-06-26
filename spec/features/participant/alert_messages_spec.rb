@@ -8,6 +8,6 @@ feature "alert messages", type: :feature do
   end
 
   it "are visible when a user isn't assigned to a group" do
-    expect(page).to have_text("We're sorry, but you can't sign in yet because you are not assigned to a group.")
+    expect(page).to have_text "We're sorry, but you can't sign in yet because you are not assigned to an active group."
   end
 end
