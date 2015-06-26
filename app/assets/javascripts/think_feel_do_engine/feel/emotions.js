@@ -431,7 +431,7 @@ function Graph (moodData, emotionsData, phqData, container) {
   this.offset = 1;
 }
 
-function offsetInterval (graphParameters) {
+sc.offsetInterval = function (graphParameters) {
   var startOffset = (graphParameters.interval * graphParameters.offset) - 1;
   var endOffset = graphParameters.offset === 1 ? 0 : graphParameters.interval * (graphParameters.offset-1)
   graphParameters.startDate = moment().subtract(startOffset, 'days').startOf('day');

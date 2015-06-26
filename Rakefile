@@ -27,7 +27,7 @@ require "jshintrb/jshinttask"
 Jshintrb::JshintTask.new :jshint do |t|
   t.pattern = "spec/dummy/spec/javascripts/**/*.js"
   t.options = :defaults
-  t.globals = [:afterEach, :beforeEach, :describe, :expect, :it, :jasmine, :sc]
+  t.globals = ["$".to_sym, :spyOn, :afterEach, :beforeEach, :describe, :expect, :it, :jasmine, :sc]
 end
 
 require "rubocop/rake_task"
