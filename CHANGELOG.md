@@ -1,3 +1,27 @@
+## 3.2.30 - 2015-06-26
+ * Merge pull request #191 from cbitstech/msw_95530436_fix_active_membership_group_bug
+ * Merge pull request #190 from cbitstech/msw_97645366_fix_emotion_bug
+ * Update When ActiveMemebership is Checked
+ * Fix Click Bug for Emotions Data Graph
+ * Merge pull request #189 from cbitstech/msw_97785500_fix_timing_bug
+ * Merge pull request #187 from cbitstech/msw_97436048_fix_step_heading
+ * Fix Timing Bug In Spec
+ * Merge pull request #188 from cbitstech/msw_97581666_helper_update
+ * Remove Value of Helper
+ * Fix Heading Bug
+ * Merge pull request #186 from cbitstech/msw_96894438_visualization_update
+ * Visualization Update
+ * Merge pull request #185 from cbitstech/cjb_fix_specs
+ * Update planning activity examples in specs
+ * Merge pull request #184 from cbitstech/cjb_97428920
+ * Merge pull request #183 from cbitstech/cjb_97469400
+ * Update planning form to fix grammar
+ * Update Planning form to say "Enter a new activity"
+ * Merge pull request #182 from cbitstech/cjb_97469592
+ * Update label for emotion intensity rating dropdown
+ * Merge pull request #181 from cbitstech/msw_94879364_no_message
+ * Display Message Error Alert
+
 ## 3.2.29 - 2015-06-18
  * Merge pull request #180 from cbitstech/msw_97251532_template_error
  * Add Try Block to Lesson Events
