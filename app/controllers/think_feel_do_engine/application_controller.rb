@@ -5,9 +5,12 @@ module ThinkFeelDoEngine
   class ApplicationController < ActionController::Base
     include ThinkFeelDoEngine::Concerns::BrowserDetective
 
+    INACTIVE_MESSAGE = "We're sorry, but you can't sign in yet "\
+              "because you are not assigned to an active group."
+
     protect_from_forgery with: :exception
 
-    before_action :detect_browser
+    before_action :detect_browser, :verify_active_membership
 
     layout "application"
 
@@ -61,5 +64,13 @@ module ThinkFeelDoEngine
       end
     end
     helper_method :social_features?
+
+    def verify_active_membership
+      if current_participant && !current_participant.active_membership
+        scope = Devise::Mapping.find_scope!(current_participant)
+        Devise.sign_out_all_scopes ? sign_out : sign_out(scope)
+        redirect_to new_participant_session_path, alert: INACTIVE_MESSAGE
+      end
+    end
   end
 end

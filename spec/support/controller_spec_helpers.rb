@@ -1,5 +1,5 @@
 module ControllerSpecHelpers
-  def sign_in_participant(participant = double("participant"))
+  def sign_in_participant(participant = instance_double(Participant, active_membership: true))
     sign_in_resource(participant, "participant")
   end
 

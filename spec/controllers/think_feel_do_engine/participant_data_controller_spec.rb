@@ -13,7 +13,7 @@ module ThinkFeelDoEngine
     end
     let(:navigator) { instance_double("Navigator", current_content_provider: provider) }
     let(:data_record) { double("data_record") }
-    let(:participant) { double("participant", navigation_status: nil) }
+    let(:participant) { instance_double(Participant, active_membership: true, navigation_status: nil) }
 
     before do
       allow(BitPlayer::Navigator).to receive(:new) { navigator }

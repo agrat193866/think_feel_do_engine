@@ -12,7 +12,7 @@ module ThinkFeelDoEngine
         end
 
         context "for authenticated requests" do
-          let(:participant) { double("participant") }
+          let(:participant) { instance_double(Participant, active_membership: true) }
           let(:arm) { double("arm", id: 123) }
           let(:lesson_tool) { double("lesson tool", title: "LEARN") }
           let(:lesson) { double("lesson") }
