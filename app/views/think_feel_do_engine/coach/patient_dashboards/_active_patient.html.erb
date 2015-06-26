@@ -26,16 +26,18 @@
         <% end %>
       </td>
 
-      <td>
-        <% if patient.phq_assessments.count > 0 %>
-          <% suggestion = patient.stepping_suggestion %>
-          <span class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
-        <% else %>
-          <span class="label label-phq-none label-warning">No Completed Assessments</span>
-        <% end %>
-        <%= render "think_feel_do_engine/coach/patient_dashboards/details",
-                   patient: patient if view_membership(patient, @group) %>
-      </td>
+      <% if !view_membership(patient, @group).stepped_on %>
+        <td>
+          <% if patient.phq_assessments.count > 0 %>
+            <% suggestion = patient.stepping_suggestion %>
+            <span class="label label-<%= suggestion.urgency %>"><%= suggestion.suggestion %></span>
+          <% else %>
+            <span class="label label-phq-none label-warning">No Completed Assessments</span>
+          <% end %>
+          <%= render "think_feel_do_engine/coach/patient_dashboards/details",
+                     patient: patient if view_membership(patient, @group) %>
+        </td>
+      <% end %>
     <% end %>
 
     <td>
