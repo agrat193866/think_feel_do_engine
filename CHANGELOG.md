@@ -1,3 +1,8 @@
+## 3.2.31 - 2015-06-30
+ * Merge pull request #192 from cbitstech/msw_97469646_enable_endless_scrolling
+ * Fix Endless Scrolling
+ * switch to cbitstech git_tagger gem
+
 ## 3.2.30 - 2015-06-26
  * Merge pull request #191 from cbitstech/msw_95530436_fix_active_membership_group_bug
  * Merge pull request #190 from cbitstech/msw_97645366_fix_emotion_bug
