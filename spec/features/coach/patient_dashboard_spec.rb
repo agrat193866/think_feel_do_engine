@@ -55,6 +55,7 @@ feature "patient dashboard", type: :feature do
           expect(page).to have_text("PHQ9 assessment missing this week - no previous assessment data to copy from.")
           expect(page).to have_text("PHQ9 assessment missing answers for up to 3 questions - using 1.5 to fill them in.")
           expect(page).to have_text("PHQ9 assessment missing answers for more than 3 questions - data unreliable")
+          expect(page).to have_text("N/A")
         end
       end
 
