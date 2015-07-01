@@ -47,6 +47,41 @@ describe ToolNavItem do
         end
       end
     end
+
+    context "Support tools exist" do
+      let(:support) { bit_core_tools :support }
+      let(:nav_item) { ToolNavItem.new(participant, support) }
+
+      before do
+        allow(nav_item).to receive(:any_incomplete_tasks_today?) { true }
+      end
+
+      it "returns nil - not 'New!'" do
+        expect(nav_item.alert).to eq nil
+      end
+    end
+  end
+
+  describe "#display_alert" do
+    context "Relax and Support tools exist" do
+      let(:participant) { participants :participant1 }
+      let(:tool) { bit_core_tools :thought_tracker }
+      let(:relax) { bit_core_tools :relax }
+      let(:support) { bit_core_tools :support }
+      let(:nav) { ToolNavItem.new(participant, tool) }
+
+      it "Verifies the alert doesn't display for the relax tool" do
+        expect(nav.display_alert(relax)).to eq false
+      end
+
+      it "Verifies the alert doesn't display for the support tool" do
+        expect(nav.display_alert(support)).to eq false
+      end
+
+      it "Verifies the alert shows for other tools" do
+        expect(nav.display_alert(tool)).to eq true
+      end
+    end
   end
 
   describe "#is_active?" do

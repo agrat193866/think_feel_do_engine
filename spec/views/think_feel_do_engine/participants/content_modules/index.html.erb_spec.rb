@@ -5,7 +5,7 @@ RSpec.describe "think_feel_do_engine/participants/content_modules/index",
   fixtures :all
 
   it "populates the tool_description" do
-    tool = BitCore::Tool.where(type: nil).first
+    tool = BitCore::Tool.where(type: nil, title: "THOUGHT").first
     tool.update description: "Hammer time"
     render template: "think_feel_do_engine/participants/content_modules/index",
            locals: {

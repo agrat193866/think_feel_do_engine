@@ -17,12 +17,16 @@ class ToolNavItem
   def alert
     case @tool.type
     when nil
-      any_incomplete_tasks_today? ? "New!" : nil
+      any_incomplete_tasks_today? && display_alert(@tool) ? "New!" : nil
     else
       count = @participant.count_all_incomplete(@tool)
 
       count > 0 ? count : nil
     end
+  end
+
+  def display_alert(tool)
+    !%w(RELAX SUPPORT).include?(tool.title)
   end
 
   def is_active?(current_module)
