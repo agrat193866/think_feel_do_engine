@@ -3,7 +3,7 @@ module ThinkFeelDoEngine
     # Provides helpers for patient dashboard index and phq9 table
     module DashboardAndPhqTableHelper
       attr_accessor :nil_step, :nil_stay, :step_or_nil_results,
-                    :prev_range_start, :step_string, :stay_string,
+                    :step_string, :stay_string,
                     :release_string, :test_summary, :step_label,
                     :stay_label, :release_label
 
