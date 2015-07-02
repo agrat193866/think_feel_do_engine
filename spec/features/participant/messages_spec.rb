@@ -45,7 +45,7 @@ feature "messages" do
     end
   end
 
-  it "displays a recieved message" do
+  it "displays a received message" do
     click_on "Try out the LEARN tool"
 
     expect(page).to have_content("Try out the LEARN tool")

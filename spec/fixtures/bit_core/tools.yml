@@ -31,6 +31,16 @@ messages:
   arm: arm1
   type: Tools::Messages
 
+relax:
+  position: 6
+  title: RELAX
+  arm: arm1
+
+support:
+  position: 7
+  title: SUPPORT
+  arm: arm1
+
 home2:
   position: 0
   title: HOME
