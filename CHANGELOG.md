@@ -1,3 +1,9 @@
+## 3.2.32 - 2015-07-02
+ * Merge pull request #193 from cbitstech/msw_98127374_phq_details
+ * Merge pull request #194 from cbitstech/msw_98120678_test_summary
+ * Fix Test Summary
+ * Update PHQ Detail Modal
+
 ## 3.2.31 - 2015-06-30
  * Merge pull request #192 from cbitstech/msw_97469646_enable_endless_scrolling
  * Fix Endless Scrolling
