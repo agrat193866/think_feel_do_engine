@@ -47,7 +47,7 @@ phq_row_week_class += " old_assessment" if tested_weeks.week_of_assessment < tes
 %>
 
 <tr class="<%= phq_row_week_class %> <%= suffix_class %>">
-  <%= date = tested_weeks.date %>
+  <% date = tested_weeks.date %>
   <td>
     <span class="inline_format bold"><%= tested_weeks.week_of_assessment.to_i.to_s %></span>
     <%= "(#{date.strftime("%m/%d/%Y")} - #{date.next_day(6).strftime("%m/%d/%Y")})" %>
