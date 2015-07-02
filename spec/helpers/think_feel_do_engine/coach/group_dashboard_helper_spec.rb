@@ -91,6 +91,12 @@ module ThinkFeelDoEngine
         end
       end
 
+      describe "lesson view summary" do
+        it "should have markdown free titles in the dashboard view" do
+          expect(helper.markdown_free_title("lesson **view** summary")).to eq("lesson view summary")
+        end
+      end
+
       describe "aggregate lesson details related utilities" do
         fixtures(:all)
         let(:task1) { tasks(:task1) }
