@@ -15,7 +15,6 @@ class Task < ActiveRecord::Base
             },
             presence: true
 
-  delegate :title, to: :bit_core_content_module, prefix: false, allow_nil: true
   accepts_nested_attributes_for :task_statuses
 
   before_save :check_if_valid_release_day
@@ -28,6 +27,11 @@ class Task < ActiveRecord::Base
         .eq("ContentModules::LessonModule")
       )
   }
+
+  def title
+    try(:bit_core_content_module).try(:pretty_title) ||
+      try(:bit_core_content_module).try(:title)
+  end
 
   def incomplete_participant_list
     task_statuses.collect do |status|

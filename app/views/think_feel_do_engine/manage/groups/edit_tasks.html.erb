@@ -65,14 +65,20 @@
           <td>
             <!-- use CanCanCan instead -->
             <% if current_user.content_author? %>
-              <%= link_to "#{task.bit_core_content_module.tool.title}: #{task.try(:title)}", arm_bit_maker_content_module_path(task.group.arm, task.bit_core_content_module) %>
+              <%= link_to "#{task.bit_core_content_module.tool.title}: #{ task.title }", arm_bit_maker_content_module_path(task.group.arm, task.bit_core_content_module) %>
             <% else %>
-              <%= "#{task.bit_core_content_module.tool.title}: #{task.try(:title)}" %>
+              <%= "#{task.bit_core_content_module.tool.title}: #{ task.title }" %>
             <% end %>
           </td>
           <td><%= task.release_day %></td>
           <td><%= task.is_recurring %></td>
-          <td><%= task.termination_day ? "<span class=\"label label-info\">#{task.termination_day}</span>".html_safe : "N/A" %></td>
+          <td>
+            <% if task.termination_day %>
+              <span class="label label-info"><%= task.termination_day %></span>
+            <% else %>
+              N/A
+            <% end %>
+          </td>
           <td><%= task.has_didactic_content %></td>
           <td>
             <%= link_to "Unassign", manage_task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
