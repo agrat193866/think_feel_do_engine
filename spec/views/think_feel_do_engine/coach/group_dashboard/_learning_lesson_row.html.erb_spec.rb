@@ -2,29 +2,17 @@ require "rails_helper"
 
 RSpec.describe "think_feel_do_engine/coach/group_dashboard/_learning_lesson_row.html.erb",
                type: :view do
-  fixtures :all
-
-  let(:provider) { double("bit_core_content_provider") }
+  let(:lesson_module) { double("bit_core_lesson_module") }
 
   before do
-    allow(provider).to receive_message_chain(:source_content, :title) { "**TEST**" }
-    allow(view).to receive(:content_provider) { provider }
-    allow(view).to receive(:task) do
-      double(
-        "task",
-        total_read: 0,
-        total_assigned: 0,
-        id: 0,
-        group: double("group"),
-        complete_participant_list: [],
-        incomplete_participant_list: [])
-    end
+    allow(view).to receive_message_chain(:content_provider, :source_content) { lesson_module }
+    allow(lesson_module).to receive(:pretty_title) { "Pretty Markdown" }
+    stub_template "think_feel_do_engine/coach/group_dashboard/_lesson_completion_breakdown" => ""
+    allow(view).to receive(:task) { nil }
   end
 
-  it "includes " do
+  it "runs the method `pretty_title`" do
+    expect(lesson_module).to receive(:pretty_title) { true }
     render partial: "think_feel_do_engine/coach/group_dashboard/learning_lesson_row"
-
-    expect(rendered).to match(/TEST/)
-    expect(rendered).not_to match(/\*\*TEST\*\*/)
   end
 end

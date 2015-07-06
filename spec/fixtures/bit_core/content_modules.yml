@@ -259,3 +259,9 @@ video_lesson_slideshow:
   tool: library
   type: "ContentModules::LessonModule"
   position: 20
+
+lesson_with_markdown:
+  title: Lesson **With** Markdown
+  tool: library
+  type: "ContentModules::LessonModule"
+  position: 21

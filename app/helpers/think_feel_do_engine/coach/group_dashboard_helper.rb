@@ -2,10 +2,6 @@ module ThinkFeelDoEngine
   module Coach
     # Displays navigational information in the form of breadcrumbs
     module GroupDashboardHelper
-      def markdown_free_title(title)
-        title.gsub(/\*\*/, "")
-      end
-
       def social_likes_and_comments_column_headers
         if social_features?
           content_tag(:th, "Likes") +

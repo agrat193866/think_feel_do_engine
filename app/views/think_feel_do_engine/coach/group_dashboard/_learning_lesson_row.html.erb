@@ -1,5 +1,5 @@
 <tr>
-  <td><%= markdown_free_title(content_provider.source_content.title) %></td>
+  <td><%= content_provider.source_content.pretty_title %></td>
   <%= render partial: "think_feel_do_engine/coach/group_dashboard/lesson_completion_breakdown",
-             locals: {task: task} %>
+             locals: { task: task } %>
 </tr>
