@@ -8,6 +8,7 @@ describe Task do
   )
 
   let(:task1) { tasks(:task1) }
+  let(:task_learning7) { tasks(:task_learning7) }
 
   it "does not allow a group and module to be assigned on the same release day" do
     task2 = Task.new(
@@ -48,6 +49,16 @@ describe Task do
             release_day: release_day
           )
         end.to change { TaskStatus.count }.by(member_count)
+      end
+    end
+
+    context "when being listed" do
+      it "displays non-html formatted title for non-lesson content modules" do
+        expect(task1.title).to eq("#1 Awareness")
+      end
+
+      it "displays html formatted title for lesson modules" do
+        expect(task_learning7.title).to match(/<.*>Feel - Emotions Introduction<\/.*>/)
       end
     end
 
