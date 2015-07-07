@@ -53,12 +53,12 @@ describe Task do
     end
 
     context "when being listed" do
-      it "displays content module 'title' for non-lesson modules" do
+      it "displays non-html formatted title for non-lesson content modules" do
         expect(task1.title).to eq("#1 Awareness")
       end
 
-      it "displays 'pretty_title' html markup for lesson modules" do
-        expect(task_learning7.title).to eq("<p>Feel - Emotions Introduction</p>\n")
+      it "displays html formatted title for lesson modules" do
+        expect(task_learning7.title).to match(/<.*>Feel - Emotions Introduction<\/.*>/)
       end
     end
 

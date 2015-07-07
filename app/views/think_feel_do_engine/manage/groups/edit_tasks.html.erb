@@ -62,14 +62,7 @@
     <tbody>
       <% @group.tasks.each do |task|%>
         <tr id="task-<%= task.id %>">
-          <td>
-            <!-- use CanCanCan instead -->
-            <% if current_user.content_author? %>
-              <%= link_to "#{task.bit_core_content_module.tool.title}: #{ task.title }", arm_bit_maker_content_module_path(task.group.arm, task.bit_core_content_module) %>
-            <% else %>
-              <%= "#{task.bit_core_content_module.tool.title}: #{ task.title }" %>
-            <% end %>
-          </td>
+          <%= render "think_feel_do_engine/manage/groups/assigned_task_cell.html.erb", task: task %>
           <td><%= task.release_day %></td>
           <td><%= task.is_recurring %></td>
           <td>

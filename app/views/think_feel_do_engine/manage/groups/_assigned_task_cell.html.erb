@@ -1,0 +1,8 @@
+<td class="task_title_cell">
+	<!-- use CanCanCan instead -->
+	<% if current_user.content_author? %>
+	  <%= link_to "#{task.bit_core_content_module.tool.title}: #{ task.title }", arm_bit_maker_content_module_path(task.group.arm, task.bit_core_content_module), class: "author_title" %>
+	<% else %>
+	  <%= "#{task.bit_core_content_module.tool.title}: #{ task.title }" %>
+	<% end %>
+</td>
