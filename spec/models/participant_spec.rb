@@ -26,6 +26,12 @@ describe Participant do
     expect(participant3.notify_by_sms?).to eq true
   end
 
+  it "accurately populates and lists emotions" do
+    expect(participant3.emotions.pluck("name")).not_to include("sad", "guilty", "calm", "concentrated", "relaxed")
+    participant3.populate_emotions
+    expect(participant3.emotions.pluck("name")).to include("sad", "guilty", "calm", "concentrated", "relaxed")
+  end
+
   it ".stepped returns participants that have been stepped" do
     count = Participant.stepped.count
     participant1.active_membership.update(stepped_on: Time.now)
