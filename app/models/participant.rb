@@ -107,7 +107,20 @@ class Participant < ActiveRecord::Base
   end
 
   def populate_emotions
-    %w(Anxious Enthusiastic Grateful Happy Irritable Upset).each do |e|
+    emotions_array = [
+      "Anxious",
+      "Enthusiastic",
+      "Grateful",
+      "Happy",
+      "Irritable",
+      "Upset",
+      "Sad",
+      "Guilty",
+      "Calm",
+      "Concentrated",
+      "Relaxed"
+    ]
+    emotions_array.each do |e|
       emotions.find_or_create_by(name: e)
     end
 
