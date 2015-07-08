@@ -60,7 +60,7 @@ feature "Activities", type: :feature do
 
         it "can't edit an activity's actual accomplishment or pleasurable intensity if it is in the future" do
           expect(page).to have_text "Commuting"
-          within "#collapse-activity-#{activity.id}" do
+          within "#activity-#{activity.id}" do
             expect(page).to_not have_text "Edit"
           end
         end
