@@ -1,3 +1,17 @@
+## 3.2.33 - 2015-07-13
+ * Merge pull request #200 from cbitstech/msw_97469438_activity_toggle
+ * Improve Activity Toggle
+ * Merge pull request #199 from cbitstech/cl_98485282_add_more_emotions_to_FEEL_emotions_list
+ * Merge pull request #198 from cbitstech/cl_91858816_remove_lesson_title_markdown_revised
+ * Add More Default Emotions To Emotions List
+ * Update Specs
+ * Remove Markdown in Manage Tasks dashboard
+ * Update Markdown Removal Method
+ * Remove Markdown from Lesson Titles
+ * Merge pull request #195 from cbitstech/msw_97468932_update_badges
+ * Merge pull request #196 from cbitstech/msw_98127374_fix_dates_on_phq_details
+ * Removed Debugging Code
+
 ## 3.2.32 - 2015-07-02
  * Merge pull request #193 from cbitstech/msw_98127374_phq_details
  * Merge pull request #194 from cbitstech/msw_98120678_test_summary
