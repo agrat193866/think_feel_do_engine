@@ -1,3 +1,9 @@
+## 3.2.34 - 2015-07-14
+ * Merge pull request #202 from cbitstech/cl_91858816_remove_lesson_title_markdown_revised
+ * Fix markdown changing to visible html tags in group dashboard
+ * Merge pull request #201 from cbitstech/ecf_travis_docker
+ * test on Travis container
+
 ## 3.2.33 - 2015-07-13
  * Merge pull request #200 from cbitstech/msw_97469438_activity_toggle
  * Improve Activity Toggle
