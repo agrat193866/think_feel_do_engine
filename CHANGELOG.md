@@ -1,3 +1,7 @@
+## 3.2.35 - 2015-07-16
+ * Merge pull request #203 from cbitstech/cl_97469372_remove_highlighting_from_DO_section
+ * Remove highlighting from DO section tables
+
 ## 3.2.34 - 2015-07-14
  * Merge pull request #202 from cbitstech/cl_91858816_remove_lesson_title_markdown_revised
  * Fix markdown changing to visible html tags in group dashboard
