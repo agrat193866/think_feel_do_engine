@@ -1,3 +1,4 @@
+
 require "rails_helper"
 
 RSpec.describe "think_feel_do_engine/coach/patient_dashboards" \
@@ -5,7 +6,7 @@ RSpec.describe "think_feel_do_engine/coach/patient_dashboards" \
                type: :view do
   context "Events exist" do
     let(:lesson_title) { "LEARN - BiG LeSsOn!" }
-    let(:lesson) { double("lesson", title: lesson_title) }
+    let(:lesson) { double("lesson", pretty_title: lesson_title) }
     let(:header) { "Meet Joe" }
     let(:events) do
       [
@@ -42,7 +43,7 @@ RSpec.describe "think_feel_do_engine/coach/patient_dashboards" \
   end
 
   context "An event's page header is nil" do
-    let(:lesson) { double("lesson", title: "Think, Feel, Do Your Way Out of Depression") }
+    let(:lesson) { double("lesson", pretty_title: "Think, Feel, Do Your Way Out of Depression") }
 
     before :each do
       allow(ContentModules::LessonModule).to receive(:find).and_return(lesson)
