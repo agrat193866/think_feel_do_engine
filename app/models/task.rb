@@ -62,7 +62,9 @@ class Task < ActiveRecord::Base
   private
 
   def check_if_valid_release_day
-    if group.memberships.any? { |m| release_day > m.length_of_study }
+    if group.active_memberships.continuing.any? do |m|
+         release_day > m.length_of_study
+       end
       errors.add :base, "Release day comes after some members are finished"
 
       false

@@ -32,3 +32,7 @@ group_for_arm4:
 group5:
   title: Group for Arm 6
   arm: arm6
+
+group6:
+  title: "Group active, discontinued, & withdraw participants"
+  arm: arm1
