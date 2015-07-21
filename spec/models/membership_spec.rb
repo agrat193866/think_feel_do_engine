@@ -180,6 +180,13 @@ describe Membership do
         " monitored for the first week" do
       expect(membership.logins_by_week(1)).to eq(2)
     end
+
+    it ".continuing returns memberships where `is_complete` is false" do
+      expect do
+        memberships(:membership_participant_complete)
+          .update(is_complete: false)
+      end.to change { Membership.continuing.count }.by(1)
+    end
   end
 
   describe "coach dashboard helper methods" do

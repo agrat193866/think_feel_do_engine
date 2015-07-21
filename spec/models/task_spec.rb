@@ -29,6 +29,47 @@ describe Task do
     expect(task2.errors.get(:base).count).to eq 1
   end
 
+  describe "Group with discontinued, withdraw, and active memberships" do
+    let(:new_task) do
+      Task.new(
+        group: groups(:group6),
+        release_day: 3,
+        bit_core_content_module: bit_core_content_modules(:do_awareness))
+    end
+
+    def build_membership(attributes = {})
+      Membership.create({
+        participant: participants(:inactive_participant),
+        group: groups(:group6),
+        start_date: Date.today.advance(days: -2),
+        end_date: Date.today.advance(days: -1)
+      }.merge(attributes))
+    end
+
+    it "allows creation of task statuses when an active membership exist" do
+      build_membership(
+        start_date: Date.today,
+        end_date: Date.today.advance(days: 3))
+      new_task.save
+
+      expect(new_task.errors.count).to eq 0
+    end
+
+    it "allows creation of task statuses when a discontinued membership exist" do
+      build_membership(is_complete: true)
+      new_task.save
+
+      expect(new_task.errors.count).to eq 0
+    end
+
+    it "allows creation of task statuses when a withdrawn membership exist" do
+      build_membership
+      new_task.save
+
+      expect(new_task.errors.count).to eq 0
+    end
+  end
+
   it "persists if its creator is destroyed" do
     creator = task1.creator
     creator.destroy

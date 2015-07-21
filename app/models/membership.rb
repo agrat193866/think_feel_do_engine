@@ -49,6 +49,10 @@ class Membership < ActiveRecord::Base
     )
   }
 
+  scope :continuing, lambda {
+    where(is_complete: false)
+  }
+
   def available_task_statuses
     @available_task_statuses ||=
       task_statuses
