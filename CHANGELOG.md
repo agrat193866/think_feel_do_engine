@@ -1,3 +1,6 @@
+## 3.2.37 - 2015-07-21
+ * Merge pull request #208 from cbitstech/msw_97469438_open_summary
+
 ## 3.2.36 - 2015-07-21
  * Merge pull request #205 from cbitstech/msw_99521860_assigning_tasks_hot_fix
  * Merge pull request #206 from cbitstech/msw_99525368_fix_goal_creation_bug
