@@ -34,6 +34,16 @@
         expect($jasmine_content.find('i.fa-caret-right').length).toEqual(1);
         expect($jasmine_content.find('.fa-caret-down').length).toEqual(0);
       });
+
+      it('opens Activity Summary panel by default', function() {
+        var SUMMARY = 'summary';
+
+        sc.attachCollapsableIcons('#activity-', [SUMMARY]);
+
+        expect($jasmine_content.find('#activity-summary.collapse.in').length).toEqual(1);
+        expect($jasmine_content.find('i.fa-caret-right').length).toEqual(0);
+        expect($jasmine_content.find('i.fa-caret-down').length).toEqual(1);
+      });
     });
   });
 })();
