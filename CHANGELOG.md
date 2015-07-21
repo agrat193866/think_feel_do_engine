@@ -1,3 +1,11 @@
+## 3.2.36 - 2015-07-21
+ * Merge pull request #205 from cbitstech/msw_99521860_assigning_tasks_hot_fix
+ * Merge pull request #206 from cbitstech/msw_99525368_fix_goal_creation_bug
+ * Set Cookie From Header For Angular POSTS
+ * Fix Assigning Task Bug
+ * Merge pull request #204 from cbitstech/cl_91858816_remove_lesson_title_markdown
+ * Also apply pretty_title to the patient dashboard page
+
 ## 3.2.35 - 2015-07-16
  * Merge pull request #203 from cbitstech/cl_97469372_remove_highlighting_from_DO_section
  * Remove highlighting from DO section tables
