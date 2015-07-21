@@ -11,6 +11,7 @@ module ThinkFeelDoEngine
     protect_from_forgery with: :exception
 
     before_action :detect_browser, :verify_active_membership
+    after_action :set_csrf_cookie_for_ng
 
     layout "application"
 
@@ -49,6 +50,12 @@ module ThinkFeelDoEngine
       end
     end
 
+    protected
+
+    def verified_request?
+      super || form_authenticity_token == request.headers["X-XSRF-TOKEN"]
+    end
+
     private
 
     def phq_features?
@@ -71,6 +78,11 @@ module ThinkFeelDoEngine
         Devise.sign_out_all_scopes ? sign_out : sign_out(scope)
         redirect_to new_participant_session_path, alert: INACTIVE_MESSAGE
       end
+    end
+
+    def set_csrf_cookie_for_ng
+      return unless protect_against_forgery?
+      cookies["XSRF-TOKEN"] = form_authenticity_token
     end
   end
 end
