@@ -1,3 +1,7 @@
+## 3.2.38 - 2015-07-22
+ * Merge pull request #209 from cbitstech/msw_99232384_add_turbolinks_ignore
+ * Add TurboLinks Ignore To Hamburger Links
+
 ## 3.2.37 - 2015-07-21
  * Merge pull request #208 from cbitstech/msw_97469438_open_summary
 
