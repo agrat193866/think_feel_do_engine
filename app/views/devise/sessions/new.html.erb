@@ -41,7 +41,7 @@
 
 <% if (slideshow = SlideshowAnchor.fetch(:home_intro)) %>
   <br/>
-  <%= link_to "Introduction to ThinkFeelDo", ThinkFeelDoEngine::Engine.routes.url_helpers
+  <%= link_to "Introduction to #{t(:application_name)}", ThinkFeelDoEngine::Engine.routes.url_helpers
     .participants_public_slideshow_slide_path(
       slideshow_id: slideshow.id,
       id: slideshow.slides.first.id
