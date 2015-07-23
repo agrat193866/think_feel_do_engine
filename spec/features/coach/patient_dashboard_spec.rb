@@ -429,9 +429,26 @@ feature "patient dashboard", type: :feature do
       it "displays participant's 'Inactive' status on their 'show' page" do
         expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
         visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id }"
-        expect(page).to have_text("Participant TFD-inactive")
-        expect(page).to have_text("Inactive")
-        expect(page).to have_text("Study has been Completed")
+
+        expect(page).to have_text "Participant TFD-inactive"
+        expect(page).to have_text "Inactive"
+        expect(page).to have_text "Study has been Completed"
+        expect(page).to have_text "Participant has no events to report."
+        expect(page).to have_text "Not available because participant has no events to report."
+      end
+
+      it "Displays event info of last detected and the duration" do
+        allow(Rails.application.config).to receive(:study_length_in_weeks) { 0 }
+        participant1.update(last_sign_in_at: DateTime.new(2020, 1, 1, 1, 1, 1))
+        EventCapture::Event
+          .create(participant_id: participant1.id)
+          .update(recorded_at: DateTime.new(2020, 1, 1, 1, 2))
+        visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
+
+        expect(page).to have_text "Last Activity Detected At:"
+        expect(page).to have_text "Wednesday, Jan 01 2020 01:02"
+        expect(page).to have_text "Duration of Last Session:"
+        expect(page).to have_text "1 minute"
       end
     end
 

@@ -102,6 +102,17 @@ class Participant < ActiveRecord::Base
     active_group && active_group.arm.social?
   end
 
+  def duration_of_last_session
+    latest_action_at.to_i - last_sign_in_at.to_i
+  end
+
+  def latest_action_at
+    events
+      .order(recorded_at: :desc)
+      .first
+      .try(:recorded_at)
+  end
+
   def password_is__not_blank?
     !password.blank?
   end

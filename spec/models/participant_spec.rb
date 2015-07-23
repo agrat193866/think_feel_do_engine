@@ -107,4 +107,22 @@ describe Participant do
   it ".most_recent_membership returns membership if a participant has one membership" do
     expect(participant1.most_recent_membership).to be_instance_of Membership
   end
+
+  describe "A recent action exists for a participant" do
+    let(:latest_action) { EventCapture::Event.create(participant_id: participant3.id) }
+
+    before do
+      latest_action.update(recorded_at: DateTime.new(2020, 1, 1, 1, 1, 59))
+    end
+
+    it "#duration_of_last_session returns the length of time between the latest sign in and the most recent event" do
+      participant3.update(last_sign_in_at: DateTime.new(2020, 1, 1, 1, 1, 1))
+
+      expect(participant3.duration_of_last_session).to eq 58
+    end
+
+    it "#latest_action_at returns the most recent event's recorded_at time" do
+      expect(participant3.latest_action_at).to eq latest_action.recorded_at
+    end
+  end
 end
