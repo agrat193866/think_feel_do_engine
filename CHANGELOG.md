@@ -1,3 +1,12 @@
+## 3.2.39 - 2015-07-24
+ * Merge pull request #212 from cbitstech/msw_98851862_duration
+ * Update Last Activity Partial
+ * Merge pull request #211 from cbitstech/cl_97469994_make_intro_text_app_specific
+ * Make "Introduction to ..." say the app name instead of just "ThinkFeelDo"
+ * Merge pull request #210 from cbitstech/ecf_refactor_coach_header_spec
+ * refactor feature spec to view spec
+ * updating the RSpec gems
+
 ## 3.2.38 - 2015-07-22
  * Merge pull request #209 from cbitstech/msw_99232384_add_turbolinks_ignore
  * Add TurboLinks Ignore To Hamburger Links
