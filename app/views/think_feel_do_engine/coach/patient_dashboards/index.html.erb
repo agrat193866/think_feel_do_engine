@@ -3,21 +3,18 @@
 <div class="btn-toolbar" role="toolbar">
   <%= link_to "Group", (defined?(think_feel_do_dashboard) ? think_feel_do_dashboard.group_path(@group) : "#"), class: "btn btn-default" %>
   <%= link_to @active_patients ? "Inactive Patients" : "Active Patients",
-              patient_button_link(@active_patients),
+              think_feel_do_engine.coach_group_patient_dashboards_path(@group, active: !@active_patients),
               class: "btn btn-default" %>
-
 </div>
 
 <% if phq_features? %>
-    <h3>Not Stepped Patients</h3>
+  <h3>Not Stepped Patients</h3>
 <% end %>
+
 <%= render "think_feel_do_engine/coach/patient_dashboards/not_stepped_table", patients: @participants.not_stepped, table_id: "patients" %>
 
 <% if phq_features? %>
     <h3>Stepped Patients</h3>
+
     <%= render "think_feel_do_engine/coach/patient_dashboards/stepped_table", patients: @participants.stepped, table_id: "stepped-patients" %>
 <% end %>
-
-<script type="text/javascript">
-  $('form.button_to input[type=submit]').addClass('btn btn-default');
-</script>
