@@ -28,6 +28,24 @@
         <strong>Total Logins:</strong>
         <%= @participant.sign_in_count %>
       </p>
+
+      <p>
+        <strong>Last Activity Detected At:</strong>
+        <% if @participant.events.any? %>
+          <%= l(@participant.latest_action_at, format: :login) %>
+        <% else %>
+          Participant has no events to report.
+       <% end %>
+      </p>
+
+      <p>
+        <strong>Duration of Last Session:</strong>
+        <% if @participant.events.any? %>
+          <%= distance_of_time_in_words(@participant.duration_of_last_session) %>
+        <% else %>
+          Not available because participant has no events to report.
+        <% end %>
+      </p>
     </div>
   </div>
 </div>
