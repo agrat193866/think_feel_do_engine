@@ -50,21 +50,6 @@ module ThinkFeelDoEngine
               slide_exited_at: exit_event.emitted_at.iso8601
             )
           end
-
-          it "doesn't raise an error when `emitted_at` is nil" do
-            m = bit_core_content_modules(:slideshow_content_module_2)
-            p = bit_core_content_providers(:content_provider_slideshow_2)
-
-            EventCapture::Event.create!(
-              kind: "render",
-              participant: participants(:participant1),
-              payload: {
-                currentUrl: "http://localhost/navigator/modules/#{ m.id }" \
-                            "/providers/#{ p.id }/1"
-              },
-              emitted_at: nil)
-            expect { LessonSlideView.all_slide_interactions }.not_to raise_error
-          end
         end
       end
     end

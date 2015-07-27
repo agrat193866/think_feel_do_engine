@@ -17,10 +17,10 @@ GIT
 
 GIT
   remote: https://github.com/cbitstech/event_capture.git
-  revision: 8d9437a73bc5d43b144b80171a8c8852f3535c89
-  ref: 8d9437
+  revision: 300f1b1c3aa53aba551612e7a97fd8c0b32129e1
+  tag: 0.1.1
   specs:
-    event_capture (0.1.0)
+    event_capture (0.1.1)
       activerecord (~> 4.1)
 
 GIT
