@@ -5,8 +5,6 @@ module ThinkFeelDoEngine
       before_action :authenticate_user!, :set_group
       before_action :set_patient, only: :show
 
-      helper_method :patient_button_link
-
       # rubocop:disable Metrics/LineLength
       def index
         authorize! :show, Participant
@@ -34,14 +32,6 @@ module ThinkFeelDoEngine
         authorize! :show, @participant
         @lesson_events = ThinkFeelDoEngine::Reports::LessonViewing
                          .all(@participant.id)
-      end
-
-      def patient_button_link(active)
-        if active
-          coach_group_patient_dashboards_path(@group, active: false)
-        else
-          coach_group_patient_dashboards_path(@group, active: true)
-        end
       end
 
       private

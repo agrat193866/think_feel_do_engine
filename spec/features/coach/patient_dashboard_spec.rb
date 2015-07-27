@@ -503,27 +503,5 @@ feature "patient dashboard", type: :feature do
         end
       end
     end
-
-    it "allows a coach to see stepped divisions when phq_features are present" do
-      sign_in_user clinician
-      expect(Rails.application.config).to receive(:include_phq_features)
-        .at_least(:twice)
-        .and_return(true)
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to have_text "Stepped Patients"
-      expect(page).to have_text "Not Stepped Patients"
-    end
-
-    it "allows a coach to see stepped divisions when phq_features are not present" do
-      sign_in_user clinician
-      expect(Rails.application.config).to receive(:include_phq_features)
-        .at_least(:twice)
-        .and_return(false)
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to_not have_text "Stepped Patients"
-      expect(page).to_not have_text "Not Stepped Patients"
-    end
   end
 end

@@ -22,7 +22,6 @@ feature "Thoughts", type: :feature do
         expect(page).to have_text "I am a magnet for birds"
         expect(page).to have_text "It was nature"
         expect(page).to have_text "Birds have no idea what they are doing"
-        click_on "Next"
       end
 
       scenario "Participant may edit a harmful thought", :js do
@@ -30,7 +29,6 @@ feature "Thoughts", type: :feature do
         fill_in "thoughts_883344735_content", with: "ARG! BARGH!"
         find(:xpath, '//*[@id="thought-883344735"]/td[6]/input').click
         expect(page).to have_text "ARG! BARGH!"
-        click_on "Next"
       end
     end
   end

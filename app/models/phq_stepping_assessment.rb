@@ -5,7 +5,7 @@ class PhqSteppingAssessment
                 :missing_answers_count
 
   def initialize(*args)
-    # [0]date, [1]score, [2]week_in_study, [3]week_of_assessment
+    # [0]date, [1]score, [2]study_start_date, [3]week_of_assessment
     # (when copying), [4]missing-no fallback boolean,
     # [5]the entire assessment object (first call from table)
     @date = args[0]
@@ -24,26 +24,26 @@ class PhqSteppingAssessment
     @missing_answers_count = (!args[5].nil?) ? missing_answers_count : 0
   end
 
-  def self.convert_from_score(hash, week_in_study)
+  def self.convert_from_score(hash, study_start_date)
     converted_array = []
     hash.each do |date, score|
       converted_array.push(PhqSteppingAssessment.new(
                              date,
                              score,
-                             week_in_study
+                             study_start_date
                            )
                           )
     end
     converted_array
   end
 
-  def self.convert_from_assessment_objects(hash, week_in_study)
+  def self.convert_from_assessment_objects(hash, study_start_date)
     converted_array = []
     hash.each do |date, assessment|
       converted_array.push(PhqSteppingAssessment.new(
                              date,
                              assessment.score,
-                             week_in_study,
+                             study_start_date,
                              nil,
                              false,
                              assessment
@@ -53,15 +53,15 @@ class PhqSteppingAssessment
     converted_array
   end
 
-  def self.convert_from_hash(hash, week_in_study)
+  def self.convert_from_hash(hash, study_start_date)
     assessment_array = []
     if hash.first[1].is_a? Fixnum
       # Insert an assessment without being concerned about missing
       # values. Helpful for testing and for inserting copied
       # assessment data.
-      assessment_array = convert_from_score(hash, week_in_study)
+      assessment_array = convert_from_score(hash, study_start_date)
     else
-      assessment_array = convert_from_assessment_objects(hash, week_in_study)
+      assessment_array = convert_from_assessment_objects(hash, study_start_date)
     end
     assessment_array
   end
@@ -88,15 +88,9 @@ class PhqSteppingAssessment
     missing_count
   end
 
-  def find_week_of_assessment(week_in_study)
-    date_in_week_one = Date.current - (week_in_study - 1).weeks
-    first_sunday = date_in_week_one - date_in_week_one.wday
-    first_saturday = date_in_week_one.end_of_week(:sunday)
-    return - 1 if @date < first_sunday
-
-    last_saturday = @date.end_of_week(:sunday)
-
-    # Week 1 would be (0/7) + 1 = 1, #Week 2 would be (7/7) + 1 = 2, etc
-    (last_saturday - first_saturday) / 7 + 1
+  # Assessments are always made available on the same day of the
+  # week, starting on week 2 of study enrollment.
+  def find_week_of_assessment(study_start_date)
+    ((@date - study_start_date).days / 1.week).floor + 1
   end
 end

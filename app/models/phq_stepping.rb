@@ -20,10 +20,9 @@ class PhqStepping
   attr_accessor :assessments, :week, :urgency, :suggestion,
                 :detailed_suggestion, :step, :stay, :release, :range_start
 
-  def initialize(assessments, week)
-    # assessments = [{date => score},{date => score}, ... ]
-    # week = integer, the number of weeks this patient has been with us
-    set_initial_values(assessments, week)
+  # assessments = [{date => score},{date => score}, ... ]
+  def initialize(assessments, study_start_date)
+    set_initial_values(assessments, study_start_date)
     return unless set_phq_score_ranges
     return unless prep_data_for_validation
     # Return if the data is unreliable, the coach needs to consult
@@ -48,11 +47,12 @@ class PhqStepping
     }
   end
 
-  def set_initial_values(assessments, week)
+  def set_initial_values(assessments, study_start_date)
     @weeks_range = []
     @skip_flag = [false]
     @assessments = assessments
-    @week = week
+    @study_start_date = study_start_date
+    @week = ((Date.current + 1 - study_start_date).days / 1.week).ceil
     @upper_limit = 17
     @upper_prev_limit = 17
     @lower_limit = 0
@@ -113,7 +113,7 @@ class PhqStepping
     copy = PhqSteppingAssessment.new(
       to_copy.date + date_offset,
       to_copy.score,
-      @week,
+      @study_start_date,
       target_week
     )
     copy.missing_answers_count = to_copy.missing_answers_count
@@ -150,7 +150,8 @@ class PhqStepping
   def prep_data_for_validation
     # Convert the hash of date => score into an easily queried array of objects
     return false unless assessments_exist?
-    @assessments = PhqSteppingAssessment.convert_from_hash(@assessments, @week)
+    @assessments = PhqSteppingAssessment
+                   .convert_from_hash(@assessments, @study_start_date)
     # Handle filling in missing phq assessment data
     unless build_complete_record
       @urgency = "danger"
@@ -181,7 +182,7 @@ class PhqStepping
       first_assessment = PhqSteppingAssessment.new(
         first_assessment.date - 1.week,
         "Unknown",
-        @week,
+        @study_start_date,
         (first_assessment.week_of_assessment.to_i - 1),
         true
       )
@@ -247,6 +248,7 @@ class PhqStepping
       end
       prev_score = assessment.score
     end
+
     @step = false
   end
 
