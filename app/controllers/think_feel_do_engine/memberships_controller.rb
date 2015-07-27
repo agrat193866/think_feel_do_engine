@@ -1,56 +1,51 @@
 module ThinkFeelDoEngine
   # Allows a clinician to END a participant's study
   class MembershipsController < ApplicationController
-    before_action :authenticate_user!
-    load_and_authorize_resource
+    before_action :authenticate_user!, :load_and_authorize_update!
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def update
-      if ((membership_params[:end_date].to_date) > Date.today) &&
-         @membership.update(membership_params)
+      if @membership.update(membership_params)
         flash[:notice] = "Membership successfully updated"
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       else
         flash[:alert] = "Unable to save membership changes. End date cannot "\
         " be set prior to tomorrow's date. Please use [Discontinue] or "\
         "[Terminate Access]."
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       end
+
+      redirect_to coach_group_patient_dashboards_path(@membership.group)
     end
 
     def withdraw
-      @membership = Membership.find(end_params[:id])
-      if @membership.update(end_date: Date.current - 1)
+      if @membership.withdraw
         flash[:notice] = "Membership successfully withdrawn"
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       else
         flash[:alert] = @membership.errors.full_messages.to_sentence
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       end
+
+      redirect_to coach_group_patient_dashboards_path(@membership.group)
     end
 
     def discontinue
-      @membership = Membership.find(end_params[:id])
-      if @membership.update(end_date: Date.current - 1, is_complete: true)
+      if @membership.discontinue
         flash[:notice] = "Membership successfully ended"
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       else
         flash[:alert] = @membership.errors.full_messages.to_sentence
-        redirect_to coach_group_patient_dashboards_path(@membership.group)
       end
+
+      redirect_to coach_group_patient_dashboards_path(@membership.group)
     end
 
     private
 
-    def end_params
-      params.permit :id
+    def load_and_authorize_update!
+      @membership = Membership.find(params[:id])
+      authorize! :update, @membership
     end
 
     def membership_params
-      params
-        .require(:membership)
-        .permit(:end_date)
+      params.require(:membership).permit(:end_date)
     end
 
     def record_not_found

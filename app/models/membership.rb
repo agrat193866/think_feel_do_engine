@@ -149,6 +149,18 @@ class Membership < ActiveRecord::Base
       .select(&:is_lesson?)
   end
 
+  def withdraw
+    return false unless valid?
+
+    update_column(:end_date, Date.current - 1.day)
+  end
+
+  def discontinue
+    return false unless valid?
+
+    update_columns(end_date: Date.current - 1.day, is_complete: true)
+  end
+
   private
 
   def normalize_dates

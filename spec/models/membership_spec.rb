@@ -119,6 +119,28 @@ describe Membership do
     end
   end
 
+  describe "#withdraw" do
+    it "sets the end_date in the past" do
+      membership1.update!(end_date: Date.tomorrow)
+      expect(membership1.withdraw).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+  end
+
+  describe "#discontinue" do
+    it "sets the end_date in the past" do
+      membership1.update!(end_date: Date.tomorrow)
+      expect(membership1.discontinue).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+
+    it "sets is_complete to true" do
+      membership1.update!(is_complete: false)
+      expect(membership1.discontinue).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+  end
+
   describe "membership state modification" do
     let(:start_date) { Date.parse("2012-01-02") }
     let(:end_date) { Date.today }
@@ -151,7 +173,7 @@ describe Membership do
         end_date: Date.current + 1.day,
         participant: participant_wo_membership4)
 
-      Timecop.travel Date.current - 2.days do
+      Timecop.travel Date.current + 2.days do
         active_completed_membership.update(is_complete: true)
 
         expect(Membership.active).to include active_completed_membership
