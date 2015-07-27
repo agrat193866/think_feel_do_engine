@@ -204,7 +204,7 @@ class Participant < ActiveRecord::Base
     assessment_data = Hash[data]
 
     PhqStepping.new(assessment_data,
-                    active_membership.week_in_study)
+                    active_membership.start_date)
   end
 
   def navigation_status
