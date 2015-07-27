@@ -109,14 +109,19 @@ describe Participant do
   end
 
   describe "A recent action exists for a participant" do
-    let(:latest_action) { EventCapture::Event.create(participant_id: participant3.id) }
+    let(:latest_action) do
+      EventCapture::Event.create(
+        emitted_at: Time.zone.now,
+        participant_id: participant3.id
+      )
+    end
 
     before do
-      latest_action.update(recorded_at: DateTime.new(2020, 1, 1, 1, 1, 59))
+      latest_action.update(recorded_at: Time.zone.local(2020, 1, 1, 1, 1, 59))
     end
 
     it "#duration_of_last_session returns the length of time between the latest sign in and the most recent event" do
-      participant3.update(last_sign_in_at: DateTime.new(2020, 1, 1, 1, 1, 1))
+      participant3.update(last_sign_in_at: Time.zone.local(2020, 1, 1, 1, 1, 1))
 
       expect(participant3.duration_of_last_session).to eq 58
     end

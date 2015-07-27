@@ -439,10 +439,13 @@ feature "patient dashboard", type: :feature do
 
       it "Displays event info of last detected and the duration" do
         allow(Rails.application.config).to receive(:study_length_in_weeks) { 0 }
-        participant1.update(last_sign_in_at: DateTime.new(2020, 1, 1, 1, 1, 1))
+        participant1.update(last_sign_in_at: Time.zone.local(2020, 1, 1, 1, 1, 1))
         EventCapture::Event
-          .create(participant_id: participant1.id)
-          .update(recorded_at: DateTime.new(2020, 1, 1, 1, 2))
+          .create(
+            emitted_at: Time.zone.now,
+            participant_id: participant1.id
+          )
+          .update(recorded_at: Time.zone.local(2020, 1, 1, 1, 2))
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
         expect(page).to have_text "Last Activity Detected At:"
