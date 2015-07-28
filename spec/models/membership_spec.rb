@@ -38,6 +38,18 @@ describe Membership do
         .errors[:is_complete]
       ).not_to be_empty
     end
+
+    it "does not allow an end date to be set in the past" do
+      expect(Membership.new(end_date: Date.yesterday).tap(&:valid?).errors[:end_date].length)
+        .to be > 0
+    end
+
+    it "allows an end date in the past to exist" do
+      existing_membership = Membership.first
+      Timecop.travel existing_membership.end_date + 1.day do
+        expect(existing_membership).to be_valid
+      end
+    end
   end
 
   it "assigns all tasks linked to a group upon creation" do
@@ -107,6 +119,28 @@ describe Membership do
     end
   end
 
+  describe "#withdraw" do
+    it "sets the end_date in the past" do
+      membership1.update!(end_date: Date.tomorrow)
+      expect(membership1.withdraw).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+  end
+
+  describe "#discontinue" do
+    it "sets the end_date in the past" do
+      membership1.update!(end_date: Date.tomorrow)
+      expect(membership1.discontinue).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+
+    it "sets is_complete to true" do
+      membership1.update!(is_complete: false)
+      expect(membership1.discontinue).to be true
+      expect(membership1.end_date).to be < Date.current
+    end
+  end
+
   describe "membership state modification" do
     let(:start_date) { Date.parse("2012-01-02") }
     let(:end_date) { Date.today }
@@ -134,14 +168,16 @@ describe Membership do
     let(:participant_wo_membership4) { participants(:participant_wo_membership4) }
 
     it ".active returns memberships that are completed" do
-      count = Membership.active.count
-      group.memberships.create(
-        is_complete: true,
-        start_date: Date.today.advance(days: -2),
-        end_date: Date.today.advance(days: -1),
+      active_completed_membership = group.memberships.create(
+        start_date: Date.current,
+        end_date: Date.current + 1.day,
         participant: participant_wo_membership4)
 
-      expect(Membership.active.count).to eq count + 1
+      Timecop.travel Date.current + 2.days do
+        active_completed_membership.update(is_complete: true)
+
+        expect(Membership.active).to include active_completed_membership
+      end
     end
 
     it ".active returns memberships that are started before/on today and finishing today/in the future" do
@@ -163,17 +199,20 @@ describe Membership do
     end
 
     it ".inactive returns memberships that are started after today or finishing in the past" do
-      count = Membership.inactive.count
-      group.memberships.create(
-        start_date: Date.today.advance(days: -2),
-        end_date: Date.today.advance(days: -1),
+      membership_in_the_past = group.memberships.create(
+        start_date: Date.current,
+        end_date: Date.current + 1.day,
         participant: participant_wo_membership1)
-      group.memberships.create(
-        start_date: Date.today.advance(days: 1),
-        end_date: Date.today.advance(days: 2),
+      membership_in_the_future = group.memberships.create(
+        start_date: Date.current + 3.days,
+        end_date: Date.current + 4.days,
         participant: participant_wo_membership2)
 
-      expect(Membership.inactive.count).to eq count + 2
+      Timecop.travel Date.current - 2.days do
+        inactive_memberships = Membership.inactive
+        expect(inactive_memberships).to include membership_in_the_past
+        expect(inactive_memberships).to include membership_in_the_future
+      end
     end
 
     it ".activities_future_by_week returns a count of activities "\

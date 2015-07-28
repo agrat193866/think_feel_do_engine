@@ -76,9 +76,9 @@ ThinkFeelDoEngine::Engine.routes.draw do
         as: "participant_thoughts_visualization"
   end
 
-  resources :memberships do
-    get 'withdraw', on: :member
-    get 'discontinue', on: :member
+  resources :memberships, only: :update do
+    get "withdraw", on: :member
+    get "discontinue", on: :member
   end
 
 

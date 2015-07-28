@@ -26,6 +26,7 @@ class Membership < ActiveRecord::Base
   validate :not_complete_in_the_future
   validate :group_id_unchanged
   validate :single_active_membership
+  validate :not_ending_in_the_past
 
   attr_writer :start_date_american, :end_date_american
 
@@ -148,6 +149,18 @@ class Membership < ActiveRecord::Base
       .select(&:is_lesson?)
   end
 
+  def withdraw
+    return false unless valid?
+
+    update_column(:end_date, Date.current - 1.day)
+  end
+
+  def discontinue
+    return false unless valid?
+
+    update_columns(end_date: Date.current - 1.day, is_complete: true)
+  end
+
   private
 
   def normalize_dates
@@ -201,5 +214,11 @@ class Membership < ActiveRecord::Base
 
   def week_end_day(week_number)
     start_date + (week_number * 7).days
+  end
+
+  def not_ending_in_the_past
+    return unless end_date_changed? && end_date < Date.current
+
+    errors.add :end_date, "must not be in the past"
   end
 end
