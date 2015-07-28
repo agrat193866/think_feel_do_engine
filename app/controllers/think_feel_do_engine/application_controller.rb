@@ -58,20 +58,6 @@ module ThinkFeelDoEngine
 
     private
 
-    def phq_features?
-      if Rails.application.config.respond_to?(:include_phq_features)
-        Rails.application.config.include_phq_features
-      end
-    end
-    helper_method :phq_features?
-
-    def social_features?
-      if Rails.application.config.respond_to?(:include_social_features)
-        Rails.application.config.include_social_features
-      end
-    end
-    helper_method :social_features?
-
     def verify_active_membership
       if current_participant && !current_participant.active_membership
         scope = Devise::Mapping.find_scope!(current_participant)
