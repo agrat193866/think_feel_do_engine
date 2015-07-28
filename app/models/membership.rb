@@ -203,7 +203,7 @@ class Membership < ActiveRecord::Base
   end
 
   def not_complete_in_the_future
-    return unless end_date > Date.today && is_complete == true
+    return unless end_date && end_date > Date.today && is_complete == true
 
     errors.add :is_complete, "cannot be set to true for end dates in the future"
   end
@@ -217,7 +217,7 @@ class Membership < ActiveRecord::Base
   end
 
   def not_ending_in_the_past
-    return unless end_date_changed? && end_date < Date.current
+    return unless end_date && end_date_changed? && end_date < Date.current
 
     errors.add :end_date, "must not be in the past"
   end

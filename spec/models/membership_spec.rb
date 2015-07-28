@@ -31,7 +31,7 @@ describe Membership do
         .to eq false
     end
 
-    it "prevents is_complete=true and an end_date in the future" do
+    it "does not allow is_complete=true and an end_date in the future" do
       expect(
         Membership.new(end_date: Date.today + 3.days, is_complete: true)
         .tap(&:valid?)
@@ -49,6 +49,15 @@ describe Membership do
       Timecop.travel existing_membership.end_date + 1.day do
         expect(existing_membership).to be_valid
       end
+    end
+
+    it "does not allow a nil end date to be created" do
+      expect(Membership.new(end_date: nil).tap(&:valid?).errors[:end_date].length)
+        .to be > 0
+    end
+
+    it "does not allow a nil end date to be updated" do
+      expect(Membership.first.update(end_date: nil)).to eq false
     end
   end
 
