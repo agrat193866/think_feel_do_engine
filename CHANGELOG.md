@@ -1,3 +1,6 @@
+## 3.2.41 - 2015-07-28
+ * Merge pull request #217 from cbitstech/ecf_99709350_membership_validation
+
 ## 3.2.40 - 2015-07-28
  * Merge pull request #214 from cbitstech/msw_98851862_update_event_capture
  * Merge pull request #215 from cbitstech/ecf_98984686_phq_stepping
