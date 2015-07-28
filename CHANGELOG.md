@@ -1,3 +1,12 @@
+## 3.2.40 - 2015-07-28
+ * Merge pull request #214 from cbitstech/msw_98851862_update_event_capture
+ * Merge pull request #215 from cbitstech/ecf_98984686_phq_stepping
+ * Update Event Capture
+ * remove feature spec actions that aren't explicit
+ * refactor phq stepping calculations
+ * move feature specs to view specs and clean up view
+ * remove unused partial
+
 ## 3.2.39 - 2015-07-24
  * Merge pull request #212 from cbitstech/msw_98851862_duration
  * Update Last Activity Partial
