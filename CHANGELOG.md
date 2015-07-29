@@ -1,3 +1,8 @@
+## 3.2.43 - 2015-07-29
+ * Merge pull request #221 from cbitstech/msw_98485472_add_necessary_try
+ * Push to execute hooks.
+ * Add Try Method
+
 ## 3.2.42 - 2015-07-29
  * Merge pull request #220 from cbitstech/msw_98485472_remove_unnecessary_try
  * Remove Unnecessary try call
