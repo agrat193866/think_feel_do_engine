@@ -130,4 +130,10 @@ describe Participant do
       expect(participant3.latest_action_at).to eq latest_action.recorded_at
     end
   end
+
+  context "When no events exist" do
+    it "#latest_action_at" do
+      expect(participant3.latest_action_at).to be_nil
+    end
+  end
 end
