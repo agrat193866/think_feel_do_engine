@@ -110,7 +110,7 @@ class Participant < ActiveRecord::Base
     events
       .order(recorded_at: :desc)
       .first
-      .recorded_at
+      .try(:recorded_at)
   end
 
   def password_is__not_blank?
