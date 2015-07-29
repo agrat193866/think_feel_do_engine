@@ -1,3 +1,13 @@
+## 3.2.42 - 2015-07-29
+ * Merge pull request #220 from cbitstech/msw_98485472_remove_unnecessary_try
+ * Remove Unnecessary try call
+ * Merge pull request #216 from cbitstech/msw_92731694_update_message_compose_form_host_link
+ * Merge pull request #219 from cbitstech/ecf_#99708210_membership_exception
+ * Add New Site Message Helper
+ * add guards on membership date validation
+ * Merge pull request #218 from cbitstech/cl_97469994_make_intro_text_app_specific
+ * Add default "translation" for `application_name` if it doesn't exist
+
 ## 3.2.41 - 2015-07-28
  * Merge pull request #217 from cbitstech/ecf_99709350_membership_validation
 
