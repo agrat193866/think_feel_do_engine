@@ -1,3 +1,7 @@
+## 3.2.44 - 2015-07-30
+ * Merge pull request #222 from cbitstech/msw_98851862_update_patient_duration
+ * Change Duration Calculation
+
 ## 3.2.43 - 2015-07-29
  * Merge pull request #221 from cbitstech/msw_98485472_add_necessary_try
  * Push to execute hooks.
