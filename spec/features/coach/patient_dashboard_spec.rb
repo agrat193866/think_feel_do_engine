@@ -428,7 +428,7 @@ feature "patient dashboard", type: :feature do
 
       it "displays participant's 'Inactive' status on their 'show' page" do
         expect(Rails.application.config).to receive(:study_length_in_weeks).at_least(2).times { 8 }
-        visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id }"
+        visit "/coach/groups/#{group2.id}/patient_dashboards/#{inactive_participant.id}"
 
         expect(page).to have_text "Participant TFD-inactive"
         expect(page).to have_text "Inactive"
@@ -439,7 +439,7 @@ feature "patient dashboard", type: :feature do
 
       it "Displays event info of last detected and the duration" do
         allow(Rails.application.config).to receive(:study_length_in_weeks) { 0 }
-        participant1.update(last_sign_in_at: Time.zone.local(2020, 1, 1, 1, 1, 1))
+        participant1.update(current_sign_in_at: Time.zone.local(2020, 1, 1, 1, 1, 1))
         EventCapture::Event
           .create(
             emitted_at: Time.zone.now,

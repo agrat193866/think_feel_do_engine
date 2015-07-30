@@ -103,7 +103,7 @@ class Participant < ActiveRecord::Base
   end
 
   def duration_of_last_session
-    latest_action_at.to_i - last_sign_in_at.to_i
+    latest_action_at - current_sign_in_at
   end
 
   def latest_action_at
