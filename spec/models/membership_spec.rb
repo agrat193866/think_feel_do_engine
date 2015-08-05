@@ -129,23 +129,18 @@ describe Membership do
   end
 
   describe "#flag_complete" do
-    let(:start_date) { Date.parse("2012-01-02") }
-    let(:end_date) { Date.today }
-    let(:participant1) { participants(:participant1) }
-    let(:membership) do
-      Membership.new(
-        start_date: start_date,
-        end_date: end_date,
-        participant_id: participants(:participant1).id)
-    end
-
     it "marks a membership as complete and dates back the end_date to yesterday" do
-      expect(membership.is_complete).to eq false
+      Membership.destroy_all
+      incomplete_membership = Membership.create!(start_date: Date.yesterday,
+                                                 end_date: Date.today,
+                                                 group: group,
+                                                 participant: participant1)
+      expect(incomplete_membership.is_complete).to eq false
 
-      membership.flag_complete
+      expect(incomplete_membership.flag_complete).to eq true
 
-      expect(membership.is_complete).to eq true
-      expect(membership.end_date).to eq Date.yesterday
+      expect(incomplete_membership.is_complete).to eq true
+      expect(incomplete_membership.end_date).to eq Date.yesterday
     end
   end
 

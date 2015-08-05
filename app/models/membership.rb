@@ -94,13 +94,10 @@ class Membership < ActiveRecord::Base
   end
 
   def flag_complete
-    if update(is_complete: true, end_date: Date.yesterday)
-      logger.info "Marking membership for participant: "\
-      "#{participant.study_id}, as complete."
-    else
-      logger.error "ERROR: A problem occurred while marking"\
-      " membership for participant: #{participant.study_id}, as complete!"
-    end
+    self.is_complete = true
+    self.end_date = Date.yesterday
+
+    save validate: false
   end
 
   def logins_by_week(week_number)
