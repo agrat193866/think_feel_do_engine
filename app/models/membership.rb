@@ -1,6 +1,5 @@
 # The relationship of a Participant to a Group.
 class Membership < ActiveRecord::Base
-  AMERICAN_DATE_RE = %r(^\d\d?\/\d\d?\/\d{2,4}$)
   AMERICAN_DATE_FMT = "%m/%d/%Y"
 
   belongs_to :group
@@ -28,11 +27,8 @@ class Membership < ActiveRecord::Base
   validate :single_active_membership
   validate :not_ending_in_the_past
 
-  attr_writer :start_date_american, :end_date_american
-
   delegate :email, to: :participant, prefix: true, allow_nil: true
 
-  before_validation :normalize_dates
   after_create :create_task_statuses
 
   scope :active, lambda {
@@ -162,24 +158,6 @@ class Membership < ActiveRecord::Base
   end
 
   private
-
-  def normalize_dates
-    self.start_date = parse_american_date(@start_date_american, start_date)
-    self.end_date = parse_american_date(@end_date_american, end_date)
-  end
-
-  # Parse dates matching [M]M/[D]D/[YY]YY and return ISO8601: YYYY-MM-DD.
-  def parse_american_date(date, default)
-    parsed = default
-
-    if date.respond_to?(:match) && date.match(AMERICAN_DATE_RE)
-      parts = date.split("/")
-      year = parts[2].length == 2 ? "20#{ parts[2] }" : parts[2]
-      parsed = [year, parts[0], parts[1]].join("-")
-    end
-
-    parsed
-  end
 
   def create_task_statuses
     group.tasks.each do |task|

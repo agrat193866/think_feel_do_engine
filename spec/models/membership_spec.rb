@@ -99,35 +99,6 @@ describe Membership do
     expect(new_task_ids.length).to eq 1
   end
 
-  describe "date normalizations" do
-    let(:start_date) { Date.parse("2012-01-02") }
-    let(:end_date) { Date.parse("2013-02-03") }
-    let(:membership) do
-      Membership.new(start_date: start_date, end_date: end_date)
-    end
-
-    it "doesn't change ISO dates when an unrecognized format is passed" do
-      membership.tap { |m| m.start_date_american = "12345" }.valid?
-      expect(membership.start_date).to eq start_date
-      membership.tap { |m| m.end_date_american = "2/3/4" }.valid?
-      expect(membership.end_date).to eq end_date
-    end
-
-    it "parses 2-digit years correctly" do
-      membership.tap { |m| m.start_date_american = "09/29/10" }.valid?
-      expect(membership.start_date).to eq Date.parse("2010-09-29")
-      membership.tap { |m| m.end_date_american = "12/5/00" }.valid?
-      expect(membership.end_date).to eq Date.parse("2000-12-05")
-    end
-
-    it "parses 4-digit years correctly" do
-      membership.tap { |m| m.start_date_american = "1/04/1999" }.valid?
-      expect(membership.start_date).to eq Date.parse("1999-01-04")
-      membership.tap { |m| m.end_date_american = "8/2/2014" }.valid?
-      expect(membership.end_date).to eq Date.parse("2014-08-02")
-    end
-  end
-
   describe "#withdraw" do
     it "sets the end_date in the past" do
       membership1.update!(end_date: Date.tomorrow)
