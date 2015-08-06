@@ -1,3 +1,11 @@
+## 3.2.45 - 2015-08-06
+ * Merge pull request #224 from cbitstech/ecf_#97400334_messaging_report
+ * add Messaging reports
+ * Merge pull request #223 from cbitstech/ecf_#100505838_mark_membership_complete
+ * do not validate when flagging as complete
+ * improve readability of Membership specs
+ * remove unused code
+
 ## 3.2.44 - 2015-07-30
  * Merge pull request #222 from cbitstech/msw_98851862_update_patient_duration
  * Change Duration Calculation
