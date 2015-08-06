@@ -124,7 +124,7 @@ describe Membership do
       membership1.update!(is_complete: false)
 
       expect(membership1.discontinue).to be true
-      expect(membership1.end_date).to be < Date.current
+      expect(membership1.is_complete).to be true
     end
   end
 

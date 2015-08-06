@@ -4,7 +4,7 @@
               view_membership(patient, @group).end_date < Date.current %>
               <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
     <td>
-      <%= link_to patient.study_id, coach_group_patient_dashboard_path(@group, patient) %>
+      <%= link_to patient.study_id, think_feel_do_engine.coach_group_patient_dashboard_path(@group, patient) %>
     </td>
 
     <td class="unread">
@@ -54,7 +54,7 @@
           <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:compact) %>
         <% elsif view_membership(patient, @group) %>
           <% if can? :update, view_membership(patient, @group) %>
-            <%= form_for(view_membership(patient, @group), url: coach_group_membership_path(@group, view_membership(patient, @group)), :html => { :method => :put }) do |f| %>
+            <%= form_for(view_membership(patient, @group), url: think_feel_do_engine.coach_group_membership_path(@group, view_membership(patient, @group)), html: { method: :put }) do |f| %>
               <%= f.hidden_field(:stepped_on, value: Date.today) %>
               <%= f.submit "Step",
                            data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },
@@ -75,7 +75,7 @@
 
     <% if view_membership(patient, @group) %>
       <td>
-        <%= form_for view_membership(patient, @group) do |f| %>
+        <%= form_for [think_feel_do_engine, view_membership(patient, @group)] do |f| %>
           <%= f.hidden_field :end_date %>
           <input type="text"
                  class="datepicker"
@@ -86,7 +86,7 @@
       <% if phq_features? %>
         <td>
           <%= button_to "Discontinue",
-                        discontinue_membership_path(view_membership(patient, @group).id),
+                        think_feel_do_engine.discontinue_membership_path(view_membership(patient, @group).id),
                         data: { confirm: "Are you sure you would like to end this study? You will not be able to undo this." },
                         method: :get,
                         class: "btn btn-primary" %>
@@ -94,7 +94,7 @@
       <% end %>
       <td>
         <%= button_to "Terminate Access",
-                      withdraw_membership_path(view_membership(patient, @group).id),
+                      think_feel_do_engine.withdraw_membership_path(view_membership(patient, @group).id),
                       data: { confirm: "Are you sure you would like to terminate access to this membership? This option should also be used before changing membership of the patient to a different group or to completely revoke access to this membership. You will not be able to undo this." },
                       method: :get,
                       class: "btn btn-danger" %>

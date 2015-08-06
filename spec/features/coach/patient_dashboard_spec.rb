@@ -455,17 +455,6 @@ feature "patient dashboard", type: :feature do
       end
     end
 
-    it "should allow a coach to set the membership end date" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to_not have_text("Membership successfully ended")
-
-      first(:button, "Discontinue").click
-
-      expect(page).to have_text("Membership successfully ended")
-    end
-
     it "allows a coach to withdraw a participant" do
       sign_in_user clinician
       visit "/coach/groups/#{group1.id}/patient_dashboards"
