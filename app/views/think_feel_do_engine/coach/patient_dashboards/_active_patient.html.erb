@@ -54,7 +54,7 @@
           <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:compact) %>
         <% elsif view_membership(patient, @group) %>
           <% if can? :update, view_membership(patient, @group) %>
-            <%= form_for(view_membership(patient, @group), url: think_feel_do_engine.coach_group_membership_path(@group, view_membership(patient, @group)), html: { method: :put }) do |f| %>
+            <%= form_for([think_feel_do_engine, :coach, @group, view_membership(patient, @group)], html: { method: :put }) do |f| %>
               <%= f.hidden_field(:stepped_on, value: Date.today) %>
               <%= f.submit "Step",
                            data: { confirm: "You can't undo this! Please make sure you really want to STEP this participant before confirming. Otherwise click CANCEL." },

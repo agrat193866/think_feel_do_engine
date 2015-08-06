@@ -476,24 +476,5 @@ feature "patient dashboard", type: :feature do
 
       expect(page).to_not have_text "TFD-1111"
     end
-
-    it "allows a coach to step a participant" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      within "#patient-#{participants(:participant1).id}" do
-        expect(page).to_not have_text "Stepped"
-        click_on "Step"
-      end
-
-      expect(page).to have_text "Participant was successfully stepped."
-
-      within "#stepped-patients" do
-        within("tr", text: "TFD-1111") do
-          expect(page).to have_text "Stepped"
-          expect(page).to_not have_button "Step"
-        end
-      end
-    end
   end
 end
