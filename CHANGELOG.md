@@ -1,3 +1,10 @@
+## 3.2.46 - 2015-08-07
+ * update spec to compare to appropriate timestamp
+ * Merge pull request #225 from cbitstech/ecf_patient_dashboard_spec_fix
+ * replace additional patient dashboard feature specs
+ * replace Step feature spec with unit specs
+ * add view spec to replace Discontinue feature spec
+
 ## 3.2.45 - 2015-08-06
  * Merge pull request #224 from cbitstech/ecf_#97400334_messaging_report
  * add Messaging reports
