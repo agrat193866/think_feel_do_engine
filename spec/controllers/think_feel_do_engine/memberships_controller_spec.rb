@@ -15,7 +15,7 @@ module ThinkFeelDoEngine
     describe "PUT update" do
       context "when the membership is updated successfully" do
         it "should render a notice alert message OK response" do
-          allow(membership).to receive(:update) { true }
+          expect(membership).to receive(:update) { true }
 
           put :update,
               id: 1,
@@ -28,7 +28,7 @@ module ThinkFeelDoEngine
 
       context "invalid end date submission" do
         it "should render nothing with an OK response" do
-          allow(membership).to receive(:update) { false }
+          expect(membership).to receive(:update) { false }
 
           put :update,
               id: 1,
@@ -43,7 +43,7 @@ module ThinkFeelDoEngine
     describe "GET withdraw" do
       context "when the membership is withdrawn successfully" do
         it "sets a notice" do
-          allow(membership).to receive(:withdraw) { true }
+          expect(membership).to receive(:withdraw) { true }
 
           get :withdraw, id: 1, use_route: :think_feel_do_engine
 
@@ -53,7 +53,7 @@ module ThinkFeelDoEngine
 
       context "when the membership is not withdrawn successfully" do
         it "sets an alert" do
-          allow(membership).to receive(:withdraw) { false }
+          expect(membership).to receive(:withdraw) { false }
           allow(membership)
             .to receive_message_chain("errors.full_messages") { ["baz"] }
 
@@ -67,7 +67,7 @@ module ThinkFeelDoEngine
     describe "GET discontinue" do
       context "when the membership is discontinued successfully" do
         it "sets a notice" do
-          allow(membership).to receive(:discontinue) { true }
+          expect(membership).to receive(:discontinue) { true }
 
           get :discontinue, id: 1, use_route: :think_feel_do_engine
 
@@ -77,7 +77,7 @@ module ThinkFeelDoEngine
 
       context "when the membership is not discontinued successfully" do
         it "sets an alert" do
-          allow(membership).to receive(:discontinue) { false }
+          expect(membership).to receive(:discontinue) { false }
           allow(membership)
             .to receive_message_chain("errors.full_messages") { ["baz"] }
 

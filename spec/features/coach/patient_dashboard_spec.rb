@@ -20,22 +20,6 @@ feature "patient dashboard", type: :feature do
     let(:group1) { groups(:group1) }
     let(:group2) { groups(:group2) }
 
-    context "Coach views table with many patients" do
-      before do
-        sign_in_user clinician
-        visit "/coach/groups/#{group1.id}/patient_dashboards"
-      end
-
-      it "should display all messages" do
-        expect(page).not_to have_text("participant1#example.com")
-        # js modal causes spec errors when expecting table values
-        expect(page).to have_text("PHQ-9 WARNING 15 on " +
-                                    I18n.l(participant1.phq_assessments.last.release_date, format: :standard))
-        expect(page).to have_text("No; Too Early")
-        expect(page).to have_text("Never Logged In")
-      end
-    end
-
     context "Coach views table with many patients with phq features" do
       before do
         allow(Rails.application.config).to receive(:include_phq_features)
@@ -452,58 +436,6 @@ feature "patient dashboard", type: :feature do
         expect(page).to have_text "Wednesday, Jan 01 2020 01:02"
         expect(page).to have_text "Duration of Last Session:"
         expect(page).to have_text "1 minute"
-      end
-    end
-
-    it "should allow a coach to set the membership end date" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to_not have_text("Membership successfully ended")
-
-      first(:button, "Discontinue").click
-
-      expect(page).to have_text("Membership successfully ended")
-    end
-
-    it "allows a coach to withdraw a participant" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to have_button "Terminate Access"
-
-      first(:button, "Terminate Access").click
-
-      expect(page).to_not have_text "TFD-1111"
-    end
-
-    it "allows a coach to discontinue a participant" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      expect(page).to have_button "Discontinue"
-
-      first(:button, "Discontinue").click
-
-      expect(page).to_not have_text "TFD-1111"
-    end
-
-    it "allows a coach to step a participant" do
-      sign_in_user clinician
-      visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-      within "#patient-#{participants(:participant1).id}" do
-        expect(page).to_not have_text "Stepped"
-        click_on "Step"
-      end
-
-      expect(page).to have_text "Participant was successfully stepped."
-
-      within "#stepped-patients" do
-        within("tr", text: "TFD-1111") do
-          expect(page).to have_text "Stepped"
-          expect(page).to_not have_button "Step"
-        end
       end
     end
   end
