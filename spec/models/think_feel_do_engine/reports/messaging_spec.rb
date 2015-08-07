@@ -104,7 +104,9 @@ module ThinkFeelDoEngine
             report_line = Messaging.all.first
 
             expect(report_line[:is_message_opened]).to eq true
-            expect(report_line[:message_opened_at]).to eq m.updated_at.utc.iso8601
+            received_message = m.delivered_messages.first
+            expect(report_line[:message_opened_at])
+              .to eq received_message.updated_at.utc.iso8601
           end
         end
       end
