@@ -10,6 +10,16 @@ module ThinkFeelDoEngine
       end
 
       describe ".all" do
+        def render!(emitted_at:, url:)
+          EventCapture::Event.create!(
+            emitted_at: emitted_at,
+            recorded_at: emitted_at,
+            payload: { currentUrl: url, headers: %w( a b c ) },
+            kind: "render",
+            participant_id: participants(:participant1).id
+          )
+        end
+
         context "when no modules were viewed" do
           it "returns an empty array" do
             EventCapture::Event.destroy_all
@@ -36,17 +46,31 @@ module ThinkFeelDoEngine
           end
         end
 
-        context "when there was a gap in page views" do
-          def render!(emitted_at:, url:)
-            EventCapture::Event.create!(
-              emitted_at: emitted_at,
-              recorded_at: emitted_at,
-              payload: { currentUrl: url, headers: %w( a b c ) },
-              kind: "render",
-              participant_id: participants(:participant1).id
+        context "when the same module is viewed in one session" do
+          it "returns accurate summaries" do
+            EventCapture::Event.destroy_all
+            now = Time.current
+            module1_id = bit_core_content_modules(:do_awareness).id
+            module2_id = bit_core_content_modules(:do_planning).id
+            render!(emitted_at: now - 10.minutes,
+                    url: "/navigator/modules/#{ module1_id }")
+            render!(emitted_at: now - 9.minutes,
+                    url: "/navigator/modules/#{ module1_id }")
+            render!(emitted_at: now - 8.minutes,
+                    url: "/navigator/modules/#{ module2_id }")
+
+            expect(data.count).to eq 2
+            expect(data).to include(
+              participant_id: "TFD-1111",
+              module_id: module1_id,
+              page_headers: ["a", "b", "c"],
+              module_selected_at: (now - 10.minutes).utc.iso8601,
+              last_page_opened_at: (now - 9.minutes).utc.iso8601
             )
           end
+        end
 
+        context "when there was a gap in page views" do
           it "returns accurate summaries" do
             EventCapture::Event.destroy_all
             now = Time.current

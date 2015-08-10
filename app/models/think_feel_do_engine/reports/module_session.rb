@@ -42,7 +42,7 @@ module ThinkFeelDoEngine
       end
 
       def self.all_module_interactions
-        modules = module_entries_map
+        modules = modules_map
 
         Participant.select(:id, :study_id).map do |participant|
           events = EventCapture::Event
@@ -54,7 +54,7 @@ module ThinkFeelDoEngine
           end
 
           module_select_events.map do |e|
-            module_id = modules[e.current_url.gsub(URL_ROOT_RE, "")]
+            module_id = modules[e.current_url.gsub(URL_ROOT_RE, "")].id
             last_page_opened = last_page_opened(events, e, module_id)
 
             {

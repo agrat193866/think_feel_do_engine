@@ -6,25 +6,17 @@ module ThinkFeelDoEngine
 
       def self.included(klass)
         class << klass
-          def module_entries_map
-            modules = BitCore::ContentModule.where(type: nil).map do |m|
-              path = url_helpers.navigator_location_path(module_id: m.id)
-
-              ["#{ path }", m.id]
-            end
-
-            Hash[modules]
-          end
-
           # Returns a hash mapping path to Tool Module.
           def modules_map
-            modules = BitCore::ContentModule.where(type: nil).map do |m|
-              path = url_helpers.navigator_location_path(module_id: m.id)
-
-              ["#{ path }", m]
+            tool_modules.each_with_object({}) do |m, h|
+              h[url_helpers.navigator_location_path(module_id: m.id)] = m
             end
+          end
 
-            Hash[modules]
+          private
+
+          def tool_modules
+            BitCore::ContentModule.where(type: nil)
           end
 
           def url_helpers
