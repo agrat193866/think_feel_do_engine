@@ -44,7 +44,8 @@ module ThinkFeelDoEngine
                              "are the exact sentences that go through your " \
                              "head."],
               module_selected_at: first_render_event.emitted_at.iso8601,
-              last_page_opened_at: last_render_event.emitted_at.iso8601
+              last_page_opened_at: last_render_event.emitted_at.iso8601,
+              did_complete: true
             )
           end
         end
@@ -68,7 +69,8 @@ module ThinkFeelDoEngine
               module_id: module1_id,
               page_headers: ["a", "b", "c"],
               module_selected_at: (now - 10.minutes).utc.iso8601,
-              last_page_opened_at: (now - 9.minutes).utc.iso8601
+              last_page_opened_at: (now - 9.minutes).utc.iso8601,
+              did_complete: false
             )
           end
         end
@@ -93,7 +95,8 @@ module ThinkFeelDoEngine
               module_id: module_id,
               page_headers: ["a", "b", "c"],
               module_selected_at: (now - 10.minutes).utc.iso8601,
-              last_page_opened_at: (now - 8.minutes).utc.iso8601
+              last_page_opened_at: (now - 8.minutes).utc.iso8601,
+              did_complete: false
             )
           end
         end

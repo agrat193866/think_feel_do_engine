@@ -8,7 +8,7 @@ module ThinkFeelDoEngine
 
       def self.columns
         %w( participant_id module_id page_headers module_selected_at
-            last_page_opened_at )
+            last_page_opened_at did_complete )
       end
 
       def self.all
@@ -57,17 +57,18 @@ module ThinkFeelDoEngine
           events.map do |e|
             content_module = modules[e.current_url.gsub(URL_ROOT_RE, "")]
 
-            if content_module
-              last_page_opened = last_page_opened(events, e, content_module.id)
+            next unless content_module
 
-              {
-                participant_id: participant.study_id,
-                module_id: content_module.id,
-                page_headers: e.headers,
-                module_selected_at: e.emitted_at,
-                last_page_opened_at: last_page_opened[:opened_at]
-              }
-            end
+            last_page_opened = last_page_opened(events, e, content_module.id)
+
+            {
+              participant_id: participant.study_id,
+              module_id: content_module.id,
+              page_headers: e.headers,
+              module_selected_at: e.emitted_at,
+              last_page_opened_at: last_page_opened[:opened_at],
+              did_complete: last_page_opened[:is_last_module_page]
+            }
           end.compact
         end.flatten
       end
@@ -92,7 +93,11 @@ module ThinkFeelDoEngine
           end
         last_event = (module_events.last || first_session_event)
 
-        { opened_at: last_event.emitted_at }
+        {
+          opened_at: last_event.emitted_at,
+          is_last_module_page: is_last_module_page(last_event.current_url,
+                                                   module_id)
+        }
       end
 
       def self.nice_times(interaction)
@@ -102,6 +107,18 @@ module ThinkFeelDoEngine
           interaction[:last_page_opened_at].iso8601
 
         interaction
+      end
+
+      def self.is_last_module_page(url, module_id)
+        # last provider within module
+        last_provider = BitCore::ContentModule.find(module_id)
+                        .content_providers
+                        .order(:position)
+                        .last
+        provider_re = "modules\/#{ module_id }\/" \
+                      "providers\/#{ last_provider.id }(\/.*)?$"
+
+        !url.match(/#{ provider_re }/).nil?
       end
     end
   end
