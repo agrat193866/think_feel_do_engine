@@ -1,6 +1,10 @@
 # A thought recorded by a Participant.
 class Thought < ActiveRecord::Base
-  EFFECTS = ["helpful", "harmful", "neither"]
+  EFFECTS = {
+    helpful: "helpful",
+    harmful: "harmful",
+    neither: "neither"
+  }
   IDENTIFIED = "identified"
   ASSIGNED_A_PATTERN = "Assigned a pattern to"
   RESHAPED = "Reshaped"
@@ -9,7 +13,7 @@ class Thought < ActiveRecord::Base
   belongs_to :pattern, class_name: "ThoughtPattern", foreign_key: :pattern_id
 
   validates :participant, :content, :effect, presence: true
-  validates :effect, inclusion: { in: EFFECTS }
+  validates :effect, inclusion: { in: EFFECTS.values }
 
   delegate :description,
            :recommendations,
@@ -18,14 +22,14 @@ class Thought < ActiveRecord::Base
            prefix: true,
            allow_nil: true
 
-  scope :helpful, -> { where(effect: "helpful") }
+  scope :helpful, -> { where(effect: EFFECTS[:helpful]) }
 
-  scope :harmful, -> { where(effect: "harmful") }
+  scope :harmful, -> { where(effect: EFFECTS[:harmful]) }
 
   scope :no_pattern, -> { where(pattern_id: nil) }
 
   scope :unreflected, lambda {
-    where(effect: "harmful")
+    where(effect: EFFECTS[:harmful])
       .where(arel_table[:challenging_thought].eq(nil)
         .or(arel_table[:challenging_thought].eq(""))
         .or(arel_table[:act_as_if].eq(nil))
