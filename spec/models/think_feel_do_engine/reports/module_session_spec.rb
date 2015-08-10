@@ -5,9 +5,7 @@ module ThinkFeelDoEngine
     RSpec.describe ModuleSession do
       fixtures :all
 
-      def data
-        @data ||= ModuleSession.all
-      end
+      let(:data) { ModuleSession.all }
 
       describe ".all" do
         def render!(emitted_at:, url:)
@@ -28,11 +26,16 @@ module ThinkFeelDoEngine
           end
         end
 
+        it "excludes non-didactic modules" do
+          Task.destroy_all
+
+          expect(data.count).to eq 0
+        end
+
         context "when modules were viewed" do
           it "returns accurate summaries" do
             first_render_event = event_capture_events(:event_capture_events_014)
             last_render_event = event_capture_events(:event_capture_events_031)
-            expect(data.count).to eq 7
             expect(data).to include(
               participant_id: "TFD-1111",
               module_id: bit_core_content_modules(:think_identifying).id,

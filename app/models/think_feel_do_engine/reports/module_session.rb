@@ -41,31 +41,42 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
+      # Returns all events that represent a viewing (render) of a Content
+      # Module.
       def self.all_module_interactions
-        modules = modules_map
+        modules = modules_map.keys.each_with_object({}) do |key, h|
+          if Task.exists?(bit_core_content_module_id: modules_map[key].id,
+                          has_didactic_content: true)
+            h[key] = modules_map[key]
+          end
+        end
 
         Participant.select(:id, :study_id).map do |participant|
-          events = EventCapture::Event
-                   .where(participant_id: participant.id, kind: "render")
-                   .select(:id, :participant_id, :emitted_at, :payload, :kind)
-                   .to_a.sort { |a, b| a.emitted_at <=> b.emitted_at }
-          module_select_events = events.select do |e|
-            modules.keys.include?(e.current_url.gsub(URL_ROOT_RE, ""))
-          end
+          events = time_sorted_render_events_for(participant)
 
-          module_select_events.map do |e|
-            module_id = modules[e.current_url.gsub(URL_ROOT_RE, "")].id
-            last_page_opened = last_page_opened(events, e, module_id)
+          events.map do |e|
+            content_module = modules[e.current_url.gsub(URL_ROOT_RE, "")]
 
-            {
-              participant_id: participant.study_id,
-              module_id: module_id,
-              page_headers: e.headers,
-              module_selected_at: e.emitted_at,
-              last_page_opened_at: last_page_opened[:opened_at]
-            }
-          end
+            if content_module
+              last_page_opened = last_page_opened(events, e, content_module.id)
+
+              {
+                participant_id: participant.study_id,
+                module_id: content_module.id,
+                page_headers: e.headers,
+                module_selected_at: e.emitted_at,
+                last_page_opened_at: last_page_opened[:opened_at]
+              }
+            end
+          end.compact
         end.flatten
+      end
+
+      def self.time_sorted_render_events_for(participant)
+        EventCapture::Event
+          .where(participant_id: participant.id, kind: "render")
+          .select(:id, :participant_id, :emitted_at, :payload, :kind)
+          .to_a.sort { |a, b| a.emitted_at <=> b.emitted_at }
       end
 
       # last event (click) with matching module id
