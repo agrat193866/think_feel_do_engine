@@ -1,6 +1,9 @@
 # A thought recorded by a Participant.
 class Thought < ActiveRecord::Base
   EFFECTS = ["helpful", "harmful", "neither"]
+  IDENTIFIED = "identified"
+  ASSIGNED_A_PATTERN = "Assigned a pattern to"
+  RESHAPED = "Reshaped"
 
   belongs_to :participant
   belongs_to :pattern, class_name: "ThoughtPattern", foreign_key: :pattern_id
@@ -45,13 +48,11 @@ class Thought < ActiveRecord::Base
 
   def status_label
     if !pattern_id && !challenging_thought
-      "Identified"
+      IDENTIFIED
     elsif pattern_id && !challenging_thought
-      "Assigned a pattern to"
+      ASSIGNED_A_PATTERN
     elsif challenging_thought
-      "Reshaped"
-    else
-      "Shared"
+      RESHAPED
     end
   end
 
