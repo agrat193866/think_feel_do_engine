@@ -8,7 +8,7 @@ module ThinkFeelDoEngine
 
       def self.columns
         %w( participant_id module_id page_headers module_selected_at
-            last_page_opened_at )
+            last_page_opened_at did_complete )
       end
 
       def self.all
@@ -41,31 +41,43 @@ module ThinkFeelDoEngine
         end.flatten
       end
 
+      # Returns all events that represent a viewing (render) of a Content
+      # Module.
       def self.all_module_interactions
-        modules = module_entries_map
+        modules = modules_map.keys.each_with_object({}) do |key, h|
+          if Task.exists?(bit_core_content_module_id: modules_map[key].id,
+                          has_didactic_content: true)
+            h[key] = modules_map[key]
+          end
+        end
 
         Participant.select(:id, :study_id).map do |participant|
-          events = EventCapture::Event
-                   .where(participant_id: participant.id, kind: "render")
-                   .select(:id, :participant_id, :emitted_at, :payload, :kind)
-                   .to_a.sort { |a, b| a.emitted_at <=> b.emitted_at }
-          module_select_events = events.select do |e|
-            modules.keys.include?(e.current_url.gsub(URL_ROOT_RE, ""))
-          end
+          events = time_sorted_render_events_for(participant)
 
-          module_select_events.map do |e|
-            module_id = modules[e.current_url.gsub(URL_ROOT_RE, "")]
-            last_page_opened = last_page_opened(events, e, module_id)
+          events.map do |e|
+            content_module = modules[e.current_url.gsub(URL_ROOT_RE, "")]
+
+            next unless content_module
+
+            last_page_opened = last_page_opened(events, e, content_module.id)
 
             {
               participant_id: participant.study_id,
-              module_id: module_id,
+              module_id: content_module.id,
               page_headers: e.headers,
               module_selected_at: e.emitted_at,
-              last_page_opened_at: last_page_opened[:opened_at]
+              last_page_opened_at: last_page_opened[:opened_at],
+              did_complete: last_page_opened[:is_last_module_page]
             }
-          end
+          end.compact
         end.flatten
+      end
+
+      def self.time_sorted_render_events_for(participant)
+        EventCapture::Event
+          .where(participant_id: participant.id, kind: "render")
+          .select(:id, :participant_id, :emitted_at, :payload, :kind)
+          .to_a.sort { |a, b| a.emitted_at <=> b.emitted_at }
       end
 
       # last event (click) with matching module id
@@ -81,7 +93,11 @@ module ThinkFeelDoEngine
           end
         last_event = (module_events.last || first_session_event)
 
-        { opened_at: last_event.emitted_at }
+        {
+          opened_at: last_event.emitted_at,
+          is_last_module_page: is_last_module_page(last_event.current_url,
+                                                   module_id)
+        }
       end
 
       def self.nice_times(interaction)
@@ -91,6 +107,18 @@ module ThinkFeelDoEngine
           interaction[:last_page_opened_at].iso8601
 
         interaction
+      end
+
+      def self.is_last_module_page(url, module_id)
+        # last provider within module
+        last_provider = BitCore::ContentModule.find(module_id)
+                        .content_providers
+                        .order(:position)
+                        .last
+        provider_re = "modules\/#{ module_id }\/" \
+                      "providers\/#{ last_provider.id }(\/.*)?$"
+
+        !url.match(/#{ provider_re }/).nil?
       end
     end
   end
