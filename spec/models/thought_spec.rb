@@ -1,6 +1,20 @@
 require "rails_helper"
 
 RSpec.describe Thought, type: :model do
+  describe "normalization" do
+    it "converts empty challenging thoughts to nil" do
+      thought = Thought.new(challenging_thought: " ").tap(&:valid?)
+
+      expect(thought.challenging_thought).to be_nil
+    end
+
+    it "converts empty act as if statements to nil" do
+      thought = Thought.new(act_as_if: " ").tap(&:valid?)
+
+      expect(thought.act_as_if).to be_nil
+    end
+  end
+
   describe "#shared_description" do
     it "returns a thought description" do
       thought = Thought.new(content: "content")

@@ -12,6 +12,8 @@ class Thought < ActiveRecord::Base
   belongs_to :participant
   belongs_to :pattern, class_name: "ThoughtPattern", foreign_key: :pattern_id
 
+  before_validation :clean_attributes
+
   validates :participant, :content, :effect, presence: true
   validates :effect, inclusion: { in: EFFECTS.values }
 
@@ -62,5 +64,19 @@ class Thought < ActiveRecord::Base
 
   def shared_description
     "Thought: #{ content }"
+  end
+
+  private
+
+  def clean_attributes
+    def clean_attribute(attr)
+      if self[attr].respond_to?(:strip)
+        cleaned = self[attr].strip
+        send("#{ attr }=", cleaned == "" ? nil : cleaned)
+      end
+    end
+
+    clean_attribute(:challenging_thought)
+    clean_attribute(:act_as_if)
   end
 end
