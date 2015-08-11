@@ -59,24 +59,17 @@
 <script>
   $(function () {
     return $('#activities_past_data').dataTable({
-      sPaginationType: 'bootstrap',
       order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
+      columnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [8],
+          targets: [8],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>

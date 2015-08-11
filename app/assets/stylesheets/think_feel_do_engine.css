@@ -7,4 +7,5 @@
  *= require jquery.ui.datepicker
  *= require bootstrap-timepicker.min
  *= require jplayer.blue.monday
+ *= dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */

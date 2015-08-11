@@ -31,24 +31,17 @@
 <script type="text/javascript">
   $(function() {
     return $('#task_statuses').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[0, "asc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[0, 'asc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [3],
+          targets: [3],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>

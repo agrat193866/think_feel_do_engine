@@ -46,26 +46,22 @@
 <script type="text/javascript">
   $(function() {
     return $('#activities_past').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[10, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[10, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [8],
+          targets: [8],
           iDataSort: [0]
         },
         {
-          aTargets: [1],
-          bVisible: false
+          targets: [1],
+          visible: false
         },
         {
-          aTargets: [9],
+          targets: [9],
           iDataSort: [1]
         }
       ]

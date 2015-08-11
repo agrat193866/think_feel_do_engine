@@ -30,18 +30,14 @@
 <script type="text/javascript">
   $(function() {
     return $('#moods-table').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[2, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[2, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [2],
+          targets: [2],
           iDataSort: [0]
         }
       ]

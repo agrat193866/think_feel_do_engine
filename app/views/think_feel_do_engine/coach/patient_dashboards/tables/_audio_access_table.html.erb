@@ -33,24 +33,17 @@
 <script type="text/javascript">
   $(function() {
     return $('#access_data').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
+      order: [[0, 'desc']],
+      columnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [2],
+          targets: [2],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>

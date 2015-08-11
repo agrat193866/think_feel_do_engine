@@ -1,4 +1,7 @@
 <tr id="thought-<%= mutable_thought.id %>">
+  <td class="not-displayed">
+    <%= mutable_thought.created_at ? mutable_thought.created_at.to_i : 0 %>
+  </td>
   <td>
     <span class="immutable-thought-content"><%= mutable_thought.content %></span>
     <%= text_field_tag "thoughts[#{ mutable_thought.id }][content]", mutable_thought.content, class: "not-displayed" %>

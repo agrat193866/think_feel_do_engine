@@ -47,24 +47,17 @@
 <script>
   $(function () {
     return $('#comments_data').dataTable({
-      sPaginationType: 'bootstrap',
       order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
+      columnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [4],
+          targets: [4],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>

@@ -15,7 +15,7 @@
 //= require bootstrap/modal
 //= require bootstrap/collapse
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap3
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require snap
 //= require moment.min
 //= require d3.min

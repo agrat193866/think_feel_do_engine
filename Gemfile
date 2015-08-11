@@ -15,9 +15,7 @@ gemspec
 
 gem "devise", "~> 3.2"
 
-gem "jquery-datatables-rails",
-    tag: "v1.12.0",
-    git: "https://github.com/rweng/jquery-datatables-rails.git"
+gem "jquery-datatables-rails", "~> 3.3.0"
 
 gem "event_capture",
     tag: "0.1.1",
