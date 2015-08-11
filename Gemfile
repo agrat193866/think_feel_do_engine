@@ -40,6 +40,7 @@ gem "twilio-ruby", "~> 3.12"
 group :development, :test do
   gem "jasmine-rails"
   gem "rubocop", "~> 0.26"
+  gem "parallel_tests"
 end
 
 group :test do
