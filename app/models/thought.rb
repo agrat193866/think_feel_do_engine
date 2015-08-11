@@ -33,9 +33,7 @@ class Thought < ActiveRecord::Base
   scope :unreflected, lambda {
     where(effect: EFFECTS[:harmful])
       .where(arel_table[:challenging_thought].eq(nil)
-        .or(arel_table[:challenging_thought].eq(""))
-        .or(arel_table[:act_as_if].eq(nil))
-        .or(arel_table[:act_as_if].eq("")))
+        .or(arel_table[:act_as_if].eq(nil)))
   }
 
   scope :last_seven_days, lambda {
