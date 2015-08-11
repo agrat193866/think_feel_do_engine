@@ -55,24 +55,17 @@
 <script>
   $(function () {
     return $('#goals_data').dataTable({
-      sPaginationType: 'bootstrap',
       order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
-      aoColumnDefs: [
+      columnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [6],
+          targets: [6],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>

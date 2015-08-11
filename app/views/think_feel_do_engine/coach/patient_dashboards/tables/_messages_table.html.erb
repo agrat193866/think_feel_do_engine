@@ -31,17 +31,13 @@
 <script type="text/javascript">
   $(function() {
     return $('#messages').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[0, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },{
-          aTargets: [2],
+          targets: [2],
           iDataSort: [0]
         }
       ],

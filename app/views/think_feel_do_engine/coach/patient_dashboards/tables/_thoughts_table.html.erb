@@ -33,18 +33,14 @@
 <script type="text/javascript">
   $(function() {
     return $('#thoughts').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[5, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[5, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [5],
+          targets: [5],
           iDataSort: [0]
         }
       ]

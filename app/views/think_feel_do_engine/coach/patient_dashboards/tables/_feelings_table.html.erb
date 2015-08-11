@@ -32,18 +32,14 @@
 <script type="text/javascript">
   $(function() {
     return $('#emotions-table').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[3, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[3, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [3],
+          targets: [3],
           iDataSort: [0]
         }
       ]

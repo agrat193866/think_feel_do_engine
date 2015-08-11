@@ -31,18 +31,14 @@
 <script type="text/javascript">
   $(function() {
     return $('#logins').dataTable({
-      sPaginationType: 'bootstrap',
-      order: [[1, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
+      order: [[1, 'desc']],
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [1],
+          targets: [1],
           iDataSort: [0]
         }
       ]

@@ -50,24 +50,17 @@
 <script>
   $(function () {
     return $('#on-my-mind_data').dataTable({
-      sPaginationType: 'bootstrap',
       order: [[0, "desc"]],
-      oLanguage: {
-        sSearch: 'Filter: '
-      },
       aoColumnDefs: [
         {
-          aTargets: [0],
-          bVisible: false
+          targets: [0],
+          visible: false
         },
         {
-          aTargets: [3],
+          targets: [3],
           iDataSort: [0]
         }
-      ],
-      oLanguage: {
-        sSearch: 'Filter: '
-      }
+      ]
     });
   });
 </script>
