@@ -1,3 +1,11 @@
+## 3.2.47 - 2015-08-12
+ * Merge pull request #227 from cbitstech/ecf_100846610_module_session_reports
+ * Merge pull request #226 from cbitstech/ecf_patch_jquery
+ * update to security patched version of jquery-rails
+ * add did_complete column to Module Session report
+ * report on only didactic Content Module views
+ * refactor ToolModule and increase spec coverage
+
 ## 3.2.46 - 2015-08-07
  * update spec to compare to appropriate timestamp
  * Merge pull request #225 from cbitstech/ecf_patient_dashboard_spec_fix
