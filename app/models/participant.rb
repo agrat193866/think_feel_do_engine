@@ -92,6 +92,14 @@ class Participant < ActiveRecord::Base
       )
   }
 
+  def display_name
+    if self[:display_name].blank?
+      self[:email].split("@").first
+    else
+      self[:display_name]
+    end
+  end
+
   def is_not_allowed_in_site
     # participant not set to is_complete (hence withdrawal or termination)
     # and who have no active memberships
