@@ -1,3 +1,7 @@
+## 3.2.48 - 2015-08-18
+  * Merge pull request #230 from cbitstech/msw_fix_css_require
+  * Add require in CSS for bootstrap dataTables
+
 ## 3.2.46 - 2015-08-07
  * update spec to compare to appropriate timestamp
  * Merge pull request #225 from cbitstech/ecf_patient_dashboard_spec_fix
