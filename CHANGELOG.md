@@ -1,3 +1,10 @@
+## 3.2.49 - 2015-08-20
+ * Merge pull request #232 from cbitstech/msw_101704324_fix_datatable_sort_bug
+ * Update Jquery DataTables Columns
+ * Merge pull request #231 from cbitstech/cl_100974480_show_email_if_no_displayname
+ * Show email name when display_name unavailable  * Add `display_name` method to participant model to handle blank display names  * Add unit tests for `display_name`  * Refactor participant spec to be more in line with standards
+ * Tag new release. (3.2.48)
+
 ## 3.2.48 - 2015-08-18
   * Merge pull request #230 from cbitstech/msw_fix_css_require
   * Add require in CSS for bootstrap dataTables
