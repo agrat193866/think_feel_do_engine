@@ -67,8 +67,7 @@ module ContentProviders
     end
 
     def formatted_date(options)
-      local_time(options)
-        .strftime("%b %d, %Y")
+      local_time(options).to_s(:date)
     end
 
     # dates with scheduled activities formatted for jquery datepicker

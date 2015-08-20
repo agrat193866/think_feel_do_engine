@@ -1,21 +1,20 @@
 en:
-  next: Next
   back: Back
   finish: Finish
-
-  time:
-    formats:
-      standard: "%b %d %Y %H:%M"
-      login: "%A, %b %d %Y %H:%M"
-      with_seconds: "%b %d %Y %H:%M:%S"
-
+  next: Next
   date:
     formats:
+      date: "%m/%d/%Y"
       standard: "%m/%d/%Y"
-      login: "%A, %m/%d/%Y"
-
   datetime:
     formats:
-      standard: "%b %d %Y %H:%M"
-      login: "%A, %b %d %Y %H:%M"
-      with_seconds: "%b %d %Y %H:%M:%S"
+      date: "%m/%d/%Y"
+      hour_with_meridian: "%l %P"
+      standard: "%b %d %Y %I:%M %P"
+      with_seconds: "%b %d %Y %I:%M:%S %P"
+  time:
+    formats:
+      date: "%m/%d/%Y"
+      hour_with_meridian: "%l %P"
+      standard: "%b %d %Y %I:%M %P"
+      with_seconds: "%b %d %Y %I:%M:%S %P"

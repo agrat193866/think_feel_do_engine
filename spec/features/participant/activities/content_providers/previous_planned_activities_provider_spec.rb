@@ -27,7 +27,7 @@ feature "Activities", type: :feature do
           id: "previous_activities",
           cells: [
             "Sleeping",
-            "#{upcoming_activity.start_time.to_s(:date_time_with_meridian)}",
+            "#{upcoming_activity.start_time.to_s(:standard)}",
             "1",
             "8"
           ]
@@ -42,7 +42,7 @@ feature "Activities", type: :feature do
           id: "previous_activities",
           cells: [
             "Sleeping",
-            "#{upcoming_activity.start_time.to_s(:date_time_with_meridian)}",
+            "#{upcoming_activity.start_time.to_s(:standard)}",
             "1",
             "8"
           ]

@@ -17,10 +17,10 @@ feature "Activities", type: :feature do
         expect(page).to have_content "Last Recorded Awake Period:"
         expect(page).to have_content "Not Completed"
         expect(page).to have_content(
-          "Woke up #{ awake_period.start_time.to_s(:date_time_with_meridian) }"
+          "Woke up #{ awake_period.start_time.to_s(:standard) }"
         )
         expect(page).to have_content(
-          "Went to sleep #{ awake_period.end_time.to_s(:date_time_with_meridian) }"
+          "Went to sleep #{ awake_period.end_time.to_s(:standard) }"
         )
 
         click_on "Complete"

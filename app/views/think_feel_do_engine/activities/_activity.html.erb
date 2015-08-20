@@ -1,6 +1,6 @@
 <% no_value_msg = "<span class=\"label label-warning\">Not Answered</span>".html_safe %>
 <tr>
-  <td><%= activity.start_time.to_s(:time_with_meridian) %> - <%= activity.end_time.to_s(:time_with_meridian) %></td>
+  <td><%= activity.start_time.to_s(:standard) %> - <%= activity.end_time.to_s(:standard) %></td>
   <td><%= activity.title %></td>
   <td><% if(activity.actual_pleasure_value != "Not answered") %>
   	<%= activity.actual_pleasure_value %> (<%= activity.actual_pleasure_intensity %>)

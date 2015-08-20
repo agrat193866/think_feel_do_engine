@@ -22,8 +22,8 @@
 					<%= link_to slideshow.pretty_title, arm_bit_maker_slideshow_path(@arm, slideshow) %>
 				</td>
 				<td><%= slideshow.slides.count %></td>
-				<td><%= slideshow.created_at.to_s :date_time_with_meridian %></td>
-				<td><%= slideshow.updated_at.to_s :date_time_with_meridian %></td>
+				<td><%= slideshow.created_at.to_s :standard %></td>
+				<td><%= slideshow.updated_at.to_s :standard %></td>
 				<td>
 					<%= link_to "Edit", edit_arm_bit_maker_slideshow_path(@arm, slideshow), class: "btn btn-default" %>
 					<%= link_to "Delete", arm_bit_maker_slideshow_path(@arm, slideshow), :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

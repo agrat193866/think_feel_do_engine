@@ -4,7 +4,7 @@ participant_to_coach1:
   subject: I like this app
   body: This app is really helpful!
   sent_at: <%= Time.new %>
-  created_at: <%= Date.current %>
+  created_at: <%= Time.current %>
 
 participant2_to_coach1:
   sender: participant2 (Participant)

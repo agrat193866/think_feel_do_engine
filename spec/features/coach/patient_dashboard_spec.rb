@@ -208,7 +208,7 @@ feature "patient dashboard", type: :feature do
       it "summarizes messages" do
         expect(page).to have_the_table(
           id: "messages",
-          cells: ["I like this app", I18n.l(Date.current, format: :standard)]
+          cells: ["I like this app", I18n.l(time_now, format: :standard)]
         )
       end
 
@@ -304,7 +304,7 @@ feature "patient dashboard", type: :feature do
 
           expect(page).to have_text("How much pleasure")
 
-          fill_in "What did you do from 12am to 1am?", with: "run"
+          fill_in "What did you do from 12 am to 1 am?", with: "run"
           click_on "Next"
           sign_in_user users(:clinician1)
 
@@ -433,7 +433,7 @@ feature "patient dashboard", type: :feature do
         visit "/coach/groups/#{group1.id}/patient_dashboards/#{participant1.id}"
 
         expect(page).to have_text "Last Activity Detected At:"
-        expect(page).to have_text "Wednesday, Jan 01 2020 01:02"
+        expect(page).to have_text "Jan 01 2020 01:02 am"
         expect(page).to have_text "Duration of Last Session:"
         expect(page).to have_text "1 minute"
       end

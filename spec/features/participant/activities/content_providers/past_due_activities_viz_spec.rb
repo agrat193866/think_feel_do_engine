@@ -36,7 +36,7 @@ feature "Activities", type: :feature do
           id: "table-Upcoming_Activities",
           cells: [
             "Going for a walk",
-            "#{upcoming_activity.start_time.to_s(:date_time_with_meridian)}",
+            "#{upcoming_activity.start_time.to_s(:standard)}",
             "Kind of fun (6)",
             "Average Importance (4)"
           ]
@@ -45,7 +45,7 @@ feature "Activities", type: :feature do
           id: "table-Upcoming_Activities",
           cells: [
             "Hanging with friends",
-            "#{past_activity.start_time.to_s(:date_time_with_meridian)}",
+            "#{past_activity.start_time.to_s(:standard)}",
             "Really fun (9)",
             "Average Importance (4)"
           ]
@@ -58,13 +58,13 @@ feature "Activities", type: :feature do
               "#{ bit_core_content_providers(:do_past_due_activities).id }/1"
         expect(page).to have_text("Upcoming Activities")
         expect(page).to have_text("Going for a walk")
-        expect(page).to have_text("#{ upcoming_activity.start_time.to_s(:date_time_with_meridian) }")
+        expect(page).to have_text("#{ upcoming_activity.start_time.to_s(:standard) }")
         expect(page).to have_text("Kind of fun (6)")
         expect(page).to have_text("Average Importance (4)")
 
         expect(page).to have_text("Recent Past Activities")
         expect(page).to have_text("Hanging with friends")
-        expect(page).to have_text("#{ past_activity.start_time.to_s(:date_time_with_meridian) }")
+        expect(page).to have_text("#{ past_activity.start_time.to_s(:standard) }")
         expect(page).to have_text("Really fun (9)")
         expect(page).to have_text("Average Importance (4)")
       end

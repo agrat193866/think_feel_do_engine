@@ -84,7 +84,7 @@ feature "Activities", type: :feature do
 
         it "displays daily activity averages" do
           today = Time.now
-          expect(page).to have_text "Daily Averages for " + today.strftime("%b %d, %Y")
+          expect(page).to have_text "Daily Averages for " + today.to_s(:date)
           expect(page).to have_text "Mood: No Recordings"
           expect(page).to have_text "Positive Emotions: No Recordings"
           expect(page).to have_text "Negative Emotions: No Recordings"
@@ -110,12 +110,12 @@ feature "Activities", type: :feature do
           yesterday = today - 1.days
           visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
           click_on "Previous Day"
-          expect(page).to have_text "Daily Averages for " + yesterday.strftime("%b %d, %Y")
-          expect(page).to_not have_text "Daily Averages for" + today.strftime("%b %d, %Y")
+          expect(page).to have_text "Daily Averages for " + yesterday.to_s(:date)
+          expect(page).to_not have_text "Daily Averages for" + today.to_s(:date)
 
           click_on "Today"
 
-          expect(page).to have_text "Daily Averages for " + today.strftime("%b %d, %Y")
+          expect(page).to have_text "Daily Averages for " + today.to_s(:date)
         end
 
         it "displays a list of activities and activity details" do
