@@ -37,8 +37,8 @@ RSpec.describe "think_feel_do_engine/coach/patient_dashboards" \
     it "displays related lesson event click data attributes" do
       expect(rendered).to have_text lesson_title
       expect(rendered).to have_text header
-      expect(rendered).to have_text "Jan 21 2015 16:21"
-      expect(rendered).to have_text "Feb 22 2015 15:43"
+      expect(rendered).to have_text "Jan 21 2015 04:21:00 pm"
+      expect(rendered).to have_text "Feb 22 2015 03:43:00 pm"
     end
   end
 
