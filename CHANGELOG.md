@@ -1,3 +1,8 @@
+## 3.2.50 - 2015-08-21
+ * Merge pull request #233 from cbitstech/msw_91861818_update_time_formats
+ * Update Spec
+ * Update DateTime and Time Format
+
 ## 3.2.49 - 2015-08-20
  * Merge pull request #232 from cbitstech/msw_101704324_fix_datatable_sort_bug
  * Update Jquery DataTables Columns
