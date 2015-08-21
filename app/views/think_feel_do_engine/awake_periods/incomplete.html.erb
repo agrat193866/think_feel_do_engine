@@ -5,8 +5,8 @@
   <label class="label label-warning">Not Completed</label>
 </p>
 
-<strong>Woke up</strong> <%= participant.most_recent_unfinished_awake_period.start_time.to_formatted_s(:date_time_with_meridian) %><br>
-<strong>Went to sleep</strong> <%= participant.most_recent_unfinished_awake_period.end_time.to_formatted_s(:date_time_with_meridian) %>
+<strong>Woke up</strong> <%= participant.most_recent_unfinished_awake_period.start_time.to_formatted_s(:standard) %><br>
+<strong>Went to sleep</strong> <%= participant.most_recent_unfinished_awake_period.end_time.to_formatted_s(:standard) %>
 
 <div class="btn-toolbar">
   <%= content_tag(:a, "Complete", type: "submit", class: "btn btn-primary pull-right", href: navigator_next_content_url, id: "submit_activities") %>

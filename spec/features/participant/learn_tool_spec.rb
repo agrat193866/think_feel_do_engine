@@ -32,7 +32,7 @@ feature "learn tool", type: :feature do
         expect(find(".task-status.enabled")).to have_text "Released Today"
         expect(find(".task-status.disabled")).to have_text "Do - Doing Introduction"
         expect(find(".task-status.disabled")).to have_text(
-          "Available on #{ Date.today.advance(days: 4).to_s(:brief_date) }"
+          "Available on #{ Date.today.advance(days: 4).to_s(:date) }"
         )
       end
     end
@@ -48,7 +48,7 @@ feature "learn tool", type: :feature do
       within ".panel-info" do
         expect(find(".task-status.enabled")).to have_text "Do - Congrats"
         expect(find(".task-status.enabled")).to_not have_text(
-          "Read on #{ Date.current.to_s(:brief_date) }"
+          "Read on #{ Date.current.to_s(:date) }"
         )
 
         find(".enabled .task-status").click
@@ -61,24 +61,24 @@ feature "learn tool", type: :feature do
       within ".panel-info" do
         expect(find(".task-status.enabled .read")).to have_text "Do - Congrats"
         expect(find(".task-status.enabled")).to have_text(
-          "Read on #{ Date.current.to_s(:brief_date) }"
+          "Read on #{ Date.current.to_s(:date) }"
         )
       end
     end
 
     it "displays the correct count of unread lessons", :js do
       date = Date.current.advance(days: -2)
-      expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 2"
+      expect(page).to have_text "Week 3 · #{ date.to_s(:date) } 2"
 
       click_on "Do - Congrats"
       click_on "Finish"
 
-      expect(page).to have_text "Week 3 · #{ date.to_s(:brief_date) } 1"
+      expect(page).to have_text "Week 3 · #{ date.to_s(:date) } 1"
     end
 
     it "displays the correct count of unread lessons for future weeks" do
       date = Date.current.advance(days: 5)
-      expect(page).to have_text "Week 4 · #{ date.to_s(:brief_date) } 1"
+      expect(page).to have_text "Week 4 · #{ date.to_s(:date) } 1"
     end
 
     it "allows viewing printable page for read lessons" do

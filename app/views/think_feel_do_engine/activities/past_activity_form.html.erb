@@ -20,7 +20,7 @@
 
       <div class="row">
         <div class="form-group col-lg-12">
-          <%= f.label :activity_type_title, "What did you do from #{ start_time.to_s(:time_with_meridian) } to #{ end_time.to_s(:time_with_meridian) }?", for: "activity_type_#{ index }", class: "match_label" %>
+          <%= f.label :activity_type_title, "What did you do from #{ start_time.to_s(:hour_with_meridian) } to #{ end_time.to_s(:hour_with_meridian) }?", for: "activity_type_#{ index }", class: "match_label" %>
           <br/>
           <% if index > 0 %>
             <div class="input-group">
