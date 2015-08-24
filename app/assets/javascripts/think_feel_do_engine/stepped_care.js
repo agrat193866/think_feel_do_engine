@@ -1,6 +1,6 @@
 (function() {
 
-window.sc = {};
+window.sc = window.sc || {};
 
 sc.displayErrors = function() {
   _.each($('.form-group, .input-group'), function(field, index, list) {
