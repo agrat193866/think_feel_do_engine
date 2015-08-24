@@ -29,10 +29,10 @@ sc.activityTrackerEventHandlers = function(activityTracker) {
   // Change
   $(".date_picker, .time_picker").on("change", function(){
     // prevent times in the past
-    var date = sc.momentjs($(".date_picker").datepicker("getDate"));
+    var date = sc.datejs($(".date_picker").datepicker("getDate"));
     var time = $(".time_picker").data("timepicker").getTime();
-    var datetime = sc.momentjs(date.format("YYYY-MM-DD ") + time, "YYYY-MM-DD hh:mm A");
-    var futureTime = sc.momentjs().add(60, "minutes");
+    var datetime = sc.datejs(date.format("YYYY-MM-DD ") + time, "YYYY-MM-DD hh:mm A");
+    var futureTime = sc.datejs().add(60, "minutes");
     if (datetime.isBefore(futureTime, "minute")) {
       $(".time_picker").timepicker("setTime", futureTime.format("hh:mm A"));
     }
@@ -368,7 +368,7 @@ sc.activityTracker = function(path){
 	};
 
 
-  $(".time_picker").timepicker("setTime", sc.momentjs().add(60, "minutes").format("hh:mm A"));
+  $(".time_picker").timepicker("setTime", sc.datejs().add(60, "minutes").format("hh:mm A"));
 
   if ($(".start_time_0").length > 0) {
     self.orderSummaryTable(true);
