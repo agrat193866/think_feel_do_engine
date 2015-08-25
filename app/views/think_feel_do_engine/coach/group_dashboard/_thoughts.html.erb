@@ -36,7 +36,7 @@
                 <td><%= not_nil_and_populated_string(thought.pattern_title) ? thought.pattern_title : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
                 <td><%= not_nil_and_populated_string(thought.challenging_thought) ? thought.challenging_thought : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
                 <td><%= not_nil_and_populated_string(thought.act_as_if) ? thought.act_as_if : "<span class='label label-warning'>Not Answered </span>".html_safe %></td>
-                <td><%= l(thought.created_at, format: :standard) %></td>
+                <td><%= thought.created_at.to_s(:standard) %></td>
                 <td><%= week_in_study(thought.created_at, membership) %></td>
                 <%= social_likes_and_comments_count_rows(thought) %>
               </tr>

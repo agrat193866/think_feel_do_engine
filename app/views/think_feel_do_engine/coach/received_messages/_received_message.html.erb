@@ -1,5 +1,5 @@
 <%= link_to(coach_group_received_message_path(@group, received_message), { class: ("#{ received_message.is_read ? 'list-group-item text-muted clearfix' : 'list-group-item list-group-item-read clearfix' }") }) do %>
   <span><%= received_message.message.sender.try(:study_id) %></span>
-  <span class="pull-right"><%= l(received_message.created_at, format: :standard) %></span>
+  <span class="pull-right"><%= received_message.created_at.to_s(:standard) %></span>
   <span class="col-md-4"><%= received_message.subject %></span>
 <% end %>

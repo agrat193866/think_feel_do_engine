@@ -19,5 +19,8 @@ Time::DATE_FORMATS.merge!(
   },
   standard: ->(t) { 
     t.strftime("%b %d %Y %I:%M %P")
+  },
+  with_seconds: ->(t) {
+    t.strftime("%b %d %Y %I:%M:%S %P")
   }
 )

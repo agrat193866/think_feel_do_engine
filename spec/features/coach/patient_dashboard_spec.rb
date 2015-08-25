@@ -12,8 +12,8 @@ feature "patient dashboard", type: :feature do
   describe "Logged in as a clinician" do
     let(:clinician) { users(:clinician1) }
     let(:time_now) { Time.current }
-    let(:short_timestamp) { I18n.l(time_now, format: :standard) }
-    let(:longer_timestamp) { I18n.l(time_now, format: :standard) }
+    let(:short_timestamp) { time_now.to_s(:standard) }
+    let(:longer_timestamp) { time_now.to_s(:standard) }
     let(:participant1) { participants(:participant1) }
     let(:participant_for_arm1_group1) { participants(:participant_for_arm1_group1) }
     let(:participant_study_complete) { participants(:participant_study_complete) }
@@ -208,7 +208,7 @@ feature "patient dashboard", type: :feature do
       it "summarizes messages" do
         expect(page).to have_the_table(
           id: "messages",
-          cells: ["I like this app", I18n.l(time_now, format: :standard)]
+          cells: ["I like this app", time_now.to_s(:standard)]
         )
       end
 
@@ -244,11 +244,11 @@ feature "patient dashboard", type: :feature do
       it "summarizes moods" do
         expect(page).to have_the_table(
           id: "moods-table",
-          cells: ["9", I18n.l((Time.current - 28.days), format: :standard)]
+          cells: ["9", (Time.current - 28.days).to_s(:standard)]
         )
         expect(page).to have_the_table(
           id: "moods-table",
-          cells: ["5", I18n.l((Time.current - 21.days), format: :standard)]
+          cells: ["5", (Time.current - 21.days).to_s(:standard)]
         )
       end
 
@@ -284,7 +284,7 @@ feature "patient dashboard", type: :feature do
               "Planned",
               "Not Rated",
               "Not Rated",
-              "Scheduled for #{ I18n.l((Time.current - 4.hour), format: :standard) }",
+              "Scheduled for #{ (Time.current - 4.hour).to_s(:standard) }",
               short_timestamp
             ]
           )
@@ -319,7 +319,7 @@ feature "patient dashboard", type: :feature do
               "Not Rated",
               "0",
               "0",
-              "Scheduled for #{ I18n.l((time_now - 2.hour), format: :standard) }",
+              "Scheduled for #{ (time_now - 2.hour).to_s(:standard) }",
               short_timestamp
             ]
           )
@@ -331,7 +331,7 @@ feature "patient dashboard", type: :feature do
           id: "access_data",
           cells: [
             "Audio!",
-            I18n.l(participant1.media_access_events.last.created_at, format: :standard)
+            participant1.media_access_events.last.created_at.to_s(:standard)
           ]
         )
       end
@@ -344,7 +344,7 @@ feature "patient dashboard", type: :feature do
             "Labeling and Mislabeling",
             "Birds have no idea what they are doing",
             "It was nature",
-            I18n.l(participant1.thoughts.last.created_at, format: :standard)
+            participant1.thoughts.last.created_at.to_s(:standard)
           ]
         )
       end
@@ -359,12 +359,12 @@ feature "patient dashboard", type: :feature do
       it "summarizes tasks" do
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["#1 Awareness", I18n.l(Date.today, format: :standard), "Incomplete"]
+          cells: ["#1 Awareness", Date.today.to_s(:date), "Incomplete"]
         )
 
         expect(page).to have_the_table(
           id: "task_statuses",
-          cells: ["Add a New Harmful Thought", I18n.l(Date.today, format: :standard), "Incomplete"]
+          cells: ["Add a New Harmful Thought", Date.today.to_s(:date), "Incomplete"]
         )
       end
 
