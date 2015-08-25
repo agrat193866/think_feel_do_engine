@@ -1,3 +1,12 @@
+## 3.2.51 - 2015-08-25
+ * Merge pull request #237 from cbitstech/ecf_100846610_modulesession_report
+ * ensure module session reports succeed
+ * Merge pull request #236 from cbitstech/ecf_97400334_messaging_report
+ * make corrections to date calculations
+ * update to Ruby 2.2.2
+ * Merge pull request #235 from cbitstech/cjb_update_identified_#101987834
+ * Update identified to Identified to keep consistent
+
 ## 3.2.50 - 2015-08-21
  * Merge pull request #233 from cbitstech/msw_91861818_update_time_formats
  * Update Spec
