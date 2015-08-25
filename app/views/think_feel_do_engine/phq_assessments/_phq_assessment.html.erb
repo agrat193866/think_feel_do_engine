@@ -1,5 +1,5 @@
 <tr class="<%= 'danger' if phq_assessment.suicidal? %>">
-  <td>Released <%= phq_assessment.release_date %></td>
+  <td>Released <%= phq_assessment.release_date.to_s(:user_date) %></td>
   <td>Created <%= phq_assessment.created_at.to_s(:user_date) %></td>
   <td><%= phq_assessment.score %></td>
   <td><%= "*" unless phq_assessment.completed? %></td>
