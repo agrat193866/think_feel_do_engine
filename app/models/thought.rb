@@ -5,7 +5,7 @@ class Thought < ActiveRecord::Base
     harmful: "harmful",
     neither: "neither"
   }
-  IDENTIFIED = "identified"
+  IDENTIFIED = "Identified"
   ASSIGNED_A_PATTERN = "Assigned a pattern to"
   RESHAPED = "Reshaped"
 
