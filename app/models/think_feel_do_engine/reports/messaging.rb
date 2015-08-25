@@ -74,12 +74,13 @@ module ThinkFeelDoEngine
       end
 
       def enrollment_week
-        enrollment_day && ((enrollment_day / 1.week).floor + 1)
+        enrollment_day && ((enrollment_day - 1).days / 1.week) + 1
       end
 
       def enrollment_day
         @enrollment_day ||= (
-          participant_start_date && (Date.current - participant_start_date).to_i
+          participant_start_date &&
+            (time_sent.to_date - participant_start_date + 1).to_i
         )
       end
 
