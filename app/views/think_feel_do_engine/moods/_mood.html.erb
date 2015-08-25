@@ -3,5 +3,5 @@
     <%= mood.created_at ? mood.created_at.to_i : 0 %>
   </td>
   <td><%= mood.rating %></td>
-  <td><%= l(mood.created_at, format: :standard) %></td>
+  <td><%= mood.created_at.to_s(:standard) %></td>
 </tr>

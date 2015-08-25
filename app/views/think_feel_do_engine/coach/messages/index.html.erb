@@ -40,7 +40,7 @@
         <% sent_messages.each do |msg| %>
           <%= link_to(coach_group_sent_message_path(@group, msg), { class: "text-muted list-group-item" }) do %>
             To: <%= msg.recipient_study_id %>
-            <span class="pull-right"><%= l(msg.created_at, format: :standard) %></span>
+            <span class="pull-right"><%= msg.created_at.to_s(:standard) %></span>
             <span class="col-md-4"><%= msg.subject %></span>
           <% end %>
         <% end %>

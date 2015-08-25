@@ -1,5 +1,4 @@
 sc.activityTrackerEventHandlers = function(activityTracker) {
-
   $("#submit_activities").on("click", activityTracker.handleSubmitClick);
 
   $(".intensity_btn").on("click", activityTracker.handleIntensityClick);
@@ -28,13 +27,12 @@ sc.activityTrackerEventHandlers = function(activityTracker) {
   $("input.form-control").on("keypress", activityTracker.handleEnterKey);
 
   // Change
-
   $(".date_picker, .time_picker").on("change", function(){
     // prevent times in the past
-    var date = moment($(".date_picker").datepicker("getDate"));
+    var date = sc.datejs($(".date_picker").datepicker("getDate"));
     var time = $(".time_picker").data("timepicker").getTime();
-    var datetime = moment(date.format("YYYY-MM-DD ") + time, "YYYY-MM-DD hh:mm A");
-    var futureTime = moment().add(60, "minutes");
+    var datetime = sc.datejs(date.format("YYYY-MM-DD ") + time, "YYYY-MM-DD hh:mm A");
+    var futureTime = sc.datejs().add(60, "minutes");
     if (datetime.isBefore(futureTime, "minute")) {
       $(".time_picker").timepicker("setTime", futureTime.format("hh:mm A"));
     }
@@ -57,7 +55,6 @@ sc.activityTracker = function(path){
     changeMonth: true,
     changeYear: true,
     minDate: today,
-    dateFormat: "dd M, yy",
     yearRange: today.getFullYear() + ":" + (today.getFullYear()+1),
   });
 
@@ -371,7 +368,7 @@ sc.activityTracker = function(path){
 	};
 
 
-  $(".time_picker").timepicker("setTime", moment().add(60, "minutes").format("hh:mm A"));
+  $(".time_picker").timepicker("setTime", sc.datejs().add(60, "minutes").format("hh:mm A"));
 
   if ($(".start_time_0").length > 0) {
     self.orderSummaryTable(true);

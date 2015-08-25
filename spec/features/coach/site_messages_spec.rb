@@ -21,7 +21,7 @@ feature "Site messages", type: :feature do
     expect(page).to have_text "Sent"
     expect(page).to have_text "one weird trick"
     expect(page).to have_text "blah blah blah"
-    expect(page).to have_content I18n.l(Time.current, format: :standard)
+    expect(page).to have_content Time.current.to_s(:standard)
 
     click_on "Show"
 

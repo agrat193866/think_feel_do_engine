@@ -2,19 +2,3 @@ en:
   back: Back
   finish: Finish
   next: Next
-  date:
-    formats:
-      date: "%m/%d/%Y"
-      standard: "%m/%d/%Y"
-  datetime:
-    formats:
-      date: "%m/%d/%Y"
-      hour_with_meridian: "%l %P"
-      standard: "%b %d %Y %I:%M %P"
-      with_seconds: "%b %d %Y %I:%M:%S %P"
-  time:
-    formats:
-      date: "%m/%d/%Y"
-      hour_with_meridian: "%l %P"
-      standard: "%b %d %Y %I:%M %P"
-      with_seconds: "%b %d %Y %I:%M:%S %P"

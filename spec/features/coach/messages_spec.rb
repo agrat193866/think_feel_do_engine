@@ -53,7 +53,7 @@ feature "coach messages", type: :feature do
       last_message = users(:clinician1).received_messages.last
 
       within "#inbox" do
-        expect(page).to have_content(I18n.l(last_message.created_at, format: :standard))
+        expect(page).to have_content last_message.created_at.to_s(:standard)
       end
     end
 
@@ -113,7 +113,7 @@ feature "coach messages", type: :feature do
         last_message = users(:clinician1).messages.last
 
         within "#inbox" do
-          expect(page).to have_content(I18n.l(last_message.created_at, format: :standard))
+          expect(page).to have_content last_message.created_at.to_s(:standard)
         end
         click_on "Reply: I like this app"
 

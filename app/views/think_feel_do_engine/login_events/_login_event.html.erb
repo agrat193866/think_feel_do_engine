@@ -2,5 +2,5 @@
   <td class="not-displayed">
     <%= login_event.created_at ? login_event.created_at.to_i : 0 %>
   </td>
-  <td><%= l(login_event.created_at, format: :standard) %></td>
+  <td><%= login_event.created_at.to_s(:standard) %></td>
 </tr>

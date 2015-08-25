@@ -96,7 +96,7 @@ RSpec.describe PARTIAL, type: :view do
         render partial: PARTIAL, locals: { patient: patient }
 
         expect(rendered)
-          .to have_text(I18n.l(timestamp, format: :standard))
+          .to have_text timestamp.to_s(:standard)
       end
     end
 
@@ -199,7 +199,7 @@ RSpec.describe PARTIAL, type: :view do
 
               render partial: PARTIAL, locals: { patient: patient }
 
-              release_date = I18n.l(today, format: :standard)
+              release_date = today.to_s(:standard)
               expect(rendered).to have_text("PHQ-9 WARNING 15 * on #{ release_date }")
             end
           end
@@ -218,7 +218,7 @@ RSpec.describe PARTIAL, type: :view do
 
               render partial: PARTIAL, locals: { patient: patient }
 
-              release_date = I18n.l(today, format: :standard)
+              release_date = today.to_s(:standard)
               expect(rendered).to have_text("5 * on #{ release_date }")
             end
           end
@@ -237,7 +237,7 @@ RSpec.describe PARTIAL, type: :view do
 
               render partial: PARTIAL, locals: { patient: patient }
 
-              release_date = I18n.l(today, format: :standard)
+              release_date = today.to_s(:standard)
               expect(rendered).to have_text("8 on #{ release_date }")
             end
           end

@@ -20,7 +20,7 @@
         <% if (last_phq = patient.phq_assessments.last) %>
           <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%>
           <span class="bold"><%= last_phq.score %>
-            <%= last_phq.completed? ? "" : "*" %></span> on <%= l(last_phq.release_date, format: :standard) %>
+            <%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:standard) %>
         <% else %>
           <span class="label label-warning">No Completed Assessments</span>
         <% end %>
@@ -45,13 +45,13 @@
     </td>
 
     <td>
-      <%= patient.current_sign_in_at ? l(patient.current_sign_in_at, format: :standard) : "Never Logged In" %>
+      <%= patient.current_sign_in_at ? patient.current_sign_in_at.to_s(:standard) : "Never Logged In" %>
     </td>
 
     <% if phq_features? %>
       <td>
         <% if view_membership(patient, @group) && (patient.most_recent_membership.stepped_on != nil) %>
-          <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:date) %>
+          <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:user_date) %>
         <% elsif view_membership(patient, @group) %>
           <% if can? :update, view_membership(patient, @group) %>
             <%= form_for([think_feel_do_engine, :coach, @group, view_membership(patient, @group)], html: { method: :put }) do |f| %>
@@ -62,13 +62,13 @@
             <% end %>
           <% end %>
         <% elsif patient.most_recent_membership.stepped_on != nil %>
-          <%= l(patient.most_recent_membership.stepped_on, format: :standard) %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:standard) %>
         <% end %>
       </td>
     <% else %>
       <% if patient.most_recent_membership.stepped_on != nil %>
       <td>
-          <%= l(patient.most_recent_membership.stepped_on, format: :standard) %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:standard) %>
       </td>
       <% end %>
     <% end %>

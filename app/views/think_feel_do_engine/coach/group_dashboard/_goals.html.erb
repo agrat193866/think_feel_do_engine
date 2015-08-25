@@ -35,10 +35,10 @@
                 </td>
                 <td><%= membership.participant.display_name %></td>
                 <td><%= goal.description %></td>
-                <td><%= goal.completed_at ? l(goal.completed_at, format: :standard) : "incomplete"%></td>
-                <td><%= goal.deleted_at ? l(goal.deleted_at, format: :standard) : "not deleted" %></td>
-                <td><%= goal.due_on ? l(goal.due_on, format: :standard) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
-                <td><%= goal.created_at ? l(goal.created_at, format: :standard) : "---" %></td>
+                <td><%= goal.completed_at ? goal.completed_at.to_s(:standard) : "incomplete"%></td>
+                <td><%= goal.deleted_at ? goal.deleted_at.to_s(:standard) : "not deleted" %></td>
+                <td><%= goal.due_on ? goal.due_on.to_s(:standard) : content_tag(:span, "Unscheduled", class: "label label-warning") %></td>
+                <td><%= goal.created_at ? goal.created_at.to_s(:standard) : "---" %></td>
                 <td><%= week_in_study(goal.created_at, membership) %></td>
                 <td><%= goal_like_count(goal) %></td>
                 <td><%= goal.comments.all.count %></td>
