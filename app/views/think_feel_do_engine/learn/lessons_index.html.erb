@@ -16,7 +16,7 @@
       <div class="panel-heading" role="tab" id="heading<%= tasks[:week] %>">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tasks[:week] %>" aria-expanded="true" aria-controls="collapse<%= tasks[:week] %>">
           <h3 class="panel-title<%= ' panel-unreleased' if week_in_study < tasks[:week] %> ">
-            Week <%= tasks[:week] %> &middot; <%= tasks[:date].to_s(:date) %>
+            Week <%= tasks[:week] %> &middot; <%= tasks[:date].to_s(:participant_date) %>
             <span class="badge"><%= tasks[:tasks].select { |t| t.completed_at.nil? }.count %> unread</span>
           </h3>
         </a>
@@ -40,12 +40,12 @@
                   <% end %>
                   <p class="list-group-item-text">
                     <% if release_date < Date.today %>
-                      Released on <%= release_date.to_s(:date) %>
+                      Released on <%= release_date.to_s(:participant_date) %>
                     <% elsif release_date == Date.today %>
                       Released Today
                     <% end %>
                     <% if ts.completed_at %>
-                      &middot; Read on <%= ts.completed_at.to_s(:date) %>
+                      &middot; Read on <%= ts.completed_at.to_s(:participant_date) %>
                       <span class="visible-md-inline visible-lg-inline">
                         &middot; <%= link_to "Printable", think_feel_do_engine.participants_lesson_path(ts.bit_core_content_module.id), class: "action" %>
                       </span>
@@ -59,7 +59,7 @@
                   </h4>
 
                   <p class="list-group-item-text">
-                    Available on <%= release_date.to_s(:date) %>
+                    Available on <%= release_date.to_s(:participant_date) %>
                   </p>
                 </span>
               <% end %>

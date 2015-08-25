@@ -17,6 +17,12 @@ module ContentProviders
       )
     end
 
+    def show_nav_link?
+      false
+    end
+
+    private
+
     def activities(options)
       options
         .participant
@@ -67,7 +73,7 @@ module ContentProviders
     end
 
     def formatted_date(options)
-      local_time(options).to_s(:date)
+      local_time(options).to_s(:participant_date)
     end
 
     # dates with scheduled activities formatted for jquery datepicker
@@ -83,10 +89,6 @@ module ContentProviders
       else
         Time.zone.now
       end
-    end
-
-    def show_nav_link?
-      false
     end
   end
 end
