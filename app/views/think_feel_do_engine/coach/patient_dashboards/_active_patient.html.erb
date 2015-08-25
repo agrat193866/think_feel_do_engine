@@ -51,7 +51,7 @@
     <% if phq_features? %>
       <td>
         <% if view_membership(patient, @group) && (patient.most_recent_membership.stepped_on != nil) %>
-          <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:date) %>
+          <%= "Stepped " + patient.most_recent_membership.stepped_on.to_s(:user_date) %>
         <% elsif view_membership(patient, @group) %>
           <% if can? :update, view_membership(patient, @group) %>
             <%= form_for([think_feel_do_engine, :coach, @group, view_membership(patient, @group)], html: { method: :put }) do |f| %>
