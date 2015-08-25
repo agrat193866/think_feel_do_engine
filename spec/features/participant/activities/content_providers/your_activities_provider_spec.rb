@@ -83,8 +83,7 @@ feature "Activities", type: :feature do
         end
 
         it "displays daily activity averages" do
-          today = Time.now
-          expect(page).to have_text "Daily Averages for Jan 09 2015"
+          expect(page).to have_text "Daily Averages for #{ Time.zone.now.strftime("%b %d %Y") }"
           expect(page).to have_text "Mood: No Recordings"
           expect(page).to have_text "Positive Emotions: No Recordings"
           expect(page).to have_text "Negative Emotions: No Recordings"
@@ -106,16 +105,16 @@ feature "Activities", type: :feature do
         end
 
         it "navigates to today when 'Today' button is clicked" do
-          today = Time.now
+          today = Time.zone.now
           yesterday = today - 1.days
           visit "/navigator/modules/#{bit_core_content_modules(:do_your_activities_viz).id}"
           click_on "Previous Day"
-          expect(page).to have_text "Daily Averages for Jan 08 2015"
-          expect(page).to_not have_text "Daily Averages for Jan 09 2015"
+          expect(page).to have_text "Daily Averages for #{ yesterday.strftime("%b %d %Y") }"
+          expect(page).to_not have_text "Daily Averages for #{ today.strftime("%b %d %Y") }"
 
           click_on "Today"
 
-          expect(page).to have_text "Daily Averages for Jan 09 2015"
+          expect(page).to have_text "Daily Averages for #{ today.strftime("%b %d %Y") }"
         end
 
         it "displays a list of activities and activity details" do

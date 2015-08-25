@@ -440,7 +440,9 @@ sc.offsetInterval = function (graphParameters) {
 
 function appendDateRange (graphParameters) {
   var FORMAT = 'MMM DD YYYY'
-  $('div#date-range strong').empty().append(graphParameters.startDate.format(FORMAT)+' - '+graphParameters.endDate.format(FORMAT));
+  $('div#date-range strong')
+    .empty()
+    .append(graphParameters.startDate.format(FORMAT) + ' - ' + graphParameters.endDate.format(FORMAT));
 }
 
 function maxOffset (activationDate, interval) {
