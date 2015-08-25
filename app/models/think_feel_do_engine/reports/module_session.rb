@@ -115,10 +115,15 @@ module ThinkFeelDoEngine
                         .content_providers
                         .order(:position)
                         .last
-        provider_re = "modules\/#{ module_id }\/" \
-                      "providers\/#{ last_provider.id }(\/.*)?$"
 
-        !url.match(/#{ provider_re }/).nil?
+        if last_provider.nil?
+          false
+        else
+          provider_re = "modules\/#{ module_id }\/" \
+                        "providers\/#{ last_provider.id }(\/.*)?$"
+
+          !url.match(/#{ provider_re }/).nil?
+        end
       end
     end
   end

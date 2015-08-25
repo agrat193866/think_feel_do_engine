@@ -100,6 +100,28 @@ module ThinkFeelDoEngine
             )
           end
         end
+
+        context "when the module viewed has no last provider" do
+          it "records false for did_complete" do
+            EventCapture::Event.destroy_all
+            ContentProviderPolicy.destroy_all
+            BitCore::ContentProvider.destroy_all
+            now = Time.current
+            module_id = bit_core_content_modules(:do_awareness).id
+            render!(emitted_at: now - 10.minutes,
+                    url: "/navigator/modules/#{ module_id }")
+
+            expect(data.count).to eq 1
+            expect(data).to include(
+              participant_id: "TFD-1111",
+              module_id: module_id,
+              page_headers: ["a", "b", "c"],
+              module_selected_at: (now - 10.minutes).utc.iso8601,
+              last_page_opened_at: (now - 10.minutes).utc.iso8601,
+              did_complete: false
+            )
+          end
+        end
       end
     end
   end
