@@ -1,3 +1,10 @@
+## 3.2.52 - 2015-08-26
+ * Merge pull request #240 from cbitstech/msw_update_91861818_date_picker
+ * Updated TimePicker Formatting
+ * Merge pull request #239 from cbitstech/msw_91861818_update_phq_table_dates
+ * Add View Spec for PHQ9 Timestamps
+ * Merge pull request #238 from cbitstech/msw_91861818_update_time_formats
+
 ## 3.2.51 - 2015-08-25
  * Merge pull request #237 from cbitstech/ecf_100846610_modulesession_report
  * ensure module session reports succeed
