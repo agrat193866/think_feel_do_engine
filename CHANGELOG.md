@@ -1,3 +1,7 @@
+## 3.2.53 - 2015-09-01
+ * Merge pull request #241 from cbitstech/msw_101934888_update_datetime_format_in_dashboard
+ * Update Patient Info Summary
+
 ## 3.2.52 - 2015-08-26
  * Merge pull request #240 from cbitstech/msw_update_91861818_date_picker
  * Updated TimePicker Formatting
