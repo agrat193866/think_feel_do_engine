@@ -10,11 +10,11 @@
       <% if view_membership(@participant, @group) %>
         <p>
           <strong>Started on:</strong>
-          <%= view_membership(@participant, @group).start_date.to_s(:standard) %>
+          <%= view_membership(@participant, @group).start_date.to_s(:user_date) %>
         </p>
         <p>
           <strong><%= study_length_in_weeks %> weeks from the start date is:</strong>
-          <%= (view_membership(@participant, @group).start_date + study_length_in_weeks.weeks).to_s(:standard) %>
+          <%= (view_membership(@participant, @group).start_date + study_length_in_weeks.weeks).to_s(:user_date) %>
         </p>
       <% end %>
 
