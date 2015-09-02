@@ -13,8 +13,8 @@
 
     <td>
       <%= !view_membership(patient, @group).is_complete ? "Withdrawn " +
-        view_membership(patient, @group).end_date.to_s(:standard) :
-              "Discontinued " + view_membership(patient, @group).end_date.to_s(:standard)  %>
+        view_membership(patient, @group).end_date.to_s(:user_date) :
+              "Discontinued " + view_membership(patient, @group).end_date.to_s(:user_date)  %>
     </td>
 
     <td>
@@ -27,7 +27,7 @@
 
     <td>
       <% if view_membership(patient, @group).stepped_on %>
-        <%= view_membership(patient, @group).stepped_on.to_s(:standard) %>
+        <%= view_membership(patient, @group).stepped_on.to_s(:user_date) %>
       <% end %>
     </td>
   </tr>
