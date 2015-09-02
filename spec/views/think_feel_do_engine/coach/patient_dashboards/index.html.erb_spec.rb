@@ -52,4 +52,28 @@ RSpec.describe "think_feel_do_engine/coach/patient_dashboards/index", type: :vie
       expect(rendered).not_to match(/>Stepped Patients</)
     end
   end
+
+  context "when viewing active patients" do
+    it "displays 'Inactive Patients' link" do
+      allow(view).to receive(:phq_features?)
+      assign(:active_patients, true)
+
+      render
+
+      expect(rendered).to have_link "Inactive Patients"
+      expect(rendered).not_to have_link "Active Patients"
+    end
+  end
+
+  context "when viewing inactive patients" do
+    it "displays 'Inactive Patients' link" do
+      allow(view).to receive(:phq_features?)
+      assign(:active_patients, false)
+
+      render
+
+      expect(rendered).not_to have_link "Inactive Patients"
+      expect(rendered).to have_link "Active Patients"
+    end
+  end
 end
