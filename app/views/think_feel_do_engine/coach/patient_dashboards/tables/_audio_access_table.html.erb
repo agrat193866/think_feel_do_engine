@@ -22,7 +22,7 @@
           </tr>
           </thead>
           <tbody>
-          <%= render partial: "think_feel_do_engine/media_access_events/access_data", locals: { events: @participant.media_access_events } %>
+          <%= render partial: "think_feel_do_engine/media_access_events/access_data", collection: @participant.media_access_events, as: :event %>
           </tbody>
         </table>
       </div>

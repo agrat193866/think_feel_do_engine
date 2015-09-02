@@ -19,7 +19,7 @@ module SocialNetworking
         start_date: Time.zone.now)
     end
     let(:partial) { "think_feel_do_engine/coach/group_dashboard/goals" }
-    
+
     describe "A goal exists" do
       before do
         allow(membership).to receive_message_chain("participant.display_name") { "bar" }
@@ -87,7 +87,6 @@ module SocialNetworking
           end
         end
       end
-
 
       describe "schedule status" do
         describe "when a goal has been scheduled" do

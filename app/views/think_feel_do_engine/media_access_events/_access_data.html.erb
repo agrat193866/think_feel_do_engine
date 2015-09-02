@@ -1,12 +1,18 @@
-<% events.each do |event| %>
+<% present event, ThinkFeelDoEngine::Presenters::MediaAccessEvent do |event_presenter| %>
   <tr>
     <td class="not-displayed">
-      <%= (event.participant.active_membership.start_date + event.task_release_day - 1) ? (event.participant.active_membership.start_date + event.task_release_day - 1).to_time.to_i : 0 %>
+      <%= event_presenter.since_task_relased %>
     </td>
-    <td><%= event.slide.title %></td>
-    <td><%= (event.participant.active_membership.start_date + event.task_release_day - 1).to_date.to_s(:user_date) %></td>
-    <td><%= event.created_at.to_s(:standard) %></td>
-    <td><%= event.end_time.to_s(:standard) unless event.end_time.nil? %></td>
-    <td><%= event.end_time ? distance_of_time_in_words(event.end_time - event.created_at) : "<span class='label label-warning'>Not Completed</span>".html_safe %></td>
+    <td><%= event_presenter.title %></td>
+    <td><%= event_presenter.day_available %></td>
+    <td><%= event_presenter.started %></td>
+    <td><%= event_presenter.end_datetime %></td>
+    <td>
+      <% if event_presenter.completed? %>
+        <%= distance_of_time_in_words(event_presenter.duration) %>
+      <% else %>
+        <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
+    <% end %>
+    </td>
   </tr>
 <% end %>
