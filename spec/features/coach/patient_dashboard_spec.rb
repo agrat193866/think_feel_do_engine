@@ -306,16 +306,6 @@ feature "patient dashboard", type: :feature do
         end
       end
 
-      it "summarizes media access events" do
-        expect(page).to have_the_table(
-          id: "access_data",
-          cells: [
-            "Audio!",
-            participant1.media_access_events.last.created_at.to_s(:standard)
-          ]
-        )
-      end
-
       it "summarizes thoughts" do
         expect(page).to have_the_table(
           id: "thoughts",

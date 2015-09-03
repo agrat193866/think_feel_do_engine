@@ -1,18 +1,24 @@
-<% present event, ThinkFeelDoEngine::Presenters::MediaAccessEvent do |event_presenter| %>
+<% present event, ThinkFeelDoEngine::MediaAccessEventPresenter do |presenter| %>
   <tr>
     <td class="not-displayed">
-      <%= event_presenter.since_task_relased %>
+      <%= presenter.sortable %>
     </td>
-    <td><%= event_presenter.title %></td>
-    <td><%= event_presenter.day_available %></td>
-    <td><%= event_presenter.started %></td>
-    <td><%= event_presenter.end_datetime %></td>
+    <td><%= presenter.title %></td>
+    <td><%= presenter.date_when_available %></td>
+    <td><%= presenter.formatted_start_time %></td>
     <td>
-      <% if event_presenter.completed? %>
-        <%= distance_of_time_in_words(event_presenter.duration) %>
+      <% if presenter.completed? %>
+        <%= presenter.formatted_end_time %>
       <% else %>
         <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
-    <% end %>
+      <% end %>
+    </td>
+    <td>
+      <% if presenter.completed? %>
+        <%= distance_of_time_in_words(presenter.duration_of_session) %>
+      <% else %>
+        <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
+      <% end %>
     </td>
   </tr>
 <% end %>

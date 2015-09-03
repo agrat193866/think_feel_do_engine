@@ -12,14 +12,14 @@
       <div class="table-responsive div-table-viz">
         <table class="table table-hover data-table" id="access_data">
           <thead>
-          <tr>
-            <th class="not-displayed"></th>
-            <th>Title</th>
-            <th>Availability Day</th>
-            <th>Started At</th>
-            <th>Completed At</th>
-            <th>Duration</th>
-          </tr>
+            <tr>
+              <th class="not-displayed"></th>
+              <th>Title</th>
+              <th>Availability Day</th>
+              <th>Started At</th>
+              <th>Completed At</th>
+              <th>Duration</th>
+            </tr>
           </thead>
           <tbody>
           <%= render partial: "think_feel_do_engine/media_access_events/access_data", collection: @participant.media_access_events, as: :event %>
