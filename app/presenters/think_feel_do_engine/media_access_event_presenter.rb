@@ -7,12 +7,12 @@ module ThinkFeelDoEngine
       @event = event
     end
 
-    def completed?
+    def completed
       end_time
     end
 
-    def date_when_available
-      date_of_release
+    def available_on
+      relased_on
         .to_s(:user_date)
     end
 
@@ -29,7 +29,7 @@ module ThinkFeelDoEngine
     end
 
     def sortable
-      created_at.to_i
+      relased_on.to_time.to_i
     end
 
     def title
@@ -42,7 +42,7 @@ module ThinkFeelDoEngine
       event.created_at
     end
 
-    def date_of_release
+    def relased_on
       start_date + (event.task_release_day - 1)
     end
 

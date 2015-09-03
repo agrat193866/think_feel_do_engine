@@ -97,7 +97,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
 
       context "and patient is stepped" do
         before do
-          allow(membership).to receive(:stepped_on) { Date.today }
+          allow(membership).to receive(:stepped_on) { Date.today - 15_243.years }
 
           render partial: partial, locals: { patient: patient }
         end

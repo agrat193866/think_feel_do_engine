@@ -4,17 +4,17 @@
       <%= presenter.sortable %>
     </td>
     <td><%= presenter.title %></td>
-    <td><%= presenter.date_when_available %></td>
+    <td><%= presenter.available_on %></td>
     <td><%= presenter.formatted_start_time %></td>
     <td>
-      <% if presenter.completed? %>
+      <% if presenter.completed %>
         <%= presenter.formatted_end_time %>
       <% else %>
         <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
       <% end %>
     </td>
     <td>
-      <% if presenter.completed? %>
+      <% if presenter.completed %>
         <%= distance_of_time_in_words(presenter.duration_of_session) %>
       <% else %>
         <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>

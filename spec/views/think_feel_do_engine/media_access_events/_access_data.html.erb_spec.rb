@@ -9,10 +9,10 @@ module ThinkFeelDoEngine
         MediaAccessEventPresenter,
         sortable: "sort_me",
         title: "foo",
-        date_when_available: "future",
+        available_on: "future",
         formatted_start_time: "start me",
         formatted_end_time: "end me",
-        completed?: true,
+        completed: true,
         duration_of_session: "long time")
     end
 
@@ -60,7 +60,7 @@ module ThinkFeelDoEngine
 
     describe "event is not completed" do
       before do
-        allow(presenter).to receive(:completed?) { false }
+        allow(presenter).to receive(:completed) { false }
       end
 
       it "displays incomplete messages" do

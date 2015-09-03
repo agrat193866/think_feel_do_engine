@@ -10,6 +10,12 @@ describe Task do
   let(:task1) { tasks(:task1) }
   let(:task_learning7) { tasks(:task_learning7) }
 
+  it "requires release day" do
+    task = Task.new(release_day: nil).tap(&:valid?)
+
+    expect(task.errors.get(:release_day).count).to eq 1
+  end
+
   it "does not allow a group and module to be assigned on the same release day" do
     task2 = Task.new(
       group_id: task1.group_id,
