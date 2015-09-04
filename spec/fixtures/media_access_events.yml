@@ -4,4 +4,3 @@ audio_access1:
   end_time: <%= Time.now + 2.minutes %>
   media_type: "audio"
   media_link: "https://intellicare.cbits.northwestern.edu/static/audio/autogenic/01_autogenic.mp3"
-  

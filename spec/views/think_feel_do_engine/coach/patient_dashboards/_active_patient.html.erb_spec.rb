@@ -1,9 +1,8 @@
 require "rails_helper"
 
-PARTIAL = "think_feel_do_engine/coach/patient_dashboards/" \
-          "active_patient"
-
-RSpec.describe PARTIAL, type: :view do
+RSpec.describe "think_feel_do_engine/coach/" \
+               "patient_dashboards/_active_patient.html.erb",
+               type: :view do
   let(:membership) do
     # use a real AR instance because of form helpers
     stub_membership = Membership.new
@@ -52,6 +51,9 @@ RSpec.describe PARTIAL, type: :view do
     stub_user
   end
   let(:today) { Date.today }
+  let(:partial) do
+    "think_feel_do_engine/coach/patient_dashboards/active_patient"
+  end
 
   context "when the User can show the patient" do
     def arrange_stubs
@@ -77,7 +79,7 @@ RSpec.describe PARTIAL, type: :view do
         permit_actions
         enable_phq_features false
 
-        render partial: PARTIAL, locals: { patient: patient }
+        render partial: partial, locals: { patient: patient }
 
         expect(rendered)
           .to have_selector("form[action='/memberships/1/withdraw'][method='get'] " \
@@ -93,7 +95,7 @@ RSpec.describe PARTIAL, type: :view do
         timestamp = DateTime.now
         allow(patient).to receive(:current_sign_in_at) { timestamp }
 
-        render partial: PARTIAL, locals: { patient: patient }
+        render partial: partial, locals: { patient: patient }
 
         expect(rendered)
           .to have_text timestamp.to_s(:standard)
@@ -107,7 +109,7 @@ RSpec.describe PARTIAL, type: :view do
         enable_phq_features false
         allow(patient).to receive(:current_sign_in_at)
 
-        render partial: PARTIAL, locals: { patient: patient }
+        render partial: partial, locals: { patient: patient }
 
         expect(rendered).to have_text("Never Logged In")
       end
@@ -120,7 +122,7 @@ RSpec.describe PARTIAL, type: :view do
           permit_actions
           enable_phq_features
 
-          render partial: PARTIAL, locals: { patient: patient }
+          render partial: partial, locals: { patient: patient }
 
           expect(rendered)
             .to have_selector("form[action='/memberships/1/discontinue'][method='get'] " \
@@ -134,7 +136,7 @@ RSpec.describe PARTIAL, type: :view do
             enable_phq_features
             allow(membership).to receive(:stepped_on) { nil }
 
-            render partial: PARTIAL, locals: { patient: patient }
+            render partial: partial, locals: { patient: patient }
 
             expect(rendered).not_to have_text("Stepped")
           end
@@ -145,7 +147,7 @@ RSpec.describe PARTIAL, type: :view do
             enable_phq_features
             allow(membership).to receive(:stepped_on) { nil }
 
-            render partial: PARTIAL, locals: { patient: patient }
+            render partial: partial, locals: { patient: patient }
 
             expect(rendered)
               .to have_selector("form[action='/coach/groups/3/memberships/1'] " \
@@ -167,7 +169,7 @@ RSpec.describe PARTIAL, type: :view do
             enable_phq_features
             allow(membership).to receive(:stepped_on) { today }
 
-            render partial: PARTIAL, locals: { patient: patient }
+            render partial: partial, locals: { patient: patient }
 
             expect(rendered).to have_text("Stepped")
           end
@@ -178,7 +180,7 @@ RSpec.describe PARTIAL, type: :view do
             enable_phq_features
             allow(membership).to receive(:stepped_on) { today }
 
-            render partial: PARTIAL, locals: { patient: patient }
+            render partial: partial, locals: { patient: patient }
 
             expect(rendered).not_to have_selector(".btn[value='Step']")
           end
@@ -197,9 +199,9 @@ RSpec.describe PARTIAL, type: :view do
                                            release_date: today)
               allow(patient).to receive(:phq_assessments) { [assessment] }
 
-              render partial: PARTIAL, locals: { patient: patient }
+              render partial: partial, locals: { patient: patient }
 
-              release_date = today.to_s(:standard)
+              release_date = today.to_s(:user_date)
               expect(rendered).to have_text("PHQ-9 WARNING 15 * on #{ release_date }")
             end
           end
@@ -216,9 +218,9 @@ RSpec.describe PARTIAL, type: :view do
                                            release_date: today)
               allow(patient).to receive(:phq_assessments) { [assessment] }
 
-              render partial: PARTIAL, locals: { patient: patient }
+              render partial: partial, locals: { patient: patient }
 
-              release_date = today.to_s(:standard)
+              release_date = today.to_s(:user_date)
               expect(rendered).to have_text("5 * on #{ release_date }")
             end
           end
@@ -235,9 +237,9 @@ RSpec.describe PARTIAL, type: :view do
                                            release_date: today)
               allow(patient).to receive(:phq_assessments) { [assessment] }
 
-              render partial: PARTIAL, locals: { patient: patient }
+              render partial: partial, locals: { patient: patient }
 
-              release_date = today.to_s(:standard)
+              release_date = today.to_s(:user_date)
               expect(rendered).to have_text("8 on #{ release_date }")
             end
           end
@@ -250,7 +252,7 @@ RSpec.describe PARTIAL, type: :view do
             enable_phq_features
             allow(patient).to receive(:phq_assessments) { [] }
 
-            render partial: PARTIAL, locals: { patient: patient }
+            render partial: partial, locals: { patient: patient }
 
             expect(rendered).to have_text("No Completed Assessments")
           end

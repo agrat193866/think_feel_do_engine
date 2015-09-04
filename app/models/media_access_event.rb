@@ -11,6 +11,8 @@ class MediaAccessEvent < ActiveRecord::Base
             :slide,
             presence: :true
 
+  delegate :title, to: :slide, prefix: true
+
   def task_release_day
     module_id = slide.slideshow.content_provider.bit_core_content_module_id
 

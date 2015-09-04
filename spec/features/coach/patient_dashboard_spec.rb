@@ -150,31 +150,11 @@ feature "patient dashboard", type: :feature do
         expect(page).to have_text("You are not authorized to access this page")
       end
 
-      it "should have button to view inactive patients on initial page load" do
-        visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-        expect(page).to have_text("Inactive Patients")
-      end
-
       it "should have button to view active patients on inactive view" do
         visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
 
         expect(page).to have_text("Active Patients")
         expect(page).to_not have_button("Step")
-      end
-
-      it "should show status of inactive participants in inactive view" do
-        sign_in_user clinician
-        visit "/coach/groups/#{group1.id}/patient_dashboards?active=false"
-
-        expect(page.find("[data-study-id=IS_SO_COMPLETE]")).to have_text("Discontinued")
-        expect(page.find("[data-study-id=INACTIVE-TWO]")).to have_text("Withdrawn")
-      end
-
-      it "should show inactive patients" do
-        visit "/coach/groups/#{group1.id}/patient_dashboards"
-
-        expect(page).to have_text("Inactive Patients")
       end
     end
 
@@ -324,16 +304,6 @@ feature "patient dashboard", type: :feature do
             ]
           )
         end
-      end
-
-      it "summarizes media access events" do
-        expect(page).to have_the_table(
-          id: "access_data",
-          cells: [
-            "Audio!",
-            participant1.media_access_events.last.created_at.to_s(:standard)
-          ]
-        )
       end
 
       it "summarizes thoughts" do

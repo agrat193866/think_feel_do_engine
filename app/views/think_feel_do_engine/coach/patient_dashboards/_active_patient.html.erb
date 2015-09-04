@@ -20,7 +20,7 @@
         <% if (last_phq = patient.phq_assessments.last) %>
           <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%>
           <span class="bold"><%= last_phq.score %>
-            <%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:standard) %>
+            <%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:user_date) %>
         <% else %>
           <span class="label label-warning">No Completed Assessments</span>
         <% end %>
@@ -62,13 +62,13 @@
             <% end %>
           <% end %>
         <% elsif patient.most_recent_membership.stepped_on != nil %>
-          <%= patient.most_recent_membership.stepped_on.to_s(:standard) %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:user_date) %>
         <% end %>
       </td>
     <% else %>
       <% if patient.most_recent_membership.stepped_on != nil %>
       <td>
-          <%= patient.most_recent_membership.stepped_on.to_s(:standard) %>
+          <%= patient.most_recent_membership.stepped_on.to_s(:user_date) %>
       </td>
       <% end %>
     <% end %>
