@@ -1,3 +1,12 @@
+## 3.2.54 - 2015-09-04
+ * Merge pull request #242 from cbitstech/msw_update_stepped_care_dates
+ * Add Null Contraint
+ * Add View Spec
+ * Add Audio/Media Event Presenter
+ * Add Goal View Specs
+ * Update Specs
+ * Update Stepped Care Dates
+
 ## 3.2.53 - 2015-09-01
  * Merge pull request #241 from cbitstech/msw_101934888_update_datetime_format_in_dashboard
  * Update Patient Info Summary
