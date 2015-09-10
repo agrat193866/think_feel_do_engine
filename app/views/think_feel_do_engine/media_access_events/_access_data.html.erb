@@ -1,4 +1,4 @@
-<% present event, ThinkFeelDoEngine::MediaAccessEventPresenter do |presenter| %>
+<% ThinkFeelDoEngine::MediaAccessEventPresenter.new(event: event, start_date: view_membership(@participant, @group).start_date) do |presenter| %>
   <tr>
     <td class="not-displayed">
       <%= presenter.sortable %>
@@ -10,14 +10,14 @@
       <% if presenter.completed %>
         <%= presenter.formatted_end_time %>
       <% else %>
-        <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
+        <span class="label label-warning">Not Completed</span>
       <% end %>
     </td>
     <td>
       <% if presenter.completed %>
         <%= distance_of_time_in_words(presenter.duration_of_session) %>
       <% else %>
-        <%= content_tag(:span, "Not Completed", class: ["label", "label-warning"]) %>
+        <span class="label label-warning">Not Completed</span>
       <% end %>
     </td>
   </tr>
