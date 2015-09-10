@@ -1,5 +1,4 @@
 <h3>Review Your Day</h3>
-<!-- <p class="lead">Let's review how you spent your day...</p> -->
 
 <div id="past_activities_container">	
 <% timestamps.each_with_index do |timestamp, index| %>
@@ -64,11 +63,6 @@
               max_text: "A Lot"
         ) %>
       </div>
-
-      <% if current_participant.active_group.arm.social? %>
-        <span class="new-shareable-form-after-form-groups" data-item-type="activity" data-action-type="planned"></span>
-      <% end %>
-
       <hr/>
 	<% end # form_for %>
 <% end %>
