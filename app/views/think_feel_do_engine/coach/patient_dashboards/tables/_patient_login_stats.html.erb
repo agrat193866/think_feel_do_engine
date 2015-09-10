@@ -9,7 +9,7 @@
     <div class="panel-body">
       <p>
         <strong>Last Logged In:</strong>
-        <%= @participant.current_sign_in_at ? @participant.current_sign_in_at.to_s(:standard) : "Never Logged In" %>
+        <%= @participant.current_sign_in_at ? @participant.current_sign_in_at.to_s(:standard_with_day_of_week) : "Never Logged In" %>
       </p>
 
       <p>
@@ -32,7 +32,7 @@
       <p>
         <strong>Last Activity Detected At:</strong>
         <% if @participant.events.any? %>
-          <%= @participant.latest_action_at.to_s(:standard) %>
+          <%= @participant.latest_action_at.to_s(:standard_with_day_of_week) %>
         <% else %>
           Participant has no events to report.
        <% end %>

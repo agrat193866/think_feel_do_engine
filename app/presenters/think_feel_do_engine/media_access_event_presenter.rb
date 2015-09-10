@@ -1,10 +1,11 @@
 module ThinkFeelDoEngine
   # Simplifies the logic of the media/audio access event views.
   class MediaAccessEventPresenter
-    attr_reader :event
+    attr_reader :event, :start_date
 
-    def initialize(event)
+    def initialize(event:, start_date:)
       @event = event
+      @start_date = start_date
     end
 
     def completed
@@ -48,10 +49,6 @@ module ThinkFeelDoEngine
 
     def end_time
       event.end_time
-    end
-
-    def start_date
-      event.participant.active_membership.start_date
     end
   end
 end

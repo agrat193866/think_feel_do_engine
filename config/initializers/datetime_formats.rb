@@ -4,6 +4,9 @@ Date::DATE_FORMATS.merge!(
   },
   user_date: ->(d) {
     d.strftime("%m/%d/%Y")
+  },
+  user_date_with_day_of_week: ->(t) {
+    t.strftime("%A, %m/%d/%Y")
   }
 )
 
@@ -16,6 +19,9 @@ Time::DATE_FORMATS.merge!(
   },
   standard: ->(t) { 
     t.strftime("%b %d %Y %I:%M %P")
+  },
+  standard_with_day_of_week: ->(t) { 
+    t.strftime("%A, %b %d %Y %I:%M %P")
   },
   user_date: ->(t) {
     t.strftime("%m/%d/%Y")
