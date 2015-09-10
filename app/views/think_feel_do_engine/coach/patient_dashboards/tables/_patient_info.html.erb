@@ -10,24 +10,25 @@
       <% if view_membership(@participant, @group) %>
         <p>
           <strong>Started on:</strong>
-          <%= view_membership(@participant, @group).start_date.to_s(:user_date) %>
+          <%= view_membership(@participant, @group).start_date.to_s(:user_date_with_day_of_week) %>
         </p>
         <p>
           <strong><%= study_length_in_weeks %> weeks from the start date is:</strong>
-          <%= (view_membership(@participant, @group).start_date + study_length_in_weeks.weeks).to_s(:user_date) %>
+          <%= (view_membership(@participant, @group).start_date + study_length_in_weeks.weeks).to_s(:user_date_with_day_of_week) %>
         </p>
       <% end %>
 
       <p>
         <strong>Status:</strong>
         <% if view_membership(@participant, @group).end_date > Date.current %>
-          <span class="label label-success full-size">Active</span>
-        <% else %>
-          <span class="label label-warning full-size">Inactive</span>
-        <% end %>
-        <% if view_membership(@participant, @group).end_date > Date.current %>
+          <span class="label label-success full-size">
+            Active
+          </span>
           Currently in week <%= (view_membership(@participant, @group).day_in_study / 7.0).ceil %>
         <% else %>
+          <span class="label label-warning full-size">
+            Inactive
+          </span>
           Study has been Completed
         <% end %>
       </p>

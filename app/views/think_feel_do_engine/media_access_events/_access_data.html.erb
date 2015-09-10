@@ -1,4 +1,4 @@
-<% ThinkFeelDoEngine::MediaAccessEventPresenter.new(event: event, start_date: view_membership(@participant, @group).start_date) do |presenter| %>
+<% present({ event: event, start_date: view_membership(@participant, @group).start_date }, ThinkFeelDoEngine::MediaAccessEventPresenter) do |presenter| %>
   <tr>
     <td class="not-displayed">
       <%= presenter.sortable %>

@@ -22,6 +22,9 @@ module ThinkFeelDoEngine
 
     before do
       allow(view).to receive(:event)
+      allow(view).to receive(:view_membership) do
+        instance_double(Membership, start_date: Time.zone.now)
+      end
       allow(view)
         .to receive(:present) { |&block| block.call(presenter) }
 
