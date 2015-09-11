@@ -1,3 +1,11 @@
+## 3.2.55 - 2015-09-11
+ * Merge pull request #244 from cbitstech/msw_97469570_remove_sharable_option_for_do_tool
+ * Fix Time Bug
+ * Remove Shareable Option
+ * Merge pull request #243 from cbitstech/msw_101934888_add_day_of_week_and_fix_presenter_bug
+ * Update Date & Time Formatting for Patient Info
+ * Fix Media Access Bug
+
 ## 3.2.54 - 2015-09-04
  * Merge pull request #242 from cbitstech/msw_update_stepped_care_dates
  * Add Null Contraint
