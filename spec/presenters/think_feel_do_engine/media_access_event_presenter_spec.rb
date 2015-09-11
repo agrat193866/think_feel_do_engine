@@ -5,14 +5,14 @@ module ThinkFeelDoEngine
     let(:event) do
       instance_double(
         MediaAccessEvent,
-        created_at: Time.zone.now,
-        end_time: Time.zone.now + 1.hour,
+        created_at: Time.current,
+        end_time: Time.current + 1.hour,
         slide_title: "foo",
         task_release_day: 3)
     end
 
     def media_access_event
-      MediaAccessEventPresenter.new(event: event, start_date: Date.today)
+      MediaAccessEventPresenter.new(event: event, start_date: Date.current)
     end
 
     describe "#completed" do
@@ -24,7 +24,7 @@ module ThinkFeelDoEngine
       it "returns falsey if ending time is not present" do
         event = instance_double(MediaAccessEvent, end_time: nil)
 
-        expect(MediaAccessEventPresenter.new(event: event, start_date: Date.today).completed)
+        expect(MediaAccessEventPresenter.new(event: event, start_date: Date.current).completed)
           .to be_falsey
       end
     end
@@ -32,7 +32,7 @@ module ThinkFeelDoEngine
     describe "#available_on" do
       it "returns the date of availability" do
         expect(media_access_event.available_on)
-          .to eq((Date.today + 2.days).to_s(:user_date))
+          .to eq((Date.current + 2.days).to_s(:user_date))
       end
     end
 
@@ -47,8 +47,8 @@ module ThinkFeelDoEngine
       it "returns the number of seconds since the event was started" do
         event = instance_double(MediaAccessEvent, task_release_day: 2)
 
-        expect(MediaAccessEventPresenter.new(event: event, start_date: Date.today).sortable)
-          .to eq Date.parse("2015-01-22").to_time.to_i
+        expect(MediaAccessEventPresenter.new(event: event, start_date: Date.current).sortable)
+          .to eq((Date.current + 1.day).to_time.to_i)
       end
     end
 

@@ -12,6 +12,7 @@ feature "Activities", type: :feature do
               "#{ bit_core_content_providers(:past_activity_form_provider).id }/1"
 
         expect(page).to have_text "Review Your Day"
+        expect(page).to_not have_css ".new-shareable-form-after-form-groups"
 
         fill_in "activity_type_0", with: "ate cheeseburgers"
         choose_rating("pleasure_0", 9)

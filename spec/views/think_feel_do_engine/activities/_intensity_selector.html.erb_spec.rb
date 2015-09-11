@@ -2,8 +2,6 @@ require "rails_helper"
 
 RSpec.describe "think_feel_do_engine/activities/_intensity_selector",
                type: :view do
-  fixtures :all
-
   def stub_form
     instance_double("ActionView::Helpers::Formbuilder", label: nil)
   end
