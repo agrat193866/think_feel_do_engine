@@ -1,3 +1,7 @@
+## 3.2.56 - 2015-09-15
+ * Merge pull request #245 from cbitstech/msw_103231354_fix_css
+ * Fix CSS Styling for Badge
+
 ## 3.2.55 - 2015-09-11
  * Merge pull request #244 from cbitstech/msw_97469570_remove_sharable_option_for_do_tool
  * Fix Time Bug
