@@ -21,14 +21,10 @@
       <p>
         <strong>Status:</strong>
         <% if view_membership(@participant, @group).end_date > Date.current %>
-          <span class="label label-success full-size">
-            Active
-          </span>
+          <span class="label label-success full-size">Active</span>
           Currently in week <%= (view_membership(@participant, @group).day_in_study / 7.0).ceil %>
         <% else %>
-          <span class="label label-warning full-size">
-            Inactive
-          </span>
+          <span class="label label-warning full-size">Inactive</span>
           Study has been Completed
         <% end %>
       </p>
