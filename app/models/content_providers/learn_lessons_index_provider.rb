@@ -1,6 +1,7 @@
 module ContentProviders
   # Provides a view of current learning tools: videos and lessons
   class LearnLessonsIndexProvider < BitCore::ContentProvider
+    DEFAULT_STUDY_LENGTH = 16
     DAYS_IN_WEEK = 7
 
     def render_current(options)
@@ -28,7 +29,6 @@ module ContentProviders
       all_tasks = participant.learning_tasks(content_modules(app_context))
                   .includes(task: :bit_core_content_module)
                   .order("bit_core_content_modules.position")
-      week_count = (membership.length_of_study / DAYS_IN_WEEK.to_f).ceil
 
       (1..week_count).map do |week|
         {
@@ -47,6 +47,12 @@ module ContentProviders
       ContentModules::LessonModule.joins(:tool)
         .where("bit_core_tools.title" => app_context)
         .where.not(id: bit_core_content_module_id)
+    end
+
+    def week_count
+      Rails.application.config.study_length_in_weeks
+    rescue
+      DEFAULT_STUDY_LENGTH
     end
   end
 end

@@ -22,7 +22,7 @@ feature "learn tool", type: :feature do
     end
 
     it "gives style to future weeks" do
-      expect(page).to have_css("h3.panel-title.panel-unreleased", count: 7)
+      expect(page).to have_css("h3.panel-title.panel-unreleased", count: 13)
     end
 
     it "opens and displaying this week's lessons" do
