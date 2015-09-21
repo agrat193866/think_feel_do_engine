@@ -41,7 +41,7 @@
       <p>
         <strong>Duration of Last Session:</strong>
         <% if @participant.events.any? %>
-          <%= distance_of_time_in_words(@participant.duration_of_last_session) %>
+          <%= distance_of_time_in_words(0, @participant.duration_of_last_session, include_seconds: true) %>
         <% else %>
           Not available because participant has no events to report.
         <% end %>

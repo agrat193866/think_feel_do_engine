@@ -24,7 +24,7 @@
           </tr>
           </thead>
           <tbody>
-          <%= render partial: "think_feel_do_engine/learn/completion_data", locals: { lesson_events: @lesson_events } %>
+          <%= render partial: "think_feel_do_engine/learn/completion_data", collection: @lesson_events, as: :lesson_event %>
           </tbody>
         </table>
       </div>
