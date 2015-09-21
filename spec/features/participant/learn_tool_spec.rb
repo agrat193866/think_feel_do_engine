@@ -13,8 +13,8 @@ feature "learn tool", type: :feature do
       expect(page).to have_text "Lessons Week 3"
     end
 
-    it "displays all 10 weeks" do
-      (1..10).each { |i| expect(page).to have_text "Week #{i}" }
+    it "displays all 16 weeks" do
+      (1..16).each { |i| expect(page).to have_text "Week #{i}" }
     end
 
     it "highlights this week's panel" do
