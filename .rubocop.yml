@@ -41,6 +41,9 @@ MethodLength:
 PredicateName:
   Enabled: false
 
+Rails/Delegate:
+  Enabled: false
+
 RegexpLiteral:
   Enabled: false
 

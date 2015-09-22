@@ -11,7 +11,7 @@ module SocialNetworking
           sign_in_count: "foo",
           current_sign_in_at: Time.zone.now + 34.day,
           latest_action_at: Time.zone.now + 23.months,
-          duration_of_last_session: 100)
+          duration_of_last_session: 11)
       end
       let(:membership) do
         instance_double(
@@ -55,7 +55,7 @@ module SocialNetworking
 
         it "formats duration of last session" do
           expect(rendered)
-            .to have_text "2 minutes"
+            .to have_text "less than 20 seconds"
         end
       end
 
