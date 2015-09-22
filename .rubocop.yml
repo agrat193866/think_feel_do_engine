@@ -22,9 +22,6 @@ Documentation:
 DotPosition:
   Enabled: false
 
-TrailingBlankLines:
-  Enabled: false
-
 HandleExceptions:
   Enabled: false
 
@@ -39,6 +36,9 @@ MethodLength:
   Max: 25
 
 PredicateName:
+  Enabled: false
+
+Rails/Delegate:
   Enabled: false
 
 RegexpLiteral:

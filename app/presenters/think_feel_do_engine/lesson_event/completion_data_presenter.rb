@@ -4,8 +4,6 @@ module ThinkFeelDoEngine
     class CompletionDataPresenter
       attr_reader :event, :lesson_module
 
-      delegate :pretty_title, to: :lesson
-
       def initialize(event:, lesson_module:)
         @event = event
         @lesson_module = lesson_module
@@ -23,6 +21,10 @@ module ThinkFeelDoEngine
         event[:page_headers].try do |page_headers|
           page_headers[2]
         end
+      end
+
+      def pretty_title
+        lesson.pretty_title
       end
 
       def selected_at
