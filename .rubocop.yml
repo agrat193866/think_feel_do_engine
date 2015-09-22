@@ -22,6 +22,9 @@ Documentation:
 DotPosition:
   Enabled: false
 
+TrailingBlankLines:
+  Enabled: false
+
 HandleExceptions:
   Enabled: false
 
