@@ -2,26 +2,59 @@ require "rails_helper"
 
 RSpec.describe "think_feel_do_engine/participants/content_modules/index",
                type: :view do
-  fixtures :all
+  describe "AvailableContentModules exist" do
+    let(:membership) { instance_double(Membership) }
+    let(:didactic_module) do
+      instance_double(
+        AvailableContentModule,
+        title: "foo",
+        id: 1,
+        task_status_id: 1)
+    end
+    let(:non_didactic_module) do
+      instance_double(
+        AvailableContentModule,
+        title: "bar",
+        id: 1,
+        task_status_id: 1)
+    end
+    let(:task_status) do
+      instance_double(
+        TaskStatus,
+        completed_at: "some time")
+    end
+    let(:tool) do
+      instance_double(
+        BitCore::Tool,
+        description: "Hammer time")
+    end
 
-  let(:participant) do
-    instance_double(
-      Participant,
-      active_group: instance_double(Group))
-  end
+    before do
+      allow(view)
+        .to receive_message_chain("content_modules.is_viz") { [] }
+      allow(view)
+        .to receive_message_chain("content_modules.first.bit_core_tool") { tool }
+      allow(membership)
+        .to receive_message_chain("available_task_statuses.for_content_module.order.last")
+        .and_return(task_status)
+      render template: "think_feel_do_engine/participants/content_modules/index",
+             locals: {
+               didactic_modules: [didactic_module],
+               non_didactic_modules: [non_didactic_module],
+               membership: membership
+             }
+    end
 
-  it "populates the tool_description" do
-    allow(view).to receive(:current_participant) { participant }
-    allow(view)
-      .to receive(:view_membership) { memberships(:membership1) }
+    it "populates the tool_description" do
+      expect(view.content_for(:tool_description)).to eq "Hammer time"
+    end
 
-    tool = BitCore::Tool.where(type: nil, title: "THOUGHT").first
-    tool.update description: "Hammer time"
-    render template: "think_feel_do_engine/participants/content_modules/index",
-           locals: {
-             content_modules: AvailableContentModule.where(bit_core_tool: tool)
-           }
+    it "populates the left panel with correct link text" do
+      expect(view.content_for(:left)).to have_text "foo"
+    end
 
-    expect(view.content_for(:tool_description)).to eq "Hammer time"
+    it "populates the right panel with correct link text" do
+      expect(view.content_for(:right)).to have_text "bar"
+    end
   end
 end

@@ -2,13 +2,6 @@ module ThinkFeelDoEngine
   # Used to display asterisks if tasks and tools have been assigned to a group
   # and to hide unassigned links
   module TasksHelper
-    def available_module(available_module:, icon:, membership:)
-      TaskStatusLink.new(
-        available_module: available_module,
-        icon: icon,
-        membership: membership)
-    end
-
     def task_status(membership, content_module)
       membership.available_task_statuses
         .for_content_module(content_module)
@@ -20,7 +13,11 @@ module ThinkFeelDoEngine
       task_status.title
     end
 
-    def task_status_link(available_module)
+    def task_status_link(available_module:, icon:, membership:)
+      available_module = TaskStatusLink.new(
+        available_module: available_module,
+        icon: icon,
+        membership: membership)
       link_to available_module.name,
               think_feel_do_engine.navigator_location_path(
                 module_id: available_module.id

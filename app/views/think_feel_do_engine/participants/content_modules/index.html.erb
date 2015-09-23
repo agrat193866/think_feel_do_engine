@@ -2,28 +2,20 @@
   <% content_for(:tool_description) { sanitize(description).gsub(/\n/, "<br><br>").html_safe } %>
 <% end %>
 
-<% didactic_modules = content_modules.is_not_viz.is_didactic %>
-<% non_didactic_modules = content_modules.is_not_viz.is_not_didactic %>
-<% membership = view_membership(current_participant, current_participant.active_group) %>
-
-<% if didactic_modules.all.to_a.count > 0 %>
-  <% content_for :left do %>
-    <div class="list-group left">
-      <% didactic_modules.each do |m| %>
-        <%#= task_status_link available_module(available_module: m, icon: fa_icon("book"), membership: membership) %>
-      <% end %>
-    </div>
-  <% end %>
+<% content_for :left do %>
+  <div class="list-group left">
+    <% didactic_modules.each do |m| %>
+      <%= task_status_link(available_module: m, icon: fa_icon("book"), membership: membership) %>
+    <% end %>
+  </div>
 <% end %>
 
-<% if non_didactic_modules.all.to_a.count > 0 %>
-  <% content_for :right do %>
-    <div class="list-group right">
-      <% non_didactic_modules.each do |m| %>
-        <%= task_status_link available_module(available_module: m, icon: fa_icon("pencil"), membership: membership) %>
-      <% end %>
-    </div>
-  <% end %>
+<% content_for :right do %>
+  <div class="list-group right">
+    <% non_didactic_modules.each do |m| %>
+      <%= task_status_link(available_module: m, icon: fa_icon("pencil"), membership: membership) %>
+    <% end %>
+  </div>
 <% end %>
 
 <% content_modules.is_viz.each do |available_module| %>
