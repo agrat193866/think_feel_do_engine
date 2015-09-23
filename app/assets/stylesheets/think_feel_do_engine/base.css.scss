@@ -51,6 +51,12 @@ abbr.timeago {
 
 .list-group-item-unread {
   font-weight:bold;
+  background: #FFFFFF;
+}
+
+.list-group-item-read {
+  background: #FAFAFA;
+  font-weight: normal;
 }
 
 .text-lowercase {

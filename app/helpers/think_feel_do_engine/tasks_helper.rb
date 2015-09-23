@@ -2,6 +2,13 @@ module ThinkFeelDoEngine
   # Used to display asterisks if tasks and tools have been assigned to a group
   # and to hide unassigned links
   module TasksHelper
+    def available_module(available_module:, icon:, membership:)
+      TaskStatusLink.new(
+        available_module: available_module,
+        icon: icon,
+        membership: membership)
+    end
+
     def task_status(membership, content_module)
       membership.available_task_statuses
         .for_content_module(content_module)
@@ -13,15 +20,13 @@ module ThinkFeelDoEngine
       task_status.title
     end
 
-    def task_status_link(available_module,
-                         css_class = "list-group-item list-group-item-read",
-                         icon = "book")
-      link_to fa_icon(icon).html_safe + " " + available_module.title,
+    def task_status_link(available_module)
+      link_to available_module.name,
               think_feel_do_engine.navigator_location_path(
                 module_id: available_module.id
-              ), class: "task-status #{ css_class }",
-                 data: { task_status_id: "#{available_module.task_status_id}" },
-                 id: "task-status-#{ available_module.task_status_id }"
+              ), class: available_module.css_class,
+                 data: available_module.data_attributes,
+                 id: available_module.css_id
     end
 
     def unread_task?(task_status)
@@ -56,6 +61,53 @@ module ThinkFeelDoEngine
                      .id,
         content_position: 1
       )
+    end
+  end
+
+  # Helper class to build task status link
+  class TaskStatusLink
+    attr_reader :available_module, :icon, :membership
+
+    def initialize(available_module:, icon:, membership:)
+      @available_module = available_module
+      @icon = icon
+      @membership = membership
+    end
+
+    def css_class
+      "task-status list-group-item list-group-item-#{completion_status}"
+    end
+
+    def css_id
+      "task-status-#{ available_module.task_status_id }"
+    end
+
+    def data_attributes
+      {
+        task_status_id: available_module.task_status_id
+      }
+    end
+
+    def id
+      available_module.id
+    end
+
+    def name
+      icon.html_safe + " " +  available_module.title
+    end
+
+    private
+
+    def completed?
+      membership.available_task_statuses
+        .for_content_module(available_module)
+        .order(start_day: :asc)
+        .last
+        .completed_at
+    end
+
+    def completion_status
+      completed? ? "read" : "unread"
     end
   end
 end

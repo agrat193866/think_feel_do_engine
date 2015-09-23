@@ -4,17 +4,13 @@
 
 <% didactic_modules = content_modules.is_not_viz.is_didactic %>
 <% non_didactic_modules = content_modules.is_not_viz.is_not_didactic %>
+<% membership = view_membership(current_participant, current_participant.active_group) %>
 
 <% if didactic_modules.all.to_a.count > 0 %>
   <% content_for :left do %>
     <div class="list-group left">
-      <% didactic_modules.each do |available_module| %>
-        <% if available_module.completed_at.nil? %>
-          <%= task_status_link(available_module, "list-group-item "\
-                                            "list-group-item-unread") %>
-        <% else %>
-          <%= task_status_link(available_module) %>
-        <% end %>
+      <% didactic_modules.each do |m| %>
+        <%= task_status_link available_module(available_module: m, icon: fa_icon("book"), membership: membership) %>
       <% end %>
     </div>
   <% end %>
@@ -23,13 +19,8 @@
 <% if non_didactic_modules.all.to_a.count > 0 %>
   <% content_for :right do %>
     <div class="list-group right">
-      <% non_didactic_modules.each do |available_module| %>
-        <% if available_module.completed_at.nil? %>
-          <%= task_status_link(available_module, "list-group-item "\
-                                            "list-group-item-unread", "pencil") %>
-        <% else %>
-          <%= task_status_link(available_module,"list-group-item list-group-item-read", "pencil") %>
-        <% end %>
+      <% non_didactic_modules.each do |m| %>
+        <%= task_status_link available_module(available_module: m, icon: fa_icon("pencil"), membership: membership) %>
       <% end %>
     </div>
   <% end %>
@@ -49,6 +40,5 @@
         )
       )
       .html_safe
-      # render the viz provider
   %>
 <% end %>
