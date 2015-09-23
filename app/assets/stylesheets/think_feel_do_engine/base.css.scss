@@ -1,4 +1,5 @@
-
+$white: white;
+$read: #FAFAFA;
 /* Bootstrap styles */
 
 h1, h2, h3 {
@@ -51,11 +52,11 @@ abbr.timeago {
 
 .list-group-item-unread {
   font-weight:bold;
-  background: #FFFFFF;
+  background: $white;
 }
 
 .list-group-item-read {
-  background: #FAFAFA;
+  background: $read;
   font-weight: normal;
 }
 
