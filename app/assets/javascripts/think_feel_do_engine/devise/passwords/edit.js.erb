@@ -1,6 +1,6 @@
 <% url = ThinkFeelDoEngine::Engine.routes.url_helpers %>
 
-$(document).on('page:change, ready', function() {
+$(document).on('page:change', function() {
   $("#new_participant[action='<%= url.participant_password_path %>'] #participant_password, #new_user[action='<%= url.user_password_path %>'] #user_password").on("keyup", function() {
     $.getJSON("<%= url.password_entropy_bits_path %>", { password: $(this).val() }, function(data) {
       if (data.bits < 10) {
