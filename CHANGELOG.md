@@ -1,3 +1,20 @@
+## 3.2.57 - 2015-09-24
+ * Merge pull request #248 from cbitstech/msw_99263156_fix_link_css
+ * Add Back In Async False
+ * Try Mimic Travis Errors locally
+ * Refactor Spec
+ * Remove Async False call
+ * Update SCSS
+ * Update jQuery On Events
+ * Fix CSS for In/Completed Modules
+ * Merge pull request #247 from cbitstech/msw_102591154_fix_duration_bug
+ * Remove HTML Test
+ * Remove Delegate
+ * Fix Duration Bug
+ * Merge pull request #246 from cbitstech/msw_102078078_update_lesson_view_with_study_length
+ * Removed Provider Spec
+ * Set Study Lenght Default
+
 ## 3.2.56 - 2015-09-15
  * Merge pull request #245 from cbitstech/msw_103231354_fix_css
  * Fix CSS Styling for Badge
