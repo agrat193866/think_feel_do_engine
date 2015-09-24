@@ -41,9 +41,9 @@ task :brakeman do
 end
 
 task :default do
+  Rake::Task["brakeman"].invoke
+  Rake::Task["jshint"].invoke
+  Rake::Task["rubocop"].invoke
   Rake::Task["spec"].invoke
   Rake::Task["js_spec"].invoke
-  Rake::Task["rubocop"].invoke
-  Rake::Task["jshint"].invoke
-  Rake::Task["brakeman"].invoke
 end

@@ -2,7 +2,7 @@
   "use strict";
 
   // Report actions associated with task statuses
-  $(document).on("ready, page:change", function() {
+  $(document).on("page:change", function() {
     $("a.task-status").not(".disabled").on("click", function(event) {
       var $target, $taskStatusId;
       

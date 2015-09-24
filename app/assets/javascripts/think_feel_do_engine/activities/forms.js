@@ -1,7 +1,7 @@
 ;(function() {
   'use strict';
 
-  $(document).on('ready, page:change', function() {
+  $(document).on('page:change', function() {
     addNewActivityFormListener();
     addUnplannedActivityFormListener();
     addPastActivityReviewFormListener();
