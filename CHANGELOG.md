@@ -1,3 +1,7 @@
+## 3.2.58 - 2015-10-05
+ * Merge pull request #250 from cbitstech/msw_104761294_week_length
+ * Add Study Lesson Length
+
 ## 3.2.57 - 2015-09-24
  * Merge pull request #248 from cbitstech/msw_99263156_fix_link_css
  * Add Back In Async False
