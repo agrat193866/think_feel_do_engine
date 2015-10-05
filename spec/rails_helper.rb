@@ -45,6 +45,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
+    Rails.application.config.lesson_week_length = 16
+    Rails.application.config.study_length_in_weeks = 16
     DatabaseCleaner.clean_with(:truncation)
   end
 
