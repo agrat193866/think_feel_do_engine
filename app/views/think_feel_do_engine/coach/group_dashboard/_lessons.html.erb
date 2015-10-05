@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-body">
-    <% (1..Rails.application.config.study_length_in_weeks).each do |week_number| %>
+    <% (1..study_length_in_weeks).each do |week_number| %>
       <h2>Week <%= week_number %></h2>
       <table class="table">
         <% group.learning_tasks.each do |task| %>

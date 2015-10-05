@@ -1,7 +1,6 @@
 module ContentProviders
   # Provides a view of current learning tools: videos and lessons
   class LearnLessonsIndexProvider < BitCore::ContentProvider
-    DEFAULT_STUDY_LENGTH = 16
     DAYS_IN_WEEK = 7
 
     def render_current(options)
@@ -50,9 +49,7 @@ module ContentProviders
     end
 
     def week_count
-      Rails.application.config.study_length_in_weeks
-    rescue
-      DEFAULT_STUDY_LENGTH
+      Rails.application.config.lesson_week_length
     end
   end
 end

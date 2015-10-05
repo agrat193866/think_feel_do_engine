@@ -30,9 +30,7 @@ module ThinkFeelDoEngine
       end
 
       def study_length_in_weeks
-        if Rails.application.config.respond_to?(:study_length_in_weeks)
-          Rails.application.config.study_length_in_weeks
-        end
+        Rails.application.config.study_length_in_weeks
       end
 
       private
