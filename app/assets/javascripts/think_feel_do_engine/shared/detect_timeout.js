@@ -30,7 +30,6 @@
 
   function keepAliveCheck() {
     if(keepAlive) {
-      console.log('staying alive')
       $.ajax({
         async: false,
         dataType: "script",

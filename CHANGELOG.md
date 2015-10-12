@@ -1,3 +1,19 @@
+## 3.2.61 - 2015-10-08
+ * Merge pull request #253 from cbitstech/msw_102218098_update_footer
+ * Merge pull request #255 from cbitstech/msw_105021274_remove_console
+ * Remove Console
+ * Merge pull request #254 from cbitstech/msw_102162512_change_variable_name
+ * Change Variable Name
+ * Update Z-index of Footer
+
+## 3.2.60 - 2015-10-07
+ * Merge pull request #252 from cbitstech/msw_101805508_fix_template_error
+ * Rescue ActionView::Template::Error
+
+## 3.2.59 - 2015-10-07
+ * Merge pull request #251 from cbitstech/msw_97469636_remove_home_turbo_link
+ * Remove Turbolink from Home
+
 ## 3.2.58 - 2015-10-05
  * Merge pull request #250 from cbitstech/msw_104761294_week_length
  * Add Study Lesson Length

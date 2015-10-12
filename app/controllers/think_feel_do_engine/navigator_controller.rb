@@ -21,10 +21,10 @@ module ThinkFeelDoEngine
         provider_id: params[:provider_id],
         content_position: params[:content_position]
       )
-    rescue ActiveRecord::RecordNotFound
+      render "show_content"
+    rescue ActiveRecord::RecordNotFound, ActionView::Template::Error
       @navigator.initialize_context(home_tool.title)
       flash[:alert] = "Unable to find that module."
-    ensure
       render "show_content"
     end
 

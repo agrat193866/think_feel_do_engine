@@ -162,6 +162,10 @@ tr.inactive {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+.footer {
+  z-index: auto;
+}
+
 .footer .container .text-muted {
   margin: 20px 0;
 }

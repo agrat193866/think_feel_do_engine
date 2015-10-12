@@ -34,14 +34,14 @@
   $(function() {
     return $('#thoughts').dataTable({
       order: [[5, 'desc']],
-      aoColumnDefs: [
+      columnDefs: [
         {
           targets: [0],
           visible: false
         },
         {
           targets: [5],
-          iDataSort: [0]
+          orderData: [0]
         }
       ]
     });

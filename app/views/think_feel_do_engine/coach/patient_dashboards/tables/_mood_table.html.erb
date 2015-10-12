@@ -31,14 +31,14 @@
   $(function() {
     return $('#moods-table').dataTable({
       order: [[2, 'desc']],
-      aoColumnDefs: [
+      columnDefs: [
         {
           targets: [0],
           visible: false
         },
         {
           targets: [2],
-          iDataSort: [0]
+          orderData: [0]
         }
       ]
     });

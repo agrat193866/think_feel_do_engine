@@ -8,4 +8,5 @@
  *= require bootstrap-timepicker.min
  *= require jplayer.blue.monday
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require think_feel_do_engine/dataTables-overrides
  */

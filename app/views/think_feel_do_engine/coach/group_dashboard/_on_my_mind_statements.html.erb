@@ -51,14 +51,14 @@
   $(function () {
     return $('#on-my-mind_data').dataTable({
       order: [[0, "desc"]],
-      aoColumnDefs: [
+      columnDefs: [
         {
           targets: [0],
           visible: false
         },
         {
           targets: [3],
-          iDataSort: [0]
+          orderData: [0]
         }
       ]
     });

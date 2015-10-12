@@ -30,6 +30,6 @@ window.bindStopEvent = function (mediaAccessEventId) {
 
 window.bindEndedEvent = function (mediaAccessEventId) {
   $("#jquery_jplayer_1").bind($.jPlayer.event.ended, function(){
-    mediaAccessUpdate(media_access_event_id);
+    mediaAccessUpdate(mediaAccessEventId);
   });
 }

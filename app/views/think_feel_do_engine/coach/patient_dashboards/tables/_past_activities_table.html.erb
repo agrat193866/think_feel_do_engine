@@ -47,14 +47,14 @@
   $(function() {
     return $('#activities_past').dataTable({
       order: [[1, 'desc']],
-      aoColumnDefs: [
+      columnDefs: [
         {
           targets: [0],
           visible: false
         },
         {
           targets: [8],
-          iDataSort: [0]
+          orderData: [0]
         },
         {
           targets: [1],
@@ -62,7 +62,7 @@
         },
         {
           targets: [9],
-          iDataSort: [1]
+          orderData: [1]
         }
       ]
     });

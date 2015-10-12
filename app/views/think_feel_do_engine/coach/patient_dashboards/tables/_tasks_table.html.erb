@@ -32,14 +32,14 @@
   $(function() {
     return $('#task_statuses').dataTable({
       order: [[0, 'asc']],
-      aoColumnDefs: [
+      columnDefs: [
         {
           targets: [0],
           visible: false
         },
         {
           targets: [3],
-          iDataSort: [0]
+          orderData: [0]
         }
       ]
     });
