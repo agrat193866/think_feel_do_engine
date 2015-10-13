@@ -23,8 +23,9 @@ feature "send participant password reset instructions for participants who can a
 
     expect(page).to have_text "Change your password"
 
-    fill_in("participant_password", with: "dog pig cat yeah!")
-    fill_in("participant_password_confirmation", with: "dog pig cat yeah!")
+    password = "1dog pig Cat yeah!"
+    fill_in "New password", with: password
+    fill_in "Confirm new password", with: password
 
     expect { click_on "Change my password" }
       .to change { participant.participant_login_events.count }.by(1)

@@ -1,8 +1,9 @@
 require "devise"
-require "strong_password"
 
 # A person with some authoritative role (a non-Participant).
 class User < ActiveRecord::Base
+  include ThinkFeelDoEngine::Concerns::ValidatePassword
+
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable, :timeoutable,
          timeout_in: 20.minutes
@@ -26,10 +27,6 @@ class User < ActiveRecord::Base
            dependent: :nullify
   has_many :user_roles, dependent: :destroy
 
-  validates :password,
-            password_strength: { use_dictionary: true },
-            if: :password_is__not_blank?
-
   accepts_nested_attributes_for :coach_assignments
 
   def build_sent_message(attributes = {})
@@ -38,10 +35,6 @@ class User < ActiveRecord::Base
 
   def participants_for_group(group)
     participants.where(id: group.participant_ids)
-  end
-
-  def password_is__not_blank?
-    !password.blank?
   end
 
   def admin?

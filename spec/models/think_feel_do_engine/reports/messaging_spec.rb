@@ -74,7 +74,11 @@ module ThinkFeelDoEngine
         end
 
         context "when there is not an active Membership" do
+          let(:raven) { Class.new }
+
           it "reports nil start_dt, week and day values" do
+            allow(raven).to receive(:capture_message)
+            stub_const("::Raven", raven)
             Message.destroy_all
             Membership.destroy_all
             Message.create!(sender: participant1,

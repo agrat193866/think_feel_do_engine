@@ -94,7 +94,6 @@ feature "coach messages", type: :feature do
       click_on("Send")
 
       expect(page).to have_content("Message saved")
-      expect(MessageSmsNotification.messages.last[:to]).to eq "+1-608-215-2391"
     end
 
     it "allows a coach to reply to a message" do

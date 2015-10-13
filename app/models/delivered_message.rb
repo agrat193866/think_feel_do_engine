@@ -34,13 +34,26 @@ class DeliveredMessage < ActiveRecord::Base
         .new_for_coach(recipient, sender.active_group)
         .deliver
     elsif recipient.notify_by_sms?
-      MessageSmsNotification.deliver_to(recipient)
+      MessageSmsNotification
+        .new(
+          body: "You have a new #{application_name} message.",
+          phone_number: recipient.phone_number)
+        .deliver
     else
       ThinkFeelDoEngine::MessageNotifications
         .new_for_participant(recipient)
         .deliver
     end
-  rescue
-    # swallow exception
+  rescue => exception
+    ::Raven.capture_message(exception)
+  end
+
+  def application_name
+    internationalization
+      .t(:application_name, default: "ThinkFeelDo")
+  end
+
+  def internationalization
+    I18n
   end
 end

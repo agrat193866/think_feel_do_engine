@@ -4,7 +4,15 @@
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <p>Instead of creating a password, we would like you to create a passphrase. Passphrases are easier to remember and harder to crack. A passphrase is a series of words with spaces between them. Your passphrase should be longer than 3 words and should not contain common phrases (including those found in music or literature) and any part of your username or real name. A stronger passphrase would include numbers and symbols as well as creative spellings of common words. The easiest way to create a strong passphrase by using 4 unrelated words.</p>
+  <p>Password should:</p>
+  <ul>
+    <li>be 8 - 128 characters long</li>
+    <li>include at least one lowercase and one uppercase letter</li>
+    <li>include at least one digit</li>
+    <li>not repeat a character more than twice in a row</li>
+    <li>not be the same as your email.</li>
+
+  </ul>
 
   <div class="form-group">
   	<%= f.label :password, "New password" %>

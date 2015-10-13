@@ -1,7 +1,7 @@
-require "strong_password"
-
 # A person enrolled in the intervention.
 class Participant < ActiveRecord::Base
+  include ThinkFeelDoEngine::Concerns::ValidatePassword
+
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable, :timeoutable,
          timeout_in: 20.minutes
@@ -62,10 +62,6 @@ class Participant < ActiveRecord::Base
 
   delegate :end_date, to: :active_membership, prefix: true, allow_nil: true
 
-  validates :password,
-            password_strength: { use_dictionary: true },
-            if: :password_is__not_blank?
-
   accepts_nested_attributes_for :coach_assignment
 
   def self.active
@@ -119,10 +115,6 @@ class Participant < ActiveRecord::Base
       .order(recorded_at: :desc)
       .first
       .try(:recorded_at)
-  end
-
-  def password_is__not_blank?
-    !password.blank?
   end
 
   def populate_emotions

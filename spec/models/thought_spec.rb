@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Thought, type: :model do
-  let(:password) { SecureRandom.hex }
+  let(:password) { "1Dog pig cat yeah!" }
   let(:participant) do
     Participant.create!(password: password,
                         password_confirmation: password,
