@@ -70,7 +70,7 @@ library2:
 
 messages2:
   position: 5
-  title: GMAIL
+  title: G MAIL
   arm: arm2
   type: Tools::Messages
 

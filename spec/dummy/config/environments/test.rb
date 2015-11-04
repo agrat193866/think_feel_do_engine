@@ -35,7 +35,7 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options =
-    { host: "stepped_care-no-reply@northwestern.edu" }
+    { host: "stepped_care.northwestern.edu" }
   config.action_mailer.default_options =
     { from: "stepped_care-no-reply@northwestern.edu" }
 

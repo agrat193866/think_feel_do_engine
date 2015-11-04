@@ -42,29 +42,23 @@ module ThinkFeelDoEngine
       # Return the immediately following Event for the Participant that is not a
       # video play event, or nil if none exist.
       def self.next_event(event)
-        stop_event = EventCapture::Event
-                     .where(participant_id: event.participant_id)
-                     .where.not(kind: "videoPlay")
-                     .where("emitted_at > ?", event.emitted_at)
-                     .select(:participant_id, :kind, :emitted_at)
-                     .order(:emitted_at)
-                     .limit(1)
-                     .first
+        event = EventCapture::Event.next_event_for(event)
 
-        return stop_event if stop_event && stop_event.kind != "videoPause"
+        return if event.nil?
+        return event if event && event.kind != "videoPause"
 
         # if the event is a pause and there's an immediately following finish,
         # return the finish event
         finish_event = EventCapture::Event
-                       .where(participant_id: stop_event.participant_id)
+                       .where(participant_id: event.participant_id)
                        .where("emitted_at > ? AND emitted_at < ?",
-                              stop_event.emitted_at,
-                              stop_event.emitted_at + 2.seconds)
+                              event.emitted_at,
+                              event.emitted_at + 2.seconds)
                        .order(:emitted_at)
                        .limit(1)
                        .first
 
-        finish_event.try(:kind) == "videoFinish" ? finish_event : stop_event
+        finish_event.try(:kind) == "videoFinish" ? finish_event : event
       end
     end
   end

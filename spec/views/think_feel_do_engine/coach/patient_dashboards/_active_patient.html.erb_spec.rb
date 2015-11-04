@@ -28,7 +28,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
   let(:patient) do
     instance_double(Participant,
                     id: nil,
-                    phq_assessments: [],
+                    phq_assessments: PhqAssessment,
                     study_id: nil,
                     sign_in_count: nil,
                     current_sign_in_at: nil,
@@ -197,7 +197,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
                                            score: 15,
                                            completed?: false,
                                            release_date: today)
-              allow(patient).to receive(:phq_assessments) { [assessment] }
+              allow(patient).to receive_message_chain("phq_assessments.most_recent") { assessment }
 
               render partial: partial, locals: { patient: patient }
 
@@ -216,7 +216,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
                                            score: 5,
                                            completed?: false,
                                            release_date: today)
-              allow(patient).to receive(:phq_assessments) { [assessment] }
+              allow(patient).to receive_message_chain("phq_assessments.most_recent") { assessment }
 
               render partial: partial, locals: { patient: patient }
 
@@ -235,7 +235,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
                                            score: 8,
                                            completed?: true,
                                            release_date: today)
-              allow(patient).to receive(:phq_assessments) { [assessment] }
+              allow(patient).to receive_message_chain("phq_assessments.most_recent") { assessment }
 
               render partial: partial, locals: { patient: patient }
 
@@ -250,7 +250,7 @@ RSpec.describe "think_feel_do_engine/coach/" \
             arrange_stubs
             permit_actions
             enable_phq_features
-            allow(patient).to receive(:phq_assessments) { [] }
+            allow(patient).to receive_message_chain("phq_assessments.most_recent") { nil }
 
             render partial: partial, locals: { patient: patient }
 

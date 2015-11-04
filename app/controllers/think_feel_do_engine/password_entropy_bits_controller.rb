@@ -2,12 +2,11 @@ module ThinkFeelDoEngine
   # Calculate the bits of entropy in a password.
   class PasswordEntropyBitsController < ApplicationController
     def show
-      return render(json: { bits: 50 }) if Rails.env.test?
-
-      bits = StrongPassword::StrengthChecker.new(params[:password])
-             .calculate_entropy(use_dictionary: true)
-
-      render json: { bits: bits }
+      validator = PasswordValidator
+                  .new(
+                    password: params[:password],
+                    password_token: params[:reset_password_token])
+      render json: { bits: validator.entropy_value }
     end
   end
 end

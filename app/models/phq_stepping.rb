@@ -2,7 +2,7 @@
 #
 # An explanation of the algorithm:
 #
-# Weeks EARLIEST_ELIGIBLE_STEPPING_WEEK - 8
+# Weeks 4 - 8
 # If PHQ-9 >= 17 at two consecutive weeks, then "step" t-CBT
 # If PHQ-9 < 17 at Week 5-8, then "stay" i-CBT
 # If PHQ-9 < 5 at two consecutive weeks, schedule "post-engagement" coach call
@@ -15,7 +15,22 @@
 # If PHQ-9 < 10 and >= 5, then "stay" i-CBT
 # If PHQ-9 < 5 at two consecutive weeks, schedule "post-engagement" coach call
 class PhqStepping
-  EARLIEST_ELIGIBLE_STEPPING_WEEK = 5
+  DANGER_LABEL = "danger"
+  SUCCESS_LABEL = "success"
+  WARNING_LABEL = "warning"
+  NO_SUGGESTION = "No"
+  YES_SUGGESTION = "YES"
+  MAX_NUM_OF_MISSING_RESPONSES = 3
+  LAST_WEEK_BEFORE_STEPPING = 3
+
+  DEFAULT_PERIOD_DISCONTINUE_CUTOFF = 0
+
+  FIRST_PERIOD_STEPPING_WEEK = 4
+  FIRST_PERIOD_DISCONTINUE_CUTOFF = 5
+  FIRST_PERIOD_STEPPING_CUTOFF = 17
+
+  SECOND_PERIOD_STEPPING_WEEK = 9
+  SECOND_PERIOD_STEPPING_CUTOFF = 13
 
   attr_accessor :assessments, :week, :urgency, :suggestion,
                 :detailed_suggestion, :step, :stay, :release, :range_start
@@ -33,7 +48,7 @@ class PhqStepping
     @step = consecutive_high_weeks?
     return if @step
     # At this point either way it has to be "No" (Don't step)
-    @urgency = "success"
+    @urgency = SUCCESS_LABEL
     # Least important test, if this returns true nothing is changed
     @stay = mid_range_scores?
     # Adds to test_range; if this returns true we suggest the coach look at
@@ -47,33 +62,42 @@ class PhqStepping
     }
   end
 
+  private
+
   def set_initial_values(assessments, study_start_date)
     @weeks_range = []
     @skip_flag = [false]
     @assessments = assessments
     @study_start_date = study_start_date
     @week = ((Date.current + 1 - study_start_date).days / 1.week).ceil
-    @upper_limit = 17
-    @upper_prev_limit = 17
-    @lower_limit = 0
-    @range_start = (@week < 9) ? EARLIEST_ELIGIBLE_STEPPING_WEEK : 9
-    @range_start = 14 if (@week >= 14)
+    @upper_limit = FIRST_PERIOD_STEPPING_CUTOFF
+    @upper_prev_limit = FIRST_PERIOD_STEPPING_CUTOFF
+    @lower_limit = DEFAULT_PERIOD_DISCONTINUE_CUTOFF
+    @range_start = calc_range_start
     @edge_week = (@week == @range_start)
-    @urgency = "danger"
-    @suggestion = "YES*"
+    @urgency = DANGER_LABEL
+    @suggestion = "#{YES_SUGGESTION}*"
     @detailed_suggestion = "No assessments passed to the algorithm. "\
-                       "An error may have occurred"
+                           "An error may have occurred"
+  end
+
+  def calc_range_start
+    if @week < SECOND_PERIOD_STEPPING_WEEK
+      FIRST_PERIOD_STEPPING_WEEK
+    else
+      SECOND_PERIOD_STEPPING_WEEK
+    end
   end
 
   def validate_data_reliability
     if @assessments.any? do |assessment|
-      assessment.missing_answers_count > 3
+      assessment.missing_answers_count > MAX_NUM_OF_MISSING_RESPONSES
     end
-      @urgency = "warning"
+      @urgency = WARNING_LABEL
       @suggestion = "Consult - Missing Data"
-      @detailed_suggestion = "One or more assessments are missing more"\
-                        " than than three answers. Stepping should be"\
-                        " determined via consultation instead."
+      @detailed_suggestion = "One or more assessments are missing more "\
+                             "than than three answers. Stepping should "\
+                             "be determined via consultation instead."
       false
     else
       true
@@ -81,26 +105,25 @@ class PhqStepping
   end
 
   def set_phq_score_ranges
-    if @week < EARLIEST_ELIGIBLE_STEPPING_WEEK
-      @urgency = "warning"
-      @suggestion = "No; Too Early"
+    if @week < FIRST_PERIOD_STEPPING_WEEK
+      @urgency = WARNING_LABEL
+      @suggestion = "#{NO_SUGGESTION}; Too Early"
       @detailed_suggestion = "Stay on i-CBT; Too early to determine stepping."
       return false
-    elsif @week >= 9 && @week <= 13
-      @upper_limit = 13
-      @lower_limit = 5
-    elsif (@week >= 14)
-      @upper_limit = 10
-      @upper_prev_limit = 13
-      @lower_limit = 5
+    elsif @week < SECOND_PERIOD_STEPPING_WEEK
+      @upper_limit = FIRST_PERIOD_STEPPING_CUTOFF
+      @lower_limit = FIRST_PERIOD_DISCONTINUE_CUTOFF
+    else
+      @upper_limit = SECOND_PERIOD_STEPPING_CUTOFF
+      @lower_limit = FIRST_PERIOD_DISCONTINUE_CUTOFF
     end
     true
   end
 
   def assessments_exist?
-    if @assessments.nil? || @assessments.count == 0
-      @urgency = "danger"
-      @suggestion = "YES*"
+    if @assessments.nil? || @assessments.empty?
+      @urgency = DANGER_LABEL
+      @suggestion = "#{YES_SUGGESTION}*"
       @detailed_suggestion = "No assessments passed to the algorithm. "\
                              "An error may have occurred"
       return false
@@ -155,7 +178,7 @@ class PhqStepping
     # Handle filling in missing phq assessment data
     unless build_complete_record
       @urgency = "danger"
-      @suggestion = "YES*"
+      @suggestion = "#{YES_SUGGESTION}*"
       @detailed_suggestion = "Patient has no completed assessments until "\
                              "after week 3. Stepping algorithm not run; "\
                              "please use discretion."
@@ -178,7 +201,7 @@ class PhqStepping
 
   def fill_in_missing_unknown_assessments
     first_assessment = @assessments.first
-    while first_assessment.week_of_assessment.to_i >= 3
+    while first_assessment.week_of_assessment.to_i >= LAST_WEEK_BEFORE_STEPPING
       first_assessment = PhqSteppingAssessment.new(
         first_assessment.date - 1.week,
         "Unknown",
@@ -210,12 +233,12 @@ class PhqStepping
     unless @assessments.any? do |assessment|
              assessment
              .week_of_assessment
-             .to_i < EARLIEST_ELIGIBLE_STEPPING_WEEK
+             .to_i < FIRST_PERIOD_STEPPING_WEEK
            end
       sort_assessments
       fill_in_missing_unknown_assessments
       fallback_range = @range_start
-      @range_start = 3
+      @range_start = LAST_WEEK_BEFORE_STEPPING
       fill_in_missing_assessments
       @range_start = fallback_range
       filter_assessments(@range_start)
@@ -226,7 +249,7 @@ class PhqStepping
 
   def build_complete_record
     return false unless previous_data_to_infer_from?
-    # Prep this period (week EARLIEST_ELIGIBLE_STEPPING_WEEK - 8, 9-13, 14+)
+    # Prep this period (week 4 - 8, 9-13, 14+)
     # by making sure at least the start date has an associated assessment
     fill_in_initial_week
     filter_assessments(@range_start)
@@ -240,8 +263,8 @@ class PhqStepping
     @assessments.drop(1).each do |assessment|
       if assessment.score >= @upper_limit &&
          prev_score >= (@edge_week ? @upper_prev_limit : @upper_limit)
-        @urgency = "danger"
-        @suggestion = "YES"
+        @urgency = DANGER_LABEL
+        @suggestion = YES_SUGGESTION
         @detailed_suggestion = "Step to t-CBT"
         @step = true
         return @step
@@ -253,18 +276,24 @@ class PhqStepping
   end
 
   def set_up_mid_range
-    if @edge_week && @week < 14
-      @suggestion = "No*"
+    if @edge_week
+      @suggestion = "#{NO_SUGGESTION}*"
       @detailed_suggestion = "Stay on i-CBT; "\
                              "Using data from last period as well"
       return false
     end
-    subset_from = (@week < 9) ? 5 : 10
-    subset_from = 14 if @week >= 14
     @assessments_subset = @assessments.select do |assessment|
       assessment.week_of_assessment.to_i >= subset_from
     end
     true
+  end
+
+  def subset_from
+    if @week < SECOND_PERIOD_STEPPING_WEEK
+      FIRST_PERIOD_STEPPING_WEEK
+    else
+      SECOND_PERIOD_STEPPING_WEEK
+    end
   end
 
   def mid_range_scores?
@@ -273,14 +302,9 @@ class PhqStepping
          assessment.score >= @lower_limit &&
          assessment.score < @upper_limit
        end
-      @suggestion = "No"
+      @suggestion = NO_SUGGESTION
       @detailed_suggestion = "Stay on i-CBT"
       return true
-    end
-    if @edge_week && @week == 14
-      @suggestion = "No*"
-      @detailed_suggestion = "Stay on i-CBT; "\
-                             "Using data from last period as well"
     end
     false
   end
@@ -288,8 +312,9 @@ class PhqStepping
   def consecutive_low_weeks?
     prev_score = @assessments.first.score
     @assessments.drop(1).each do |assessment|
-      if assessment.score < 5 && prev_score < 5
-        @suggestion = "No - Low Scores"
+      if assessment.score < FIRST_PERIOD_DISCONTINUE_CUTOFF &&
+         prev_score < FIRST_PERIOD_DISCONTINUE_CUTOFF
+        @suggestion = "#{NO_SUGGESTION} - Low Scores"
         @detailed_suggestion = "Stay on i-CBT or schedule post engagement call"
         return true
       end

@@ -49,7 +49,10 @@ describe Group do
 
   it ".logins_by_week returns a count of logins "\
   " for the first week" do
-    expect(group.logins_by_week(1)).to eq(0)
+    participants(:participant2).participant_login_events.create
+
+    expect(groups(:group1).logins_by_week(1))
+      .to eq(3)
   end
 
   it ".thoughts_by_week returns a count of thoughts "\

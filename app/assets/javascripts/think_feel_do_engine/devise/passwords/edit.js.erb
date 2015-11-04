@@ -1,8 +1,13 @@
 <% url = ThinkFeelDoEngine::Engine.routes.url_helpers %>
 
 $(document).on('page:change', function() {
-  $("#new_participant[action='<%= url.participant_password_path %>'] #participant_password, #new_user[action='<%= url.user_password_path %>'] #user_password").on("keyup", function() {
-    $.getJSON("<%= url.password_entropy_bits_path %>", { password: $(this).val() }, function(data) {
+  var password_path = location.pathname.replace('/edit', '');
+
+  $("#new_participant[action='" + password_path + "'] #participant_password, #edit_participant[action='" + password_path + "'] #participant_password, #new_user[action='" + password_path + "'] #user_password, #edit_user[action='" + password_path + "'] #user_password").on("keyup", function(event) {
+    $.getJSON("<%= url.password_entropy_bits_path %>", {
+      password: $(this).val(),
+      reset_password_token: _getPasswordToken()
+    }, function(data) {
       if (data.bits < 10) {
         $("#password-strength").html("<span class='text-danger'>Weak</span>");
       } else if (data.bits < 18) {
@@ -12,4 +17,8 @@ $(document).on('page:change', function() {
       }
     });
   });
+
+  function _getPasswordToken() {
+    return location.search.split("?reset_password_token=")[1];
+  }
 });

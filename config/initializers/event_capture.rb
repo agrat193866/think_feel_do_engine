@@ -19,6 +19,16 @@ require "event_capture/event"
 class EventCapture::Event
   belongs_to :participant
 
+  def self.next_event_for(event)
+    where(participant_id: event.participant_id)
+    .where.not(kind: "videoPlay")
+    .where("emitted_at > ?", event.emitted_at)
+    .select(:participant_id, :kind, :emitted_at)
+    .order(:emitted_at)
+    .limit(1)
+    .first
+  end
+
   def current_url
     payload[:currentUrl]
   end

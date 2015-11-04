@@ -7,10 +7,8 @@ phq_row_week_class = "warning"
 phq_row_week_class = "success" if tested_weeks.score.to_f < 5
 if tested_weeks.missing_with_no_fallback ||	tested_weeks.score.to_f >= test_summary[:upper_limit]
 	phq_row_week_class = "danger" 
-	if tested_weeks.week_of_assessment == test_summary[:current_week] - 1 &&
-		(edge_four || edge_nine || edge_fourteen)
-		phq_row_week_class = "warning" if tested_weeks.score.to_f < 17 && (edge_four || edge_nine)
-		phq_row_week_class = "warning" if tested_weeks.score.to_f < 13 && edge_fourteen
+	if tested_weeks.week_of_assessment == test_summary[:current_week] - 1 && (edge_four || edge_nine || edge_fourteen)
+		phq_row_week_class = "warning" if tested_weeks.score.to_f < 17 && (edge_four || edge_nine || edge_fourteen)
 	end
 end
 

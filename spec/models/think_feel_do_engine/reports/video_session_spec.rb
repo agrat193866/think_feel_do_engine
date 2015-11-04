@@ -48,6 +48,18 @@ module ThinkFeelDoEngine
             )
           end
         end
+
+        context "the only following events are videoPlay" do
+          let(:event) { event_capture_events(:event_capture_events_179) }
+
+          it "returns nil when no 'stop event' exists" do
+            expect(EventCapture::Event.next_event_for(event))
+              .to be_nil
+
+            expect(VideoSession.next_event(event))
+              .to be_nil
+          end
+        end
       end
     end
   end

@@ -1,34 +1,85 @@
 require "rails_helper"
 
 feature "reset user password", type: :feature do
-  fixtures(:all)
+  fixtures :all
 
-  let(:user) { users(:admin1) }
+  let(:valid_password) { "1Dog pig cat yeah!" }
 
-  before { clear_emails }
+  before do
+    clear_emails
+    visit "/users/sign_in"
+  end
 
   it "should redirect after password update", :js do
-    allow_any_instance_of(ThinkFeelDoEngine::BrandHelper).to receive(:brand_location) { "#" }
-
-    visit "/users/sign_in"
     click_on "Forgot your password?"
+
+    within "h2" do
+      expect(page).to have_text "Forgot your password"
+    end
+
     fill_in "Email", with: "admin1@example.com"
     click_on "Send me reset password instructions"
 
     expect(page).to have_text "You will receive an email with instructions on how to reset your password in a few minutes."
+    expect(last_email.to).to include(users(:admin1).email)
 
-    expect(last_email.to).to include(user.email)
-    path = extract_password_edit_path_from_email
-    visit path
+    visit extract_password_edit_path_from_email
 
     expect(page).to have_text "Change your password"
 
-    password = "1Dog pig cat yeah!"
-    fill_in "New password", with: password
-    fill_in "Confirm new password", with: password
+    fill_in "New password", with: valid_password
+    fill_in "Confirm new password", with: valid_password
+
     click_on "Change my password"
 
     expect(page).to have_text "Your password has been changed successfully. You are now signed in."
-    expect(current_path).to eq("/privacy_policy")
+    expect(current_path).to eq "/privacy_policy"
+  end
+
+  it "validates password", :js do
+    click_on "Forgot your password?"
+
+    within "h2" do
+      expect(page).to have_text "Forgot your password"
+    end
+
+    fill_in "Email", with: "admin1@example.com"
+    click_on "Send me reset password instructions"
+
+    expect(page).to have_text "You will receive an email with instructions on how to reset your password in a few minutes."
+    expect(last_email.to).to include(users(:admin1).email)
+
+    visit extract_password_edit_path_from_email
+
+    expect(page).to have_text "Change your password"
+    within "#password-strength .text-danger" do
+      expect(page).to have_text "Weak"
+    end
+
+    fill_in "New password", with: "1Dog ca!"
+    fill_in "Confirm new password", with: "1Dog ca!"
+
+    within "#password-strength .text-primary" do
+      expect(page).to have_text "Medium"
+    end
+
+    fill_in "New password", with: valid_password
+    fill_in "Confirm new password", with: valid_password
+
+    within "#password-strength .text-success" do
+      expect(page).to have_text "Strong"
+    end
+
+    fill_in "New password", with: ""
+    click_on "Change my password"
+
+    expect(page).to have_text "Password can't be blank"
+
+    fill_in "New password", with: valid_password
+    fill_in "Confirm new password", with: valid_password
+
+    within "#password-strength .text-success" do
+      expect(page).to have_text "Strong"
+    end
   end
 end

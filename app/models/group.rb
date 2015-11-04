@@ -29,17 +29,10 @@ class Group < ActiveRecord::Base
   end
 
   def logins_by_week(week_number)
-    participant_login_events = Arel::Table.new(:participant_login_events)
-
     memberships.map do |membership|
       membership
-        .participant
-        .participant_login_events
-        .where(participant_login_events[:created_at]
-                 .gteq(week_start_day(week_number)))
-        .where(participant_login_events[:created_at]
-                 .lt(week_end_day(week_number)))
-    end.map(&:count).sum
+        .logins_by_week(week_number)
+    end.inject(:+)
   end
 
   def thoughts_by_week(week_number)

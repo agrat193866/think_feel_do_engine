@@ -2,8 +2,8 @@
 class PhqAssessment < ActiveRecord::Base
   MIN_QUESTION_SCORE = 0
   MAX_QUESTION_SCORE = 3
-  QUESTION_COUNT = 9
   QUESTION_ATTRIBUTES = :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9
+  SUICIDAL_SCORE = 3
 
   belongs_to :participant
 
@@ -11,33 +11,43 @@ class PhqAssessment < ActiveRecord::Base
   validates :release_date, uniqueness: { scope: :participant_id }
   validate :scores_valid
 
-  def remove_nils
-    QUESTION_ATTRIBUTES.map { |a| self[a] }.compact
+  scope :latest_updated, -> { order(updated_at: :desc) }
+
+  def self.most_recent
+    latest_updated.first
+  end
+
+  def answered_questions
+    @answered_questions ||= remove_nils
   end
 
   def completed?
-    number_answered == QUESTION_COUNT
+    number_answered == QUESTION_ATTRIBUTES.count
   end
 
   def number_answered
-    remove_nils.count
+    answered_questions.count
   end
 
   def score
-    remove_nils.inject(:+)
+    answered_questions.inject(:+)
   end
 
   def suicidal?
-    q9 == 3
+    q9 == SUICIDAL_SCORE
   end
 
   private
 
-  def scores_valid
-    return unless remove_nils.length > 0
+  def remove_nils
+    QUESTION_ATTRIBUTES.map { |answer| self[answer] }.compact
+  end
 
-    if remove_nils.min < MIN_QUESTION_SCORE ||
-       remove_nils.max > MAX_QUESTION_SCORE
+  def scores_valid
+    return unless number_answered > 0
+
+    if answered_questions.min < MIN_QUESTION_SCORE ||
+       answered_questions.max > MAX_QUESTION_SCORE
       errors.add(:base, "scores must be between #{ MIN_QUESTION_SCORE } " \
                         "and #{ MAX_QUESTION_SCORE } inclusive")
     end

@@ -2,7 +2,7 @@
   <tr id="patient-<%= patient.id %>"
       class="<%= 'inactive' if view_membership(patient, @group) &&
               view_membership(patient, @group).end_date < Date.current %>
-              <%= 'danger' if patient.phq_assessments.last.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
+              <%= 'danger' if patient.phq_assessments.most_recent.try(:suicidal?) %>" data-study-id="<%= patient.study_id %>">
     <td>
       <%= link_to patient.study_id, think_feel_do_engine.coach_group_patient_dashboard_path(@group, patient) %>
     </td>
@@ -17,7 +17,7 @@
 
     <% if phq_features? %>
       <td>
-        <% if (last_phq = patient.phq_assessments.last) %>
+        <% if (last_phq = patient.phq_assessments.most_recent) %>
           <%- if last_phq.suicidal? -%><div class="label label-danger">PHQ-9 WARNING</div><%- end -%>
           <span class="bold"><%= last_phq.score %>
             <%= last_phq.completed? ? "" : "*" %></span> on <%= last_phq.release_date.to_s(:user_date) %>

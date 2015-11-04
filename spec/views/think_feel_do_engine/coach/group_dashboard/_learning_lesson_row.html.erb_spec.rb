@@ -6,7 +6,7 @@ RSpec.describe "think_feel_do_engine/coach/group_dashboard/_learning_lesson_row.
 
   before do
     allow(view).to receive_message_chain(:content_provider, :source_content, :pretty_title) { title }
-    stub_template "think_feel_do_engine/coach/group_dashboard/_lesson_completion_breakdown" => ""
+    stub_template "think_feel_do_engine/coach/group_dashboard/_lesson_completion_breakdown.html.erb" => ""
     allow(view).to receive(:task) { nil }
   end
 

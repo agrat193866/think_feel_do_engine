@@ -1,3 +1,5 @@
+require "devise"
+
 # A person enrolled in the intervention.
 class Participant < ActiveRecord::Base
   include ThinkFeelDoEngine::Concerns::ValidatePassword

@@ -34,6 +34,19 @@ module ThinkFeelDoEngine
           end
         end
       end
+
+      describe ".next_event_for" do
+        let(:event1) { event_capture_events(:event_capture_events_177) }
+        let(:event2) { event_capture_events(:event_capture_events_178) }
+
+        it "returns the next event" do
+          next_event = EventCapture::Event.next_event_for(event1)
+
+          expect(next_event.emitted_at).to eq event2.emitted_at
+          expect(next_event.kind).to eq event2.kind
+          expect(next_event.participant_id).to eq event2.participant_id
+        end
+      end
     end
   end
 end

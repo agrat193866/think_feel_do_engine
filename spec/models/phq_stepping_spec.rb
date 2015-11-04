@@ -2,233 +2,556 @@ require "rails_helper"
 
 describe PhqStepping do
   let(:today) { Date.current }
-  let(:low_assessments) { Hash[today, 1, today - 14.days, 2] }
-  let(:high_range_1_assessments) { Hash[today, 17, today - 14.days, 18] }
-  let(:high_range_2_assessments) { Hash[today, 15, today - 14.days, 16] }
-  let(:high_range_3_assessments) { Hash[today, 12, today - 14.days, 11, today - 49.days, 9] }
-  let(:priority_check) do
-    Hash[
-      today, 3,
-      today - 1.week, 3,
-      today - 3.weeks, 17,
-      today - 19.weeks, 9
-    ]
-  end
+  let(:last_week) { today - 1.week }
+  let(:discontinue_score) { 4 }
+  let(:stay_score) { 9 }
+  let(:first_period_highest_mid_range_score) { 16 }
+  let(:first_period_step_score) { first_period_highest_mid_range_score + 1 }
+  let(:second_period_highest_mid_range_score) { 12 }
+  let(:second_period_step_score) { second_period_highest_mid_range_score + 1 }
+  let(:third_period_highest_mid_range_score) { 12 }
+  let(:third_period_step_score) { third_period_highest_mid_range_score + 1 }
 
-  let(:specific_week_three) do
-    assessment_week_3 = PhqAssessment.new
-    assessment_week_3.q1 = 3
-    assessment_week_3.q2 = 0
-    assessment_week_3.q3 = 0
-    assessment_week_3.q4 = 0
-    assessment_week_3.q5 = 0
-    assessment_week_3.q6 = 0
-    # Missing 7,8,9
-    [today - 1.week, assessment_week_3]
-  end
-
-  let(:specific_week_four) do
-    assessment_week_4 = PhqAssessment.new
-    assessment_week_4.q1 = 3
-    assessment_week_4.q2 = 0
-    assessment_week_4.q3 = 0
-    assessment_week_4.q4 = 0
-    assessment_week_4.q5 = 0
-    # Missing 6,7,8,9
-    [today, assessment_week_4]
-  end
-
-  def stepping_start_date(current_week)
-    Date.current - (current_week - 1).weeks
-  end
-
-  let(:earliest_eligible_stepping_start_date) do
-    stepping_start_date PhqStepping::EARLIEST_ELIGIBLE_STEPPING_WEEK
+  def week_in_study(week)
+    Date.current - (week - 1).weeks
   end
 
   describe "PHQ Stepping Algorithm" do
-    it ".consecutive_low_weeks? returns true if two consecutive weeks are low" do
-      phq_low_four = PhqStepping.new(low_assessments, earliest_eligible_stepping_start_date)
-      phq_low_five = PhqStepping.new(low_assessments, earliest_eligible_stepping_start_date - 1.week)
-      expect(phq_low_four.instance_eval { consecutive_low_weeks? }).to eq true
-      expect(phq_low_five.instance_eval { consecutive_low_weeks? }).to eq true
+    describe "when not eligible for stepping" do
+      let(:complete_phq_assesment) do
+        PhqAssessment.new(q1: 3, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0, q8: 0, q9: 0)
+      end
+
+      describe "when its too early to run the algorithm" do
+        let(:phq_stepping) do
+          PhqStepping.new(Hash[today, 17], week_in_study(3))
+        end
+
+        it "sets phq stepping attributes" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "Stay on i-CBT; Too early to determine stepping."
+          expect(phq_stepping.release).to eq nil
+          expect(phq_stepping.stay).to eq nil
+          expect(phq_stepping.step).to eq nil
+          expect(phq_stepping.suggestion).to eq "No; Too Early"
+          expect(phq_stepping.urgency).to eq "warning"
+        end
+      end
+
+      describe "when no assessments have been completed" do
+        let(:phq_stepping) do
+          PhqStepping.new(nil, week_in_study(5))
+        end
+
+        it "sets phq stepping attributes" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "No assessments passed to the algorithm. An error may have occurred"
+          expect(phq_stepping.release).to eq nil
+          expect(phq_stepping.stay).to eq nil
+          expect(phq_stepping.step).to eq nil
+          expect(phq_stepping.suggestion).to eq "YES*"
+          expect(phq_stepping.urgency).to eq "danger"
+        end
+      end
+
+      describe "when baseline doesn't exist" do
+        let(:phq_stepping) do
+          PhqStepping
+            .new(Hash[today, 17, today - 14.days, 18], week_in_study(9))
+        end
+
+        it "sets phq stepping attributes" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "Patient has no completed assessments until after week 3. "\
+                   "Stepping algorithm not run; please use discretion."
+          expect(phq_stepping.release).to eq nil
+          expect(phq_stepping.stay).to eq nil
+          expect(phq_stepping.step).to eq nil
+          expect(phq_stepping.suggestion).to eq "YES*"
+          expect(phq_stepping.urgency).to eq "danger"
+        end
+      end
+
+      describe "when high and low scored assessments have been submitted" do
+        let(:phq_stepping) do
+          PhqStepping
+            .new(Hash[
+              today, 3,
+              last_week, 3,
+              today - 3.weeks, 17,
+              today - 19.weeks, 9
+            ], week_in_study(20))
+        end
+
+        it "prioritizes high assessment scores over low assesment scores" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "Step to t-CBT"
+          expect(phq_stepping.release).to eq nil
+          expect(phq_stepping.stay).to eq nil
+          expect(phq_stepping.step).to eq true
+          expect(phq_stepping.suggestion).to eq "YES"
+          expect(phq_stepping.urgency).to eq "danger"
+        end
+      end
+
+      describe "when three or fewer missing responses exist for a single phq assessment" do
+        let(:incomplete_phq_assesment) do
+          # Missing responses to questions 7, 8, 9
+          PhqAssessment.new(q1: 3, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0)
+        end
+
+        let(:phq_stepping) do
+          PhqStepping
+            .new(
+              [
+                [last_week, incomplete_phq_assesment],
+                [today - 2.weeks, complete_phq_assesment]
+              ],
+              week_in_study(5))
+        end
+
+        it "estimates the missing responses when making suggestions" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "Stay on i-CBT"
+          expect(phq_stepping.release).to eq false
+          expect(phq_stepping.stay).to eq true
+          expect(phq_stepping.step).to eq false
+          expect(phq_stepping.suggestion).to eq "No"
+          expect(phq_stepping.urgency).to eq "success"
+        end
+      end
+
+      describe "when four or more missing responses exist for a single phq assessment" do
+        let(:incomplete_phq_assesment) do
+          # Missing responses to questions 6, 7, 8, 9
+          PhqAssessment.new(q1: 3, q2: 0, q3: 0, q4: 0, q5: 0)
+        end
+
+        let(:phq_stepping) do
+          PhqStepping
+            .new(
+              [
+                [last_week, incomplete_phq_assesment],
+                [today - 2.weeks, complete_phq_assesment]
+              ],
+              week_in_study(5))
+        end
+
+        it "doesn't make any recommendations" do
+          expect(phq_stepping.detailed_suggestion)
+            .to eq "One or more assessments are missing more than than three answers. "\
+                   "Stepping should be determined via consultation instead."
+          expect(phq_stepping.release).to eq nil
+          expect(phq_stepping.stay).to eq nil
+          expect(phq_stepping.step).to eq nil
+          expect(phq_stepping.suggestion).to eq "Consult - Missing Data"
+          expect(phq_stepping.urgency).to eq "warning"
+        end
+      end
     end
 
-    it ".consecutive_high_weeks? returns true if two consecutive weeks are high (Weeks 4 - 8)" do
-      phq_high_four = PhqStepping.new(high_range_1_assessments, earliest_eligible_stepping_start_date)
-      phq_high_five = PhqStepping.new(high_range_1_assessments,
-                                      earliest_eligible_stepping_start_date - 1.week)
-      phq_mid_five = PhqStepping.new(high_range_2_assessments,
-                                     earliest_eligible_stepping_start_date - 1.week)
-      expect(phq_high_four.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_five.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_mid_five.instance_eval { consecutive_high_weeks? }).to eq false
-    end
+    describe "when eligible for stepping" do
+      describe "weeks 4 - 8 with high threshold of 17 pts" do
+        let(:previous_highest_mid_range_score) { first_period_highest_mid_range_score }
+        let(:current_highest_mid_range_score) { first_period_highest_mid_range_score }
+        let(:previous_step_score) { first_period_step_score }
+        let(:current_step_score) { first_period_step_score }
 
-    it ".consecutive_high_weeks? returns true if two consecutive weeks are high (Weeks 9 - 13)" do
-      phq_high_nine = PhqStepping.new(high_range_1_assessments, stepping_start_date(9))
-      phq_high_ten = PhqStepping.new(high_range_1_assessments, stepping_start_date(10))
-      phq_high_eleven = PhqStepping.new(high_range_2_assessments, stepping_start_date(11))
-      phq_mid_twelve = PhqStepping.new(high_range_3_assessments, stepping_start_date(12))
-      expect(phq_high_nine.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_ten.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_eleven.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_mid_twelve.instance_eval { consecutive_high_weeks? }).to eq false
-    end
+        describe "edge week (i.e., week 4)" do
+          let(:study_start_date) { week_in_study(4) }
 
-    it ".consecutive_high_weeks? returns true if two consecutive weeks are high (Weeks 14+)" do
-      phq_high_fourteen = PhqStepping.new(high_range_1_assessments, stepping_start_date(14))
-      phq_high_fifteen = PhqStepping.new(high_range_1_assessments, stepping_start_date(15))
-      phq_high_sixteen = PhqStepping.new(high_range_2_assessments, stepping_start_date(16))
-      phq_high_seventeen = PhqStepping.new(high_range_3_assessments, stepping_start_date(17))
-      expect(phq_high_fourteen.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_fifteen.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_sixteen.instance_eval { consecutive_high_weeks? }).to eq true
-      expect(phq_high_seventeen.instance_eval { consecutive_high_weeks? }).to eq true
-    end
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score],
+                  study_start_date)
+            end
 
-    it "handles when no assessments were completed" do
-      phq_none = PhqStepping.new(nil, stepping_start_date(5))
-      expect(phq_none.suggestion).to eq "YES*"
-      expect(phq_none.step).to eq nil
-      expect(phq_none.stay).to eq nil
-      expect(phq_none.release).to eq nil
-    end
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
 
-    it "handles when its too early to run the algorithm" do
-      phq_early = PhqStepping.new(Hash[today, 17], stepping_start_date(1))
-      expect(phq_early.suggestion).to eq "No; Too Early"
-      expect(phq_early.step).to eq nil
-      expect(phq_early.stay).to eq nil
-      expect(phq_early.release).to eq nil
-    end
+          describe "when two consecutive week scores are mid-range" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, previous_highest_mid_range_score],
+                  study_start_date)
+            end
 
-    it "handles edge case: on week 'earliest eligible stepping', no previous assessments" do
-      phq_week_4_no_past = PhqStepping.new(Hash[today, 17], earliest_eligible_stepping_start_date)
-      expect(phq_week_4_no_past.suggestion).to eq "YES*"
-      expect(phq_week_4_no_past.step).to eq nil
-      expect(phq_week_4_no_past.stay).to eq nil
-      expect(phq_week_4_no_past.release).to eq nil
-    end
+            it "recommends only a suggestion" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT; Using data from last period as well"
+              expect(phq_stepping.release).to eq false
+              expect(phq_stepping.stay).to eq nil
+              expect(phq_stepping.step).to eq false
+              expect(phq_stepping.suggestion).to eq "No*"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
 
-    it "handles edge case: on week 'earliest eligible stepping', high assessments" do
-      phq_week_4_past = PhqStepping.new(Hash[today - 1.week, 17], earliest_eligible_stepping_start_date)
-      expect(phq_week_4_past.suggestion).to eq "YES"
-      expect(phq_week_4_past.step).to eq true
-      expect(phq_week_4_past.stay).to eq nil
-      expect(phq_week_4_past.release).to eq nil
-    end
+          describe "when two consecutive week scores are high (i.e., >= 17 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, previous_step_score],
+                  study_start_date)
+            end
 
-    it "handles edge case: on week 'earliest eligible stepping', low assessments" do
-      phq_week_4_past = PhqStepping.new(Hash[today - 1.week, 3], earliest_eligible_stepping_start_date)
-      expect(phq_week_4_past.suggestion).to eq "No - Low Scores"
-      expect(phq_week_4_past.step).to eq false
-      expect(phq_week_4_past.stay).to eq nil
-      expect(phq_week_4_past.release).to eq true
-    end
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
 
-    it "handles edge case: on week 'earliest eligible stepping', mid-range assessments" do
-      phq_week_4_past_mid = PhqStepping.new(Hash[today - 1.week, 9], earliest_eligible_stepping_start_date)
-      expect(phq_week_4_past_mid.step).to eq false
-      expect(phq_week_4_past_mid.stay).to eq nil
-      expect(phq_week_4_past_mid.release).to eq false
-    end
+        describe "non-edge week (example: week 6)" do
+          let(:study_start_date) { week_in_study(6) }
 
-    it "handles edge case: on week 9, no previous assessments" do
-      phq_week_9_no_past = PhqStepping.new(Hash[today, 17], stepping_start_date(9))
-      expect(phq_week_9_no_past.step).to eq nil
-      expect(phq_week_9_no_past.stay).to eq nil
-      expect(phq_week_9_no_past.release).to eq nil
-    end
+          describe "#results" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 4.weeks, stay_score],
+                  study_start_date)
+            end
 
-    it "handles edge case: on week 9, high assessments" do
-      phq_week_9_past = PhqStepping.new(Hash[today - 1.week, 17, today - 8.weeks, 9], stepping_start_date(9))
-      expect(phq_week_9_past.step).to eq true
-      expect(phq_week_9_past.stay).to eq nil
-      expect(phq_week_9_past.release).to eq nil
-    end
+            it "returns current week" do
+              expect(phq_stepping.results[:current_week]).to eq 6
+            end
 
-    it "handles edge case: on week 9, one high, one low assessment" do
-      phq_week_9_past = PhqStepping.new(Hash[today - 1.week, 15, today - 8.weeks, 9], stepping_start_date(9))
-      expect(phq_week_9_past.step).to eq false
-      expect(phq_week_9_past.stay).to eq nil
-      expect(phq_week_9_past.release).to eq false
-    end
+            it "returns correct hash of limits" do
+              expect(phq_stepping.results[:lower_limit]).to eq 5
+              expect(phq_stepping.results[:range_start]).to eq 4
+              expect(phq_stepping.results[:upper_limit]).to eq current_step_score
+            end
+          end
 
-    it "handles edge case: on week 9, low assessments" do
-      phq_week_9_past = PhqStepping.new(Hash[today - 1.week, 3, today - 8.weeks, 9], stepping_start_date(9))
-      expect(phq_week_9_past.step).to eq false
-      expect(phq_week_9_past.stay).to eq nil
-      expect(phq_week_9_past.release).to eq true
-    end
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(Hash[today, discontinue_score, last_week, discontinue_score, today - 4.weeks, discontinue_score], study_start_date)
+            end
 
-    it "handles edge case: on week 9, mid-range assessments" do
-      phq_week_9_past_mid = PhqStepping.new(Hash[today - 1.week, 9, today - 8.weeks, 9], stepping_start_date(9))
-      expect(phq_week_9_past_mid.step).to eq false
-      expect(phq_week_9_past_mid.stay).to eq nil
-      expect(phq_week_9_past_mid.release).to eq false
-    end
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
 
-    ###
+          describe "when two consecutive week scores are mid-range (i.e., 5 - 16 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, current_highest_mid_range_score, today - 4.weeks, discontinue_score],
+                  study_start_date)
+            end
 
-    it "handles edge case: on week 14, no previous assessments" do
-      phq_week_14_no_past = PhqStepping.new(Hash[today, 17], stepping_start_date(14))
-      expect(phq_week_14_no_past.step).to eq nil
-      expect(phq_week_14_no_past.stay).to eq nil
-      expect(phq_week_14_no_past.release).to eq nil
-    end
+            it "recommends staying" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT"
+              expect(phq_stepping.stay).to eq true
+              expect(phq_stepping.suggestion).to eq "No"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
 
-    it "handles edge case: on week 14, high assessments" do
-      phq_week_14_past = PhqStepping.new(Hash[today - 1.week, 17, today - 13.weeks, 14], stepping_start_date(14))
-      expect(phq_week_14_past.step).to eq true
-      expect(phq_week_14_past.stay).to eq nil
-      expect(phq_week_14_past.release).to eq nil
-    end
+          describe "when two consecutive week scores are high (i.e., >= 17 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, current_step_score, today - 4.weeks, discontinue_score],
+                  study_start_date)
+            end
 
-    it "handles edge case: on week 14, one high, one low assessment" do
-      phq_week_14_past = PhqStepping.new(Hash[today - 1.week, 12, today - 13.weeks, 9], stepping_start_date(14))
-      expect(phq_week_14_past.suggestion).to eq "No*"
-      expect(phq_week_14_past.step).to eq false
-      expect(phq_week_14_past.stay).to eq false
-      expect(phq_week_14_past.release).to eq false
-    end
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
+      end
 
-    it "handles edge case: on week 14, low assessments" do
-      phq_week_14_past = PhqStepping.new(Hash[today - 1.week, 3, today - 13.weeks, 9], stepping_start_date(14))
-      expect(phq_week_14_past.step).to eq false
-      expect(phq_week_14_past.stay).to eq false
-      expect(phq_week_14_past.release).to eq true
-    end
+      describe "weeks 9 - 13 with threshold of 13 pts" do
+        let(:previous_highest_mid_range_score) { first_period_highest_mid_range_score }
+        let(:current_highest_mid_range_score) { second_period_highest_mid_range_score }
+        let(:previous_step_score) { first_period_step_score }
+        let(:current_step_score) { second_period_step_score }
 
-    it "handles edge case: on week 14, mid-range assessments" do
-      phq_week_14_past_mid = PhqStepping.new(Hash[today - 1.week, 9, today - 13.weeks, 9], stepping_start_date(14))
-      expect(phq_week_14_past_mid.step).to eq false
-      expect(phq_week_14_past_mid.stay).to eq true
-      expect(phq_week_14_past_mid.release).to eq false
-    end
+        describe "edge week (i.e., week 9)" do
+          let(:study_start_date) { week_in_study(9) }
 
-    it "high scores take priority over low scores" do
-      phq_week_priority_check = PhqStepping.new(priority_check, stepping_start_date(20))
-      expect(phq_week_priority_check.suggestion).to eq "YES"
-      expect(phq_week_priority_check.step).to eq true
-      expect(phq_week_priority_check.stay).to eq nil
-      expect(phq_week_priority_check.release).to eq nil
-    end
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
 
-    it "Fills in missing values for 3 or less missing answers in a single phq assessment" do
-      phq_fill_in_answers = PhqStepping.new([specific_week_three], earliest_eligible_stepping_start_date)
-      expect(phq_fill_in_answers.suggestion).to eq "No*"
-      expect(phq_fill_in_answers.step).to eq false
-      expect(phq_fill_in_answers.stay).to eq nil
-      expect(phq_fill_in_answers.release).to eq false
-    end
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
 
-    it "Cancels if 4 or more missing answers in a single assessment" do
-      phq_too_many_missing = PhqStepping.new([specific_week_three, specific_week_four], earliest_eligible_stepping_start_date)
-      expect(phq_too_many_missing.suggestion).to eq "Consult - Missing Data"
-      expect(phq_too_many_missing.step).to eq nil
-      expect(phq_too_many_missing.stay).to eq nil
-      expect(phq_too_many_missing.release).to eq nil
+          describe "when two consecutive week scores are mid-range (i.e., 5 - 12 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, previous_highest_mid_range_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "recommends only a suggestion" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT; Using data from last period as well"
+              expect(phq_stepping.release).to eq false
+              expect(phq_stepping.stay).to eq nil
+              expect(phq_stepping.step).to eq false
+              expect(phq_stepping.suggestion).to eq "No*"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are high (i.e., >= 13 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, previous_step_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
+
+        describe "non-edge week (example: week 10)" do
+          let(:study_start_date) { week_in_study(10) }
+
+          describe "#results" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 3.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "returns correct hash of limits" do
+              expect(phq_stepping.results[:lower_limit]).to eq discontinue_score + 1
+              expect(phq_stepping.results[:range_start]).to eq 9
+              expect(phq_stepping.results[:upper_limit]).to eq current_step_score
+            end
+          end
+
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are mid-range (i.e., 5 - 12 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, current_highest_mid_range_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "recommends staying" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT"
+              expect(phq_stepping.stay).to eq true
+              expect(phq_stepping.suggestion).to eq "No"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are high (i.e., >= 13 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, current_step_score, today - 8.weeks, discontinue_score],
+                  study_start_date)
+            end
+
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
+      end
+
+      describe "weeks 14+" do
+        let(:previous_highest_mid_range_score) { second_period_highest_mid_range_score }
+        let(:current_highest_mid_range_score) { third_period_highest_mid_range_score }
+        let(:previous_step_score) { second_period_step_score }
+        let(:current_step_score) { third_period_step_score }
+
+        describe "previous edge week (i.e., week 14)" do
+          let(:study_start_date) { week_in_study(14) }
+
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 11.week, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are mid-range (i.e., 5 - 12 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, previous_highest_mid_range_score, today - 11.week, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends staying" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT"
+              expect(phq_stepping.stay).to eq true
+              expect(phq_stepping.suggestion).to eq "No"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are high (i.e., >= 13 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, previous_step_score, today - 11.week, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
+
+        describe "non-edge week (example: week 15)" do
+          let(:study_start_date) { week_in_study(15) }
+
+          describe "#results" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, 1, last_week, 4, today - 11.week, stay_score],
+                  study_start_date)
+            end
+
+            it "returns correct hash of limits" do
+              expect(phq_stepping.results[:lower_limit]).to eq discontinue_score + 1
+              expect(phq_stepping.results[:range_start]).to eq 9
+              expect(phq_stepping.results[:upper_limit]).to eq current_step_score
+            end
+          end
+
+          describe "when two consecutive week scores are low (i.e., < 5 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, discontinue_score, last_week, discontinue_score, today - 13.weeks, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends releasing" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT or schedule post engagement call"
+              expect(phq_stepping.release).to eq true
+              expect(phq_stepping.suggestion).to eq "No - Low Scores"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are mid-range (i.e., 5 - 12 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_highest_mid_range_score, last_week, current_highest_mid_range_score, today - 13.weeks, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends staying" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Stay on i-CBT"
+              expect(phq_stepping.stay).to eq true
+              expect(phq_stepping.suggestion).to eq "No"
+              expect(phq_stepping.urgency).to eq "success"
+            end
+          end
+
+          describe "when two consecutive week scores are high (i.e., >= 13 pts)" do
+            let(:phq_stepping) do
+              PhqStepping
+                .new(
+                  Hash[today, current_step_score, last_week, current_step_score, today - 13.weeks, stay_score],
+                  study_start_date)
+            end
+
+            it "recommends stepping" do
+              expect(phq_stepping.detailed_suggestion)
+                .to eq "Step to t-CBT"
+              expect(phq_stepping.step).to eq true
+              expect(phq_stepping.suggestion).to eq "YES"
+              expect(phq_stepping.urgency).to eq "danger"
+            end
+          end
+        end
+      end
     end
   end
 end

@@ -1,3 +1,78 @@
+## 3.5.2 - 2015-11-03
+ * Merge pull request #278 from cbitstech/msw_105498898_message_email_bug
+ * Add Correct Email Messaging References
+ * Merge pull request #279 from cbitstech/msw_100127766_fix_ordering_bug
+ * Change Scope Name
+ * Update Active Page Spec
+ * Add Scope for Ordering
+ * Merge pull request #277 from cbitstech/msw_106168974_update_membership_count
+ * Update Group Scope
+
+## 3.5.1 - 2015-10-30
+ * Merge pull request #276 from cbitstech/msw_106947446_update_froogaloop2
+
+## 3.5.0 - 2015-10-30
+ * Merge pull request #272 from cbitstech/msw_100127766_revise_stepping_range_2
+ * Merge pull request #275 from cbitstech/msw_106253054_fix_printing_issue_2
+ * Remove Problemative CSS
+ * Merge pull request #273 from cbitstech/msw_106743200_return_nil_when_no_event
+ * Add Event "Scope"
+ * Return nil when no event exists
+ * Remove Third Period Range
+ * Update Specs and Week Number Conditions
+
+## 3.4.1 - 2015-10-27
+ * Merge pull request #271 from cbitstech/msw_98987112_update_password_route
+ * Update Password Spec
+ * Update Password Validator
+
+## 3.4.0 - 2015-10-23
+ * Merge pull request #269 from cbitstech/msw_100127766_revise_stepping_3
+ * Pull Request Updates
+ * Update PHQ View
+ * Update PHQ formula so week 4 is an edge week not 5
+ * Update PhqStepping with New Requirements
+ * Define Constant & Update with Rubocop
+ * Update Specs and Cover All Cases
+ * Merge pull request #270 from cbitstech/msw_98987112_update_failing_spec
+ * Update Password Validator
+ * Merge pull request #267 from cbitstech/msw_98987112_update_password_js
+ * Merge pull request #268 from cbitstech/msw_fix_deprecation_warning_template
+ * Fix Deprecation Warning
+ * Add Password Validator Specs
+ * Update Concern ValidatePassword Specs
+ * Update Entropy Call
+
+## 3.3.2 - 2015-10-15
+ * Merge pull request #266 from cbitstech/msw_105006670_update_reply_email
+ * Fix Lesson Notification From Bug
+
+## 3.3.1 - 2015-10-15
+ * Merge pull request #265 from cbitstech/msw_105006670_move_lesson_notification_email
+ * Update Spec Given Testing Issue
+ * Add Lesson Notification Mailer
+ * Merge pull request #264 from cbitstech/msw_105006670_add_rake_task_spec
+ * Merge pull request #263 from cbitstech/msw_98987112_update_password_validations
+ * Move Rake Dependencies Into Engine
+ * Change Password Validations
+
+## 3.3.0 - 2015-10-14
+ * Merge pull request #262 from cbitstech/msw_100127766_revise_algorithms
+ * Add Validation Specs
+ * Merge pull request #261 from cbitstech/msw_98987112_update_password_info
+ * Update password instructions
+ * Update Password Edit Page
+ * Merge pull request #260 from cbitstech/msw_98987112_update_password
+ * Add Password Concern
+ * Merge pull request #259 from cbitstech/msw_105006670_update_sms_notifications
+ * Update SMS Notification Class
+ * Merge pull request #258 from cbitstech/msw_101800918_turn_off_sorting_for_column
+ * Merge pull request #257 from cbitstech/msw_101800796_font_awesome_sorting
+ * Update Sorting
+ * Merge pull request #256 from cbitstech/msw_102218098_unify_css
+ * Unify Footer Css
+ * Add FontAwesome Sorting Icons
+
 ## 3.2.61 - 2015-10-08
  * Merge pull request #253 from cbitstech/msw_102218098_update_footer
  * Merge pull request #255 from cbitstech/msw_105021274_remove_console

@@ -1,28 +1,31 @@
 <%# referenced by both bit_maker and bit_core %>
 <% if (slide.options || {})[:vimeo_id] %>
-<div class="responsive-video">
-  <iframe src="//player.vimeo.com/video/<%= slide.options[:vimeo_id] %>?api=1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+  <div class="responsive-video">
+    <iframe src="//player.vimeo.com/video/<%= slide.options[:vimeo_id] %>?api=1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+  <% if current_participant %>
+    <script>
+      $(function() {
+        var iframe = $(".responsive-video iframe[src='//player.vimeo.com/video/" + "<%= slide.options[:vimeo_id] %>" + "?api=1']")[0];
+        var player = $f(iframe);
+        player.addEvent("ready", function() {
+          var eventClient = new EventCaptureClient("/event_capture/events");
+          var payload = { currentUrl: window.location.href };
+          player.addEvent("play", function() {
+            eventClient.log({ kind: "videoPlay", payload: payload });
+          });
 
-  <script>
-    var iframe = $(".responsive-video iframe")[0];
-    var player = $f(iframe);
-    player.addEvent("ready", function() {
-      var eventClient = new EventCaptureClient("/event_capture/events");
-      var payload = { currentUrl: window.location.href };
+          player.addEvent("pause", function() {
+            eventClient.log({ kind: "videoPause", payload: payload });
+          });
 
-      player.addEvent("play", function() {
-        eventClient.log({ kind: "videoPlay", payload: payload });
+          player.addEvent("finish", function() {
+            eventClient.log({ kind: "videoFinish", payload: payload });
+          });
+        });
       });
-
-      player.addEvent("pause", function() {
-        eventClient.log({ kind: "videoPause", payload: payload });
-      });
-
-      player.addEvent("finish", function() {
-        eventClient.log({ kind: "videoFinish", payload: payload });
-      });
-    });
-  </script>
+    </script>
+  <% end %>
 <% else %>
   <video controls>
     <source src="<%= slide.options['url'] %>" type="video/mp4">
