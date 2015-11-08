@@ -1,3 +1,15 @@
+## 3.7.0 - 2015-11-06
+ * Merge pull request #282 from cbitstech/msw_107436990_add_messaging_validation
+ * Merge pull request #281 from cbitstech/msw_107392650_fix_phq_ordering
+ * Remove Scope Limit
+ * Update Error Message
+ * Add Message Validation
+ * Update Scope to Find By Release Date
+
+## 3.6.0 - 2015-11-04
+ * Merge pull request #280 from cbitstech/msw_100063566_update_tool_viz
+ * Add Background to Home Screen Thought Viz
+
 ## 3.5.2 - 2015-11-03
  * Merge pull request #278 from cbitstech/msw_105498898_message_email_bug
  * Add Correct Email Messaging References

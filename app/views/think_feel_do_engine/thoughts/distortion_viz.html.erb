@@ -1,6 +1,11 @@
-<div id="ThoughtVizContainer">
-  <div id="ThoughtVizTooltip"></div>
-</div>
+<h4>Harmful Thoughts</h4>
+<% if ThinkFeelDoEngine::HarmfulThoughtVizPresenter.new(thoughts.harmful.map(&:pattern_id)).display_viz? %>
+  <div id="ThoughtVizContainer">
+    <div id="ThoughtVizTooltip"></div>
+  </div>
+<% else %>
+  <p class="text-info">Not enough harmful thoughts yet exist for graphical display.</p>
+<% end %>
 
 <script type="text/javascript">
     var TT = null, thoughtsWithPatterns;

@@ -7,6 +7,8 @@ class Message < ActiveRecord::Base
   has_many :delivered_messages, dependent: :destroy
 
   validates :subject, :sender, :recipient, presence: true
+  validate :participant_is_messageable,
+           if: proc { |message| message.recipient.try(:notify_by_email?) }
 
   before_create :populate_sent_at
   after_create :create_delivered_messages
@@ -30,11 +32,27 @@ class Message < ActiveRecord::Base
 
   private
 
-  def populate_sent_at
-    self.sent_at = Time.new
-  end
-
   def create_delivered_messages
     recipient.received_messages.create(message_id: id)
+  end
+
+  def messaging_tool
+    recipient
+      .current_group
+      .arm
+      .bit_core_tools
+      .find_by_type("Tools::Messages")
+  end
+
+  def participant_is_messageable
+    unless messaging_tool
+      errors
+        .add :base, "We're sorry, but this participant does"\
+                    " not have access to the messaging tool."
+    end
+  end
+
+  def populate_sent_at
+    self.sent_at = Time.new
   end
 end

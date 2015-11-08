@@ -11,10 +11,10 @@ class PhqAssessment < ActiveRecord::Base
   validates :release_date, uniqueness: { scope: :participant_id }
   validate :scores_valid
 
-  scope :latest_updated, -> { order(updated_at: :desc) }
+  scope :recenty_released, -> { order(release_date: :desc) }
 
   def self.most_recent
-    latest_updated.first
+    recenty_released.first
   end
 
   def answered_questions

@@ -18,3 +18,15 @@ participant_phq1_a:
   q7: 0
   q8: 0
   q9: 0
+
+phq_released_two_weeks_ago:
+  participant: traveling_participant1
+  created_at: <%= DateTime.current.advance(weeks: -2) %>
+  release_date: <%= DateTime.current.advance(weeks: -2) %>
+  updated_at: <%= DateTime.current.advance(weeks: -2) %>
+
+phq_released_last_week:
+  participant: traveling_participant1
+  created_at: <%= DateTime.current.advance(weeks: -1) %>
+  release_date: <%= DateTime.current.advance(weeks: -1) %>
+  updated_at: <%= DateTime.current.advance(weeks: -1) %>

@@ -66,6 +66,26 @@ RSpec.describe PhqAssessment, type: :model do
     end
   end
 
+  describe "scopes" do
+    let(:participant) { participants(:traveling_participant1) }
+
+    describe ".most_recent" do
+      it "returns the most recent phq" do
+        expect(participant.phq_assessments.most_recent)
+          .to eq phq_assessments(:phq_released_last_week)
+      end
+
+      describe "when an assessment is updated" do
+        it "returns the phq based on release date" do
+          phq_assessments(:phq_released_two_weeks_ago).update!(q1: 1)
+
+          expect(participant.phq_assessments.most_recent)
+            .to eq phq_assessments(:phq_released_last_week)
+        end
+      end
+    end
+  end
+
   describe "#completed?" do
     it "returns `true` if all questions have been answered" do
       phq = PhqAssessment.new(valid_attributes.merge(q4: 0, q5: 1, q6: 2,
