@@ -1,3 +1,7 @@
+## 3.7.1 - 2015-11-20
+ * Merge pull request #283 from cbitstech/msw_108576746_allow_for_clearer_html_editing
+ * Add Sanitize Method
+
 ## 3.7.0 - 2015-11-06
  * Merge pull request #282 from cbitstech/msw_107436990_add_messaging_validation
  * Merge pull request #281 from cbitstech/msw_107392650_fix_phq_ordering

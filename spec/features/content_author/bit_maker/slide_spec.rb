@@ -34,8 +34,17 @@ feature "Slide", type: :feature do
     end
 
     describe "Updating" do
+      let(:slide) { bit_core_slides(:home_intro1) }
+
+      it "displays html code snippets within the javascript textarea editor", :js do
+        slide.update_attributes(body: "```<h1>Hello world</h1>```")
+        visit urls.edit_arm_bit_maker_slideshow_slide_path(arms(:arm1), bit_core_slideshows(:home_intro), slide)
+
+        expect(page.find(".md-editor textarea").value)
+          .to include "<h1>Hello world</h1>"
+      end
+
       it "display updated title and body" do
-        slide = BitCore::Slide.find_by_title("It's simple.")
         within "#slide_#{slide.id}" do
           click_on "Edit"
         end
@@ -51,7 +60,6 @@ feature "Slide", type: :feature do
       end
 
       it "not be updated if the slide doesn't have a title or body" do
-        slide = BitCore::Slide.find_by_title("It's simple.")
         within "#slide_#{slide.id}" do
           click_on "Edit"
         end
@@ -66,7 +74,6 @@ feature "Slide", type: :feature do
       end
 
       it "display title if the visibility is set or the title should be hidden if option is not selected" do
-        slide = BitCore::Slide.find_by_title("It's simple.")
         click_on "It's simple."
         expect(page).to have_text "It's simple."
         visit urls.arm_bit_maker_slideshow_path(arms(:arm1), bit_core_slideshows(:home_intro))
