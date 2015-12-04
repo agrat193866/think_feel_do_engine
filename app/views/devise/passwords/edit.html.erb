@@ -4,14 +4,18 @@
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <p>Password should:</p>
+  <p>Password must include:</p>
   <ul>
-    <li>be 8 - 128 characters long</li>
-    <li>include at least one lowercase and one uppercase letter</li>
-    <li>include at least one digit</li>
-    <li>not repeat a character more than twice in a row</li>
-    <li>not be the same as your email.</li>
+    <li>AT LEAST 8 characters (but no more than 128)</li>
+    <li>AT LEAST 1 lowercase and 1 UPPERCASE letter</li>
+    <li>AT LEAST 1 number</li>
+  </ul>
 
+  <p>Password cannot include:</p>
+  <ul>
+    <li>The same number or letter more than twice in a row (11 is okay, 111 is
+        not okay)</li>
+    <li>Your email address</li>
   </ul>
 
   <div class="form-group">
