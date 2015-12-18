@@ -19,7 +19,7 @@ module ThinkFeelDoEngine
             data = Reports::PhqAssessment.all
             phq = phq_assessments(:participant_phq1_a)
 
-            expect(data.count).to eq 2
+            expect(data.count).to be >= 1
             expect(data).to include(
               participant_id: phq.participant.study_id,
               date_transmitted: phq.release_date.iso8601,

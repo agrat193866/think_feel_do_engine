@@ -21,7 +21,7 @@ module ThinkFeelDoEngine
             content_module = bit_core_content_modules(:think_identifying)
             event = event_capture_events(:event_capture_events_013)
 
-            expect(data.count).to eq 6
+            expect(data.count).to be >= 2
             expect(data).to include(
               participant_id: participant.study_id,
               module_title: content_module.title,

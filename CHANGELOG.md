@@ -1,3 +1,21 @@
+## 3.9.0 - 2015-12-16
+ * Merge pull request #289 from cbitstech/msw_update_bit_core
+ * Update BitCore
+
+## 3.8.0 - 2015-12-15
+ * Merge pull request #288 from cbitstech/ems-108985146-2
+ * Update existing participant password feature spec.
+ * Merge pull request #287 from cbitstech/msw_98199340_update_spec_counts
+ * Merge pull request #286 from cbitstech/msw_104324476_change_review_button_text
+ * Update Spec Counts
+ * Change Review Button Text
+ * Merge pull request #285 from cbitstech/ems-108985146
+ * Breaking password spec up to remove race conditions.
+ * Add spec for entropy validation.
+ * Reduce password entropy to allow for simpler passwords.
+ * Merge pull request #284 from cbitstech/cjb_password_help
+ * Update password help language
+
 ## 3.7.1 - 2015-11-20
  * Merge pull request #283 from cbitstech/msw_108576746_allow_for_clearer_html_editing
  * Add Sanitize Method

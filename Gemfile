@@ -22,7 +22,7 @@ gem "event_capture",
     git: "https://github.com/cbitstech/event_capture.git"
 
 gem "bit_core",
-    tag: "1.4.2",
+    tag: "1.4.5",
     git: "https://github.com/cbitstech/bit_core.git"
 
 gem "bit_player",

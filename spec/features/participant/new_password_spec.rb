@@ -12,14 +12,7 @@ feature "send participant password reset instructions for participants who can a
   end
 
   it "should redirect after password update", :js do
-    click_on "Forgot your password?"
-
-    within "h2" do
-      expect(page).to have_text "Forgot your password"
-    end
-
-    fill_in "Email", with: "participant1@example.com"
-    click_on "Send me reset password instructions"
+    navigate_to_change_password_page
 
     expect(page).to have_text "You will receive an email with instructions on how to reset your password in a few minutes."
     expect(last_email.to).to include(participant.email)
@@ -38,47 +31,49 @@ feature "send participant password reset instructions for participants who can a
     expect(current_path).to eq "/"
   end
 
-  it "validates password", :js do
-    click_on "Forgot your password?"
+  context "validates password", :js do
+    it "shows \"Weak\" for no password given" do
+      navigate_to_change_password_page
+      visit extract_participant_password_edit_path_from_email
 
-    within "h2" do
-      expect(page).to have_text "Forgot your password"
+      expect(page).to have_text "Change your password"
+      within "#password-strength .text-danger" do
+        expect(page).to have_text "Weak"
+      end
     end
 
-    fill_in "Email", with: "participant1@example.com"
-    click_on "Send me reset password instructions"
+    it "shows \"Medium\" for password of medium strength" do
+      navigate_to_change_password_page
+      visit extract_participant_password_edit_path_from_email
 
-    visit extract_participant_password_edit_path_from_email
+      fill_in "New password", with: "1Dog ca!"
+      fill_in "Confirm new password", with: "1Dog ca!"
 
-    expect(page).to have_text "Change your password"
-    within "#password-strength .text-danger" do
-      expect(page).to have_text "Weak"
+      within "#password-strength .text-primary" do
+        expect(page).to have_text "Medium"
+      end
     end
 
-    fill_in "New password", with: "1Dog ca!"
-    fill_in "Confirm new password", with: "1Dog ca!"
+    it "shows \"Strong\" for password of strong strength" do
+      navigate_to_change_password_page
+      visit extract_participant_password_edit_path_from_email
 
-    within "#password-strength .text-primary" do
-      expect(page).to have_text "Medium"
+      fill_in "New password", with: valid_password
+      fill_in "Confirm new password", with: valid_password
+
+      within "#password-strength .text-success" do
+        expect(page).to have_text "Strong"
+      end
     end
 
-    fill_in "New password", with: valid_password
-    fill_in "Confirm new password", with: valid_password
+    it "shows error message when password is removed" do
+      navigate_to_change_password_page
+      visit extract_participant_password_edit_path_from_email
 
-    within "#password-strength .text-success" do
-      expect(page).to have_text "Strong"
-    end
+      fill_in "New password", with: ""
+      click_on "Change my password"
 
-    fill_in "New password", with: ""
-    click_on "Change my password"
-
-    expect(page).to have_text "Password can't be blank"
-
-    fill_in "New password", with: valid_password
-    fill_in "Confirm new password", with: valid_password
-
-    within "#password-strength .text-success" do
-      expect(page).to have_text "Strong"
+      expect(page).to have_text "Password can't be blank"
     end
   end
 end
@@ -102,4 +97,15 @@ feature "prevent password reset for participant blocked from the site", type: :f
     expect(current_path).to eq "/participants/sign_in"
     expect(page).to have_text "New password cannot be sent; this account is not active."
   end
+end
+
+def navigate_to_change_password_page
+  click_on "Forgot your password?"
+
+  within "h2" do
+    expect(page).to have_text "Forgot your password"
+  end
+
+  fill_in "Email", with: "participant1@example.com"
+  click_on "Send me reset password instructions"
 end

@@ -19,7 +19,7 @@ module ThinkFeelDoEngine
             data = EmotionalRating.all
             emotional_rating = emotional_ratings(:longing)
             participant = participants(:participant1)
-            expect(data.count).to eq 6
+            expect(data.count).to be > 2
             expect(data).to include(
               participant_id: participant.study_id,
               name: emotional_rating.name,
