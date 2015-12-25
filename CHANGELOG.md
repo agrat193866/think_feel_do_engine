@@ -1,3 +1,7 @@
+## 3.9.1 - 2015-12-21
+ * Merge pull request #291 from cbitstech/msw_110350408_fix_position_updates
+ * Deleting Learning Slides
+
 ## 3.9.0 - 2015-12-16
  * Merge pull request #289 from cbitstech/msw_update_bit_core
  * Update BitCore

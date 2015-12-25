@@ -59,7 +59,7 @@ module ContentModules
 
       slide.transaction do
         if slide.destroy!
-          slides.where("position > ?", position).each_with_index do |s, i|
+          slides.where("position >= ?", position).each_with_index do |s, i|
             s.update_column(:position, position + i)
           end
         end
